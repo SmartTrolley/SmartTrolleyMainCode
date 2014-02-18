@@ -31,7 +31,7 @@ public class SmartTrolleyTests {
 	public void test() {
 		
 //		TODO Implement tests
-		fail("Not yet implemented");
+		fail("Not yet face implemented");
 		
 	}
 
