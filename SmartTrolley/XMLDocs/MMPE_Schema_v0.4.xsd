@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/MMPE_Schema_v0.4/">
+    <xs:element name="documentinfo">
+    	<xs:complexType>
+            <xs:sequence>
+            	<xs:element name="author" type="string"/>
+            	<xs:element name="version" type="string"/>
+            	<xs:element name="comment" type="string"/>
+            	<xs:element name="width" type="int"/>
+            	<xs:element name="Height" type="int"/>
+            </xs:sequence>
+            
+            
+    	</xs:complexType>
+    </xs:element>
+
+    <xs:element name="default">
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element name="backgroundcolor" type="string"/>
+    			<xs:element name="font" type="string"/>
+    			<xs:element name="fontsize" type="string"/>
+    			<xs:element name="fontcolor" type="string"/>
+    			<xs:element name="linecolor" type="string"/>
+    			<xs:element name="fillcolor" type="string"/>
+    		</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+
+    <xs:element name="slide">
+    	<xs:complexType>
+    		<xs:sequence>
+
+    			<xs:element name="text">
+    				<xs:complexType>
+
+    					<xs:sequence>
+    						<xs:element name="b" type="string" />
+    						<xs:element name="i" type="string" />
+    						<xs:element name="u" type="string" />
+    					</xs:sequence>
+
+    					<xs:attribute name="font" type="string"
+    						use="optional" />
+    					<xs:attribute name="fontsize" type="int"
+    						use="optional" />
+    					<xs:attribute name="fontcolor" type="string"
+    						use="optional" />
+    					<xs:attribute name="starttime" type="int"
+    						use="optional" />
+    					<xs:attribute name="duration" type="int"
+    						use="optional" />
+    					<xs:attribute name="layer" type="int"
+    						use="optional" />
+    					<xs:attribute name="xstart" type="int" />
+    					<xs:attribute name="ystart" type="int" />
+    					<xs:attribute name="xend" type="int" />
+    					<xs:attribute name="yend" type="int" />
+    					<xs:attribute name="linecolor" type="string"
+    						use="optional">
+    					</xs:attribute>
+
+    				</xs:complexType>
+    			</xs:element>
+
+    			<xs:element name="shape">
+    				<xs:complexType>
+    					<xs:sequence>
+    						<xs:element name="point">
+    							<xs:complexType>
+    								<xs:attribute name="x" type="int" />
+    								<xs:attribute name="y" type="int" />
+    								<xs:attribute name="num" type="int" />
+    							</xs:complexType>
+    						</xs:element>
+    					</xs:sequence>
+    					<xs:attribute name="totalpoints" type="int"
+    						use="required" />
+    					<xs:attribute name="width" type="int"
+    						use="required" />
+
+    					<xs:attribute name="height" type="int"
+    						use="required" />
+    					<xs:attribute name="fillcolor" type="int" />
+    					<xs:attribute name="starttime" type="int" />
+    					<xs:attribute name="duration" type="int" />
+    					<xs:attribute name="layer" type="int" />
+    					<xs:attribute name="linecolor" type="string" />
+    					<xs:attribute name="branch" type="int" />
+    				</xs:complexType>
+    			</xs:element>
+
+    			<xs:element name="audio">
+    				<xs:complexType>
+    					<xs:sequence>
+
+    					</xs:sequence>
+    					<xs:attribute name="urlname" type="string">
+    					</xs:attribute>
+    					<xs:attribute name="starttime" type="int">
+    					</xs:attribute>
+    					<xs:attribute name="loop" type="boolean">
+    					</xs:attribute>
+    				</xs:complexType>
+    			</xs:element>
+   
+    			<xs:element name="image">
+    				<xs:complexType>
+    					<xs:attribute name="urlname" type="string" use="required" />
+    					<xs:attribute name="xstart" type="int" use="required" />
+    					<xs:attribute name="ystart" type="int" use="required" />
+    					<xs:attribute name="width" type="int" use="optional" />
+    					<xs:attribute name="height" type="int" />
+    					<xs:attribute name="starttime" type="int" />
+    					<xs:attribute name="duration" type="int" />
+    					<xs:attribute name="layer" type="int" />
+    					<xs:attribute name="branch" type="int" />
+    				</xs:complexType>
+    			</xs:element>
+
+    			<xs:element name="video">
+    				<xs:complexType>
+    					<xs:attribute name="urlname" type="string">
+    					</xs:attribute>
+    					<xs:attribute name="starttime" type="int">
+    					</xs:attribute>
+    					<xs:attribute name="loop" type="boolean">
+    					</xs:attribute>
+    					<xs:attribute name="xstart" type="int">
+    					</xs:attribute>
+    					<xs:attribute name="ystart" type="int">
+    					</xs:attribute>
+    					<xs:attribute name="layer" type="int">
+    					</xs:attribute>
+    					<xs:attribute name="playtime" type="int">
+    					</xs:attribute>
+    					<xs:attribute name="duration"
+    						type="int">
+    					</xs:attribute>
+    				</xs:complexType></xs:element>
+
+    		</xs:sequence>
+
+    		<xs:attribute name="id" type="int"/>
+    		<xs:attribute name="duration" type="int"/>
+    		<xs:attribute name="lastslide" type="boolean"/>
+
+    	</xs:complexType>
+    </xs:element>
+</xs:schema>
