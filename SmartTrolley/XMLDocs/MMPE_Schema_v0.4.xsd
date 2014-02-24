@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <xs:schema xmlns="http://www.w3.org/2001/XMLSchema" 
 		   xmlns:xs="http://www.w3.org/2001/XMLSchema"
 		   targetNamespace="http://www.example.org/MMPE_Schema_v0.4/">
