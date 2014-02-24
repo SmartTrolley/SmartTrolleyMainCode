@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:slideshow xmlns:p="http://www.example.org/MMPE_Schema_v0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/MMPE_Schema_v0.4/ MMPE_Schema_v0.4.xsd ">
+  <documentinfo>
+    <author>author</author>
+    <version>version</version>
+    <comment>comment</comment>
+    <width>0</width>
+    <Height>0</Height>
+  </documentinfo>
+  <default>
+    <backgroundcolor>backgroundcolor</backgroundcolor>
+    <font>font</font>
+    <fontsize>fontsize</fontsize>
+    <fontcolor>fontcolor</fontcolor>
+    <linecolor>linecolor</linecolor>
+    <fillcolor>fillcolor</fillcolor>
+  </default>
+  <slide duration="0" id="0" lastslide="true">
+    <text duration="0" font="" fontcolor="" fontsize="0" layer="0" linecolor="" starttime="0" textbody="" xend="0" xstart="0" yend="0" ystart="0">
+      <b>b</b>
+      <i>i</i>
+      <u>u</u>
+    </text>
+    <shape branch="0" duration="0" fillcolor="0" height="0" layer="0" linecolor="" starttime="0" totalpoints="0" width="0">
+      <point num="0" x="0" y="0"/>
+    </shape>
+    <audio loop="true" starttime="0" urlname=""/>
+    <image branch="0" duration="0" height="0" layer="0" starttime="0" urlname="" width="0" xstart="0" ystart="0"/>
+    <video duration="0" layer="0" loop="true" playtime="0" starttime="0" urlname="" xstart="0" ystart="0"/>
+  </slide>
+</p:slideshow>
