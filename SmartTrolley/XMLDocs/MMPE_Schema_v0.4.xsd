@@ -70,7 +70,6 @@
 										use="required" />
 									<xs:attribute name="linecolor"
 										type="string" use="optional" />
-
 									<xs:attribute name="textbody"
 										type="string" use="required">
 									</xs:attribute>

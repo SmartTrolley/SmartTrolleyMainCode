@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<slideshow>
+  <documentinfo>
+    <author>Alasdair Munday</author>
+    <version>1</version>
+    <comment>A PWS slideshow created for testing smart trolley</comment>
+    <width>5</width>
+    <Height>5</Height>
+  </documentinfo>
+  <default>
+    <backgroundcolor></backgroundcolor>
+    <font></font>
+    <fontsize></fontsize>
+    <fontcolor></fontcolor>
+    <linecolor></linecolor>
+    <fillcolor></fillcolor>
+  </default>
+  <slide duration="0" id="0" lastslide="true">
+    <text duration="0" font="" fontcolor="" fontsize="0" layer="0" linecolor="" starttime="0" textbody="" xend="0" xstart="0" yend="0" ystart="0">
+      <b></b>
+      <i></i>
+      <u></u>
+    </text>
+    <shape branch="0" duration="0" fillcolor="0" height="0" layer="0" linecolor="" starttime="0" totalpoints="0" width="0">
+      <point num="0" x="0" y="0"/>
+    </shape>
+    <audio loop="true" starttime="0" urlname=""/>
+    <image branch="0" duration="0" height="0" layer="0" starttime="0" urlname="" width="0" xstart="0" ystart="0"/>
+    <video duration="0" layer="0" loop="true" playtime="0" starttime="0" urlname="" xstart="0" ystart="0"/>
+  </slide>
+</slideshow>
