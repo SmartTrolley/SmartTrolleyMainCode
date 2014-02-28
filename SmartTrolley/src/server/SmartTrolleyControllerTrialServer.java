@@ -72,7 +72,7 @@ public class SmartTrolleyControllerTrialServer {
 				System.exit(-1);
 			}
 
-			try {
+			/*try {
 				clientServerSocketClose();
 				System.out.println("Sockets Closed");
 				System.out.println("Rerunning server");
@@ -89,7 +89,7 @@ public class SmartTrolleyControllerTrialServer {
 				.println("Could not close socket on port: "
 						+ port);
 				System.exit(-1);
-			}
+			} */
 		} while (true); //TODO Take a look at this condition		
 	}
 
