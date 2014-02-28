@@ -23,26 +23,31 @@ import server.SmartTrolleyControllerTrialServer;
 public class SmartTrolleyControllerTrialClientTest {
 
 	private SmartTrolleyControllerTrialClient client;
+	
 	/**
-	 *Method/Test Description
-	 *<p>Spike to connect a server to a client
+	 *@Before Sets up server and client for testing
 	 *@throws java.lang.Exception
-	 *<p> Date Modified: 27 Feb 2014
+	 *<p> Date Modified: 28 Feb 2014
 	 */
-	@Before
 	public void setUp() throws Exception {
 		server.SmartTrolleyControllerTrialServer.main(null);
 		client = new SmartTrolleyControllerTrialClient();
 	}
 
 	/**
-	*Test that the object is correctly received from the Server
-	*<p>Spike to connect a server to a client
-	*<p> Date Modified: 27 Feb 2014
+	*@Test Tests that the correct object is received from the server
+	*<p> Date Modified: 28 Feb 2014
 	*/
-	@Test
 	public void ObjectRxdFromServer() {
-		fail("Not yet implemented");
+		assertEquals(server.SmartTrolleyControllerTrialServer.objectToClient, client.objectFromServer);
+	}
+	
+	/**
+	*@Test Tests that the client closes all sockets
+	*<p> Date Modified: 28 Feb 2014
+	*/
+	public void clientClosesAllSockets(){
+		assertTrue(SmartTrolleyControllerTrialClient.serverSocket.isClosed());
 	}
 
 }

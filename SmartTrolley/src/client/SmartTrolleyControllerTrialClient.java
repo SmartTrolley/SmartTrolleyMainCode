@@ -21,12 +21,13 @@ import java.net.UnknownHostException;
 
 public class SmartTrolleyControllerTrialClient {
 
-	Socket serverSocket;
+	public static Socket serverSocket;
 	String host = "127.0.0.1";
 	int port = 2000;
 	ObjectInputStream inputFromServer;
 	private ObjectOutputStream outputToServer;
 	public Object objectFromServer;
+	static public String objectToServer = "This is a test string from the client.";
 
 	/**
 	 * Opens the client socket, and gets the object from server
@@ -36,7 +37,12 @@ public class SmartTrolleyControllerTrialClient {
 	public SmartTrolleyControllerTrialClient() {
 		try {
 			openSocket();
-			getObjectFromSocket();
+			do {
+				getObjectFromSocket();
+				outputObjectToServer(objectToServer);
+			} while (!(objectFromServer instanceof Object));
+			
+			serverSocket.close();
 
 		} catch (UnknownHostException e) {
 			System.out.println("Don't know about host:" + host);
@@ -103,9 +109,9 @@ public class SmartTrolleyControllerTrialClient {
 		} catch (ClassNotFoundException e) {
 			System.out.println("Could not find VideoFile class.");
 		}
+		System.out.println("Client Recieved:" + objectFromServer);
 	}
 
-	// TODO We need to call this method to send an object to the server
 	/**
 	 * Sends an object to the server
 	 * <p>
@@ -115,7 +121,7 @@ public class SmartTrolleyControllerTrialClient {
 	 *            <p>
 	 *            Date Modified: 27 Feb 2014
 	 */
-	private void outputObjectToServer(Object objectToServer) {
+	public void outputObjectToServer(Object objectToServer) {
 		try {
 
 			outputToServer.writeObject(objectToServer);
