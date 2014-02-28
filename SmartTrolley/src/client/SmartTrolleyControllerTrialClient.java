@@ -1,15 +1,15 @@
 /**
-* SmartTrolley
-*
-* Client class to run the trial client
-*
-* @author Alick Jacklin
-* @author Prashant Chakravarty
-*
-* @author Checked By: Checker(s) fill here
-*
-* @version V1.0 [Date Created: 27 Feb 2014]
-*/
+ * SmartTrolley
+ *
+ * Client class to run the trial client
+ *
+ * @author Alick Jacklin
+ * @author Prashant Chakravarty
+ *
+ * @author Checked By: Checker(s) fill here
+ *
+ * @version V1.0 [Date Created: 27 Feb 2014]
+ */
 
 package client;
 
@@ -27,10 +27,11 @@ public class SmartTrolleyControllerTrialClient {
 	ObjectInputStream inputFromServer;
 	private ObjectOutputStream outputToServer;
 	public Object objectFromServer;
-	
+
 	/**
 	 * Opens the client socket, and gets the object from server
-	 *<p> Date Modified: 27 Feb 2014
+	 * <p>
+	 * Date Modified: 27 Feb 2014
 	 */
 	public SmartTrolleyControllerTrialClient() {
 		try {
@@ -55,10 +56,13 @@ public class SmartTrolleyControllerTrialClient {
 	}
 
 	/**
-	 *Main method, simply creates a new instance of the client
-	 *<p>Spike to connect a server to a client
-	 *@param args
-	 *<p> Date Modified: 27 Feb 2014
+	 * Main method, simply creates a new instance of the client
+	 * <p>
+	 * Spike to connect a server to a client
+	 * 
+	 * @param args
+	 *            <p>
+	 *            Date Modified: 27 Feb 2014
 	 */
 	public static void main(String[] args) {
 		new SmartTrolleyControllerTrialClient();
@@ -66,27 +70,33 @@ public class SmartTrolleyControllerTrialClient {
 	}
 
 	/**
-	*Opens a client side socket to accept connection from server
-	*<p>Spike to connect a server to a client
-	*@throws UnknownHostException
-	*@throws IOException
-	*<p> Date Modified: 27 Feb 2014
-	*/
+	 * Opens a client side socket to accept connection from server
+	 * <p>
+	 * Spike to connect a server to a client
+	 * 
+	 * @throws UnknownHostException
+	 * @throws IOException
+	 *             <p>
+	 *             Date Modified: 27 Feb 2014
+	 */
 	private void openSocket() throws UnknownHostException, IOException {
 		serverSocket = new Socket(host, port);
 		inputFromServer = new ObjectInputStream(serverSocket.getInputStream());
 		outputToServer = new ObjectOutputStream(serverSocket.getOutputStream());
 	}
 
-	
 	/**
-	*Gets the object which is in the socket, tests it is an instance of Object
-	*<p>Spike to connect a server to a client
-	*@throws IOException
-	*@throws ClassNotFoundException
-	*<p> Date Modified: 27 Feb 2014
-	*/
-	private void getObjectFromSocket() throws IOException, ClassNotFoundException {
+	 * Gets the object which is in the socket, tests it is an instance of Object
+	 * <p>
+	 * Spike to connect a server to a client
+	 * 
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 *             <p>
+	 *             Date Modified: 27 Feb 2014
+	 */
+	private void getObjectFromSocket() throws IOException,
+			ClassNotFoundException {
 
 		try {
 			objectFromServer = (Object) inputFromServer.readObject();
@@ -94,14 +104,17 @@ public class SmartTrolleyControllerTrialClient {
 			System.out.println("Could not find VideoFile class.");
 		}
 	}
-	
-	//TODO We need to call this method to send an object to the server
+
+	// TODO We need to call this method to send an object to the server
 	/**
-	*Sends an object to the server
-	*<p>Spike to connect a server to a client
-	*@param objectToServer
-	*<p> Date Modified: 27 Feb 2014
-	*/
+	 * Sends an object to the server
+	 * <p>
+	 * Spike to connect a server to a client
+	 * 
+	 * @param objectToServer
+	 *            <p>
+	 *            Date Modified: 27 Feb 2014
+	 */
 	private void outputObjectToServer(Object objectToServer) {
 		try {
 
@@ -115,4 +128,4 @@ public class SmartTrolleyControllerTrialClient {
 	}
 }
 
-/**************End of SmartTrolleyControllerTrialClient.java**************/
+/************** End of SmartTrolleyControllerTrialClient.java **************/
