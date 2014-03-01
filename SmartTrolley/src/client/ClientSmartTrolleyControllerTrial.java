@@ -24,6 +24,7 @@ public class ClientSmartTrolleyControllerTrial {
 	public static Socket serverSocket;
 	String host = "127.0.0.1";
 	int port = 2001;
+	int cycle = 0;
 	ObjectInputStream inputFromServer;
 	private ObjectOutputStream outputToServer;
 	public Object objectFromServer;
@@ -39,7 +40,14 @@ public class ClientSmartTrolleyControllerTrial {
 			openSocket();
 			do {
 				getObjectFromSocket();
+				
+				if(cycle == 0){
 				outputObjectToServer(objectToServer);
+				cycle ++;
+				}
+				else {
+					
+				}
 			} while (!(objectFromServer instanceof Object));
 			
 			serverSocket.close();

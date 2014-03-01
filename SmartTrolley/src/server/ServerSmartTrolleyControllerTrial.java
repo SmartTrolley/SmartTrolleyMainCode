@@ -15,8 +15,7 @@
 package server;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -25,16 +24,13 @@ public class ServerSmartTrolleyControllerTrial {
 	static ServerSocket serverSocket;
 	Socket clientSocket;
 	int port = 2001;
-	ObjectOutputStream outputToClient;
+
 	Thread socketThread;
 
-	String serverAddress = "127.0.0.1";
-	private ObjectInputStream inputFromClient;
-	private Object receivedObject;
-	Object objectFromClient;
-	public static Object objectToClient;
-	// need a way to stop this
-	private static boolean acceptMore = true;
+	String serverAddress = "127.0.0.1";	
+
+	private static final int maxClientsCount = 10;
+	private static final ClientThread[] threads = new ClientThread[maxClientsCount];
 
 	/**
 	 * Main method, simply creates a new instance of server
@@ -46,8 +42,9 @@ public class ServerSmartTrolleyControllerTrial {
 	 *            Date Modified: 24 Feb 2014
 	 */
 	public static void main(String[] args) {
-		new ServerSmartTrolleyControllerTrial();
+			new ServerSmartTrolleyControllerTrial();
 	}
+	
 
 	/**
 	 * Contains the threads to run/rerun the server
@@ -62,27 +59,15 @@ public class ServerSmartTrolleyControllerTrial {
 				System.out.println("YAY!");
 				try {
 					openSocket();
-					writeObjectToSocket();
+					
 
 				} catch (IOException e) {
 					System.out.println("ERROR on socket connection.");
 					System.exit(-1);
 				}
 				// do{
-				try {
-					System.out.println("CRAP!!");
-					getFileFromSocket();
 
-				} catch (IOException e) {
-					System.out.println("ERROR on socket connection.");
-					System.exit(-1);
-				} catch (ClassNotFoundException e) {
-					System.out
-							.println("Class definition not found for incoming object.");
-					System.exit(-1);
-				}
-
-				try {
+				/*try {
 					clientSocketClose();
 					System.out.println("Client Socket Closed");
 					System.out.println("Rerunning server");
@@ -93,17 +78,17 @@ public class ServerSmartTrolleyControllerTrial {
 					 * catch (InterruptedException e1) { e1.printStackTrace(); }
 					 * 
 					 * socketThread.start();
-					 */
+					 
 				} catch (IOException e) {
 					System.out.println("Could not close socket on port: "
 							+ port);
 					System.exit(-1);
-				}
-				// } while (true); //TODO Take a look at this condition
-			}
+				}*/
+				
+				}// while (true); //TODO Take a look at this condition
 		};
 		socketThread.start();
-	}
+			}		
 
 	/**
 	 * Opens the server's sockets, and waits for connection from client
@@ -126,17 +111,31 @@ public class ServerSmartTrolleyControllerTrial {
 			System.out.println("Opened socket on: " + port
 					+ ", waiting for client.");
 			clientSocket = serverSocket.accept();
-			System.out.println("Connected to client on port: " + port);
+			int i = 0;
+			for (i = 0; i < maxClientsCount; i++) {
+				if (threads[i] == null) {
+					(threads[i] = new ClientThread(clientSocket, threads))
+							.start();
+					System.out.println("Connected to client on port: " + port);
+					break;
+				}
+			}
+			if (i == maxClientsCount) {
+				PrintStream os = new PrintStream(clientSocket.getOutputStream());
+				os.println("Server too busy. Try later.");
+				System.out.println("Server too busy. Try later.");
+				os.close();
+				clientSocket.close();
+			}
+
 		} catch (IOException e) {
 			System.out.println("Could not accept client.");
 			System.exit(-1);
 		}
-		outputToClient = new ObjectOutputStream(clientSocket.getOutputStream());
+		
 
 		System.out.println("Output Stream Ready");
 
-		// setup input stream at the same time
-		inputFromClient = new ObjectInputStream(clientSocket.getInputStream());
 	}
 
 	/**
@@ -156,64 +155,8 @@ public class ServerSmartTrolleyControllerTrial {
 		serverSocket.close();
 		System.out.println("Server Now Closed");
 	}
-
-	/**
-	 * Writes an Object to the server's socket
-	 * <p>
-	 * Spike to connect a server to a client
-	 * 
-	 * @throws IOException
-	 *             <p>
-	 *             Date Modified: 27 Feb 2014
-	 */
-	private void writeObjectToSocket() throws IOException {
-
-		objectToClient = new String("Hi, From Server!");
-		outputToClient.writeObject(objectToClient);
-
-	}
-
-	/**
-	 * Gets the Object received (from the client) from the socket
-	 * <p>
-	 * Spike to connect a server to a client
-	 * 
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 *             <p>
-	 *             Date Modified: 27 Feb 2014
-	 */
-	private void getFileFromSocket() throws IOException, ClassNotFoundException {
-
-		do {
-			try {
-				receivedObject = inputFromClient.readObject();
-
-				if (receivedObject instanceof Object) {
-					// TODO cast to correct type of object
-					objectFromClient = (Object) receivedObject;
-				}
-				// TODO Use this later??
-				/*
-				 * if (objectFromClient == null) { break; }
-				 */
-			} catch (ClassNotFoundException e) {
-				System.out.println("Could not find object class.");
-			}
-			System.out.println("Received from Client: " + objectFromClient);
-
-		} while (!(objectFromClient instanceof Object));
-
-		// TODO Some method of detecting client closure, do this as a test
-		/*
-		 * if (selectedVideoFile == null) {
-		 * System.out.println("Server detects client closure."); //Now call
-		 * close sockets }
-		 */
-
-	}
-
 }
+	
 
-/**************End of ServerSmartTrolleyControllerTrial.java**************/
+/************** End of ServerSmartTrolleyControllerTrial.java **************/
 

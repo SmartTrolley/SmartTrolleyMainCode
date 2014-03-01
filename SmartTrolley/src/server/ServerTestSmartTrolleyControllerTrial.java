@@ -41,7 +41,7 @@ public class ServerTestSmartTrolleyControllerTrial {
 
 	@After
 	public void tearDown() throws Exception {
-		server.serverClose();
+		ServerSmartTrolleyControllerTrial.serverClose();
 		client.ClientSmartTrolleyControllerTrial.serverSocket.close();
 		
 		
@@ -54,8 +54,9 @@ public class ServerTestSmartTrolleyControllerTrial {
 	*/
 	@Test
 	public void testObjectRxdFromClient() throws IOException {
-		assertEquals(client.ClientSmartTrolleyControllerTrial.objectToServer, server.objectFromClient);
-		server.serverClose();
+		assertEquals(client.ClientSmartTrolleyControllerTrial.objectToServer, ClientThread.objectFromClient);
+		server.clientSocket.close();
+		ServerSmartTrolleyControllerTrial.serverSocket.close();
 		System.out.println(("Finished testObjectRxdFromClient Test!"));		
 	}
 	
@@ -64,12 +65,13 @@ public class ServerTestSmartTrolleyControllerTrial {
 	*<p> Date Modified: 28 Feb 2014
 	 * @throws IOException 
 	*/
+	@Ignore
 	@Test
 	public void clientClosesServerOpen() throws IOException {		
-		assertTrue(!(server.serverSocket.isClosed()));
-		server.serverClose();
+		assertTrue(!(ServerSmartTrolleyControllerTrial.serverSocket.isClosed()));
+		ServerSmartTrolleyControllerTrial.serverClose();
 		assertTrue(server.clientSocket.isClosed());
-		assertTrue(server.serverSocket.isClosed());
+		assertTrue(ServerSmartTrolleyControllerTrial.serverSocket.isClosed());
 		//assertTrue(!(server.serverSocket.isClosed()));
 		assertTrue(client.ClientSmartTrolleyControllerTrial.serverSocket.isClosed());
 		
@@ -91,8 +93,8 @@ public class ServerTestSmartTrolleyControllerTrial {
 		assertTrue(client.ClientSmartTrolleyControllerTrial.serverSocket.isClosed());
 		client.ClientSmartTrolleyControllerTrial.main(null);
 		System.out.println("starting up new client");
-		assertEquals(client.ClientSmartTrolleyControllerTrial.objectToServer, server.objectFromClient);
-		server.serverClose();
+		assertEquals(client.ClientSmartTrolleyControllerTrial.objectToServer, ClientThread.objectFromClient);
+		ServerSmartTrolleyControllerTrial.serverClose();
 		System.out.println(("Finished clientReconnectstoServer Test!"));
 	}
 	

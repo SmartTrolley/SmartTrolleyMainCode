@@ -51,7 +51,7 @@ public class ClientTestSmartTrolleyControllerTrial {
 	*/
 	@Test
 	public void ObjectRxdFromServer() {
-		assertEquals(server.ServerSmartTrolleyControllerTrial.objectToClient, client.objectFromServer);
+		assertEquals(server.ClientThread.objectToClient, client.objectFromServer);
 	}
 	
 	/**
