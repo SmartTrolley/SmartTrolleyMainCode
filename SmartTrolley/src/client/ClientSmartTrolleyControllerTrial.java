@@ -19,11 +19,11 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class SmartTrolleyControllerTrialClient {
+public class ClientSmartTrolleyControllerTrial {
 
 	public static Socket serverSocket;
 	String host = "127.0.0.1";
-	int port = 2000;
+	int port = 2001;
 	ObjectInputStream inputFromServer;
 	private ObjectOutputStream outputToServer;
 	public Object objectFromServer;
@@ -34,7 +34,7 @@ public class SmartTrolleyControllerTrialClient {
 	 * <p>
 	 * Date Modified: 27 Feb 2014
 	 */
-	public SmartTrolleyControllerTrialClient() {
+	public ClientSmartTrolleyControllerTrial() {
 		try {
 			openSocket();
 			do {
@@ -49,7 +49,7 @@ public class SmartTrolleyControllerTrialClient {
 			System.exit(-1);
 
 		} catch (IOException e) {
-			System.out.println("Couldn't open I/O connection" + host + ":"
+			System.out.println("Couldn't open I/O connection " + host + ":"
 					+ port);
 			System.exit(-1);
 
@@ -71,7 +71,7 @@ public class SmartTrolleyControllerTrialClient {
 	 *            Date Modified: 27 Feb 2014
 	 */
 	public static void main(String[] args) {
-		new SmartTrolleyControllerTrialClient();
+		new ClientSmartTrolleyControllerTrial();
 
 	}
 
@@ -98,8 +98,7 @@ public class SmartTrolleyControllerTrialClient {
 	 * 
 	 * @throws IOException
 	 * @throws ClassNotFoundException
-	 *             <p>
-	 *             Date Modified: 27 Feb 2014
+	 *<p>Date Modified: 27 Feb 2014
 	 */
 	private void getObjectFromSocket() throws IOException,
 			ClassNotFoundException {
@@ -134,4 +133,4 @@ public class SmartTrolleyControllerTrialClient {
 	}
 }
 
-/************** End of SmartTrolleyControllerTrialClient.java **************/
+/************** End of ClientSmartTrolleyControllerTrial.java **************/
