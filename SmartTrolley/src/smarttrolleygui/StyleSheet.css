@@ -1,0 +1,115 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15-Feb-2014, 13:22:53
+    Author     : Arne
+*/
+.root {
+    -fx-base: #d0d0d0;
+    -fx-background: #000000;
+    -fx-dark-text-color: black;
+    -fx-mid-text-color: #292929;
+    -fx-light-text-color: white;
+    -fx-accent: #0093ff;
+    -fx-focus-color: #0093ff;
+    -fx-color: -fx-base;
+}
+
+.mainContainer {
+    -fx-background-color: white;
+    -fx-border-width: 5px;
+    /*-fx-border-color: blue;*/
+    /*top right bottom left*/
+    -fx-padding: 10px 0 10px 0;
+}
+.topContainer {    
+/*    -fx-border-width: 5px 5px 0 5px;
+    -fx-border-color: black;
+    -fx-border-radius: 5px;*/
+}
+
+.bottomContainer {
+    -fx-background-color: #ffffff;
+    -fx-border-width: 5px;
+    -fx-border-color: black;
+    -fx-border-radius: 6px;
+    /*-fx-padding:10px;*/
+}
+
+.scroll-pane {
+    -fx-background-color: #ffffff;
+    -fx-border-width: 5px;
+    -fx-border-color: black;
+    -fx-border-radius: 15px;
+    -fx-padding: 5px;
+}
+
+.grid1 {
+    -fx-background-color: #ffffff;
+    -fx-border-width: 5px;
+    /*-fx-border-color: yellow;*/
+}
+
+.split-pane {
+    -fx-box-border: transparent;
+}
+
+.split-pane-divider {
+    visibility: hidden;
+}
+
+.list-view {
+    -fx-font-size: 12px;
+}
+/*.list-cell {
+    -fx-background-color: #ffffff;
+}*/
+
+.table-view .column-header {
+    -fx-font-size: 12px;
+    -fx-background-color: linear-gradient(to bottom, #fff, #d0d0d0);
+    -fx-alignment: center;
+}
+
+///////////////* create style for centered column text *////////////
+
+.label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #000000;
+}
+
+.titleLabel {
+    -fx-font: bold 20px "Arial";
+}
+.button {
+    -fx-font-family: "Arial Narrow";
+    -fx-font-size: 15px;
+    -fx-background-color: #ffffff;
+/*    -fx-background-color: linear-gradient(white, grey);*/
+    /*-fx-effect: dropshadow(three-pass-box , rgba(0,0,0,0.6), 5, 0.0, 0, 1);*/
+}
+
+.button:hover {
+    -fx-border-width: 2px;
+    -fx-border-color: #292929;
+    -fx-border-radius: 15px;
+    /*-fx-effect: dropshadow(three-pass-box , rgba(0,0,0,0.6), 5, 0.0, 0, 1);*/
+}
+/* reusable code */
+/* -fx-background-color: linear-gradient(to bottom, #f8f8f8, #b5b5b5); */
+
+/*
+.button:hover {
+    -fx-background-color: linear-gradient(white, whitesmoke);
+}
+*/
+
+/*
+.table-view .column-header {
+    -fx-font: 11px "Arial";
+    -fx-background-color: linear-gradient(to bottom, #f8f8f8, #b5b5b5);
+}
+*/

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox id="VBox" alignment="TOP_CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="0.0" styleClass="mainContainer" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.HomeScreenController">
+  <children>
+    <HBox prefHeight="150.0" prefWidth="600.0" styleClass="topContainer" VBox.vgrow="NEVER">
+      <children>
+        <GridPane focusTraversable="false" gridLinesVisible="false" prefHeight="140.0" prefWidth="600.0" styleClass="grid1">
+          <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+              <children>
+                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@img/companyLogoSmall.png" />
+                  </image>
+                </ImageView>
+              </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+              <children>
+                <Button alignment="BOTTOM_CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="84.0" prefWidth="76.0" text="Back">
+                  <graphic>
+                    <ImageView fitHeight="150.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@img/icon_back.jpg" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+                <Button contentDisplay="TOP" mnemonicParsing="false" text="Home">
+                  <graphic>
+                    <ImageView fitHeight="150.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@img/icon_home.jpg" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+                <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="84.0" prefWidth="76.0" text="List">
+                  <graphic>
+                    <ImageView fitHeight="60.0" fitWidth="40.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@img/icon_list.jpg" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+              </children>
+            </HBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+              <children>
+                <Label fx:id="currentTotalLabel" text="£ current total" />
+                <Label fx:id="currentSavingsTotal" text="£ current savings" />
+                <Button fx:id="favouritesButton" contentDisplay="LEFT" mnemonicParsing="false" onAction="#loadFavourites" text="Favourites">
+                  <VBox.margin>
+                    <Insets left="10.0" top="5.0" />
+                  </VBox.margin>
+                </Button>
+              </children>
+              <padding>
+                <Insets left="10.0" />
+              </padding>
+            </VBox>
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" prefWidth="178.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="268.0" minWidth="10.0" prefWidth="268.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="124.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
+      </children>
+    </HBox>
+    <HBox prefHeight="416.0" prefWidth="571.0" spacing="0.0" styleClass="bottomContainer" />
+  </children>
+  <padding>
+    <Insets />
+  </padding>
+  <stylesheets>
+    <URL value="@StyleSheet.css" />
+  </stylesheets>
+</VBox>
