@@ -6,6 +6,7 @@ import javafx.scene.text.Font;
 
 public class TextHandler {
 	
+	//Variables for Font options
 	Node pNode;
 	int xStart = 200;
 	int yStart = 200;

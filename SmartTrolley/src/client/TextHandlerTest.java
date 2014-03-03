@@ -7,6 +7,7 @@ import javafx.scene.text.Text;
 
 public class TextHandlerTest {
 
+	//Variables for Font options
 	Text text;
 	int xStart = 200;
 	int yStart = 200;
@@ -18,7 +19,7 @@ public class TextHandlerTest {
 	String txtLineColor = "#FF0000";
 	int wrappingWidth = xEnd - xStart;
 	
-	
+	//Test checking the selected options have been passed to the Text Node
 	@Test
 	public void test() {
 		TextHandler t = new TextHandler();
