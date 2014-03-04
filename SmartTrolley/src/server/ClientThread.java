@@ -29,18 +29,18 @@ import java.net.Socket;
  * chat room this thread informs also all the clients about that and terminates.
  */
 public class ClientThread extends Thread {
-	
+
 	private ObjectInputStream inputFromClient;
 	private Object receivedObject;
 	static Object objectFromClient;
 
-	private Socket clientSocket = null;
+	static Socket clientSocket = null;
 	private final ClientThread[] threads;
 	private int maxClientsCount;
-	
+
 	public static Object objectToClient;
 	ObjectOutputStream outputToClient;
-	
+
 	String name = null;
 
 	public ClientThread(Socket clientSocket, ClientThread[] threads) {
@@ -59,76 +59,81 @@ public class ClientThread extends Thread {
 			 */
 
 			// setup input stream
-			System.out.println("hello and welcome to the future");
-			inputFromClient = new ObjectInputStream(clientSocket.getInputStream());
-			System.out.println("Input stream made");//TODO Getting stuck here
-			outputToClient = new ObjectOutputStream(clientSocket.getOutputStream());
-			System.out.println("connections made sending object");
+			System.out.println("Hello Client and welcome to the future -ClientThread");
+			outputToClient = new ObjectOutputStream(
+					clientSocket.getOutputStream());
+			System.out.println("connections made sending object -ClientThread");
+			inputFromClient = new ObjectInputStream(
+					clientSocket.getInputStream());
+			System.out.println("Input stream made -ClientThread");// TODO Getting stuck here
+			System.out.println("connections made sending object -ClientThread");
 			writeObjectToSocket();
-			System.out.println("I sent a thing");
-			name = (String)getFileFromSocket();
-			System.out.println("I gottsa thing! :)");
+			System.out.println("I sent a thing -ClientThread");
+			name = (String) getFileFromSocket();
+			System.out.println("I gottsa thing! :) -ClientThread: " + name);
 
 		} catch (IOException e) {
-			System.out.println("ERROR on socket connection.");
+			System.out.println("ERROR on socket connection. -ClientThread");
 			System.exit(-1);
 		} catch (ClassNotFoundException e) {
 			System.out
-					.println("Class definition not found for incoming object.");
+					.println("Class definition not found for incoming object. -ClientThread");
 			System.exit(-1);
 		}
 
-			/* Welcome the new the client. */
-			// TODO edit text
-			/*System.out.println("Welcome " + name
-					+ " to our chat room.\nTo leave enter /quit in a new line.");*/
-			synchronized (this) {
-				for (int i = 0; i < maxClientsCount; i++) {
-					/*if (threads[i] != null && threads[i] == this) {
-						clientName = "@" + name;
-						break;
-					}*/
-				}				
+		/* Welcome the new the client. */
+		// TODO edit text
+		/*
+		 * System.out.println("Welcome " + name +
+		 * " to our chat room.\nTo leave enter /quit in a new line.");
+		 */
+		synchronized (this) {
+			for (int i = 0; i < maxClientsCount; i++) {
+				/*
+				 * if (threads[i] != null && threads[i] == this) { clientName =
+				 * "@" + name; break; }
+				 */
 			}
-			
+		}
 
-			/*
-			 * Clean up. Set the current thread variable to null so that a new
-			 * client could be accepted by the server.
-			 */
-			synchronized (this) {
-				for (int i = 0; i < maxClientsCount; i++) {
-					if (threads[i] == this) {
-						threads[i] = null;
-					}
+		/*
+		 * Clean up. Set the current thread variable to null so that a new
+		 * client could be accepted by the server.
+		 */
+		synchronized (this) {
+			for (int i = 0; i < maxClientsCount; i++) {
+				if (threads[i] == this) {
+					threads[i] = null;
 				}
 			}
-			/*
-			 * Close the output stream, close the input stream, close the
-			 * socket.
-			 */
-			try{
+		}
+		/*
+		 * Close the output stream, close the input stream, close the socket.
+		 */
+		try {
 			inputFromClient.close();
 			outputToClient.close();
 			clientSocket.close();
-			System.out.println("Bye Bye");
+			System.out.println("Bye Bye from Client Thread");
 		} catch (IOException e) {
-			System.out.println("Could not close streams and sockets...DO NOT CROSS THE STREAMS!");
+			System.out.println("Could not close streams and sockets...DO NOT CROSS THE STREAMS!");					
 		}
 	}
-	
+
 	/**
 	 * Gets the Object received (from the client) from the socket
 	 * <p>
 	 * Spike to connect a server to a client
-	 * @return 
+	 * 
+	 * @return
 	 * 
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 *             <p>
 	 *             Date Modified: 27 Feb 2014
 	 */
-	private Object getFileFromSocket() throws IOException, ClassNotFoundException {
+	private Object getFileFromSocket() throws IOException,
+			ClassNotFoundException {
 
 		do {
 			try {
@@ -143,12 +148,12 @@ public class ClientThread extends Thread {
 				 * if (objectFromClient == null) { break; }
 				 */
 			} catch (ClassNotFoundException e) {
-				System.out.println("Could not find object class.");
+				System.out.println("Could not find object class. -ClientThread");
 			}
-			System.out.println("Received from Client: " + objectFromClient);
+			System.out.println("Received from Client: " + objectFromClient + " -ClientThread");
 
 		} while (!(objectFromClient instanceof Object));
-		
+
 		return objectFromClient;
 
 		// TODO Some method of detecting client closure, do this as a test
@@ -159,7 +164,6 @@ public class ClientThread extends Thread {
 		 */
 
 	}
-	
 
 	/**
 	 * Writes an Object to the server's socket
@@ -172,12 +176,12 @@ public class ClientThread extends Thread {
 	 */
 	private void writeObjectToSocket() throws IOException {
 
-		objectToClient = new String("Hi, From Server!");
+		objectToClient = new String("Hi, From ClientThread!- Oh and Dave says Hi too...");
 		outputToClient.writeObject(objectToClient);
-		System.out.println("Ive sent it!");
+		System.out.println("Ive sent it!  -ClientThread");
 
 	}
-	
+
 }
 
 /************** End of ClientThread.java **************/

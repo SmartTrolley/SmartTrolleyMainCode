@@ -39,18 +39,21 @@ public class ClientSmartTrolleyControllerTrial {
 		try {
 			openSocket();
 			do {
-				getObjectFromSocket();
-				
+				System.out.println("Good Morning Dave");
 				if(cycle == 0){
 				outputObjectToServer(objectToServer);
+				System.out.println("I'm sending you a gift, Dave - From Client");
 				cycle ++;
 				}
-				else {
-					
-				}
+				getObjectFromSocket();
+				System.out.println("Received Object from Dave");
+				
 			} while (!(objectFromServer instanceof Object));
 			
+			inputFromServer.close();
+			outputToServer.close();
 			serverSocket.close();
+			System.out.println("Goodnight Dave");
 
 		} catch (UnknownHostException e) {
 			System.out.println("Don't know about host:" + host);
@@ -94,8 +97,11 @@ public class ClientSmartTrolleyControllerTrial {
 	 *             Date Modified: 27 Feb 2014
 	 */
 	private void openSocket() throws UnknownHostException, IOException {
+		System.out.println("Hello Master -Client");
 		serverSocket = new Socket(host, port);
+		System.out.println("Created new socket. Now trying to setup ObjectInputStream -Client");
 		inputFromServer = new ObjectInputStream(serverSocket.getInputStream());
+		System.out.println("Setup ObjectInputStream. Now trying to setup ObjectOutputStream");
 		outputToServer = new ObjectOutputStream(serverSocket.getOutputStream());
 	}
 
@@ -114,7 +120,7 @@ public class ClientSmartTrolleyControllerTrial {
 		try {
 			objectFromServer = (Object) inputFromServer.readObject();
 		} catch (ClassNotFoundException e) {
-			System.out.println("Could not find VideoFile class.");
+			System.out.println("Could not find Object class.");
 		}
 		System.out.println("Client Recieved:" + objectFromServer);
 	}
