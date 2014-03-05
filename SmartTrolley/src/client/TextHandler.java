@@ -1,3 +1,25 @@
+/** 
+
+* 
+
+* Text Handler class 
+
+*
+
+* @author Thomas Lea
+
+* @author Sam Geering
+
+*
+
+* @author [Checked By:] Alasdair Munday
+
+*
+
+* @version V1.0 Date Created: 24/02/14
+
+**/
+
 package client;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
@@ -6,7 +28,7 @@ import javafx.scene.text.Font;
 
 public class TextHandler {
 	
-	//Variables for Font options
+	//Class wide Variables for Text settings
 	Node pNode;
 	int xStart = 200;
 	int yStart = 200;
@@ -19,11 +41,13 @@ public class TextHandler {
 	int wrappingWidth = xEnd - xStart;
 	boolean visible = false;
 	
+
+
 		public TextHandler(){
 			initNode();
 		}
 	
-		
+		//Method to initialise the Text node with user options
 		public void initNode(){
 			
 			Text pNode = new Text(xStart, yStart, txtData);			
@@ -33,10 +57,11 @@ public class TextHandler {
 			pNode.setStroke(Color.web(txtLineColor));
 			pNode.setVisible(visible);
 			
+		//This assigns the local pNode settings to the class wide pNode
 			this.pNode = pNode;
 		}
 		
-		
+		//Method used to return the Text node's current settings
 		public Text getPNode() {
 			return (Text)pNode;
 		}

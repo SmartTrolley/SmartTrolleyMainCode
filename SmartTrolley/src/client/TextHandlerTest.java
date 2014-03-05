@@ -1,3 +1,25 @@
+/** 
+
+* 
+
+* Text Handler JUnit Test class 
+
+*
+
+* @author Thomas Lea
+
+* @author Sam Geering
+
+*
+
+* @author [Checked By:] Alasdair Munday
+
+*
+
+* @version V1.0 Date Created: 24/02/14
+
+**/
+
 package client;
 
 import static org.junit.Assert.*;
@@ -25,7 +47,7 @@ public class TextHandlerTest {
 		TextHandler t = new TextHandler();
 		text = t.getPNode();
 		
-		assertEquals(t.xStart, xStart);
+		assertEquals(text.xStart, xStart);
 		assertEquals(t.yStart, yStart);
 		assertEquals(t.xEnd, xEnd);
 		assertEquals(t.txtData, txtData);
