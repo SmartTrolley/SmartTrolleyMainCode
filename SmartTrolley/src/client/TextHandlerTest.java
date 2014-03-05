@@ -12,7 +12,7 @@
 
 *
 
-* @author [Checked By:] Alasdair Munday
+* @author [Checked By:]
 
 *
 
@@ -42,7 +42,7 @@ public class TextHandlerTest {
 	String txtLineColor = "#FF0000";
 	int wrappingWidth = xEnd - xStart;
 	
-	//Test checking the selected options have been passed to the Text Node
+	//Test checking the selected options have been passed to a Text Node
 	@Test
 	public void test() {
 		TextHandler t = new TextHandler();
@@ -56,7 +56,6 @@ public class TextHandlerTest {
 		assertEquals((int)text.getFont().getSize(), txtFontSize);		
 		assertEquals(text.getFill().toString(), Color.web(txtFontColor).toString());
 		assertEquals(text.getStroke().toString(), Color.web(txtLineColor).toString());
-		
 		assertFalse(text.isVisible());
 	}
 }

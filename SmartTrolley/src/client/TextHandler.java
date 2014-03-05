@@ -12,7 +12,7 @@
 
 *
 
-* @author [Checked By:] Alasdair Munday
+* @author [Checked By:]
 
 *
 
