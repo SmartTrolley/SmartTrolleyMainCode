@@ -25,12 +25,13 @@ package client;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class TextHandlerTest {
 
 	//Variables for Font options
-	Text text;
 	int xStart = 200;
 	int yStart = 200;
 	int xEnd = 300;
@@ -45,20 +46,18 @@ public class TextHandlerTest {
 	@Test
 	public void test() {
 		TextHandler t = new TextHandler();
-		text = t.getPNode();
+		Text text = t.getPNode();
 		
-		assertEquals(text.xStart, xStart);
-		assertEquals(t.yStart, yStart);
-		assertEquals(t.xEnd, xEnd);
-		assertEquals(t.txtData, txtData);
-		assertEquals(t.txtFont, txtFont);
-		assertEquals(t.txtFontSize, txtFontSize);
-		assertEquals(t.txtFontColor, txtFontColor);
-		assertEquals(t.txtLineColor, txtLineColor);
-		assertEquals(t.txtData, txtData);
-		assertEquals(t.wrappingWidth, wrappingWidth);
-		assertFalse(t.visible);
+		assertEquals((int)text.getX(), xStart);
+		assertEquals((int)text.getY(), yStart);
+		assertEquals((int)text.getWrappingWidth(), wrappingWidth);
+		assertEquals(text.getText(), txtData);
+		assertEquals(text.getFont().getName(), txtFont);
+		assertEquals((int)text.getFont().getSize(), txtFontSize);		
+		assertEquals(text.getFill().toString(), Color.web(txtFontColor).toString());
+		assertEquals(text.getStroke().toString(), Color.web(txtLineColor).toString());
+		
+		assertFalse(text.isVisible());
 	}
-
 }
 
