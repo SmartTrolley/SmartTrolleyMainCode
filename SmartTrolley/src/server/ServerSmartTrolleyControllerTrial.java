@@ -73,10 +73,13 @@ public class ServerSmartTrolleyControllerTrial {
 				System.exit(-1);
 			}
 			while(waitForClient < maxClientsCount){
+				
 				waitForClient ++;
+				
 				System.out.println("Opened socket on: " + port
 					+ ", waiting for client.");
 			clientSocket = serverSocket.accept();
+			
 			for (num_cncted_clients = 0; num_cncted_clients < maxClientsCount; num_cncted_clients++) {
 				if (threads[num_cncted_clients] == null) {
 					(threads[num_cncted_clients] = new ClientThread(

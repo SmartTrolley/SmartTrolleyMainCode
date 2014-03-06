@@ -58,6 +58,7 @@ public class ServerTestSmartTrolleyControllerTrial {
 
 	@Test
 	public void testObjectRxdFromClient() throws IOException {
+		server.waitForClient = 1;
 		assertEquals(client.ClientSmartTrolleyControllerTrial.objectToServer,
 				ClientThread.objectFromClient);
 		server.clientSocket.close();
@@ -74,6 +75,7 @@ public class ServerTestSmartTrolleyControllerTrial {
 
 	@Test
 	public void clientClosesServerOpen() throws IOException {
+		server.waitForClient = 1;
 		assertTrue(!(ServerSmartTrolleyControllerTrial.serverSocket.isClosed()));
 		assertTrue(client.ClientSmartTrolleyControllerTrial.serverSocket
 				.isClosed());
