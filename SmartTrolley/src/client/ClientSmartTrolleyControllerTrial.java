@@ -32,8 +32,7 @@ public class ClientSmartTrolleyControllerTrial {
 
 	/**
 	 * Opens the client socket, and gets the object from server
-	 * <p>
-	 * Date Modified: 27 Feb 2014
+	 * <p> Date Modified: 27 Feb 2014
 	 */
 	public ClientSmartTrolleyControllerTrial() {
 		try {
@@ -74,12 +73,9 @@ public class ClientSmartTrolleyControllerTrial {
 
 	/**
 	 * Main method, simply creates a new instance of the client
-	 * <p>
-	 * Spike to connect a server to a client
-	 * 
+	 * <p>Spike to connect a server to a client
 	 * @param args
-	 *            <p>
-	 *            Date Modified: 27 Feb 2014
+	 * <p>Date Modified: 27 Feb 2014
 	 */
 	public static void main(String[] args) {
 		new ClientSmartTrolleyControllerTrial();
@@ -88,28 +84,29 @@ public class ClientSmartTrolleyControllerTrial {
 
 	/**
 	 * Opens a client side socket to accept connection from server
-	 * <p>
-	 * Spike to connect a server to a client
-	 * 
+	 * <p>Spike to connect a server to a client
 	 * @throws UnknownHostException
 	 * @throws IOException
-	 *             <p>
-	 *             Date Modified: 27 Feb 2014
+	 * <p> Date Modified: 27 Feb 2014
 	 */
 	private void openSocket() throws UnknownHostException, IOException {
+		
 		System.out.println("Hello Master -Client");
+		
 		serverSocket = new Socket(host, port);
+		
 		System.out.println("Created new socket. Now trying to setup ObjectInputStream -Client");
+		
 		inputFromServer = new ObjectInputStream(serverSocket.getInputStream());
+		
 		System.out.println("Setup ObjectInputStream. Now trying to setup ObjectOutputStream");
+		
 		outputToServer = new ObjectOutputStream(serverSocket.getOutputStream());
 	}
 
 	/**
 	 * Gets the object which is in the socket, tests it is an instance of Object
-	 * <p>
-	 * Spike to connect a server to a client
-	 * 
+	 * <p>Spike to connect a server to a client
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 *<p>Date Modified: 27 Feb 2014
@@ -127,12 +124,9 @@ public class ClientSmartTrolleyControllerTrial {
 
 	/**
 	 * Sends an object to the server
-	 * <p>
-	 * Spike to connect a server to a client
-	 * 
+	 * <p> Spike to connect a server to a client
 	 * @param objectToServer
-	 *            <p>
-	 *            Date Modified: 27 Feb 2014
+	 * <p>Date Modified: 27 Feb 2014
 	 */
 	public void outputObjectToServer(Object objectToServer) {
 		try {

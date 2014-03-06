@@ -28,18 +28,21 @@ public class ServerTestSmartTrolleyControllerTrial {
 
 	/**
 	 * Start ServerSmartTrolleyControllerTrial before tests are run
-	 * 
 	 * @throws java.lang.Exception
-	 *             <p>
-	 *             Date Modified: 28 Feb 2014
+	 * <p>Date Modified: 28 Feb 2014
 	 */
 	@Before
 	public void setUp() throws Exception {
-		System.out.println("STarted next Test!");
+		System.out.println("Started next Test!");
 		server = new ServerSmartTrolleyControllerTrial();
 		client.ClientSmartTrolleyControllerTrial.main(null);
 	}
-
+	
+	/**
+	 * Shuts down all sockets that may still be running after the test has run
+	 * @throws java.lang.Exception
+	 * <p>Date Modified: 6 Mar 2014
+	 */
 	@After
 	public void tearDown() throws Exception {
 		ServerSmartTrolleyControllerTrial.serverClose();
@@ -49,33 +52,28 @@ public class ServerTestSmartTrolleyControllerTrial {
 
 	/**
 	 * Tests that the correct object is received from the Client
-	 * <p>
-	 * Date Modified: 28 Feb 2014
-	 * 
+	 * <p>Date Modified: 28 Feb 2014
 	 * @throws IOException
 	 */
 
 	@Test
 	public void testObjectRxdFromClient() throws IOException {
-		server.maxClientsCount = 2;
 		assertEquals(client.ClientSmartTrolleyControllerTrial.objectToServer,
 				ClientThread.objectFromClient);
 		server.clientSocket.close();
 		ServerSmartTrolleyControllerTrial.serverSocket.close();
+		
 		System.out.println(("Finished testObjectRxdFromClient Test!"));
 	}
 
 	/**
 	 * Tests that the server remains open
-	 * <p>
-	 * Date Modified: 28 Feb 2014
-	 * 
+	 * <p> Date Modified: 28 Feb 2014
 	 * @throws IOException
 	 */
-	
+
 	@Test
 	public void clientClosesServerOpen() throws IOException {
-		server.maxClientsCount = 2;
 		assertTrue(!(ServerSmartTrolleyControllerTrial.serverSocket.isClosed()));
 		assertTrue(client.ClientSmartTrolleyControllerTrial.serverSocket
 				.isClosed());
@@ -84,14 +82,10 @@ public class ServerTestSmartTrolleyControllerTrial {
 	}
 
 	/**
-	 * Method/Test Description
-	 * <p>
-	 * Test(s)/User Story that it satisfies
-	 * 
-	 * @throws IOException
-	 *             [If applicable]@see [Reference URL OR Class#Method]
-	 *             <p>
-	 *             Date Modified: 1 Mar 2014
+	 * Tests to check if client can reconnect once it has already shutdown
+	 * <p>Ability to access multiple times throughout the day 
+	 * @throws IOException]
+	 * <p> Date Modified: 1 Mar 2014
 	 */
 	@Test
 	public void clientReconnectstoServer() throws IOException,
@@ -99,31 +93,18 @@ public class ServerTestSmartTrolleyControllerTrial {
 
 		assertTrue(client.ClientSmartTrolleyControllerTrial.serverSocket
 				.isClosed());
-		//PUT In BYBYE PROTOCOL
+		
 		for (int i = 0; i < server.num_cncted_clients; i++) {
 			server.threads[i].isInterrupted();
 		}
-		//END BYBYE PROTOCOL
 
 		client.ClientSmartTrolleyControllerTrial.main(null);
-		
-		System.out.println("starting up new client");
-		
-		
-		 assertEquals(client.ClientSmartTrolleyControllerTrial.objectToServer,
-		 ClientThread.objectFromClient);
-		 ServerSmartTrolleyControllerTrial.serverClose();
-		 System.out.println(("Finished clientReconnectstoServer Test!"));
-		
+		assertEquals(client.ClientSmartTrolleyControllerTrial.objectToServer,
+				ClientThread.objectFromClient);
+		ServerSmartTrolleyControllerTrial.serverClose();
+
 	}
 
-	/*
-	 * @Ignore(Not Ready to Run)
-	 * 
-	 * @Test public void serverClosesAllSockets(){
-	 * assertTrue(server.clientSocket.isClosed());
-	 * assertTrue(server.serverSocket.isClosed()); }
-	 */
 
 }
 /************** End of ServerSmartTrolleyControllerTrial.java **************/
