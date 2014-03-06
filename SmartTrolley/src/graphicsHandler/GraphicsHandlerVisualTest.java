@@ -6,6 +6,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 
@@ -35,6 +37,8 @@ public class GraphicsHandlerVisualTest extends Application {
 		point4 = new ShapePoint(pointLow,width,point4Num);
 		point5 = new ShapePoint(pentagonX, pentagonY, point5Num);
 		
+		
+		points = new PriorityQueue<ShapePoint>();
 		points.add(point1);
 		points.add(point3);
 		points.add(point2);
@@ -46,19 +50,35 @@ public class GraphicsHandlerVisualTest extends Application {
 		//get the shape that is created by the values previously given to the factory
 		square = shapeFactory.getShape();
 		
+		points = new PriorityQueue<ShapePoint>();
+		points.add(point1);
+		points.add(point3);
+		points.add(point2);
+		points.add(point4);
+		points.add(point5);
+		
+		shapeFactory = new SlideShapeFactory(points, width, height);
+		
+		pentagon = shapeFactory.getShape();
+		
+		//Create panes to hold the test shapes
 		Pane squarePane = new Pane();
 		Pane pentagonPane = new Pane();
 		Pane circlePane = new Pane();
 		VBox vBox = new VBox();
 		
+		//put the shapes into their panes.
 		squarePane.getChildren().add(square);
 		
-		vBox.getChildren().add(squarePane);
+		pentagonPane.getChildren().add(pentagon);
+		
+		vBox.getChildren().addAll(squarePane, pentagonPane);
 		
 		Scene scene = new Scene(vBox);
 		
 		mainStage.setScene(scene);
 		
+		mainStage.show();
 		
 	}
 

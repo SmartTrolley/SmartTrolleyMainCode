@@ -18,18 +18,21 @@ public class SlideShapeFactory {
 	}
 
 	private void setCoordinates(PriorityQueue<ShapePoint> points) {
-		int i = 1;
+		int i = 0;
 		int coordinate;
 		
-		coordinates = new double[points.size() + 1];
+		coordinates = new double[points.size()*2];
 		
 		while(!points.isEmpty()){
-			if(i%2 == 1){
-				coordinate = points.remove().getyCoordinate();
-			}
-			else{
-				coordinate = points.remove().getxCoordinate();
-			}
+			
+			ShapePoint currentPoint = points.remove();
+			//get the x coordinate from the current point
+			coordinate = currentPoint.getxCoordinate();
+			coordinates[i] = coordinate;
+			i++;
+			
+			//get the y coordinate from the current point
+			coordinate = currentPoint.getyCoordinate();
 			coordinates[i] = coordinate;
 			i++;
 		}
