@@ -16,7 +16,6 @@ public class GraphicsHandlerTest {
 
 	public PriorityQueue<ShapePoint> points;
 	int width = 50, height = 50, pointLow = 0, pentagonX = 25, pentagonY = 25;
-	int numberOfPointsThatASquareHas =4, pentagonNumberPoints = 5, one = 1;
 	int point1Num = 1, point2Num = 2, point3Num = 3, point4Num = 4, point5Num = 5;
 	public SlideShapeFactory shapeFactory;
 	public ShapePoint point1, point2, point3, point4, point5, testingPoint;
