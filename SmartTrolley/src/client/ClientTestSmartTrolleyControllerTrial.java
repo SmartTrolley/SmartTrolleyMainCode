@@ -27,8 +27,10 @@ public class ClientTestSmartTrolleyControllerTrial {
 
 	/**
 	 * Sets up server and client for testing
+	 * 
 	 * @throws java.lang.Exception
-	 * <p> Date Modified: 28 Feb 2014
+	 *             <p>
+	 *             Date Modified: 28 Feb 2014
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -38,8 +40,10 @@ public class ClientTestSmartTrolleyControllerTrial {
 
 	/**
 	 * Shuts down the client and server sockets after the test has run
+	 * 
 	 * @throws java.lang.Exception
-	 * <p> Date Modified: 6 Mar 2014
+	 *             <p>
+	 *             Date Modified: 6 Mar 2014
 	 */
 	@After
 	public void tearDown() throws Exception {
@@ -50,17 +54,19 @@ public class ClientTestSmartTrolleyControllerTrial {
 
 	/**
 	 * Tests that the correct object is received from the server
-	 * <p> Date Modified: 28 Feb 2014
+	 * <p>
+	 * Date Modified: 28 Feb 2014
 	 */
 	@Test
 	public void ObjectRxdFromServer() {
-		assertEquals(server.ClientThread.objectToClient,
-				client.objectFromServer);
+		assertEquals(server.ClientThread.objectToClient, client.objectFromServer);
 	}
 
 	/**
 	 * Tests that the client closes all sockets
-	 * <p> Date Modified: 28 Feb 2014
+	 * <p>
+	 * Date Modified: 28 Feb 2014
+	 * 
 	 * @throws IOException
 	 */
 	@Test

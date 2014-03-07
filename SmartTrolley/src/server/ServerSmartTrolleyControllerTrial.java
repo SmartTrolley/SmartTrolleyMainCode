@@ -19,7 +19,7 @@ import java.net.Socket;
 public class ServerSmartTrolleyControllerTrial {
 	static ServerSocket serverSocket;
 	public int waitForClient = 0;
-	Socket clientSocket;
+	static Socket clientSocket;
 	int port = 2001;
 	Thread socketThread;
 	String serverAddress = "127.0.0.1";
@@ -28,23 +28,27 @@ public class ServerSmartTrolleyControllerTrial {
 	int num_cncted_clients;
 
 	/**
-	 * Main method, simply creates a new instance of server 
-	 * <p>Spike to connect a server to a client 
-	 * @param args 
-	 * <p>Date Modified: 24 Feb 2014
+	 * Main method, simply creates a new instance of server
+	 * <p>
+	 * Spike to connect a server to a client
+	 * 
+	 * @param args
+	 *            <p>
+	 *            Date Modified: 24 Feb 2014
 	 */
 	public static void main(String[] args) {
 		new ServerSmartTrolleyControllerTrial();
 	}
 
 	/**
-	 * Contains the threads to run/rerun the server 
-	 *
-	 * <p>Date Modified: 27 Feb 2014
+	 * Contains the threads to run/rerun the server
+	 * 
+	 * <p>
+	 * Date Modified: 27 Feb 2014
 	 */
 	public ServerSmartTrolleyControllerTrial() {
 		socketThread = new Thread("Socket") {
-			public void run() { 
+			public void run() {
 				// TODO remove later after completed testing
 				System.out.println("YAY! Dave started Socket Thread");
 				try {
@@ -59,10 +63,13 @@ public class ServerSmartTrolleyControllerTrial {
 	}
 
 	/**
-	 *Opens the server's sockets, and waits for connection from client *
-	 * <p>Spike to connect a server to a client 
+	 * Opens the server's sockets, and waits for connection from client *
+	 * <p>
+	 * Spike to connect a server to a client
+	 * 
 	 * @throws IOException
-	 * <p>Date Modified: 27 Feb 2014
+	 *             <p>
+	 *             Date Modified: 27 Feb 2014
 	 */
 	private void openSocket() throws IOException {
 		try {
@@ -72,46 +79,46 @@ public class ServerSmartTrolleyControllerTrial {
 				System.out.println("Could not listen. Dave deaf on port(server):" + port);
 				System.exit(-1);
 			}
-			while(waitForClient < maxClientsCount){
-				
-				waitForClient ++;
-				
-				System.out.println("Opened socket on: " + port
-					+ ", waiting for client.");
-			clientSocket = serverSocket.accept();
-			
-			for (num_cncted_clients = 0; num_cncted_clients < maxClientsCount; num_cncted_clients++) {
-				if (threads[num_cncted_clients] == null) {
-					(threads[num_cncted_clients] = new ClientThread(
-							clientSocket, threads)).start();
-					System.out.println("Dave connected to client on port: "
-							+ port);
-					System.out.println(num_cncted_clients
-							+ " clients connected.");
-					break;
+			while (waitForClient < maxClientsCount) {
+
+				waitForClient++;
+
+				System.out.println("Opened socket on: " + port + ", waiting for client.");
+				clientSocket = serverSocket.accept();
+
+				for (num_cncted_clients = 0; num_cncted_clients < maxClientsCount; num_cncted_clients++) {
+					if (threads[num_cncted_clients] == null) {
+						(threads[num_cncted_clients] = new ClientThread(clientSocket, threads)).start();
+						System.out.println("Dave connected to client on port: " + port);
+						System.out.println(num_cncted_clients + " clients connected.");
+						break;
+					}
 				}
-			}
-			if (num_cncted_clients == maxClientsCount) {
-				PrintStream os = new PrintStream(clientSocket.getOutputStream());
-				os.println("Dave too busy. Try later.");
-				System.out.println("Dave too busy. Try later.");
-				os.close();
-				clientSocket.close();
-			}
+				if (num_cncted_clients == maxClientsCount) {
+					PrintStream os = new PrintStream(clientSocket.getOutputStream());
+					os.println("Dave too busy. Try later.");
+					System.out.println("Dave too busy. Try later.");
+					os.close();
+					clientSocket.close();
+				}
 			}
 		} catch (IOException e) {
 			System.out.println("Could not accept client.");
-			System.exit(-1);
+			// TODO Check with Stuart that this is sane
+			// System.exit(-1);
 		}
 	}
 
 	/**
 	 * Closes the server down
-	 * <p>Spike to connect a server to a client 
+	 * <p>
+	 * Spike to connect a server to a client
+	 * 
 	 * @throws IOException
-	 * <p>Date Modified: 27 Feb 2014
+	 *             <p>
+	 *             Date Modified: 27 Feb 2014
 	 */
-	public static void serverClose() throws IOException {		
+	public static void serverClose() throws IOException {
 		serverSocket.close();
 		System.out.println("Dave Now Closed");
 	}

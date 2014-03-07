@@ -35,9 +35,8 @@ public class ClientThread extends Thread {
 	String name = null;
 
 	/**
-	 * Readies the clientthread, setsup server for multiple clients
-	 * <p>
-	 * Attempting to Multi-Thread the server to accept multiple clients Created
+	 * Readies the clientthread, sets up server for multiple clients
+	 * <p> clientReconnectstoServer()
 	 * 
 	 * @param clientSocket
 	 * @param threads
@@ -45,7 +44,7 @@ public class ClientThread extends Thread {
 	 *            Date Modified: 6 Mar 2014
 	 */
 	public ClientThread(Socket clientSocket, ClientThread[] threads) {
-		this.clientSocket = clientSocket;
+		ClientThread.clientSocket = clientSocket;
 		this.threads = threads;
 		maxClientsCount = threads.length;
 	}

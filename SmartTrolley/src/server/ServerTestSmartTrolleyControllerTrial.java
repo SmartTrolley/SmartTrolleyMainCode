@@ -22,6 +22,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import client.ClientSmartTrolleyControllerTrial;
+
 public class ServerTestSmartTrolleyControllerTrial {
 
 	private ServerSmartTrolleyControllerTrial server;
@@ -61,8 +63,8 @@ public class ServerTestSmartTrolleyControllerTrial {
 		server.waitForClient = 1;
 		assertEquals(client.ClientSmartTrolleyControllerTrial.objectToServer,
 				ClientThread.objectFromClient);
-		server.clientSocket.close();
-		ServerSmartTrolleyControllerTrial.serverSocket.close();
+		//server.clientSocket.close();
+		//ServerSmartTrolleyControllerTrial.serverSocket.close();
 		
 		System.out.println(("Finished testObjectRxdFromClient Test!"));
 	}
@@ -80,7 +82,7 @@ public class ServerTestSmartTrolleyControllerTrial {
 		assertTrue(client.ClientSmartTrolleyControllerTrial.serverSocket
 				.isClosed());
 
-		System.out.println(("Finished clientClosesServerOpen Test!"));
+		System.out.println("Finished clientClosesServerOpen Test!");
 	}
 
 	/**
@@ -104,9 +106,21 @@ public class ServerTestSmartTrolleyControllerTrial {
 		assertEquals(client.ClientSmartTrolleyControllerTrial.objectToServer,
 				ClientThread.objectFromClient);
 		ServerSmartTrolleyControllerTrial.serverClose();
-
+		
+		System.out.println("Finished clientReconnectstoServer Test!");
 	}
-
-
+	
+	@Test
+	public void twoClientsConnectToServer() {
+		ClientSmartTrolleyControllerTrial client2 = new client.ClientSmartTrolleyControllerTrial();
+		
+		assertEquals(client.ClientSmartTrolleyControllerTrial.objectToServer,
+				ClientThread.objectFromClient);
+		
+		assertEquals(client2.objectToServer,
+				ClientThread.objectFromClient);
+		
+		System.out.println("Finished twoClientsConnectToServer Test!");
+	}
 }
 /************** End of ServerSmartTrolleyControllerTrial.java **************/
