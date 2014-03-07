@@ -6,6 +6,8 @@ import java.util.PriorityQueue;
 
 import javafx.geometry.Bounds;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
@@ -23,19 +25,24 @@ public class GraphicsHandlerTest {
 
 	@Before
 	public void setUp() throws Exception {
+		pointsSetup();		
+		squareSetUp();
+		
+		
+	}
+
+	private void pointsSetup() {
 		point1 = new ShapePoint(pointLow,pointLow,point1Num);
 		point2 = new ShapePoint(width,pointLow,point2Num);
 		point3 = new ShapePoint(width,height,point3Num);
 		point4 = new ShapePoint(pointLow,width,point4Num);
 		point5 = new ShapePoint(pentagonX, pentagonY, point5Num);
 		
-	}
-	
-	@Before
-	public void squareSetUp() throws Exception{
 		
 		points = new PriorityQueue<ShapePoint>();
-		
+	}
+
+	private void squareSetUp() {
 		//set points with the first 4 ShapePoints to create a square
 		points.add(point1);
 		points.add(point3);
@@ -47,7 +54,6 @@ public class GraphicsHandlerTest {
 		
 		//get the shape that is created by the values previously given to the factory
 		square = shapeFactory.getShape();
-		
 	}
 	
 	/*..................SQUARE TESTS...............................*/
@@ -90,6 +96,19 @@ public class GraphicsHandlerTest {
 			assertEquals(testingPointDouble, shapeFactory.getPoint(i));
 			i++;
 		}
+	}
+	
+	@Test
+	public void colorTest(){
+		//specify RGB string for blue
+		String blue = "0000FF";
+		//Paint for holding returned color from class under test
+		Paint squareColor;
+		
+		shapeFactory.setColor(blue);
+		squareColor = shapeFactory.getColor();
+		
+		assertEquals(Color.BLUE, squareColor);
 	}
 }
 

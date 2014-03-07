@@ -2,6 +2,8 @@ package graphicsHandler;
 
 import java.util.PriorityQueue;
 
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
@@ -42,10 +44,20 @@ public class SlideShapeFactory {
 		return shape;
 	}
 
+	//Method to return the x and y coordinates of Point
 	public double[] getPoint(int i) {
 		double xCoordinate = coordinates[i*2-1];
 		double yCoordinate = coordinates[i*2];
 		return new double[]{xCoordinate, yCoordinate};
+	}
+
+	public void setColor(String color) {
+		shape.setFill(Color.web(color));
+	}
+
+	public Paint getColor() {
+		Paint color = shape.getFill();
+		return color;
 	}
 
 }
