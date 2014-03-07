@@ -3,11 +3,14 @@ package graphicsHandler;
 import static org.junit.Assert.*;
 
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 import javafx.geometry.Bounds;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
@@ -19,7 +22,7 @@ public class GraphicsHandlerTest {
 	public PriorityQueue<ShapePoint> points;
 	int width = 50, height = 50, pointLow = 0, pentagonX = 25, pentagonY = 25;
 	int point1Num = 1, point2Num = 2, point3Num = 3, point4Num = 4, point5Num = 5;
-	public SlideShapeFactory shapeFactory;
+	public SlideShapeFactory shapeFactory, circleFactory;
 	public ShapePoint point1, point2, point3, point4, point5, testingPoint;
 	public Shape square, pentagon, circle;
 
@@ -27,6 +30,17 @@ public class GraphicsHandlerTest {
 	public void setUp() throws Exception {
 		pointsSetup();		
 		squareSetUp();
+		circleSetup();
+		
+	}
+
+	private void circleSetup() {
+		PriorityQueue<ShapePoint> point = new PriorityQueue<ShapePoint>();
+		point.add(point4);
+		
+		circleFactory = new SlideShapeFactory(point, height,width);
+		
+		circle = circleFactory.getShape();
 		
 		
 	}
@@ -76,9 +90,7 @@ public class GraphicsHandlerTest {
 	
 	@Test
 	public void squareHeightTest()	{
-		Pane testPane = new Pane();
-		testPane.getChildren().add(square);
-		Bounds squareBounds = square.getBoundsInParent();
+		Bounds squareBounds = square.getBoundsInLocal();
 		double squareHeight =squareBounds.getHeight();
 		assertEquals(squareHeight, height, 0.0001);
 	}
@@ -99,16 +111,68 @@ public class GraphicsHandlerTest {
 	}
 	
 	@Test
-	public void colorTest(){
+	public void fillColorTest(){
 		//specify RGB string for blue
-		String blue = "0000FF";
+		String blue = "#0000FF";
 		//Paint for holding returned color from class under test
 		Paint squareColor;
 		
-		shapeFactory.setColor(blue);
-		squareColor = shapeFactory.getColor();
+		shapeFactory.setFillColor(blue);
+		squareColor = shapeFactory.getFillColor();
 		
 		assertEquals(Color.BLUE, squareColor);
 	}
-}
 
+
+	@Test
+	public void lineColorTest(){
+		//specify RGB string for blue
+		String blue = "#0000FF";
+		//Paint for holding returned color from class under test
+		Paint squareLineColor;
+		
+		shapeFactory.setLineColor(blue);
+		squareLineColor = shapeFactory.getLineColor();
+		
+		assertEquals(Color.BLUE, squareLineColor);
+	}
+	
+	@Test
+	public void polygonResizeTest(){
+		
+		int extra = 8;
+		
+		int newWidth = width + extra;
+		int newHeight = height + extra;
+		shapeFactory.setWidth(newWidth);
+		shapeFactory.setHeight(newHeight);
+		
+		Shape shape = shapeFactory.getShape();
+		
+		//
+		assertEquals(newWidth, shape.getBoundsInLocal().getWidth(), 0.0001);
+		assertEquals(newHeight, shape.getBoundsInLocal().getHeight(), 0.0001);
+	}
+	
+	@Test
+	public void durationTest(){
+		fail("test not implemented");
+	}
+	
+	
+	/*..................Circle TESTS...............................*/
+	
+	@Test
+	public void circleClassTest()	{
+		assertEquals(Ellipse.class, circle.getClass());
+	}
+	
+	@Test
+	public void circleDiameterTest(){
+		double circleHeight = circle.getBoundsInLocal().getHeight();
+		
+		assertEquals(height, circleHeight, 0.0001);
+	}
+	
+	
+}
