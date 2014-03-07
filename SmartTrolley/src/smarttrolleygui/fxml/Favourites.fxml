@@ -8,6 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <VBox id="VBox" alignment="TOP_CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="0.0" styleClass="mainContainer" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.FavouritesController">
@@ -18,38 +19,47 @@
           <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
               <children>
-                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="90.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                    <Image url="@img/companyLogoSmall.png" />
+                    <Image url="@../img/companyLogoSmall.png" />
                   </image>
                 </ImageView>
               </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
               <children>
-                <Button alignment="BOTTOM_CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="84.0" prefWidth="76.0" text="Back">
+                <Button fx:id="offersButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadOffers" styleClass="navigationButton" text="Offers">
                   <graphic>
-                    <ImageView fitHeight="150.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
-                        <Image url="@img/icon_back.jpg" />
+                        <Image url="@../img/icon_offers_100x90.jpg" />
                       </image>
                     </ImageView>
                   </graphic>
                 </Button>
-                <Button fx:id="homeButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadHomeScreen" text="Home">
+                <Button fx:id="favouritesButton" contentDisplay="TOP" mnemonicParsing="false" styleClass="navigationButton" text="Favourites">
                   <graphic>
-                    <ImageView fitHeight="150.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
-                        <Image url="@img/icon_home.jpg" />
+                        <Image url="@../img/icon_star_100x90.jpg" />
                       </image>
                     </ImageView>
                   </graphic>
                 </Button>
-                <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="84.0" prefWidth="76.0" text="List">
+                <Button fx:id="homeButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadHomeScreen" styleClass="navigationButton" text="Home">
                   <graphic>
-                    <ImageView fitHeight="60.0" fitWidth="40.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
-                        <Image url="@img/icon_list.jpg" />
+                        <Image url="@../img/icon_home_100x90.jpg" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+                <Button fx:id="listButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadShoppingList" prefWidth="-1.0" styleClass="navigationButton" text="List">
+                  <graphic>
+                    <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@../img/icon_list_100x90.jpg" />
                       </image>
                     </ImageView>
                   </graphic>
@@ -60,11 +70,6 @@
               <children>
                 <Label fx:id="currentTotalLabel" text="£ current total" />
                 <Label fx:id="currentSavingsTotal" text="£ current savings" />
-                <Button fx:id="favouritesButton" mnemonicParsing="false" text="Favourites">
-                  <VBox.margin>
-                    <Insets left="10.0" top="5.0" />
-                  </VBox.margin>
-                </Button>
               </children>
               <padding>
                 <Insets left="10.0" />
@@ -72,9 +77,9 @@
             </VBox>
           </children>
           <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" prefWidth="178.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="268.0" minWidth="10.0" prefWidth="268.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="124.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" prefWidth="136.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="349.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="115.0" />
           </columnConstraints>
           <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -82,21 +87,14 @@
         </GridPane>
       </children>
     </HBox>
-    <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="600.0" styleClass="topContainer" VBox.vgrow="NEVER">
+    <Line endX="575.0" startX="0.0" startY="0.0" />
+    <HBox id="HBox" alignment="CENTER" spacing="0.0" styleClass="bottomContainer" VBox.vgrow="ALWAYS">
       <children>
-        <Label styleClass="titleLabel" text="Favourites" />
-      </children>
-      <padding>
-        <Insets />
-      </padding>
-    </HBox>
-    <HBox id="HBox" alignment="CENTER" spacing="5.0" styleClass="bottomContainer" VBox.vgrow="ALWAYS">
-      <children>
-        <SplitPane dividerPositions="0.2003577817531306" focusTraversable="true" maxWidth="580.0" prefHeight="411.0" prefWidth="561.0" style="">
+        <SplitPane dividerPositions="0.2093425605536332" focusTraversable="true" maxWidth="580.0" prefHeight="411.0" prefWidth="600.0" style="">
           <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="396.0" prefWidth="110.0" style="">
               <children>
-                <VBox id="VBox" alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="404.0" prefWidth="115.0" spacing="0.0">
+                <VBox id="VBox" alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="404.0" prefWidth="110.0" spacing="0.0">
                   <children>
                     <Label text="Categories" />
                     <ListView fx:id="categoriesList" prefHeight="389.0" prefWidth="115.0" />
@@ -111,10 +109,10 @@
               <children>
                 <TableView fx:id="productTable" maxWidth="444.0" prefHeight="413.0" prefWidth="388.0" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <columns>
-                    <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Image" fx:id="imageColumn" />
-                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="258.0" text="Product Name" fx:id="productNameColumn" />
-                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="53.0" style="" text="Price" fx:id="priceColumn" />
-                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="43.0" text="Add" fx:id="addColumn" />
+                    <TableColumn editable="false" prefWidth="95.0" resizable="false" sortable="false" styleClass="centeredColumn" text="Image" fx:id="imageColumn" />
+                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="238.0" resizable="false" text="Product Name" fx:id="productNameColumn" />
+                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="50.0" resizable="false" sortable="false" styleClass="centeredColumn" text="Price" fx:id="priceColumn" />
+                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="40.0" resizable="false" sortable="false" text="Add" fx:id="addColumn" />
                   </columns>
                 </TableView>
               </children>
@@ -128,6 +126,6 @@
     <Insets />
   </padding>
   <stylesheets>
-    <URL value="@StyleSheet.css" />
+    <URL value="@../StyleSheet.css" />
   </stylesheets>
 </VBox>

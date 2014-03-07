@@ -1,5 +1,5 @@
 /**
- * FavouritesController
+ * ExampleShoppingListController
  * 
 * Class Description: class that allows java interaction with Favourites.fxml
  * file.
@@ -40,7 +40,7 @@ import javafx.util.Callback;
  *
  * @author me
  */
-public class FavouritesController implements Initializable {
+public class ExampleShoppingListController implements Initializable {
 
     @FXML
     private ListView categoriesList;
@@ -54,12 +54,15 @@ public class FavouritesController implements Initializable {
     private TableColumn priceColumn;
     @FXML
     private TableColumn addColumn;
+    @FXML
+    private TableColumn removeColumn;
+    
 
     private SmartTrolleyGUI application;
     private Stage stage;
     private ObservableList categories;
     private ObservableList<Product> productData;
-    
+
     /**
      * Initializes the controller class.
      *
@@ -73,7 +76,7 @@ public class FavouritesController implements Initializable {
         categoriesList.setItems(categories);
 
         // Fill table on RHS with sample products
-        productData = initializeProductData();    
+        productData = initializeProductData();
         productTable.setItems(productData);
 
 //        imageColumn.setCellValueFactory(new PropertyValueFactory("imageURL"));
@@ -85,8 +88,10 @@ public class FavouritesController implements Initializable {
 //        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("productPrice"));
 
         /**
-         * ************** source:
-         * http://stackoverflow.com/questions/16360323/javafx-table-how-to-add-components *****************
+         * *****************
+         * copied the following code from:
+         * http://stackoverflow.com/questions/16360323/javafx-table-how-to-add-components
+         * *****************
          */
         addColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
             @Override
@@ -124,12 +129,55 @@ public class FavouritesController implements Initializable {
             }
         });
         /**
-         * ************** END OF source:
-         * http://stackoverflow.com/questions/16360323/javafx-table-how-to-add-components *****************
+         * ****************
+         * end of copied code
+         * *****************
          */
-
+        
         /**
-         * ************** same thing for image column *****************
+         * ************** similar code for column containing remove buttons
+         */
+        removeColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+            @Override
+            public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
+                return new ReadOnlyObjectWrapper(features.getValue());
+            }
+        });
+
+        removeColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+            @Override
+            public TableCell<Product, Product> call(TableColumn<Product, Product> removeColumn) {
+                return new TableCell<Product, Product>() {
+                    final Button button = new Button();
+
+                    @Override
+                    public void updateItem(final Product product, boolean empty) {
+                        super.updateItem(product, empty);
+                        if (product != null) {
+                            button.setText("-");
+                            button.getStyleClass().add("buttonChangeQuantity");
+                            setGraphic(button);
+
+                            // Button Event Handler
+                            button.setOnAction(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent event) {
+                                    System.out.println("Pressed remove button for product: " + product.getProductName());
+                                }
+                            });
+                        } else {
+                            setGraphic(null);
+                        }
+                    }
+                };
+            }
+        });
+        /**
+         * ************** end of remove column code *****************
+         */
+        
+        /**
+         * ************** similar code for column containing product images
          */
         imageColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
             @Override
@@ -168,10 +216,10 @@ public class FavouritesController implements Initializable {
             }
         });
         /**
-         * ************** end of image column stuff *****************
-         */        
+         * ************** end of image column code *****************
+         */
     }
-    
+
     private ObservableList<Product> initializeProductData() {
         productData = FXCollections.observableArrayList(
                 new Product("imageURL1", "ariel", "1.99"),
@@ -222,14 +270,14 @@ public class FavouritesController implements Initializable {
         }
     }
 
-    public void loadShoppingList(ActionEvent event) {
+    public void loadFavourites(ActionEvent event) {
 
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
             System.out.println("my error message: application == null");
         } else {
-            application.goToShoppingList();
+            application.goToFavourites();
         }
     }
 
@@ -244,4 +292,6 @@ public class FavouritesController implements Initializable {
         }
     }
 }
-/**************End of FavouritesController**************/
+/**
+ * ************End of ExampleShoppingListController*************
+ */
