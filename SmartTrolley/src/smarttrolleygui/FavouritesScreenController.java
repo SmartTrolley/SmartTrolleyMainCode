@@ -1,14 +1,14 @@
 /**
- * ExampleShoppingListController
+ * FavouritesScreenController
  *
- * Class Description: ExampleShoppingListController allows java interaction with
- * ExampleShoppingList.fxml
+ * Class Description: FavouritesScreenController allows java interaction with
+ * Favourites.fxml
  *
  * @author Arne
  *
  * @author [Checked By:] [Checker(s) fill here]
  *
- * @version [1.0] [Date Created: 06/03/14]
+ * @version [1.0] [Date Created: 28/02/14]
  */
 package smarttrolleygui;
 
@@ -34,7 +34,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 
-public class ExampleShoppingListController implements Initializable {
+public class FavouritesScreenController implements Initializable {
 
     @FXML
     private ListView<String> categoriesList;
@@ -48,8 +48,6 @@ public class ExampleShoppingListController implements Initializable {
     private TableColumn<Product, String> priceColumn;
     @FXML
     private TableColumn<Product, Product> addColumn;
-    @FXML
-    private TableColumn<Product, Product> removeColumn;
 
     private SmartTrolleyGUI application;
     private ObservableList<String> categories;
@@ -58,7 +56,7 @@ public class ExampleShoppingListController implements Initializable {
     /**
      * initialize is automatically called when the controller is created.
      * <p>
-     * Date Modified: 06 Mar 2014
+     * Date Modified: 22 Feb 2014
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -74,7 +72,7 @@ public class ExampleShoppingListController implements Initializable {
      *
      * @param application
      * <p>
-     * Date Modified: 06 Mar 2014
+     * Date Modified: 28 Feb 2014
      */
     public void setApp(SmartTrolleyGUI application) {
         this.application = application;
@@ -121,23 +119,23 @@ public class ExampleShoppingListController implements Initializable {
     }
 
     /**
-     * loadFavourites is called when the 'favourites' button is pressed. It
-     * calls the goToFavourites method in SmartTrolleyGUI.java
+     * loadShoppingList is called when the 'list' button is pressed. It calls
+     * the goToShoppingList method in SmartTrolleyGUI.java
      * <p>
-     * User can maintain list of favourite products
+     * User can view shopping list
      *
-     * @param event - response to click on 'favourites' button
+     * @param event - response to click on 'list' button
      * <p>
-     * Date Modified: 28 Feb 2014
+     * Date Modified: 6 Mar 2014
      */
-    public void loadFavourites(ActionEvent event) {
+    public void loadShoppingList(ActionEvent event) {
 
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
             System.out.println("error: application == null");
         } else {
-            application.goToFavourites();
+            application.goToShoppingList();
         }
     }
 
@@ -210,12 +208,6 @@ public class ExampleShoppingListController implements Initializable {
                 return new ReadOnlyObjectWrapper<Product>(features.getValue());
             }
         });
-        removeColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-            @Override
-            public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
-                return new ReadOnlyObjectWrapper<Product>(features.getValue());
-            }
-        });
         imageColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
             @Override
             public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
@@ -243,35 +235,6 @@ public class ExampleShoppingListController implements Initializable {
                                 @Override
                                 public void handle(ActionEvent event) {
                                     System.out.println("Pressed add button for product: " + product.getProductName());
-                                }
-                            });
-                        } else {
-                            setGraphic(null);
-                        }
-                    }
-                };
-            }
-        });
-
-        removeColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
-            @Override
-            public TableCell<Product, Product> call(TableColumn<Product, Product> removeColumn) {
-                return new TableCell<Product, Product>() {
-                    final Button button = new Button();
-
-                    @Override
-                    public void updateItem(final Product product, boolean empty) {
-                        super.updateItem(product, empty);
-                        if (product != null) {
-                            button.setText("-");
-                            button.getStyleClass().add("buttonChangeQuantity");
-                            setGraphic(button);
-
-                            // Button Event Handler
-                            button.setOnAction(new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    System.out.println("Pressed remove button for product: " + product.getProductName());
                                 }
                             });
                         } else {
@@ -326,20 +289,15 @@ public class ExampleShoppingListController implements Initializable {
      */
     private ObservableList<Product> initializeProductData() {
         productData = FXCollections.observableArrayList(
-                new Product("img/SampleProducts/ariel.jpg", "Ariel", "1.99"),
-                new Product("img/SampleProducts/cravendale_2L_milk.jpg", "Cravendale 2L", "2.99"),
                 new Product("img/SampleProducts/holme_farmed_venison_steak.jpg", "Holme Farmed Venison Steak", "3.99"),
-                new Product("img/SampleProducts/hovis_bread.jpg", "Hovis Bread", "4.99"),
-                new Product("img/SampleProducts/innocent_noodle_pot.jpg", "Innocent Noodle Pot", "5.99"),
                 new Product("img/SampleProducts/lavazza_espresso.jpg", "Lavazza Espresso", "6.99"),
-                new Product("img/SampleProducts/nivea_shower_cream.jpg", "Nivea Shower Creme", "7.99"),
-                new Product("img/SampleProducts/pink_lady_apple.jpg", "Pink Lady Apple", "8.99"),
                 new Product("img/SampleProducts/star-wars-lollies.jpg", "Star Wars Lollies", "9.99"),
-                new Product("img/SampleProducts/strawberry_conserve.jpg", "Strawberry Conserve", "10.99"),
                 new Product("img/SampleProducts/sugar_puffs.jpg", "Sugar Puffs", "11.99"),
                 new Product("img/SampleProducts/yorkie.jpg", "Yorkie", "12.99")
         );
         return productData;
     }
 }
-/**************End of ExampleShoppingListController**************/
+/**
+ * ************End of FavouritesScreenController*************
+ */

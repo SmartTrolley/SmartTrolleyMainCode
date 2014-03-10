@@ -1,10 +1,10 @@
-/*
+/* 
     Created on : 15-Feb-2014, 13:22:53
     Author     : Arne
 */
 
 .root {
-
+    
 }
 .mainContainer {
     -fx-background-color: white;
@@ -55,10 +55,9 @@
 }*/
 
 .table-view .column-header {
-    -fx-font-size: 12px;
     /*-fx-background-color: linear-gradient(to bottom, #fff, #d0d0d0);*/
+    /*-fx-background-color: #ffffff;*/
     -fx-alignment: center;
-    -fx-background-color: #ffffff;
     
 }
 
@@ -76,11 +75,12 @@
     -fx-text-fill: #000000;
 }
 
-.slideTitleLabel {
+// TODO: remove
+/*.slideTitleLabel {
     -fx-font-size: 15px;
     -fx-font-family: "Arial Narrow";
     -fx-font-weight: bold;
-}
+}*/
 
 .labelOldPrice {
     -fx-font-size: 20px;
@@ -140,18 +140,33 @@
 } 
 
 .navigationButton {
-    -fx-font-family: "Arial Narrow";
-    -fx-font-size: 15px;
     -fx-background-color: #ffffff;
-    -fx-cursor: hand;
     /*-fx-background-color: linear-gradient(white, grey);*/
     /*-fx-effect: dropshadow(three-pass-box , rgba(0,0,0,0.6), 5, 0.0, 0, 1);*/
 }
 
+.navigationButton:focused {
+	-fx-border-color: #000000;
+    -fx-border-width: 0 0 3px 0;
+    -fx-border-radius: 0;
+} 
+
 .navigationButton:hover {
-    -fx-border-width: 0;
-    -fx-border-radius: 10px;
-    -fx-effect: innershadow(three-pass-box , rgba(0,0,0,0.6), 5, 0.0, 0, 1);
+	-fx-border-color: #000000;
+    -fx-border-width: 0 0 3px 0;
+    -fx-border-radius: 0;
+    /*-fx-effect: innershadow(three-pass-box , rgba(0,0,0,0.6), 5, 0.0, 0, 0);*/
+} 
+
+.navigationButtonActive {
+	-fx-background-color: #ffffff;
+	-fx-border-color: #000000;
+    -fx-border-width: 3px 0 0 0;
+    -fx-border-radius: 0;
+} 
+
+.navigationButtonActive:hover {
+	-fx-cursor: default;
 } 
 
 .largeButton {
@@ -195,6 +210,18 @@
     -fx-border-color: transparent;
 }
 
+.buttonSmartTrolleyLogo {
+    -fx-background-color: transparent;
+    -fx-background-image:url("img/companyLogoSmall.png");
+    -fx-background-size: 107 104;
+    -fx-background-repeat: no-repeat;  
+    -fx-background-position: center;
+}
+
+.buttonSmartTrolleyLogo:hover {
+    -fx-background-image:url("img/companyLogoSmallHover.png");
+}
+/* source: caspian.css */
 /*******************************************************************************
  *                                                                             *
  * TableView                                                                   *
@@ -259,6 +286,8 @@
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em; /* 0 */
     -fx-text-fill: -fx-text-inner-color;
+    /* set fixed row height */
+    -fx-cell-size: 70px;
 }
  
 .table-row-cell:odd {
@@ -390,11 +419,6 @@
     -fx-opacity: -fx-disabled-opacity;
 }
  
-/*.table-cell:focused {
-    -fx-background-color: -fx-focus-color, -fx-control-inner-background;
-    -fx-background-insets: 0, 1.4;
-}*/
- 
 .table-view:cell-selection  .table-row-cell:filled .table-cell:hover {
     -fx-background-color: -fx-cell-hover-color;
     -fx-text-fill: -fx-text-inner-color;
@@ -417,7 +441,9 @@
 /* This is the area behind the column headers. An ideal place to specify background
    and border colors for the whole area (not individual column-header's). */
 .table-view .column-header-background {
-    -fx-background-color: -fx-body-color;
+    /*edit column header bg here*/
+    /*-fx-background-color: -fx-body-color;*/
+    -fx-background-color: linear-gradient(to bottom, #fff, #d0d0d0);
     -fx-padding: 0;
 }
  
@@ -506,6 +532,7 @@
     -fx-font-size: 1.166667em; /* 14pt - 2 more than the default font */
 }
 
+/* source: caspian.css */
 /*******************************************************************************
  *                                                                             *
  * ListView and ListCell                                                       *

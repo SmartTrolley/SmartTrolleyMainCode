@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<VBox id="VBox" alignment="TOP_CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="0.0" styleClass="mainContainer" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.HomeScreenController">
+<VBox id="VBox" alignment="TOP_CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="0.0" styleClass="mainContainer" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.FavouritesScreenController">
   <children>
     <HBox fillHeight="false" prefHeight="140.0" prefWidth="600.0" styleClass="topContainer" VBox.vgrow="NEVER">
       <children>
@@ -24,7 +24,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
               <children>
-                <Button contentDisplay="TOP" mnemonicParsing="false" prefWidth="-1.0" styleClass="navigationButtonActive" text="Home">
+                <Button fx:id="homeButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadHomeScreen" styleClass="navigationButton" text="Home">
                   <graphic>
                     <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -51,7 +51,7 @@
                     </ImageView>
                   </graphic>
                 </Button>
-                <Button fx:id="favouritesButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadFavourites" styleClass="navigationButton" text="Favourites">
+                <Button fx:id="favouritesButton" contentDisplay="TOP" mnemonicParsing="false" styleClass="navigationButtonActive" text="Favourites">
                   <graphic>
                     <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -92,14 +92,12 @@
               <children>
                 <VBox id="VBox" alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="404.0" prefWidth="110.0" spacing="0.0">
                   <children>
-                    <TextField alignment="CENTER_LEFT" prefWidth="10.0" promptText="Search" />
-                    <Label text="Categories">
-                      <VBox.margin>
-                        <Insets top="10.0" />
-                      </VBox.margin>
-                    </Label>
-                    <ListView fx:id="categoriesList" prefHeight="355.0" prefWidth="95.0" />
+                    <Label text="Categories" />
+                    <ListView fx:id="categoriesList" prefHeight="389.0" prefWidth="115.0" />
                   </children>
+                  <padding>
+                    <Insets top="5.0" />
+                  </padding>
                 </VBox>
               </children>
             </AnchorPane>
@@ -121,6 +119,9 @@
     </HBox>
     <Line endX="575.0" startX="0.0" startY="0.0" />
   </children>
+  <padding>
+    <Insets />
+  </padding>
   <stylesheets>
     <URL value="@../StyleSheet.css" />
   </stylesheets>

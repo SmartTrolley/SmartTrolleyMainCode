@@ -15,39 +15,17 @@
 
 <VBox id="VBox" alignment="TOP_CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="0.0" styleClass="mainContainer" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.OffersScreenController">
   <children>
-    <HBox prefHeight="150.0" prefWidth="600.0" styleClass="topContainer" VBox.vgrow="NEVER">
+    <HBox fillHeight="false" prefHeight="140.0" prefWidth="600.0" styleClass="topContainer" VBox.vgrow="NEVER">
       <children>
         <GridPane focusTraversable="false" gridLinesVisible="false" prefHeight="140.0" prefWidth="600.0" styleClass="grid1">
           <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
               <children>
-                <ImageView fitHeight="90.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                    <Image url="@../img/companyLogoSmall.png" />
-                  </image>
-                </ImageView>
+                <Button mnemonicParsing="false" onAction="#loadStartScreen" prefHeight="130.0" prefWidth="133.0" styleClass="buttonSmartTrolleyLogo" text="" />
               </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
               <children>
-                <Button fx:id="offersButton" contentDisplay="TOP" mnemonicParsing="false" styleClass="navigationButton" text="Offers">
-                  <graphic>
-                    <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                        <Image url="@../img/icon_offers_100x90.jpg" />
-                      </image>
-                    </ImageView>
-                  </graphic>
-                </Button>
-                <Button fx:id="favouritesButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadFavourites" styleClass="navigationButton" text="Favourites">
-                  <graphic>
-                    <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                        <Image url="@../img/icon_star_100x90.jpg" />
-                      </image>
-                    </ImageView>
-                  </graphic>
-                </Button>
                 <Button fx:id="homeButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadHomeScreen" styleClass="navigationButton" text="Home">
                   <graphic>
                     <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
@@ -62,6 +40,24 @@
                     <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
                         <Image url="@../img/icon_list_100x90.jpg" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+                <Button fx:id="offersButton" contentDisplay="TOP" mnemonicParsing="false" styleClass="navigationButtonActive" text="Offers">
+                  <graphic>
+                    <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@../img/icon_offers_100x90.jpg" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+                <Button fx:id="favouritesButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadFavourites" styleClass="navigationButton" text="Favourites">
+                  <graphic>
+                    <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@../img/icon_star_100x90.jpg" />
                       </image>
                     </ImageView>
                   </graphic>

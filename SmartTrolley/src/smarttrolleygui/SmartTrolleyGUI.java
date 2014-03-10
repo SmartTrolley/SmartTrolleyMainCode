@@ -1,10 +1,11 @@
 /** 
 * SmartTrolleyGUI
 * 
-* Class Description: Main GUI class that launches application window.
+* Class Description: 
+* Main GUI class that launches application window.
 *
 * @author Arne
-* @author [Name2]
+* 
 *
 * @author [Checked By:] [Checker(s) fill here]
 *
@@ -26,7 +27,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class SmartTrolleyGUI extends Application {
-
+    
     public Stage stage; 
     private final double MIN_WINDOW_WIDTH = 200.0;
     private final double MIN_WINDOW_HEIGHT = 200.0;
@@ -39,17 +40,25 @@ public class SmartTrolleyGUI extends Application {
             stage.getIcons().add(new Image("smarttrolleygui/img/windowIcon.jpg"));
             stage.setMinWidth(MIN_WINDOW_WIDTH);
             stage.setMinHeight(MIN_WINDOW_HEIGHT);
-            goToStartScreen();
+//            goToStartScreen();
+            
+            //TODO remove following 4 lines of code once debugging has finished
 //            goToHomeScreen();
-//            goToFavourites();
+            goToFavourites();
 //            goToShoppingList();
 //            goToNewOffers();
+            
             primaryStage.show();
         } catch (Exception ex) {
             Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    /**
+    *goToStartScreen is called in 'start' method and loads the application's start-up screen
+    *<p>User can choose to create a new shopping list, open an existing one, or import an externally created list.
+    *<p>Date Modified: 6 Mar 2014
+    */
     public void goToStartScreen() {
         try {
             StartScreenController startScreen = (StartScreenController) replaceSceneContent("fxml/StartScreen.fxml");
@@ -59,6 +68,12 @@ public class SmartTrolleyGUI extends Application {
         }
     }
     
+    /**
+    *goToAllShoppingListsScreen is called when the user chooses to open a previously created shopping list
+    *on the start screen. It loads the screen to show the user previously created lists.
+    *<p>User can view previously created shopping lists
+    *<p>Date Modified: 6 Mar 2014
+    */
     public void goToAllShoppingListsScreen() {
         try {
             AllShoppingListsScreenController allShoppingLists = (AllShoppingListsScreenController) replaceSceneContent("fxml/AllShoppingListsScreen.fxml");
@@ -68,6 +83,12 @@ public class SmartTrolleyGUI extends Application {
         }
     }
     
+    /**
+    *goToHomeScreen is called when the 'Home' button is pressed. It loads the screen which allows the user
+    *to browse through different product categories, or alternatively search for a product directly.
+    *<p>User navigates through product database
+    *<p> Date Modified: 28 Feb 2014
+    */
     public void goToHomeScreen() {
         try {
             HomeScreenController homeScreen = (HomeScreenController) replaceSceneContent("fxml/HomeScreen.fxml");
@@ -77,15 +98,27 @@ public class SmartTrolleyGUI extends Application {
         }
     }
     
+    /**
+    *goToFavourites is called when the 'Favourites' button is pressed. It loads the screen which allows the user
+    *to browse through his favourite products.
+    *<p>User can maintain list of favourite products
+    *<p> Date Modified: 28 Feb 2014
+    */
     public void goToFavourites() {
         try {
-            FavouritesController favourites = (FavouritesController) replaceSceneContent("fxml/Favourites.fxml");
+            FavouritesScreenController favourites = (FavouritesScreenController) replaceSceneContent("fxml/FavouritesScreen.fxml");
             favourites.setApp(this);
         } catch (Exception ex) {
             Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
+    /**
+    *goToShoppingList is called when the 'List' button is pressed. It loads the screen which allows the user to
+    *view the currently opened shopping list.
+    *<p>User can view shopping list
+    *<p> Date Modified: 6 Mar 2014
+    */
     public void goToShoppingList() {
         try {
             ExampleShoppingListController exampleShoppingList = (ExampleShoppingListController) replaceSceneContent("fxml/ExampleShoppingList.fxml");
@@ -95,6 +128,12 @@ public class SmartTrolleyGUI extends Application {
         }
     }
     
+    /**
+    *goToOffers is called when the 'Offers' button is pressed. It loads the screen which allows the user to view
+    *the store's current offers.
+    *<p>User can browse store's offers
+    *<p> Date Modified: 7 Mar 2014
+    */
     public void goToOffers() {
         try {
             OffersScreenController offers = (OffersScreenController) replaceSceneContent("fxml/OffersScreen.fxml");
@@ -104,6 +143,14 @@ public class SmartTrolleyGUI extends Application {
         }
     }
     
+    /**
+    *replaceSceneContent loads in the content from the fxml file it is passed 
+    *<p>Displays content on screen
+    *@param fxml the name of the .fxml file to be loaded into the scene
+    *@return fxml file controller
+    *@throws Exception
+    *<p> Date Modified: 28 Feb 2014
+    */
     private Initializable replaceSceneContent(String fxml) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
         InputStream inputStream = SmartTrolleyGUI.class.getResourceAsStream(fxml);
@@ -131,9 +178,9 @@ public class SmartTrolleyGUI extends Application {
             container.setPrefHeight(stageHeight);
         }
         
-        // next line left in to show need for preceding ~10 lines
-        // this line alone does not work
+        // next line left in to show need for preceding ~10 lines        
         // Scene scene = new Scene(container, stage.getWidth(), stage.getHeight());
+        // previous line alone does not work
         
         stage.setScene(scene);
         stage.sizeToScene();
@@ -141,13 +188,13 @@ public class SmartTrolleyGUI extends Application {
     }
 
     /**
-     * The main() method is ignored in correctly deployed JavaFX application.
-     * main() serves only as fallback in case the application can not be
-     * launched through deployment artifacts, e.g., in IDEs with limited FX
-     * support. NetBeans ignores main().
-     *
-     * @param args the command line arguments
-     */
+    *The main() method is ignored in correctly deployed JavaFX applications.
+    *main() serves only as fallback in case the application cannot be launched
+    *through deployment artifacts, e.g., in IDEs with limited FX support.
+    *<p>Test(s)/User Story that it satisfies
+    *@param args the command line arguments
+    *<p> Date Modified: 22 Feb 2014
+    */
     public static void main(String[] args) {
         Application.launch(SmartTrolleyGUI.class, (java.lang.String[])null);
     }
