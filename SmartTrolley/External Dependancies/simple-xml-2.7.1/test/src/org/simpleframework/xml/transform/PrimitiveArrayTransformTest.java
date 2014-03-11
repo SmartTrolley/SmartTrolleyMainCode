@@ -125,7 +125,7 @@ public class PrimitiveArrayTransformTest extends ValidationTestCase {
       
       persister.write(example, out);
       String text = out.toString();
-      System.out.println(text);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
       
       example = persister.read(IntegerArrayExample.class, text);
             

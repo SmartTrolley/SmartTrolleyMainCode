@@ -97,7 +97,7 @@ public class PathWithOrderedAttributesTest extends ValidationTestCase {
       deployment.setOS(OperatingSystem.LINUX);
       deployment.setProcessor(Processor.INTEL);
       persister.write(deployment, writer);
-      System.out.println(writer.toString());
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(writer.toString());
       ServerDeployment recovered = persister.read(ServerDeployment.class, writer.toString());
       assertEquals(recovered.getOS(), deployment.getOS());
       assertEquals(recovered.getProcessor(), deployment.getProcessor());

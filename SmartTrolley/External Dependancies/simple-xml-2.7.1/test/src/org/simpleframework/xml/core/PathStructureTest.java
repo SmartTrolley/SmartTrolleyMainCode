@@ -239,7 +239,7 @@ public class PathStructureTest extends ValidationTestCase {
    private void validate(Section section, String... order) throws Exception {
       LinkedList<String> expect = asList(order);
       for(String name : section) {
-         System.out.println(name);
+         Printing.SmartTrolleyPrint.smartTrolleyPrint(name);
       }
       for(String name : section) {
          assertEquals(name, expect.removeFirst());

@@ -19,7 +19,7 @@ public class SimpleConstructorInjectionTest extends TestCase {
       Serializer serializer = new Persister();
       
       Message example = serializer.read(Message.class, xml);
-      System.out.println("message: "+example.getOptional());
+      Printing.SmartTrolleyPrint.smartTrolleyPrint("message: "+example.getOptional());
    }
    
    

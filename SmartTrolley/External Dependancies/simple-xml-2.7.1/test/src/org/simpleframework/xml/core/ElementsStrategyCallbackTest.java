@@ -36,7 +36,7 @@ public class ElementsStrategyCallbackTest extends ValidationTestCase {
       }
       public void read(Type type, NodeMap<InputNode> node) throws Exception {
          InputNode value = node.get("type");
-         System.out.println(value);
+         Printing.SmartTrolleyPrint.smartTrolleyPrint(value);
       }
       public void write(Type type, NodeMap<OutputNode> node) throws Exception {
          Class key = type.getType();
@@ -63,6 +63,6 @@ public class ElementsStrategyCallbackTest extends ValidationTestCase {
       persister.write(example, out);
       Example other = persister.read(Example.class, out.toString());
       assertEquals(other.d, example.d);
-      System.out.println(out);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(out);
    }
 }

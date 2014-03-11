@@ -64,7 +64,7 @@ public class PathAsNamespacePrefixTest extends ValidationTestCase {
       StringWriter writer = new StringWriter();
       persister.write(example, writer);
       String text = writer.toString();
-      System.out.println(text);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
       PathWithPrefix recovered = persister.read(PathWithPrefix.class, text);
       assertEquals(recovered.getId(), "tim");
       validate(persister, example);
@@ -90,7 +90,7 @@ public class PathAsNamespacePrefixTest extends ValidationTestCase {
       BringPrefixInScope parent = new BringPrefixInScope(example);
       StringWriter writer = new StringWriter();
       persister.write(parent, writer);
-      System.out.println(writer);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(writer);
       BringPrefixInScope recovered = persister.read(BringPrefixInScope.class, writer.toString());
       assertEquals(recovered.example.getId(), "tim");
       validate(persister, parent);

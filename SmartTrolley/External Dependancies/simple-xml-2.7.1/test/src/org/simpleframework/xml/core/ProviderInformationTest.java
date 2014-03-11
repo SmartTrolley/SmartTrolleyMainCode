@@ -132,7 +132,7 @@ public class ProviderInformationTest extends TestCase  {
         }
         catch (Exception exception)
         {
-           System.out.println( "Constructor exception " + exception.getMessage() );
+           Printing.SmartTrolleyPrint.smartTrolleyPrint( "Constructor exception " + exception.getMessage() );
            throw( exception );
         }
      }
@@ -146,7 +146,7 @@ public class ProviderInformationTest extends TestCase  {
         }
         catch (Exception exception)
         {
-           System.out.println( "Constructor exception " + exception.getMessage() );
+           Printing.SmartTrolleyPrint.smartTrolleyPrint( "Constructor exception " + exception.getMessage() );
            throw( exception );
         }
      }
@@ -172,8 +172,8 @@ public class ProviderInformationTest extends TestCase  {
            final Writer result = new StringWriter(); 
            final PrintWriter printWriter = new PrintWriter(result);
            exception.printStackTrace(printWriter);
-           System.out.println( "serializer.write exception " + exception.getMessage() );
-           System.out.println( result.toString() );
+           Printing.SmartTrolleyPrint.smartTrolleyPrint( "serializer.write exception " + exception.getMessage() );
+           Printing.SmartTrolleyPrint.smartTrolleyPrint( result.toString() );
            xmlWriter.append( "serializer.write exception " + exception.getMessage() );
         }
         return xmlWriter.toString();
@@ -187,7 +187,7 @@ public class ProviderInformationTest extends TestCase  {
         }
         catch (Exception exception)
         {
-           System.out.println( "writeToFile exception " + exception.getMessage() );
+           Printing.SmartTrolleyPrint.smartTrolleyPrint( "writeToFile exception " + exception.getMessage() );
            throw( exception );
         }
      }
@@ -257,7 +257,7 @@ public class ProviderInformationTest extends TestCase  {
         assertFalse( serializedSPDD.contains( "exception" ));
         
         // Write the parsed classes to the console
-        System.out.println( serializedSPDD );
+        Printing.SmartTrolleyPrint.smartTrolleyPrint( serializedSPDD );
         
      }
      catch (Exception e)

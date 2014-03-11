@@ -66,7 +66,7 @@ public class PathCaseTest extends TestCase {
       Persister persister = new Persister();
       StringWriter writer = new StringWriter();
       persister.write(example, writer);
-      System.out.println(writer);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(writer);
       CaseExample restored = persister.read(CaseExample.class, writer.toString());
       assertEquals(example.a, restored.a);
       assertEquals(example.b, restored.b);
@@ -101,7 +101,7 @@ public class PathCaseTest extends TestCase {
          e.printStackTrace();
          exception = true;
       }
-      System.out.println(writer.toString());
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(writer.toString());
       assertFalse("No exception should be thrown with the elements are not the same name", exception);
    } 
 

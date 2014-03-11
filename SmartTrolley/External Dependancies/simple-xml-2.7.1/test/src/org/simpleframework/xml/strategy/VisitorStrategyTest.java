@@ -49,7 +49,7 @@ public class VisitorStrategyTest extends ValidationTestCase {
       persister.write(item, writer);
       
       String text = writer.toString();
-      System.out.println(text);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
       
       VisitorExample recover = persister.read(VisitorExample.class, text);
       

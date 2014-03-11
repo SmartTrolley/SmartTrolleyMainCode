@@ -57,8 +57,8 @@ public class Test4_2Test extends TestCase {
       String serializedForm =    "<test4>\n" + 
                            "   <single-element class=\"org.simpleframework.xml.core.Test4_2Test$MyElementC\"/>\n" +
                            "</test4>";
-      System.out.println(serializedForm);
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(serializedForm);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
       
       Test4_2 o = s.read(Test4_2.class, serializedForm);
       
@@ -69,8 +69,8 @@ public class Test4_2Test extends TestCase {
       sw.getBuffer().setLength(0);
       s.write(new Test4_2(new MyElementC()), sw);
       //FIXME it would be great, if this worked. Actually it works for ElementUnionLists.
-      System.out.println(sw.toString());
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(sw.toString());
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
 
    } 
 }

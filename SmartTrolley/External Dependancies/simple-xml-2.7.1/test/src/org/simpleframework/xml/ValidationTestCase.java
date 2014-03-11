@@ -127,7 +127,7 @@ public class ValidationTestCase extends TestCase {
 
     public static synchronized void validate(String text) throws Exception {    
         builder.parse(new InputSource(new StringReader(text)));   
-        System.out.println(text);
+        Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
     }
     
     public void assertElementExists(String sourceXml, String pathExpression) throws Exception {

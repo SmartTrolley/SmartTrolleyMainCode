@@ -88,7 +88,7 @@ public class PathWithConverterTest extends ValidationTestCase {
       ServerDetailsReference reference = new ServerDetailsReference(primary, secondary);
       StringWriter writer = new StringWriter();
       persister.write(reference, writer);
-      System.out.println(writer);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(writer);
       ServerDetailsReference recovered = persister.read(ServerDetailsReference.class, writer.toString());
       assertEquals(recovered.getPrimary().getHost(), reference.getPrimary().getHost());
       assertEquals(recovered.getPrimary().getPort(), reference.getPrimary().getPort());
@@ -108,7 +108,7 @@ public class PathWithConverterTest extends ValidationTestCase {
       ServerDetailsReference reference = new ServerDetailsReference(primary, secondary);
       StringWriter writer = new StringWriter();
       persister.write(reference, writer);
-      System.out.println(writer);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(writer);
       ServerDetailsReference recovered = persister.read(ServerDetailsReference.class, writer.toString());
       assertEquals(recovered.getPrimary().getHost(), reference.getPrimary().getHost());
       assertEquals(recovered.getPrimary().getPort(), reference.getPrimary().getPort());

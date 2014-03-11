@@ -79,7 +79,7 @@ public class UnionListConstructorInjectionTest extends ValidationTestCase {
       StringWriter writer = new StringWriter();
       persister.write(control, writer);
       String text = writer.toString();
-      System.out.println(text);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
       AccessControl deserialized = persister.read(AccessControl.class, text);
       assertEquals(deserialized.getUsers().get(0).getName(), "a");
       assertEquals(deserialized.getUsers().get(0).getClass(), UserIdentity.class);

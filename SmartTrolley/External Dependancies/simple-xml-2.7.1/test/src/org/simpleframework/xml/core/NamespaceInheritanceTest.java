@@ -46,7 +46,7 @@ public class NamespaceInheritanceTest extends ValidationTestCase {
       serializer.write(parent, tmp);
  
       String result = new String(tmp.toByteArray());
-      System.out.println(result);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(result);
  
       assertElementHasAttribute(result, "/aaa", "xmlns", "namespace1");
       assertElementHasAttribute(result, "/aaa/bbb", "xmlns", "namespace2");
@@ -72,7 +72,7 @@ public class NamespaceInheritanceTest extends ValidationTestCase {
       serializer.write(parent, tmp);
  
       String result = new String(tmp.toByteArray());
-      System.out.println(result);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(result);
  
       assertElementHasAttribute(result, "/aaaWithPrefix", "xmlns:aaa", "namespace1");
       assertElementHasAttribute(result, "/aaaWithPrefix/bbb", "xmlns:bbb", "namespace2");

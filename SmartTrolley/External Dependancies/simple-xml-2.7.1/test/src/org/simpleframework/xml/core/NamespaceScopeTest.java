@@ -57,7 +57,7 @@ public class NamespaceScopeTest extends ValidationTestCase {
       persister.write(example, writer);
       
       String text = writer.toString();
-      System.out.println(text);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
       
       assertElementHasNamespace(text, "/a", "http://domain/a");
       assertElementHasNamespace(text, "/a/b", "http://domain/b");

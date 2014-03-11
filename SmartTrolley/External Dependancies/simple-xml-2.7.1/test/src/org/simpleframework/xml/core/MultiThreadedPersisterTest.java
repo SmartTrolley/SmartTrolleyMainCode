@@ -57,7 +57,7 @@ public class MultiThreadedPersisterTest extends TestCase {
                Assert.assertEquals(example.number, copy.number);
                Assert.assertEquals(example.date, copy.date);
                Assert.assertEquals(example.locale, copy.locale);
-               System.out.println(text);
+               Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
             }
             queue.offer(Status.SUCCESS);
          }catch(Exception e) {

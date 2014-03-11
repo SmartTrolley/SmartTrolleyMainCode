@@ -26,7 +26,7 @@ public class SuperTypeTest extends TestCase {
       @Element
       private String text;
       public void doSomething() {
-         System.out.println("SubType1: " + this);
+         Printing.SmartTrolleyPrint.smartTrolleyPrint("SubType1: " + this);
       }
       public String toString() {
          return text;
@@ -38,7 +38,7 @@ public class SuperTypeTest extends TestCase {
       @Element
       private SuperType superType;
       public void doSomething() {
-         System.out.println("SubType2: " + this);
+         Printing.SmartTrolleyPrint.smartTrolleyPrint("SubType2: " + this);
       }
       public String toString() {
          return "Inner: " + superType.toString();

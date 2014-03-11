@@ -72,7 +72,7 @@ public class ReplaceThisTest extends ValidationTestCase {
         persister.write(parent, writer);
         String text = writer.toString();
         
-        System.out.println(text);
+        Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
         
         assertEquals(text.indexOf("Tom"), -1);
         assertEquals(text.indexOf("Dick"), -1);

@@ -82,14 +82,14 @@ public class Test5Test extends TestCase {
       //FIXME serialization is ok
       s.write(new Test5(new MyElementA(), new MyElementA(), new MyElementB()), sw);    
       String serializedForm = sw.toString();
-      System.out.println(serializedForm);
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(serializedForm);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
       //FIXME but no idea what is happening
       Test5 o = s.read(Test5.class, serializedForm);
       sw.getBuffer().setLength(0);
       s.write(o, sw);
-      System.out.println(sw.toString());
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(sw.toString());
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
       sw.getBuffer().setLength(0);
    }
 }

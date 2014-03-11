@@ -158,7 +158,7 @@ public class MatcherTest extends ValidationTestCase {
       
       assertElementHasAttribute(writer.toString(), "/exampleEnum", "value", "A-1");
       
-      System.out.println(writer.toString());
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(writer.toString());
       
       validate(serializer, value);
    }
@@ -172,7 +172,7 @@ public class MatcherTest extends ValidationTestCase {
       serializer.write(original, writer);
       
       String text = writer.toString();
-      System.out.println(text);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
       
       EmptyStringExample recovered = serializer.read(EmptyStringExample.class, text);
       

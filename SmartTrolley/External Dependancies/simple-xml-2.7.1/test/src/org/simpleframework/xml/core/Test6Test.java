@@ -61,13 +61,13 @@ public class Test6Test extends TestCase {
       StringWriter sw = new StringWriter();
       s.write(new Test6(new MyElementA(), new MyElementB()), sw);    
       String serializedForm = sw.toString();
-      System.out.println(serializedForm);
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(serializedForm);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
       Test6 o = s.read(Test6.class, serializedForm);
       assertTrue(o.isListConstructorUsed());
       sw.getBuffer().setLength(0);
       s.write(o, sw);
-      System.out.println(sw.toString());
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(sw.toString());
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
    }
 }

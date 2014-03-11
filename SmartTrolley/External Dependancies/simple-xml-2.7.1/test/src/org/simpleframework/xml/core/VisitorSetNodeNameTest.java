@@ -41,8 +41,8 @@ public class VisitorSetNodeNameTest extends ValidationTestCase {
       normalPersister.write(example, normalWriter);
       String renameResult = renameWriter.toString();
       String normalResult = normalWriter.toString();
-      System.out.println(renameResult);
-      System.out.println(normalResult);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(renameResult);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(normalResult);
       assertElementExists(renameResult, "/RENAMEEXAMPLE");
       assertElementExists(renameResult, "/RENAMEEXAMPLE/NAME");
       assertElementExists(renameResult, "/RENAMEEXAMPLE/VALUE");

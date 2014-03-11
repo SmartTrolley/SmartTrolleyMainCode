@@ -53,7 +53,7 @@ public class InlineListWithDataTest extends ValidationTestCase {
       persister.write(example, writer);
       
       String text = writer.toString();
-      System.out.println(text);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
       
       assertElementHasCDATA(text, "/listWithDataExample/string[1]", "A");
       assertElementHasCDATA(text, "/listWithDataExample/string[2]", "B");
@@ -74,7 +74,7 @@ public class InlineListWithDataTest extends ValidationTestCase {
       persister.write(example, writer);
       
       String text = writer.toString();
-      System.out.println(text);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
       
       assertElementHasCDATA(text, "/mapWithDataExample/entry[1]", "1");
       assertElementHasCDATA(text, "/mapWithDataExample/entry[2]", "2");

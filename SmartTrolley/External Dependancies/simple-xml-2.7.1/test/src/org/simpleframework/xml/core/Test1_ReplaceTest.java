@@ -62,8 +62,8 @@ public class Test1_ReplaceTest extends TestCase {
       StringWriter sw = new StringWriter();
       s.write(new Test1A(null), sw);      
       String serializedForm = sw.toString();
-      System.out.println(serializedForm);
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(serializedForm);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
       Test1 o = s.read(Test1.class, serializedForm);
       
       sw.getBuffer().setLength(0);
@@ -71,7 +71,7 @@ public class Test1_ReplaceTest extends TestCase {
       //Unnecessary constructor exception a write, note that this happens with the default constructor only (see above)
      // s.write(new Test1B(), sw);    
       serializedForm = sw.toString();
-      System.out.println(serializedForm);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(serializedForm);
      // o = s.read(Test1.class, serializedForm);
    }
    

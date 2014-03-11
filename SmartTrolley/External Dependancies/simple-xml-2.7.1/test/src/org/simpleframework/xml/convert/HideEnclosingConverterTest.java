@@ -76,7 +76,7 @@ public class HideEnclosingConverterTest extends ValidationTestCase {
       EntryHolder holder = new EntryHolder(entry, "test", 10);
       StringWriter writer = new StringWriter();
       serializer.write(holder, writer);
-      System.out.println(writer.toString());
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(writer.toString());
       serializer.read(EntryHolder.class, writer.toString());
       System.err.println(writer.toString());
       String sourceXml = writer.toString();

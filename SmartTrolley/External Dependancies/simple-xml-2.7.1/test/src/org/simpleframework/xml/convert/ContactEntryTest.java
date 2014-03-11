@@ -95,7 +95,7 @@ public class ContactEntryTest extends ValidationTestCase {
       assertEquals(copy.getOtherList().get(2).getName(), list.getOtherList().get(2).getName());
       assertEquals(copy.getOtherList().get(2).getValue(), list.getOtherList().get(2).getValue());
       
-      System.out.println(text);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
    }
 
 }

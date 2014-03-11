@@ -54,7 +54,7 @@ public class UnionEmptyListBugTest extends ValidationTestCase {
       element.values.add(111);    
       serializer.write(element, writer);
       text = writer.toString();
-      System.out.println(text);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
       assertElementExists(text, "/elementListUnionBug/string");
       assertElementHasValue(text, "/elementListUnionBug/string", "A");
       assertElementExists(text, "/elementListUnionBug/integer");
@@ -76,7 +76,7 @@ public class UnionEmptyListBugTest extends ValidationTestCase {
       element.values.put("B", 1);    
       serializer.write(element, writer);
       text = writer.toString();
-      System.out.println(text);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
       assertElementExists(text, "/elementMapUnionBug/string");
       assertElementHasValue(text, "/elementMapUnionBug/string/string[1]", "A");
       assertElementHasValue(text, "/elementMapUnionBug/string/string[2]", "string");

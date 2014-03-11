@@ -49,7 +49,7 @@ public class NestedElementTest extends ValidationTestCase {
       Persister persister = new Persister();
       StringWriter writer = new StringWriter();      
       persister.write(example, writer);      
-      System.out.println(writer.toString());      
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(writer.toString());      
       NestedElementExample recovered = persister.read(NestedElementExample.class, writer.toString());
       assertEquals(example.city, recovered.city);
       assertEquals(example.street, recovered.street);

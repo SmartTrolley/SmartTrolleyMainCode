@@ -86,13 +86,13 @@ public class Test4Test extends TestCase {
       StringWriter sw = new StringWriter();
       s.write(new Test4(new MyElement(), new MyElementA(), new MyElementB()), sw);     
       String serializedForm = sw.toString();
-      System.out.println(serializedForm);
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(serializedForm);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
       Test4 o = s.read(Test4.class, serializedForm);
       sw.getBuffer().setLength(0);
       s.write(o, sw);
-      System.out.println(sw.toString());
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(sw.toString());
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
       sw.getBuffer().setLength(0);
             
       serializedForm =  "<test4>\n" + 
@@ -103,13 +103,13 @@ public class Test4Test extends TestCase {
                      "   </elements>\n" + 
                      "</test4>";
       //FIXME read ignores the class statement
-      System.out.println(serializedForm);
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(serializedForm);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
       o = s.read(Test4.class, serializedForm);
       sw.getBuffer().setLength(0);
       s.write(o, sw);
-      System.out.println(sw.toString());
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(sw.toString());
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
       sw.getBuffer().setLength(0);
       
       serializedForm =  "<test4>\n" + 
@@ -120,13 +120,13 @@ public class Test4Test extends TestCase {
             "   </elements>\n" + 
             "</test4>";
       //FIXME read uses the class statement and deserializes as expected
-      System.out.println(serializedForm);
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(serializedForm);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
       o = s.read(Test4.class, serializedForm);
       sw.getBuffer().setLength(0);
       s.write(o, sw);
-      System.out.println(sw.toString());
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(sw.toString());
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
       sw.getBuffer().setLength(0);
    }
 }

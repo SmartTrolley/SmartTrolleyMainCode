@@ -154,7 +154,7 @@ public class LanguageConverter extends Replace {
          newFiles.add(saveAs.getCanonicalPath().replaceAll("^.*src", "src"));
       }
       for(String entry : newFiles) {
-         System.out.println(" <Compile Include=\""+entry+"\"/>");
+         Printing.SmartTrolleyPrint.smartTrolleyPrint(" <Compile Include=\""+entry+"\"/>");
       }
    }
    

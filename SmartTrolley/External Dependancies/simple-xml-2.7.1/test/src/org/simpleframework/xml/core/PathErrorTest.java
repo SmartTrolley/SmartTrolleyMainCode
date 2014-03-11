@@ -78,6 +78,6 @@ public class PathErrorTest extends TestCase{
 
       String data = writer.getBuffer().toString();
       
-      System.out.println(data);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(data);
    }
 }

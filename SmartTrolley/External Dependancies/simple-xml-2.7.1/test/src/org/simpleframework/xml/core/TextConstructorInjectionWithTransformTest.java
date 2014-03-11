@@ -74,7 +74,7 @@ public class TextConstructorInjectionWithTransformTest extends TestCase {
 
       Embargo embargoout = serializer.read(Embargo.class, writer.toString());
 
-      System.out.println(writer.toString());
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(writer.toString());
    }
 
 }

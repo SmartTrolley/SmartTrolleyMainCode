@@ -89,13 +89,13 @@ public class Test3_2Test extends TestCase {
       StringWriter sw = new StringWriter();
       s.write(new Test3_2(new MyElementA(), new MyElementB()), sw);     
       String serializedForm = sw.toString();
-      System.out.println(serializedForm);
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(serializedForm);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
       Test3_2 o = s.read(Test3_2.class, serializedForm);
       sw.getBuffer().setLength(0);
       s.write(o, sw);
-      System.out.println(sw.toString());
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(sw.toString());
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
    }
    
    public void test33() throws Exception{
@@ -103,12 +103,12 @@ public class Test3_2Test extends TestCase {
       StringWriter sw = new StringWriter();
       s.write(new Test3_3(new MyElementA(), new MyElementB()), sw);     
       String serializedForm = sw.toString();
-      System.out.println(serializedForm);
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(serializedForm);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
       Test3_3 o = s.read(Test3_3.class, serializedForm);
       sw.getBuffer().setLength(0);
       s.write(o, sw);
-      System.out.println(sw.toString());
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(sw.toString());
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
    }
 }

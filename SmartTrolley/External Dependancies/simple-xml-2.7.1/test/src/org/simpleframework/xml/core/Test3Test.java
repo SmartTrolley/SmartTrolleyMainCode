@@ -62,13 +62,13 @@ public class Test3Test extends TestCase {
       StringWriter sw = new StringWriter();
       s.write(new Test3(new MyElementA(), new MyElementB()), sw);    
       String serializedForm = sw.toString();
-      System.out.println(serializedForm);
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(serializedForm);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
       Test3 o = s.read(Test3.class, serializedForm);
       sw.getBuffer().setLength(0);
       s.write(o, sw);
-      System.out.println(sw.toString());
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(sw.toString());
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
    }
 
 }

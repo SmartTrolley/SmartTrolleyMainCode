@@ -36,7 +36,7 @@ public class PathTextTest extends TestCase {
       Persister persister = new Persister(format);
       StringWriter writer = new StringWriter();
       persister.write(example, writer);
-      System.out.println(writer);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(writer);
       TextExample restored = persister.read(TextExample.class, writer.toString());
       assertEquals(example.a, restored.a);
       assertEquals(example.b, restored.b);

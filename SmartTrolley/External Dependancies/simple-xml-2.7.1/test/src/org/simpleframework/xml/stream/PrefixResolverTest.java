@@ -28,6 +28,6 @@ public class PrefixResolverTest extends ValidationTestCase {
       root.commit();
       
       String text = writer.toString();
-      System.out.println(text);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
    }
 }

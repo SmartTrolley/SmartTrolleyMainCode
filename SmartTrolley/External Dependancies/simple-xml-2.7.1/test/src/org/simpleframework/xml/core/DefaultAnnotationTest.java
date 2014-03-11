@@ -150,7 +150,7 @@ public class DefaultAnnotationTest extends ValidationTestCase {
       serializer.write(order, writer);
       
       assertElementDoesNotExist(writer.toString(), "orderItem/IGNORE");
-      System.out.println(writer.toString());
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(writer.toString());
    }*/
    
    

@@ -136,7 +136,7 @@ public class UnionComplicatedPathMixTest extends ValidationTestCase {
       StringWriter writer = new StringWriter();
       persister.write(example, writer);
       String resultingXml = writer.toString();
-      System.out.println(resultingXml);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(resultingXml);
       assertElementExists(resultingXml, "complicatedExample/path");
       assertElementHasNamespace(resultingXml, "complicatedExample/path", "http://www.x.com/x");
       assertElementExists(resultingXml, "complicatedExample/path[1]/a");
@@ -198,7 +198,7 @@ public class UnionComplicatedPathMixTest extends ValidationTestCase {
       StringWriter writer = new StringWriter();
       persister.write(example, writer);
       String resultingXml = writer.toString();
-      System.out.println(resultingXml);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(resultingXml);
       assertElementExists(resultingXml, "ComplicatedExample/Path");
       assertElementHasNamespace(resultingXml, "ComplicatedExample/Path", "http://www.x.com/x");
       assertElementExists(resultingXml, "ComplicatedExample/Path[1]/A");

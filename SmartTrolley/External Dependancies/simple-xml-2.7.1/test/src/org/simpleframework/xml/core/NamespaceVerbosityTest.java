@@ -59,7 +59,7 @@ public class NamespaceVerbosityTest extends ValidationTestCase {
       persister.write(example, writer);
       
       String text = writer.toString();
-      System.out.println(text);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
       
       assertElementHasNamespace(text, "/a", null);
       assertElementHasNamespace(text, "/a/b", "http://domain/x");

@@ -158,7 +158,7 @@ public class RegistryConverterTest extends ValidationTestCase {
       PersonProfile profile = new PersonProfile(person);
       serializer.write(profile, writer);
       
-      System.out.println(writer.toString());
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(writer.toString());
       
       PersonProfile read = serializer.read(PersonProfile.class, writer.toString());
       

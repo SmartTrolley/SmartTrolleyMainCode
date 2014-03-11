@@ -55,35 +55,35 @@ public class ClientThread extends Thread {
 
 		try {
 			// setup input stream
-			System.out.println("Hello Client and welcome to the future -ClientThread");
+			Printing.SmartTrolleyPrint.smartTrolleyPrint("Hello Client and welcome to the future -ClientThread");
 
 			outputToClient = new ObjectOutputStream(clientSocket.getOutputStream());
 
-			System.out.println("connections made sending object -ClientThread");
+			Printing.SmartTrolleyPrint.smartTrolleyPrint("connections made sending object -ClientThread");
 
 			inputFromClient = new ObjectInputStream(clientSocket.getInputStream());
 
-			System.out.println("Input stream made -ClientThread");
+			Printing.SmartTrolleyPrint.smartTrolleyPrint("Input stream made -ClientThread");
 
-			System.out.println("connections made sending object -ClientThread");
+			Printing.SmartTrolleyPrint.smartTrolleyPrint("connections made sending object -ClientThread");
 
 			writeObjectToSocket();
 
-			System.out.println("I sent a thing -ClientThread");
+			Printing.SmartTrolleyPrint.smartTrolleyPrint("I sent a thing -ClientThread");
 
-			name = (String) getFileFromSocket();
+			name = (String) getObjectFromSocket();
 
-			System.out.println("I gottsa thing! :) -ClientThread: " + name);
+			Printing.SmartTrolleyPrint.smartTrolleyPrint("I gottsa thing! :) -ClientThread: " + name);
 
 		} catch (IOException e) {
 
-			System.out.println("ERROR on socket connection. -ClientThread");
+			Printing.SmartTrolleyPrint.smartTrolleyPrint("ERROR on socket connection. -ClientThread");
 
 			System.exit(-1);
 
 		} catch (ClassNotFoundException e) {
 
-			System.out.println("Class definition not found for incoming object. -ClientThread");
+			Printing.SmartTrolleyPrint.smartTrolleyPrint("Class definition not found for incoming object. -ClientThread");
 
 			System.exit(-1);
 		}
@@ -113,9 +113,9 @@ public class ClientThread extends Thread {
 			inputFromClient.close();
 			outputToClient.close();
 			clientSocket.close();
-			System.out.println("Bye Bye from Client Thread");
+			Printing.SmartTrolleyPrint.smartTrolleyPrint("Bye Bye from Client Thread");
 		} catch (IOException e) {
-			System.out.println("Could not close streams and sockets...DO NOT CROSS THE STREAMS!");
+			Printing.SmartTrolleyPrint.smartTrolleyPrint("Could not close streams and sockets...DO NOT CROSS THE STREAMS!");
 		}
 	}
 
@@ -130,7 +130,7 @@ public class ClientThread extends Thread {
 	 *             <p>
 	 *             Date Modified: 27 Feb 2014
 	 */
-	private Object getFileFromSocket() throws IOException, ClassNotFoundException {
+	private Object getObjectFromSocket() throws IOException, ClassNotFoundException {
 
 		do {
 			try {
@@ -145,9 +145,9 @@ public class ClientThread extends Thread {
 				 * if (objectFromClient == null) { break; }
 				 */
 			} catch (ClassNotFoundException e) {
-				System.out.println("Could not find object class. -ClientThread");
+				Printing.SmartTrolleyPrint.smartTrolleyPrint("Could not find object class. -ClientThread");
 			}
-			System.out.println("Received from Client: " + objectFromClient + " -ClientThread");
+			Printing.SmartTrolleyPrint.smartTrolleyPrint("Received from Client: " + objectFromClient + " -ClientThread");
 
 		} while (!(objectFromClient instanceof Object));
 
@@ -155,7 +155,7 @@ public class ClientThread extends Thread {
 
 		// TODO Some method of detecting client closure, do this as a test
 		/*
-		 * if (selectedVideoFile == null) { System.out.println("Server detects client closure."); //Now call close sockets }
+		 * if (selectedVideoFile == null) { Printing.SmartTrolleyPrint.smartTrolleyPrint("Server detects client closure."); //Now call close sockets }
 		 */
 
 	}
@@ -173,7 +173,7 @@ public class ClientThread extends Thread {
 
 		objectToClient = new String("Hi, From ClientThread!- Oh and Dave says Hi too...");
 		outputToClient.writeObject(objectToClient);
-		System.out.println("Ive sent it!  -ClientThread");
+		Printing.SmartTrolleyPrint.smartTrolleyPrint("Ive sent it!  -ClientThread");
 
 	}
 

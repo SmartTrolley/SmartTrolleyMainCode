@@ -88,6 +88,6 @@ public class MetadataSerializationTest extends ValidationTestCase {
         StringWriter writer = new StringWriter();
         serializer.write(a, writer);
 
-        System.out.println(writer.getBuffer().toString());
+        Printing.SmartTrolleyPrint.smartTrolleyPrint(writer.getBuffer().toString());
     }
 }

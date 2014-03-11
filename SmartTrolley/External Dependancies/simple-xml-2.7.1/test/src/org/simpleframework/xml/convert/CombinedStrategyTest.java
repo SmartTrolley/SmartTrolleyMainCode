@@ -99,7 +99,7 @@ public class CombinedStrategyTest extends ValidationTestCase {
       persister.write(example, writer);
       
       String text = writer.toString();
-      System.out.println(text);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
       
       assertElementExists(text, "/combinationExample/item/value");
       assertElementHasValue(text, "/combinationExample/item/value", "1");
@@ -126,7 +126,7 @@ public class CombinedStrategyTest extends ValidationTestCase {
       persister.write(example, writer);
       
       String text = writer.toString();
-      System.out.println(text);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
       
       assertElementExists(text, "/combination-example/item/value");
       assertElementHasValue(text, "/combination-example/item/value", "1");

@@ -39,35 +39,57 @@ public class ClientSmartTrolleyControllerTrial {
 		try {
 			openSocket();
 			do {
-				System.out.println("Good Morning Dave");
+				Printing.SmartTrolleyPrint.smartTrolleyPrint("Good Morning Dave");
 				if (cycle == 0) {
 					outputObjectToServer(objectToServer);
-					System.out.println("I'm sending you a gift, Dave - From Client");
+					Printing.SmartTrolleyPrint.smartTrolleyPrint("I'm sending you a gift, Dave - From Client");
 					cycle++;
 				}
 				getObjectFromSocket();
-				System.out.println("Received Object from Dave");
+				Printing.SmartTrolleyPrint.smartTrolleyPrint("Received Object from Dave");
 
 			} while (!(objectFromServer instanceof Object));
 
-			inputFromServer.close();
-			outputToServer.close();
-			serverSocket.close();
-			System.out.println("Goodnight Dave");
+			clientClosing();
+			
 
 		} catch (UnknownHostException e) {
-			System.out.println("Don't know about host:" + host);
+			Printing.SmartTrolleyPrint.smartTrolleyPrint("Don't know about host:" + host);
 			System.exit(-1);
 
 		} catch (IOException e) {
-			System.out.println("Couldn't open I/O connection " + host + ":" + port);
+			Printing.SmartTrolleyPrint.smartTrolleyPrint("Couldn't open I/O connection " + host + ":" + port);
 			System.exit(-1);
 
 		} catch (ClassNotFoundException e) {
-			System.out.println("Class definition not found for incoming object.");
+			Printing.SmartTrolleyPrint.smartTrolleyPrint("Class definition not found for incoming object.");
 			e.printStackTrace();
 			System.exit(-1);
 		}
+	}
+
+	/**
+	*Method/Test Description
+	*<p>Test(s)/User Story that it satisfies
+	*@throws IOException
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 11 Mar 2014
+	*/
+	private void clientClosing() throws IOException {
+		try {
+
+			outputToServer.writeObject("Goodnight Dave");
+
+		} catch (IOException e) {
+			Printing.SmartTrolleyPrint.smartTrolleyPrint("Could not output to server");
+			System.exit(-1);
+		}
+	
+		inputFromServer.close();
+		outputToServer.close();
+		serverSocket.close();
+		Printing.SmartTrolleyPrint.smartTrolleyPrint("Goodnight Dave");
+		while(true);
 	}
 
 	/**
@@ -96,15 +118,15 @@ public class ClientSmartTrolleyControllerTrial {
 	 */
 	private void openSocket() throws UnknownHostException, IOException {
 
-		System.out.println("Hello Master -Client");
+		Printing.SmartTrolleyPrint.smartTrolleyPrint("Hello Master -Client");
 
 		serverSocket = new Socket(host, port);
 
-		System.out.println("Created new socket. Now trying to setup ObjectInputStream -Client");
+		Printing.SmartTrolleyPrint.smartTrolleyPrint("Created new socket. Now trying to setup ObjectInputStream -Client");
 
 		inputFromServer = new ObjectInputStream(serverSocket.getInputStream());
 
-		System.out.println("Setup ObjectInputStream. Now trying to setup ObjectOutputStream");
+		Printing.SmartTrolleyPrint.smartTrolleyPrint("Setup ObjectInputStream. Now trying to setup ObjectOutputStream");
 
 		outputToServer = new ObjectOutputStream(serverSocket.getOutputStream());
 	}
@@ -124,9 +146,9 @@ public class ClientSmartTrolleyControllerTrial {
 		try {
 			objectFromServer = (Object) inputFromServer.readObject();
 		} catch (ClassNotFoundException e) {
-			System.out.println("Could not find Object class.");
+			Printing.SmartTrolleyPrint.smartTrolleyPrint("Could not find Object class.");
 		}
-		System.out.println("Client Recieved:" + objectFromServer);
+		Printing.SmartTrolleyPrint.smartTrolleyPrint("Client Recieved:" + objectFromServer);
 	}
 
 	/**
@@ -144,10 +166,10 @@ public class ClientSmartTrolleyControllerTrial {
 			outputToServer.writeObject(objectToServer);
 
 		} catch (IOException e) {
-			System.out.println("Could not output to server");
+			Printing.SmartTrolleyPrint.smartTrolleyPrint("Could not output to server");
 			System.exit(-1);
 		}
-		System.out.println("Client Output Stream Ready");
+		Printing.SmartTrolleyPrint.smartTrolleyPrint("Client Output Stream Ready");
 	}
 }
 

@@ -86,7 +86,7 @@ public class ErasureHandlingTest extends ValidationTestCase {
       
       persister.write(example, writer);
       String text = writer.toString();
-      System.out.println(text);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
       
       ErasureExample<ErasureItem> exampleCopy = persister.read(ErasureExample.class, text);
     
@@ -166,7 +166,7 @@ public class ErasureHandlingTest extends ValidationTestCase {
       
       persister.write(example, writer);  
       String text = writer.toString();
-      System.out.println(text);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
       
       assertElementHasAttribute(text, "/erasureWithMapInlineValueIsIgnoredExample/entry[1]", "key", "a");
       assertElementHasAttribute(text, "/erasureWithMapInlineValueIsIgnoredExample/entry[2]", "key", "b");
@@ -184,7 +184,7 @@ public class ErasureHandlingTest extends ValidationTestCase {
       assertElementHasValue(text, "/erasureWithMapInlineValueIsIgnoredExample/entry[2]/value/value", "2");
       assertElementHasValue(text, "/erasureWithMapInlineValueIsIgnoredExample/entry[3]/value/value", "3");
       
-      System.out.println(text);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(text);
       
       ErasureWithMapInlineValueIsIgnoredExample<ErasureItem> exampleCopy = persister.read(ErasureWithMapInlineValueIsIgnoredExample.class, text);
       

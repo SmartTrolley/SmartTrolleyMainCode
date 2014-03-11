@@ -37,7 +37,7 @@ public class Test1Test extends TestCase {
       StringWriter sw = new StringWriter();
       s.write(new Test1("a", "b"), sw);      
       String serializedForm = sw.toString();
-      System.out.println(serializedForm);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(serializedForm);
       Test1 o = s.read(Test1.class, serializedForm);
    }
 

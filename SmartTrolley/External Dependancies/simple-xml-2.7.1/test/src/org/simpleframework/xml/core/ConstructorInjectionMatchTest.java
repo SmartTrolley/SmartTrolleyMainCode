@@ -60,7 +60,7 @@ public class ConstructorInjectionMatchTest extends TestCase {
         Serializer serializer = new Persister();
         StringWriter output = new StringWriter();
         serializer.write(root, output);
-        System.out.println(output.toString());
+        Printing.SmartTrolleyPrint.smartTrolleyPrint(output.toString());
         serializer.read(RootElement.class, output.toString());
     }
 }

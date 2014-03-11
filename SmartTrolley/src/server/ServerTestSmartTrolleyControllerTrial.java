@@ -23,6 +23,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import client.ClientSmartTrolleyControllerTrial;
+import client.ClientTwoSmartTrolleyControllerTrial;
 
 public class ServerTestSmartTrolleyControllerTrial {
 
@@ -35,7 +36,7 @@ public class ServerTestSmartTrolleyControllerTrial {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		System.out.println("Started next Test!");
+		Printing.SmartTrolleyPrint.smartTrolleyPrint("Started next Test!");
 		server = new ServerSmartTrolleyControllerTrial();
 		client.ClientSmartTrolleyControllerTrial.main(null);
 	}
@@ -60,13 +61,13 @@ public class ServerTestSmartTrolleyControllerTrial {
 
 	@Test
 	public void testObjectRxdFromClient() throws IOException {
-		server.waitForClient = 1;
+		//server.waitForClient = 1;
 		assertEquals(client.ClientSmartTrolleyControllerTrial.objectToServer,
 				ClientThread.objectFromClient);
 		//server.clientSocket.close();
-		//ServerSmartTrolleyControllerTrial.serverSocket.close();
+	    //ServerSmartTrolleyControllerTrial.serverSocket.close();
 		
-		System.out.println(("Finished testObjectRxdFromClient Test!"));
+		Printing.SmartTrolleyPrint.smartTrolleyPrint(("Finished testObjectRxdFromClient Test!"));
 	}
 
 	/**
@@ -77,12 +78,12 @@ public class ServerTestSmartTrolleyControllerTrial {
 
 	@Test
 	public void clientClosesServerOpen() throws IOException {
-		server.waitForClient = 1;
+		//server.waitForClient = 1;
 		assertTrue(!(ServerSmartTrolleyControllerTrial.serverSocket.isClosed()));
 		assertTrue(client.ClientSmartTrolleyControllerTrial.serverSocket
 				.isClosed());
 
-		System.out.println("Finished clientClosesServerOpen Test!");
+		Printing.SmartTrolleyPrint.smartTrolleyPrint("Finished clientClosesServerOpen Test!");
 	}
 
 	/**
@@ -107,20 +108,20 @@ public class ServerTestSmartTrolleyControllerTrial {
 				ClientThread.objectFromClient);
 		ServerSmartTrolleyControllerTrial.serverClose();
 		
-		System.out.println("Finished clientReconnectstoServer Test!");
+		Printing.SmartTrolleyPrint.smartTrolleyPrint("Finished clientReconnectstoServer Test!");
 	}
 	
 	@Test
 	public void twoClientsConnectToServer() {
-		ClientSmartTrolleyControllerTrial client2 = new client.ClientSmartTrolleyControllerTrial();
-		
+		ClientTwoSmartTrolleyControllerTrial client2 = new client.ClientTwoSmartTrolleyControllerTrial();
+		Printing.SmartTrolleyPrint.smartTrolleyPrint("Client 2 started, establishing connection");
 		assertEquals(client.ClientSmartTrolleyControllerTrial.objectToServer,
 				ClientThread.objectFromClient);
 		
 		assertEquals(client2.objectToServer,
 				ClientThread.objectFromClient);
 		
-		System.out.println("Finished twoClientsConnectToServer Test!");
+		Printing.SmartTrolleyPrint.smartTrolleyPrint("Finished twoClientsConnectToServer Test!");
 	}
 }
 /************** End of ServerSmartTrolleyControllerTrial.java **************/

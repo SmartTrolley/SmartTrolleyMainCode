@@ -66,8 +66,8 @@ public class Test2_ReplaceTest extends TestCase {
       Test2A element = new Test2A(null);
       s.write(new Test2A(element, element), sw);      
       String serializedForm = sw.toString();
-      System.out.println(serializedForm);
-      System.out.println();
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(serializedForm);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint();
       
       //"element" is serialzed differently depending on whether it is serialized as a part of a list or not.
       //Apparently the replace method is not applied when "element" is serialized as part of a list.

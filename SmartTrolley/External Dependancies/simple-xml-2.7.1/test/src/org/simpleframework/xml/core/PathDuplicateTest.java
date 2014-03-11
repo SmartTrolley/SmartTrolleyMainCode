@@ -50,7 +50,7 @@ public class PathDuplicateTest extends TestCase {
       Persister persister = new Persister();
       StringWriter writer = new StringWriter();
       persister.write(example, writer);
-      System.out.println(writer);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(writer);
       Example restored = persister.read(Example.class, writer.toString());
       assertEquals(example.a, restored.a);
       assertEquals(example.b, restored.b);
@@ -63,7 +63,7 @@ public class PathDuplicateTest extends TestCase {
       Persister persister = new Persister(format);
       StringWriter writer = new StringWriter();
       persister.write(example, writer);
-      System.out.println(writer);
+      Printing.SmartTrolleyPrint.smartTrolleyPrint(writer);
       StyleExample restored = persister.read(StyleExample.class, writer.toString());
       assertEquals(example.a, restored.a);
       assertEquals(example.b, restored.b);
