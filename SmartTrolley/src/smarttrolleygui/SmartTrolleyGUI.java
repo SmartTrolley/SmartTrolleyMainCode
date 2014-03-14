@@ -42,7 +42,7 @@ public class SmartTrolleyGUI extends Application {
             stage.setMinHeight(MIN_WINDOW_HEIGHT);
             goToStartScreen();
             
-            //TODO remove following 4 lines of code once debugging has finished
+            //for debugging purposes uncomment ONE of the following four lines and comment previous line
 //            goToHomeScreen();
 //            goToFavourites();
 //            goToShoppingList();

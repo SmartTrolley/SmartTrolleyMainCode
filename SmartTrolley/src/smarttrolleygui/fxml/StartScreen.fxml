@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<VBox id="VBox" alignment="CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="10.0" styleClass="mainContainer" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.StartScreenController">
+<VBox id="VBox" alignment="CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="10.0" styleClass="containerMain" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.StartScreenController">
   <children>
     <ImageView fitHeight="150.0" fitWidth="450.0" pickOnBounds="true" preserveRatio="true" smooth="true">
       <image>
@@ -27,9 +27,9 @@
         <Insets bottom="30.0" />
       </VBox.margin>
     </Line>
-    <Button fx:id="createNewListButton" mnemonicParsing="false" prefHeight="113.0" prefWidth="380.0" styleClass="largeButton" text="Create a new shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
-    <Button fx:id="viewAllShoppingListsButton" mnemonicParsing="false" onAction="#loadAllShoppingListsScreen" prefHeight="113.0" prefWidth="380.0" styleClass="largeButton" text="View your shopping lists" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
-    <Button mnemonicParsing="false" prefHeight="113.0" prefWidth="380.0" styleClass="largeButton" text="Import shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
+    <Button fx:id="createNewListButton" mnemonicParsing="false" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="Create a new shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
+    <Button fx:id="viewAllShoppingListsButton" mnemonicParsing="false" onAction="#loadAllShoppingListsScreen" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="View your shopping lists" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
+    <Button mnemonicParsing="false" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="Import shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
     <HBox prefHeight="21.0" prefWidth="322.0">
       <children>
         <Label text="Create your shopping list online @ " />

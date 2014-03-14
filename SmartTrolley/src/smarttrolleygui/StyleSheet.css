@@ -1,43 +1,35 @@
 /* 
     Created on : 15-Feb-2014, 13:22:53
     Author     : Arne
+    Notes      : 
+
+    reusable code:
+    -fx-background-color: linear-gradient(to bottom, #f8f8f8, #b5b5b5); 
 */
 
-.root {
-    
-}
-.mainContainer {
-    -fx-background-color: white;
-    -fx-border-width: 5px;
-    /*-fx-border-color: blue;*/
+.containerMain {
+    -fx-border-width: 5px;    
     /*top right bottom left*/
     -fx-padding: 10px 0 10px 0;
+    /* border color can be uncommented for debugging purposes */
+    /*-fx-border-color: blue;*/
 }
-.topContainer {    
-/*    -fx-border-width: 5px 5px 0 5px;
-    -fx-border-color: black;
-    -fx-border-radius: 5px;*/
+.containerTop {    
+    /* border can be uncommented for debugging purposes */
+    /*-fx-border-width: 5px 5px 0 5px;*/ 
+    /*-fx-border-color: black;*/
 }
 
-.bottomContainer {
-    -fx-background-color: #ffffff;
+.containerBottom {
+    /* border can be uncommented for debugging purposes */
     /*-fx-border-width: 3px;*/
     /*-fx-border-color: black;*/
-    /*-fx-border-radius: 6px;*/
-    /*-fx-padding:10px;*/
-}
-
-.scroll-pane {
-    -fx-background-color: #ffffff;
-    -fx-border-width: 5px;
-    -fx-border-color: black;
-    -fx-border-radius: 15px;
-    -fx-padding: 5px;
 }
 
 .grid1 {
     -fx-background-color: #ffffff;
     -fx-border-width: 5px;
+    /* border color can be uncommented for debugging purposes */
     /*-fx-border-color: yellow;*/
 }
 
@@ -49,38 +41,10 @@
     visibility: hidden;
 }
 
-/*.paneCategoriesList {
-    -fx-border-color: #000000;
-    -fx-border-width: 2px;
-}*/
-
-.table-view .column-header {
-    /*-fx-background-color: linear-gradient(to bottom, #fff, #d0d0d0);*/
-    /*-fx-background-color: #ffffff;*/
-    -fx-alignment: center;
-    
-}
-
-/* not yet working */
-.centeredColumn {
-    -fx-alignment: center;
-}
-
-.table-view .table-cell {
-    -fx-alignment: center;
-}
-
 .label {
     -fx-font-size: 12px;
     -fx-text-fill: #000000;
 }
-
-// TODO: remove
-/*.slideTitleLabel {
-    -fx-font-size: 15px;
-    -fx-font-family: "Arial Narrow";
-    -fx-font-weight: bold;
-}*/
 
 .labelOldPrice {
     -fx-font-size: 20px;
@@ -108,75 +72,50 @@
     -fx-border-width: 1px;
 }
 
-.button {
+.button1 {
+    -fx-cursor: hand;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-size: 15px; 
+}
+
+.buttonNavigation {
+    -fx-cursor: hand;
     -fx-font-family: "Arial Narrow";
     -fx-font-size: 15px;
-    -fx-cursor: hand;
-    /*-fx-background-color: #ffffff;*/
-    /*-fx-background-color: linear-gradient(white, grey);*/
-    /*-fx-effect: dropshadow(three-pass-box , rgba(0,0,0,0.6), 5, 0.0, 0, 1);*/
-    
-    /*rest is from caspian.css*/
-/*    -fx-skin: "com.sun.javafx.scene.control.skin.ButtonSkin";
-    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
-    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
-    -fx-background-radius: 5, 5, 4, 3;
-    -fx-padding: 0.166667em 0.833333em 0.25em 0.833333em;  2 10 3 10 
-    -fx-text-fill: -fx-text-base-color;
-    -fx-alignment: CENTER;
-    -fx-content-display: TOP;*/
-}
-
-/*not sure this is doing what it should*/
-.button:focused {
-    /*-fx-background-insets: 0;*/
-}
-
-.button:hover {
-/*    -fx-border-width: 2px;
-    -fx-border-color: #292929;
-    -fx-border-radius: 15px;
-    -fx-effect: dropshadow(three-pass-box , rgba(0,0,0,0.6), 5, 0.0, 0, 1);*/
-} 
-
-.navigationButton {
     -fx-background-color: #ffffff;
-    /*-fx-background-color: linear-gradient(white, grey);*/
-    /*-fx-effect: dropshadow(three-pass-box , rgba(0,0,0,0.6), 5, 0.0, 0, 1);*/
 }
 
-.navigationButton:focused {
-	-fx-border-color: #000000;
+.buttonNavigation:focused {
+    -fx-border-color: #000000;
     -fx-border-width: 0 0 3px 0;
     -fx-border-radius: 0;
 } 
 
-.navigationButton:hover {
-	-fx-border-color: #000000;
+.buttonNavigation:hover {
+    -fx-border-color: #000000;
     -fx-border-width: 0 0 3px 0;
     -fx-border-radius: 0;
-    /*-fx-effect: innershadow(three-pass-box , rgba(0,0,0,0.6), 5, 0.0, 0, 0);*/
 } 
 
-.navigationButtonActive {
-	-fx-background-color: #ffffff;
-	-fx-border-color: #000000;
+.buttonNavigationActive {
+    -fx-font-family: "Arial Narrow";
+    -fx-font-size: 15px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #000000;
     -fx-border-width: 3px 0 0 0;
     -fx-border-radius: 0;
 } 
-
-.navigationButtonActive:hover {
-	-fx-cursor: default;
-} 
-
-.largeButton {
+.buttonLarge {
+    -fx-cursor: hand;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-size: 15px;
     -fx-border-width: 2px;
     -fx-border-radius: 10px;
     -fx-border-color: #000000;
     -fx-background-color: #f0f0f0;
 }
 
-.largeButton:hover {
+.buttonLarge:hover {
     -fx-background-color: #00ff33;  
     -fx-effect: dropshadow(three-pass-box , rgba(0,0,0,0.6), 5, 0.0, 0, 1);
     -fx-border-width: 2px;
@@ -185,6 +124,7 @@
 }
 
 .buttonChangeQuantity {
+    -fx-cursor: hand;
     -fx-border-width: 1px;
     -fx-border-color: transparent;
     -fx-border-radius: 2px;
@@ -199,18 +139,19 @@
     -fx-effect: dropshadow(three-pass-box , rgba(0,0,0,0.6), 5, 0.0, 0, 1);
 }
 
-.imageButton {
-   /*-fx-background-color:transparent;*/
-   -fx-background-color: #ffffff;
+.buttonImage {
    -fx-cursor: hand;
+   -fx-background-color: #ffffff;
+   /*-fx-background-color:transparent;*/
 }
 
-.imageButton:hover {
+.buttonImage:hover {
     -fx-border-width: 0;
     -fx-border-color: transparent;
 }
 
 .buttonSmartTrolleyLogo {
+    -fx-cursor: hand;
     -fx-background-color: transparent;
     -fx-background-image:url("img/companyLogoSmall.png");
     -fx-background-size: 107 104;
@@ -221,6 +162,15 @@
 .buttonSmartTrolleyLogo:hover {
     -fx-background-image:url("img/companyLogoSmallHover.png");
 }
+
+.table-view .column-header {
+    -fx-alignment: center;    
+}
+
+.table-view .table-cell {
+    -fx-alignment: center;
+}
+
 /* source: caspian.css */
 /*******************************************************************************
  *                                                                             *
@@ -250,8 +200,10 @@
 /** Draws focus border around tableview */
 .table-view:focused {
     -fx-background-color: #ffffff;
-    -fx-background-insets: -1.4, 0, 1;
-    -fx-background-radius: 1.4, 0, 0;
+    -fx-background-insets: 0, 0, 0;
+    /*-fx-background-insets: -1.4, 0, 1;*/
+    /*-fx-background-radius: 1.4, 0, 0;*/
+    -fx-background-radius: 0, 0, 0;
  
     /* There is some oddness if padding is in em values rather than pixels,
        in particular, the left border of the control doesn't show. */
@@ -475,33 +427,7 @@
 .table-view .column-header .sort-order {
     -fx-font-size: 0.916667em; /* 11pt - 1 less than the default font */
 }
- 
-.table-view .show-hide-columns-button {
-    -fx-background-color: -fx-body-color;
- 
-    -fx-border-color:
-        /* inner border: A copy of the inner border used above in the general column header area. */
-        derive(-fx-base, 80%)
-        linear-gradient(to bottom, derive(-fx-base,80%) 20%, derive(-fx-base,-10%) 90%),
-        derive(-fx-base, 10%)
-        linear-gradient(to bottom, derive(-fx-base,80%) 20%, derive(-fx-base,-10%) 90%),
-        /* outer border: Slightly different to the above*/
-        transparent transparent -fx-table-header-border-color -fx-table-header-border-color;
-    -fx-border-insets: 0 0 1 1, 0 0 0 0;
-}
- 
-.table-view .show-hide-column-image {
-    -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
-    -fx-background-insets: 1 0 -1 0, 0;
- 
-    -fx-padding: 0.25em; /* 3px */
-    -fx-shape: "M398.902,298.045c0.667,0,1.333,0,2,0c0,0.667,0,1.333,0,2c0.667,0,1.333,0,2,0c0,0.667,0,1.333,0,2c-0.667,0-1.333,0-2,0c0,0.666,0,1.332,0,1.999c-0.667,0-1.333,0-2,0c0-0.667,0-1.333,0-1.999c-0.666,0-1.333,0-1.999,0c0-0.667,0-1.334,0-2c0.666,0,1.333,0,1.999,0C398.902,299.378,398.902,298.711,398.902,298.045z";
-}
- 
-/*.nested-column-header .column-header {
-    -fx-background-color: transparent;
-}*/
- 
+  
 /* When a column is being 'dragged' to be placed in a different position, there
    is a region that follows along the column header area to indicate where the
    column will be dropped. This region can be styled using the .column-drag-header
@@ -641,6 +567,3 @@
 .list-view:horizontal .list-cell:filled:selected, .list-view:horizontal .list-cell:filled:selected:hover {
     /*-fx-background-color: linear-gradient(to right, derive(-fx-accent,-7%), derive(-fx-accent,-25%));*/
 }
-
-/* reusable code */
-/* -fx-background-color: linear-gradient(to bottom, #f8f8f8, #b5b5b5); */

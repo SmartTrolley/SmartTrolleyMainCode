@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<VBox id="VBox" alignment="CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="0.0" styleClass="mainContainer" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.AllShoppingListsScreenController">
+<VBox id="VBox" alignment="CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="0.0" styleClass="containerMain" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.AllShoppingListsScreenController">
   <children>
     <ImageView fitHeight="150.0" fitWidth="450.0" pickOnBounds="true" preserveRatio="true" smooth="true" x="0.0" y="0.0">
       <image>
@@ -23,12 +23,12 @@
       </VBox.margin>
     </ImageView>
     <Line endX="575.0" startX="0.0" strokeLineCap="ROUND" />
-    <Button fx:id="list1Button" mnemonicParsing="false" onAction="#loadShoppingList" prefHeight="49.0" prefWidth="380.0" styleClass="largeButton" text="04/02/14 - Food" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false">
+    <Button fx:id="list1Button" mnemonicParsing="false" onAction="#loadShoppingList" prefHeight="49.0" prefWidth="380.0" styleClass="buttonLarge" text="04/02/14 - Food" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false">
       <VBox.margin>
         <Insets top="70.0" />
       </VBox.margin>
     </Button>
-    <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#loadStartScreen" prefHeight="113.0" prefWidth="380.0" styleClass="largeButton" text="Go back" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false">
+    <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#loadStartScreen" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="Go back" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false">
       <VBox.margin>
         <Insets top="60.0" />
       </VBox.margin>

@@ -258,7 +258,7 @@ public class FavouritesScreenController implements Initializable {
                             Image productImage = new Image(getClass().getResourceAsStream(product.getImageURL()));
                             button.setGraphic(new ImageView(productImage));
                             button.setPrefSize(80, 60);
-                            button.getStyleClass().add("imageButton");
+                            button.getStyleClass().add("buttonImage");
                             setGraphic(button);
 
                             // Button Event Handler
@@ -289,11 +289,11 @@ public class FavouritesScreenController implements Initializable {
      */
     private ObservableList<Product> initializeProductData() {
         productData = FXCollections.observableArrayList(
-                new Product("img/SampleProducts/holme_farmed_venison_steak.jpg", "Holme Farmed Venison Steak", "3.99"),
-                new Product("img/SampleProducts/lavazza_espresso.jpg", "Lavazza Espresso", "6.99"),
-                new Product("img/SampleProducts/star-wars-lollies.jpg", "Star Wars Lollies", "9.99"),
-                new Product("img/SampleProducts/sugar_puffs.jpg", "Sugar Puffs", "11.99"),
-                new Product("img/SampleProducts/yorkie.jpg", "Yorkie", "12.99")
+                new Product("img/SampleProducts/holme_farmed_venison_steak.jpg", "Holme Farmed Venison Steak", "5.00"),
+                new Product("img/SampleProducts/lavazza_espresso.jpg", "Lavazza Espresso", "2.50"),
+                new Product("img/SampleProducts/star-wars-lollies.jpg", "Star Wars Lollies", "2.00"),
+                new Product("img/SampleProducts/sugar_puffs.jpg", "Sugar Puffs", "2.29"),
+                new Product("img/SampleProducts/yorkie.jpg", "Nestle Yorkie Milk Chocolate Bar", "0.60")
         );
         return productData;
     }
