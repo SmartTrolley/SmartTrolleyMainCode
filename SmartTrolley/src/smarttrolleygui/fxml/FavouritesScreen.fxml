@@ -11,24 +11,20 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<VBox id="VBox" alignment="TOP_CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="0.0" styleClass="containerMain" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.FavouritesScreenController">
+<VBox id="VBox" alignment="TOP_CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="0.0" styleClass="mainContainer" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.FavouritesScreenController">
   <children>
-    <HBox fillHeight="false" prefHeight="140.0" prefWidth="600.0" styleClass="containerTop" VBox.vgrow="NEVER">
+    <HBox fillHeight="false" prefHeight="140.0" prefWidth="600.0" styleClass="topContainer" VBox.vgrow="NEVER">
       <children>
         <GridPane focusTraversable="false" gridLinesVisible="false" prefHeight="140.0" prefWidth="600.0" styleClass="grid1">
           <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
               <children>
-                <Button mnemonicParsing="false" onAction="#loadStartScreen" prefHeight="130.0" prefWidth="133.0" styleClass="buttonSmartTrolleyLogo" text="">
-                    <tooltip>
-                        <Tooltip text="Return to start screen"/>
-                    </tooltip>
-                </Button>
+                <Button mnemonicParsing="false" onAction="#loadStartScreen" prefHeight="130.0" prefWidth="133.0" styleClass="buttonSmartTrolleyLogo" text="" />
               </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
               <children>
-                <Button fx:id="homeButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadHomeScreen" styleClass="buttonNavigation" text="Home">
+                <Button fx:id="homeButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadHomeScreen" styleClass="navigationButton" text="Products">
                   <graphic>
                     <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -37,7 +33,7 @@
                     </ImageView>
                   </graphic>
                 </Button>
-                <Button fx:id="listButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadShoppingList" prefWidth="-1.0" styleClass="buttonNavigation" text="List">
+                <Button fx:id="listButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadShoppingList" prefWidth="-1.0" styleClass="navigationButton" text="Items">
                   <graphic>
                     <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -46,7 +42,7 @@
                     </ImageView>
                   </graphic>
                 </Button>
-                <Button fx:id="offersButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadOffers" styleClass="buttonNavigation" text="Offers">
+                <Button fx:id="offersButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadOffers" styleClass="navigationButton" text="Offers">
                   <graphic>
                     <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -55,7 +51,7 @@
                     </ImageView>
                   </graphic>
                 </Button>
-                <Button fx:id="favouritesButton" contentDisplay="TOP" mnemonicParsing="false" styleClass="buttonNavigationActive" text="Favourites">
+                <Button fx:id="favouritesButton" contentDisplay="TOP" mnemonicParsing="false" styleClass="navigationButtonActive" text="Favourites">
                   <graphic>
                     <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -88,7 +84,7 @@
       </children>
     </HBox>
     <Line endX="575.0" startX="0.0" startY="0.0" />
-    <HBox id="HBox" alignment="CENTER" spacing="0.0" styleClass="containerBottom" VBox.vgrow="ALWAYS">
+    <HBox id="HBox" alignment="CENTER" spacing="0.0" styleClass="bottomContainer" VBox.vgrow="ALWAYS">
       <children>
         <SplitPane dividerPositions="0.2093425605536332" focusTraversable="true" maxWidth="580.0" prefHeight="411.0" prefWidth="600.0" style="">
           <items>
@@ -109,9 +105,9 @@
               <children>
                 <TableView fx:id="productTable" maxWidth="444.0" prefHeight="413.0" prefWidth="388.0" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <columns>
-                    <TableColumn editable="false" prefWidth="95.0" resizable="false" sortable="false" text="Image" fx:id="imageColumn" />
+                    <TableColumn editable="false" prefWidth="95.0" resizable="false" sortable="false" styleClass="centeredColumn" text="Image" fx:id="imageColumn" />
                     <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="238.0" resizable="false" text="Product Name" fx:id="productNameColumn" />
-                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="65.0" resizable="false" sortable="true" text="Price" fx:id="priceColumn" />
+                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="65.0" resizable="false" sortable="false" styleClass="centeredColumn" text="Price" fx:id="priceColumn" />
                     <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="40.0" resizable="false" sortable="false" text="Add" fx:id="addColumn" />
                   </columns>
                 </TableView>
@@ -123,6 +119,9 @@
     </HBox>
     <Line endX="575.0" startX="0.0" startY="0.0" />
   </children>
+  <padding>
+    <Insets />
+  </padding>
   <stylesheets>
     <URL value="@../StyleSheet.css" />
   </stylesheets>

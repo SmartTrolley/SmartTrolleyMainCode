@@ -19,7 +19,11 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class ClientSmartTrolleyControllerTrial {
+import se.mbaeumer.fxmessagebox.MessageBox;
+import se.mbaeumer.fxmessagebox.MessageBoxResult;
+import se.mbaeumer.fxmessagebox.MessageBoxType;
+
+public class ClientSmartTrolleyController {
 
 	public static Socket serverSocket;
 	String host = "127.0.0.1";
@@ -35,7 +39,7 @@ public class ClientSmartTrolleyControllerTrial {
 	 * <p>
 	 * Date Modified: 27 Feb 2014
 	 */
-	public ClientSmartTrolleyControllerTrial() {
+	public ClientSmartTrolleyController() {
 		try {
 			openSocket();
 			do {
@@ -102,7 +106,7 @@ public class ClientSmartTrolleyControllerTrial {
 	 *            Date Modified: 27 Feb 2014
 	 */
 	public static void main(String[] args) {
-		new ClientSmartTrolleyControllerTrial();
+		new ClientSmartTrolleyController();
 
 	}
 
@@ -170,6 +174,25 @@ public class ClientSmartTrolleyControllerTrial {
 			System.exit(-1);
 		}
 		Printing.SmartTrolleyPrint.smartTrolleyPrint("Client Output Stream Ready");
+	}
+
+	//TODO Is this needed, or replaced by the database version of the code? 13/04/14
+	/**
+	*Method called when the shopping lists in the database need to be loaded into the GUI
+	*<p>Test(s)/User Story that it satisfies
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 13 Apr 2014
+	*/
+	public void loadShoppingLists() {
+		MessageBox mb = new MessageBox("Client Received load shopping lists request", MessageBoxType.YES_NO);
+		mb.showAndWait();
+		if (mb.getMessageBoxResult() == MessageBoxResult.YES) {
+			//TODO Implement method in client to delete local list.
+			// sendDeleteToClient(listName);
+		} else {
+
+		}
+		
 	}
 }
 

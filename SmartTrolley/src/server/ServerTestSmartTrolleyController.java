@@ -1,7 +1,7 @@
 /**
  * SmartTrolley
  *
- * JUnit 4 Test Case containing ServerSmartTrolleyControllerTrial test cases
+ * JUnit 4 Test Case containing ServerSmartTrolleyController test cases
  *
  * @author Alick Jacklin
  * @author Prashant Chakravarty
@@ -22,23 +22,23 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import client.ClientSmartTrolleyControllerTrial;
+import client.ClientSmartTrolleyController;
 import client.ClientTwoSmartTrolleyControllerTrial;
 
-public class ServerTestSmartTrolleyControllerTrial {
+public class ServerTestSmartTrolleyController {
 
-	private ServerSmartTrolleyControllerTrial server;
+	private ServerSmartTrolleyController server;
 
 	/**
-	 * Start ServerSmartTrolleyControllerTrial before tests are run
+	 * Start ServerSmartTrolleyController before tests are run
 	 * @throws java.lang.Exception
 	 * <p>Date Modified: 28 Feb 2014
 	 */
 	@Before
 	public void setUp() throws Exception {
 		Printing.SmartTrolleyPrint.smartTrolleyPrint("Started next Test!");
-		server = new ServerSmartTrolleyControllerTrial();
-		client.ClientSmartTrolleyControllerTrial.main(null);
+		server = new ServerSmartTrolleyController();
+		client.ClientSmartTrolleyController.main(null);
 	}
 	
 	/**
@@ -48,8 +48,8 @@ public class ServerTestSmartTrolleyControllerTrial {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		ServerSmartTrolleyControllerTrial.serverClose();
-		client.ClientSmartTrolleyControllerTrial.serverSocket.close();
+		ServerSmartTrolleyController.serverClose();
+		client.ClientSmartTrolleyController.serverSocket.close();
 
 	}
 
@@ -62,10 +62,10 @@ public class ServerTestSmartTrolleyControllerTrial {
 	@Test
 	public void testObjectRxdFromClient() throws IOException {
 		//server.waitForClient = 1;
-		assertEquals(client.ClientSmartTrolleyControllerTrial.objectToServer,
+		assertEquals(client.ClientSmartTrolleyController.objectToServer,
 				ClientThread.objectFromClient);
 		//server.clientSocket.close();
-	    //ServerSmartTrolleyControllerTrial.serverSocket.close();
+	    //ServerSmartTrolleyController.serverSocket.close();
 		
 		Printing.SmartTrolleyPrint.smartTrolleyPrint(("Finished testObjectRxdFromClient Test!"));
 	}
@@ -79,8 +79,8 @@ public class ServerTestSmartTrolleyControllerTrial {
 	@Test
 	public void clientClosesServerOpen() throws IOException {
 		//server.waitForClient = 1;
-		assertTrue(!(ServerSmartTrolleyControllerTrial.serverSocket.isClosed()));
-		assertTrue(client.ClientSmartTrolleyControllerTrial.serverSocket
+		assertTrue(!(ServerSmartTrolleyController.serverSocket.isClosed()));
+		assertTrue(client.ClientSmartTrolleyController.serverSocket
 				.isClosed());
 
 		Printing.SmartTrolleyPrint.smartTrolleyPrint("Finished clientClosesServerOpen Test!");
@@ -96,17 +96,17 @@ public class ServerTestSmartTrolleyControllerTrial {
 	public void clientReconnectstoServer() throws IOException,
 			InterruptedException {
 
-		assertTrue(client.ClientSmartTrolleyControllerTrial.serverSocket
+		assertTrue(client.ClientSmartTrolleyController.serverSocket
 				.isClosed());
 		
 		for (int i = 0; i < server.num_cncted_clients; i++) {
 			server.threads[i].isInterrupted();
 		}
 
-		client.ClientSmartTrolleyControllerTrial.main(null);
-		assertEquals(client.ClientSmartTrolleyControllerTrial.objectToServer,
+		client.ClientSmartTrolleyController.main(null);
+		assertEquals(client.ClientSmartTrolleyController.objectToServer,
 				ClientThread.objectFromClient);
-		ServerSmartTrolleyControllerTrial.serverClose();
+		ServerSmartTrolleyController.serverClose();
 		
 		Printing.SmartTrolleyPrint.smartTrolleyPrint("Finished clientReconnectstoServer Test!");
 	}
@@ -115,7 +115,7 @@ public class ServerTestSmartTrolleyControllerTrial {
 	public void twoClientsConnectToServer() {
 		ClientTwoSmartTrolleyControllerTrial client2 = new client.ClientTwoSmartTrolleyControllerTrial();
 		Printing.SmartTrolleyPrint.smartTrolleyPrint("Client 2 started, establishing connection");
-		assertEquals(client.ClientSmartTrolleyControllerTrial.objectToServer,
+		assertEquals(client.ClientSmartTrolleyController.objectToServer,
 				ClientThread.objectFromClient);
 		
 		assertEquals(client2.objectToServer,
@@ -124,4 +124,4 @@ public class ServerTestSmartTrolleyControllerTrial {
 		Printing.SmartTrolleyPrint.smartTrolleyPrint("Finished twoClientsConnectToServer Test!");
 	}
 }
-/************** End of ServerSmartTrolleyControllerTrial.java **************/
+/************** End of ServerSmartTrolleyController.java **************/

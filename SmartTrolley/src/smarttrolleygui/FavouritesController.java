@@ -14,7 +14,14 @@
 package smarttrolleygui;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -43,7 +50,7 @@ import javafx.util.Callback;
 public class FavouritesController implements Initializable {
 
     @FXML
-    private ListView<String> categoriesList;
+    private ListView categoriesList;
     @FXML
     private TableView<Product> productTable;
     @FXML
@@ -59,6 +66,9 @@ public class FavouritesController implements Initializable {
     private Stage stage;
     private ObservableList categories;
     private ObservableList<Product> productData;
+    private Connection connect = null;
+    private PreparedStatement preparedStatement = null;
+    private ResultSet resultSet = null;
     
     /**
      * Initializes the controller class.
@@ -174,18 +184,19 @@ public class FavouritesController implements Initializable {
     
     private ObservableList<Product> initializeProductData() {
         productData = FXCollections.observableArrayList(
-                new Product("imageURL1", "ariel", 1.99),
-                new Product("imageURL2", "cravendale_2L_milk", 2.99),
-                new Product("imageURL3", "holme_farmed_venison_steak", 3.99),
-                new Product("imageURL4", "hovis_bread", 4.99),
-                new Product("imageURL5", "innocent_noodle_pot", 5.99),
-                new Product("imageURL6", "lavazza_espresso", 6.99),
-                new Product("imageURL7", "nivea_shower_cream", 7.99),
-                new Product("imageURL8", "pink_lady_apple", 8.99),
-                new Product("imageURL9", "star-wars-lollies", 9.99),
-                new Product("imageURL10", "strawberry_conserve", 10.99),
-                new Product("imageURL11", "sugar_puffs", 11.99),
-                new Product("imageURL12", "yorkie", 12.99)
+               /* new Product("imageURL1", "ariel", "1.99"),
+                new Product("imageURL2", "cravendale_2L_milk", "2.99"),
+                new Product("imageURL3", "holme_farmed_venison_steak", "3.99"),
+                new Product("imageURL4", "hovis_bread", "4.99"),
+                new Product("imageURL5", "innocent_noodle_pot", "5.99"),
+                new Product("imageURL6", "lavazza_espresso", "6.99"),
+                new Product("imageURL7", "nivea_shower_cream", "7.99"),
+                new Product("imageURL8", "pink_lady_apple", "8.99"),
+                new Product("imageURL9", "star-wars-lollies", "9.99"),
+                new Product("imageURL10", "strawberry_conserve", "10.99"),
+                new Product("imageURL11", "sugar_puffs", "11.99"),
+                new Product("imageURL12", "yorkie", "12.99")
+                */
         );
         return productData;
     }
@@ -218,7 +229,47 @@ public class FavouritesController implements Initializable {
             // NO-OP.
             System.out.println("my error message: application == null");
         } else {
-            application.goToHomeScreen();
+            String listName = "";
+            try {
+                try {
+                    // this will load the MySQL driver, each DB has its own driver
+                    Class.forName("com.mysql.jdbc.Driver");
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                // setup the connection with the DB.
+                connect = DriverManager
+                        .getConnection("jdbc:mysql://localhost/smarttrolly?", "root","");
+
+                preparedStatement = connect.prepareStatement("SELECT ListID, Name from smarttrolly.lists where ListID = ?");
+                preparedStatement.setInt(1, (Integer)application.session.get("currentListID"));
+                
+                resultSet = preparedStatement.executeQuery();
+                
+                while(resultSet.next()){
+                    listName = "Current List Name: " + resultSet.getString("Name");
+                }
+
+            } catch (SQLException ex) {
+                System.out.println("SQLException: " + ex.getMessage());
+                System.out.println("SQLState: " + ex.getSQLState());
+                System.out.println("VendorError: " + ex.getErrorCode());
+                Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+              catch(Exception ex){
+                Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);  
+            }
+            finally{
+                try {
+                    connect.close();
+                    resultSet.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } 
+            
+            application.goToHomeScreen(listName);
         }
     }
 
@@ -229,7 +280,8 @@ public class FavouritesController implements Initializable {
             // NO-OP.
             System.out.println("my error message: application == null");
         } else {
-            application.goToShoppingList();
+            
+            //application.goToShoppingList();
         }
     }
 
@@ -240,7 +292,7 @@ public class FavouritesController implements Initializable {
             // NO-OP.
             System.out.println("my error message: application == null");
         } else {
-            application.goToOffers();
+            //application.goToOffers();
         }
     }
 }

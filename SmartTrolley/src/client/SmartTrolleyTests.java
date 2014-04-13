@@ -21,16 +21,14 @@ import org.junit.Test;
 public class SmartTrolleyTests {
 	
 	@Before
-	public void setup(){
-		
-//		TODO implement setup routines
+	public void setup(){		
 		
 	}
 
 	@Test
 	public void test() {
 		
-//		TODO OOH A CHANGE
+
 		fail("Not yet implemented");
 		
 	}

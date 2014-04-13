@@ -19,7 +19,7 @@ import java.net.Socket;
 
 import Printing.SmartTrolleyPrint;
 
-public class ServerSmartTrolleyControllerTrial {
+public class ServerSmartTrolleyController {
 	static ServerSocket serverSocket;
 	public int waitForClient = 0;
 	static Socket clientSocket;
@@ -40,7 +40,7 @@ public class ServerSmartTrolleyControllerTrial {
 	 *            Date Modified: 24 Feb 2014
 	 */
 	public static void main(String[] args) {
-		new ServerSmartTrolleyControllerTrial();
+		new ServerSmartTrolleyController();
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class ServerSmartTrolleyControllerTrial {
 	 * <p>
 	 * Date Modified: 27 Feb 2014
 	 */
-	public ServerSmartTrolleyControllerTrial() {
+	public ServerSmartTrolleyController() {
 		socketThread = new Thread("Socket") {
 			public void run() {
 				// TODO remove later after completed testing
@@ -127,4 +127,4 @@ public class ServerSmartTrolleyControllerTrial {
 		Printing.SmartTrolleyPrint.smartTrolleyPrint("Dave Now Closed");
 	}
 }
-/************** End of ServerSmartTrolleyControllerTrial.java **************/
+/************** End of ServerSmartTrolleyController.java **************/

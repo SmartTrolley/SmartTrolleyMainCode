@@ -13,24 +13,20 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<VBox id="VBox" alignment="TOP_CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="0.0" styleClass="containerMain" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.OffersScreenController">
+<VBox id="VBox" alignment="TOP_CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="0.0" styleClass="mainContainer" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.OffersScreenController">
   <children>
-    <HBox fillHeight="false" prefHeight="140.0" prefWidth="600.0" styleClass="containerTop" VBox.vgrow="NEVER">
+    <HBox fillHeight="false" prefHeight="140.0" prefWidth="600.0" styleClass="topContainer" VBox.vgrow="NEVER">
       <children>
         <GridPane focusTraversable="false" gridLinesVisible="false" prefHeight="140.0" prefWidth="600.0" styleClass="grid1">
           <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
               <children>
-                <Button mnemonicParsing="false" onAction="#loadStartScreen" prefHeight="130.0" prefWidth="133.0" styleClass="buttonSmartTrolleyLogo" text="">
-                    <tooltip>
-                        <Tooltip text="Return to start screen"/>
-                    </tooltip>
-                </Button>
+                <Button mnemonicParsing="false" onAction="#loadStartScreen" prefHeight="130.0" prefWidth="133.0" styleClass="buttonSmartTrolleyLogo" text="" />
               </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
               <children>
-                <Button fx:id="homeButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadHomeScreen" styleClass="buttonNavigation" text="Home">
+                <Button fx:id="homeButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadHomeScreen" styleClass="navigationButton" text="Products">
                   <graphic>
                     <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -39,7 +35,7 @@
                     </ImageView>
                   </graphic>
                 </Button>
-                <Button fx:id="listButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadShoppingList" prefWidth="-1.0" styleClass="buttonNavigation" text="List">
+                <Button fx:id="listButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadShoppingList" prefWidth="-1.0" styleClass="navigationButton" text="Items">
                   <graphic>
                     <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -48,7 +44,7 @@
                     </ImageView>
                   </graphic>
                 </Button>
-                <Button fx:id="offersButton" contentDisplay="TOP" mnemonicParsing="false" styleClass="buttonNavigationActive" text="Offers">
+                <Button fx:id="offersButton" contentDisplay="TOP" mnemonicParsing="false" styleClass="navigationButtonActive" text="Offers">
                   <graphic>
                     <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -57,7 +53,7 @@
                     </ImageView>
                   </graphic>
                 </Button>
-                <Button fx:id="favouritesButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadFavourites" styleClass="buttonNavigation" text="Favourites">
+                <Button fx:id="favouritesButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadFavourites" styleClass="navigationButton" text="Favourites">
                   <graphic>
                     <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -94,7 +90,7 @@
         <Insets bottom="20.0" />
       </VBox.margin>
     </Line>
-    <HBox id="HBox" alignment="CENTER" spacing="0.0" styleClass="containerBottom" VBox.vgrow="ALWAYS">
+    <HBox id="HBox" alignment="CENTER" spacing="0.0" styleClass="bottomContainer" VBox.vgrow="ALWAYS">
       <children>
         <SplitPane dividerPositions="" focusTraversable="true" maxWidth="580.0" prefHeight="411.0" prefWidth="561.0" style="">
           <items>

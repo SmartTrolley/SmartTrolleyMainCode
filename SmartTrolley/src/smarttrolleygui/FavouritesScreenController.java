@@ -13,7 +13,14 @@
 package smarttrolleygui;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
@@ -52,6 +59,9 @@ public class FavouritesScreenController implements Initializable {
     private SmartTrolleyGUI application;
     private ObservableList<String> categories;
     private ObservableList<Product> productData;
+    private Connection connect = null;
+    private PreparedStatement preparedStatement = null;
+    private ResultSet resultSet = null;
 
     /**
      * initialize is automatically called when the controller is created.
@@ -114,7 +124,47 @@ public class FavouritesScreenController implements Initializable {
             // NO-OP.
             System.out.println("error: application == null");
         } else {
-            application.goToHomeScreen();
+            String listName = "";
+            try {
+                try {
+                    // this will load the MySQL driver, each DB has its own driver
+                    Class.forName("com.mysql.jdbc.Driver");
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                // setup the connection with the DB.
+                connect = DriverManager
+                        .getConnection("jdbc:mysql://localhost/smarttrolly?", "root","");
+
+                preparedStatement = connect.prepareStatement("SELECT ListID, Name from smarttrolly.lists where ListID = ?");
+                preparedStatement.setInt(1, (Integer)application.session.get("currentListID"));
+                
+                resultSet = preparedStatement.executeQuery();
+                
+                while(resultSet.next()){
+                    listName = "Current List Name: " + resultSet.getString("Name");
+                }
+
+            } catch (SQLException ex) {
+                System.out.println("SQLException: " + ex.getMessage());
+                System.out.println("SQLState: " + ex.getSQLState());
+                System.out.println("VendorError: " + ex.getErrorCode());
+                Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+              catch(Exception ex){
+                Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);  
+            }
+            finally{
+                try {
+                    connect.close();
+                    resultSet.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } 
+            
+            application.goToHomeScreen(listName);
         }
     }
 
@@ -135,7 +185,7 @@ public class FavouritesScreenController implements Initializable {
             // NO-OP.
             System.out.println("error: application == null");
         } else {
-            application.goToShoppingList();
+            //application.goToShoppingList();
         }
     }
 
@@ -156,7 +206,7 @@ public class FavouritesScreenController implements Initializable {
             // NO-OP.
             System.out.println("error: application == null");
         } else {
-            application.goToOffers();
+            //application.goToOffers();
         }
     }
 
@@ -258,7 +308,7 @@ public class FavouritesScreenController implements Initializable {
                             Image productImage = new Image(getClass().getResourceAsStream(product.getImageURL()));
                             button.setGraphic(new ImageView(productImage));
                             button.setPrefSize(80, 60);
-                            button.getStyleClass().add("buttonImage");
+                            button.getStyleClass().add("imageButton");
                             setGraphic(button);
 
                             // Button Event Handler
@@ -287,13 +337,15 @@ public class FavouritesScreenController implements Initializable {
      * <p>
      * Date Modified: 7 Mar 2014
      */
+    
     private ObservableList<Product> initializeProductData() {
         productData = FXCollections.observableArrayList(
-                new Product("img/SampleProducts/holme_farmed_venison_steak.jpg", "Holme Farmed Venison Steak", 5.00),
-                new Product("img/SampleProducts/lavazza_espresso.jpg", "Lavazza Espresso", 2.50),
-                new Product("img/SampleProducts/star-wars-lollies.jpg", "Star Wars Lollies", 2.00),
-                new Product("img/SampleProducts/sugar_puffs.jpg", "Sugar Puffs", 2.29),
-                new Product("img/SampleProducts/yorkie.jpg", "Nestle Yorkie Milk Chocolate Bar", 0.60)
+                /*
+                new Product("img/SampleProducts/holme_farmed_venison_steak.jpg", "Holme Farmed Venison Steak", "3.99"),
+                new Product("img/SampleProducts/lavazza_espresso.jpg", "Lavazza Espresso", "6.99"),
+                new Product("img/SampleProducts/star-wars-lollies.jpg", "Star Wars Lollies", "9.99"),
+                new Product("img/SampleProducts/sugar_puffs.jpg", "Sugar Puffs", "11.99"),
+                new Product("img/SampleProducts/yorkie.jpg", "Yorkie", "12.99")*/
         );
         return productData;
     }

@@ -13,22 +13,26 @@
  */
 package smarttrolleygui;
 
+import java.io.InputStream;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -37,9 +41,17 @@ import javafx.util.Callback;
 public class HomeScreenController implements Initializable {
 
     @FXML
-    private ListView<String> categoriesList;
+    private ListView<String> lstViewCategories;
     @FXML
-    private TableView<Product> productTable;
+    public Label lblCurrentListName;
+    @FXML
+    public Label lblTotalItems;
+    @FXML
+    public Label lblTotal;
+    @FXML
+    public Label lblTotalSavings;
+    @FXML
+    public TableView<Product> productsTable;
     @FXML
     private TableColumn<Product, Product> imageColumn;
     @FXML
@@ -51,20 +63,26 @@ public class HomeScreenController implements Initializable {
 
     private SmartTrolleyGUI application;
     private ObservableList<String> categories;
-    private ObservableList<Product> productData;
-
-    /**
-     * initialize is automatically called when the controller is created.
-     * <p>
-     * Date Modified: 22 Feb 2014
-     */
+    private Connection connect = null;
+    private PreparedStatement preparedStatement = null;
+    private ResultSet resultSet = null;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Fill list on the LHS of the screen with different product categories
         categories = initializeCategories();
-        categoriesList.setItems(categories);
-
-        initializeProductTable();
+        lstViewCategories.setItems(categories);
+        SetUpColumns();
+        
+        //Set the selection listener
+        lstViewCategories.getSelectionModel().selectedItemProperty().addListener(
+            new ChangeListener<String>() {
+                public void changed(ObservableValue<? extends String> ov, String old_val, String new_val) {
+                    FilterProducts(new_val);
+            }
+        });
+        
+        lstViewCategories.getSelectionModel().select("All");
     }
 
     /**
@@ -76,11 +94,17 @@ public class HomeScreenController implements Initializable {
      */
     public void setApp(SmartTrolleyGUI application) {
         this.application = application;
+        
+        //Set the total labels
+        ObservableList<Double> data = SetTotals();
+        lblTotal.setText("Total: ��" + data.get(0).floatValue());
+        lblTotalItems.setText("Total Items: " + data.get(1).toString().replace(".0", ""));
+        
     }
 
     /**
-     * loadStartScreen is called when the smart trolley logo is pressed. It
-     * calls the goToStartScreen method in SmartTrolleyGUI.java
+     * loadStartScreen is called when the smart trolley logo is pressed. 
+     * It calls the goToStartScreen method in SmartTrolleyGUI.java
      *
      * @param event - response to click on smart trolley logo in navigation bar
      * <p>
@@ -114,7 +138,7 @@ public class HomeScreenController implements Initializable {
             // NO-OP.
             System.out.println("error: application == null");
         } else {
-            application.goToFavourites();
+            application.goToFavourites(lblCurrentListName.getText());
         }
     }
 
@@ -135,9 +159,10 @@ public class HomeScreenController implements Initializable {
             // NO-OP.
             System.out.println("error: application == null");
         } else {
-            application.goToShoppingList();
+            application.goToShoppingList(lblCurrentListName.getText());
         }
     }
+    
 
     /**
      * loadOffers is called when the 'offers' button is pressed. It calls the
@@ -156,7 +181,7 @@ public class HomeScreenController implements Initializable {
             // NO-OP.
             System.out.println("error: application == null");
         } else {
-            application.goToOffers();
+            application.goToOffers(lblCurrentListName.getText());
         }
     }
 
@@ -171,51 +196,181 @@ public class HomeScreenController implements Initializable {
      * Date Modified: 7 Mar 2014
      */
     private ObservableList<String> initializeCategories() {
-        categories = FXCollections.observableArrayList(
-                "All",
-                "Bakery",
-                "Fruit & Vegetables",
-                "Dairy & Eggs",
-                "Meat & Seafood",
-                "Frozen",
-                "Drinks",
-                "Snacks & Sweets",
-                "Desserts"
-        );
-
+        try {
+            try {
+                // this will load the MySQL driver, each DB has its own driver
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            // setup the connection with the DB.
+            connect = DriverManager
+                    .getConnection("jdbc:mysql://localhost/smarttrolly?", "root","");
+            
+            preparedStatement = connect.prepareStatement("SELECT CategoryID, Name from smarttrolly.categories");
+            resultSet = preparedStatement.executeQuery();
+            
+            categories = FXCollections.observableArrayList();
+            categories.add("All");
+           while(resultSet.next()){
+               categories.add(resultSet.getString("Name"));
+           }
+            
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+            Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          catch(Exception ex){
+            Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);  
+        }
+        finally{
+            try {
+                connect.close();
+                resultSet.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }  
+    
         return categories;
     }
+    
+    private void FilterProducts(String categoryName) {
+        try {
+            try {
+                // this will load the MySQL driver, each DB has its own driver
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            // setup the connection with the DB.
+            connect = DriverManager
+                    .getConnection("jdbc:mysql://localhost/smarttrolly?", "root","");
+            
+            ObservableList<Product> filteredProducts = FXCollections.observableArrayList();
+            
+            productsTable.getItems().clear();
+            filteredProducts.clear();
+            if(categoryName == "All"){
+                //Get all products
+                preparedStatement = connect.prepareStatement("SELECT * from smarttrolly.products");     
+                resultSet = preparedStatement.executeQuery();
 
-    /**
-     * initializeProductTable fills the TableView with data and sets up cell
-     * factories
-     * <p>
-     * User can navigate through product database
-     * <p>
-     * Date Modified: 9 Mar 2014
-     */
-    private void initializeProductTable() {
-        // Fill table with sample products
-        productData = initializeProductData();
-        productTable.setItems(productData);
+                while(resultSet.next()){
+                    Product p = new Product(resultSet.getString("Image"), 
+                            resultSet.getString("Name"), 
+                            resultSet.getDouble("Price"), 
+                            resultSet.getInt("CategoryID"), 
+                            resultSet.getBoolean("IsFavourite"),
+                            resultSet.getInt("ProductID"));
+                    
+                    
+                    filteredProducts.add(p);
+                }
+                
+                //Now populate the products table
+                productsTable.getItems().addAll(filteredProducts);
+                
+            } else{
+                //Get all products within the selected category
+                preparedStatement = connect.prepareStatement("SELECT * from smarttrolly.products p " +
+                        "join smarttrolly.categories c on c.CategoryID = p.CategoryID where c.Name = ?");     
+                preparedStatement.setString(1, categoryName);
+                resultSet = preparedStatement.executeQuery();
 
+                while(resultSet.next()){
+                    Product p = new Product(resultSet.getString("Image"), 
+                            resultSet.getString("Name"), 
+                            resultSet.getDouble("Price"), 
+                            resultSet.getInt("CategoryID"), 
+                            resultSet.getBoolean("IsFavourite"),
+                            resultSet.getInt("ProductID"));
+                    
+                    
+                    filteredProducts.add(p);
+                }
+                
+                //Now populate the products table
+                productsTable.getItems().addAll(filteredProducts);
+            }
+           
+            
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+            Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          catch(Exception ex){
+            Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);  
+        }
+        finally{
+            try {
+                connect.close();
+                resultSet.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }  
+    }
+
+    private void SetUpColumns() {
         // set up column cell value factories
         productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("productName"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("productPrice"));
+        
+        imageColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+           @Override
+           public ObservableValue<Product> call(TableColumn.CellDataFeatures<Product, Product> features) {
+               return new ReadOnlyObjectWrapper<Product>(features.getValue());
+           }
+        });
+        
         addColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
             @Override
             public ObservableValue<Product> call(TableColumn.CellDataFeatures<Product, Product> features) {
                 return new ReadOnlyObjectWrapper<Product>(features.getValue());
             }
         });
-        imageColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-            @Override
-            public ObservableValue<Product> call(TableColumn.CellDataFeatures<Product, Product> features) {
-                return new ReadOnlyObjectWrapper<Product>(features.getValue());
-            }
-        });
+         
+        imageColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+           @Override
+           public TableCell<Product, Product> call(TableColumn<Product, Product> imageColumn) {
+               return new TableCell<Product, Product>() {
+                   final Button button = new Button();
 
-        // set up cell factories for columns containing images / buttons
+                   @Override
+                   public void updateItem(final Product product, boolean empty) {
+                       //super.updateItem(product, empty);
+                       if (product != null) {
+                           InputStream st = getClass().getResourceAsStream(product.getImageURL());
+                           
+                           Image productImage = new Image(st);
+                           button.setGraphic(new ImageView(productImage));
+                           button.setPrefSize(80, 60);
+                           button.setMinSize(80, 60);
+                           button.getStyleClass().add("imageButton");
+                           setGraphic(button);
+
+                           // Button Event Handler
+                           button.setOnAction(new EventHandler<ActionEvent>() {
+                               @Override
+                               public void handle(ActionEvent event) {
+                                   System.out.println("Pressed image of product: " + product.getProductName());
+                               }
+                           });
+                       } else {
+                           setGraphic(null);
+                       }
+                   }
+               };
+           }
+        });
+        
         addColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
             @Override
             public TableCell<Product, Product> call(TableColumn<Product, Product> addColumn) {
@@ -234,38 +389,59 @@ public class HomeScreenController implements Initializable {
                             button.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
-                                    System.out.println("Pressed add button for product: " + product.getProductName());
-                                }
-                            });
-                        } else {
-                            setGraphic(null);
-                        }
-                    }
-                };
-            }
-        });
-
-        imageColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
-            @Override
-            public TableCell<Product, Product> call(TableColumn<Product, Product> imageColumn) {
-                return new TableCell<Product, Product>() {
-                    final Button button = new Button();
-
-                    @Override
-                    public void updateItem(final Product product, boolean empty) {
-                        super.updateItem(product, empty);
-                        if (product != null) {
-                            Image productImage = new Image(getClass().getResourceAsStream(product.getImageURL()));
-                            button.setGraphic(new ImageView(productImage));
-                            button.setPrefSize(80, 60);
-                            button.getStyleClass().add("buttonImage");
-                            setGraphic(button);
-
-                            // Button Event Handler
-                            button.setOnAction(new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    System.out.println("Pressed image of product: " + product.getProductName());
+                                    System.out.println("Pressed add button for product (saved to the DB): " + product.getProductName());
+                                    
+                                    Boolean productFound = false;
+                                    String insertSql = "INSERT INTO lists_products VALUES (" + 
+                                                        product.getID().toString() + "," + application.session.get("currentListID").toString() + ",1)";
+                                    String updateSql = "UPDATE lists_products SET Quantity = Quantity + 1 WHERE ListID = ? AND ProductID = ?";
+                                    String selectSql = "SELECT ProductID FROM lists_products WHERE ListID = ? AND ProductID = ?";
+                                    Integer listID = (Integer)application.session.get("currentListID");
+                                    
+                                    try {
+                                        connect = DriverManager.getConnection("jdbc:mysql://localhost/smarttrolly?", "root","");
+                                        
+                                        //If the product does not exist then add one to lists-products table with a quantity of one
+                                        preparedStatement = connect.prepareStatement(selectSql);
+                                        preparedStatement.setInt(1, listID);
+                                        preparedStatement.setInt(2, product.getID());
+                                        
+                                        resultSet = preparedStatement.executeQuery();
+                                        
+                                        while(resultSet.next()){
+                                            productFound = true;
+                                        }
+                                        
+                                        if(productFound == false){
+                                            preparedStatement = connect.prepareStatement(insertSql);
+                                            preparedStatement.execute();
+                                        }else {
+                                            //If product exists then add 1 to the quantity
+                                            preparedStatement = connect.prepareStatement(updateSql);
+                                            preparedStatement.setInt(1, listID);
+                                            preparedStatement.setInt(2, product.getID());
+                                             
+                                            preparedStatement.execute();
+                                        }
+                                        
+                                        ObservableList<Double> data = SetTotals();
+                                        lblTotal.setText("Total: ��" + data.get(0).floatValue());
+                                        lblTotalItems.setText("Total Items: " + data.get(1).toString().replace(".0", ""));
+                                        
+                                    } catch (SQLException ex) {
+                                        Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    finally{
+                                        try {
+                                            resultSet.close(); 
+                                            connect.close();
+                                        } catch (SQLException ex) {
+                                            Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+                                    }
+                                    
+                                    
+                                    
                                 }
                             });
                         } else {
@@ -276,68 +452,59 @@ public class HomeScreenController implements Initializable {
             }
         });
     }
-
-    /**
-     * initializeProductData sets up the list of products that will be displayed
-     * on screen.
-     * <p>
-     * User can navigate through product database.
-     *
-     * @return productData - list of products
-     * <p>
-     * Date Modified: 7 Mar 2014
-     */
-    private ObservableList<Product> initializeProductData() {
-        productData = FXCollections.observableArrayList(
+    
+    private ObservableList<Double> SetTotals(){
+        double total = 0;
+        double totalItems = 0;
+        double totalSavings = 0;
+        //Set total and total items first
+        try {
+            try {
+                // this will load the MySQL driver, each DB has its own driver
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            // setup the connection with the DB.
+            connect = DriverManager.getConnection("jdbc:mysql://localhost/smarttrolly?", "root","");
+            String sqlStatement = "SELECT lp.ProductID, ListID, Quantity, Price FROM lists_products lp join products p on p.ProductID = lp.ProductID WHERE ListID = ?";
+            
+            preparedStatement = connect.prepareStatement(sqlStatement);
+            preparedStatement.setInt(1, application.session.get("currentListID"));
+            resultSet = preparedStatement.executeQuery();
+            
+            
+            
+            while(resultSet.next()){
+                total += resultSet.getDouble("Price") * resultSet.getInt("Quantity");
+                totalItems += resultSet.getInt("Quantity");
                 
-                new Product("img/SampleProducts/Activia.jpg", "Activia 0% Fat Free Peach Yogurt", 1.84),
-                new Product("img/SampleProducts/alpen_blueberry_cranberry.jpg", "Alpen Cereal Bars Blueberry & Cranberry", 1.84),
-                new Product("img/SampleProducts/anchor_butter.jpg", "Anchor Butter", 1.70),
-                new Product("img/SampleProducts/ariel.jpg", "Ariel", 4.75),
-                new Product("img/SampleProducts/Arla_Lactofree Whole_Milk.jpg", "Arla Lactofree Whole Milk (1L)", 1.00),
-                new Product("img/SampleProducts/ben_and_jerrys.jpg", "Ben & Jerry's Cookie Dough Ice Cream", 3.00),
-                new Product("img/SampleProducts/birds_eye_fish_fingers.jpg", "Birds Eye Cod Fish Fingers", 3.98),
-                new Product("img/SampleProducts/British_Single_Cream.jpg", "British Single Cream", 1.05),
-                new Product("img/SampleProducts/chicago_town_pizza.jpg", "Chicago Town Deep Dish Chicken Melt Pizza", 2.00),
-                new Product("img/SampleProducts/Clover_Seedburst.jpg", "Clover Seedburst Spread", 1.00),
-                new Product("img/SampleProducts/coca_cola.jpg", "Coca Cola", 1.98),
-                new Product("img/SampleProducts/Corner_Blueberry_Yogurt.jpg", "Muller Fruit Corner Blueberry Yogurt", 0.68),
-                new Product("img/SampleProducts/cravendale_2L_milk.jpg", "Cravendale 2L", 2.99),
-                new Product("img/SampleProducts/crunchy_nut.jpg", "Cravendale (2L)", 2.20),
-                new Product("img/SampleProducts/Egg_For_Soldiers.jpg", "Eggs for Soldiers Free Range Eggs(6)", 1.80),
-                new Product("img/SampleProducts/Frijj_Sticky_Toffee_Pudding_Milkshake.jpg", "Frijj Sticky Toffee Pudding Milkshake", 1.49),
-                new Product("img/SampleProducts/haagen_dasz.jpg", "Haagen-Dazs Belgian Chocolate Ice Cream", 4.45),
-                new Product("img/SampleProducts/heinz_beanz.jpg", "Heinz Baked Beanz in Tomato Sauce", 0.68),
-                new Product("img/SampleProducts/holme_farmed_venison_steak.jpg", "Holme Farmed Venison Steak", 5.00),
-                new Product("img/SampleProducts/hovis_bread.jpg", "Hovis Bread", 1.35),
-                new Product("img/SampleProducts/Ilchester_Applewood_Cheddar_Slices.jpg", "Ilchester Applewood Cheddar Slices", 1.90),
-                new Product("img/SampleProducts/innocent_noodle_pot.jpg", "Innocent Noodle Pot", 3.90),
-                new Product("img/SampleProducts/kelloggs_cornflakes.jpg", "Kellogg's Corn Flakes", 1.84),
-                new Product("img/SampleProducts/Lassi_Yogurt.jpg", "Bio Green Lassi Yogurt Smoothie with Mango", 1.60),
-                new Product("img/SampleProducts/lavazza_espresso.jpg", "Lavazza Espresso", 2.50),
-                new Product("img/SampleProducts/McCain_chips.jpg", "McCain Home Chips Crinkle Cut", 2.00),
-                new Product("img/SampleProducts/nivea_shower_cream.jpg", "Nivea Shower Creme", 1.50),
-                new Product("img/SampleProducts/Nutty_Hazelnut.jpg", "Nutty Hazelnut Low Fat Yogurt", 1.00),
-                new Product("img/SampleProducts/oreo_cookies.jpg", "Oreo Cookies - Vanilla", 1.08),
-                new Product("img/SampleProducts/PG_Tips_Tea_Bags.jpg", "PG Tips Pyramid Tea Bags", 4.18),
-                new Product("img/SampleProducts/pink_lady_apple.jpg", "Pink Lady Apple", 0.48),
-                new Product("img/SampleProducts/pringles_salt_vinegar.jpg", "Pringles Salt & Vinegar", 2.30),
-                new Product("img/SampleProducts/Pure_Dairy_Free_Soya_Spread.jpg", "Pure Dairy Free Soya Spread", 1.50),
-                new Product("img/SampleProducts/sherert_dib_dab.jpg", "Candyland Sherbert Dib Dab", 0.35),
-                new Product("img/SampleProducts/Soya_Milk.jpg", "Alpro Soya Milk Alternative 1+ Years (1L)", 1.32),
-                new Product("img/SampleProducts/squares.jpg", "Rice Krispies Squares Chewy Marshmallow", 1.50),
-                new Product("img/SampleProducts/star-wars-lollies.jpg", "Star Wars Lollies", 2.00),
-                new Product("img/SampleProducts/strawberry_conserve.jpg", "Strawberry Conserve", 2.69),
-                new Product("img/SampleProducts/sugar_puffs.jpg", "Sugar Puffs", 2.29),
-                new Product("img/SampleProducts/uncle_bens_sweet_and_sour.jpg", "Uncle Ben's Sweet & Sour Sauce", 2.38),
-                new Product("img/SampleProducts/Vitality_Multifruit_Yoghurt.jpg", "Muller Vitality Multifruit Yoghurt Drink", 1.00),
-                new Product("img/SampleProducts/walkers_wotsits.jpg", "Walkers Baked Wotsits Really Cheesy", 4.08),
-                new Product("img/SampleProducts/Yakult_Original_Fermented_Milk_Drink.jpg", "Yakult Original Fermented Milk Drink", 2.74),
-                new Product("img/SampleProducts/yorkie.jpg", "Nestle Yorkie Milk Chocolate Bar", 0.60)
-        );
-        return productData;
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+            Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          catch(Exception ex){
+            Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);  
+        }
+        finally{
+            try {
+                connect.close();
+                resultSet.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }  
+        
+        ObservableList<Double> data = FXCollections.observableArrayList(total, totalItems, totalSavings);
+        return data;
     }
 }
+
 /**
  * ************End of HomeScreenController*************
  */

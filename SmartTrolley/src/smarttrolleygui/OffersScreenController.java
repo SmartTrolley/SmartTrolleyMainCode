@@ -13,13 +13,23 @@
 package smarttrolleygui;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
 public class OffersScreenController implements Initializable {
 
     private SmartTrolleyGUI application;
+    private Connection connect = null;
+    private PreparedStatement preparedStatement = null;
+    private ResultSet resultSet = null;
 
     /**
      * initialize is automatically called when the controller is created.
@@ -78,7 +88,47 @@ public class OffersScreenController implements Initializable {
             // NO-OP.
             System.out.println("error: application == null");
         } else {
-            application.goToHomeScreen();
+            String listName = "";
+            try {
+                try {
+                    // this will load the MySQL driver, each DB has its own driver
+                    Class.forName("com.mysql.jdbc.Driver");
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                // setup the connection with the DB.
+                connect = DriverManager
+                        .getConnection("jdbc:mysql://localhost/smarttrolly?", "root","");
+
+                preparedStatement = connect.prepareStatement("SELECT ListID, Name from smarttrolly.lists where ListID = ?");
+                preparedStatement.setInt(1, (Integer)application.session.get("currentListID"));
+                
+                resultSet = preparedStatement.executeQuery();
+                
+                while(resultSet.next()){
+                    listName = "Current List Name: " + resultSet.getString("Name");
+                }
+
+            } catch (SQLException ex) {
+                System.out.println("SQLException: " + ex.getMessage());
+                System.out.println("SQLState: " + ex.getSQLState());
+                System.out.println("VendorError: " + ex.getErrorCode());
+                Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+              catch(Exception ex){
+                Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);  
+            }
+            finally{
+                try {
+                    connect.close();
+                    resultSet.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } 
+            
+            application.goToHomeScreen(listName);
         }
     }
 
@@ -99,7 +149,7 @@ public class OffersScreenController implements Initializable {
             // NO-OP.
             System.out.println("error: application == null");
         } else {
-            application.goToFavourites();
+           // application.goToFavourites();
         }
     }
 
@@ -120,7 +170,7 @@ public class OffersScreenController implements Initializable {
             // NO-OP.
             System.out.println("error: application == null");
         } else {
-            application.goToShoppingList();
+            //application.goToShoppingList();
         }
     }
 }

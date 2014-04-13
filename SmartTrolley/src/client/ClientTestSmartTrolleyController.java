@@ -1,7 +1,7 @@
 /**
  * SmartTrolley
  *
- * JUnit 4 Test Case containing tests for ClientSmartTrolleyControllerTrial
+ * JUnit 4 Test Case containing tests for ClientSmartTrolleyController
  *
  * @author Alick Jacklin
  * @author Prashant Chakravarty
@@ -21,9 +21,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ClientTestSmartTrolleyControllerTrial {
+public class ClientTestSmartTrolleyController {
 
-	private ClientSmartTrolleyControllerTrial client;
+	private ClientSmartTrolleyController client;
 
 	/**
 	 * Sets up server and client for testing
@@ -34,8 +34,8 @@ public class ClientTestSmartTrolleyControllerTrial {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		server.ServerSmartTrolleyControllerTrial.main(null);
-		client = new ClientSmartTrolleyControllerTrial();
+		server.ServerSmartTrolleyController.main(null);
+		client = new ClientSmartTrolleyController();
 	}
 
 	/**
@@ -47,8 +47,8 @@ public class ClientTestSmartTrolleyControllerTrial {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		server.ServerSmartTrolleyControllerTrial.serverClose();
-		ClientSmartTrolleyControllerTrial.serverSocket.close();
+		server.ServerSmartTrolleyController.serverClose();
+		ClientSmartTrolleyController.serverSocket.close();
 
 	}
 
@@ -71,9 +71,9 @@ public class ClientTestSmartTrolleyControllerTrial {
 	 */
 	@Test
 	public void clientClosesAllSockets() throws IOException {
-		assertTrue(ClientSmartTrolleyControllerTrial.serverSocket.isClosed());
+		assertTrue(ClientSmartTrolleyController.serverSocket.isClosed());
 	}
 
 }
 
-/************** End of ClientTestSmartTrolleyControllerTrial.java **************/
+/************** End of ClientTestSmartTrolleyController.java **************/

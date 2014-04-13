@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({server.ServerTestSmartTrolleyControllerTrial.class, client.ClientTestSmartTrolleyControllerTrial.class
+@SuiteClasses({server.ServerTestSmartTrolleyController.class, client.ClientTestSmartTrolleyController.class
 })
 
 public class AllServerClientTests {

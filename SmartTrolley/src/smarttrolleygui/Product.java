@@ -15,70 +15,69 @@
 package smarttrolleygui;
 
 public class Product {
-    private final String imageURL;
-    private final String productName;
-    private final double productPrice;
-    private int quantity = 0;
-    //TODO Add total savings column
+    private Integer productID;
+    private String imageURL;
+    private  String productName;
+    private  Double productPrice;
+    private  Integer categoryID;
+    private  Boolean IsFavourite;
 
     /**
      * Constructor creates a new product
      *<p> Date Modified: 28 Feb 2014
      */
-    Product(String imageURL, String productName, double productPrice) {
+    Product(String imageURL, String productName, Double productPrice, Integer categoryID, Boolean isFavourite, Integer productID) {
     	this.imageURL = imageURL;
         this.productName = productName;
-        this.productPrice = productPrice;        
+        this.productPrice = productPrice;
+        this.categoryID = categoryID;
+        this.IsFavourite = isFavourite;
+        this.productID = productID;
     }
     
     public String getImageURL() {
         return this.imageURL;
     }
     
+    public Integer getID(){
+        return this.productID;
+    }
+    
     public String getProductName() {
         return this.productName;
     }
     
-    public double getProductPrice() {
+    public Double getProductPrice() {
         return this.productPrice;
     }
-
-    //TODO Comments for some methods in this class, esp. User stories
-	/**Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
-	*@return The products' quantity
-	*[If applicable]@see [Reference URL OR Class#Method]
-	*<p> Date Modified: 12 Apr 2014
-	*/
-	public int getQuantity() {
-		return quantity;
-	}
-	
-	/**
-	*Sets the products' quantity
-	*<p>Test(s)/User Story that it satisfies??
-	*<p> Date Modified: 12 Apr 2014
-	*/
-	public void setQuantity(int newQuantity) {
-		quantity = newQuantity;
-	}
-
-	/**
-	*Increments the products' quantity
-	*<p>Test(s)/User Story that it satisfies??
-	*<p> Date Modified: 12 Apr 2014
-	*/
-	public void incrQuantity() {
-		quantity++;		
-	}
-
-	/**
-	*Decrements the products' quantity
-	*<p>Test(s)/User Story that it satisfies??
-	*<p> Date Modified: 12 Apr 2014
-	*/
-	public void decrQuantity() {
-		quantity--;		
-	}
+    
+    public int getCategoryID(){
+        return this.categoryID;
+    }
+    
+    public boolean getIsFavourite(){
+        return this.IsFavourite;
+    }
+    
+    //Setters
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+    
+    public void setProductName(String productName) {
+         this.productName = productName;
+    }
+    
+    public void setProductPrice(Double productPrice) {
+         this.productPrice = productPrice;
+    }
+    
+    public void setcategoryID(Integer categoryID){
+         this.categoryID = categoryID;
+    }
+    
+    public void setIsFavourite(Boolean IsFavourite){
+         this.IsFavourite = IsFavourite;
+    }
 }
 /**************End of Product**************/
