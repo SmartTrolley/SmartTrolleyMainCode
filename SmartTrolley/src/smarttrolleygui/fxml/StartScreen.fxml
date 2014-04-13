@@ -30,9 +30,9 @@
     <Button fx:id="createNewListButton" mnemonicParsing="false" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="Create a new shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
     <Button fx:id="viewAllShoppingListsButton" mnemonicParsing="false" onAction="#loadAllShoppingListsScreen" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="View your shopping lists" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
     <Button mnemonicParsing="false" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="Import shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
-    <HBox prefHeight="21.0" prefWidth="322.0">
+    <HBox prefHeight="21.0" prefWidth="400.0">
       <children>
-        <Label text="Create your shopping list online @ " />
+        <Label text="Create your shopping list online @ " textAlignment="CENTER"/>
         <Hyperlink text="www.smartrolley.org" />
       </children>
       <VBox.margin>

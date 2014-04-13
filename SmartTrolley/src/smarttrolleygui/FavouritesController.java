@@ -43,7 +43,7 @@ import javafx.util.Callback;
 public class FavouritesController implements Initializable {
 
     @FXML
-    private ListView categoriesList;
+    private ListView<String> categoriesList;
     @FXML
     private TableView<Product> productTable;
     @FXML
@@ -174,18 +174,18 @@ public class FavouritesController implements Initializable {
     
     private ObservableList<Product> initializeProductData() {
         productData = FXCollections.observableArrayList(
-                new Product("imageURL1", "ariel", "1.99"),
-                new Product("imageURL2", "cravendale_2L_milk", "2.99"),
-                new Product("imageURL3", "holme_farmed_venison_steak", "3.99"),
-                new Product("imageURL4", "hovis_bread", "4.99"),
-                new Product("imageURL5", "innocent_noodle_pot", "5.99"),
-                new Product("imageURL6", "lavazza_espresso", "6.99"),
-                new Product("imageURL7", "nivea_shower_cream", "7.99"),
-                new Product("imageURL8", "pink_lady_apple", "8.99"),
-                new Product("imageURL9", "star-wars-lollies", "9.99"),
-                new Product("imageURL10", "strawberry_conserve", "10.99"),
-                new Product("imageURL11", "sugar_puffs", "11.99"),
-                new Product("imageURL12", "yorkie", "12.99")
+                new Product("imageURL1", "ariel", 1.99),
+                new Product("imageURL2", "cravendale_2L_milk", 2.99),
+                new Product("imageURL3", "holme_farmed_venison_steak", 3.99),
+                new Product("imageURL4", "hovis_bread", 4.99),
+                new Product("imageURL5", "innocent_noodle_pot", 5.99),
+                new Product("imageURL6", "lavazza_espresso", 6.99),
+                new Product("imageURL7", "nivea_shower_cream", 7.99),
+                new Product("imageURL8", "pink_lady_apple", 8.99),
+                new Product("imageURL9", "star-wars-lollies", 9.99),
+                new Product("imageURL10", "strawberry_conserve", 10.99),
+                new Product("imageURL11", "sugar_puffs", 11.99),
+                new Product("imageURL12", "yorkie", 12.99)
         );
         return productData;
     }

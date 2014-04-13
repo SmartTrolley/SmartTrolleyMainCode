@@ -17,11 +17,21 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 public class StartScreenController implements Initializable {
     
     private SmartTrolleyGUI application;
+    
+    @FXML //  fx:id="createNewListButton"
+    private Button createNewListButton; // Value injected by FXMLLoader
     
     /**
     *initialize is automatically called when the controller is created.
@@ -30,6 +40,15 @@ public class StartScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     	//TODO remove if left unused
+    	
+    	
+    	
+    	createNewListButton.setOnAction(new EventHandler<ActionEvent>() {
+               @Override
+               public void handle(ActionEvent event) {
+                  createNewListButton.setText("I've changed!"); 
+               }
+           });
     }
     
     /**
@@ -37,8 +56,13 @@ public class StartScreenController implements Initializable {
     *@param application
     *<p> Date Modified: 28 Feb 2014
     */
-    public void setApp(SmartTrolleyGUI application){
+    public void setApp(SmartTrolleyGUI application){ 	
         this.application = application;
+        
+      //Test - Adding button to container
+  		Button button = new Button("Click Me");
+  		application.container.getChildren().add(button);
+  		button.setTooltip(new Tooltip("Hi"));  		
     }
     
     /**
@@ -54,9 +78,11 @@ public class StartScreenController implements Initializable {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
             System.out.println("error: application == null");
-        } else {
-            application.goToAllShoppingListsScreen();
+        } else {        	
+            //Need to populate the shopping lists screen from the database before displaying the screen
+        	//Inverstigate adding arrays of buttons in FXML.
+        	application.goToAllShoppingListsScreen();
         }
-    }
+    }    
 }
 /**************End of StartScreenController**************/

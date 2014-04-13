@@ -17,13 +17,15 @@ package smarttrolleygui;
 public class Product {
     private final String imageURL;
     private final String productName;
-    private final String productPrice;
+    private final double productPrice;
+    private int quantity = 0;
+    //TODO Add total savings column
 
     /**
      * Constructor creates a new product
      *<p> Date Modified: 28 Feb 2014
      */
-    Product(String imageURL, String productName, String productPrice) {
+    Product(String imageURL, String productName, double productPrice) {
     	this.imageURL = imageURL;
         this.productName = productName;
         this.productPrice = productPrice;        
@@ -37,8 +39,46 @@ public class Product {
         return this.productName;
     }
     
-    public String getProductPrice() {
+    public double getProductPrice() {
         return this.productPrice;
     }
+
+    //TODO Comments for some methods in this class, esp. User stories
+	/**Method/Test Description
+	*<p>Test(s)/User Story that it satisfies
+	*@return The products' quantity
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 12 Apr 2014
+	*/
+	public int getQuantity() {
+		return quantity;
+	}
+	
+	/**
+	*Sets the products' quantity
+	*<p>Test(s)/User Story that it satisfies??
+	*<p> Date Modified: 12 Apr 2014
+	*/
+	public void setQuantity(int newQuantity) {
+		quantity = newQuantity;
+	}
+
+	/**
+	*Increments the products' quantity
+	*<p>Test(s)/User Story that it satisfies??
+	*<p> Date Modified: 12 Apr 2014
+	*/
+	public void incrQuantity() {
+		quantity++;		
+	}
+
+	/**
+	*Decrements the products' quantity
+	*<p>Test(s)/User Story that it satisfies??
+	*<p> Date Modified: 12 Apr 2014
+	*/
+	public void decrQuantity() {
+		quantity--;		
+	}
 }
 /**************End of Product**************/

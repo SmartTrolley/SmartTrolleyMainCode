@@ -289,11 +289,11 @@ public class FavouritesScreenController implements Initializable {
      */
     private ObservableList<Product> initializeProductData() {
         productData = FXCollections.observableArrayList(
-                new Product("img/SampleProducts/holme_farmed_venison_steak.jpg", "Holme Farmed Venison Steak", "5.00"),
-                new Product("img/SampleProducts/lavazza_espresso.jpg", "Lavazza Espresso", "2.50"),
-                new Product("img/SampleProducts/star-wars-lollies.jpg", "Star Wars Lollies", "2.00"),
-                new Product("img/SampleProducts/sugar_puffs.jpg", "Sugar Puffs", "2.29"),
-                new Product("img/SampleProducts/yorkie.jpg", "Nestle Yorkie Milk Chocolate Bar", "0.60")
+                new Product("img/SampleProducts/holme_farmed_venison_steak.jpg", "Holme Farmed Venison Steak", 5.00),
+                new Product("img/SampleProducts/lavazza_espresso.jpg", "Lavazza Espresso", 2.50),
+                new Product("img/SampleProducts/star-wars-lollies.jpg", "Star Wars Lollies", 2.00),
+                new Product("img/SampleProducts/sugar_puffs.jpg", "Sugar Puffs", 2.29),
+                new Product("img/SampleProducts/yorkie.jpg", "Nestle Yorkie Milk Chocolate Bar", 0.60)
         );
         return productData;
     }
