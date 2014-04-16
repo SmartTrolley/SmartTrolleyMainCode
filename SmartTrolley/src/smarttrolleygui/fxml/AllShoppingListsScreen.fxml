@@ -31,7 +31,7 @@
         <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
-    <HBox fillHeight="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="322.0" VBox.vgrow="SOMETIMES">
+    <HBox fillHeight="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="421.0" VBox.vgrow="SOMETIMES">
       <children>
         <Label text="Create your shopping list online @ " />
         <Hyperlink text="www.smartrolley.org" />

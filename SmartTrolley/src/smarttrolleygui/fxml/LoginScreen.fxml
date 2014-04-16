@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<VBox id="VBox" alignment="CENTER" spacing="5.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.LoginScreenController">
+  <children>
+    <AnchorPane id="AnchorPane" prefHeight="107.0">
+      <children>
+        <ImageView fitHeight="73.0" fitWidth="405.0" layoutX="0.0" layoutY="0.0" opacity="0.1" pickOnBounds="true" preserveRatio="true" smooth="true">
+          <image>
+            <Image url="@../img/companyLogoCropped.png" />
+          </image>
+        </ImageView>
+        <AnchorPane id="AnchorPane" layoutX="72.0" layoutY="6.0">
+          <children>
+            <Label layoutX="0.0" layoutY="6.0" text="Username" />
+            <Label layoutX="0.0" layoutY="36.0" text="Password" />
+            <TextField fx:id="usernameTextField" layoutX="76.0" layoutY="0.0" opacity="0.74" prefWidth="200.0" promptText="" text="" />
+            <TextField fx:id="passwordTextField" layoutX="76.0" layoutY="30.0" opacity="0.74" prefWidth="200.0" promptText="" text="" />
+          </children>
+        </AnchorPane>
+        <Button fx:id="loginButton" defaultButton="true" layoutX="157.0" layoutY="72.0" mnemonicParsing="false" onAction="#login" prefHeight="33.310546875" prefWidth="90.0" text="Begin!" />
+        <CheckBox fx:id="rememberLoginDetailsChkbx" layoutX="265.0" layoutY="82.0" mnemonicParsing="false" onAction="#rememberLoginDetails" text="Remember Me" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>

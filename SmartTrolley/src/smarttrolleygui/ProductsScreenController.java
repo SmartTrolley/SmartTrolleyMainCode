@@ -1,7 +1,7 @@
 /**
- * HomeScreenController
+ * ProductsScreenController
  *
- * Class Description: HomeScreenController allows java interaction with
+ * Class Description: ProductsScreenController allows java interaction with
  * HomeScreen.fxml
  *
  * @author Arne
@@ -23,6 +23,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import Printing.SmartTrolleyPrint;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -38,7 +40,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 
-public class HomeScreenController implements Initializable {
+public class ProductsScreenController implements Initializable {
 
     @FXML
     private ListView<String> lstViewCategories;
@@ -97,7 +99,7 @@ public class HomeScreenController implements Initializable {
         
         //Set the total labels
         ObservableList<Double> data = SetTotals();
-        lblTotal.setText("Total: ��" + data.get(0).floatValue());
+        lblTotal.setText("Total: £" + data.get(0).floatValue());
         lblTotalItems.setText("Total Items: " + data.get(1).toString().replace(".0", ""));
         
     }
@@ -115,7 +117,7 @@ public class HomeScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            System.out.println("error: application == null");
+            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
         } else {
             application.goToStartScreen();
         }
@@ -136,7 +138,7 @@ public class HomeScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            System.out.println("error: application == null");
+            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
         } else {
             application.goToFavourites(lblCurrentListName.getText());
         }
@@ -157,7 +159,7 @@ public class HomeScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            System.out.println("error: application == null");
+            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
         } else {
             application.goToShoppingList(lblCurrentListName.getText());
         }
@@ -179,7 +181,7 @@ public class HomeScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            System.out.println("error: application == null");
+            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
         } else {
             application.goToOffers(lblCurrentListName.getText());
         }
@@ -206,9 +208,9 @@ public class HomeScreenController implements Initializable {
             
             // setup the connection with the DB.
             connect = DriverManager
-                    .getConnection("jdbc:mysql://localhost/smarttrolly?", "root","");
+                    .getConnection("jdbc:mysql://localhost/smarttrolley?", "root","");
             
-            preparedStatement = connect.prepareStatement("SELECT CategoryID, Name from smarttrolly.categories");
+            preparedStatement = connect.prepareStatement("SELECT CategoryID, Name from smarttrolley.categories");
             resultSet = preparedStatement.executeQuery();
             
             categories = FXCollections.observableArrayList();
@@ -218,9 +220,9 @@ public class HomeScreenController implements Initializable {
            }
             
         } catch (SQLException ex) {
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            SmartTrolleyPrint.smartTrolleyPrint("SQLException: " + ex.getMessage());
+            SmartTrolleyPrint.smartTrolleyPrint("SQLState: " + ex.getSQLState());
+            SmartTrolleyPrint.smartTrolleyPrint("VendorError: " + ex.getErrorCode());
             Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
           catch(Exception ex){
@@ -249,7 +251,7 @@ public class HomeScreenController implements Initializable {
             
             // setup the connection with the DB.
             connect = DriverManager
-                    .getConnection("jdbc:mysql://localhost/smarttrolly?", "root","");
+                    .getConnection("jdbc:mysql://localhost/smarttrolley?", "root","");
             
             ObservableList<Product> filteredProducts = FXCollections.observableArrayList();
             
@@ -257,7 +259,7 @@ public class HomeScreenController implements Initializable {
             filteredProducts.clear();
             if(categoryName == "All"){
                 //Get all products
-                preparedStatement = connect.prepareStatement("SELECT * from smarttrolly.products");     
+                preparedStatement = connect.prepareStatement("SELECT * from smarttrolley.products");     
                 resultSet = preparedStatement.executeQuery();
 
                 while(resultSet.next()){
@@ -277,8 +279,8 @@ public class HomeScreenController implements Initializable {
                 
             } else{
                 //Get all products within the selected category
-                preparedStatement = connect.prepareStatement("SELECT * from smarttrolly.products p " +
-                        "join smarttrolly.categories c on c.CategoryID = p.CategoryID where c.Name = ?");     
+                preparedStatement = connect.prepareStatement("SELECT * from smarttrolley.products p " +
+                        "join smarttrolley.categories c on c.CategoryID = p.CategoryID where c.Name = ?");     
                 preparedStatement.setString(1, categoryName);
                 resultSet = preparedStatement.executeQuery();
 
@@ -300,9 +302,9 @@ public class HomeScreenController implements Initializable {
            
             
         } catch (SQLException ex) {
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            SmartTrolleyPrint.smartTrolleyPrint("SQLException: " + ex.getMessage());
+            SmartTrolleyPrint.smartTrolleyPrint("SQLState: " + ex.getSQLState());
+            SmartTrolleyPrint.smartTrolleyPrint("VendorError: " + ex.getErrorCode());
             Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
           catch(Exception ex){
@@ -360,7 +362,7 @@ public class HomeScreenController implements Initializable {
                            button.setOnAction(new EventHandler<ActionEvent>() {
                                @Override
                                public void handle(ActionEvent event) {
-                                   System.out.println("Pressed image of product: " + product.getProductName());
+                                   SmartTrolleyPrint.smartTrolleyPrint("Pressed image of product: " + product.getProductName());
                                }
                            });
                        } else {
@@ -389,7 +391,7 @@ public class HomeScreenController implements Initializable {
                             button.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
-                                    System.out.println("Pressed add button for product (saved to the DB): " + product.getProductName());
+                                    SmartTrolleyPrint.smartTrolleyPrint("Pressed add button for product (saved to the DB): " + product.getProductName());
                                     
                                     Boolean productFound = false;
                                     String insertSql = "INSERT INTO lists_products VALUES (" + 
@@ -399,7 +401,7 @@ public class HomeScreenController implements Initializable {
                                     Integer listID = (Integer)application.session.get("currentListID");
                                     
                                     try {
-                                        connect = DriverManager.getConnection("jdbc:mysql://localhost/smarttrolly?", "root","");
+                                        connect = DriverManager.getConnection("jdbc:mysql://localhost/smarttrolley?", "root","");
                                         
                                         //If the product does not exist then add one to lists-products table with a quantity of one
                                         preparedStatement = connect.prepareStatement(selectSql);
@@ -429,14 +431,14 @@ public class HomeScreenController implements Initializable {
                                         lblTotalItems.setText("Total Items: " + data.get(1).toString().replace(".0", ""));
                                         
                                     } catch (SQLException ex) {
-                                        Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
+                                        Logger.getLogger(ProductsScreenController.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                     finally{
                                         try {
                                             resultSet.close(); 
                                             connect.close();
                                         } catch (SQLException ex) {
-                                            Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
+                                            Logger.getLogger(ProductsScreenController.class.getName()).log(Level.SEVERE, null, ex);
                                         }
                                     }
                                     
@@ -467,7 +469,7 @@ public class HomeScreenController implements Initializable {
             }
             
             // setup the connection with the DB.
-            connect = DriverManager.getConnection("jdbc:mysql://localhost/smarttrolly?", "root","");
+            connect = DriverManager.getConnection("jdbc:mysql://localhost/smarttrolley?", "root","");
             String sqlStatement = "SELECT lp.ProductID, ListID, Quantity, Price FROM lists_products lp join products p on p.ProductID = lp.ProductID WHERE ListID = ?";
             
             preparedStatement = connect.prepareStatement(sqlStatement);
@@ -483,9 +485,9 @@ public class HomeScreenController implements Initializable {
             }
             
         } catch (SQLException ex) {
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            SmartTrolleyPrint.smartTrolleyPrint("SQLException: " + ex.getMessage());
+            SmartTrolleyPrint.smartTrolleyPrint("SQLState: " + ex.getSQLState());
+            SmartTrolleyPrint.smartTrolleyPrint("VendorError: " + ex.getErrorCode());
             Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
           catch(Exception ex){
@@ -506,5 +508,5 @@ public class HomeScreenController implements Initializable {
 }
 
 /**
- * ************End of HomeScreenController*************
+ * ************End of ProductsScreenController*************
  */

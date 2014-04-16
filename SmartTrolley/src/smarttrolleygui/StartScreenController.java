@@ -16,24 +16,40 @@ package smarttrolleygui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Printing.SmartTrolleyPrint;
+
+import sql.ExecuteSQLScriptClass;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
 public class StartScreenController implements Initializable {
+	
+	public Boolean loadImages = true;
+	
+	Boolean appStart = true;
     
     private SmartTrolleyGUI application;
     
     /**
     *initialize is automatically called when the controller is created.
+    *<p> Test(s)/User Story that it satisfies
     *<p> Date Modified: 06 Mar 2014
     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    	//TODO remove if left unused
+    	
+    	//TODO This runs every time the start page is loaded
+    	/*if (appStart){
+    	ExecuteSQLScriptClass readSQL = new ExecuteSQLScriptClass();
+    	readSQL.ExecuteSQLScript();
+    	appStart = false;
+    	}*/
     }
     
     /**
     *setApp
+    *<p> Test(s)/User Story that it satisfies
     *@param application
     *<p> Date Modified: 28 Feb 2014
     */
@@ -53,20 +69,38 @@ public class StartScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            System.out.println("error: application == null");
+            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
         } else {
             application.goToAllShoppingListsScreen();
         }
     }
     
+    /**
+    *loadCreateListScreen is called when the 'Create a new shopping list' button is pressed.
+    *It calls the goToCreateListScreen method in SmartTrolleyGUI.java
+    *<p>Test(s)/User Story that it satisfies
+    *<p> Date Modified: 15 Mar 2014
+    */
     public void loadCreateListScreen(){
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            System.out.println("error: application == null");
+            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
         } else {
             application.goToCreateListScreen();
         }
+    }
+    
+    //TODO Implement this method + Ensure only shopping lists are accessible with this option
+    /**
+    *If the 'Offline Mode' checkbox is checked, this method is called.
+    *It ensures that no images are loaded
+    *<p>Test(s)/User Story that it satisfies
+    *<p> Date Modified: 15 Apr 2014
+    */
+    public void loadNoImages(){
+    	SmartTrolleyPrint.smartTrolleyPrint("Load no Images un/checked!");
+    	loadImages = false;
     }
 }
 /**************End of StartScreenController**************/

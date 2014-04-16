@@ -24,6 +24,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import Printing.SmartTrolleyPrint;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -62,9 +64,9 @@ public class AllShoppingListsScreenController implements Initializable {
             
             // setup the connection with the DB.
             connect = DriverManager
-                    .getConnection("jdbc:mysql://localhost/smarttrolly?", "root","");
+                    .getConnection("jdbc:mysql://localhost/smarttrolley?", "root","");
             
-            preparedStatement = connect.prepareStatement("SELECT ListID ,Name from smarttrolly.lists");
+            preparedStatement = connect.prepareStatement("SELECT ListID ,Name from smarttrolley.lists");
             resultSet = preparedStatement.executeQuery();
             
             CreateList(resultSet);
@@ -86,9 +88,9 @@ public class AllShoppingListsScreenController implements Initializable {
             }
             
         } catch (SQLException ex) {
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            SmartTrolleyPrint.smartTrolleyPrint("SQLException: " + ex.getMessage());
+            SmartTrolleyPrint.smartTrolleyPrint("SQLState: " + ex.getSQLState());
+            SmartTrolleyPrint.smartTrolleyPrint("VendorError: " + ex.getErrorCode());
             Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
           catch(Exception ex){
@@ -124,7 +126,7 @@ public class AllShoppingListsScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            System.out.println("error: application == null");
+            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
         } else {
             application.goToStartScreen();
         }
@@ -142,10 +144,10 @@ public class AllShoppingListsScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            System.out.println("error: application == null");
+            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
         } else {
             //application.goToShoppingList();
-            application.goToHomeScreen("Current List Name: " + listName);
+            application.goToProductsScreen("Current List Name: " + listName);
         }
     }
 
@@ -157,7 +159,7 @@ public class AllShoppingListsScreenController implements Initializable {
         final String listName = resultSet.getString("Name");
         final int listID = resultSet.getInt("ListID");
      
-        System.out.println("List Name: " + listName);
+        SmartTrolleyPrint.smartTrolleyPrint("List Name: " + listName);
 
         Button newButton = new Button();
         newButton.setText(listName);
@@ -175,7 +177,7 @@ public class AllShoppingListsScreenController implements Initializable {
         
         lists.add(newButton);
       }
-      System.out.println("Total Number of Lists: " + lists.size());
+      SmartTrolleyPrint.smartTrolleyPrint("Total Number of Lists: " + lists.size());
       
       //Add the Go Back button
       Button newButton = new Button();

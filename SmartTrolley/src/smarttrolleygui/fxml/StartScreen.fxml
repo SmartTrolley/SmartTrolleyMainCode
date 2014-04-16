@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<VBox id="VBox" alignment="CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="10.0" styleClass="mainContainer" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.StartScreenController">
+<VBox id="VBox" alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" spacing="10.0" styleClass="mainContainer" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.StartScreenController">
   <children>
     <ImageView fitHeight="150.0" fitWidth="450.0" pickOnBounds="true" preserveRatio="true" smooth="true">
       <image>
@@ -27,10 +27,10 @@
         <Insets bottom="30.0" />
       </VBox.margin>
     </Line>
-    <Button fx:id="createNewListButton" mnemonicParsing="false" onAction="#loadCreateListScreen" prefHeight="113.0" prefWidth="380.0" styleClass="largeButton" text="Create a new shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
-    <Button fx:id="viewAllShoppingListsButton" mnemonicParsing="false" onAction="#loadAllShoppingListsScreen" prefHeight="113.0" prefWidth="380.0" styleClass="largeButton" text="View your shopping lists" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
-    <Button mnemonicParsing="false" prefHeight="113.0" prefWidth="380.0" styleClass="largeButton" text="Import shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
-    <HBox prefHeight="21.0" prefWidth="322.0">
+    <Button fx:id="createNewListButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadCreateListScreen" prefHeight="113.0" prefWidth="380.0" styleClass="largeButton" text="Create a new shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
+    <Button fx:id="viewAllShoppingListsButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadAllShoppingListsScreen" prefHeight="113.0" prefWidth="380.0" styleClass="largeButton" text="View your shopping lists" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
+    <Button fx:id="importShoppingListsButton" mnemonicParsing="false" prefHeight="113.0" prefWidth="380.0" styleClass="largeButton" text="Import shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
+    <HBox prefHeight="21.0" prefWidth="365.0">
       <children>
         <Label text="Create your shopping list online @ " />
         <Hyperlink text="www.smartrolley.org" />
@@ -39,6 +39,7 @@
         <Insets top="30.0" />
       </VBox.margin>
     </HBox>
+    <CheckBox fx:id="offlineModeCheckbox" mnemonicParsing="false" text="Offline Mode" onAction = "#loadNoImages" />
   </children>
   <stylesheets>
     <URL value="@../StyleSheet.css" />

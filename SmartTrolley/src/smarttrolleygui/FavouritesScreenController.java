@@ -22,6 +22,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import Printing.SmartTrolleyPrint;
+
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -101,7 +103,7 @@ public class FavouritesScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            System.out.println("error: application == null");
+            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
         } else {
             application.goToStartScreen();
         }
@@ -122,7 +124,7 @@ public class FavouritesScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            System.out.println("error: application == null");
+            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
         } else {
             String listName = "";
             try {
@@ -135,9 +137,9 @@ public class FavouritesScreenController implements Initializable {
 
                 // setup the connection with the DB.
                 connect = DriverManager
-                        .getConnection("jdbc:mysql://localhost/smarttrolly?", "root","");
+                        .getConnection("jdbc:mysql://localhost/smarttrolley?", "root","");
 
-                preparedStatement = connect.prepareStatement("SELECT ListID, Name from smarttrolly.lists where ListID = ?");
+                preparedStatement = connect.prepareStatement("SELECT ListID, Name from smarttrolley.lists where ListID = ?");
                 preparedStatement.setInt(1, (Integer)application.session.get("currentListID"));
                 
                 resultSet = preparedStatement.executeQuery();
@@ -147,9 +149,9 @@ public class FavouritesScreenController implements Initializable {
                 }
 
             } catch (SQLException ex) {
-                System.out.println("SQLException: " + ex.getMessage());
-                System.out.println("SQLState: " + ex.getSQLState());
-                System.out.println("VendorError: " + ex.getErrorCode());
+                SmartTrolleyPrint.smartTrolleyPrint("SQLException: " + ex.getMessage());
+                SmartTrolleyPrint.smartTrolleyPrint("SQLState: " + ex.getSQLState());
+                SmartTrolleyPrint.smartTrolleyPrint("VendorError: " + ex.getErrorCode());
                 Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
             }
               catch(Exception ex){
@@ -164,7 +166,7 @@ public class FavouritesScreenController implements Initializable {
                 }
             } 
             
-            application.goToHomeScreen(listName);
+            application.goToProductsScreen(listName);
         }
     }
 
@@ -183,7 +185,7 @@ public class FavouritesScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            System.out.println("error: application == null");
+            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
         } else {
             //application.goToShoppingList();
         }
@@ -204,7 +206,7 @@ public class FavouritesScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            System.out.println("error: application == null");
+            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
         } else {
             //application.goToOffers();
         }
@@ -284,7 +286,7 @@ public class FavouritesScreenController implements Initializable {
                             button.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
-                                    System.out.println("Pressed add button for product: " + product.getProductName());
+                                    SmartTrolleyPrint.smartTrolleyPrint("Pressed add button for product: " + product.getProductName());
                                 }
                             });
                         } else {
@@ -315,7 +317,7 @@ public class FavouritesScreenController implements Initializable {
                             button.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
-                                    System.out.println("Pressed image of product: " + product.getProductName());
+                                    SmartTrolleyPrint.smartTrolleyPrint("Pressed image of product: " + product.getProductName());
                                 }
                             });
                         } else {
