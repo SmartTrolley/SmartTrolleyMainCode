@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<VBox id="VBox" alignment="CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="10.0" styleClass="containerMain" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.StartScreenController">
+  <children>
+    <ImageView fitHeight="150.0" fitWidth="450.0" pickOnBounds="true" preserveRatio="true" smooth="true">
+      <image>
+        <Image url="@../img/companyLogoCropped.png" />
+      </image>
+      <VBox.margin>
+        <Insets bottom="10.0" />
+      </VBox.margin>
+    </ImageView>
+    <Line endX="575.0" startX="0.0" strokeLineCap="ROUND">
+      <VBox.margin>
+        <Insets bottom="30.0" />
+      </VBox.margin>
+    </Line>
+    <Button fx:id="createNewListButton" mnemonicParsing="false" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="Create a new shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
+    <Button fx:id="viewAllShoppingListsButton" mnemonicParsing="false" onAction="#loadAllShoppingListsScreen" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="View your shopping lists" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
+    <Button mnemonicParsing="false" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="Import shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
+    <HBox prefHeight="21.0" prefWidth="322.0">
+      <children>
+        <Label text="Create your shopping list online @ " />
+        <Hyperlink text="www.smartrolley.org" />
+      </children>
+      <VBox.margin>
+        <Insets top="30.0" />
+      </VBox.margin>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@../StyleSheet.css" />
+  </stylesheets>
+</VBox>
