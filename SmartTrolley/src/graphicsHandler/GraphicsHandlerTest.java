@@ -144,14 +144,15 @@ public class GraphicsHandlerTest {
 		
 		int newWidth = width + extra;
 		int newHeight = height + extra;
+		
 		shapeFactory.setWidth(newWidth);
 		shapeFactory.setHeight(newHeight);
 		
 		Shape shape = shapeFactory.getShape();
 		
 		//
-		assertEquals(newWidth, shape.getBoundsInLocal().getWidth(), 0.0001);
-		assertEquals(newHeight, shape.getBoundsInLocal().getHeight(), 0.0001);
+		assertEquals(newWidth, shape.getBoundsInParent().getWidth(), 0.001);
+		assertEquals(newHeight, shape.getBoundsInParent().getHeight(), 0.001);
 	}
 	
 	@Test
