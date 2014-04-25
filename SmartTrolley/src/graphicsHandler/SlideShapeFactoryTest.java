@@ -17,7 +17,19 @@ import javafx.scene.shape.Shape;
 import org.junit.Before;
 import org.junit.Test;
 
-public class GraphicsHandlerTest {
+/** 
+* 
+* Tests the functionality of the SlideShapeFactory. 
+* coheres to the Contract made with Spoon
+*
+* @author Matthew Wells
+* @author Alasdair Munday
+*
+* @author [Checked By:] [Checker(s) fill here]
+*
+* @version [V1] [Date Created: 25/04/2014]
+*/
+public class SlideShapeFactoryTest {
 
 	public PriorityQueue<ShapePoint> points;
 	int width = 50, height = 50, pointLow = 0, pentagonX = 25, pentagonY = 25;
@@ -25,15 +37,25 @@ public class GraphicsHandlerTest {
 	public SlideShapeFactory shapeFactory, circleFactory;
 	public ShapePoint point1, point2, point3, point4, point5, testingPoint;
 	public Shape square, pentagon, circle;
+	public String blue = "#0000FF";
 
+	/**
+	*Setup Class For SlideShapeFactory Test
+	*<p> Date Modified: 25 Apr 2014
+	*/
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() throws Exception{
 		pointsSetup();		
 		squareSetUp();
 		circleSetup();
 		
 	}
 
+	/**
+	*Setup circles for testing in SlideShapeFactoryTest
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 25 Apr 2014
+	*/
 	private void circleSetup() {
 		PriorityQueue<ShapePoint> point = new PriorityQueue<ShapePoint>();
 		point.add(point4);
@@ -45,6 +67,10 @@ public class GraphicsHandlerTest {
 		
 	}
 
+	/**
+	*setup points for drawing polygons in SlideShapeFactoryTest
+	*<p> Date Modified: 25 Apr 2014
+	*/
 	private void pointsSetup() {
 		point1 = new ShapePoint(pointLow,pointLow,point1Num);
 		point2 = new ShapePoint(width,pointLow,point2Num);
@@ -52,10 +78,15 @@ public class GraphicsHandlerTest {
 		point4 = new ShapePoint(pointLow,width,point4Num);
 		point5 = new ShapePoint(pentagonX, pentagonY, point5Num);
 		
-		
+		//priority queue orders the points by point number
 		points = new PriorityQueue<ShapePoint>();
 	}
 
+	
+	/**
+	*Setup Squares for testing in SlideShapeFactoryTest
+	*<p> Date Modified: 25 Apr 2014
+	*/
 	private void squareSetUp() {
 		//set points with the first 4 ShapePoints to create a square
 		points.add(point1);
@@ -73,10 +104,11 @@ public class GraphicsHandlerTest {
 	/*..................SQUARE TESTS...............................*/
 
 	/**
-	 * Calling class creates a rectangle
-	 * 		tests a constructor with values to initialise with
-	 * 		tests the ability to create a 4 pointed polygon in the shape of a square
-	*/		
+	*Test that the shape returned is a polygon when polygon criteria is entered.
+	*(more than 1 point)
+	*
+	*<p> Date Modified: 25 Apr 2014
+	*/
 	@Test
 	public void squareClassTest() {
 		
@@ -88,6 +120,12 @@ public class GraphicsHandlerTest {
 		assertEquals(Polygon.class, square.getClass());
 	}
 	
+	/**
+	*Tests that the Height (According to its self) of the polygon 
+	*is equal to the expected height.
+	*
+	*<p> Date Modified: 25 Apr 2014
+	*/
 	@Test
 	public void squareHeightTest()	{
 		Bounds squareBounds = square.getBoundsInLocal();
@@ -95,39 +133,65 @@ public class GraphicsHandlerTest {
 		assertEquals(squareHeight, height, 0.0001);
 	}
 	
-	//tests that 
+	
+	/**
+	*Tests that the points in the list passed to the factory
+	*correspond to the points the factory will use.
+	*
+	*The factory should internaly convert ShapePoints to 2 element arrays of 
+	*Doubles.
+	*
+	*<p> Date Modified: 25 Apr 2014
+	*/
 	@Test
 	public void squarePointsTest()	{
+		// double array to hold the x and y values contained in the shape points
 		double[] testingPointDouble;
 		
-//		check points held in square against points specified
 		int i = 1;
+		
 		while(!points.isEmpty())	{
+			
+			// populate testingPoint with the coordinates of the current point.
 			testingPoint = points.remove();
 			testingPointDouble = new double[]{testingPoint.getxCoordinate(), testingPoint.getyCoordinate()};
+			
+			// test the double[] returned from the factory for current point
 			assertEquals(testingPointDouble, shapeFactory.getPoint(i));
+			
+			// Move to the next point
 			i++;
 		}
 	}
 	
+	/**
+	*Test that setfill in SlideShape factory receives the 
+	*PWS input and changes the color of it's shape accordingly.
+	*<p> Date Modified: 25 Apr 2014
+	*/
 	@Test
 	public void fillColorTest(){
-		//specify RGB string for blue
-		String blue = "#0000FF";
-		//Paint for holding returned color from class under test
+		
+		//Paint for holding returned colour from class under test
 		Paint squareColor;
 		
 		shapeFactory.setFillColor(blue);
 		squareColor = shapeFactory.getFillColor();
 		
+		//Confirm the square is the specified colour
 		assertEquals(Color.BLUE, squareColor);
 	}
 
 
+	
+	/**
+	*Test that setLineColor in SlideShape factory receives the 
+	*PWS input and changes the color of its shape's outline accordingly.
+	*<p> Date Modified: 25 Apr 2014
+	*/
 	@Test
 	public void lineColorTest(){
-		//specify RGB string for blue
-		String blue = "#0000FF";
+	
 		//Paint for holding returned color from class under test
 		Paint squareLineColor;
 		
@@ -137,6 +201,13 @@ public class GraphicsHandlerTest {
 		assertEquals(Color.BLUE, squareLineColor);
 	}
 	
+	
+	
+	/**
+	*Test that setWidth and setHeight correctly change the width and height of
+	*the space the shape occupies in its parent.
+	*<p> Date Modified: 25 Apr 2014
+	*/
 	@Test
 	public void polygonResizeTest(){
 		
@@ -150,7 +221,6 @@ public class GraphicsHandlerTest {
 		
 		Shape shape = shapeFactory.getShape();
 		
-		//
 		assertEquals(newWidth, shape.getBoundsInParent().getWidth(), 0.001);
 		assertEquals(newHeight, shape.getBoundsInParent().getHeight(), 0.001);
 	}

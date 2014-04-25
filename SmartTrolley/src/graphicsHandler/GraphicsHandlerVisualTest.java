@@ -47,6 +47,7 @@ public class GraphicsHandlerVisualTest extends Application {
 		System.out.println("pentagon bounds in local:" + pentagon.getBoundsInLocal().getHeight());
 	}
 
+
 	private void setupCircle() {
 		
 		points = new PriorityQueue<ShapePoint>();
@@ -65,6 +66,7 @@ public class GraphicsHandlerVisualTest extends Application {
 		Pane pentagonPane = new Pane();
 		Pane circlePane = new Pane();
 		VBox vBox = new VBox();
+		
 		//put the shapes into their panes.
 		squarePane.getChildren().add(square);
 		
@@ -100,6 +102,7 @@ public class GraphicsHandlerVisualTest extends Application {
 		//Instantiate a shapeFactory with the current values
 		shapeFactory = new SlideShapeFactory(points, width, height);
 		
+		shapeFactory.setHeight(100);
 		//get the shape that is created by the values previously given to the factory
 		square = shapeFactory.getShape();
 	}
