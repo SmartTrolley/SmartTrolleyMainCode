@@ -55,35 +55,35 @@ public class ClientThread extends Thread {
 
 		try {
 			// setup input stream
-			Printing.SmartTrolleyPrint.smartTrolleyPrint("Hello Client and welcome to the future -ClientThread");
+			Printing.SmartTrolleyPrint.print("Hello Client and welcome to the future -ClientThread");
 
 			outputToClient = new ObjectOutputStream(clientSocket.getOutputStream());
 
-			Printing.SmartTrolleyPrint.smartTrolleyPrint("connections made sending object -ClientThread");
+			Printing.SmartTrolleyPrint.print("connections made sending object -ClientThread");
 
 			inputFromClient = new ObjectInputStream(clientSocket.getInputStream());
 
-			Printing.SmartTrolleyPrint.smartTrolleyPrint("Input stream made -ClientThread");
+			Printing.SmartTrolleyPrint.print("Input stream made -ClientThread");
 
-			Printing.SmartTrolleyPrint.smartTrolleyPrint("connections made sending object -ClientThread");
+			Printing.SmartTrolleyPrint.print("connections made sending object -ClientThread");
 
 			writeObjectToSocket();
 
-			Printing.SmartTrolleyPrint.smartTrolleyPrint("I sent a thing -ClientThread");
+			Printing.SmartTrolleyPrint.print("I sent a thing -ClientThread");
 
 			name = (String) getObjectFromSocket();
 
-			Printing.SmartTrolleyPrint.smartTrolleyPrint("I gottsa thing! :) -ClientThread: " + name);
+			Printing.SmartTrolleyPrint.print("I gottsa thing! :) -ClientThread: " + name);
 
 		} catch (IOException e) {
 
-			Printing.SmartTrolleyPrint.smartTrolleyPrint("ERROR on socket connection. -ClientThread");
+			Printing.SmartTrolleyPrint.print("ERROR on socket connection. -ClientThread");
 
 			System.exit(-1);
 
 		} catch (ClassNotFoundException e) {
 
-			Printing.SmartTrolleyPrint.smartTrolleyPrint("Class definition not found for incoming object. -ClientThread");
+			Printing.SmartTrolleyPrint.print("Class definition not found for incoming object. -ClientThread");
 
 			System.exit(-1);
 		}
@@ -113,9 +113,9 @@ public class ClientThread extends Thread {
 			inputFromClient.close();
 			outputToClient.close();
 			clientSocket.close();
-			Printing.SmartTrolleyPrint.smartTrolleyPrint("Bye Bye from Client Thread");
+			Printing.SmartTrolleyPrint.print("Bye Bye from Client Thread");
 		} catch (IOException e) {
-			Printing.SmartTrolleyPrint.smartTrolleyPrint("Could not close streams and sockets...DO NOT CROSS THE STREAMS!");
+			Printing.SmartTrolleyPrint.print("Could not close streams and sockets...DO NOT CROSS THE STREAMS!");
 		}
 	}
 
@@ -145,9 +145,9 @@ public class ClientThread extends Thread {
 				 * if (objectFromClient == null) { break; }
 				 */
 			} catch (ClassNotFoundException e) {
-				Printing.SmartTrolleyPrint.smartTrolleyPrint("Could not find object class. -ClientThread");
+				Printing.SmartTrolleyPrint.print("Could not find object class. -ClientThread");
 			}
-			Printing.SmartTrolleyPrint.smartTrolleyPrint("Received from Client: " + objectFromClient + " -ClientThread");
+			Printing.SmartTrolleyPrint.print("Received from Client: " + objectFromClient + " -ClientThread");
 
 		} while (!(objectFromClient instanceof Object));
 
@@ -173,7 +173,7 @@ public class ClientThread extends Thread {
 
 		objectToClient = new String("Hi, From ClientThread!- Oh and Dave says Hi too...");
 		outputToClient.writeObject(objectToClient);
-		Printing.SmartTrolleyPrint.smartTrolleyPrint("Ive sent it!  -ClientThread");
+		Printing.SmartTrolleyPrint.print("Ive sent it!  -ClientThread");
 
 	}
 

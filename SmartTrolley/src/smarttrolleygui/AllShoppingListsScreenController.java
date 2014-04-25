@@ -88,9 +88,9 @@ public class AllShoppingListsScreenController implements Initializable {
             }
             
         } catch (SQLException ex) {
-            SmartTrolleyPrint.smartTrolleyPrint("SQLException: " + ex.getMessage());
-            SmartTrolleyPrint.smartTrolleyPrint("SQLState: " + ex.getSQLState());
-            SmartTrolleyPrint.smartTrolleyPrint("VendorError: " + ex.getErrorCode());
+            SmartTrolleyPrint.print("SQLException: " + ex.getMessage());
+            SmartTrolleyPrint.print("SQLState: " + ex.getSQLState());
+            SmartTrolleyPrint.print("VendorError: " + ex.getErrorCode());
             Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
           catch(Exception ex){
@@ -126,7 +126,7 @@ public class AllShoppingListsScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
+            SmartTrolleyPrint.print("error: application == null");
         } else {
             application.goToStartScreen();
         }
@@ -144,7 +144,7 @@ public class AllShoppingListsScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
+            SmartTrolleyPrint.print("error: application == null");
         } else {
             //application.goToShoppingList();
             application.goToProductsScreen("Current List Name: " + listName);
@@ -159,7 +159,7 @@ public class AllShoppingListsScreenController implements Initializable {
         final String listName = resultSet.getString("Name");
         final int listID = resultSet.getInt("ListID");
      
-        SmartTrolleyPrint.smartTrolleyPrint("List Name: " + listName);
+        SmartTrolleyPrint.print("List Name: " + listName);
 
         Button newButton = new Button();
         newButton.setText(listName);
@@ -177,7 +177,7 @@ public class AllShoppingListsScreenController implements Initializable {
         
         lists.add(newButton);
       }
-      SmartTrolleyPrint.smartTrolleyPrint("Total Number of Lists: " + lists.size());
+      SmartTrolleyPrint.print("Total Number of Lists: " + lists.size());
       
       //Add the Go Back button
       Button newButton = new Button();

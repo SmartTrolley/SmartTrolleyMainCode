@@ -60,11 +60,11 @@ public class ExecuteSQLScriptClass {
 			
 				Class.forName("com.mysql.jdbc.Driver");
 
-				SmartTrolleyPrint.smartTrolleyPrint("Connecting to database...");
+				SmartTrolleyPrint.print("Connecting to database...");
 				
 				dbConn = DriverManager.getConnection(url, username,password);
 
-				SmartTrolleyPrint.smartTrolleyPrint("Creating database...");
+				SmartTrolleyPrint.print("Creating database...");
 				stmt = dbConn.createStatement();
 				
 				while (s.hasNext())
@@ -79,7 +79,7 @@ public class ExecuteSQLScriptClass {
 					if (SQLline.trim().length() > 0)
 					{
 				stmt.executeUpdate(SQLline);
-				SmartTrolleyPrint.smartTrolleyPrint("Database created successfully...");
+				SmartTrolleyPrint.print("Database created successfully...");
 					}
 			}
 		} catch (Exception x) {
@@ -119,7 +119,7 @@ public class ExecuteSQLScriptClass {
 			} catch (SQLException se2) {
 			}// nothing we can do
 		}
-		 SmartTrolleyPrint.smartTrolleyPrint("Goodbye from ExecuteSQLScript!");
+		 SmartTrolleyPrint.print("Goodbye from ExecuteSQLScript!");
 	}
 
 	/**

@@ -103,7 +103,7 @@ public class FavouritesScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
+            SmartTrolleyPrint.print("error: application == null");
         } else {
             application.goToStartScreen();
         }
@@ -124,7 +124,7 @@ public class FavouritesScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
+            SmartTrolleyPrint.print("error: application == null");
         } else {
             String listName = "";
             try {
@@ -149,9 +149,9 @@ public class FavouritesScreenController implements Initializable {
                 }
 
             } catch (SQLException ex) {
-                SmartTrolleyPrint.smartTrolleyPrint("SQLException: " + ex.getMessage());
-                SmartTrolleyPrint.smartTrolleyPrint("SQLState: " + ex.getSQLState());
-                SmartTrolleyPrint.smartTrolleyPrint("VendorError: " + ex.getErrorCode());
+                SmartTrolleyPrint.print("SQLException: " + ex.getMessage());
+                SmartTrolleyPrint.print("SQLState: " + ex.getSQLState());
+                SmartTrolleyPrint.print("VendorError: " + ex.getErrorCode());
                 Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
             }
               catch(Exception ex){
@@ -185,7 +185,7 @@ public class FavouritesScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
+            SmartTrolleyPrint.print("error: application == null");
         } else {
             //application.goToShoppingList();
         }
@@ -206,7 +206,7 @@ public class FavouritesScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
+            SmartTrolleyPrint.print("error: application == null");
         } else {
             //application.goToOffers();
         }
@@ -286,7 +286,7 @@ public class FavouritesScreenController implements Initializable {
                             button.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
-                                    SmartTrolleyPrint.smartTrolleyPrint("Pressed add button for product: " + product.getProductName());
+                                    SmartTrolleyPrint.print("Pressed add button for product: " + product.getProductName());
                                 }
                             });
                         } else {
@@ -317,7 +317,7 @@ public class FavouritesScreenController implements Initializable {
                             button.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
-                                    SmartTrolleyPrint.smartTrolleyPrint("Pressed image of product: " + product.getProductName());
+                                    SmartTrolleyPrint.print("Pressed image of product: " + product.getProductName());
                                 }
                             });
                         } else {

@@ -22,7 +22,7 @@ public class SmartTrolleyPrint {
 	 *<p> Date Modified: 11 Mar 2014
 	 * @return 
 	 */
-	public static void smartTrolleyPrint(String text) {
+	public static void print(String text) {
 		System.out.println(text);
 		System.out.flush();
 	}

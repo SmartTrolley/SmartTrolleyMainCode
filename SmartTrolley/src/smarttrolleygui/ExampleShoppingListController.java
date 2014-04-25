@@ -140,7 +140,7 @@ public class ExampleShoppingListController implements Initializable {
 		if (application == null) {
 			// We are running in isolated FXML, possibly in Scene Builder.
 			// NO-OP.
-			SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
+			SmartTrolleyPrint.print("error: application == null");
 		} else {
 			application.goToStartScreen();
 		}
@@ -162,7 +162,7 @@ public class ExampleShoppingListController implements Initializable {
 		if (application == null) {
 			// We are running in isolated FXML, possibly in Scene Builder.
 			// NO-OP.
-			SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
+			SmartTrolleyPrint.print("error: application == null");
 		} else {
 			String listName = "";
 			try {
@@ -187,9 +187,9 @@ public class ExampleShoppingListController implements Initializable {
 				}
 
 			} catch (SQLException ex) {
-				SmartTrolleyPrint.smartTrolleyPrint("SQLException: " + ex.getMessage());
-				SmartTrolleyPrint.smartTrolleyPrint("SQLState: " + ex.getSQLState());
-				SmartTrolleyPrint.smartTrolleyPrint("VendorError: " + ex.getErrorCode());
+				SmartTrolleyPrint.print("SQLException: " + ex.getMessage());
+				SmartTrolleyPrint.print("SQLState: " + ex.getSQLState());
+				SmartTrolleyPrint.print("VendorError: " + ex.getErrorCode());
 				Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
 			} catch (Exception ex) {
 				Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
@@ -222,7 +222,7 @@ public class ExampleShoppingListController implements Initializable {
 		if (application == null) {
 			// We are running in isolated FXML, possibly in Scene Builder.
 			// NO-OP.
-			SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
+			SmartTrolleyPrint.print("error: application == null");
 		} else {
 			application.goToFavourites(lblCurrentListName.getText());
 		}
@@ -244,7 +244,7 @@ public class ExampleShoppingListController implements Initializable {
 		if (application == null) {
 			// We are running in isolated FXML, possibly in Scene Builder.
 			// NO-OP.
-			SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
+			SmartTrolleyPrint.print("error: application == null");
 		} else {
 			application.goToOffers(lblCurrentListName.getText());
 		}
@@ -282,9 +282,9 @@ public class ExampleShoppingListController implements Initializable {
 			}
 
 		} catch (SQLException ex) {
-			SmartTrolleyPrint.smartTrolleyPrint("SQLException: " + ex.getMessage());
-			SmartTrolleyPrint.smartTrolleyPrint("SQLState: " + ex.getSQLState());
-			SmartTrolleyPrint.smartTrolleyPrint("VendorError: " + ex.getErrorCode());
+			SmartTrolleyPrint.print("SQLException: " + ex.getMessage());
+			SmartTrolleyPrint.print("SQLState: " + ex.getSQLState());
+			SmartTrolleyPrint.print("VendorError: " + ex.getErrorCode());
 			Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (Exception ex) {
 			Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
@@ -352,7 +352,7 @@ public class ExampleShoppingListController implements Initializable {
 							button.setOnAction(new EventHandler<ActionEvent>() {
 								@Override
 								public void handle(ActionEvent event) {
-									SmartTrolleyPrint.smartTrolleyPrint("Pressed add button for product: " + product.getProductName());
+									SmartTrolleyPrint.print("Pressed add button for product: " + product.getProductName());
 
 									ObservableList<ListProduct> data = productTable.getItems();
 									product.setQuantity(product.getQuantity() + 1);
@@ -389,7 +389,7 @@ public class ExampleShoppingListController implements Initializable {
 							button.setOnAction(new EventHandler<ActionEvent>() {
 								@Override
 								public void handle(ActionEvent event) {
-									SmartTrolleyPrint.smartTrolleyPrint("Pressed remove button for product: " + product.getProductName());
+									SmartTrolleyPrint.print("Pressed remove button for product: " + product.getProductName());
 
 									ObservableList<ListProduct> data = productTable.getItems();
 									Integer qty = product.getQuantity() - 1;
@@ -430,7 +430,7 @@ public class ExampleShoppingListController implements Initializable {
 							button.setOnAction(new EventHandler<ActionEvent>() {
 								@Override
 								public void handle(ActionEvent event) {
-									SmartTrolleyPrint.smartTrolleyPrint("Pressed image of product: " + product.getProductName());
+									SmartTrolleyPrint.print("Pressed image of product: " + product.getProductName());
 								}
 							});
 						} else {
@@ -498,9 +498,9 @@ public class ExampleShoppingListController implements Initializable {
 			}
 
 		} catch (SQLException ex) {
-			SmartTrolleyPrint.smartTrolleyPrint("SQLException: " + ex.getMessage());
-			SmartTrolleyPrint.smartTrolleyPrint("SQLState: " + ex.getSQLState());
-			SmartTrolleyPrint.smartTrolleyPrint("VendorError: " + ex.getErrorCode());
+			SmartTrolleyPrint.print("SQLException: " + ex.getMessage());
+			SmartTrolleyPrint.print("SQLState: " + ex.getSQLState());
+			SmartTrolleyPrint.print("VendorError: " + ex.getErrorCode());
 			Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (Exception ex) {
 			Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
@@ -550,9 +550,9 @@ public class ExampleShoppingListController implements Initializable {
 			}
 
 		} catch (SQLException ex) {
-			SmartTrolleyPrint.smartTrolleyPrint("SQLException: " + ex.getMessage());
-			SmartTrolleyPrint.smartTrolleyPrint("SQLState: " + ex.getSQLState());
-			SmartTrolleyPrint.smartTrolleyPrint("VendorError: " + ex.getErrorCode());
+			SmartTrolleyPrint.print("SQLException: " + ex.getMessage());
+			SmartTrolleyPrint.print("SQLState: " + ex.getSQLState());
+			SmartTrolleyPrint.print("VendorError: " + ex.getErrorCode());
 			Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (Exception ex) {
 			Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
@@ -588,9 +588,9 @@ public class ExampleShoppingListController implements Initializable {
 			}
 
 		} catch (SQLException ex) {
-			SmartTrolleyPrint.smartTrolleyPrint("SQLException: " + ex.getMessage());
-			SmartTrolleyPrint.smartTrolleyPrint("SQLState: " + ex.getSQLState());
-			SmartTrolleyPrint.smartTrolleyPrint("VendorError: " + ex.getErrorCode());
+			SmartTrolleyPrint.print("SQLException: " + ex.getMessage());
+			SmartTrolleyPrint.print("SQLState: " + ex.getSQLState());
+			SmartTrolleyPrint.print("VendorError: " + ex.getErrorCode());
 			Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (Exception ex) {
 			Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);

@@ -67,7 +67,7 @@ public class OffersScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
+            SmartTrolleyPrint.print("error: application == null");
         } else {
             application.goToStartScreen();
         }
@@ -88,7 +88,7 @@ public class OffersScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
+            SmartTrolleyPrint.print("error: application == null");
         } else {
             String listName = "";
             try {
@@ -113,9 +113,9 @@ public class OffersScreenController implements Initializable {
                 }
 
             } catch (SQLException ex) {
-                SmartTrolleyPrint.smartTrolleyPrint("SQLException: " + ex.getMessage());
-                SmartTrolleyPrint.smartTrolleyPrint("SQLState: " + ex.getSQLState());
-                SmartTrolleyPrint.smartTrolleyPrint("VendorError: " + ex.getErrorCode());
+                SmartTrolleyPrint.print("SQLException: " + ex.getMessage());
+                SmartTrolleyPrint.print("SQLState: " + ex.getSQLState());
+                SmartTrolleyPrint.print("VendorError: " + ex.getErrorCode());
                 Logger.getLogger(AllShoppingListsScreenController.class.getName()).log(Level.SEVERE, null, ex);
             }
               catch(Exception ex){
@@ -149,7 +149,7 @@ public class OffersScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
+            SmartTrolleyPrint.print("error: application == null");
         } else {
            // application.goToFavourites();
         }
@@ -170,7 +170,7 @@ public class OffersScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
+            SmartTrolleyPrint.print("error: application == null");
         } else {
             //application.goToShoppingList();
         }

@@ -61,14 +61,14 @@ public class LoginScreenController implements Initializable {
 		if (application == null) {
 			// We are running in isolated FXML, possibly in Scene Builder.
 			// NO-OP.
-			SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
+			SmartTrolleyPrint.print("error: application == null");
 		} else {
 
-			SmartTrolleyPrint.smartTrolleyPrint("here");
+			SmartTrolleyPrint.print("here");
 			
 			application.USERNAME = usernameTextField.getText();
 		
-			SmartTrolleyPrint.smartTrolleyPrint("here1");
+			SmartTrolleyPrint.print("here1");
 			
 			 application.PASSWORD = passwordTextField.getText();			
 
