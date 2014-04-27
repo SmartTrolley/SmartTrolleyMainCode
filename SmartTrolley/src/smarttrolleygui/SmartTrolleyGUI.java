@@ -17,6 +17,8 @@ package smarttrolleygui;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import Printing.SmartTrolleyPrint;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -53,7 +55,10 @@ public class SmartTrolleyGUI extends Application {
             
             primaryStage.show();
         } catch (Exception ex) {
-            Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
+        	//TODO Show a message box to the user here
+        	SmartTrolleyPrint.print("Problem rendering new screen. Application crashed ;-(");
+        	System.exit(-1);
+        	//Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -67,7 +72,10 @@ public class SmartTrolleyGUI extends Application {
             startScreen = (StartScreenController) replaceSceneContent("fxml/StartScreen.fxml");
             startScreen.setApp(this);         
         } catch (Exception ex) {
-            Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
+        	//TODO Show a message box to the user here
+        	SmartTrolleyPrint.print("Problem rendering new screen. Application crashed ;-(");
+        	System.exit(-1);
+        	//Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -82,7 +90,10 @@ public class SmartTrolleyGUI extends Application {
             AllShoppingListsScreenController allShoppingLists = (AllShoppingListsScreenController) replaceSceneContent("fxml/AllShoppingListsScreen.fxml");
             allShoppingLists.setApp(this);
         } catch (Exception ex) {
-            Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
+        	//TODO Show a message box to the user here
+        	SmartTrolleyPrint.print("Problem rendering new screen. Application crashed ;-(");
+        	System.exit(-1);
+        	//Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -97,7 +108,10 @@ public class SmartTrolleyGUI extends Application {
             HomeScreenController homeScreen = (HomeScreenController) replaceSceneContent("fxml/HomeScreen.fxml");
             homeScreen.setApp(this);
         } catch (Exception ex) {
-            Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
+        	//TODO Show a message box to the user here
+        	SmartTrolleyPrint.print("Problem rendering new screen. Application crashed ;-(");
+        	System.exit(-1);
+        	//Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -112,7 +126,10 @@ public class SmartTrolleyGUI extends Application {
             FavouritesScreenController favourites = (FavouritesScreenController) replaceSceneContent("fxml/FavouritesScreen.fxml");
             favourites.setApp(this);
         } catch (Exception ex) {
-            Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
+        	//TODO Show a message box to the user here
+        	SmartTrolleyPrint.print("Problem rendering new screen. Application crashed ;-(");
+        	System.exit(-1);
+            //Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -127,7 +144,10 @@ public class SmartTrolleyGUI extends Application {
             ExampleShoppingListController exampleShoppingList = (ExampleShoppingListController) replaceSceneContent("fxml/ExampleShoppingList.fxml");
             exampleShoppingList.setApp(this);
         } catch (Exception ex) {
-            Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
+        	//TODO Show a message box to the user here
+        	SmartTrolleyPrint.print("Problem rendering new screen. Application crashed ;-(");
+        	System.exit(-1);
+            //Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -142,7 +162,10 @@ public class SmartTrolleyGUI extends Application {
             OffersScreenController offers = (OffersScreenController) replaceSceneContent("fxml/OffersScreen.fxml");
             offers.setApp(this);
         } catch (Exception ex) {
-            Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
+        	//TODO Show a message box to the user here
+        	SmartTrolleyPrint.print("Problem rendering new screen. Application crashed ;-(");
+        	System.exit(-1);
+        	//Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

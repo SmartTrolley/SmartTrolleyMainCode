@@ -16,6 +16,8 @@ package smarttrolleygui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Printing.SmartTrolleyPrint;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -26,7 +28,7 @@ public class StartScreenController implements Initializable {
 	private SmartTrolleyGUI application;
 	
 	@FXML
-	protected Button viewAllShoppingListsButton;
+	protected static Button viewAllShoppingListsButton;
 
 	/**
 	 * Initialise is automatically called when the controller is created.
@@ -62,13 +64,11 @@ public class StartScreenController implements Initializable {
 	 *            Date Modified: 06 Mar 2014
 	 */
 	public void loadAllShoppingListsScreen(ActionEvent event) {
-
 		if (application == null) {
 			// We are running in isolated FXML, possibly in Scene Builder.
 			// NO-OP.
 			System.out.println("error: application == null");
 		} else {
-			System.out.println(event);
 			application.goToAllShoppingListsScreen();
 		}
 	}

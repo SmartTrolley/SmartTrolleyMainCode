@@ -18,6 +18,7 @@ package smarttrolleygui;
 
 import static org.junit.Assert.*;
 import javafx.application.Application;
+import javafx.scene.control.Button;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -60,7 +61,8 @@ public class DeleteListTest {
 		newGUIThread = new Thread("New GUI") {
 			public void run() {				
 				SmartTrolleyPrint.print("GUI thread");
-				GUIboot.launch(SmartTrolleyGUI.class, (java.lang.String[]) null);				
+				Application.launch(SmartTrolleyGUI.class, (java.lang.String[]) null);
+				//GUIboot.main(null);
 			}
 		};		
 
@@ -70,10 +72,12 @@ public class DeleteListTest {
 		 e1.printStackTrace(); }
 		
 		SmartTrolleyPrint.print("Firing Button");
-		GUIboot.startScreen.viewAllShoppingListsButton.setText("Hi");
+		Button testButton = StartScreenController.viewAllShoppingListsButton;
+		testButton.fire();
+		//GUIboot.startScreen.viewAllShoppingListsButton.setText("Hi");
 		SmartTrolleyPrint.print("Fired Button");
 		
-		while (true);
+	//	while (true);
 
 	}
 
