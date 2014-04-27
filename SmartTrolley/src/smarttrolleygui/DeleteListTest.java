@@ -52,20 +52,29 @@ public class DeleteListTest {
 	 */
 	@Test
 	public void deletingListTest() {
-		// fail("Not yet implemented");
-		GUIboot = new SmartTrolleyGUI();
+		Thread newGUIThread;
 
-		//TODO May need to put this into a separate thread
-		Application.launch(SmartTrolleyGUI.class, (java.lang.String[]) null);
+		GUIboot = new SmartTrolleyGUI();			
+		
+		// TODO May need to put this into a separate thread
+		newGUIThread = new Thread("New GUI") {
+			public void run() {				
+				SmartTrolleyPrint.print("GUI thread");
+				GUIboot.launch(SmartTrolleyGUI.class, (java.lang.String[]) null);				
+			}
+		};		
 
-		/*try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}*/		
+		newGUIThread.start();
+		
+		try { Thread.sleep(3000); } catch (InterruptedException e1) {
+		 e1.printStackTrace(); }
+		
+		SmartTrolleyPrint.print("Firing Button");
 		GUIboot.startScreen.viewAllShoppingListsButton.setText("Hi");
 		SmartTrolleyPrint.print("Fired Button");
 		
+		while (true);
+
 	}
 
 }

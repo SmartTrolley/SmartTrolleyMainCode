@@ -29,8 +29,9 @@ import javafx.stage.Stage;
 public class SmartTrolleyGUI extends Application {
     
     public Stage stage; 
-    private final double MIN_WINDOW_WIDTH = 200.0;
-    private final double MIN_WINDOW_HEIGHT = 200.0;
+    
+    private final double MIN_WINDOW_WIDTH = 600.0;
+    private final double MIN_WINDOW_HEIGHT = 600.0;
     
     StartScreenController startScreen = new StartScreenController();
 
