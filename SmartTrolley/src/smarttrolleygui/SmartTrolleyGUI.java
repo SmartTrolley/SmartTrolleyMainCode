@@ -31,6 +31,8 @@ public class SmartTrolleyGUI extends Application {
     public Stage stage; 
     private final double MIN_WINDOW_WIDTH = 200.0;
     private final double MIN_WINDOW_HEIGHT = 200.0;
+    
+    StartScreenController startScreen = new StartScreenController();
 
     @Override
     public void start(Stage primaryStage) {
@@ -61,8 +63,8 @@ public class SmartTrolleyGUI extends Application {
     */
     public void goToStartScreen() {
         try {
-            StartScreenController startScreen = (StartScreenController) replaceSceneContent("fxml/StartScreen.fxml");
-            startScreen.setApp(this);
+            startScreen = (StartScreenController) replaceSceneContent("fxml/StartScreen.fxml");
+            startScreen.setApp(this);         
         } catch (Exception ex) {
             Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
