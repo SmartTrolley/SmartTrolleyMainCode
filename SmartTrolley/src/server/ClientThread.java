@@ -155,7 +155,7 @@ public class ClientThread extends Thread {
 
 		// TODO Some method of detecting client closure, do this as a test
 		/*
-		 * if (selectedVideoFile == null) { Printing.SmartTrolleyPrint.smartTrolleyPrint("Server detects client closure."); //Now call close sockets }
+		 * if (selectedVideoFile == null) { Printing.SmartTrolleyPrint.print("Server detects client closure."); //Now call close sockets }
 		 */
 
 	}

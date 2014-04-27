@@ -36,7 +36,7 @@ public class ServerTestSmartTrolleyController {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		Printing.SmartTrolleyPrint.smartTrolleyPrint("Started next Test!");
+		Printing.SmartTrolleyPrint.print("Started next Test!");
 		server = new ServerSmartTrolleyController();
 		client.ClientSmartTrolleyController.main(null);
 	}
@@ -67,7 +67,7 @@ public class ServerTestSmartTrolleyController {
 		//server.clientSocket.close();
 	    //ServerSmartTrolleyController.serverSocket.close();
 		
-		Printing.SmartTrolleyPrint.smartTrolleyPrint(("Finished testObjectRxdFromClient Test!"));
+		Printing.SmartTrolleyPrint.print(("Finished testObjectRxdFromClient Test!"));
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class ServerTestSmartTrolleyController {
 		assertTrue(client.ClientSmartTrolleyController.serverSocket
 				.isClosed());
 
-		Printing.SmartTrolleyPrint.smartTrolleyPrint("Finished clientClosesServerOpen Test!");
+		Printing.SmartTrolleyPrint.print("Finished clientClosesServerOpen Test!");
 	}
 
 	/**
@@ -108,20 +108,20 @@ public class ServerTestSmartTrolleyController {
 				ClientThread.objectFromClient);
 		ServerSmartTrolleyController.serverClose();
 		
-		Printing.SmartTrolleyPrint.smartTrolleyPrint("Finished clientReconnectstoServer Test!");
+		Printing.SmartTrolleyPrint.print("Finished clientReconnectstoServer Test!");
 	}
 	
 	@Test
 	public void twoClientsConnectToServer() {
 		ClientTwoSmartTrolleyControllerTrial client2 = new client.ClientTwoSmartTrolleyControllerTrial();
-		Printing.SmartTrolleyPrint.smartTrolleyPrint("Client 2 started, establishing connection");
+		Printing.SmartTrolleyPrint.print("Client 2 started, establishing connection");
 		assertEquals(client.ClientSmartTrolleyController.objectToServer,
 				ClientThread.objectFromClient);
 		
 		assertEquals(client2.objectToServer,
 				ClientThread.objectFromClient);
 		
-		Printing.SmartTrolleyPrint.smartTrolleyPrint("Finished twoClientsConnectToServer Test!");
+		Printing.SmartTrolleyPrint.print("Finished twoClientsConnectToServer Test!");
 	}
 }
 /************** End of ServerSmartTrolleyController.java **************/

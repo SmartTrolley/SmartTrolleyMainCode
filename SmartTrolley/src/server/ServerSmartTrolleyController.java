@@ -53,12 +53,12 @@ public class ServerSmartTrolleyController {
 		socketThread = new Thread("Socket") {
 			public void run() {
 				// TODO remove later after completed testing
-				//Printing.SmartTrolleyPrint.smartTrolleyPrint("YAY! Dave started Socket Thread");
-				Printing.SmartTrolleyPrint.smartTrolleyPrint("YAY! Dave started Socket Thread");
+				//Printing.SmartTrolleyPrint.print("YAY! Dave started Socket Thread");
+				Printing.SmartTrolleyPrint.print("YAY! Dave started Socket Thread");
 				try {
 					openSocket();
 				} catch (IOException e) {
-					Printing.SmartTrolleyPrint.smartTrolleyPrint("ERROR on socket connection.");
+					Printing.SmartTrolleyPrint.print("ERROR on socket connection.");
 					System.exit(-1);
 				}
 			}
@@ -80,35 +80,35 @@ public class ServerSmartTrolleyController {
 			try {
 				serverSocket = new ServerSocket(port);
 			} catch (IOException e) {
-				Printing.SmartTrolleyPrint.smartTrolleyPrint("Could not listen. Dave deaf on port(server):" + port);
+				Printing.SmartTrolleyPrint.print("Could not listen. Dave deaf on port(server):" + port);
 				System.exit(-1);
 			}
 			while (true) {
 
 				waitForClient++;
 
-				Printing.SmartTrolleyPrint.smartTrolleyPrint("Opened socket on: " + port + ", waiting for client.");
+				Printing.SmartTrolleyPrint.print("Opened socket on: " + port + ", waiting for client.");
 				clientSocket = serverSocket.accept();
 				
 				//TODO WHAT DOES THIS DO?
 				for (num_cncted_clients = 0; num_cncted_clients < maxClientsCount; ++num_cncted_clients) {
 					if (threads[num_cncted_clients] == null) {
 						(threads[num_cncted_clients] = new ClientThread(clientSocket, threads)).start();
-						Printing.SmartTrolleyPrint.smartTrolleyPrint("Dave connected to client on port: " + port);
-						Printing.SmartTrolleyPrint.smartTrolleyPrint(num_cncted_clients + " clients connected.");
+						Printing.SmartTrolleyPrint.print("Dave connected to client on port: " + port);
+						Printing.SmartTrolleyPrint.print(num_cncted_clients + " clients connected.");
 						break;
 					}
 				}
 				if (num_cncted_clients == maxClientsCount) {
 					PrintStream os = new PrintStream(clientSocket.getOutputStream());
 					os.println("Dave too busy. Try later.");
-					Printing.SmartTrolleyPrint.smartTrolleyPrint("Dave too busy. Try later.");
+					Printing.SmartTrolleyPrint.print("Dave too busy. Try later.");
 					os.close();
 					clientSocket.close();
 				}
 			}
 		} catch (IOException e) {
-			Printing.SmartTrolleyPrint.smartTrolleyPrint("Could not accept client.");
+			Printing.SmartTrolleyPrint.print("Could not accept client.");
 			System.out.flush();
 		}
 	}
@@ -124,7 +124,7 @@ public class ServerSmartTrolleyController {
 	 */
 	public static void serverClose() throws IOException {
 		serverSocket.close();
-		Printing.SmartTrolleyPrint.smartTrolleyPrint("Dave Now Closed");
+		Printing.SmartTrolleyPrint.print("Dave Now Closed");
 	}
 }
 /************** End of ServerSmartTrolleyController.java **************/

@@ -63,18 +63,14 @@ public class LoginScreenController implements Initializable {
 			// NO-OP.
 			SmartTrolleyPrint.print("error: application == null");
 		} else {
-
-			SmartTrolleyPrint.print("here");
 			
 			application.USERNAME = usernameTextField.getText();
-		
-			SmartTrolleyPrint.print("here1");
 			
 			 application.PASSWORD = passwordTextField.getText();			
 
-			 ExecuteSQLScriptClass readSQL = new ExecuteSQLScriptClass();
-			 readSQL.ExecuteSQLScript(usernameTextField.getText(),
-			passwordTextField.getText());
+			/* ExecuteSQLScriptClass readSQL = new ExecuteSQLScriptClass();
+			 /readSQL.ExecuteSQLScript(usernameTextField.getText(),
+			passwordTextField.getText());*/
 			
 
 			 application.goToStartScreen();

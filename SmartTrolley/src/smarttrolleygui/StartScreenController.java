@@ -69,7 +69,7 @@ public class StartScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
+            SmartTrolleyPrint.print("error: application == null");
         } else {
             application.goToAllShoppingListsScreen();
         }
@@ -85,7 +85,7 @@ public class StartScreenController implements Initializable {
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
-            SmartTrolleyPrint.smartTrolleyPrint("error: application == null");
+            SmartTrolleyPrint.print("error: application == null");
         } else {
             application.goToCreateListScreen();
         }
@@ -99,7 +99,7 @@ public class StartScreenController implements Initializable {
     *<p> Date Modified: 15 Apr 2014
     */
     public void loadNoImages(){
-    	SmartTrolleyPrint.smartTrolleyPrint("Load no Images un/checked!");
+    	SmartTrolleyPrint.print("Load no Images un/checked!");
     	loadImages = false;
     }
 }
