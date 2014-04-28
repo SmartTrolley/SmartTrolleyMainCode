@@ -2,8 +2,16 @@ package smarttrolleygui;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
+/**
+ * 
+ * @author Thomas & Sam
+ * Inspired from Alasdair's spike
+ *
+ */
 public class SqlConnection {
 
 	private String ip;
@@ -52,6 +60,20 @@ public class SqlConnection {
 	}
 	
 	/**
+	 * Send a query to the predefined database and returns the results returned by the server
+	 * @param query
+	 * @return
+	 * @throws SQLException
+	 */
+	public ResultSet sendQuery(String query) throws SQLException {
+		
+		Statement statement = connection.createStatement();
+		ResultSet results = statement.executeQuery(query);
+		
+		return results;
+	}
+	
+	/**
 	 * provides public access to close the connection
 	 * @throws SQLException
 	 */
@@ -70,4 +92,6 @@ public class SqlConnection {
 		//construct the url assuming use of mysql and the standard port.
 		url = "jdbc:mysql://" + ip  + "/" + userName + "?";	
 	}
+
+	
 }
