@@ -13,7 +13,12 @@ public class SqlConnection {
 	private String url;
 	Connection connection;
 	
-	
+	/**
+	 * Method that receives relevant connection info
+	 * @param ip
+	 * @param userName
+	 * @param password
+	 */
 	public SqlConnection(String ip, String userName, String password) {
 		
 		try {
@@ -58,6 +63,9 @@ public class SqlConnection {
 		}
 	}
 	
+	/**
+	 * Compiles a valid URL from the connection info provided
+	 */
 	private void compileUrl() {
 		//construct the url assuming use of mysql and the standard port.
 		url = "jdbc:mysql://" + ip  + "/" + userName + "?";	
