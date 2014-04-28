@@ -18,7 +18,11 @@ package smarttrolleygui;
 
 import static org.junit.Assert.*;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -26,6 +30,9 @@ import org.junit.Test;
 import Printing.SmartTrolleyPrint;
 
 public class DeleteListTest {
+	
+	public Stage stage; 
+	
 	private SmartTrolleyGUI GUIboot;
 
 	/**
@@ -40,7 +47,30 @@ public class DeleteListTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		Thread newGUIThread;
 
+		GUIboot = new SmartTrolleyGUI();						
+		
+		newGUIThread = new Thread("New GUI") {
+			public void run() {				
+				SmartTrolleyPrint.print("GUI thread");
+				Application.launch(SmartTrolleyGUI.class, (java.lang.String[]) null);
+			}
+		};		
+
+		newGUIThread.start();		
+		
+		try { Thread.sleep(300); } catch (InterruptedException e1) {
+		 e1.printStackTrace(); }
+		
+		Platform.runLater(new Runnable() {
+	        @Override
+	        public void run() {           
+	            SmartTrolleyPrint.print("Firing Button");
+	    		GUIboot.startScreen.viewAllShoppingListsButton.fire();
+	    		SmartTrolleyPrint.print("Fired Button");	            
+	        }
+	    });
 	}
 
 	/**
@@ -52,33 +82,12 @@ public class DeleteListTest {
 	 * Date Modified: 25 Apr 2014
 	 */
 	@Test
-	public void deletingListTest() {
-		Thread newGUIThread;
-
-		GUIboot = new SmartTrolleyGUI();			
+//TODO Rename this as JAVAFXTDDEx in spikes repo, add some comments
+	public void deletingListTest() {	
 		
-		// TODO May need to put this into a separate thread
-		newGUIThread = new Thread("New GUI") {
-			public void run() {				
-				SmartTrolleyPrint.print("GUI thread");
-				Application.launch(SmartTrolleyGUI.class, (java.lang.String[]) null);
-				//GUIboot.main(null);
-			}
-		};		
-
-		newGUIThread.start();
-		
-		try { Thread.sleep(3000); } catch (InterruptedException e1) {
-		 e1.printStackTrace(); }
-		
-		SmartTrolleyPrint.print("Firing Button");
-		Button testButton = StartScreenController.viewAllShoppingListsButton;
-		testButton.fire();
-		//GUIboot.startScreen.viewAllShoppingListsButton.setText("Hi");
-		SmartTrolleyPrint.print("Fired Button");
-		
-	//	while (true);
-
+		//You can visually see where your test ends up if you uncomment the two lines below.
+		/*try { Thread.sleep(2000); } catch (InterruptedException e1) {
+			 e1.printStackTrace(); }*/
 	}
-
 }
+
