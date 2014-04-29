@@ -17,12 +17,17 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 public class AllShoppingListsScreenController implements Initializable {
     
     private SmartTrolleyGUI application;
 
+    @FXML
+	protected static Button list1Button;
+    
     /**
     *initialize is automatically called when the controller is created.
     *<p> Date Modified: 06 Mar 2014
