@@ -15,31 +15,43 @@
 package smarttrolleygui;
 
 public class Product {
-    private final String imageURL;
-    private final String productName;
-    private final String productPrice;
+	private int id;
+    private String image;
+    private String name;
+    private float price;
 
-    /**
-     * Constructor creates a new product
-     *<p> Date Modified: 28 Feb 2014
-     */
-    Product(String imageURL, String productName, String productPrice) {
-    	this.imageURL = imageURL;
-        this.productName = productName;
-        this.productPrice = productPrice;        
+	public int getId() {
+		return id;
+	}
+    
+    public void setId(int id) {
+		this.id = id;
+	}
+    
+    public String getName() {
+        return this.name;
     }
     
-    public String getImageURL() {
-        return this.imageURL;
+    public void setName(String name) {
+		this.name = name;
+	}
+    
+    public String getImage() {
+        return this.image;
     }
     
-    public String getProductName() {
-        return this.productName;
-    }
+    public void setImage(String image) {
+		this.image = image;
+	}
     
-    public String getProductPrice() {
-        return this.productPrice;
+     public float getPrice() {
+        return this.price;
     }
+     
+    public void setPrice(float price) {
+		this.price = price;
+	}  
+   
    
 }
 /**************End of Product**************/

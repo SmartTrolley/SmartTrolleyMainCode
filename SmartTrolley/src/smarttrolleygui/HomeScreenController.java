@@ -15,6 +15,8 @@ package smarttrolleygui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import DatabaseConnectors.SqlConnection;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 
@@ -234,7 +236,7 @@ public class HomeScreenController implements Initializable {
                             button.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
-                                    System.out.println("Pressed add button for product: " + product.getProductName());
+                                    System.out.println("Pressed add button for product: " + product.getName());
                                 }
                             });
                         } else {
@@ -255,7 +257,7 @@ public class HomeScreenController implements Initializable {
                     public void updateItem(final Product product, boolean empty) {
                         super.updateItem(product, empty);
                         if (product != null) {
-                            Image productImage = new Image(getClass().getResourceAsStream(product.getImageURL()));
+                            Image productImage = new Image(getClass().getResourceAsStream(product.getImage()));
                             button.setGraphic(new ImageView(productImage));
                             button.setPrefSize(80, 60);
                             button.getStyleClass().add("buttonImage");
@@ -265,7 +267,7 @@ public class HomeScreenController implements Initializable {
                             button.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
-                                    System.out.println("Pressed image of product: " + product.getProductName());
+                                    System.out.println("Pressed image of product: " + product.getName());
                                 }
                             });
                         } else {
@@ -288,52 +290,23 @@ public class HomeScreenController implements Initializable {
      * Date Modified: 7 Mar 2014
      */
     private ObservableList<Product> initializeProductData() {
+    	
+    	SqlConnection sqlConnector = new SqlConnection();    	
         productData = FXCollections.observableArrayList(
                 
-                new Product("img/SampleProducts/Activia.jpg", "Activia 0% Fat Free Peach Yogurt", "1.84"),
-                new Product("img/SampleProducts/alpen_blueberry_cranberry.jpg", "Alpen Cereal Bars Blueberry & Cranberry", "1.84"),
-                new Product("img/SampleProducts/anchor_butter.jpg", "Anchor Butter", "1.70"),
-                new Product("img/SampleProducts/ariel.jpg", "Ariel", "4.75"),
-                new Product("img/SampleProducts/Arla_Lactofree Whole_Milk.jpg", "Arla Lactofree Whole Milk (1L)", "1.00"),
-                new Product("img/SampleProducts/ben_and_jerrys.jpg", "Ben & Jerry's Cookie Dough Ice Cream", "3.00"),
-                new Product("img/SampleProducts/birds_eye_fish_fingers.jpg", "Birds Eye Cod Fish Fingers", "3.98"),
-                new Product("img/SampleProducts/British_Single_Cream.jpg", "British Single Cream", "1.05"),
-                new Product("img/SampleProducts/chicago_town_pizza.jpg", "Chicago Town Deep Dish Chicken Melt Pizza", "2.00"),
-                new Product("img/SampleProducts/Clover_Seedburst.jpg", "Clover Seedburst Spread", "1.00"),
-                new Product("img/SampleProducts/coca_cola.jpg", "Coca Cola", "1.98"),
-                new Product("img/SampleProducts/Corner_Blueberry_Yogurt.jpg", "Muller Fruit Corner Blueberry Yogurt", "0.68"),
-                new Product("img/SampleProducts/cravendale_2L_milk.jpg", "Cravendale 2L", "2.99"),
-                new Product("img/SampleProducts/crunchy_nut.jpg", "Cravendale (2L)", "2.20"),
-                new Product("img/SampleProducts/Egg_For_Soldiers.jpg", "Eggs for Soldiers Free Range Eggs(6)", "1.80"),
-                new Product("img/SampleProducts/Frijj_Sticky_Toffee_Pudding_Milkshake.jpg", "Frijj Sticky Toffee Pudding Milkshake", "1.49"),
-                new Product("img/SampleProducts/haagen_dasz.jpg", "Haagen-Dazs Belgian Chocolate Ice Cream", "4.45"),
-                new Product("img/SampleProducts/heinz_beanz.jpg", "Heinz Baked Beanz in Tomato Sauce", "0.68"),
-                new Product("img/SampleProducts/holme_farmed_venison_steak.jpg", "Holme Farmed Venison Steak", "5.00"),
-                new Product("img/SampleProducts/hovis_bread.jpg", "Hovis Bread", "1.35"),
-                new Product("img/SampleProducts/Ilchester_Applewood_Cheddar_Slices.jpg", "Ilchester Applewood Cheddar Slices", "1.90"),
-                new Product("img/SampleProducts/innocent_noodle_pot.jpg", "Innocent Noodle Pot", "3.90"),
-                new Product("img/SampleProducts/kelloggs_cornflakes.jpg", "Kellogg's Corn Flakes", "1.84"),
-                new Product("img/SampleProducts/Lassi_Yogurt.jpg", "Bio Green Lassi Yogurt Smoothie with Mango", "1.60"),
-                new Product("img/SampleProducts/lavazza_espresso.jpg", "Lavazza Espresso", "2.50"),
-                new Product("img/SampleProducts/McCain_chips.jpg", "McCain Home Chips Crinkle Cut", "2.00"),
-                new Product("img/SampleProducts/nivea_shower_cream.jpg", "Nivea Shower Creme", "1.50"),
-                new Product("img/SampleProducts/Nutty_Hazelnut.jpg", "Nutty Hazelnut Low Fat Yogurt", "1.00"),
-                new Product("img/SampleProducts/oreo_cookies.jpg", "Oreo Cookies - Vanilla", "1.08"),
-                new Product("img/SampleProducts/PG_Tips_Tea_Bags.jpg", "PG Tips Pyramid Tea Bags", "4.18"),
-                new Product("img/SampleProducts/pink_lady_apple.jpg", "Pink Lady Apple", "0.48"),
-                new Product("img/SampleProducts/pringles_salt_vinegar.jpg", "Pringles Salt & Vinegar", "2.30"),
-                new Product("img/SampleProducts/Pure_Dairy_Free_Soya_Spread.jpg", "Pure Dairy Free Soya Spread", "1.50"),
-                new Product("img/SampleProducts/sherert_dib_dab.jpg", "Candyland Sherbert Dib Dab", "0.35"),
-                new Product("img/SampleProducts/Soya_Milk.jpg", "Alpro Soya Milk Alternative 1+ Years (1L)", "1.32"),
-                new Product("img/SampleProducts/squares.jpg", "Rice Krispies Squares Chewy Marshmallow", "1.50"),
-                new Product("img/SampleProducts/star-wars-lollies.jpg", "Star Wars Lollies", "2.00"),
-                new Product("img/SampleProducts/strawberry_conserve.jpg", "Strawberry Conserve", "2.69"),
-                new Product("img/SampleProducts/sugar_puffs.jpg", "Sugar Puffs", "2.29"),
-                new Product("img/SampleProducts/uncle_bens_sweet_and_sour.jpg", "Uncle Ben's Sweet & Sour Sauce", "2.38"),
-                new Product("img/SampleProducts/Vitality_Multifruit_Yoghurt.jpg", "Muller Vitality Multifruit Yoghurt Drink", "1.00"),
-                new Product("img/SampleProducts/walkers_wotsits.jpg", "Walkers Baked Wotsits Really Cheesy", "4.08"),
-                new Product("img/SampleProducts/Yakult_Original_Fermented_Milk_Drink.jpg", "Yakult Original Fermented Milk Drink", "2.74"),
-                new Product("img/SampleProducts/yorkie.jpg", "Nestle Yorkie Milk Chocolate Bar", "0.60")
+        		sqlConnector.getProductByName("Ariel"),
+        		sqlConnector.getProductByName("Cravendale 2L"),
+        		sqlConnector.getProductByName("Holme Farmed Venison Steak"),
+        		sqlConnector.getProductByName("Hovis Bread"),
+        		sqlConnector.getProductByName("Innocent Noodle Pot"),
+        		sqlConnector.getProductByName("Lavazza Espresso"),
+        		sqlConnector.getProductByName("Nivea Shower Creme"),
+        		sqlConnector.getProductByName("Pink Lady Apple"),
+        		sqlConnector.getProductByName("Star Wars Lollies"),
+        		sqlConnector.getProductByName("Strawberry Conserve"),
+        		sqlConnector.getProductByName("Sugar Puffs"),
+        		sqlConnector.getProductByName("Nestle Yorkie Milk Chocolate Bar")               
+               
         );
         return productData;
     }

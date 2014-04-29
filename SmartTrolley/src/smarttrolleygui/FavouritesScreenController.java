@@ -15,6 +15,8 @@ package smarttrolleygui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import DatabaseConnectors.SqlConnection;
+
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -234,7 +236,7 @@ public class FavouritesScreenController implements Initializable {
                             button.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
-                                    System.out.println("Pressed add button for product: " + product.getProductName());
+                                    System.out.println("Pressed add button for product: " + product.getName());
                                 }
                             });
                         } else {
@@ -255,7 +257,7 @@ public class FavouritesScreenController implements Initializable {
                     public void updateItem(final Product product, boolean empty) {
                         super.updateItem(product, empty);
                         if (product != null) {
-                            Image productImage = new Image(getClass().getResourceAsStream(product.getImageURL()));
+                            Image productImage = new Image(getClass().getResourceAsStream(product.getImage()));
                             button.setGraphic(new ImageView(productImage));
                             button.setPrefSize(80, 60);
                             button.getStyleClass().add("buttonImage");
@@ -265,7 +267,7 @@ public class FavouritesScreenController implements Initializable {
                             button.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
-                                    System.out.println("Pressed image of product: " + product.getProductName());
+                                    System.out.println("Pressed image of product: " + product.getName());
                                 }
                             });
                         } else {
@@ -288,12 +290,16 @@ public class FavouritesScreenController implements Initializable {
      * Date Modified: 7 Mar 2014
      */
     private ObservableList<Product> initializeProductData() {
-        productData = FXCollections.observableArrayList(
-                new Product("img/SampleProducts/holme_farmed_venison_steak.jpg", "Holme Farmed Venison Steak", "5.00"),
-                new Product("img/SampleProducts/lavazza_espresso.jpg", "Lavazza Espresso", "2.50"),
-                new Product("img/SampleProducts/star-wars-lollies.jpg", "Star Wars Lollies", "2.00"),
-                new Product("img/SampleProducts/sugar_puffs.jpg", "Sugar Puffs", "2.29"),
-                new Product("img/SampleProducts/yorkie.jpg", "Nestle Yorkie Milk Chocolate Bar", "0.60")
+SqlConnection sqlConnector = new SqlConnection();
+    	
+        productData = FXCollections.observableArrayList(                
+        		        		
+        		sqlConnector.getProductByName("Holme Farmed Venison Steak"),        		
+        		sqlConnector.getProductByName("Lavazza Espresso"),        	
+        		sqlConnector.getProductByName("Star Wars Lollies"),        		
+        		sqlConnector.getProductByName("Sugar Puffs"),
+        		sqlConnector.getProductByName("Yorkie")        		
+                
         );
         return productData;
     }

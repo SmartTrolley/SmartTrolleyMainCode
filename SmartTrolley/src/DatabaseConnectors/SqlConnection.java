@@ -1,10 +1,12 @@
-package smarttrolleygui;
+package DatabaseConnectors;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import smarttrolleygui.Product;
 
 /**
  * 
@@ -14,31 +16,23 @@ import java.sql.Statement;
  */
 public class SqlConnection {
 
-	private String ip;
-	private String userName;
-	private String password;
+	public static final String ip = "79.170.44.157" ;
+	public static final String userName = "cl36-st";
+	public static final String password= "Smarttrolley";
 	
 	private String url;
 	Connection connection;
 	
 	/**
 	 * Method that receives relevant connection info
-	 * @param ip
-	 * @param userName
-	 * @param password
 	 */
-	public SqlConnection(String ip, String userName, String password) {
+	public SqlConnection() {
 		
 		try {
 			Class.forName("java.sql.DriverManager");
 		} catch (ClassNotFoundException e) {
 			System.out.println("couldnt launch sql driver");
 		}
-
-		//set essential properties
-		this.ip = ip;
-		this.userName = userName;
-		this.password = password;
 
 		compileUrl();		
 	}
@@ -74,6 +68,48 @@ public class SqlConnection {
 	}
 	
 	/**
+	 * Executes SQL query that returns the information for a particular product (by name)
+	 * @param productName
+	 * @return
+	 */
+	public Product getProductByName(String productName) {
+		
+		Product product = new Product();
+		
+		openConnection();
+		
+		String query = "SELECT * FROM products WHERE Name = '" + productName+"';";
+		
+		try {
+			
+			ResultSet results = sendQuery(query);
+			
+			while (results.next()) {
+				
+				// get id
+				product.setId(results.getInt("ProductID"));
+				
+				// get Name
+				product.setName(results.getString("Name"));
+				
+				// get Image
+				product.setImage(results.getString("Image"));
+				
+				// get Price
+				product.setPrice(results.getFloat("Price"));
+			}
+			
+		} catch (SQLException e) {
+			
+			System.out.println("Product could not be found");
+			
+		}
+		
+		closeConnection();
+		return product;
+	}
+	
+	/**
 	 * provides public access to close the connection
 	 * @throws SQLException
 	 */
@@ -92,6 +128,5 @@ public class SqlConnection {
 		//construct the url assuming use of mysql and the standard port.
 		url = "jdbc:mysql://" + ip  + "/" + userName + "?";	
 	}
-
 	
 }
