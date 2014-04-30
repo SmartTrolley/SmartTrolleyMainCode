@@ -205,8 +205,8 @@ public class FavouritesScreenController implements Initializable {
         productTable.setItems(productData);
 
         // set up column cell value factories
-        productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("productName"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("productPrice"));
+        productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
         addColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
             @Override
             public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
