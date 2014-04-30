@@ -5,11 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.BeforeClass;
 
 import smarttrolleygui.Product;
 
 import java.sql.*;
+
+import javafx.collections.ObservableList;
 
 /**
  * @author Thomas & Sam
@@ -20,6 +21,7 @@ import java.sql.*;
 public class SqlConnectionTest {
 
 	private static SqlConnection productsDatabase; 
+	private ObservableList<Product> products;
 	
 	public String query;
 	
@@ -95,7 +97,6 @@ public class SqlConnectionTest {
 	@Test
 	public void getProductByNameTest(){
 		
-		productsDatabase = new SqlConnection();
 		
 		// retrieve results from server
 		Product product = productsDatabase.getProductByName("Cravendale 2L");
@@ -104,6 +105,27 @@ public class SqlConnectionTest {
 		assertEquals(product.getName(), "Cravendale 2L");		
 		assertEquals(product.getImage(), "img/SampleProducts/cravendale_2L_milk.jpg");
 		assert(product.getPrice() == 3.99);	
+	}
+	
+	/**
+	 * Tests that the getListOfProducts() returns a full list of the product data 
+	 * from the database by printing it to the console and manually comparing it.
+	 * 
+	 * @throws SQLException
+	 */
+	@Test
+	public void getListOfProductsTest() throws SQLException{
+		
+	products = productsDatabase.getListOfProducts();
+	Product product;
+	int i = 0;
+		while(i<products.size()){
+			
+			product = products.get(i);
+			
+			System.out.println(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
+			i++;
+		}
 	}
 	
 	

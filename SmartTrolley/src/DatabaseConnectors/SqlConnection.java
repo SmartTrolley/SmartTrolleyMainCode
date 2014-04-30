@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import smarttrolleygui.Product;
 
 /**
@@ -19,6 +22,7 @@ public class SqlConnection {
 	public static final String ip = "79.170.44.157" ;
 	public static final String userName = "cl36-st";
 	public static final String password= "Smarttrolley";
+	private ObservableList<Product> products;
 	
 	private String url;
 	Connection connection;
@@ -110,6 +114,52 @@ public class SqlConnection {
 	}
 	
 	/**
+	 * @return 
+	 * @throws SQLException 
+	 * 
+	 */
+	public ObservableList<Product> getListOfProducts() {
+
+		openConnection();
+		
+		products = FXCollections.observableArrayList();
+		
+		String query = "SELECT * FROM products;";
+		
+		try {
+			
+			ResultSet results = sendQuery(query);		
+		
+		while (results.next()) {
+			
+			Product product = new Product();
+			
+			// get id
+			product.setId(results.getInt("ProductID"));
+			
+			// get Name
+			product.setName(results.getString("Name"));
+			
+			// get Image
+			product.setImage(results.getString("Image"));
+			
+			// get Price
+			product.setPrice(results.getFloat("Price"));
+			
+			products.add(product);
+		}
+				closeConnection();
+				return products;
+				
+		} catch (SQLException e) {
+		
+		System.out.println("Product could not be found");
+		return null;
+	}
+					
+	}
+	
+	/**
 	 * provides public access to close the connection
 	 * @throws SQLException
 	 */
@@ -128,5 +178,7 @@ public class SqlConnection {
 		//construct the url assuming use of mysql and the standard port.
 		url = "jdbc:mysql://" + ip  + "/" + userName + "?";	
 	}
+
+	
 	
 }
