@@ -73,9 +73,12 @@ public class FavouritesController implements Initializable {
         // Fill list on the LHS of the screen with different categories
         categories = initializeCategories();
         categoriesList.setItems(categories);
+        
+        //Create new SqlConnection to retrieve product data
+    	SqlConnection sqlConnector = new SqlConnection();
 
         // Fill table on RHS with sample products
-        productData = initializeProductData();    
+        productData = sqlConnector.getListOfProducts();    
         productTable.setItems(productData);
 
 //        imageColumn.setCellValueFactory(new PropertyValueFactory("imageURL"));
@@ -174,27 +177,6 @@ public class FavouritesController implements Initializable {
          */        
     }
     
-    private ObservableList<Product> initializeProductData() {
-SqlConnection sqlConnector = new SqlConnection();
-    	
-        productData = FXCollections.observableArrayList(
-                
-        		sqlConnector.getProductByName("Ariel"),
-        		sqlConnector.getProductByName("Cravendale 2L"),
-        		sqlConnector.getProductByName("Holme Farmed Venison Steak"),
-        		sqlConnector.getProductByName("Hovis Bread"),
-        		sqlConnector.getProductByName("Innocent Noodle Pot"),
-        		sqlConnector.getProductByName("Lavazza Espresso"),
-        		sqlConnector.getProductByName("Nivea Shower Creme"),
-        		sqlConnector.getProductByName("Pink Lady Apple"),
-        		sqlConnector.getProductByName("Star Wars Lollies"),
-        		sqlConnector.getProductByName("Strawberry Conserve"),
-        		sqlConnector.getProductByName("Sugar Puffs"),
-        		sqlConnector.getProductByName("Yorkie")
-             
-        );
-        return productData;
-    }
 
     private ObservableList initializeCategories() {
         categories = FXCollections.observableArrayList(

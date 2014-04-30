@@ -199,11 +199,14 @@ public class ExampleShoppingListController implements Initializable {
      * <p>
      * User can navigate through product database
      * <p>
-     * Date Modified: 9 Mar 2014
+     * Date Modified: 30 Apr 2014
      */
     private void initializeProductTable() {
+    	//Create new SqlConnection to retrieve product data
+    	SqlConnection sqlConnector = new SqlConnection();
+    	
         // Fill table with sample products
-        productData = initializeProductData();
+        productData = sqlConnector.getListOfProducts();
         productTable.setItems(productData);
 
         // set up column cell value factories
@@ -349,38 +352,6 @@ public class ExampleShoppingListController implements Initializable {
                 };
             }
         });
-    }
-
-    /**
-     * initializeProductData sets up the list of products that will be displayed
-     * on screen.
-     * <p>
-     * User can navigate through product database.
-     *
-     * @return productData - list of products
-     * <p>
-     * Date Modified: 7 Mar 2014
-     */
-    private ObservableList<Product> initializeProductData() {
-    	
-    	SqlConnection sqlConnector = new SqlConnection();
-    	
-        productData = FXCollections.observableArrayList(
-                
-        		sqlConnector.getProductByName("Ariel"),
-        		sqlConnector.getProductByName("Cravendale 2L"),
-        		sqlConnector.getProductByName("Holme Farmed Venison Steak"),
-        		sqlConnector.getProductByName("Hovis Bread"),
-        		sqlConnector.getProductByName("Innocent Noodle Pot"),
-        		sqlConnector.getProductByName("Lavazza Espresso"),
-        		sqlConnector.getProductByName("Nivea Shower Creme"),
-        		sqlConnector.getProductByName("Pink Lady Apple"),
-        		sqlConnector.getProductByName("Star Wars Lollies"),
-        		sqlConnector.getProductByName("Strawberry Conserve"),
-        		sqlConnector.getProductByName("Sugar Puffs"),
-        		sqlConnector.getProductByName("Yorkie")               
-        );
-        return productData;
-    }
+    }    
 }
 /**************End of ExampleShoppingListController**************/
