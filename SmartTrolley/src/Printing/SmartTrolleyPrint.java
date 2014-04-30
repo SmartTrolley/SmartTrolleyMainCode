@@ -8,7 +8,7 @@ package Printing;
  * @author Prashant Chakravarty
  * @author Alick Jacklin
  *
- * @author Checked By: Checker(s) fill here
+ * @author Checked By: Thomas Lea
  *
  * @version version of this file [Date Created: 11 Mar 2014]
  */
