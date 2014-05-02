@@ -31,4 +31,12 @@ package graphicsHandler;
 
 public class SlideEllipse {
 
+	/**
+	 * DESCRIPTION OF CONSTRUCTOR
+	 *<p> Date Modified: 2 May 2014
+	 */
+	public SlideEllipse(ShapePoint point, int width, int height) {
+		
+	}
+
 }

@@ -37,6 +37,8 @@ import javafx.scene.shape.Polygon;
 
 public class SlidePolygon extends Polygon implements SlideElement{
 
+	private SlideElementDuration duration;
+
 	/**
 	 * @param points
 	 * @param width
@@ -44,6 +46,13 @@ public class SlidePolygon extends Polygon implements SlideElement{
 	 */
 	public SlidePolygon(PriorityQueue<ShapePoint> points, int width, int height) {
 		extractCoordinates(points);
+		
+		this.setWidth(width);
+		this.setHeight(height);
+		
+		duration = new SlideElementDuration(this);
+		this.setVisible(false);
+		
 		}
 	
 	/**
@@ -79,25 +88,25 @@ public class SlidePolygon extends Polygon implements SlideElement{
 	/**
 	 * @see graphicsHandler.SlideElement#setDuration(int)
 	 */
-	@Override
+
 	public void setDuration(int seconds) {
-		// TODO Auto-generated method stub
-		
+		int milliseconds;
+		milliseconds = seconds*1000;
+		duration.setDuration(milliseconds);
 	}
 
 	/* (non-Javadoc)
 	 * @see graphicsHandler.SlideElement#show()
 	 */
-	@Override
+	
 	public void show() {
-		// TODO Auto-generated method stub
-		
+		duration.show();
 	}
 
 	/* (non-Javadoc)
 	 * @see graphicsHandler.SlideElement#setHeight(int)
 	 */
-	@Override
+	
 	public void setHeight(int newHeight) {
 		
 		double inherentHeight = super.getBoundsInLocal().getHeight();
@@ -113,7 +122,7 @@ public class SlidePolygon extends Polygon implements SlideElement{
 	/* (non-Javadoc)
 	 * @see graphicsHandler.SlideElement#setWidth(int)
 	 */
-	@Override
+
 	public void setWidth(int newWidth) {
 
 		// create local shape to access polygon parameters
@@ -130,10 +139,11 @@ public class SlidePolygon extends Polygon implements SlideElement{
 	/* (non-Javadoc)
 	 * @see graphicsHandler.SlideElement#setStartTime(int)
 	 */
-	@Override
+	
 	public void setStartTime(int seconds) {
-		// TODO Auto-generated method stub
-		
+		int milliseconds;
+		milliseconds = seconds * 1000;
+		duration.setStartTime(milliseconds);
 	}
 
 	/**
