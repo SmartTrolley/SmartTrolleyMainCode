@@ -7,24 +7,50 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Shape;
 
 public class SlideShapeFactory {
-
-	// The shape that is currently being created by the factory
+	
 	Shape shape;
 	double[] coordinates;
 
 	public SlideShapeFactory(PriorityQueue<ShapePoint> points, int width,
-			int height) {
+			int height, String fillColor, String lineColor, int startTime, int duration) {
 		
 		if(points.size() == 1){
 			shape = new SlideEllipse(points.remove(), width, height);
 		}
 		else{
 			//create the shape with the new coordinates
-			shape = new SlidePolygon(points, width, height);
+			shape = new SlidePolygon(points);
 		}
+		
+		setWidth(width);
+		setHeight(height);
+		setFillColor(fillColor);
+		setLineColor(lineColor);
+		setDuration(duration);
+		setStartTime(startTime);
 	}
 
+	public void setDuration(int duration) {
+		
+		if(SlidePolygon.class == shape.getClass()){
+			((SlidePolygon) shape).setDuration(duration);
+		}else{
+			((SlideEllipse) shape).setDuration(duration);
+		}
+	}
+	
+	public void setStartTime(int startTime) {
+		
+		if(SlidePolygon.class == shape.getClass()){
+			((SlidePolygon) shape).setStartTime(startTime);
+		}else{
+			((SlideEllipse) shape).setStartTime(startTime);
+		}
+	}
+	
+
 	public Shape getShape() {
+		
 		return shape;
 	}
 
@@ -51,6 +77,7 @@ public class SlideShapeFactory {
 		Paint color = shape.getStroke();
 		return color;
 	}
+	
 
 	// Method to set the line color of the shape
 	public void setLineColor(String lineColor) {
@@ -64,7 +91,6 @@ public class SlideShapeFactory {
 		}else{
 			((SlideEllipse) shape).setWidth(newWidth);
 		}
-		
 	}
 
 	public void setHeight(int newHeight) {
@@ -74,7 +100,6 @@ public class SlideShapeFactory {
 		}else{
 			((SlideEllipse) shape).setHeight(newHeight);
 		}
-		
 	}
 
 }

@@ -54,7 +54,7 @@ public class SlideShapeTest {
 	public void setup(){
 		pointsSetup();
 		squareSetUp();
-		square = new SlidePolygon(points, width, height);
+		square = new SlidePolygon(points);
 		circle = new SlideEllipse(point3, width, height);
 	}
 

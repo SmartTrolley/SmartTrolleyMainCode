@@ -41,18 +41,12 @@ public class SlidePolygon extends Polygon implements SlideElement{
 
 	/**
 	 * @param points
-	 * @param width
-	 * @param height
 	 */
-	public SlidePolygon(PriorityQueue<ShapePoint> points, int width, int height) {
+	public SlidePolygon(PriorityQueue<ShapePoint> points) {
 		extractCoordinates(points);
-		
-		setWidth(width);
-		setHeight(height);
 		
 		duration = new SlideElementDuration(this);
 		setVisible(false);
-		
 		}
 	
 	/**
