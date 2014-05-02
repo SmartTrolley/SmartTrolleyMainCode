@@ -4,8 +4,6 @@ import java.util.PriorityQueue;
 
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Ellipse;
-import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
 public class SlideShapeFactory {
@@ -16,38 +14,13 @@ public class SlideShapeFactory {
 
 	public SlideShapeFactory(PriorityQueue<ShapePoint> points, int width,
 			int height) {
-		//process the priority queue of ShapePoints into a polygon readable double[]
-		setCoordinates(points);
 		
-		if(coordinates.length == 2){
-			shape = new Ellipse(coordinates[0],coordinates[1], width/2, height/2);
+		if(points.size() == 1){
+			shape = new SlideEllipse(points.remove(), width, height);
 		}
 		else{
-		//create the shape with the new coordinates
-		shape = new Polygon(coordinates);
-		//scale to accord with width and height
-		setWidth(width);
-		}
-	}
-
-	private void setCoordinates(PriorityQueue<ShapePoint> points) {
-		int i = 0;
-		int coordinate;
-
-		coordinates = new double[points.size() * 2];
-
-		while (!points.isEmpty()) {
-
-			ShapePoint currentPoint = points.remove();
-			// get the x coordinate from the current point
-			coordinate = currentPoint.getxCoordinate();
-			coordinates[i] = coordinate;
-			i++;
-
-			// get the y coordinate from the current point
-			coordinate = currentPoint.getyCoordinate();
-			coordinates[i] = coordinate;
-			i++;
+			//create the shape with the new coordinates
+			shape = new SlidePolygon(points, width, height);
 		}
 	}
 
@@ -86,42 +59,21 @@ public class SlideShapeFactory {
 
 	public void setWidth(int newWidth) {
 		
-		//if its a polygon..........................................
-		// create local shape to access polygon parameters
-		Shape shape = (Polygon)this.shape;
-		
-		double inherentWidth = shape.getBoundsInLocal().getWidth();
-		
-		//calculate the ratio of new width to inherent width
-		double scaler = newWidth/inherentWidth;
-		
-		//scale by this ratio
-		shape.setScaleX(scaler);
-		
-		//replace old shape
-		this.shape = shape;
-		
-		//if its a circle...............................................
+		if(SlidePolygon.class == shape.getClass()){
+			((SlidePolygon) shape).setWidth(newWidth);
+		}else{
+			((SlideEllipse) shape).setWidth(newWidth);
+		}
 		
 	}
 
 	public void setHeight(int newHeight) {
-		//if its a polygon..........................................
-		// create local shape to access polygon parameters
-		Shape shape = (Polygon)this.shape;
 		
-		double inherentHeight = shape.getBoundsInLocal().getHeight();
-		
-		//calculate the ratio of inherent Height to current Height
-		double scaler = newHeight/inherentHeight;
-		
-		//scale by this ratio
-		shape.setScaleY(scaler);
-		
-		//replace old shape
-		this.shape = shape;
-		
-		//if its a circle...............................................
+		if(SlidePolygon.class == shape.getClass()){
+			((SlidePolygon) shape).setHeight(newHeight);
+		}else{
+			((SlideEllipse) shape).setHeight(newHeight);
+		}
 		
 	}
 

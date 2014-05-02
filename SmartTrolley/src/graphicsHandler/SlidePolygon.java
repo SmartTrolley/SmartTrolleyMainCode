@@ -47,11 +47,11 @@ public class SlidePolygon extends Polygon implements SlideElement{
 	public SlidePolygon(PriorityQueue<ShapePoint> points, int width, int height) {
 		extractCoordinates(points);
 		
-		this.setWidth(width);
-		this.setHeight(height);
+		setWidth(width);
+		setHeight(height);
 		
 		duration = new SlideElementDuration(this);
-		this.setVisible(false);
+		setVisible(false);
 		
 		}
 	
@@ -75,12 +75,12 @@ public class SlidePolygon extends Polygon implements SlideElement{
 			// get the x coordinate from the current point
 			xCoordinate = currentPoint.getxCoordinate();
 
-			this.getPoints().add(xCoordinate);
+			getPoints().add(xCoordinate);
 
 			// get the y coordinate from the current point
 			yCoordinate = currentPoint.getyCoordinate();
 
-			this.getPoints().add(yCoordinate);
+			getPoints().add(yCoordinate);
 
 		}
 	}

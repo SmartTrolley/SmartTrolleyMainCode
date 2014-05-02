@@ -3,15 +3,9 @@ package graphicsHandler;
 import static org.junit.Assert.*;
 
 import java.util.PriorityQueue;
-import java.util.Queue;
-
 import javafx.geometry.Bounds;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Ellipse;
-import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
 import org.junit.Before;
@@ -225,17 +219,12 @@ public class SlideShapeFactoryTest {
 		assertEquals(newHeight, shape.getBoundsInParent().getHeight(), 0.001);
 	}
 	
-	@Test
-	public void durationTest(){
-		fail("test not implemented");
-	}
-	
 	
 	/*..................Circle TESTS...............................*/
 	
 	@Test
 	public void circleClassTest()	{
-		assertEquals(Ellipse.class, circle.getClass());
+		assertEquals(SlideEllipse.class, circle.getClass());
 	}
 	
 	@Test

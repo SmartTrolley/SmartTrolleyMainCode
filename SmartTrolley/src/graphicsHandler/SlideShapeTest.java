@@ -56,7 +56,6 @@ public class SlideShapeTest {
 		squareSetUp();
 		square = new SlidePolygon(points, width, height);
 		circle = new SlideEllipse(point3, width, height);
-
 	}
 
 	/**
@@ -119,6 +118,13 @@ public class SlideShapeTest {
 			i++;
 		}
 	}
+	
+	@Test
+	public void circlePointTest()	{
+		//Test that the point passed in is the centre point of the circle
+		assertEquals(circle.getCenterX(), point3.getxCoordinate(), 0.0001);
+	}
+	
 
 	/**
 	 *Tests that the Height (According to its self) of the polygon 
@@ -127,10 +133,30 @@ public class SlideShapeTest {
 	 *<p> Date Modified: 25 Apr 2014
 	 */
 	@Test
-	public void squareHeightTest()	{
+	public void squareHeightWidthTest()	{
 		Bounds squareBounds = square.getBoundsInLocal();
 		double squareHeight =squareBounds.getHeight();
 		assertEquals(squareHeight, height, 0.0001);
+		
+		double squareWidth = squareBounds.getWidth();
+		assertEquals(squareWidth, width, 0.0001);
+	}
+	
+	/**
+	 *Tests that the Height (According to its self) of the polygon 
+	 *is equal to the expected height.
+	 *
+	 *<p> Date Modified: 25 Apr 2014
+	 */
+	@Test
+	public void circleHeightWidthTest()	{
+		Bounds circleBounds = circle.getBoundsInLocal();
+		
+		double circleHeight =circleBounds.getHeight();
+		assertEquals(circleHeight, height, 0.0001);
+		
+		double circleWidth = circleBounds.getWidth();
+		assertEquals(circleWidth, width, 0.0001);
 	}
 
 	/**
@@ -139,7 +165,7 @@ public class SlideShapeTest {
 	 *<p> Date Modified: 25 Apr 2014
 	 */
 	@Test
-	public void fillColorTest(){
+	public void polygonFillColorTest(){
 
 		//Paint for holding returned colour from class under test
 		Paint squareColor;
@@ -150,14 +176,22 @@ public class SlideShapeTest {
 		//Confirm the square is the specified colour
 		assertEquals(Color.BLUE, squareColor);
 	}
-
-	/**
-	 *Test that setLineColor in SlideShape factory receives the 
-	 *PWS input and changes the color of its shape's outline accordingly.
-	 *<p> Date Modified: 25 Apr 2014
-	 */
+	
 	@Test
-	public void lineColorTest(){
+	public void circleFillColorTest(){
+
+		//Paint for holding returned colour from class under test
+		Paint circleColor;
+
+		circle.setFillColor(fillColor);
+		circleColor = circle.getFillColor();
+
+		//Confirm the square is the specified colour
+		assertEquals(Color.BLUE, circleColor);
+	}
+	
+	@Test
+	public void polygonLineColorTest(){
 
 		//Paint for holding returned color from class under test
 		Paint squareLineColor;
@@ -166,6 +200,23 @@ public class SlideShapeTest {
 		squareLineColor = square.getLineColor();
 
 		assertEquals(Color.RED, squareLineColor);
+	}
+
+	/**
+	 *Test that setLineColor in SlideShape factory receives the 
+	 *PWS input and changes the color of its shape's outline accordingly.
+	 *<p> Date Modified: 25 Apr 2014
+	 */
+	@Test
+	public void circleLineColorTest(){
+
+		//Paint for holding returned color from class under test
+		Paint circleLineColor;
+
+		circle.setLineColor(lineColor);
+		circleLineColor = circle.getLineColor();
+
+		assertEquals(Color.RED, circleLineColor);
 	}
 
 	/**
@@ -187,6 +238,22 @@ public class SlideShapeTest {
 
 		assertEquals(newWidth, square.getBoundsInParent().getWidth(), 0.001);
 		assertEquals(newHeight, square.getBoundsInParent().getHeight(), 0.001);
+	}
+	
+	@Test
+	public void circleResizeTest(){
+
+		int extra = 8;
+
+		int newWidth = width + extra;
+		int newHeight = height + extra;
+
+		circle.setWidth(newWidth);
+		circle.setHeight(newHeight);
+
+
+		assertEquals(newWidth, circle.getBoundsInParent().getWidth(), 0.001);
+		assertEquals(newHeight, circle.getBoundsInParent().getHeight(), 0.001);
 	}
 
 	
@@ -221,6 +288,38 @@ public class SlideShapeTest {
 		// shape should have disappeared
 		assertFalse(square.isVisible());		
 	}
+		
+	@Test
+	public void circleDurationTest(){
+
+		circle.setStartTime(startTime);
+		circle.setDuration(duration);
+		
+		circle.show();
+		
+		assertFalse(circle.isVisible());
+		
+		// sleep for a little longer than start time
+		try {
+			Thread.sleep(startTime*1001);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//shape should have appeared
+		assertTrue(circle.isVisible());
+
+		// sleep for a little longer than duration
+		try {
+			Thread.sleep(duration*1001);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		// shape should have disappeared
+		assertFalse(circle.isVisible());		
+	}
 	
 	
 	@Test
@@ -235,6 +334,20 @@ public class SlideShapeTest {
 		}
 		
 		assertTrue(square.isVisible());
+	}
+	
+	@Test
+	public void circleZeroDurationTest(){
+		circle.setDuration(0);
+		circle.show();
+		
+		try {
+			Thread.sleep(duration);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		assertTrue(circle.isVisible());
 	}
 	
 }
