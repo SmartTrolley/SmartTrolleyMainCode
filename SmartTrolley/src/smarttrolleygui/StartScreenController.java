@@ -68,13 +68,9 @@ public class StartScreenController implements Initializable {
 			// We are running in isolated FXML, possibly in Scene Builder.
 			// NO-OP.
 			System.out.println("error: application == null");
-		} else {
+		} else {			
 			application.goToAllShoppingListsScreen();
 		}
-	}
-
-	public void loadAllShoppingListsScreen() {
-		application.goToAllShoppingListsScreen();
 	}
 }
 /************** End of StartScreenController **************/

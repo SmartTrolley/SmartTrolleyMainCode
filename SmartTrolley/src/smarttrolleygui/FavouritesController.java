@@ -15,6 +15,8 @@ package smarttrolleygui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import DatabaseConnectors.SqlConnection;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -71,9 +73,12 @@ public class FavouritesController implements Initializable {
         // Fill list on the LHS of the screen with different categories
         categories = initializeCategories();
         categoriesList.setItems(categories);
+        
+        //Create new SqlConnection to retrieve product data
+    	SqlConnection sqlConnector = new SqlConnection();
 
         // Fill table on RHS with sample products
-        productData = initializeProductData();    
+        productData = sqlConnector.getListOfProducts();    
         productTable.setItems(productData);
 
 //        imageColumn.setCellValueFactory(new PropertyValueFactory("imageURL"));
@@ -113,7 +118,7 @@ public class FavouritesController implements Initializable {
                             button.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
-                                    System.out.println("Pressed add button for product: " + product.getProductName());
+                                    System.out.println("Pressed add button for product: " + product.getName());
                                 }
                             });
                         } else {
@@ -148,7 +153,7 @@ public class FavouritesController implements Initializable {
                     public void updateItem(final Product product, boolean empty) {
                         super.updateItem(product, empty);
                         if (product != null) {
-                            Image productImage = new Image(getClass().getResourceAsStream("img/SampleProducts/" + product.getProductName() + ".jpg"));
+                            Image productImage = new Image(getClass().getResourceAsStream("img/SampleProducts/" + product.getName() + ".jpg"));
                             button.setGraphic(new ImageView(productImage));
                             button.getStyleClass().add("imageButton");
                             setGraphic(button);
@@ -157,7 +162,7 @@ public class FavouritesController implements Initializable {
                             button.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
-                                    System.out.println("Pressed image of product: " + product.getProductName());
+                                    System.out.println("Pressed image of product: " + product.getName());
                                 }
                             });
                         } else {
@@ -172,23 +177,6 @@ public class FavouritesController implements Initializable {
          */        
     }
     
-    private ObservableList<Product> initializeProductData() {
-        productData = FXCollections.observableArrayList(
-                new Product("imageURL1", "ariel", "1.99"),
-                new Product("imageURL2", "cravendale_2L_milk", "2.99"),
-                new Product("imageURL3", "holme_farmed_venison_steak", "3.99"),
-                new Product("imageURL4", "hovis_bread", "4.99"),
-                new Product("imageURL5", "innocent_noodle_pot", "5.99"),
-                new Product("imageURL6", "lavazza_espresso", "6.99"),
-                new Product("imageURL7", "nivea_shower_cream", "7.99"),
-                new Product("imageURL8", "pink_lady_apple", "8.99"),
-                new Product("imageURL9", "star-wars-lollies", "9.99"),
-                new Product("imageURL10", "strawberry_conserve", "10.99"),
-                new Product("imageURL11", "sugar_puffs", "11.99"),
-                new Product("imageURL12", "yorkie", "12.99")
-        );
-        return productData;
-    }
 
     private ObservableList initializeCategories() {
         categories = FXCollections.observableArrayList(

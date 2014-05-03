@@ -3,12 +3,12 @@ package Printing;
 /**
  * SmartTrolley
  *
- * Our own print statement YEAHH!!
+ * Our own print statement 
  *
  * @author Prashant Chakravarty
  * @author Alick Jacklin
  *
- * @author Checked By: Checker(s) fill here
+ * @author Checked By: Thomas Lea
  *
  * @version version of this file [Date Created: 11 Mar 2014]
  */
@@ -17,8 +17,7 @@ public class SmartTrolleyPrint {
 
 	/**
 	 *prints, then flushes buffer
-	 *@param args
-	 *[If applicable]@see [Reference URL OR Class#Method]
+	 *@param text String to be printed
 	 *<p> Date Modified: 11 Mar 2014
 	 * @return 
 	 */
@@ -30,4 +29,3 @@ public class SmartTrolleyPrint {
 }
 
 /**************End of SmartTrolleyPrint.java**************/
-

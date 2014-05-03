@@ -38,6 +38,8 @@ public class SmartTrolleyGUI extends Application {
     
     StartScreenController startScreen = new StartScreenController();
 
+	AllShoppingListsScreenController allShoppingLists;
+
     @Override
     public void start(Stage primaryStage) {
         try {
@@ -88,7 +90,7 @@ public class SmartTrolleyGUI extends Application {
     */
     public void goToAllShoppingListsScreen() {
         try {
-            AllShoppingListsScreenController allShoppingLists = (AllShoppingListsScreenController) replaceSceneContent("fxml/AllShoppingListsScreen.fxml");
+            allShoppingLists = (AllShoppingListsScreenController) replaceSceneContent("fxml/AllShoppingListsScreen.fxml");
             allShoppingLists.setApp(this);
         } catch (Exception ex) {
         	//TODO Show a message box to the user here

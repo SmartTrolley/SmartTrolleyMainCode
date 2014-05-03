@@ -53,10 +53,15 @@ public class DeleteListTest {
 			public void run() {				
 				SmartTrolleyPrint.print("GUI thread");
 				Application.launch(SmartTrolleyGUI.class, (java.lang.String[]) null);
+				 stage = new Stage();
+		            stage.setScene(new Scene(new Group(new Button("my second window"))));
+				/*GUIboot.start(stage);
+				stage.show();*/
 			}
 		};		
 
-		newGUIThread.start();		
+		newGUIThread.start();
+		
 		/*
 		 * Note that at this point, there are 3 threads running: 1. Main (test)
 		 * thread - Runs this class 2. newGUIThread - Launches the Application
@@ -69,7 +74,7 @@ public class DeleteListTest {
 		 * results in a nullPointerException, since the scene has not yet been
 		 * created.
 		 */
-		try { Thread.sleep(300); } catch (InterruptedException e1) {
+		try { Thread.sleep(1000); } catch (InterruptedException e1) {
 		 e1.printStackTrace(); }
 		
 		/*
@@ -87,7 +92,7 @@ public class DeleteListTest {
 	        public void run() {           
 	            SmartTrolleyPrint.print("Firing Button");
 	    		//GUIboot.startScreen.viewAllShoppingListsButton.fire();
-	            Button viewLists = new Button();
+	           Button viewLists = new Button();
 	            viewLists = StartScreenController.viewAllShoppingListsButton;
 	            viewLists.fire();
 	    		SmartTrolleyPrint.print("Fired Button");	            
@@ -102,7 +107,7 @@ public class DeleteListTest {
 	        @Override
 	        public void run() {           
 	            SmartTrolleyPrint.print("Firing list Button");
-	    		//GUIboot.startScreen.viewAllShoppingListsButton.fire();
+	    		//GUIboot.allShoppingLists.list1Button.fire();
 	            Button viewList = new Button();
 	            viewList = AllShoppingListsScreenController.list1Button;
 	            viewList.fire();

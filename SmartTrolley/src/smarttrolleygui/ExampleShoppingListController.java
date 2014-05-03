@@ -15,6 +15,8 @@ package smarttrolleygui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import DatabaseConnectors.SqlConnection;
+
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -57,7 +59,7 @@ public class ExampleShoppingListController implements Initializable {
     private SmartTrolleyGUI application;
     private ObservableList<String> categories;
     private ObservableList<Product> productData;
-
+    
     /**
      * initialize is automatically called when the controller is created.
      * <p>
@@ -197,16 +199,19 @@ public class ExampleShoppingListController implements Initializable {
      * <p>
      * User can navigate through product database
      * <p>
-     * Date Modified: 9 Mar 2014
+     * Date Modified: 30 Apr 2014
      */
     private void initializeProductTable() {
+    	//Create new SqlConnection to retrieve product data
+    	SqlConnection sqlConnector = new SqlConnection();
+    	
         // Fill table with sample products
-        productData = initializeProductData();
+        productData = sqlConnector.getListOfProducts();
         productTable.setItems(productData);
 
         // set up column cell value factories
-        productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("productName"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("productPrice"));
+        productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
         checkBoxColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
             @Override
             public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
@@ -250,7 +255,7 @@ public class ExampleShoppingListController implements Initializable {
                             checkBox.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
-                                    System.out.println("Pressed checkbox of product: " + product.getProductName());
+                                    System.out.println("Pressed checkbox of product: " + product.getName());
                                 }
                             });
                         } else {
@@ -270,7 +275,7 @@ public class ExampleShoppingListController implements Initializable {
                     public void updateItem(final Product product, boolean empty) {
                         super.updateItem(product, empty);
                         if (product != null) {
-                            Image productImage = new Image(getClass().getResourceAsStream(product.getImageURL()));
+                            Image productImage = new Image(getClass().getResourceAsStream(product.getImage()));
                             button.setGraphic(new ImageView(productImage));
                             button.setPrefSize(80, 60);
                             button.getStyleClass().add("buttonImage");
@@ -280,7 +285,7 @@ public class ExampleShoppingListController implements Initializable {
                             button.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
-                                    System.out.println("Pressed image of product: " + product.getProductName());
+                                    System.out.println("Pressed image of product: " + product.getName());
                                 }
                             });
                         } else {
@@ -308,7 +313,7 @@ public class ExampleShoppingListController implements Initializable {
                             button.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
-                                    System.out.println("Pressed add button for product: " + product.getProductName());
+                                    System.out.println("Pressed add button for product: " + product.getName());
                                 }
                             });
                         } else {
@@ -337,7 +342,7 @@ public class ExampleShoppingListController implements Initializable {
                             button.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
-                                    System.out.println("Pressed remove button for product: " + product.getProductName());
+                                    System.out.println("Pressed remove button for product: " + product.getName());
                                 }
                             });
                         } else {
@@ -347,34 +352,6 @@ public class ExampleShoppingListController implements Initializable {
                 };
             }
         });
-    }
-
-    /**
-     * initializeProductData sets up the list of products that will be displayed
-     * on screen.
-     * <p>
-     * User can navigate through product database.
-     *
-     * @return productData - list of products
-     * <p>
-     * Date Modified: 7 Mar 2014
-     */
-    private ObservableList<Product> initializeProductData() {
-        productData = FXCollections.observableArrayList(
-                new Product("img/SampleProducts/ariel.jpg", "Ariel", "4.75"),
-                new Product("img/SampleProducts/cravendale_2L_milk.jpg", "Cravendale 2L", "2.99"),
-                new Product("img/SampleProducts/holme_farmed_venison_steak.jpg", "Holme Farmed Venison Steak", "5.00"),
-                new Product("img/SampleProducts/hovis_bread.jpg", "Hovis Bread", "1.35"),
-                new Product("img/SampleProducts/innocent_noodle_pot.jpg", "Innocent Noodle Pot", "3.90"),
-                new Product("img/SampleProducts/lavazza_espresso.jpg", "Lavazza Espresso", "2.50"),
-                new Product("img/SampleProducts/nivea_shower_cream.jpg", "Nivea Shower Creme", "1.50"),
-                new Product("img/SampleProducts/pink_lady_apple.jpg", "Pink Lady Apple", "0.48"),
-                new Product("img/SampleProducts/star-wars-lollies.jpg", "Star Wars Lollies", "2.00"),
-                new Product("img/SampleProducts/strawberry_conserve.jpg", "Strawberry Conserve", "2.69"),
-                new Product("img/SampleProducts/sugar_puffs.jpg", "Sugar Puffs", "2.29"),
-                new Product("img/SampleProducts/yorkie.jpg", "Nestle Yorkie Milk Chocolate Bar", "0.60")
-        );
-        return productData;
-    }
+    }    
 }
 /**************End of ExampleShoppingListController**************/
