@@ -14,7 +14,6 @@
 package imagehandler;
 
 import graphicshandler.SlideElementDuration;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -26,13 +25,13 @@ public class ImageHandler extends ImageView{
 	private SlideElementDuration duration;
 
 	/**
-	 * @param url
-	 * @param x
-	 * @param y
-	 * @param width
-	 * @param height
-	 * @param duration
-	 * @param startTime
+	 * @param url The url of the image to be added
+	 * @param x The top left x coordinate of the bounding rectangle
+	 * @param y The top left y coordinate of the bounding rectangle
+	 * @param width The width the image should be shown with
+	 * @param height The height the image should be shown with
+	 * @param duration The number of seconds the image appears for
+	 * @param startTime The number of seconds before the image appears
 	 */
 	public ImageHandler(String url, int x, int y, int width, int height,
 			int duration, int startTime) {
@@ -57,7 +56,6 @@ public class ImageHandler extends ImageView{
 	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: May 3, 2014
 	*/
-	
 	public void setStartTime(int seconds) {
 		int milliseconds;
 		milliseconds = seconds * 1000;
@@ -73,7 +71,6 @@ public class ImageHandler extends ImageView{
 	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: May 3, 2014
 	*/
-	
 	public void setDuration(int seconds) {
 		int milliseconds;
 		milliseconds = seconds * 1000;
@@ -88,7 +85,6 @@ public class ImageHandler extends ImageView{
 	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: May 3, 2014
 	*/
-	
 	public void show() {
 		duration.show();
 	}
