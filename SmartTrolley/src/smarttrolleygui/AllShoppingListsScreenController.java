@@ -26,7 +26,7 @@ public class AllShoppingListsScreenController implements Initializable {
     private SmartTrolleyGUI application;
 
     @FXML
-	protected static Button list1Button;
+	public static Button list1Button;
     
     /**
     *initialize is automatically called when the controller is created.
