@@ -26,6 +26,6 @@ public class SmartTrolleyPrint {
 		System.out.flush();
 	}
 
-}
+} 
 
 /**************End of SmartTrolleyPrint.java**************/
