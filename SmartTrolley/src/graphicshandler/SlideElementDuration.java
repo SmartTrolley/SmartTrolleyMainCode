@@ -14,7 +14,7 @@
 /*YOUR CODE HERE*/
 
 /**************End of SlideElementDuration.java**************/
-package graphicsHandler;
+package graphicshandler;
 
 
 import java.util.Timer;
@@ -50,6 +50,8 @@ public class SlideElementDuration {
 
 	public SlideElementDuration(Node node) {
 		this.node = node;
+		
+		this.node.setVisible(false);
 		
 	}
 

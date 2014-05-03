@@ -14,7 +14,7 @@
 /*YOUR CODE HERE*/
 
 /**************End of SlidePolygon.java**************/
-package graphicsHandler;
+package graphicshandler;
 
 import java.util.PriorityQueue;
 
@@ -80,7 +80,7 @@ public class SlidePolygon extends Polygon implements SlideElement{
 	}
 	
 	/**
-	 * @see graphicsHandler.SlideElement#setDuration(int)
+	 * @see graphicshandler.SlideElement#setDuration(int)
 	 */
 
 	public void setDuration(int seconds) {

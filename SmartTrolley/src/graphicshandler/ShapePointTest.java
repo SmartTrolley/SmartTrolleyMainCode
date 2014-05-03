@@ -14,7 +14,7 @@
 /*YOUR CODE HERE*/
 
 /**************End of ShapePointTest.java**************/
-package graphicsHandler;
+package graphicshandler;
 
 import static org.junit.Assert.*;
 

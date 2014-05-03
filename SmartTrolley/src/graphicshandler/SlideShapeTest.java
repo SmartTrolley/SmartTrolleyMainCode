@@ -12,7 +12,7 @@
  */
 
 
-package graphicsHandler;
+package graphicshandler;
 
 import static org.junit.Assert.*;
 

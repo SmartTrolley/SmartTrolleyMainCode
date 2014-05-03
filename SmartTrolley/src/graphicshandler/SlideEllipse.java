@@ -14,7 +14,7 @@
 /*YOUR CODE HERE*/
 
 /**************End of slideEllipse.java**************/
-package graphicsHandler;
+package graphicshandler;
 
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;

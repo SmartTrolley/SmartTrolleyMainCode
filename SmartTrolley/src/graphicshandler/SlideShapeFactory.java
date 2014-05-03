@@ -1,4 +1,4 @@
-package graphicsHandler;
+package graphicshandler;
 
 import java.util.PriorityQueue;
 

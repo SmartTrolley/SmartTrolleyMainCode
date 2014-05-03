@@ -1,4 +1,4 @@
-package audiohandlers;
+package audiohandler;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;

@@ -1,4 +1,4 @@
-package audiohandlers;
+package audiohandler;
 
 import static org.junit.Assert.*;
 

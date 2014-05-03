@@ -14,7 +14,7 @@
 /*YOUR CODE HERE*/
 
 /**************End of SlideElement.java**************/
-package graphicsHandler;
+package graphicshandler;
 
 /** 
  * Workspace_Name
