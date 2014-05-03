@@ -27,7 +27,7 @@
         <Insets bottom="30.0" />
       </VBox.margin>
     </Line>
-    <Button fx:id="createNewListButton" mnemonicParsing="false" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="Create a new shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
+    <Button fx:id="createNewListButton" mnemonicParsing="false" onAction="#loadCreateNewListScreen" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="Create a new shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
     <Button fx:id="viewAllShoppingListsButton" mnemonicParsing="false" onAction="#loadAllShoppingListsScreen" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="View your shopping lists" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
     <Button mnemonicParsing="false" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="Import shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
     <HBox prefHeight="21.0" prefWidth="322.0">

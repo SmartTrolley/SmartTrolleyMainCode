@@ -20,7 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
 public class StartScreenController implements Initializable {
-    
+	
     private SmartTrolleyGUI application;
     
     /**
@@ -39,6 +39,24 @@ public class StartScreenController implements Initializable {
     */
     public void setApp(SmartTrolleyGUI application){
         this.application = application;
+    }
+    /**
+    *loadCreateNewListScreen is called when the 'Create a new shopping list' button is pressed.
+    *It calls the goToCreateNewListScreen method in SmartTrolleyGUI.java
+    *TODO add user story this method satisfies (in next line)
+    *<p>
+    *@param event - response to click on 'Create a new shopping list' button
+    *<p> Date Modified: 03 May 2014
+    */
+    public void loadCreateNewListScreen(ActionEvent event) {
+
+        if (application == null) {
+            // We are running in isolated FXML, possibly in Scene Builder.
+            // NO-OP.
+            System.out.println("error: application == null");
+        } else {
+            application.goToCreateNewListScreen();
+        }
     }
     
     /**

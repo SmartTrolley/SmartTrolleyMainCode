@@ -69,6 +69,22 @@ public class SmartTrolleyGUI extends Application {
     }
     
     /**
+    *goToCreateNewListScreen is called when the user chooses to create a new shopping list
+    *on the start screen. It loads a screen which allows the user to enter the name for the new list.
+    *TODO: add user story this method satisfies (in next line)
+    *<p>
+    *<p>Date Modified: 3 May 2014
+    */
+    public void goToCreateNewListScreen() {
+        try {
+        	CreateNewListScreenController createNewListScreen = (CreateNewListScreenController) replaceSceneContent("fxml/CreateNewListScreen.fxml");
+            createNewListScreen.setApp(this);
+        } catch (Exception ex) {
+            Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    /**
     *goToAllShoppingListsScreen is called when the user chooses to open a previously created shopping list
     *on the start screen. It loads the screen to show the user previously created lists.
     *<p>User can view previously created shopping lists
