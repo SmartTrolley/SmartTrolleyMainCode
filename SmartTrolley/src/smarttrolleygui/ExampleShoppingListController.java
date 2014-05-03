@@ -54,7 +54,9 @@ public class ExampleShoppingListController implements Initializable {
     @FXML
     private TableColumn<Product, Product> addColumn;
     @FXML
-    private TableColumn<Product, Product> removeColumn;
+	public TableColumn<Product, Product> removeColumn;
+    @FXML
+    public static Button deleteListButton;
 
     private SmartTrolleyGUI application;
     private ObservableList<String> categories;
@@ -343,6 +345,7 @@ public class ExampleShoppingListController implements Initializable {
                                 @Override
                                 public void handle(ActionEvent event) {
                                     System.out.println("Pressed remove button for product: " + product.getName());
+                                    
                                 }
                             });
                         } else {

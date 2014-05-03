@@ -40,6 +40,10 @@ public class SmartTrolleyGUI extends Application {
 
 	AllShoppingListsScreenController allShoppingLists;
 
+	HomeScreenController homeScreen;
+
+	public ExampleShoppingListController exampleShoppingList;
+
     @Override
     public void start(Stage primaryStage) {
         try {
@@ -108,7 +112,7 @@ public class SmartTrolleyGUI extends Application {
     */
     public void goToHomeScreen() {
         try {
-            HomeScreenController homeScreen = (HomeScreenController) replaceSceneContent("fxml/HomeScreen.fxml");
+            homeScreen = (HomeScreenController) replaceSceneContent("fxml/HomeScreen.fxml");
             homeScreen.setApp(this);
         } catch (Exception ex) {
         	//TODO Show a message box to the user here
@@ -144,7 +148,7 @@ public class SmartTrolleyGUI extends Application {
     */
     public void goToShoppingList() {
         try {
-            ExampleShoppingListController exampleShoppingList = (ExampleShoppingListController) replaceSceneContent("fxml/ExampleShoppingList.fxml");
+            exampleShoppingList = (ExampleShoppingListController) replaceSceneContent("fxml/ExampleShoppingList.fxml");
             exampleShoppingList.setApp(this);
         } catch (IOException ex) {
         	//TODO Show a message box to the user here

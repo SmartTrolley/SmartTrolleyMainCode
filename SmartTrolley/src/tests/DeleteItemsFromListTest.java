@@ -26,6 +26,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import smarttrolleygui.AllShoppingListsScreenController;
+import smarttrolleygui.ExampleShoppingListController;
 import smarttrolleygui.Lists;
 import smarttrolleygui.SmartTrolleyGUI;
 import smarttrolleygui.StartScreenController;
@@ -35,7 +36,7 @@ import Printing.SmartTrolleyPrint;
 
 import java.sql.*;
 
-public class ListTesting {
+public class DeleteItemsFromListTest {
 
 	public Stage stage;
 
@@ -158,12 +159,12 @@ public class ListTesting {
 	 * Remove products from list
 	 * <p>
 	 * Date Modified: 29 Apr 2014
-	 
-	@Test
-	// TODO Rename this as JAVAFXTDDEx in spikes repo
-	public void deletingListTest() {
-
-	}*/
+	 * 
+	 * @Test // TODO Rename this as JAVAFXTDDEx in spikes repo public void
+	 *       deletingListTest() {
+	 * 
+	 *       }
+	 */
 
 	/**
 	 * Tests to see if the item quantity increase
@@ -179,25 +180,58 @@ public class ListTesting {
 		query = "SELECT * FROM lists_products WHERE listid = 2";
 		ResultSet results = productsDatabase.sendQuery(query);
 		SmartTrolleyPrint.print("sending query to sql server to retreive list information");
+
+		/*
+		 * Lists partyList = new Lists();
+		 * SmartTrolleyPrint.print("Creating new local list named partyList");
+		 */
+		results.absolute(1);
+
+		int oldQuantity = results.getInt("Quantity");
+
+		// sets product ID
+		SmartTrolleyPrint.print("PiD: " + results.getInt("ProductID"));
+		// sets List ID
+		SmartTrolleyPrint.print("LiD: " + results.getInt("ListID"));
+		// sets Quantity of product in list
+		SmartTrolleyPrint.print("Q: " + oldQuantity);
 		
-		Lists partyList = new Lists();
-		SmartTrolleyPrint.print("Creating new local list named partyList");
-		
-		while(results.next()){
-			//sets product ID
-			partyList.setProductID(results.getInt("ProductID"));
-			//sets List ID
-			partyList.setListID(results.getInt("ListID"));
-			//sets Quantity of product in list
-			partyList.setQuantity(results.getInt("Quantity"));
-			
-		}
-		SmartTrolleyPrint.print("All data now inserted into list");
+		//removeButton = ExampleShoppingListController.button;
+		//removeButton.fire();
 		
 
-		int Quantity = partyList.getProductQuantity(1);
-		SmartTrolleyPrint.print("the quantity of product 1 is: " + Quantity);
-		int startingQuantity = Quantity;
+		// Now hit - button, update database
+		/*Button viewLists = new Button();
+		viewLists = ExampleShoppingListController.
+		viewLists.fire();
+		SmartTrolleyPrint.print("Fired Button");*/
+		
+		// Recheck database
+		/*
+		 * query = "SELECT * FROM lists_products WHERE listid = 2"; results =
+		 * productsDatabase.sendQuery(query); SmartTrolleyPrint.print(
+		 * "sending query to sql server to retreive list information");
+		 */
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
+
+		/*
+		 * int Quantity = partyList.getProductQuantity(1);
+		 * SmartTrolleyPrint.print("the quantity of product 1 is: " + Quantity);
+		 * int startingQuantity = Quantity;
+		 */
+
+		/*
+		 * while(results.next()){ //sets product ID
+		 * partyList.setProductID(results.getInt("ProductID")); //sets List ID
+		 * partyList.setListID(results.getInt("ListID")); //sets Quantity of
+		 * product in list partyList.setQuantity(results.getInt("Quantity"));
+		 * 
+		 * } SmartTrolleyPrint.print("All data now inserted into list");
+		 */
 
 		// assertTrue(startingQuantity < Quantity);
 
@@ -213,22 +247,16 @@ public class ListTesting {
 	@After
 	public void closeAll() throws Exception {
 		productsDatabase.closeConnection();
-	 
-		/*GUIboot.stop();
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					GUIboot.stop();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				Platform.exit();				
-			}
-		});*/
+
+		/*
+		 * GUIboot.stop(); Platform.runLater(new Runnable() {
+		 * 
+		 * @Override public void run() { try { GUIboot.stop(); } catch
+		 * (Exception e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); } Platform.exit(); } });
+		 */
 		SmartTrolleyPrint.print("Closing Test.");
 	}
 }
 
-/************** End of ListTesting.java **************/
+/************** End of DeleteItemsFromListTest.java **************/
