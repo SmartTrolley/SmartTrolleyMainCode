@@ -1,8 +1,5 @@
 package audiohandlers;
 
-import java.util.ArrayList;
-
-import imagehandler.ImageHandler;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -24,8 +21,6 @@ public class AudioExample extends Application {
 		vvvvvv = new AudioHandler("file:assets/positive_force.mp3", 5, 0.8);
 		tweet = new AudioHandler("file:assets/tweet.wav", 2, 5, 1.0);
 		tweetOnce = new AudioHandler("file:assets/tweet.wav", 0, 0.2);
-
-		doge(root, scene);
 
 		tweet.setRepeat(true);
 
@@ -49,18 +44,6 @@ public class AudioExample extends Application {
 				tweetOnce.stop();
 			}
 		});
-	}
-
-	private void doge(Group root, Scene scene) {
-		ArrayList<ImageHandler> images = new ArrayList<ImageHandler>();
-		for (int i = 1; i < 20; i++) {
-			images.add(new ImageHandler("assets/doge.png", (int) (scene
-					.getWidth() - scene.getWidth() / i) / 2, (int) (scene
-					.getHeight() - scene.getHeight() / i) / 2, (int) scene
-					.getWidth() / i, (int) scene.getHeight() / i, i, 10, null,
-					null, (int) (((double) (i - 1) / 20) * 360)));
-			root.getChildren().add(images.get(i - 1).box);
-		}
 	}
 
 	public static void main(String[] args) {

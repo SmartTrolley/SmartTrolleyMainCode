@@ -37,7 +37,7 @@ public class AudioHandler {
 	}
 
 	/**
-	 * Creates an Audio handler with the specified path specified path, time and
+	 * Creates an Audio handler with the specified path, time and
 	 * duration
 	 * 
 	 * @param path
@@ -53,7 +53,7 @@ public class AudioHandler {
 	public AudioHandler(String path, int startDelay, int duration, double volume) {
 //		load the specified audio file (private method in this class)
 		loadAudio(path);
-//		
+		
 		audio.setVolume(volume);
 
 		this.startDelay = startDelay;
