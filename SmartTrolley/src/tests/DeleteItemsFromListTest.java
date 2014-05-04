@@ -238,7 +238,7 @@ public class DeleteItemsFromListTest {
 	}
 
 	/**
-	 * Closes connection between client and server
+	 * Closes productsDatabase between client and server
 	 * <p>
 	 * Date Modified: 3 May 2014
 	 * 

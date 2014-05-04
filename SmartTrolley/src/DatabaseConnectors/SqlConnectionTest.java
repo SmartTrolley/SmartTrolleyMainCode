@@ -40,7 +40,7 @@ public class SqlConnectionTest {
 	}
 	
 	/**
-	 * Tests for an instance of connection and that the connection is not closed
+	 * Tests for an instance of productsDatabase and that the productsDatabase is not closed
 	 * @throws SQLException
 	 */
 	
@@ -130,7 +130,7 @@ public class SqlConnectionTest {
 	
 	
 	/**
-	 * Tests that the connection closes correctly
+	 * Tests that the productsDatabase closes correctly
 	 * @throws SQLException
 	 */
 	@Test
