@@ -138,6 +138,15 @@ public class ExampleShoppingListController implements Initializable {
 				SmartTrolleyPrint
 						.print("Unable to send query due to unknown error");
 			}
+			finally{
+	            try {
+	                productsDatabase.closeConnection();
+	                result.close();
+	            } catch (SQLException ex) {
+	               SmartTrolleyPrint.print("could not close connection, you are eternally fucked");
+	               SmartTrolleyPrint.print("Beepboop son, BeepBoop");
+	            }
+	        }  
 			
 			//Go to a specific result in the ResultSet, otherwise errors are thrown
 			result.absolute(1);

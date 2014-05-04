@@ -46,7 +46,8 @@ public class DeleteItemsFromListTest {
 
 	/**
 	 * Setup method that runs before every test
-	 * 
+	 *  It sets up a
+	 * database connection and moves to the shopping list screen
 	 * @throws Exception
 	 * @see http
 	 *      ://stackoverflow.com/questions/10492886/how-to-create-two-windows
