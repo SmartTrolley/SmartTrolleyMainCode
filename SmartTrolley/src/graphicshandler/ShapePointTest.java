@@ -34,7 +34,7 @@ import org.junit.Test;
  *
  * @author [Checked By:] [Checker(s) fill here]
  *
- * @version [v1] [Date Created: 10/03/14]
+ * @version [v1.0] [Date Created: 10/03/14]
  */
 
 public class ShapePointTest {
@@ -47,7 +47,7 @@ public class ShapePointTest {
 	*Setup the point before each test
 	*<p>required for all ShapePointTests
 	*
-	*<p> Date Modified: 25 Apr 2014
+	*<p> Date Modified: 20 Apr 2014
 	*/
 	@Before
 	public void setup(){
@@ -57,6 +57,13 @@ public class ShapePointTest {
 		
 	}
 	
+	
+	/**
+	
+	*Test to ensure the returned coordinates correspond to those expected	
+	*<p> Date Modified: 20 April 2014
+	
+	*/
 	@Test
 	public void getCoordinatesTest() {
 		
@@ -71,7 +78,7 @@ public class ShapePointTest {
 	/**
 	*Test that the shape points implement comparable correctly (largest point first)
 	*
-	*<p> Date Modified: 25 Apr 2014
+	*<p> Date Modified: 20 Apr 2014
 	*/
 	@Test
 	public void orderPointsTest(){
@@ -91,7 +98,7 @@ public class ShapePointTest {
 	*Inserts points out of order into a priority queue to make sure they are comparable
 	*<p>OrderPointsTest
 	*
-	*<p> Date Modified: 25 Apr 2014
+	*<p> Date Modified: 20 Apr 2014
 	*/
 	private void setupUnorderedTestPoints() {
 		

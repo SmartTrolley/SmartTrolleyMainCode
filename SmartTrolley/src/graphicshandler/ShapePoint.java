@@ -11,7 +11,7 @@ package graphicshandler;
 *
 * @author [Checked By:] [Checker(s) fill here]
 *
-* @version [v0.1] [Date Created: 25/04/2014]
+* @version [v1.0] [Date Created: 25/04/2014]
 */
 public class ShapePoint implements Comparable<ShapePoint> {
 	
@@ -45,7 +45,6 @@ public class ShapePoint implements Comparable<ShapePoint> {
 	*Return the x coordinate of the point
 	*<p>Calling Class returns X coordinate
 	*@return xCoordinate
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 25 Apr 2014
 	*/
 	public int getxCoordinate() {
@@ -56,17 +55,30 @@ public class ShapePoint implements Comparable<ShapePoint> {
 	*Set the X coordinate of the point
 	*<p>C
 	*@param xCoordinate
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 25 Apr 2014
 	*/
 	public void setxCoordinate(int xCoordinate) {
 		this.xCoordinate = xCoordinate;
 	}
 
+	
+	/**	
+	*Return the y coordinate of the point
+	*<p>Calling Class returns Y coordinate
+	*@return yCoordinate
+	*<p> Date Modified: 25 April 2014
+	*/
 	public int getyCoordinate() {
 		return yCoordinate;
 	}
 
+	/**
+	*Set the Y coordinate of the point
+	*<p>C
+	*@param yCoordinate
+	*<p> Date Modified: 25 Apr 2014
+	
+	*/
 	public void setyCoordinate(int yCoordinate) {
 		this.yCoordinate = yCoordinate;
 	}

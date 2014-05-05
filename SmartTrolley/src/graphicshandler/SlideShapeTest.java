@@ -35,7 +35,7 @@ import org.junit.Test;
  *
  * @author [Checked By:] [Checker(s) fill here]
  *
- * @version [version of this class] [Date Created: DD/MM/YY]
+ * @version [v1.0] [Date Created: 20/04/14]
  */
 
 public class SlideShapeTest {
@@ -119,6 +119,11 @@ public class SlideShapeTest {
 		}
 	}
 	
+	/**
+	*Tests the point passed in is the centre point of the circle 	
+	*<p> Date Modified: 25 April 2014
+	
+	*/
 	@Test
 	public void circlePointTest()	{
 		//Test that the point passed in is the centre point of the circle
@@ -161,7 +166,7 @@ public class SlideShapeTest {
 
 	/**
 	 *Test that setfill in SlideShape factory receives the 
-	 *PWS input and changes the color of it's shape accordingly.
+	 *PWS input and changes the color of the polygon accordingly.
 	 *<p> Date Modified: 25 Apr 2014
 	 */
 	@Test
@@ -177,6 +182,11 @@ public class SlideShapeTest {
 		assertEquals(Color.BLUE, squareColor);
 	}
 	
+	/**
+	 *Test that setfill in SlideShape factory receives the 
+	 *PWS input and changes the color of the circle accordingly.
+	 *<p> Date Modified: 25 Apr 2014
+	 */
 	@Test
 	public void circleFillColorTest(){
 
@@ -190,6 +200,11 @@ public class SlideShapeTest {
 		assertEquals(Color.BLUE, circleColor);
 	}
 	
+	/**
+	 *Test that setLineColor in SlideShape factory receives the 
+	 *PWS input and changes the color of the shape outline accordingly.
+	 *<p> Date Modified: 25 Apr 2014
+	 */
 	@Test
 	public void polygonLineColorTest(){
 
@@ -221,7 +236,7 @@ public class SlideShapeTest {
 
 	/**
 	 *Test that setWidth and setHeight correctly change the width and height of
-	 *the space the shape occupies in its parent.
+	 *the space the polygon occupies in its parent.
 	 *<p> Date Modified: 25 Apr 2014
 	 */
 	@Test
@@ -240,6 +255,11 @@ public class SlideShapeTest {
 		assertEquals(newHeight, square.getBoundsInParent().getHeight(), 0.001);
 	}
 	
+	/**
+	 *Test that setWidth and setHeight correctly change the width and height of
+	 *the space the circle occupies in its parent.
+	 *<p> Date Modified: 25 Apr 2014
+	 */
 	@Test
 	public void circleResizeTest(){
 
@@ -257,6 +277,10 @@ public class SlideShapeTest {
 	}
 
 	
+	/**
+	*Tests the polygon appears at after the appropriate delay for the correct amount of time
+	*<p> Date Modified: 25 April 2014
+	*/
 	@Test
 	public void polygonDurationTest(){
 
@@ -289,6 +313,10 @@ public class SlideShapeTest {
 		assertFalse(square.isVisible());		
 	}
 		
+	/**
+	*Tests the circle appears at after the appropriate delay for the correct amount of time
+	*<p> Date Modified: 25 April 2014
+	*/
 	@Test
 	public void circleDurationTest(){
 
@@ -322,6 +350,10 @@ public class SlideShapeTest {
 	}
 	
 	
+	/**
+	*Tests the polygon is visible by default even if duration is set to 0
+	*<p> Date Modified: 25 April 2014
+	*/
 	@Test
 	public void polygonZeroDurationTest(){
 		square.setDuration(0);
@@ -336,6 +368,10 @@ public class SlideShapeTest {
 		assertTrue(square.isVisible());
 	}
 	
+	/**
+	*Tests the circle is visible by default even if duration is set to 0
+	*<p> Date Modified: 25 April 2014
+	*/
 	@Test
 	public void circleZeroDurationTest(){
 		circle.setDuration(0);

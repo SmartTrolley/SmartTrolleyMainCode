@@ -30,6 +30,11 @@ public class SlideShapeFactory {
 		setStartTime(startTime);
 	}
 
+	/**
+	* Sets the duration of slidePolygon and slideEllipse
+	*@param duration
+	*<p> Date Modified: 28 April 2014	
+	*/
 	public void setDuration(int duration) {
 		
 		if(SlidePolygon.class == shape.getClass()){
@@ -39,6 +44,11 @@ public class SlideShapeFactory {
 		}
 	}
 	
+	/**
+	* Sets the start times of slidePolygon and slideEllipse
+	*@param startTime
+	*<p> Date Modified: 28 April 2014	
+	*/
 	public void setStartTime(int startTime) {
 		
 		if(SlidePolygon.class == shape.getClass()){
@@ -49,41 +59,63 @@ public class SlideShapeFactory {
 	}
 	
 
+	/**
+	* Method returns shape 
+	*<p> Date Modified: 28 April 2014
+	*/
 	public Shape getShape() {
 		
 		return shape;
 	}
 
-	// Method to return the x and y coordinates of Point
+	/**
+	* Method to return the x and y coordinates of Point
+	*<p> Date Modified: 28 April 2014	
+	*/
 	public double[] getPoint(int i) {
 		double xCoordinate = coordinates[i * 2 - 1];
 		double yCoordinate = coordinates[i * 2];
 		return new double[] { xCoordinate, yCoordinate };
 	}
 
-	// Method to set the fill color of the shape
+	/**
+	* Method to set the fill color of the shape
+	*<p> Date Modified: 28 April 2014	
+	*/
 	public void setFillColor(String color) {
 		shape.setFill(Color.web(color));
 	}
-
-	// Method to return the fill color of the shape
+	
+	/**
+	* Method to return the fill color of the shape
+	*<p> Date Modified: 28 April 2014	
+	*/
 	public Paint getFillColor() {
 		Paint color = shape.getFill();
 		return color;
 	}
-
-	// Method to return the line color of the shape
+	
+	/**
+	* Method to return the line color of the shape
+	*<p> Date Modified: 28 April 2014	
+	*/
 	public Paint getLineColor() {
 		Paint color = shape.getStroke();
 		return color;
 	}
 	
-
-	// Method to set the line color of the shape
+	/**
+	*  Method to set the line color of the shape
+	*<p> Date Modified: 28 April 2014	
+	*/
 	public void setLineColor(String lineColor) {
 		shape.setStroke(Color.web(lineColor));
 	}
 
+	/**
+	*Method sets the width of the shape
+	*<p> Date Modified: 28 April 2014
+	*/
 	public void setWidth(int newWidth) {
 		
 		if(SlidePolygon.class == shape.getClass()){
@@ -93,6 +125,10 @@ public class SlideShapeFactory {
 		}
 	}
 
+	/**
+	*Method sets the height of the shape
+	*<p> Date Modified: 28 April 2014
+	*/
 	public void setHeight(int newHeight) {
 		
 		if(SlidePolygon.class == shape.getClass()){

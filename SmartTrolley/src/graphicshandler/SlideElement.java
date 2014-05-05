@@ -26,7 +26,7 @@ package graphicshandler;
  *
  * @author [Checked By:] [Checker(s) fill here]
  *
- * @version [version of this class] [Date Created: DD/MM/YY]
+ * @version [v1.0] [Date Created: 25/04/14]
  */
 
 public interface SlideElement {

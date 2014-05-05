@@ -30,7 +30,7 @@ import javafx.scene.shape.Ellipse;
  *
  * @author [Checked By:] [Checker(s) fill here]
  *
- * @version [version of this class] [Date Created: DD/MM/YY]
+ * @version [v1.0] [Date Created: 25/04/14]
  */
 
 public class SlideEllipse extends Ellipse implements SlideElement{
@@ -47,8 +47,10 @@ public class SlideEllipse extends Ellipse implements SlideElement{
 		setVisible(false);
 	}
 
-	/* (non-Javadoc)
-	 * @see graphicsHandler.SlideElement#setDuration(int)
+	
+	/**
+	 * Method converts from seconds to milliseconds for setDuration
+	 *<p> Date Modified: 2 May 2014
 	 */
 	@Override
 	public void setDuration(int seconds) {
@@ -57,16 +59,20 @@ public class SlideEllipse extends Ellipse implements SlideElement{
 		duration.setDuration(milliseconds);
 	}
 
-	/* (non-Javadoc)
-	 * @see graphicsHandler.SlideElement#show()
+
+	/**Calls duration.show()
+	 *<p> Date Modified: 2 May 2014
 	 */
 	@Override
 	public void show() {
 		duration.show();
 	}
 
-	/* (non-Javadoc)
-	 * @see graphicsHandler.SlideElement#setHeight(int)
+	
+	/**
+	 * Finds the ratio of the newHeight of the shape once it has been resized to the 
+	 * inherent height of the shape, to determine a scaling factor
+	 *<p> Date Modified: 2 May 2014
 	 */
 	@Override
 	public void setHeight(int newHeight) {
@@ -81,8 +87,9 @@ public class SlideEllipse extends Ellipse implements SlideElement{
 
 	}
 
-	/* (non-Javadoc)
-	 * @see graphicsHandler.SlideElement#setWidth(int)
+	/**
+	 * Finds the ratio of the newWidth of the shape once it has been resized to the 
+	 * inherent width of the shape, to determine a scaling factor
 	 */
 	@Override
 	public void setWidth(int newWidth) {
@@ -98,8 +105,9 @@ public class SlideEllipse extends Ellipse implements SlideElement{
 
 	}
 
-	/* (non-Javadoc)
-	 * @see graphicsHandler.SlideElement#setStartTime(int)
+	/**
+	 *Method converts from seconds to milliseconds for setStartTime
+	 *<p> Date Modified: 2 May 2014
 	 */
 	@Override
 	public void setStartTime(int seconds) {
@@ -108,11 +116,8 @@ public class SlideEllipse extends Ellipse implements SlideElement{
 		duration.setStartTime(milliseconds);		
 	}
 
-	/**
-	 *Method/Test Description
-	 *<p>Test(s)/User Story that it satisfies
+	/**Method sets fillColor
 	 *@param fillColor
-	 *[If applicable]@see [Reference URL OR Class#Method]
 	 *<p> Date Modified: 2 May 2014
 	 */
 	public void setFillColor(String fillColor) {
@@ -121,10 +126,7 @@ public class SlideEllipse extends Ellipse implements SlideElement{
 	}
 
 	/**
-	 *Method/Test Description
-	 *<p>Test(s)/User Story that it satisfies
-	 *@return
-	 *[If applicable]@see [Reference URL OR Class#Method]
+	 * Method returns fillColor
 	 *<p> Date Modified: 2 May 2014
 	 */
 	public Paint getFillColor() {
@@ -132,10 +134,7 @@ public class SlideEllipse extends Ellipse implements SlideElement{
 	}
 
 	/**
-	 *Method/Test Description
-	 *<p>Test(s)/User Story that it satisfies
-	 *@param lineColor
-	 *[If applicable]@see [Reference URL OR Class#Method]
+	 *Method sets lineColor
 	 *<p> Date Modified: 2 May 2014
 	 */
 	public void setLineColor(String lineColor) {
@@ -144,10 +143,7 @@ public class SlideEllipse extends Ellipse implements SlideElement{
 	}
 
 	/**
-	 *Method/Test Description
-	 *<p>Test(s)/User Story that it satisfies
-	 *@return
-	 *[If applicable]@see [Reference URL OR Class#Method]
+	 *Method returns lineColor
 	 *<p> Date Modified: 2 May 2014
 	 */
 	public Paint getLineColor() {

@@ -223,7 +223,7 @@ public class SlideShapeFactoryTest {
 	
 	/**
 	*Test that the constructor input for a circle produces one.
-	*<p> Date Modified: 5 May 2014
+	*<p> Date Modified: 25 April 2014
 	*/
 	@Test
 	public void circleClassTest()	{
