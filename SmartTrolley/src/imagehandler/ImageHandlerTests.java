@@ -28,19 +28,32 @@ import org.junit.Test;
 public class ImageHandlerTests {
 	
 	public String url = "http://th03.deviantart.net/fs70/PRE/i/2013/077/8/9/cookie_monster_by_xenia_cat-d5yhjwj.jpg";
-	public int x, y, width = 10, height = 10, duration = 5, startTime = 5;
+	public int x, y, width = 10, height = 10, duration = 1, startTime = 1;
 	ImageHandler imageHandler;
 
+	/**
+	*Setup the image handler with arbitrary PWS input 
+	*<p> Date Modified: 5 May 2014
+	*/
 	@Before
 	public void setup(){
 		imageHandler = new ImageHandler(url, x, y, width, height, duration, startTime);
 	}
 	
+	/**
+	*Test that the getImage method returns an image
+	*<p> Date Modified: 5 May 2014
+	*/
 	@Test
 	public void classTest() {
 		assertEquals(Image.class, imageHandler.getImage().getClass());
 	}
 	
+	/**
+	*Test that the height and width of the image in its parent are equal to
+	*the height and width specified in the constructor
+	*<p> Date Modified: 5 May 2014
+	*/
 	@Test
 	public void heightWidthTest(){
 		
@@ -51,8 +64,14 @@ public class ImageHandlerTests {
 		assertEquals(circleWidth, width, 0.0001);
 	}
 	
+	/**
+	*Check that the X and Y positions in the slide are those fed to the constructor
+	*<p> Date Modified: 5 May 2014
+	*/
 	@Test
 	public void xyPosTest(){
+		// + getMinX required because the layoutX checks the translation 
+		// from its initial position (not neceserally 0, 0).
 		double xPos = imageHandler.getLayoutX() + imageHandler.getLayoutBounds().getMinX();
 		assertEquals(x, xPos, 0.0001);
 		
@@ -61,11 +80,14 @@ public class ImageHandlerTests {
 		
 	}
 	
+	/**
+	*Test that the image appears and disappears at the times 
+	*specified by startTime and duration.
+	*
+	*<p> Date Modified: 5 May 2014
+	*/
 	@Test
 	public void durationTest(){
-
-		imageHandler.setStartTime(startTime);
-		imageHandler.setDuration(duration);
 		
 		imageHandler.show();
 		

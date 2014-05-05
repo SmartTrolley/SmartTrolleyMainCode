@@ -31,7 +31,11 @@ public class ShapePoint implements Comparable<ShapePoint> {
 	}
 	
 	
-	//ShapePoints should be organised by pointNumber when used to draw a shape
+	/**ShapePoints should be organised by pointNumber when used to draw a shape
+	 * 
+	 * Required by Comparable Interface:
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
 	@Override
 	public int compareTo(ShapePoint pointToCompare)	{
 		return Double.compare(pointToCompare.pointNumber, pointNumber);

@@ -24,16 +24,17 @@ import javafx.scene.Node;
 
 
 /** 
- * Workspace_Name
+ * SmartTrolley
  * 
- * A DESCRIPTION OF THE CLASS
+ * Handler for durations of media on a slide.
+ * uses timers to make the slide appear after startTime and then remain visible for the duration.
  *
  * @author Matthew Wells
  * @author Alasdair Munday
  *
  * @author [Checked By:] [Checker(s) fill here]
  *
- * @version [version of this class] [Date Created: DD/MM/YY]
+ * @version 1.0 [Date Created: 02/05/14]
  */
 
 public class SlideElementDuration {
@@ -49,6 +50,7 @@ public class SlideElementDuration {
 	private boolean started;
 
 	public SlideElementDuration(Node node) {
+		
 		this.node = node;
 		
 		this.node.setVisible(false);
