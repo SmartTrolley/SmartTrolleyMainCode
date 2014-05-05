@@ -33,13 +33,13 @@ import javafx.scene.layout.RowConstraints;
 
 public class AllShoppingListsScreenController implements Initializable {
 
-	private SmartTrolleyGUI application;
+	public SmartTrolleyGUI application;
 
 	private SqlConnection productsDatabase;
 
 	private PreparedStatement preparedStatement;
 
-	private GridPane grdPaneLists;
+	public GridPane grdPaneLists;
 
 	@FXML
 	public static Button list1Button;
@@ -84,7 +84,7 @@ public class AllShoppingListsScreenController implements Initializable {
 		
 	}
 //TODO close ResultSet when finished.
-	private void CreateList() throws SQLException {
+	public void CreateList() throws SQLException {
 		String query = "SELECT ListID ,Name from lists";
 		SmartTrolleyPrint.print("returned lists from DB");
 		ResultSet resultSet = productsDatabase.sendQuery(query);

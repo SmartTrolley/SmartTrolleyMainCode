@@ -20,6 +20,9 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -169,6 +172,7 @@ public class AllShoppingListsScreenControllerTest {
 		try {
 			results.absolute(1);
 			SmartTrolleyPrint.print("Number of rows Database is: " + results.getInt(1));
+			rowSize = results.getInt(1);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -180,8 +184,57 @@ public class AllShoppingListsScreenControllerTest {
 			e1.printStackTrace();
 		}
 		
+		
+		
+		SmartTrolleyPrint.print("rowSize is " + rowSize);
+		SmartTrolleyPrint.print("array size is" + AllShoppingListsScreenController.buttonList.size());
+		
 		assertTrue(rowSize == AllShoppingListsScreenController.buttonList.size()-1);
 		
+		
+	}
+	
+	/**
+	*Tests that the correct list is displayed to the user
+	*User can view list of lists
+	*<p> Date Modified: 5 May 2014
+	*/
+	@Test
+	public void correctListDisplayed () {
+		ResultSet results = null;
+		String query;
+		int rowSize = 0;
+		
+		query = "SELECT * FROM 'lists_products' WHERE listID = '1'";
+		
+		try {
+			results = productsDatabase.sendQuery(query);
+		} catch (SQLException e1) {
+			SmartTrolleyPrint.print("unable to send query, unknown reason");
+		}
+		
+		
+		/*try {
+			Robot menuRobot = new Robot();
+			
+			menuRobot.keyPress(KeyEvent.VK_ENTER);
+			menuRobot.keyRelease(KeyEvent.VK_ENTER);
+			
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		try {
+			results.last();
+			results.getRow();
+			
+			rowSize = results.getRow();
+		} catch (SQLException e) {
+			SmartTrolleyPrint.print("no results in ResultSet");
+		}
+		
+		SmartTrolleyPrint.print("row Size is" + rowSize);
 		
 	}
 
