@@ -128,6 +128,24 @@ public class SqlConnectionTest {
 		}
 	}
 	
+	/**
+	 * Test that the getListOfOffers() returns the full list of offers
+	 * from the database by printing it to the console and then comparing it.
+	 */
+	@Test
+	public void getListOfOffersTest(){
+		offers = productsDatabase.getListOfOffers();
+		Offer offer;
+		int j = 0;
+		while(j<offers.size()){
+			
+			offer = offers.get(j);
+			System.out.println(offer.getOfferId() + "  " + offer.getProductId() + "  " + offer.getOfferPrice());
+			j++;
+		}
+		
+	}
+	
 	
 	/**
 	 * Tests that the connection closes correctly

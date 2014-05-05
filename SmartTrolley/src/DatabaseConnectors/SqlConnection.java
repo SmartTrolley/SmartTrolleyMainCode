@@ -9,6 +9,7 @@ import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import smarttrolleygui.Offer;
 import smarttrolleygui.Product;
 
 /**
@@ -23,6 +24,7 @@ public class SqlConnection {
 	public static final String userName = "cl36-st";
 	public static final String password= "Smarttrolley";
 	private ObservableList<Product> products;
+	private ObservableList<Offer> offers;
 	
 	private String url;
 	Connection connection;
@@ -160,6 +162,48 @@ public class SqlConnection {
 	}
 	
 	/**
+	 * When called, this method will return the list of offers
+	 * and store them as a type offer.
+	 */
+	public ObservableList<Offer> getListOfOffers() {
+		
+		openConnection();
+		
+		offers = FXCollections.observableArrayList();
+		
+		String query = "SELECT * FROM offers;";
+		
+		try {
+			ResultSet results = sendQuery(query);
+			
+			while (results.next()) {
+				
+				Offer offer = new Offer();
+				
+				// get Offer id
+				offer.setOfferId(results.getInt("OfferID"));
+				
+				// get Product id
+				offer.setProductId(results.getInt("ProductID"));
+				
+				// get Price
+				offer.setOfferPrice(results.getFloat("OfferPrice"));
+				
+				offers.add(offer);
+			}
+			
+			closeConnection();
+			return offers;
+			
+		} catch (SQLException e) {
+			
+			System.out.println("Offers could not be found");
+			return null;
+		}
+		
+	}
+	
+	/**
 	 * provides public access to close the connection
 	 * @throws SQLException
 	 */
@@ -179,6 +223,5 @@ public class SqlConnection {
 		url = "jdbc:mysql://" + ip  + "/" + userName + "?";	
 	}
 
-	
-	
+
 }
