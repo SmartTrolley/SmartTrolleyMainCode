@@ -25,6 +25,8 @@ public class ImageHandler extends ImageView{
 	private SlideElementDuration duration;
 
 	/**
+	 * The Full PWS Constructor for images. completely fulfills PWS Specification for images
+	 * 
 	 * @param url The url of the image to be added
 	 * @param x The top left x coordinate of the bounding rectangle
 	 * @param y The top left y coordinate of the bounding rectangle
@@ -50,11 +52,9 @@ public class ImageHandler extends ImageView{
 	}
 
 	/**
-	*Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
-	*@param startTime
-	*[If applicable]@see [Reference URL OR Class#Method]
-	*<p> Date Modified: May 3, 2014
+	*Image is made visible after show has been called and the start time has elapsed
+	*<p>Fulfills ImageDurationTest
+	*@param seconds start delay in seconds
 	*/
 	public void setStartTime(int seconds) {
 		int milliseconds;
@@ -65,10 +65,9 @@ public class ImageHandler extends ImageView{
 	}
 
 	/**
-	*Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
+	*Image disappears after show is called and start time and duration has elapsed
+	*<p> Fulfills ImageDurationTest
 	*@param duration
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: May 3, 2014
 	*/
 	public void setDuration(int seconds) {
@@ -80,9 +79,8 @@ public class ImageHandler extends ImageView{
 	}
 
 	/**
-	*Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
-	*[If applicable]@see [Reference URL OR Class#Method]
+	*When Show is called, the image appears after the start time and is visible for the duration.
+	*<p>Fulfills ImageDurationTest
 	*<p> Date Modified: May 3, 2014
 	*/
 	public void show() {
