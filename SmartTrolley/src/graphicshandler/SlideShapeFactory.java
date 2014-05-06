@@ -6,6 +6,18 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Shape;
 
+/** 
+* 
+*
+*
+* @author Matthew Wells
+* @author Alasdair Munday
+*
+* @author [Checked By:] [Checker(s) fill here]
+*
+* @version [v1.0] [Date Created: 28/04/2014]
+*/
+
 public class SlideShapeFactory {
 	
 	Shape shape;

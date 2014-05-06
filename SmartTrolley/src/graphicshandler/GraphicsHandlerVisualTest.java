@@ -11,6 +11,19 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeType;
 import javafx.stage.Stage;
 
+/** 
+* 
+* Visual test for graphics handler, displays a square, pentagon and circle after 
+* a set delay, for a certain duration
+*
+* @author Matthew Wells
+* @author Alasdair Munday
+*
+* @author [Checked By:] [Checker(s) fill here]
+*
+* @version [v1.0] [Date Created: 28/04/2014]
+*/
+
 public class GraphicsHandlerVisualTest extends Application {
 
 	public PriorityQueue<ShapePoint> points;
@@ -30,7 +43,12 @@ public class GraphicsHandlerVisualTest extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
 
+	/**
+	 * Method to call setup methods for Points, Square, Pentagon, Circle, Video and Scene
+	 * <p> Date Modified: 28 Apr 2014
+	 */
 	@Override
 	public void start(Stage mainStage) throws Exception {
 		
@@ -51,11 +69,22 @@ public class GraphicsHandlerVisualTest extends Application {
 	}
 
 
+	/**
+	*Setup method instantiates a new instance of VideoPlayerHandler
+	*<p> Date Modified: 28 April 2014
+	*/
 	private void setupVideo() {
 		VideoPlayerHandler video = new VideoPlayerHandler("http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv", 300, 300, 400, 400, false, 2, 5);
 		
 	}
 
+	
+	/**
+	*Setup method for circle inputs points, width, height, fill colour, line colour,
+	*start time and duration to SlideShapeFactory to generate an Ellipse	
+	*<p> Date Modified: 28 April 2014
+	
+	*/
 	private void setupCircle() {
 		
 		points = new PriorityQueue<ShapePoint>();
@@ -68,6 +97,11 @@ public class GraphicsHandlerVisualTest extends Application {
 		
 	}
 
+	/**
+	*Creates panes to hold each shape and adds each shape to its respective pane	
+	*<p> Date Modified: 28 April 2014
+	
+	*/
 	private Scene setupScene() {
 		
 		//Create panes to hold the test shapes
@@ -91,12 +125,24 @@ public class GraphicsHandlerVisualTest extends Application {
 		return scene;
 	}
 	
+	/**
+	 * Calls the show() method for each shape
+	*<p> Date Modified: 28 April 2014
+	
+	*/
 	private void showShapes(){
 		square.show();
 		pentagon.show();
 		circle.show();
 	}
 	
+	/**
+	*Setup method for pentagon inputs points, width, height, fill colour, line colour,
+	*start time, duration, to SlideShapeFactory to generate a pentagon
+	*The stroke width and colour are also set	
+	*<p> Date Modified: 28 April 2014
+	
+	*/
 	private void setupPentagon() {
 		
 		points = new PriorityQueue<ShapePoint>();
@@ -114,6 +160,11 @@ public class GraphicsHandlerVisualTest extends Application {
 		pentagon.setStrokeWidth(5);
 	}
 
+	/**
+	*Setup method for square inputs points, width, height, fill colour, line colour,
+	*start time and duration to SlideShapeFactory to generate a square	
+	*<p> Date Modified: 28 April 2014
+	*/
 	private void setupSquare() {
 		
 		points = new PriorityQueue<ShapePoint>();
@@ -130,6 +181,10 @@ public class GraphicsHandlerVisualTest extends Application {
 		square = (SlidePolygon) shapeFactory.getShape();
 	}
 
+	/**
+	 * Generates a square using slideShapeFactory
+	*<p> Date Modified: 28 April 2014
+	*/
 	private void setupPoints() {
 		//create a square using slideShapeFactory
 		point1 = new ShapePoint(pointLow,pointLow,point1Num);

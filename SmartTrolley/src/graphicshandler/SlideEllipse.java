@@ -21,9 +21,9 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
 
 /** 
- * Workspace_Name
  * 
- * A DESCRIPTION OF THE CLASS
+ * Generates an Ellipse suitable to pass all the tests determined
+ * by the PWS and contract with Spoon
  *
  * @author Matthew Wells
  * @author Alasdair Munday

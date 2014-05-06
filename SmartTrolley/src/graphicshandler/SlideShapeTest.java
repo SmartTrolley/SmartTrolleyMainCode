@@ -28,7 +28,7 @@ import org.junit.Test;
 /** 
  * Workspace_Name
  * 
- * A DESCRIPTION OF THE CLASS
+ * Tests for all necessary aspects of SlideShapes
  *
  * @author Matthew Wells
  * @author Alasdair Munday

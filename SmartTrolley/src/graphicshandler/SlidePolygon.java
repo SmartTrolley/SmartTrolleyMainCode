@@ -23,9 +23,8 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Polygon;
 
 /**
- * Workspace_Name
- * 
- * A DESCRIPTION OF THE CLASS
+ * Generates a Polygon suitable to pass all the tests determined
+ * by the PWS and contract with Spoon
  * 
  * @author Matthew Wells
  * @author Alasdair Munday

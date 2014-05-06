@@ -35,6 +35,7 @@ public class ShapePoint implements Comparable<ShapePoint> {
 	 * 
 	 * Required by Comparable Interface:
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 * <p> Date Modified: 25 Apr 2014
 	 */
 	@Override
 	public int compareTo(ShapePoint pointToCompare)	{

@@ -17,9 +17,10 @@
 package graphicshandler;
 
 /** 
- * Workspace_Name
  * 
- * A DESCRIPTION OF THE CLASS
+ * 
+ * A class to set the duration, height, width and start time
+ * of each slideElement
  *
  * @author Matthew Wells
  * @author Alasdair Munday
