@@ -2,13 +2,14 @@ package DatabaseConnectors;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import Printing.SmartTrolleyPrint;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import smarttrolleygui.Product;
 
 /**
@@ -25,6 +26,7 @@ public class SqlConnection {
 	private ObservableList<Product> products;
 	
 	private String url;
+	PreparedStatement preparedStatement;
 	Connection connection;
 	
 	/**
@@ -55,6 +57,35 @@ public class SqlConnection {
 			System.out.println("Connection failed to open");
 			
 		}
+	}
+	
+	/**
+	 * executes statement to SQL server, allow for creation and deleted of
+	 * further lists and tables
+	 * 
+	 * @param query
+	 * @return <p>
+	 *         Date Modified: 4 May 2014
+	 */
+	public boolean executeStatement(String query) {
+		boolean statementExecuted = false;
+
+		SmartTrolleyPrint.print(query);
+		try {
+			preparedStatement = null;
+			SmartTrolleyPrint
+					.print("Reset preparedStatment, preparing to give it information");
+			preparedStatement = connection.prepareStatement(query);
+			SmartTrolleyPrint
+					.print("Statement now prepared, now begining to execute");
+			statementExecuted = preparedStatement.execute();
+
+		} catch (SQLException ex) {
+			SmartTrolleyPrint
+					.print("Cannot execute statement due to unknown error");
+		}
+
+		return statementExecuted;
 	}
 	
 	/**

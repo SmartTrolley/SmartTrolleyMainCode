@@ -17,11 +17,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 public class StartScreenController implements Initializable {
 	
     private SmartTrolleyGUI application;
+   // createNewListButton is only made public so that it can be accessed by automated tests
+    @FXML public static Button createNewListButton;
     
     /**
     *initialize is automatically called when the controller is created.
@@ -43,8 +47,8 @@ public class StartScreenController implements Initializable {
     /**
     *loadCreateNewListScreen is called when the 'Create a new shopping list' button is pressed.
     *It calls the goToCreateNewListScreen method in SmartTrolleyGUI.java
-    *TODO add user story this method satisfies (in next line)
-    *<p>
+    *<p> 
+    *User can create a new shopping list
     *@param event - response to click on 'Create a new shopping list' button
     *<p> Date Modified: 03 May 2014
     */
