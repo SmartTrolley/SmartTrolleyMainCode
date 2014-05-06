@@ -12,6 +12,7 @@ import javafx.scene.shape.StrokeType;
 import javafx.stage.Stage;
 
 /** 
+* SmartTrolley
 * 
 * Visual test for graphics handler, displays a square, pentagon and circle after 
 * a set delay, for a certain duration

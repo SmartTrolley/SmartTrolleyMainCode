@@ -1,14 +1,15 @@
 /**
 * SmartTrolley
 *
-* A DESCRIPTION OF THE FILE
+* A complete test class to ensure correct funtionality
+* of the Image Handler module
 *
-* @author Name1
-* @author Name2
+* @author Matthew Wells
+* @author Alasdair Munday
 *
 * @author Checked By: Checker(s) fill here
 *
-* @version version of this file [Date Created: May 3, 2014]
+* @version v1.0 [Date Created: May 3, 2014]
 */
 
 package imagehandler;
@@ -116,6 +117,10 @@ public class ImageHandlerTests {
 	}
 	
 	
+	/**
+	*Test ensures the image is visible if duration is set to 0 	
+	*<p> Date Modified: 5 May 2014
+	*/
 	@Test
 	public void zeroDurationTest(){
 		imageHandler.setDuration(0);

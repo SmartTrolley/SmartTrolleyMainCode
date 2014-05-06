@@ -1,14 +1,13 @@
 /**
 * SmartTrolley
 *
-* A DESCRIPTION OF THE FILE
+* Image handler coherent with all PWS required inputs and standards
 *
-* @author Name1
-* @author Name2
+* @author Alasdair Munday
 *
-* @author Checked By: Checker(s) fill here
+* @author Checked By: Matthew Wells
 *
-* @version version of this file [Date Created: May 3, 2014]
+* @version v1.0 [Date Created: May 3, 2014]
 */
 
 package imagehandler;
@@ -55,6 +54,7 @@ public class ImageHandler extends ImageView{
 	*Image is made visible after show has been called and the start time has elapsed
 	*<p>Fulfills ImageDurationTest
 	*@param seconds start delay in seconds
+	*<p> Date Modified: 3 May 2014
 	*/
 	public void setStartTime(int seconds) {
 		int milliseconds;

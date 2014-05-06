@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /** 
+* SmartTrolley
 * 
 * Tests the functionality of the SlideShapeFactory. 
 * coheres to the Contract made with Spoon

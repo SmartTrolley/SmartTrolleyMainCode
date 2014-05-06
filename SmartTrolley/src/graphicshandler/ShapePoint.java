@@ -3,7 +3,8 @@ package graphicshandler;
 
 
 /** 
-* 
+*
+* SmartTrolley
 * PWS compliant Points for drawing graphics
 *
 * @author Matthew Wells

@@ -23,6 +23,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Polygon;
 
 /**
+ * SmartTrolley
  * Generates a Polygon suitable to pass all the tests determined
  * by the PWS and contract with Spoon
  * 

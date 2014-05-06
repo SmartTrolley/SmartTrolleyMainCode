@@ -21,7 +21,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
 
 /** 
- * 
+ * SmartTrolley
  * Generates an Ellipse suitable to pass all the tests determined
  * by the PWS and contract with Spoon
  *

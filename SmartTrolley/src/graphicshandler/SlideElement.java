@@ -17,7 +17,7 @@
 package graphicshandler;
 
 /** 
- * 
+ * SmartTrolley
  * 
  * A class to set the duration, height, width and start time
  * of each slideElement

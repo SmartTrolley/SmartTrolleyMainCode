@@ -24,6 +24,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /** 
+ * SmartTrolley
  * Workspace_Name
  * 
  * Tests for the ShapePoint Class, 

@@ -7,7 +7,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Shape;
 
 /** 
-* 
+* SmartTrolley
 *
 *
 * @author Matthew Wells
