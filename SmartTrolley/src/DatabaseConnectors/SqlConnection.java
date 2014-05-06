@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import Printing.SmartTrolleyPrint;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -19,12 +21,14 @@ import smarttrolleygui.Product;
  *
  */
 public class SqlConnection {
+	
+	private static SqlConnection productsDatabase;
 
 	public static final String ip = "79.170.44.157" ;
 	public static final String userName = "cl36-st";
 	public static final String password= "Smarttrolley";
 	private ObservableList<Product> products;
-	private ObservableList<Offer> offers;
+	private ObservableList<Product> offers;
 	
 	private String url;
 	Connection connection;
@@ -161,11 +165,51 @@ public class SqlConnection {
 					
 	}
 	
+	
+	/**
+	 * 
+	 */
+	public Product getSpecificProduct(String criteria, String value){
+		
+		Product product = new Product();
+		
+		openConnection();
+		
+		String query = "Select * From products where " + criteria +" = " + value + ";";
+		
+		try {
+			ResultSet results = sendQuery(query);
+			
+			while (results.next()){
+				
+				//get id
+				product.setId(results.getInt("ProductID"));
+				
+				//get Name
+				product.setName(results.getString("Name"));
+				
+				//get Image
+				product.setImage(results.getString("Image"));
+				
+				//get Price
+				product.setPrice(results.getFloat("Price"));
+			}
+		} catch (SQLException e) {
+			
+			System.out.println("Product could not be found");
+		}
+		
+		closeConnection();
+		return product;
+	}
+	
 	/**
 	 * When called, this method will return the list of offers
 	 * and store them as a type offer.
 	 */
-	public ObservableList<Offer> getListOfOffers() {
+	public ObservableList<Product> getListOfOffers() {
+		
+		productsDatabase = new SqlConnection();
 		
 		openConnection();
 		
@@ -179,6 +223,7 @@ public class SqlConnection {
 			while (results.next()) {
 				
 				Offer offer = new Offer();
+				Product product = new Product();
 				
 				// get Offer id
 				offer.setOfferId(results.getInt("OfferID"));
@@ -186,10 +231,17 @@ public class SqlConnection {
 				// get Product id
 				offer.setProductId(results.getInt("ProductID"));
 				
+				product = productsDatabase.getSpecificProduct("ProductID", String.valueOf(results.getInt("ProductId")));
+				
 				// get Price
 				offer.setOfferPrice(results.getFloat("OfferPrice"));
+				product.setOfferPrice(results.getFloat("OfferPrice"));
 				
-				offers.add(offer);
+				float savings = product.getPrice() - product.getOfferPrice();
+				
+				product.setSavings(savings);
+				
+				offers.add(product);
 			}
 			
 			closeConnection();

@@ -6,7 +6,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import Printing.SmartTrolleyPrint;
+
 import smarttrolleygui.Product;
+import smarttrolleygui.Offer;
 
 import java.sql.*;
 
@@ -22,6 +25,7 @@ public class SqlConnectionTest {
 
 	private static SqlConnection productsDatabase; 
 	private ObservableList<Product> products;
+	private ObservableList<Product> offers;
 	
 	public String query;
 	
@@ -123,10 +127,27 @@ public class SqlConnectionTest {
 			
 			product = products.get(i);
 			
-			System.out.println(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
+			SmartTrolleyPrint.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
 			i++;
 		}
 	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public void getSpecificProductTest(){
+		
+		Product product;
+		
+		product = productsDatabase.getSpecificProduct("productID","5");
+		
+		assertEquals(product.getId(), 5);
+		assertEquals(product.getName(), "Innocent Noodle Pot");
+		assertEquals(product.getImage(), "img/SampleProducts/innocent_noodle_pot.jpg");
+		assert(product.getPrice() == 6.99);
+	}
+	
 	
 	/**
 	 * Test that the getListOfOffers() returns the full list of offers
@@ -134,13 +155,17 @@ public class SqlConnectionTest {
 	 */
 	@Test
 	public void getListOfOffersTest(){
+		
 		offers = productsDatabase.getListOfOffers();
-		Offer offer;
+		
+		Product product;
 		int j = 0;
 		while(j<offers.size()){
 			
-			offer = offers.get(j);
-			System.out.println(offer.getOfferId() + "  " + offer.getProductId() + "  " + offer.getOfferPrice());
+			product = offers.get(j);
+			
+			SmartTrolleyPrint.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + "  " + product.getOfferPrice() + "  " + product.getSavings());
+					
 			j++;
 		}
 		
