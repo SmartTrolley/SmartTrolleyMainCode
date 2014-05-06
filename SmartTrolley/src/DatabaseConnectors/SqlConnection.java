@@ -179,6 +179,17 @@ public class SqlConnection {
 		url = "jdbc:mysql://" + ip  + "/" + userName + "?";	
 	}
 
+	/**
+    * Method required for ProductsToList Test 
+	*<p> Date Modified: 5 May 2014
+	*/
 	
+	public void execute(String query) throws SQLException {
+		
+		Statement statement = connection.createStatement();
+		statement.execute(query);
+		
+	}
+
 	
 }
