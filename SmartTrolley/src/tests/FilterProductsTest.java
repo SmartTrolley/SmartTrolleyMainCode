@@ -25,9 +25,14 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import smarttrolleygui.Product;
 
 import DatabaseConnectors.SqlConnection;
 
@@ -50,6 +55,8 @@ public class FilterProductsTest {
 	 *<p> Date Modified: 7 May 2014
 	
 	 */
+	private Product product;
+	
 	
 	private static SqlConnection productsDatabase;
 	
@@ -68,8 +75,15 @@ public class FilterProductsTest {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void test() throws SQLException {
+		
+					product = new Product();
+		
+							
+					System.out.println(product.getId());
+					System.out.println(product.getName());
+					System.out.println(product.getPrice());
+					
 	}
 
 }
