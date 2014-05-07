@@ -99,7 +99,7 @@ public class SlidePolygon extends Polygon implements SlideElement {
 	 * Finds the ratio of the newHeight of the polygon once it has been resized
 	 * to the inherent height of the polygon, to determine a scaling factor
 	 * 
-	 * @see graphicsHandler.SlideElement#setHeight(int) <p>
+	 *
 	 *      Date Modified: 28 Apr 2014
 	 */
 	public void setHeight(int newHeight) {
@@ -147,7 +147,7 @@ public class SlidePolygon extends Polygon implements SlideElement {
 	/**
 	 * Method sets fillColor
 	 * 
-	 * @param fillColor
+	 * fillColor
 	 *            <p>
 	 *            Date Modified: 28 April 2014
 	 */
@@ -159,7 +159,7 @@ public class SlidePolygon extends Polygon implements SlideElement {
 	/**
 	 * Method returns fillColor
 	 * 
-	 * @param fillColor
+	 * fillColor
 	 *            <p>
 	 *            Date Modified: 28 April 2014
 	 */
@@ -170,7 +170,7 @@ public class SlidePolygon extends Polygon implements SlideElement {
 	/**
 	 * Method sets lineColor
 	 * 
-	 * @param lineColor
+	 * lineColor
 	 *            <p>
 	 *            Date Modified: 28 April 2014
 	 */
@@ -182,9 +182,9 @@ public class SlidePolygon extends Polygon implements SlideElement {
 	/**
 	 * Method returns lineColor
 	 * 
-	 * @param lineColor
-	 *            <p>
-	 *            Date Modified: 28 April 2014
+	 * lineColor
+	 *         
+	 * Date Modified: 28 April 2014
 	 */
 	public Paint getLineColor() {
 

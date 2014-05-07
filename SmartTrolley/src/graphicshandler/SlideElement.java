@@ -35,7 +35,7 @@ public interface SlideElement {
 	/**
 	 *  sets the time that the product appears for using the slideElementDuration class.
 	 *  
-	 *  @see: graphicshandler.SlideElementDuration#show()
+	 * 
 	 */
 	public void setDuration(int seconds);
 	

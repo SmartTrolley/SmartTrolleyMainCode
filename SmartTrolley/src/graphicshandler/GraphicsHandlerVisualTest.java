@@ -2,7 +2,6 @@ package graphicshandler;
 
 import java.util.PriorityQueue;
 
-import videohandler.VideoPlayerHandler;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -59,8 +58,6 @@ public class GraphicsHandlerVisualTest extends Application {
 		
 		setupCircle();
 		
-		setupVideo();
-		
 		Scene scene = setupScene();
 		
 		mainStage.setScene(scene);
@@ -70,14 +67,6 @@ public class GraphicsHandlerVisualTest extends Application {
 	}
 
 
-	/**
-	*Setup method instantiates a new instance of VideoPlayerHandler
-	*<p> Date Modified: 28 April 2014
-	*/
-	private void setupVideo() {
-		VideoPlayerHandler video = new VideoPlayerHandler("http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv", 300, 300, 400, 400, false, 2, 5);
-		
-	}
 
 	
 	/**
