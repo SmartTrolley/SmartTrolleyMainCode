@@ -104,6 +104,7 @@ public class AllShoppingListsScreenController implements Initializable {
 			newButton.setText(listName);
 			newButton.setPrefSize(300, 80);
 			newButton.setMinHeight(50);
+			//TODO look up session implementation.
 			// Load shoppingLists if clicked
 			/*newButton.setOnAction(new EventHandler<ActionEvent>() {
 

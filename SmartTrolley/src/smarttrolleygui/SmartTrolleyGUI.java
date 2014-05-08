@@ -31,7 +31,7 @@ import javafx.stage.Stage;
 
 public class SmartTrolleyGUI extends Application {
     
-    public Stage stage; 
+    public static Stage stage; 
     
     private final double MIN_WINDOW_WIDTH = 600.0;
     private final double MIN_WINDOW_HEIGHT = 600.0;
@@ -148,6 +148,7 @@ public class SmartTrolleyGUI extends Application {
     *view the currently opened shopping list.
     *<p>User can view shopping list
     *<p> Date Modified: 6 Mar 2014
+     * @param ListName 
     */
     public void goToShoppingList() {
         try {
