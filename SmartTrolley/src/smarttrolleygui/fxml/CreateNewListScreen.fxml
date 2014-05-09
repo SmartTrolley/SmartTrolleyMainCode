@@ -27,19 +27,26 @@
         <Insets fx:id="x1" />
       </VBox.margin>
     </Line>
-    <VBox id="VBox" alignment="CENTER" spacing="100.0">
+    <VBox id="VBox" alignment="CENTER" spacing="0.0">
       <children>
-        <HBox id="HBox" alignment="CENTER" padding="$x1" spacing="5.0">
+        <HBox id="HBox" alignment="CENTER" spacing="5.0">
           <children>
             <Label text="Please enter a name for the new list:" />
             <TextField fx:id="listNameTextField" prefWidth="200.0" promptText="" text="" />
           </children>
+          <padding>
+            <Insets bottom="10.0" />
+          </padding>
         </HBox>
+        <Label fx:id="notifierLabel" text="" visible="false" styleClass="labelForUserNotices" />
         <HBox id="HBox" alignment="CENTER" spacing="5.0">
           <children>
             <Button fx:id="createNewListButton" mnemonicParsing="false" onAction="#createNewList" prefHeight="75.0" prefWidth="200.0" styleClass="buttonLarge" text="Create new list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
             <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#loadStartScreen" prefHeight="75.0" prefWidth="200.0" styleClass="buttonLarge" text="Go back" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
           </children>
+          <padding>
+            <Insets top="100.0" />
+          </padding>
         </HBox>
       </children>
       <padding>

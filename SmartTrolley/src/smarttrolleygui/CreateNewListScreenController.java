@@ -23,6 +23,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class CreateNewListScreenController implements Initializable {
@@ -34,7 +35,9 @@ public class CreateNewListScreenController implements Initializable {
 	public static TextField listNameTextField;
 	@FXML
 	public static Button createNewListButton;
-
+	@ FXML
+	private Label notifierLabel;
+	
 	/**
 	 * initialize is automatically called when the controller is created.
 	 * <p>
@@ -98,30 +101,32 @@ public class CreateNewListScreenController implements Initializable {
 		} else {
 			SmartTrolleyPrint.print("Create List button has been pressed.");
 			
-			// TODO: ensure input is valid -> should be in its own method
+			// TODO: ensure name entered does not conflict with previously created list
+			// and if it does notify user.
+			
+			// check input is not empty
 			if (listNameTextField.getText() != null
 					&& !listNameTextField.getText().isEmpty()) {
 				String enteredListName = listNameTextField.getText();
-				SmartTrolleyPrint.print("Entered list name is: " + enteredListName);
 
 				// open SQL connection and create new entry in 'lists' table
 				SqlConnection sqlConnection = new SqlConnection();
 				sqlConnection.openConnection();
 				
-				// TODO: ensure name entered does not conflict with previously created list
-				// and if it does notify user.
 				String sqlStatement = "INSERT INTO `cl36-st`.`lists` (`Name`) VALUES ('"
 						+ enteredListName + "');";
 				sqlConnection.executeStatement(sqlStatement);
+				SmartTrolleyPrint.print("Created new list: " + enteredListName);
 
 				// move to HomeScreen
-				// TODO: pass on enteredListName, so that it can be displayed on screen.
+				// TODO: pass on enteredListName, so that it can be displayed / call setCurrentListID 
 				application.goToHomeScreen();
 			} else {
-				// TODO: create label in CreateNewListScreen.fxml, 
-				// below the TextField for example, to allow error message 
-				// to be displayed. Alternatively use a message box.
-				SmartTrolleyPrint.print("No text has been entered");
+				// Display error message if no name is entered.
+				String noInputError = "Please enter a name for the list";
+				SmartTrolleyPrint.print(noInputError);
+				notifierLabel.setText(noInputError);
+				notifierLabel.setVisible(true);
 			}
 		}
 	}

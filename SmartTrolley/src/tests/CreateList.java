@@ -14,7 +14,6 @@ package tests;
 
 import static org.junit.Assert.*;
 
-import java.awt.AWTException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.application.Application;
@@ -48,7 +47,7 @@ public class CreateList {
 	 * @throws java.lang.Exception
 	 *             [If applicable]@see [Reference URL OR Class#Method]
 	 *             <p>
-	 *             Date Modified: 3 May 2014
+	 *             Date Modified: 9 May 2014
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -106,15 +105,10 @@ public class CreateList {
 		 */
 		Platform.runLater(new Runnable() {
 			@Override
-			public void run() {
-				Button createNewListButton = StartScreenController.createNewListButton;
+			public void run() {				
 				// move to 'Create New List' screen
-				createNewListButton.fire();
-				// set text of TextField to "Hello" and fire 'Create New List' button
-				TextField listNameTextField = CreateNewListScreenController.listNameTextField;
-				listNameTextField.setText("Hello");
-				createNewListButton = CreateNewListScreenController.createNewListButton;
-				createNewListButton.fire();	
+				Button createNewListButton = StartScreenController.createNewListButton;				
+				createNewListButton.fire();			
 			}
 		});
 		
@@ -135,49 +129,64 @@ public class CreateList {
 	*Check that the list is created when the user
 	*presses 'Create new list' button.
 	*<p>Test(s)/User Story that it satisfies
-	*@throws AWTException
 	*@throws SQLException
 	*[If applicable]@see [Reference URL OR Class#Method]
-	*<p> Date Modified: 6 May 2014
+	*<p> Date Modified: 9 May 2014
 	*/
 	@Test
-	public void listIsCreated() throws AWTException, SQLException{
-		TextField listNameTextField = CreateNewListScreenController.listNameTextField;
-		// get text from TextField and assign to variable
-		String textInput = listNameTextField.getText();
-		assertTrue(textInput instanceof String);
-		SmartTrolleyPrint.print("TextField reads: " + textInput);
-		query = "INSERT INTO `cl36-st`.`lists` (`Name`) VALUES ('" + textInput + "');";
-		productsDatabase.executeStatement(query);
+	public void listIsCreated() throws SQLException {
+
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				// set text of TextField to arbitrary input as an example name for a new list
+				TextField listNameTextField = CreateNewListScreenController.listNameTextField;
+				listNameTextField.setText("asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd");
+				String textInput = listNameTextField.getText();
+				assertTrue(textInput instanceof String);
+				SmartTrolleyPrint.print("TextField reads: " + textInput);
+
+				// fire 'Create New List' button
+				Button createNewListButton = CreateNewListScreenController.createNewListButton;
+				createNewListButton.fire();
+				
+				// search database for newly created list name
+				query = "SELECT * FROM lists WHERE name = '" + textInput + "'";
+				ResultSet results;
+				try {
+					results = productsDatabase.sendQuery(query);
+					assertFalse(results == null);
+					while (results.next()) {
+						SmartTrolleyPrint.print("List with name: "
+								+ results.getString("Name")
+								+ " has been created in the SQL database.");
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				
+			}
+		});
 		
-		query = "SELECT * FROM lists WHERE name = '" + textInput + "'";
-		ResultSet results = productsDatabase.sendQuery(query);
-		
-		assertFalse(results == null);
-		
-		while (results.next()) {
-			SmartTrolleyPrint.print("List with name: " + results.getString("Name") + " has been created in the SQL database.");
-		}	
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
 	}
+	
+	// TODO: create a test to check input is valid
 
 	/**
 	 * Closes productsDatabase between client and server
 	 * <p>
-	 * Date Modified: 3 May 2014
+	 * Date Modified: 9 May 2014
 	 * 
 	 * @throws Exception
 	 */
 	@After
 	public void closeAll() throws Exception {
 		productsDatabase.closeConnection();
-
-		/*
-		 * GUIboot.stop(); Platform.runLater(new Runnable() {
-		 * 
-		 * @Override public void run() { try { GUIboot.stop(); } catch
-		 * (Exception e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); } Platform.exit(); } });
-		 */
 		SmartTrolleyPrint.print("Closing Test.");
 	}
 
