@@ -3,13 +3,11 @@
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
-<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
@@ -22,15 +20,15 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
               <children>
                 <Button mnemonicParsing="false" onAction="#loadStartScreen" prefHeight="130.0" prefWidth="133.0" styleClass="buttonSmartTrolleyLogo" text="">
-                    <tooltip>
-                        <Tooltip text="Return to start screen"/>
-                    </tooltip>
+                  <tooltip>
+                    <Tooltip text="Return to start screen" />
+                  </tooltip>
                 </Button>
               </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
               <children>
-                <Button fx:id="homeButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadHomeScreen" styleClass="buttonNavigation" text="Home">
+                <Button fx:id="homeButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadHomeScreen" prefWidth="-1.0" styleClass="buttonNavigation" text="Home">
                   <graphic>
                     <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -89,116 +87,55 @@
         </GridPane>
       </children>
     </HBox>
+    <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="NEVER">
+      <children>
+        <TextField alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="125.0" promptText="Enter product name" />
+        <Button minHeight="33.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="75.0" styleClass="button1" text="Search" />
+      </children>
+      <padding>
+        <Insets left="10.0" />
+      </padding>
+    </HBox>
     <Line endX="575.0" startX="0.0" startY="0.0">
       <VBox.margin>
-        <Insets bottom="20.0" />
+        <Insets top="10.0" />
       </VBox.margin>
     </Line>
     <HBox id="HBox" alignment="CENTER" spacing="0.0" styleClass="containerBottom" VBox.vgrow="ALWAYS">
       <children>
-        <SplitPane dividerPositions="" focusTraversable="true" maxWidth="580.0" prefHeight="411.0" prefWidth="561.0" style="">
+        <SplitPane dividerPositions="0.2093425605536332" focusTraversable="true" maxWidth="580.0" prefHeight="411.0" prefWidth="600.0" style="">
           <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="396.0" prefWidth="110.0" style="">
+              <children>
+                <VBox id="VBox" alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="404.0" prefWidth="115.0" spacing="0.0">
+                  <children>
+                    <Label text="Categories" />
+                    <ListView fx:id="categoriesList" prefHeight="389.0" prefWidth="115.0" />
+                  </children>
+                  <padding>
+                    <Insets top="5.0" />
+                  </padding>
+                </VBox>
+              </children>
+            </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="">
               <children>
-                <Group id="Group" layoutX="4.0" layoutY="25.0">
-                  <children>
-                    <ImageView id="companyLogoCropped" fitHeight="122.0" fitWidth="154.0384521484375" layoutX="4.0" layoutY="35.0" pickOnBounds="true">
-                      <image>
-                        <Image url="@../img/SampleProducts/cathedral_city.png" preserveRatio="true" smooth="true" />
-                      </image>
-                    </ImageView>
-                    <ImageView id="companyLogoCropped" fitHeight="96.0" fitWidth="90.0" layoutX="92.0" layoutY="0.0" pickOnBounds="true">
-                      <image>
-                        <Image url="@../img/50off.png" preserveRatio="true" smooth="true" />
-                      </image>
-                    </ImageView>
-                    <HBox id="HBox" alignment="CENTER" layoutX="0.0" layoutY="199.0" prefHeight="44.0" prefWidth="162.0" spacing="5.0">
-                      <children>
-                        <ChoiceBox minWidth="23.0" opacity="0.61" prefHeight="24.0" prefWidth="34.0">
-                          <items>
-                            <FXCollections fx:factory="observableArrayList">
-                              <String fx:value="1" />
-                              <String fx:value="2" />
-                              <String fx:value="3" />
-                            </FXCollections>
-                          </items>
-                        </ChoiceBox>
-                        <Button mnemonicParsing="false" text="Add to list" />
-                      </children>
-                    </HBox>
-                  </children>
-                </Group>
-                <Group id="Group" layoutX="156.0" layoutY="140.0">
-                  <children>
-                    <ImageView id="companyLogoCropped" fitHeight="137.0" fitWidth="170.0" layoutX="5.0" layoutY="47.0" pickOnBounds="true">
-                      <image>
-                        <Image url="@../img/SampleProducts/yorkshire1.jpg" preserveRatio="true" smooth="true" />
-                      </image>
-                    </ImageView>
-                    <ImageView id="companyLogoCropped" fitHeight="94.0" fitWidth="83.0" layoutX="115.0" layoutY="0.0" pickOnBounds="true">
-                      <image>
-                        <Image url="@../img/special_offer.png" preserveRatio="true" smooth="true" />
-                      </image>
-                    </ImageView>
-                    <HBox id="HBox" alignment="CENTER" layoutX="6.0" layoutY="221.0" prefHeight="44.0" prefWidth="162.0" spacing="5.0">
-                      <children>
-                        <ChoiceBox minWidth="23.0" opacity="0.61" prefHeight="24.0" prefWidth="34.0">
-                          <items>
-                            <FXCollections fx:factory="observableArrayList">
-                              <String fx:value="1" />
-                              <String fx:value="2" />
-                              <String fx:value="3" />
-                            </FXCollections>
-                          </items>
-                        </ChoiceBox>
-                        <Button mnemonicParsing="false" text="Add to list" />
-                      </children>
-                    </HBox>
-                  </children>
-                </Group>
-                <Group id="Group" layoutX="324.0" layoutY="0.0">
-                  <children>
-                    <ImageView id="companyLogoCropped" fitHeight="128.0" fitWidth="174.0" layoutX="51.0" layoutY="32.0" pickOnBounds="true">
-                      <image>
-                        <Image url="@../img/SampleProducts/cadbury-dairy-milk-new-packaging.jpg" preserveRatio="true" smooth="true" />
-                      </image>
-                    </ImageView>
-                    <ImageView id="companyLogoCropped" fitHeight="96.0" fitWidth="97.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true">
-                      <image>
-                        <Image url="@../img/special_offer.png" preserveRatio="true" smooth="true" />
-                      </image>
-                    </ImageView>
-                    <HBox id="HBox" alignment="CENTER" layoutX="57.0" layoutY="203.0" prefHeight="44.0" prefWidth="162.0" spacing="5.0">
-                      <children>
-                        <ChoiceBox minWidth="23.0" opacity="0.61" prefHeight="24.0" prefWidth="34.0">
-                          <items>
-                            <FXCollections fx:factory="observableArrayList">
-                              <String fx:value="1" />
-                              <String fx:value="2" />
-                              <String fx:value="3" />
-                            </FXCollections>
-                          </items>
-                        </ChoiceBox>
-                        <Button mnemonicParsing="false" text="Add to list" />
-                      </children>
-                    </HBox>
-                  </children>
-                </Group>
-                <Label layoutX="60.0" layoutY="180.0" styleClass="labelNewPrice" text="£2.00" />
-                <Label layoutX="192.0" layoutY="333.0" styleClass="labelOldPrice" text="£3.50" />
-                <Label layoutX="258.0" layoutY="333.0" styleClass="labelNewPrice" text="£2.50" />
-                <Label layoutX="396.0" layoutY="176.0" styleClass="labelOldPrice" text="£2.50" />
-                <Label layoutX="472.0" layoutY="175.0" styleClass="labelNewPrice" text="£1.50" />
+                <TableView fx:id="productTable" maxWidth="444.0" prefHeight="413.0" prefWidth="388.0" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <columns>
+                    <TableColumn editable="false" prefWidth="95.0" resizable="false" sortable="false" text="Image" fx:id="imageColumn" />
+                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="238.0" resizable="false" text="Product Name" fx:id="productNameColumn" />
+                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="65.0" resizable="false" sortable="true" text="Price" fx:id="priceColumn" />
+                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="40.0" resizable="false" sortable="false" text="Add" fx:id="addColumn" />
+                  </columns>
+                </TableView>
               </children>
             </AnchorPane>
           </items>
         </SplitPane>
       </children>
     </HBox>
+    <Line endX="575.0" startX="0.0" startY="0.0" />
   </children>
-  <padding>
-    <Insets />
-  </padding>
   <stylesheets>
     <URL value="@../StyleSheet.css" />
   </stylesheets>
