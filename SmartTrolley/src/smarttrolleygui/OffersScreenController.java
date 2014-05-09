@@ -48,6 +48,8 @@ public class OffersScreenController implements Initializable {
     @FXML
     private TableColumn<Product, String> priceColumn;
     @FXML
+    private TableColumn<Product, String> offerPriceColumn;    
+    @FXML
     private TableColumn<Product, Product> addColumn;
 	
 	
@@ -209,6 +211,7 @@ public class OffersScreenController implements Initializable {
         // set up column cell value factories
         productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
+        offerPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("offerPrice"));
         addColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
             @Override
             public ObservableValue<Product> call(TableColumn.CellDataFeatures<Product, Product> features) {

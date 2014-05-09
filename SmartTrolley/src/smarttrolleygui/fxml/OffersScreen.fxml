@@ -123,8 +123,9 @@
                 <TableView fx:id="productTable" maxWidth="444.0" prefHeight="413.0" prefWidth="388.0" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <columns>
                     <TableColumn editable="false" prefWidth="95.0" resizable="false" sortable="false" text="Image" fx:id="imageColumn" />
-                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="238.0" resizable="false" text="Product Name" fx:id="productNameColumn" />
-                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="65.0" resizable="false" sortable="true" text="Price" fx:id="priceColumn" />
+                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="158.0" resizable="false" text="Product Name" fx:id="productNameColumn" />
+                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="65.0" resizable="false" sortable="true" text="Old Price" fx:id="priceColumn" />
+                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="65.0" resizable="false" sortable="true" text="New Price" fx:id="offerPriceColumn" />
                     <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="40.0" resizable="false" sortable="false" text="Add" fx:id="addColumn" />
                   </columns>
                 </TableView>
