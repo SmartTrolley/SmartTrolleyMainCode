@@ -178,18 +178,11 @@ public class FavouritesController implements Initializable {
     }
     
 
-    private ObservableList initializeCategories() {
-        categories = FXCollections.observableArrayList(
-                "All",
-                "Bakery",
-                "Fruit & Vegetables",
-                "Dairy & Eggs",
-                "Meat & Seafood",
-                "Frozen",
-                "Drinks",
-                "Snacks & Sweets",
-                "Desserts"
-        );
+    private ObservableList<String> initializeCategories() {
+    	//Create new SqlConnection to retrieve product data
+    	SqlConnection sqlConnector = new SqlConnection();    
+         
+        categories = sqlConnector.getListOfCategories();
 
         return categories;
     }

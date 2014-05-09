@@ -29,6 +29,7 @@ public class SqlConnection {
 	public static final String password= "Smarttrolley";
 	private ObservableList<Product> products;
 	private ObservableList<Product> offers;
+	private ObservableList<String> categories;
 	
 	private String url;
 	Connection connection;
@@ -256,6 +257,41 @@ public class SqlConnection {
 	}
 	
 	/**
+	 * Method returns the list of category names. Could be modified to return a list of Categories if needed in future
+	 * @return
+	 */
+	public ObservableList<String> getListOfCategories() {
+		
+		productsDatabase = new SqlConnection();
+		
+		openConnection();
+		
+		categories = FXCollections.observableArrayList();
+		
+		String query = "SELECT * FROM categories;";
+		
+		try {
+			ResultSet results = sendQuery(query);
+		
+			while (results.next()) {
+				
+				String category = results.getString("Name");
+				
+		
+				categories.add(category);
+			}
+		
+			closeConnection();
+			return categories;
+		
+		} catch (SQLException e) {
+		
+		System.out.println("Offers could not be found");
+		return null;
+		}
+	}
+	
+	/**
 	 * provides public access to close the connection
 	 * @throws SQLException
 	 */
@@ -274,6 +310,8 @@ public class SqlConnection {
 		//construct the url assuming use of mysql and the standard port.
 		url = "jdbc:mysql://" + ip  + "/" + userName + "?";	
 	}
+
+	
 
 
 }

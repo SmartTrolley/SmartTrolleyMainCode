@@ -9,7 +9,6 @@ import org.junit.Test;
 import Printing.SmartTrolleyPrint;
 
 import smarttrolleygui.Product;
-import smarttrolleygui.Offer;
 
 import java.sql.*;
 
@@ -26,6 +25,7 @@ public class SqlConnectionTest {
 	private static SqlConnection productsDatabase; 
 	private ObservableList<Product> products;
 	private ObservableList<Product> offers;
+	private ObservableList<String> categories;
 	
 	public String query;
 	
@@ -155,22 +155,38 @@ public class SqlConnectionTest {
 	 */
 	@Test
 	public void getListOfOffersTest(){
+
 		
 		offers = productsDatabase.getListOfOffers();
 		
 		Product product;
-		int j = 0;
-		while(j<offers.size()){
+		int i = 0;
+		while(i<offers.size()){
 			
-			product = offers.get(j);
+			product = offers.get(i);
 			
 			SmartTrolleyPrint.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + "  " + product.getOfferPrice() + "  " + product.getSavings());
 					
-			j++;
+			i++;
 		}
 		
 	}
 	
+	@Test
+	public void getListOfCategoriesTest(){
+		categories = productsDatabase.getListOfCategories();
+		
+		String category;
+		
+		int i = 0;
+		while(i<categories.size()){
+			
+			category = categories.get(i);
+			SmartTrolleyPrint.print(category);
+			
+			i++;
+		}
+	}
 	
 	/**
 	 * Tests that the connection closes correctly

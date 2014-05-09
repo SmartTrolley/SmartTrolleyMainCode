@@ -173,17 +173,10 @@ public class FavouritesScreenController implements Initializable {
      * Date Modified: 7 Mar 2014
      */
     private ObservableList<String> initializeCategories() {
-        categories = FXCollections.observableArrayList(
-                "All",
-                "Bakery",
-                "Fruit & Vegetables",
-                "Dairy & Eggs",
-                "Meat & Seafood",
-                "Frozen",
-                "Drinks",
-                "Snacks & Sweets",
-                "Desserts"
-        );
+    	//Create new SqlConnection to retrieve product data
+    	SqlConnection sqlConnector = new SqlConnection();    
+         
+        categories = sqlConnector.getListOfCategories();
 
         return categories;
     }
