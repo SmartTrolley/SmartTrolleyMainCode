@@ -35,6 +35,7 @@ public class SmartTrolleyGUI extends Application {
     
     private final double MIN_WINDOW_WIDTH = 600.0;
     private final double MIN_WINDOW_HEIGHT = 600.0;
+    private static int currentListID = 0;
     
     StartScreenController startScreen = new StartScreenController();
 
@@ -238,5 +239,14 @@ public class SmartTrolleyGUI extends Application {
     public static void main(String[] args) {
         Application.launch(SmartTrolleyGUI.class, (java.lang.String[])null);
     }
+
+	public static int getcurrentListID() {		
+		return currentListID;
+	}
+
+	public static void setCurrentListID(int listID) {
+		currentListID = listID;
+		
+	}
 }
 /**************End of SmartTrolleyGUI**************/

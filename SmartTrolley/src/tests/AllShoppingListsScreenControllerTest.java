@@ -36,6 +36,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import smarttrolleygui.AllShoppingListsScreenController;
+import smarttrolleygui.ExampleShoppingListController;
 import smarttrolleygui.SmartTrolleyGUI;
 import smarttrolleygui.StartScreenController;
 import DatabaseConnectors.SqlConnection;
@@ -46,6 +47,8 @@ public class AllShoppingListsScreenControllerTest {
 	public Stage stage;
 	private static SqlConnection productsDatabase;
 	private SmartTrolleyGUI GUIboot;
+	private ExampleShoppingListController shoppingList;
+	
 
 	/**
 	 * It sets up a database connection and moves to the lists screen
@@ -64,6 +67,7 @@ public class AllShoppingListsScreenControllerTest {
 		 * Create a new thread which launches the application. If the main thread launches the application, the rest of the test will only run after the application closes i.e. pointless.
 		 */
 		Thread newGUIThread;
+		
 
 		GUIboot = new SmartTrolleyGUI();
 
@@ -102,12 +106,12 @@ public class AllShoppingListsScreenControllerTest {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				SmartTrolleyPrint.print("Firing Button");
+				SmartTrolleyPrint.print("Firing view lists Button");
 				// GUIboot.startScreen.viewAllShoppingListsButton.fire();
 				Button viewLists = new Button();
 				viewLists = StartScreenController.viewAllShoppingListsButton;
 				viewLists.fire();
-				SmartTrolleyPrint.print("Fired Button");
+				SmartTrolleyPrint.print("Fired view lists Button");
 			}
 		});
 
@@ -132,6 +136,13 @@ public class AllShoppingListsScreenControllerTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
+		
 		productsDatabase.closeConnection();
 
 		GUIboot.stop();
@@ -205,6 +216,7 @@ public class AllShoppingListsScreenControllerTest {
 		ResultSet results = null;
 		String query;
 		int rowSize = 0;
+		int listSize = 0;
 
 		query = "SELECT * FROM lists_products WHERE listID = 43";
 
@@ -216,25 +228,46 @@ public class AllShoppingListsScreenControllerTest {
 		
 		assertFalse(productsDatabase.isResultSetEmpty(results));
 
-		/*
-		 * try { Robot menuRobot = new Robot();
-		 * 
-		 * menuRobot.keyPress(KeyEvent.VK_ENTER); menuRobot.keyRelease(KeyEvent.VK_ENTER);
-		 * 
-		 * } catch (AWTException e) { // TODO Auto-generated catch block e.printStackTrace(); }
-		 */
+		
+		 try { Robot menuRobot = new Robot();
+		 
+		 menuRobot.keyPress(KeyEvent.VK_ENTER); menuRobot.keyRelease(KeyEvent.VK_ENTER);
+		 
+		 } catch (AWTException e) { 
+			 // TODO Auto-generated catch block e.printStackTrace(); 
+			 }
+		
 
 		try {
 			results.last();
 			results.getRow();
 
 			rowSize = results.getRow();
-		} catch (SQLException e) {
+			
+		} catch (SQLException e1) {
 			SmartTrolleyPrint.print("no results in ResultSet");
+		}
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
 		}
 
 		SmartTrolleyPrint.print("row Size is " + rowSize);
-
+		
+		listSize = ExampleShoppingListController.getProductDataSize();
+		
+		SmartTrolleyPrint.print("list Size is " + listSize);
+		
+		assertTrue(rowSize == listSize);
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
+	
 	}
 
 }

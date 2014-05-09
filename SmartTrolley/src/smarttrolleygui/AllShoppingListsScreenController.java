@@ -104,16 +104,17 @@ public class AllShoppingListsScreenController implements Initializable {
 			newButton.setText(listName);
 			newButton.setPrefSize(300, 80);
 			newButton.setMinHeight(50);
-			//TODO look up session implementation.
 			// Load shoppingLists if clicked
-			/*newButton.setOnAction(new EventHandler<ActionEvent>() {
+			newButton.setOnAction(new EventHandler<ActionEvent>() {
 
 				@Override
 				public void handle(ActionEvent event) {
-					application.session.put("currentListID", listID);
-					loadShoppingList(event, listName);
+					SmartTrolleyPrint.print("ListID pressed is: " + listID);				
+					SmartTrolleyGUI.setCurrentListID(listID);
+					SmartTrolleyPrint.print("Application ListID: " + SmartTrolleyGUI.getcurrentListID());
+					loadShoppingList(event);
 				}
-			});*/
+			});
 
 			buttonList.add(newButton);
 		}

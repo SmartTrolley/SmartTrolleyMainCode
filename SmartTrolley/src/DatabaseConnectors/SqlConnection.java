@@ -12,21 +12,22 @@ import Printing.SmartTrolleyPrint;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import se.mbaeumer.fxmessagebox.MessageBox;
+import se.mbaeumer.fxmessagebox.MessageBoxType;
 import smarttrolleygui.Product;
 import smarttrolleygui.SmartTrolleyGUI;
 
 /**
  * SmartTrolley
- *
- * This file tests for list deletion
- * - Inspired from Alasdair's spike
- *
- * @author Thomas 
- * @author Sam 
+ * 
+ * This file tests for list deletion - Inspired from Alasdair's spike
+ * 
+ * @author Thomas
+ * @author Sam
  * @author V2.1 Alick & Prashant [boolean class added for ResultSet testing]
- * 								 [also added execute statement]
+ *         [also added execute statement]
  * @author Checked By: Checker(s) fill here
- *
+ * 
  * @version V2.1 [Date Created: 3 May 2014]
  */
 
@@ -35,6 +36,10 @@ public class SqlConnection {
 	public static final String IP = "79.170.44.157";
 	public static final String USERNAME = "cl36-st";
 	public static final String PASSWORD = "Smarttrolley";
+	
+	private final double MSG_BX_H = 100.0;
+	private final double MSG_BX_W = 400.0;
+	
 	private ObservableList<Product> products;
 
 	private String url;
@@ -74,12 +79,13 @@ public class SqlConnection {
 	}
 
 	/**
-	*executes statement to SQL server, allow for creation and deleted of further
-	*lists and tables
-	*@param query
-	*@return
-	*<p> Date Modified: 4 May 2014
-	*/
+	 * executes statement to SQL server, allow for creation and deleted of
+	 * further lists and tables
+	 * 
+	 * @param query
+	 * @return <p>
+	 *         Date Modified: 4 May 2014
+	 */
 	public boolean executeStatement(String query) {
 		boolean statementExecuted = false;
 
@@ -118,13 +124,18 @@ public class SqlConnection {
 	}
 
 	/**
-	*Checks to see if the result set is empty
-	*<p>N/A
-	*@param resultSet
-	*@return
-	*@see [http://stackoverflow.com/questions/2938812/how-to-find-out-if-a-java-resultset-obtained-is-empty]
-	*<p> Date Modified: 4 May 2014
-	*/
+	 * Checks to see if the result set is empty
+	 * <p>
+	 * N/A
+	 * 
+	 * @param resultSet
+	 * @return
+	 * @see 
+	 *      [http://stackoverflow.com/questions/2938812/how-to-find-out-if-a-java
+	 *      -resultset-obtained-is-empty]
+	 *      <p>
+	 *      Date Modified: 4 May 2014
+	 */
 	public static boolean isResultSetEmpty(ResultSet resultSet) {
 		boolean empty = true;
 		try {
@@ -133,7 +144,8 @@ public class SqlConnection {
 				empty = false;
 			}
 		} catch (SQLException e) {
-			SmartTrolleyPrint.print("Problem parsing ResultSet, probably empty");
+			SmartTrolleyPrint
+					.print("Problem parsing ResultSet, probably empty");
 		}
 
 		if (empty) {
@@ -252,6 +264,78 @@ public class SqlConnection {
 	private void compileUrl() {
 		// construct the url assuming use of mysql and the standard port.
 		url = "jdbc:mysql://" + IP + "/" + USERNAME + "?";
+	}
+
+	public ObservableList<Product> getList(int listID) {
+		openConnection();
+
+		products = FXCollections.observableArrayList();
+
+		String query = "SELECT * FROM lists_products WHERE listID = " + SmartTrolleyGUI.getcurrentListID();
+		SmartTrolleyPrint.print("query is: " + query);
+
+		ResultSet productIDsInList = null;
+		
+		try {
+			productIDsInList = sendQuery(query);
+
+		} catch (SQLException e) {
+			System.out.println("lists could not be found");
+
+		}
+		
+
+		try {
+
+			ResultSet listProducts;
+
+			while (productIDsInList.next()) {
+
+				query = "SELECT * FROM products WHERE ProductID = " + productIDsInList.getInt("ProductID");
+				SmartTrolleyPrint.print("query is: " + query);
+
+				listProducts = sendQuery(query);
+				
+				SmartTrolleyPrint.print("Query Sent");
+
+				Product product = new Product();
+				SmartTrolleyPrint.print("Initializing Product");
+				
+				SmartTrolleyPrint.print(isResultSetEmpty(listProducts));
+				listProducts.absolute(1);
+				SmartTrolleyPrint.print("Row Size is = " + listProducts.getRow());
+
+				// get id
+				product.setId(listProducts.getInt("ProductID"));
+
+				// get Name
+				product.setName(listProducts.getString("Name"));
+
+				// get Image
+				product.setImage(listProducts.getString("Image"));
+
+				// get Price
+				product.setPrice(listProducts.getFloat("Price"));
+				
+				SmartTrolleyPrint.print("Product Set");
+
+				products.add(product);
+				
+				SmartTrolleyPrint.print("Product Stored");
+
+				SmartTrolleyPrint.print(product.getId() + "  "
+						+ product.getName() + "  " + product.getImage() + "  "
+						+ product.getPrice());
+				
+			}
+		} catch (SQLException e) {
+			System.out.println("Product could not be found");
+			return null;
+		}
+		
+		closeConnection();
+		return products;
+
 	}
 
 }

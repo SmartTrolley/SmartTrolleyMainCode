@@ -35,6 +35,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -50,7 +51,7 @@ public class ExampleShoppingListController implements Initializable {
 	@FXML
 	private ListView<String> categoriesList;
 	@FXML
-	private TableView<Product> productTable;
+	private static TableView<Product> productTable;
 	@FXML
 	private TableColumn<Product, Product> checkBoxColumn;
 	@FXML
@@ -70,7 +71,7 @@ public class ExampleShoppingListController implements Initializable {
 
 	private SmartTrolleyGUI application;
 	private ObservableList<String> categories;
-	private ObservableList<Product> productData;
+	private static ObservableList<Product> productData;
 	private final double MSG_BX_H = 100.0;
 	private final double MSG_BX_W = 400.0;
 	public static SqlConnection productsDatabase;
@@ -121,7 +122,7 @@ public class ExampleShoppingListController implements Initializable {
 		ResultSet result = null;
 		productsDatabase.openConnection();
 
-		int listID = 0;// = 33;
+		int listID = 0;
 		SmartTrolleyPrint.print("Delete Button Pressed");
 		deleteMsgBx.showAndWait();
 		deleteMsgBx.setHeight(MSG_BX_H);
@@ -131,38 +132,51 @@ public class ExampleShoppingListController implements Initializable {
 			SmartTrolleyPrint.print("YES");
 			String sqlStatement;
 
-			sqlStatement = "SELECT * FROM lists WHERE name = 'DeleteTest'";
+			sqlStatement = "SELECT * FROM lists WHERE listID = "
+					+ SmartTrolleyGUI.getcurrentListID();
 			try {
 				result = productsDatabase.sendQuery(sqlStatement);
+				SmartTrolleyPrint.print("stored list in results for deletion.");
 			} catch (SQLException e) {
 				SmartTrolleyPrint
 						.print("Unable to send query due to unknown error");
 			}
-			finally{
-	            try {
-	                productsDatabase.closeConnection();
-	                result.close();
-	            } catch (SQLException ex) {
-	               SmartTrolleyPrint.print("could not close connection, you are eternally fucked");
-	               SmartTrolleyPrint.print("Beepboop son, BeepBoop");
-	            }
-	        }  
-			
-			//Go to a specific result in the ResultSet, otherwise errors are thrown
-			result.absolute(1);
 
-			listID = result.getInt("ListID");
-			SmartTrolleyPrint.print("LiD: " + result.getInt("ListID"));
+			SmartTrolleyPrint.print(SqlConnection.isResultSetEmpty(result));
 
-			sqlStatement = "DELETE FROM `cl36-st`.`lists` WHERE listID = "
-					+ listID;
+			if (SqlConnection.isResultSetEmpty(result)) {
+				// Go to a specific result in the ResultSet, otherwise errors
+				// are thrown
+				result.absolute(1);
 
-			productsDatabase.executeStatement(sqlStatement);
+				listID = result.getInt("ListID");
+				SmartTrolleyPrint.print("LiD: " + result.getInt("ListID"));
+
+				sqlStatement = "DELETE FROM `cl36-st`.`lists` WHERE listID = "
+						+ listID;
+
+				productsDatabase.executeStatement(sqlStatement);
+			} else {
+				MessageBox noListMsgBx = new MessageBox("No such list exists",
+						MessageBoxType.OK_ONLY);
+				noListMsgBx.showAndWait();
+				noListMsgBx.setHeight(MSG_BX_H);
+				noListMsgBx.setWidth(MSG_BX_W);
+
+			}
 
 		} else {
 			SmartTrolleyPrint.print("NOOOOOOO");
 		}
 
+		try {
+			productsDatabase.closeConnection();
+			result.close();
+		} catch (SQLException ex) {
+			SmartTrolleyPrint
+					.print("could not close connection, you are eternally fucked");
+			SmartTrolleyPrint.print("Beepboop son, BeepBoop");
+		}
 	}
 
 	/**
@@ -282,8 +296,11 @@ public class ExampleShoppingListController implements Initializable {
 		SqlConnection sqlConnector = new SqlConnection();
 
 		// Fill table with sample products
-		productData = sqlConnector.getListOfProducts();
+		SmartTrolleyPrint.print("List ID before product table init is: "
+				+ SmartTrolleyGUI.getcurrentListID());
+		productData = sqlConnector.getList(SmartTrolleyGUI.getcurrentListID());
 		productTable.setItems(productData);
+		productTable.setPlaceholder(new Label("No Items in list, please add"));
 
 		// set up column cell value factories
 		productNameColumn
@@ -471,5 +488,10 @@ public class ExampleShoppingListController implements Initializable {
 					}
 				});
 	}
+
+	public static int getProductDataSize() {
+		return productData.size();
+	}
+
 }
 /************** End of ExampleShoppingListController **************/
