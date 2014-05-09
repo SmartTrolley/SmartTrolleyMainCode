@@ -49,7 +49,7 @@ public class AllShoppingListsScreenController implements Initializable {
 	/**
 	 * initialize is automatically called when the controller is created.
 	 * <p>
-	 * Date Modified: 06 Mar 2014
+	 * Date Modified: 09 May 2014
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -83,7 +83,13 @@ public class AllShoppingListsScreenController implements Initializable {
             }
 		
 	}
-//TODO close ResultSet when finished.
+
+	/**
+	*Adds buttons to a list of buttons
+	*<p>User can view list of lists
+	*@throws SQLException
+	*<p> Date Modified: 9 May 2014
+	*/
 	public void CreateList() throws SQLException {
 		String query = "SELECT ListID ,Name from lists";
 		SmartTrolleyPrint.print("returned lists from DB");
@@ -118,6 +124,8 @@ public class AllShoppingListsScreenController implements Initializable {
 
 			buttonList.add(newButton);
 		}
+		
+		resultSet.close();
 		SmartTrolleyPrint.print("Total Number of Lists: " + buttonList.size());
 
 		// Add the Go Back button

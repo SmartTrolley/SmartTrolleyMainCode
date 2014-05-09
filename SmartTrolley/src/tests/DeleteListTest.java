@@ -132,20 +132,22 @@ public class DeleteListTest {
 		});
 
 		/*
-		 * It appears that another button press can be run immediately after. If
-		 * this causes problems, try adding a delay before the next button
-		 * press.
+		 * Sets a robot to scroll through the buttons of the list
+		 * of lists for two buttons then enters the third list in the column
 		 */
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				SmartTrolleyPrint.print("Firing list Button");
-				Button viewList = new Button();
-				viewList = AllShoppingListsScreenController.list1Button;
-				viewList.fire();
-				SmartTrolleyPrint.print("Fired list Button");
-			}
-		});
+		Robot listDroid = new Robot();
+		
+		//listDroid moves button selection down 1
+		listDroid.keyPress(KeyEvent.VK_DOWN);
+		listDroid.keyRelease(KeyEvent.VK_DOWN);
+		//listDroid moves button selection down 1
+		listDroid.keyPress(KeyEvent.VK_DOWN);
+		listDroid.keyRelease(KeyEvent.VK_DOWN);
+		//listDroid pushes enter button, listDroid feels satisfied with a job well done and goes home.
+		listDroid.keyPress(KeyEvent.VK_ENTER);
+		listDroid.keyRelease(KeyEvent.VK_ENTER);
+		
+		
 
 		/*
 		 * You can visually see where your test ends up if you uncomment the two
@@ -213,22 +215,13 @@ public class DeleteListTest {
 	/**
 	*Check that the list is deleted when the user confirms 
 	*deletion from the delete message box
-	*<p>Test(s)/User Story that it satisfies
 	*@throws AWTException
 	*@throws SQLException
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 4 May 2014
 	*/
 	@Test
 	public void listHasBeenDeletedTest() throws AWTException, SQLException{
-		query = "INSERT INTO `cl36-st`.`lists` (`Name`) VALUES ('DeleteTest');";
-		productsDatabase.executeStatement(query);
-		
-		query = "SELECT * FROM lists WHERE name = 'DeleteTest'";
-		ResultSet results = productsDatabase.sendQuery(query);
-		
-		assertFalse(results == null);
-		
+		int listIDForDeletion = SmartTrolleyGUI.getcurrentListID();		
 
 		Platform.runLater(new Runnable() {
 			@Override
@@ -269,8 +262,8 @@ public class DeleteListTest {
 		
 		}
 		
-		query = "SELECT * FROM lists WHERE name = 'DeleteTest'";
-		results = productsDatabase.sendQuery(query);
+		query = "SELECT * FROM lists WHERE name = " + listIDForDeletion;
+		ResultSet results = productsDatabase.sendQuery(query);
 		
 		assertTrue(productsDatabase.isResultSetEmpty(results));
 

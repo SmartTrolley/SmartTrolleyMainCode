@@ -114,15 +114,16 @@ public class ExampleShoppingListController implements Initializable {
 	 * @param event
 	 *            - response to click on delete button
 	 *            <p>
-	 *            Date Modified: 4 May 2014
+	 *            Date Modified: 9 May 2014
 	 */
-	// TODO Once GUI is implemented check that correct list is deleted
 	public void deleteList(ActionEvent event) throws SQLException {
+
 		productsDatabase = new SqlConnection();
 		ResultSet result = null;
 		productsDatabase.openConnection();
 
 		int listID = 0;
+
 		SmartTrolleyPrint.print("Delete Button Pressed");
 		deleteMsgBx.showAndWait();
 		deleteMsgBx.setHeight(MSG_BX_H);
@@ -289,7 +290,7 @@ public class ExampleShoppingListController implements Initializable {
 	 * <p>
 	 * User can navigate through product database
 	 * <p>
-	 * Date Modified: 30 Apr 2014
+	 * Date Modified: 9 May 2014
 	 */
 	private void initializeProductTable() {
 		// Create new SqlConnection to retrieve product data

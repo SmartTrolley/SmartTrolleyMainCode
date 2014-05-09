@@ -127,8 +127,6 @@ public class AllShoppingListsScreenControllerTest {
 
 	/**
 	 * Closes productsDatabase between client and server
-	 * <p>
-	 * Test(s)/User Story that it satisfies
 	 * 
 	 * @throws java.lang.Exception
 	 *             <p>
@@ -164,6 +162,10 @@ public class AllShoppingListsScreenControllerTest {
 
 	}
 
+	/**
+	*Tests that the correct number of buttons are displayed
+	*<p> Date Modified: 9 May 2014
+	*/
 	@Test
 	public void correctNumberofButtonsDisplayedTest() {
 		String enquiry = "SELECT COUNT(*) FROM lists";

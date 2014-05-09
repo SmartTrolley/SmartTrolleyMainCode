@@ -266,6 +266,13 @@ public class SqlConnection {
 		url = "jdbc:mysql://" + IP + "/" + USERNAME + "?";
 	}
 
+	/**
+	*Retrieves the list items from the SQL server
+	*<p>User can view list of lists
+	*@param listID
+	*@return
+	*<p> Date Modified: 9 May 2014
+	*/
 	public ObservableList<Product> getList(int listID) {
 		openConnection();
 

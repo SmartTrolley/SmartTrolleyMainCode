@@ -240,10 +240,21 @@ public class SmartTrolleyGUI extends Application {
         Application.launch(SmartTrolleyGUI.class, (java.lang.String[])null);
     }
 
+    
+	/**
+	*gets ListID for use throughout all code
+	*@return
+	*<p> Date Modified: 9 May 2014
+	*/
 	public static int getcurrentListID() {		
 		return currentListID;
 	}
 
+	/**
+	*Sets the current list ID of the List currently being used or setup
+	*@param listID
+	*<p> Date Modified: 9 May 2014
+	*/
 	public static void setCurrentListID(int listID) {
 		currentListID = listID;
 		
