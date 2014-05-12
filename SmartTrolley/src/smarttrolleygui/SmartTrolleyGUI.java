@@ -17,6 +17,7 @@ package smarttrolleygui;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,6 +32,7 @@ public class SmartTrolleyGUI extends Application {
     public Stage stage; 
     private final double MIN_WINDOW_WIDTH = 200.0;
     private final double MIN_WINDOW_HEIGHT = 200.0;
+    private static int currentListID = 0;
 
     @Override
     public void start(Stage primaryStage) {
@@ -69,6 +71,22 @@ public class SmartTrolleyGUI extends Application {
     }
     
     /**
+    *goToCreateNewListScreen is called when the user chooses to create a new shopping list
+    *on the start screen. It loads a screen which allows the user to enter the name for the new list.
+    *TODO: add user story this method satisfies (in next line)
+    *<p>
+    *<p>Date Modified: 3 May 2014
+    */
+    public void goToCreateNewListScreen() {
+        try {
+        	CreateNewListScreenController createNewListScreen = (CreateNewListScreenController) replaceSceneContent("fxml/CreateNewListScreen.fxml");
+            createNewListScreen.setApp(this);
+        } catch (Exception ex) {
+            Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    /**
     *goToAllShoppingListsScreen is called when the user chooses to open a previously created shopping list
     *on the start screen. It loads the screen to show the user previously created lists.
     *<p>User can view previously created shopping lists
@@ -88,6 +106,7 @@ public class SmartTrolleyGUI extends Application {
     *to browse through different product categories, or alternatively search for a product directly.
     *<p>User navigates through product database
     *<p> Date Modified: 28 Feb 2014
+     * @param enteredListName 
     */
     public void goToHomeScreen() {
         try {
@@ -198,5 +217,18 @@ public class SmartTrolleyGUI extends Application {
     public static void main(String[] args) {
         Application.launch(SmartTrolleyGUI.class, (java.lang.String[])null);
     }
+    
+	public static int getcurrentListID() {
+
+		return currentListID;
+
+	}
+
+	public static void setCurrentListID(int listID) {
+
+		currentListID = listID;
+
+	}
+
 }
 /**************End of SmartTrolleyGUI**************/
