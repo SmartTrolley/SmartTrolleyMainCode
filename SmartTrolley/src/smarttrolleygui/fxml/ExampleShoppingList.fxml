@@ -98,7 +98,7 @@
             </ImageView>
           </graphic>
         </Button>
-        <Button minHeight="33.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="112.0" styleClass="button1" text="Delete List">
+        <Button fx:id= "deleteListButton" onAction="#deleteList" minHeight="33.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="112.0" styleClass="button1" text="Delete List">
           <graphic>
             <ImageView fitHeight="26.547571724358885" fitWidth="18.2779598236084" pickOnBounds="true" preserveRatio="true">
               <image>

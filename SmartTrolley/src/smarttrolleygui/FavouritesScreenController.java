@@ -51,7 +51,10 @@ public class FavouritesScreenController implements Initializable {
     @FXML
     private TableColumn<Product, Product> addColumn;
 
+    
+    
     private SmartTrolleyGUI application;
+    
     private ObservableList<String> categories;
     private ObservableList<Product> productData;
 

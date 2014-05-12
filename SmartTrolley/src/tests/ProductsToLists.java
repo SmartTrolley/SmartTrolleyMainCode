@@ -33,8 +33,8 @@ public class ProductsToLists {
 		String delQry = "DELETE FROM lists";
 		String qry = "INSERT INTO lists VALUES (1, 'Sea'), (2, 'Party')";
 		
-		productsDatabase.execute(delQry); //Clean previous lists first
-		productsDatabase.execute(qry);
+		productsDatabase.executeStatement(delQry); //Clean previous lists first
+		productsDatabase.executeStatement(qry);
 	}
 	
 	@After
@@ -46,11 +46,11 @@ public class ProductsToLists {
 	public void NewItemShouldBeAddedToDB() throws SQLException {
 		//Clear DB
 		query = "DELETE FROM lists_products";
-		productsDatabase.execute(query);
+		productsDatabase.executeStatement(query);
 		
 		//This query adds the product 'Hovis Bread' to the list 'Sea' with a quantity of 2
 		String query = "INSERT INTO lists_products VALUES (4, 1, 22)";
-		productsDatabase.execute(query);
+		productsDatabase.executeStatement(query);
 		
 		//Now check the result
 		query = "SELECT * FROM lists_products WHERE ProductID = 4 AND ListID = 1 AND Quantity = 22";
@@ -63,7 +63,7 @@ public class ProductsToLists {
 		
 		//clean up the database
 		query = "DELETE FROM lists_products WHERE ProductID = 4 AND ListID = 1 AND Quantity = 22";
-		productsDatabase.execute(query);
+		productsDatabase.executeStatement(query);
 		
 	}
 	
@@ -71,11 +71,11 @@ public class ProductsToLists {
 	public void TotalItemsOnListShouldBe15() throws SQLException {
 		//Clear DB
 		query = "DELETE FROM lists_products";
-		productsDatabase.execute(query);
+		productsDatabase.executeStatement(query);
 				
 		//This query adds two products to the list with ID of 2 (Total = 15)
 		String query = "INSERT INTO lists_products VALUES (2, 2, 12), (1, 2, 3)";
-		productsDatabase.execute(query);
+		productsDatabase.executeStatement(query);
 		
 		//Now check the result
 		query = "SELECT sum(Quantity) as 'Total' FROM lists_products";
@@ -86,7 +86,7 @@ public class ProductsToLists {
 		
 		//Clear DB
 		query = "DELETE FROM lists_products";
-		productsDatabase.execute(query);
+		productsDatabase.executeStatement(query);
 		
 	}
 	
@@ -94,11 +94,11 @@ public class ProductsToLists {
 	public void ItemQuantityOnListShouldBe5() throws SQLException {
 		//Clear DB
 		query = "DELETE FROM lists_products";
-		productsDatabase.execute(query);
+		productsDatabase.executeStatement(query);
 				
 		//This query adds a product with quantity of 5 to list 2
 		String query = "INSERT INTO lists_products VALUES (3, 2, 5)";
-		productsDatabase.execute(query);
+		productsDatabase.executeStatement(query);
 		
 		//Now check the result
 		query = "SELECT Quantity FROM lists_products WHERE ProductID = 3";
@@ -109,7 +109,7 @@ public class ProductsToLists {
 		
 		//Clear DB
 		query = "DELETE FROM lists_products";
-		productsDatabase.execute(query);
+		productsDatabase.executeStatement(query);
 		
 	}
 	
@@ -117,11 +117,11 @@ public class ProductsToLists {
 	public void ListShoulBeUpdated() throws SQLException {
 		//Clear DB
 		query = "DELETE FROM lists";
-		productsDatabase.execute(query);
+		productsDatabase.executeStatement(query);
 				
 		//This query adds two lists to the lists table
 		String query = "INSERT INTO lists VALUES (1, 'SeaFood'), (2, 'Italian')";
-		productsDatabase.execute(query);
+		productsDatabase.executeStatement(query);
 		
 		//Now check the name of the first item in the resultset (does not matter which one is returned)
 		query = "SELECT * FROM lists";
@@ -135,7 +135,7 @@ public class ProductsToLists {
 		
 		//Now update the name
 		query = "UPDATE lists SET Name = '"+ changedName +"' WHERE ListID = " + id;
-		productsDatabase.execute(query);
+		productsDatabase.executeStatement(query);
 		
 		//Get the changed list
 		query = "SELECT Name FROM lists WHERE ListID = " + id.toString();
@@ -146,7 +146,7 @@ public class ProductsToLists {
 		
 		//Clear DB
 		query = "DELETE FROM lists";
-		productsDatabase.execute(query);
+		productsDatabase.executeStatement(query);
 		
 	}
 }

@@ -17,8 +17,7 @@ public class SmartTrolleyPrint {
 
 	/**
 	 *prints, then flushes buffer
-	 *@param args
-	 *[If applicable]@see [Reference URL OR Class#Method]
+	 *@param text String to be printed
 	 *<p> Date Modified: 11 Mar 2014
 	 * @return 
 	 */
@@ -27,6 +26,6 @@ public class SmartTrolleyPrint {
 		System.out.flush();
 	}
 
-}
+} 
 
 /**************End of SmartTrolleyPrint.java**************/
