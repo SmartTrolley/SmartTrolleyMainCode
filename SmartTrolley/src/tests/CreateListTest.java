@@ -3,9 +3,10 @@
  *
  * This file tests for list creation
  * Adapted from DeleteListTest.java
- * @author Arne Sandschulte
- *
- * @author Checked By: Checker(s) fill here
+ * @author Alick Jacklin
+ * @author Prashant Chakravarty
+ * 
+ * Adapted by Arne
  *
  * @version V1.0 [Date Created: 5 May 2014]
  */
@@ -32,7 +33,7 @@ import smarttrolleygui.StartScreenController;
 import DatabaseConnectors.SqlConnection;
 import Printing.SmartTrolleyPrint;
 
-public class CreateList {
+public class CreateListTest {
 
 	private static SqlConnection productsDatabase;
 	String query;
@@ -112,12 +113,6 @@ public class CreateList {
 			}
 		});
 		
-		/*
-		 * You can visually see where your test ends up if you uncomment the two
-		 * lines below. This delay is also required to allow the JavaFX thread
-		 * to load the screens and catch up. Running the test without it means
-		 * some of the UI commands may not run.
-		 */
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e1) {
@@ -128,7 +123,7 @@ public class CreateList {
 	/**
 	*Check that the list is created when the user
 	*presses 'Create new list' button.
-	*<p>Test(s)/User Story that it satisfies
+	*<p>User story: User can create new list
 	*@throws SQLException
 	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 9 May 2014
@@ -141,10 +136,9 @@ public class CreateList {
 			public void run() {
 				// set text of TextField to arbitrary input as an example name for a new list
 				TextField listNameTextField = CreateNewListScreenController.listNameTextField;
-				listNameTextField.setText("asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd");
+				listNameTextField.setText("asd");
 				String textInput = listNameTextField.getText();
 				assertTrue(textInput instanceof String);
-				SmartTrolleyPrint.print("TextField reads: " + textInput);
 
 				// fire 'Create New List' button
 				Button createNewListButton = CreateNewListScreenController.createNewListButton;
@@ -162,7 +156,6 @@ public class CreateList {
 								+ " has been created in the SQL database.");
 					}
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}				
 			}
@@ -192,4 +185,4 @@ public class CreateList {
 
 }
 
-/************** End of DeleteListTest.java **************/
+/************** End of CreateListTest.java **************/
