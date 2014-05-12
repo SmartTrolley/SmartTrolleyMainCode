@@ -21,7 +21,7 @@ public class SmartTrolleyPrint {
 	 *<p> Date Modified: 11 Mar 2014
 	 * @return 
 	 */
-	public static void print(String text) {
+	public static void print(Object text) {
 		System.out.println(text);
 		System.out.flush();
 	}

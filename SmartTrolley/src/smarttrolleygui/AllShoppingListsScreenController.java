@@ -49,7 +49,7 @@ public class AllShoppingListsScreenController implements Initializable {
 	/**
 	 * initialize is automatically called when the controller is created.
 	 * <p>
-	 * Date Modified: 06 Mar 2014
+	 * Date Modified: 09 May 2014
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -83,7 +83,13 @@ public class AllShoppingListsScreenController implements Initializable {
             }
 		
 	}
-//TODO close ResultSet when finished.
+
+	/**
+	*Adds buttons to a list of buttons
+	*<p>User can view list of lists
+	*@throws SQLException
+	*<p> Date Modified: 9 May 2014
+	*/
 	public void CreateList() throws SQLException {
 		String query = "SELECT ListID ,Name from lists";
 		SmartTrolleyPrint.print("returned lists from DB");
@@ -104,19 +110,22 @@ public class AllShoppingListsScreenController implements Initializable {
 			newButton.setText(listName);
 			newButton.setPrefSize(300, 80);
 			newButton.setMinHeight(50);
-			//TODO look up session implementation.
 			// Load shoppingLists if clicked
-			/*newButton.setOnAction(new EventHandler<ActionEvent>() {
+			newButton.setOnAction(new EventHandler<ActionEvent>() {
 
 				@Override
 				public void handle(ActionEvent event) {
-					application.session.put("currentListID", listID);
-					loadShoppingList(event, listName);
+					SmartTrolleyPrint.print("ListID pressed is: " + listID);				
+					SmartTrolleyGUI.setCurrentListID(listID);
+					SmartTrolleyPrint.print("Application ListID: " + SmartTrolleyGUI.getcurrentListID());
+					loadShoppingList(event);
 				}
-			});*/
+			});
 
 			buttonList.add(newButton);
 		}
+		
+		resultSet.close();
 		SmartTrolleyPrint.print("Total Number of Lists: " + buttonList.size());
 
 		// Add the Go Back button
