@@ -66,7 +66,7 @@ public class SqlConnection {
 	/**
 	 * Send a query to the predefined database and returns the results returned by the server
 	 * @param query
-	 * @return
+	 * @return results
 	 * @throws SQLException
 	 */
 	public ResultSet sendQuery(String query) throws SQLException {
@@ -80,7 +80,7 @@ public class SqlConnection {
 	/**
 	 * Executes SQL query that returns the information for a particular product (by name)
 	 * @param productName
-	 * @return
+	 * @return product
 	 */
 	public Product getProductByName(String productName) {
 		
@@ -120,7 +120,7 @@ public class SqlConnection {
 	}
 	
 	/**
-	 * @return 
+	 * @return products
 	 * @throws SQLException 
 	 * 
 	 */
