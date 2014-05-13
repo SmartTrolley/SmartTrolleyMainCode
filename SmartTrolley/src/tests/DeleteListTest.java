@@ -18,8 +18,6 @@ import static org.junit.Assert.*;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -35,7 +33,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-import smarttrolleygui.AllShoppingListsScreenController;
 import smarttrolleygui.ExampleShoppingListController;
 import smarttrolleygui.SmartTrolleyGUI;
 import smarttrolleygui.StartScreenController;
@@ -56,9 +53,7 @@ public class DeleteListTest {
 	 * <p>N/A
 	 * 
 	 * @throws java.lang.Exception
-	 *             [If applicable]@see [Reference URL OR Class#Method]
-	 *             <p>
-	 *             Date Modified: 3 May 2014
+	 * <p> Date Modified: 3 May 2014
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -143,7 +138,7 @@ public class DeleteListTest {
 		//listDroid moves button selection down 1
 		listDroid.keyPress(KeyEvent.VK_DOWN);
 		listDroid.keyRelease(KeyEvent.VK_DOWN);
-		//listDroid pushes enter button, listDroid feels satisfied with a job well done and goes home.
+		//listDroid pushes enter button
 		listDroid.keyPress(KeyEvent.VK_ENTER);
 		listDroid.keyRelease(KeyEvent.VK_ENTER);
 		
@@ -198,16 +193,17 @@ public class DeleteListTest {
 		
 			//The robot is for controlling the button pushes on the message box.
 			//The user must be in the test window for the robot to work.
-			Robot robot = new Robot();
+			Robot doesNotDeleteBot = new Robot();
 			
 			//Moves the cursor to the no button		
-			robot.keyPress(KeyEvent.VK_RIGHT);
-			robot.keyRelease(KeyEvent.VK_RIGHT);
+			doesNotDeleteBot.keyPress(KeyEvent.VK_RIGHT);
+			doesNotDeleteBot.keyRelease(KeyEvent.VK_RIGHT);
 			//Pushes the no button
-			robot.keyPress(KeyEvent.VK_ENTER);
-			robot.keyRelease(KeyEvent.VK_ENTER);
+			doesNotDeleteBot.keyPress(KeyEvent.VK_ENTER);
+			doesNotDeleteBot.keyRelease(KeyEvent.VK_ENTER);
 		
 		} catch (AWTException e) {
+			SmartTrolleyPrint.print("doesNotDeleteBot cannot find buttons.");
 	        e.printStackTrace();
 		};
 	}
@@ -242,16 +238,17 @@ public class DeleteListTest {
 			
 			//The robot is for controlling the button pushes on the message box.
 			//The user must be in the test window for the robot to work.		
-			Robot robot = new Robot();
+			Robot deletionBot = new Robot();
 			
 			//this moves the selection back to the Yes button.
-			robot.keyPress(KeyEvent.VK_LEFT);
-			robot.keyRelease(KeyEvent.VK_LEFT);
+			deletionBot.keyPress(KeyEvent.VK_LEFT);
+			deletionBot.keyRelease(KeyEvent.VK_LEFT);
 			//this fires the yes button.
-			robot.keyPress(KeyEvent.VK_ENTER);
-			robot.keyRelease(KeyEvent.VK_ENTER);
+			deletionBot.keyPress(KeyEvent.VK_ENTER);
+			deletionBot.keyRelease(KeyEvent.VK_ENTER);
 		
 		} catch (AWTException e) {
+			SmartTrolleyPrint.print("deletionBot unable to locate buttons.");
 	        e.printStackTrace();
 		};
 		
@@ -265,7 +262,7 @@ public class DeleteListTest {
 		query = "SELECT * FROM lists WHERE name = " + listIDForDeletion;
 		ResultSet results = productsDatabase.sendQuery(query);
 		
-		assertTrue(productsDatabase.isResultSetEmpty(results));
+		assertTrue(SqlConnection.isResultSetEmpty(results));
 
 	}
 
@@ -273,20 +270,12 @@ public class DeleteListTest {
 	 * Closes productsDatabase between client and server
 	 * <p>
 	 * Date Modified: 3 May 2014
-	 * 
 	 * @throws Exception
 	 */
 	@After
 	public void closeAll() throws Exception {
 		productsDatabase.closeConnection();
 
-		/*
-		 * GUIboot.stop(); Platform.runLater(new Runnable() {
-		 * 
-		 * @Override public void run() { try { GUIboot.stop(); } catch
-		 * (Exception e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); } Platform.exit(); } });
-		 */
 		SmartTrolleyPrint.print("Closing Test.");
 	}
 

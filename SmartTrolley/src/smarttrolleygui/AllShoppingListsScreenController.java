@@ -154,8 +154,8 @@ public class AllShoppingListsScreenController implements Initializable {
 	 * setApp
 	 * 
 	 * @param application
-	 *            <p>
-	 *            Date Modified: 28 Feb 2014
+	 * <p>
+	 * Date Modified: 28 Feb 2014
 	 */
 	public void setApp(SmartTrolleyGUI application) {
 		this.application = application;
@@ -164,11 +164,10 @@ public class AllShoppingListsScreenController implements Initializable {
 	/**
 	 * loadStartScreen is called when the 'go back' button is pressed. It calls
 	 * the goToStartScreen method in SmartTrolleyGUI.java
-	 * 
 	 * @param event
-	 *            - response to click on 'go back' button
-	 *            <p>
-	 *            Date Modified: 6 Mar 2014
+	 * - response to click on 'go back' button
+	 * <p>
+	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
 
@@ -186,11 +185,10 @@ public class AllShoppingListsScreenController implements Initializable {
 	 * the goToShoppingList method in SmartTrolleyGUI.java
 	 * <p>
 	 * User can view shopping list
-	 * 
 	 * @param event
-	 *            - response to click on 'offers' button
-	 *            <p>
-	 *            Date Modified: 6 Mar 2014
+	 * - response to click on 'offers' button
+	 * <p>
+	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadShoppingList(ActionEvent event) {
 

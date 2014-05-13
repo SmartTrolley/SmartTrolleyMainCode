@@ -63,7 +63,6 @@ public class SqlConnection {
 	/**
 	 * Opens a productsDatabase (if not already open) for sending mysql queries
 	 * to the database
-	 * 
 	 * @throws SQLException
 	 */
 	public void openConnection() {
@@ -79,12 +78,11 @@ public class SqlConnection {
 	}
 
 	/**
-	 * executes statement to SQL server, allow for creation and deleted of
+	 * executes statement to SQL server, allow for creation and deletion of
 	 * further lists and tables
-	 * 
 	 * @param query
 	 * @return <p>
-	 *         Date Modified: 4 May 2014
+	 * Date Modified: 4 May 2014
 	 */
 	public boolean executeStatement(String query) {
 		boolean statementExecuted = false;
@@ -110,7 +108,6 @@ public class SqlConnection {
 	/**
 	 * Send a query to the predefined database and returns the results returned
 	 * by the server
-	 * 
 	 * @param query
 	 * @return
 	 * @throws SQLException
@@ -131,10 +128,10 @@ public class SqlConnection {
 	 * @param resultSet
 	 * @return
 	 * @see 
-	 *      [http://stackoverflow.com/questions/2938812/how-to-find-out-if-a-java
-	 *      -resultset-obtained-is-empty]
-	 *      <p>
-	 *      Date Modified: 4 May 2014
+	 * [http://stackoverflow.com/questions/2938812/how-to-find-out-if-a-java
+	 * -resultset-obtained-is-empty]
+	 * <p>
+	 * Date Modified: 4 May 2014
 	 */
 	public static boolean isResultSetEmpty(ResultSet resultSet) {
 		boolean empty = true;
