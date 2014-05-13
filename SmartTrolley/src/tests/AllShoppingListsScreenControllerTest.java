@@ -93,11 +93,7 @@ public class AllShoppingListsScreenControllerTest {
 		 * Failure to implement this delay results in a nullPointerException,
 		 * since the scene has not yet been created.
 		 */
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		SmartTrolleyDelay.delay(1000);
 
 		/*
 		 * In order to do anything with the user interface, the JavaFX thread must be modified using Platform.
@@ -122,11 +118,7 @@ public class AllShoppingListsScreenControllerTest {
 		 * This delay is also required to allow the JavaFX thread to load the screens and catch up.
 		 * Running the test without it means some of the UI commands may not run.
 		 */
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		SmartTrolleyDelay.delay(1000);
 	}
 
 	/**
@@ -138,11 +130,7 @@ public class AllShoppingListsScreenControllerTest {
 	@After
 	public void tearDown() throws Exception {
 		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		SmartTrolleyDelay.delay(1000);
 		
 		productsDatabase.closeConnection();
 
@@ -150,11 +138,7 @@ public class AllShoppingListsScreenControllerTest {
 
 		SmartTrolleyPrint.print("Closing Test.");
 
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		SmartTrolleyDelay.delay(1000);
 
 	}
 
@@ -184,11 +168,7 @@ public class AllShoppingListsScreenControllerTest {
 			e.printStackTrace();
 		}
 
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		SmartTrolleyDelay.delay(5000);
 
 		SmartTrolleyPrint.print("rowSize is " + rowSize);
 		SmartTrolleyPrint.print("array size is" + AllShoppingListsScreenController.buttonList.size());
@@ -205,11 +185,7 @@ public class AllShoppingListsScreenControllerTest {
 	@Test
 	public void correctListDisplayedTest() {
 		
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		SmartTrolleyDelay.delay(3000);
 		
 		ResultSet results = null;
 		String query;
@@ -248,11 +224,7 @@ public class AllShoppingListsScreenControllerTest {
 			SmartTrolleyPrint.print("no results in ResultSet");
 		}
 		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		SmartTrolleyDelay.delay(1000);
 
 		SmartTrolleyPrint.print("row Size is " + rowSize);
 		
@@ -262,11 +234,7 @@ public class AllShoppingListsScreenControllerTest {
 		
 		assertTrue(rowSize == listSize);
 		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		SmartTrolleyDelay.delay(1000);
 	
 	}
 

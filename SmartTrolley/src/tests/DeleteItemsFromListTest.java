@@ -89,11 +89,7 @@ public class DeleteItemsFromListTest {
 		 * results in a nullPointerException, since the scene has not yet been
 		 * created.
 		 */
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		SmartTrolleyDelay.delay(1000);
 
 		/*
 		 * In order to do anything with the user interface, the JavaFX thread
@@ -137,11 +133,7 @@ public class DeleteItemsFromListTest {
 		 * to load the screens and catch up. Running the test without it means
 		 * some of the UI commands may not run.
 		 */
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		SmartTrolleyDelay.delay(1000);
 	}
 
 
@@ -188,11 +180,7 @@ public class DeleteItemsFromListTest {
 		 * productsDatabase.sendQuery(query); SmartTrolleyPrint.print(
 		 * "sending query to sql server to retreive list information");
 		 */
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		SmartTrolleyDelay.delay(3000);
 
 		/*
 		 * int Quantity = partyList.getProductQuantity(1);
