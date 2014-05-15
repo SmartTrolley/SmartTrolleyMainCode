@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import Printing.SmartTrolleyPrint;
+
 import smarttrolleygui.Product;
 
 import java.sql.*;
@@ -22,6 +24,7 @@ public class SqlConnectionTest {
 
 	private static SqlConnection productsDatabase; 
 	private ObservableList<Product> products;
+	private ObservableList<Product> offers;
 	
 	public String query;
 	
@@ -40,7 +43,7 @@ public class SqlConnectionTest {
 	}
 	
 	/**
-	 * Tests for an instance of productsDatabase and that the productsDatabase is not closed
+	 * Tests for an instance of connection and that the connection is not closed
 	 * @throws SQLException
 	 */
 	
@@ -123,14 +126,53 @@ public class SqlConnectionTest {
 			
 			product = products.get(i);
 			
-			System.out.println(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
+			SmartTrolleyPrint.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
 			i++;
 		}
 	}
 	
+	/**
+	 * 
+	 */
+	@Test
+	public void getSpecificProductTest(){
+		
+		Product product;
+		
+		product = productsDatabase.getSpecificProduct("productID","5");
+		
+		assertEquals(product.getId(), 5);
+		assertEquals(product.getName(), "Innocent Noodle Pot");
+		assertEquals(product.getImage(), "img/SampleProducts/innocent_noodle_pot.jpg");
+		assert(product.getPrice() == 6.99);
+	}
+	
 	
 	/**
-	 * Tests that the productsDatabase closes correctly
+	 * Test that the getListOfOffers() returns the full list of offers
+	 * from the database by printing it to the console and then comparing it.
+	 */
+	@Test
+	public void getListOfOffersTest(){
+		
+		offers = productsDatabase.getListOfOffers();
+		
+		Product product;
+		int j = 0;
+		while(j<offers.size()){
+			
+			product = offers.get(j);
+			
+			SmartTrolleyPrint.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + "  " + product.getOfferPrice() + "  " + product.getSavings());
+					
+			j++;
+		}
+		
+	}
+	
+	
+	/**
+	 * Tests that the connection closes correctly
 	 * @throws SQLException
 	 */
 	@Test

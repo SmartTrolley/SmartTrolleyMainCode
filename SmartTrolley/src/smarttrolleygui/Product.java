@@ -19,6 +19,8 @@ public class Product {
     private String image;
     private String name;
     private float price;
+    private float offerPrice;
+    private float savings;
 
 	public int getId() {
 		return id;
@@ -51,7 +53,22 @@ public class Product {
     public void setPrice(float price) {
 		this.price = price;
 	}  
-   
+    
+    public float getOfferPrice(){
+    	return this.offerPrice;
+    }
+    
+    public void setOfferPrice(float offerPrice){
+    	this.offerPrice = offerPrice;
+    }
+    
+    public float getSavings(){
+    	return this.savings;
+    }
+    
+    public void setSavings(float savings){
+    	this.savings = savings;
+    }
    
 }
 /**************End of Product**************/

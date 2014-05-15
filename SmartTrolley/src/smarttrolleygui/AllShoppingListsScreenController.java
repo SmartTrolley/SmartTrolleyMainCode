@@ -14,7 +14,6 @@
 package smarttrolleygui;
 
 import java.net.URL;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -37,9 +36,7 @@ public class AllShoppingListsScreenController implements Initializable {
 
 	private SqlConnection productsDatabase;
 
-	private PreparedStatement preparedStatement;
-
-	public GridPane grdPaneLists;
+	public GridPane grdPaneLists = new GridPane();
 
 	@FXML
 	public static Button list1Button;
@@ -61,7 +58,6 @@ public class AllShoppingListsScreenController implements Initializable {
 
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			SmartTrolleyPrint.print("cannot create button list");
 		}		finally{
             productsDatabase.closeConnection();
@@ -154,8 +150,8 @@ public class AllShoppingListsScreenController implements Initializable {
 	 * setApp
 	 * 
 	 * @param application
-	 *            <p>
-	 *            Date Modified: 28 Feb 2014
+	 * <p>
+	 * Date Modified: 28 Feb 2014
 	 */
 	public void setApp(SmartTrolleyGUI application) {
 		this.application = application;
@@ -164,11 +160,10 @@ public class AllShoppingListsScreenController implements Initializable {
 	/**
 	 * loadStartScreen is called when the 'go back' button is pressed. It calls
 	 * the goToStartScreen method in SmartTrolleyGUI.java
-	 * 
 	 * @param event
-	 *            - response to click on 'go back' button
-	 *            <p>
-	 *            Date Modified: 6 Mar 2014
+	 * - response to click on 'go back' button
+	 * <p>
+	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
 
@@ -186,11 +181,10 @@ public class AllShoppingListsScreenController implements Initializable {
 	 * the goToShoppingList method in SmartTrolleyGUI.java
 	 * <p>
 	 * User can view shopping list
-	 * 
 	 * @param event
-	 *            - response to click on 'offers' button
-	 *            <p>
-	 *            Date Modified: 6 Mar 2014
+	 * - response to click on 'offers' button
+	 * <p>
+	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadShoppingList(ActionEvent event) {
 

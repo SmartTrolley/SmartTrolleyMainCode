@@ -7,7 +7,7 @@
 * @author Arne
 * 
 *
-* @author [Checked By:] [Checker(s) fill here]
+* @author [Checked By:] Alick Jacklin and Prashant Chakravarty [13/05/2014]
 *
 * @version [1.0] [Date Created: 22/02/14]
 */
@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 import Printing.SmartTrolleyPrint;
 import javafx.application.Application;
@@ -31,6 +32,7 @@ import javafx.stage.Stage;
 
 public class SmartTrolleyGUI extends Application {
     
+
     public static Stage stage; 
     
     private final double MIN_WINDOW_WIDTH = 600.0;
@@ -91,6 +93,22 @@ public class SmartTrolleyGUI extends Application {
     }
     
     /**
+    *goToCreateNewListScreen is called when the user chooses to create a new shopping list
+    *on the start screen. It loads a screen which allows the user to enter the name for the new list.
+    *TODO: add user story this method satisfies (in next line)
+    *<p>
+    *<p>Date Modified: 3 May 2014
+    */
+    public void goToCreateNewListScreen() {
+        try {
+        	CreateNewListScreenController createNewListScreen = (CreateNewListScreenController) replaceSceneContent("fxml/CreateNewListScreen.fxml");
+            createNewListScreen.setApp(this);
+        } catch (Exception ex) {
+            Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    /**
     *goToAllShoppingListsScreen is called when the user chooses to open a previously created shopping list
     *on the start screen. It loads the screen to show the user previously created lists.
     *<p>User can view previously created shopping lists
@@ -101,7 +119,6 @@ public class SmartTrolleyGUI extends Application {
             allShoppingLists = (AllShoppingListsScreenController) replaceSceneContent("fxml/AllShoppingListsScreen.fxml");
             allShoppingLists.setApp(this);
         } catch (Exception ex) {
-        	//TODO Show a message box to the user here
         	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
@@ -113,13 +130,13 @@ public class SmartTrolleyGUI extends Application {
     *to browse through different product categories, or alternatively search for a product directly.
     *<p>User navigates through product database
     *<p> Date Modified: 28 Feb 2014
+     * @param enteredListName 
     */
     public void goToHomeScreen() {
         try {
             homeScreen = (HomeScreenController) replaceSceneContent("fxml/HomeScreen.fxml");
             homeScreen.setApp(this);
         } catch (Exception ex) {
-        	//TODO Show a message box to the user here
         	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
@@ -188,7 +205,7 @@ public class SmartTrolleyGUI extends Application {
     *<p>Displays content on screen
     *@param fxml the name of the .fxml file to be loaded into the scene
     *@return fxml file controller
-     * @throws IOException 
+    *@throws IOException 
     *@throws Exception
     *<p> Date Modified: 28 Feb 2014
     */
@@ -259,5 +276,6 @@ public class SmartTrolleyGUI extends Application {
 		currentListID = listID;
 		
 	}
+
 }
 /**************End of SmartTrolleyGUI**************/

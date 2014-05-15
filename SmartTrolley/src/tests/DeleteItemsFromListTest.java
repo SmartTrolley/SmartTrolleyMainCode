@@ -13,7 +13,6 @@
 
 package tests;
 
-import static org.junit.Assert.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Group;
@@ -26,8 +25,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import smarttrolleygui.AllShoppingListsScreenController;
-import smarttrolleygui.ExampleShoppingListController;
-import smarttrolleygui.Lists;
 import smarttrolleygui.SmartTrolleyGUI;
 import smarttrolleygui.StartScreenController;
 
@@ -46,14 +43,10 @@ public class DeleteItemsFromListTest {
 
 	/**
 	 * Setup method that runs before every test
-	 *  It sets up a
-	 * database connection and moves to the shopping list screen
+	 *  It sets up a database connection and moves to the shopping list screen
 	 * @throws Exception
-	 * @see http
-	 *      ://stackoverflow.com/questions/10492886/how-to-create-two-windows
-	 *      -simultaneously-in-javafx
-	 *      <p>
-	 *      Date Modified: 29 Apr 2014
+	 * @see http://stackoverflow.com/questions/10492886/how-to-create-two-windows-simultaneously-in-javafx
+	 *<p> Date Modified: 29 Apr 2014
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -96,11 +89,7 @@ public class DeleteItemsFromListTest {
 		 * results in a nullPointerException, since the scene has not yet been
 		 * created.
 		 */
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		SmartTrolleyDelay.delay(1000);
 
 		/*
 		 * In order to do anything with the user interface, the JavaFX thread
@@ -108,7 +97,6 @@ public class DeleteItemsFromListTest {
 		 * monitor the UX outside this thread, there will be errors. Please note
 		 * that for any elements of the UX that you want to modify, there must
 		 * be the corresponding variable (with an @FXML tag above it i.e.
-		 * 
 		 * @FXML protected static Button viewAllShoppingListsButton;) in order
 		 * to use it.
 		 */
@@ -116,7 +104,6 @@ public class DeleteItemsFromListTest {
 			@Override
 			public void run() {
 				SmartTrolleyPrint.print("Firing Button");
-				// GUIboot.startScreen.viewAllShoppingListsButton.fire();
 				Button viewLists = new Button();
 				viewLists = StartScreenController.viewAllShoppingListsButton;
 				viewLists.fire();
@@ -133,7 +120,6 @@ public class DeleteItemsFromListTest {
 			@Override
 			public void run() {
 				SmartTrolleyPrint.print("Firing list Button");
-				// GUIboot.allShoppingLists.list1Button.fire();
 				Button viewList = new Button();
 				viewList = AllShoppingListsScreenController.list1Button;
 				viewList.fire();
@@ -142,30 +128,14 @@ public class DeleteItemsFromListTest {
 		});
 
 		/*
-		 * You can visually see where your test ends up if you uncomment the two
-		 * lines below. This delay is also required to allow the JavaFX thread
+		 * You can visually see where your setup ends up if you uncomment the 
+		 * delay below. This delay is also required to allow the JavaFX thread
 		 * to load the screens and catch up. Running the test without it means
 		 * some of the UI commands may not run.
 		 */
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		SmartTrolleyDelay.delay(1000);
 	}
 
-	/**
-	 * Tests to see if list is deleted?
-	 * <p>
-	 * Remove products from list
-	 * <p>
-	 * Date Modified: 29 Apr 2014
-	 * 
-	 * @Test // TODO Rename this as JAVAFXTDDEx in spikes repo public void
-	 *       deletingListTest() {
-	 * 
-	 *       }
-	 */
 
 	/**
 	 * Tests to see if the item quantity increase
@@ -178,14 +148,11 @@ public class DeleteItemsFromListTest {
 	 */
 	@Test
 	public void QuantityUpdateTest() throws SQLException {
+		
 		query = "SELECT * FROM lists_products WHERE listid = 2";
 		ResultSet results = productsDatabase.sendQuery(query);
 		SmartTrolleyPrint.print("sending query to sql server to retreive list information");
 
-		/*
-		 * Lists partyList = new Lists();
-		 * SmartTrolleyPrint.print("Creating new local list named partyList");
-		 */
 		results.absolute(1);
 
 		int oldQuantity = results.getInt("Quantity");
@@ -213,11 +180,7 @@ public class DeleteItemsFromListTest {
 		 * productsDatabase.sendQuery(query); SmartTrolleyPrint.print(
 		 * "sending query to sql server to retreive list information");
 		 */
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		SmartTrolleyDelay.delay(3000);
 
 		/*
 		 * int Quantity = partyList.getProductQuantity(1);
@@ -242,20 +205,12 @@ public class DeleteItemsFromListTest {
 	 * Closes productsDatabase between client and server
 	 * <p>
 	 * Date Modified: 3 May 2014
-	 * 
 	 * @throws Exception
 	 */
 	@After
 	public void closeAll() throws Exception {
 		productsDatabase.closeConnection();
 
-		/*
-		 * GUIboot.stop(); Platform.runLater(new Runnable() {
-		 * 
-		 * @Override public void run() { try { GUIboot.stop(); } catch
-		 * (Exception e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); } Platform.exit(); } });
-		 */
 		SmartTrolleyPrint.print("Closing Test.");
 	}
 }
