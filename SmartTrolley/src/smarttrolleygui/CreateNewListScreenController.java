@@ -38,6 +38,8 @@ public class CreateNewListScreenController implements Initializable {
 	@ FXML
 	private Label notifierLabel;
 	
+	private ControllerGeneral controller = new ControllerGeneral(); 
+	
 	/**
 	 * initialize is automatically called when the controller is created.
 	 * <p>

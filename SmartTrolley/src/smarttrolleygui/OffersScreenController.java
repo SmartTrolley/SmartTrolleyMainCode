@@ -56,6 +56,7 @@ public class OffersScreenController implements Initializable {
     private SmartTrolleyGUI application;
     private ObservableList<String> categories;
     private ObservableList<Product> productData;
+    
     private ControllerGeneral controller = new ControllerGeneral(); 
 
     /**

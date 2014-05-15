@@ -57,6 +57,7 @@ public class FavouritesScreenController implements Initializable {
     
     private ObservableList<String> categories;
     private ObservableList<Product> productData;
+    
     private ControllerGeneral controller = new ControllerGeneral(); 
 
     /**
