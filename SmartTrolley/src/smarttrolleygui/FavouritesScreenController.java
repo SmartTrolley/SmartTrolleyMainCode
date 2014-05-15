@@ -57,6 +57,7 @@ public class FavouritesScreenController implements Initializable {
     
     private ObservableList<String> categories;
     private ObservableList<Product> productData;
+    private ControllerGeneral controller = new ControllerGeneral(); 
 
     /**
      * initialize is automatically called when the controller is created.
@@ -92,8 +93,6 @@ public class FavouritesScreenController implements Initializable {
      * Date Modified: 6 Mar 2014
      */
     public void loadStartScreen(ActionEvent event) {
-
-    	ControllerGeneral controller = new ControllerGeneral(); 
     	controller.loadStartScreen(event);
     }
 
@@ -108,9 +107,6 @@ public class FavouritesScreenController implements Initializable {
      * Date Modified: 28 Feb 2014
      */
     public void loadHomeScreen(ActionEvent event) {
-
-		
-		ControllerGeneral controller = new ControllerGeneral(); 
     	controller.loadHomeScreen(event);
 	}
 
@@ -125,8 +121,6 @@ public class FavouritesScreenController implements Initializable {
      * Date Modified: 6 Mar 2014
      */
     public void loadShoppingList(ActionEvent event) {
-    	
-    	ControllerGeneral controller = new ControllerGeneral();
     	controller.loadShoppingList(event);
     }
 
@@ -141,8 +135,6 @@ public class FavouritesScreenController implements Initializable {
      * Date Modified: 7 Mar 2014
      */
     public void loadOffers(ActionEvent event) {
-
-    	ControllerGeneral controller = new ControllerGeneral();
     	controller.loadOffers(event);
     }
 

@@ -54,6 +54,7 @@ public class HomeScreenController implements Initializable {
     private SmartTrolleyGUI application;
     private ObservableList<String> categories;
     private ObservableList<Product> productData;
+    private ControllerGeneral controller = new ControllerGeneral(); 
 
     /**
      * initialize is automatically called when the controller is created.
@@ -90,7 +91,7 @@ public class HomeScreenController implements Initializable {
      */
     public void loadStartScreen(ActionEvent event) {
     	
-    	ControllerGeneral controller = new ControllerGeneral(); 
+    	//ControllerGeneral controller = new ControllerGeneral(); 
     	controller.loadStartScreen(event);
     }
 
@@ -106,7 +107,7 @@ public class HomeScreenController implements Initializable {
      */
     public void loadFavourites(ActionEvent event) {
 
-    	ControllerGeneral controller = new ControllerGeneral();
+    	//ControllerGeneral controller = new ControllerGeneral();
     	controller.loadFavourites(event);
     }
 
@@ -122,7 +123,7 @@ public class HomeScreenController implements Initializable {
      */
     public void loadShoppingList(ActionEvent event) {
 
-    	ControllerGeneral controller = new ControllerGeneral();
+    	//ControllerGeneral controller = new ControllerGeneral();
     	controller.loadShoppingList(event);
     }
 
@@ -138,7 +139,7 @@ public class HomeScreenController implements Initializable {
      */
     public void loadOffers(ActionEvent event) {
 
-    	ControllerGeneral controller = new ControllerGeneral();	
+    	//ControllerGeneral controller = new ControllerGeneral();	
     	controller.loadOffers(event);
     }
 

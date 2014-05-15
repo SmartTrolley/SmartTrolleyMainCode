@@ -42,6 +42,8 @@ public class AllShoppingListsScreenController implements Initializable {
 	public static Button list1Button;
 
 	public static ArrayList<Button> buttonList;
+	
+	private ControllerGeneral controller = new ControllerGeneral(); 
 
 	/**
 	 * initialize is automatically called when the controller is created.
@@ -166,8 +168,6 @@ public class AllShoppingListsScreenController implements Initializable {
 	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-
-    	ControllerGeneral controller = new ControllerGeneral(); 
     	controller.loadStartScreen(event);
 	}
 
@@ -182,8 +182,6 @@ public class AllShoppingListsScreenController implements Initializable {
 	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadShoppingList(ActionEvent event) {
-
-    	ControllerGeneral controller = new ControllerGeneral();
     	controller.loadShoppingList(event);
     }
 }
