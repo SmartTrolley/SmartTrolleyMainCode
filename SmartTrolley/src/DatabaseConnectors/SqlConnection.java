@@ -29,9 +29,6 @@ import smarttrolleygui.Offer;
 import smarttrolleygui.Product;
 import smarttrolleygui.SmartTrolleyGUI;
 
-	
-	
-
 	public class SqlConnection {
 		
 		
@@ -418,6 +415,7 @@ import smarttrolleygui.SmartTrolleyGUI;
 		return products;
 
 	}
+
 
 	
 	/**

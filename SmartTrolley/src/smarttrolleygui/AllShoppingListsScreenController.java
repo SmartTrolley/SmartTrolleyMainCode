@@ -39,7 +39,7 @@ public class AllShoppingListsScreenController implements Initializable {
 
 	private PreparedStatement preparedStatement;
 
-	public GridPane grdPaneLists;
+	public GridPane grdPaneLists = new GridPane();
 
 	@FXML
 	public static Button list1Button;

@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<VBox id="VBox" alignment="CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="0.0" styleClass="mainContainer" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.AllShoppingListsScreenController">
+<VBox id="VBox" alignment="CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="0.0" styleClass="containerMain" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.AllShoppingListsScreenController">
   <children>
     <ImageView fitHeight="150.0" fitWidth="450.0" pickOnBounds="true" preserveRatio="true" smooth="true" x="0.0" y="0.0">
       <image>
@@ -23,15 +23,17 @@
       </VBox.margin>
     </ImageView>
     <Line endX="575.0" startX="0.0" strokeLineCap="ROUND" />
-    <GridPane fx:id="grdPaneLists" alignment="BASELINE_CENTER" disable="false" focusTraversable="false" gridLinesVisible="false" hgap="0.0" prefHeight="395.0" prefWidth="520.0" vgap="10.0" visible="true" VBox.vgrow="ALWAYS">
-      <columnConstraints>
-        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-      </columnConstraints>
-      <rowConstraints>
-        <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      </rowConstraints>
-    </GridPane>
-    <HBox fillHeight="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="421.0" VBox.vgrow="SOMETIMES">
+    <Button fx:id="list1Button" mnemonicParsing="false" onAction="#loadShoppingList" prefHeight="49.0" prefWidth="380.0" styleClass="buttonLarge" text="04/02/14 - Food" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false">
+      <VBox.margin>
+        <Insets top="70.0" />
+      </VBox.margin>
+    </Button>
+    <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#loadStartScreen" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="Go back" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false">
+      <VBox.margin>
+        <Insets top="60.0" />
+      </VBox.margin>
+    </Button>
+    <HBox prefHeight="21.0" prefWidth="322.0">
       <children>
         <Label text="Create your shopping list online @ " />
         <Hyperlink text="www.smartrolley.org" />
