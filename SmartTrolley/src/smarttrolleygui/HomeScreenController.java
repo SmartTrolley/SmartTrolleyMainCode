@@ -89,7 +89,7 @@ public class HomeScreenController implements Initializable {
      * Date Modified: 6 Mar 2014
      */
     public void loadStartScreen(ActionEvent event) {
-
+    	/*
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
@@ -97,6 +97,11 @@ public class HomeScreenController implements Initializable {
         } else {
             application.goToStartScreen();
         }
+        */
+    	
+    	ControllerGeneral controller = new ControllerGeneral(); 
+    	
+    	controller.loadStartScreen(event);
     }
 
     /**
@@ -111,6 +116,7 @@ public class HomeScreenController implements Initializable {
      */
     public void loadFavourites(ActionEvent event) {
 
+    	/*
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
@@ -118,6 +124,11 @@ public class HomeScreenController implements Initializable {
         } else {
             application.goToFavourites();
         }
+        */
+    	
+    	ControllerGeneral controller = new ControllerGeneral();
+    	
+    	controller.loadFavourites(event);
     }
 
     /**
@@ -131,7 +142,7 @@ public class HomeScreenController implements Initializable {
      * Date Modified: 6 Mar 2014
      */
     public void loadShoppingList(ActionEvent event) {
-
+    	/*
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
@@ -139,6 +150,11 @@ public class HomeScreenController implements Initializable {
         } else {
             application.goToShoppingList();
         }
+        */
+    	
+    	ControllerGeneral controller = new ControllerGeneral();
+    	
+    	controller.loadShoppingList(event);
     }
 
     /**
@@ -152,7 +168,7 @@ public class HomeScreenController implements Initializable {
      * Date Modified: 7 Mar 2014
      */
     public void loadOffers(ActionEvent event) {
-
+    	/*
         if (application == null) {
             // We are running in isolated FXML, possibly in Scene Builder.
             // NO-OP.
@@ -160,6 +176,10 @@ public class HomeScreenController implements Initializable {
         } else {
             application.goToOffers();
         }
+        */
+    	ControllerGeneral controller = new ControllerGeneral();
+    	
+    	controller.loadOffers(event);
     }
 
     /**

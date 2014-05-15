@@ -166,14 +166,19 @@ public class AllShoppingListsScreenController implements Initializable {
 	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-
-		if (application == null) {
-			// We are running in isolated FXML, possibly in Scene Builder.
-			// NO-OP.
-			System.out.println("error: application == null");
-		} else {
-			application.goToStartScreen();
-		}
+		/*
+        if (application == null) {
+            // We are running in isolated FXML, possibly in Scene Builder.
+            // NO-OP.
+            System.out.println("error: application == null");
+        } else {
+            application.goToStartScreen();
+        }
+        */
+    	
+    	ControllerGeneral controller = new ControllerGeneral(); 
+    	
+    	controller.loadStartScreen(event);
 	}
 
 	/**
@@ -187,14 +192,19 @@ public class AllShoppingListsScreenController implements Initializable {
 	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadShoppingList(ActionEvent event) {
-
-		if (application == null) {
-			// We are running in isolated FXML, possibly in Scene Builder.
-			// NO-OP.
-			System.out.println("error: application == null");
-		} else {
-			application.goToShoppingList();
-		}
-	}
+		/*
+        if (application == null) {
+            // We are running in isolated FXML, possibly in Scene Builder.
+            // NO-OP.
+            System.out.println("error: application == null");
+        } else {
+            application.goToShoppingList();
+        }
+        */
+    	
+    	ControllerGeneral controller = new ControllerGeneral();
+    	
+    	controller.loadShoppingList(event);
+    }
 }
 /************** End of AllShoppingListsScreenController **************/

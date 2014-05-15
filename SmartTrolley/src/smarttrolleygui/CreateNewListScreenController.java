@@ -70,6 +70,7 @@ public class CreateNewListScreenController implements Initializable {
 	 */
 	public void loadStartScreen(ActionEvent event) {
 
+		/*
 		if (application == null) {
 			// We are running in isolated FXML, possibly in Scene Builder.
 			// NO-OP.
@@ -77,6 +78,11 @@ public class CreateNewListScreenController implements Initializable {
 		} else {
 			application.goToStartScreen();
 		}
+		*/
+		
+    	ControllerGeneral controller = new ControllerGeneral(); 
+    	
+    	controller.loadStartScreen(event);
 	}
 
 	/**
