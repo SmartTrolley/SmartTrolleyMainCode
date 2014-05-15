@@ -191,17 +191,7 @@ public class ExampleShoppingListController implements Initializable {
 	 */
 	public void loadStartScreen(ActionEvent event) {
 
-		/*
-		if (application == null) {
-			// We are running in isolated FXML, possibly in Scene Builder.
-			// NO-OP.
-			System.out.println("error: application == null");
-		} else {
-			application.goToStartScreen();
-		}
-		*/
 		ControllerGeneral controller = new ControllerGeneral(); 
-    	
     	controller.loadStartScreen(event);
 	}
 
@@ -217,18 +207,8 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 28 Feb 2014
 	 */
 	public void loadHomeScreen(ActionEvent event) {
-		/*
-		if (application == null) {
-			// We are running in isolated FXML, possibly in Scene Builder.
-			// NO-OP.
-			System.out.println("error: application == null");
-		} else {
-			application.goToHomeScreen();
-		}
-		*/
 		
-		ControllerGeneral controller = new ControllerGeneral(); 
-    	
+		ControllerGeneral controller = new ControllerGeneral(); 	
     	controller.loadHomeScreen(event);
 	}
 
@@ -244,18 +224,8 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 28 Feb 2014
 	 */
 	public void loadFavourites(ActionEvent event) {
-		/*
-		if (application == null) {
-			// We are running in isolated FXML, possibly in Scene Builder.
-			// NO-OP.
-			System.out.println("error: application == null");
-		} else {
-			application.goToFavourites();
-		}
-		*/
 		
 		ControllerGeneral controller = new ControllerGeneral();
-    	
     	controller.loadFavourites(event);
 	}
 
@@ -271,17 +241,8 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 7 Mar 2014
 	 */
 	public void loadOffers(ActionEvent event) {
-		/*
-		if (application == null) {
-			// We are running in isolated FXML, possibly in Scene Builder.
-			// NO-OP.
-			System.out.println("error: application == null");
-		} else {
-			application.goToOffers();
-		}
-		*/
+
     	ControllerGeneral controller = new ControllerGeneral();
-    	
     	controller.loadOffers(event);
 	}
 
