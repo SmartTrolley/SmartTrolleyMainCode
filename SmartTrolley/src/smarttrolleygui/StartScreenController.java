@@ -15,9 +15,6 @@ package smarttrolleygui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import Printing.SmartTrolleyPrint;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

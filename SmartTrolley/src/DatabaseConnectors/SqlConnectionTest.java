@@ -9,7 +9,6 @@ import org.junit.Test;
 import Printing.SmartTrolleyPrint;
 
 import smarttrolleygui.Product;
-import smarttrolleygui.Offer;
 
 import java.sql.*;
 
