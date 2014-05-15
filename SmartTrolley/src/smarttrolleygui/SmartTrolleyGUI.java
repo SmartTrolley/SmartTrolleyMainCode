@@ -7,7 +7,7 @@
 * @author Arne
 * 
 *
-* @author [Checked By:] [Checker(s) fill here]
+* @author [Checked By:] Alick Jacklin and Prashant Chakravarty [13/05/2014]
 *
 * @version [1.0] [Date Created: 22/02/14]
 */
@@ -119,7 +119,6 @@ public class SmartTrolleyGUI extends Application {
             allShoppingLists = (AllShoppingListsScreenController) replaceSceneContent("fxml/AllShoppingListsScreen.fxml");
             allShoppingLists.setApp(this);
         } catch (Exception ex) {
-        	//TODO Show a message box to the user here
         	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
@@ -138,7 +137,6 @@ public class SmartTrolleyGUI extends Application {
             homeScreen = (HomeScreenController) replaceSceneContent("fxml/HomeScreen.fxml");
             homeScreen.setApp(this);
         } catch (Exception ex) {
-        	//TODO Show a message box to the user here
         	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
@@ -207,7 +205,7 @@ public class SmartTrolleyGUI extends Application {
     *<p>Displays content on screen
     *@param fxml the name of the .fxml file to be loaded into the scene
     *@return fxml file controller
-     * @throws IOException 
+    *@throws IOException 
     *@throws Exception
     *<p> Date Modified: 28 Feb 2014
     */

@@ -35,9 +35,9 @@ import smarttrolleygui.SmartTrolleyGUI;
 		PreparedStatement preparedStatement;
 		private static SqlConnection productsDatabase;
 
-		private static final String ip = "79.170.44.157" ;
-		private static final String userName = "cl36-st";
-		private static final String password= "Smarttrolley";
+		private static final String IP = "79.170.44.157" ;
+		private static final String USERNAME = "cl36-st";
+		private static final String PASSWORD= "Smarttrolley";
 				
 		private ObservableList<Product> products;
 		private ObservableList<Product> offers;
@@ -67,7 +67,7 @@ import smarttrolleygui.SmartTrolleyGUI;
 
 			try{
 				connection = null;
-				connection = DriverManager.getConnection(url, userName,password);
+				connection = DriverManager.getConnection(url, USERNAME,PASSWORD);
 			} catch (SQLException ex) {
 				
 				System.out.println("Connection failed to open");
@@ -272,38 +272,6 @@ import smarttrolleygui.SmartTrolleyGUI;
 			
 		}
 
-	
-
-	/**
-	 * executes statement to SQL server, allow for creation and deleted of
-	 * further lists and tables
-	 * 
-	 * @param query
-	 * @return boolean statementExecuted
-	 *         Date Modified: 4 May 2014
-	 */
-	public boolean executeStatement(String query) {
-		boolean statementExecuted = false;
-
-		SmartTrolleyPrint.print(query);
-		try {
-			preparedStatement = null;
-			SmartTrolleyPrint
-					.print("Reset preparedStatment, preparing to give it information");
-			preparedStatement = connection.prepareStatement(query);
-			SmartTrolleyPrint
-					.print("Statement now prepared, now begining to execute");
-			statementExecuted = preparedStatement.execute();
-
-		} catch (SQLException ex) {
-			SmartTrolleyPrint
-					.print("Cannot execute statement due to unknown error");
-		}
-
-		return statementExecuted;
-	}
-
-	
 
 	/**
 	 * Checks to see if the result set is empty
@@ -416,10 +384,39 @@ import smarttrolleygui.SmartTrolleyGUI;
 
 	}
 
-
-	
 	/**
-	 * provides public access to close the connection
+	 * executes statement to SQL server, allow for creation and deleted of
+	 * further lists and tables
+	 * 
+	 * @param query
+	 * @return boolean statementExecuted
+	 *         Date Modified: 4 May 2014
+	 */
+	public boolean executeStatement(String query) {
+		boolean statementExecuted = false;
+
+		SmartTrolleyPrint.print(query);
+		try {
+			preparedStatement = null;
+			SmartTrolleyPrint
+					.print("Reset preparedStatment, preparing to give it information");
+			preparedStatement = connection.prepareStatement(query);
+			SmartTrolleyPrint
+					.print("Statement now prepared, now begining to execute");
+			statementExecuted = preparedStatement.execute();
+
+		} catch (SQLException ex) {
+			SmartTrolleyPrint
+					.print("Cannot execute statement due to unknown error");
+		}
+
+		return statementExecuted;
+	}
+
+
+	/**
+	 * provides public access to close the productsDatabase
+	 * 
 	 * @throws SQLException
 	 */
 	public void closeConnection() {
@@ -435,7 +432,7 @@ import smarttrolleygui.SmartTrolleyGUI;
 	 */
 	private void compileUrl() {
 		//construct the url assuming use of mysql and the standard port.
-		url = "jdbc:mysql://" + ip  + "/" + userName + "?";	
+		url = "jdbc:mysql://" + IP  + "/" + USERNAME + "?";	
 	}
 
 
