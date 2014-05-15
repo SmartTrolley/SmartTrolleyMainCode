@@ -43,7 +43,6 @@ public class AllShoppingListsScreenControllerTest {
 	public Stage stage;
 	private static SqlConnection productsDatabase;
 	private SmartTrolleyGUI GUIboot;
-	private ExampleShoppingListController shoppingList;
 	
 
 	/**

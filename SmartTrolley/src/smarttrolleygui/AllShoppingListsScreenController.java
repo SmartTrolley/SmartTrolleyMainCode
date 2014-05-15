@@ -14,7 +14,6 @@
 package smarttrolleygui;
 
 import java.net.URL;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,8 +35,6 @@ public class AllShoppingListsScreenController implements Initializable {
 	public SmartTrolleyGUI application;
 
 	private SqlConnection productsDatabase;
-
-	private PreparedStatement preparedStatement;
 
 	public GridPane grdPaneLists = new GridPane();
 
@@ -61,7 +58,6 @@ public class AllShoppingListsScreenController implements Initializable {
 
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			SmartTrolleyPrint.print("cannot create button list");
 		}		finally{
             productsDatabase.closeConnection();
