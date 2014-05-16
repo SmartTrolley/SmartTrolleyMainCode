@@ -93,7 +93,7 @@ public class OffersScreenController implements Initializable {
      * Date Modified: 6 Mar 2014
      */
     public void loadStartScreen(ActionEvent event) {
-    	controller.loadStartScreen(event);
+    	controller.loadStartScreen(event, application);
     }
 
     /**
@@ -107,7 +107,7 @@ public class OffersScreenController implements Initializable {
      * Date Modified: 28 Feb 2014
      */
     public void loadHomeScreen(ActionEvent event) {
-    	controller.loadHomeScreen(event);
+    	controller.loadHomeScreen(event, application);
 	}
 
     /**
@@ -121,7 +121,7 @@ public class OffersScreenController implements Initializable {
      * Date Modified: 28 Feb 2014
      */
     public void loadFavourites(ActionEvent event) {
-    	controller.loadFavourites(event);
+    	controller.loadFavourites(event, application);
 	}
 
     /**
@@ -135,7 +135,7 @@ public class OffersScreenController implements Initializable {
      * Date Modified: 6 Mar 2014
      */
     public void loadShoppingList(ActionEvent event) {
-    	controller.loadShoppingList(event);
+    	controller.loadShoppingList(event, application);
     }
     
     /**

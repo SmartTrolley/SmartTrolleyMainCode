@@ -32,7 +32,7 @@ import javafx.scene.layout.RowConstraints;
 
 public class AllShoppingListsScreenController implements Initializable {
 
-	public SmartTrolleyGUI application;
+	private SmartTrolleyGUI application;
 
 	private SqlConnection productsDatabase;
 
@@ -168,7 +168,7 @@ public class AllShoppingListsScreenController implements Initializable {
 	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-    	controller.loadStartScreen(event);
+    	controller.loadStartScreen(event, application);
 	}
 
 	/**
@@ -182,7 +182,7 @@ public class AllShoppingListsScreenController implements Initializable {
 	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadShoppingList(ActionEvent event) {
-    	controller.loadShoppingList(event);
+    	controller.loadShoppingList(event, application);
     }
 }
 /************** End of AllShoppingListsScreenController **************/

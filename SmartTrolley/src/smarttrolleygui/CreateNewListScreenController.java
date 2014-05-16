@@ -71,7 +71,7 @@ public class CreateNewListScreenController implements Initializable {
 	 *            Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-    	controller.loadStartScreen(event);
+    	controller.loadStartScreen(event, application);
 	}
 
 	/**

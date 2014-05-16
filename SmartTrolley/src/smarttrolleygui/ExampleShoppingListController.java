@@ -191,7 +191,7 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-    	controller.loadStartScreen(event);
+    	controller.loadStartScreen(event, application);
 	}
 
 	/**
@@ -206,7 +206,7 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 28 Feb 2014
 	 */
 	public void loadHomeScreen(ActionEvent event) {
-    	controller.loadHomeScreen(event);
+    	controller.loadHomeScreen(event, application);
 	}
 
 	/**
@@ -221,7 +221,7 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 28 Feb 2014
 	 */
 	public void loadFavourites(ActionEvent event) {
-    	controller.loadFavourites(event);
+    	controller.loadFavourites(event, application);
 	}
 
 	/**
@@ -236,7 +236,7 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 7 Mar 2014
 	 */
 	public void loadOffers(ActionEvent event) {
-    	controller.loadOffers(event);
+    	controller.loadOffers(event, application);
 	}
 
 	/**
