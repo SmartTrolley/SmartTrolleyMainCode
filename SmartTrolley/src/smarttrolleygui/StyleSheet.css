@@ -158,6 +158,16 @@
     -fx-border-color: transparent;
 }
 
+.buttonProductNameTable {
+	-fx-cursor: hand;
+	-fx-background-color: transparent;
+	-fx-underline: false;
+}
+
+.buttonProductNameTable:hover {
+	-fx-underline: true;
+}
+
 .buttonSmartTrolleyLogo {
     -fx-cursor: hand;
     -fx-background-color: transparent;

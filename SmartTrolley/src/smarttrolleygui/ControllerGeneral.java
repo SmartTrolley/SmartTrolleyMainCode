@@ -257,8 +257,8 @@ public class ControllerGeneral {
 								if (product != null) {
 									setGraphic(button);
 									button.setText(product.getName());
-									// TODO: change styleClass
-									button.getStyleClass().add("buttonChangeQuantity");
+									button.setPrefHeight(80);
+									button.getStyleClass().add("buttonProductNameTable");
 
 									// Button Event Handler
 									button.setOnAction(new EventHandler<ActionEvent>() {
