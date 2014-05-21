@@ -47,7 +47,6 @@ public class SqlConnectionTest {
 	 * Tests for an instance of connection and that the connection is not closed
 	 * @throws SQLException
 	 */
-	
 	@Test
 	public void connectionOpenTest() throws SQLException {		
 		
