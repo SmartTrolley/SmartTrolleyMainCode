@@ -1,10 +1,10 @@
 /**
  * SmartTrolley
  *
- * A DESCRIPTION OF THE FILE
+ * Tests the AllShoppingListsController Screen for functionality
  *
- * @author Name1
- * @author Name2
+ * @author Alick Jacklin
+ * @author Prashant Chakravarty
  *
  * @author Checked By: Checker(s) fill here
  *
