@@ -44,7 +44,7 @@ public class OffersScreenController implements Initializable {
 	@FXML
 	private TableColumn<Product, Product> imageColumn;
 	@FXML
-	private TableColumn<Product, String> productNameColumn;
+	private TableColumn<Product, Product> productNameColumn;
 	@FXML
 	private TableColumn<Product, Float> priceColumn;
 	@FXML
@@ -172,96 +172,26 @@ public class OffersScreenController implements Initializable {
 		// Create new SqlConnection to retrieve product data
 		SqlConnection sqlConnector = new SqlConnection();
 
-		// Fill table with sample products
+		// Get offers data
 		productData = sqlConnector.getListOfOffers();
 
 		// set up column cell value factories
-		productNameColumn
-				.setCellValueFactory(new PropertyValueFactory<Product, String>(
-						"name"));
 		priceColumn
 				.setCellValueFactory(new PropertyValueFactory<Product, Float>(
 						"price"));
 		offerPriceColumn
 				.setCellValueFactory(new PropertyValueFactory<Product, Float>(
 						"offerPrice"));
+		controller.setUpCellValueFactory(productNameColumn);
 		controller.setUpCellValueFactory(addColumn);
 		controller.setUpCellValueFactory(imageColumn);
 
-		// set up cell factories for columns containing images / buttons
-		addColumn
-				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
-					@Override
-					public TableCell<Product, Product> call(
-							TableColumn<Product, Product> addColumn) {
-						return new TableCell<Product, Product>() {
-							final Button button = new Button();
-
-							@Override
-							public void updateItem(final Product product,
-									boolean empty) {
-								super.updateItem(product, empty);
-								if (product != null) {
-									button.setText("+");
-									button.getStyleClass().add(
-											"buttonChangeQuantity");
-									setGraphic(button);
-
-									// Button Event Handler
-									button.setOnAction(new EventHandler<ActionEvent>() {
-										@Override
-										public void handle(ActionEvent event) {
-											System.out
-													.println("Pressed add button for product: "
-															+ product.getName());
-										}
-									});
-								} else {
-									setGraphic(null);
-								}
-							}
-						};
-					}
-				});
-
-		imageColumn
-				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
-					@Override
-					public TableCell<Product, Product> call(
-							TableColumn<Product, Product> imageColumn) {
-						return new TableCell<Product, Product>() {
-							final Button button = new Button();
-
-							@Override
-							public void updateItem(final Product product,
-									boolean empty) {
-								super.updateItem(product, empty);
-								if (product != null) {
-									Image productImage = new Image(getClass()
-											.getResourceAsStream(
-													product.getImage()));
-									button.setGraphic(new ImageView(
-											productImage));
-									button.setPrefSize(80, 60);
-									button.getStyleClass().add("buttonImage");
-									setGraphic(button);
-
-									// Button Event Handler
-									button.setOnAction(new EventHandler<ActionEvent>() {
-										@Override
-										public void handle(ActionEvent event) {
-											System.out
-													.println("Pressed image of product: "
-															+ product.getName());
-										}
-									});
-								} else {
-									setGraphic(null);
-								}
-							}
-						};
-					}
-				});
+		// set up cell factories for columns with 'interactive' cells 
+		controller.setUpImageCellFactory(imageColumn);
+		controller.setUpProductNameCellFactory(productNameColumn);
+		controller.setUpAddButtonCellFactory(addColumn);
+		
+		// populate table with product data
 		productTable.setItems(productData);
 	}
 }

@@ -15,8 +15,14 @@ package smarttrolleygui;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 
 public class ControllerGeneral {
@@ -134,6 +140,237 @@ public class ControllerGeneral {
 		});
 	}
 	
+	/**
+	 * setUpCheckBoxCellFactory generates the cell factory code for the column containing
+	 * the check boxes.
+	 * Syntax: TableColumn<S,T> where S is the type of the TableView and 
+	 * T is the type of the content in all cells of this TableColumn.
+	 * @param checkBoxColumn - column whose cells the cellFactory will be applied to
+	 * Date Modified: 21 May 2014
+	 */
+	public void setUpCheckBoxCellFactory(
+			TableColumn<Product, Product> checkBoxColumn) {
+		checkBoxColumn
+				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+					@Override
+					public TableCell<Product, Product> call(
+							TableColumn<Product, Product> checkBoxColumn) {
+						return new TableCell<Product, Product>() {
+							final CheckBox checkBox = new CheckBox();
+
+							@Override
+							public void updateItem(final Product product,
+									boolean empty) {
+								super.updateItem(product, empty);
+								if (product != null) {
+									setGraphic(checkBox);
+
+									// CheckBox Event Handler
+									checkBox.setOnAction(new EventHandler<ActionEvent>() {
+										@Override
+										public void handle(ActionEvent event) {
+											System.out
+													.println("Pressed checkbox of product: "
+															+ product.getName());
+										}
+									});
+								} else {
+									setGraphic(null);
+								}
+							}
+						};
+					}
+				});
+	}
 	
+	/**
+	 * setUpImageCellFactory generates the cell factory code for the column containing
+	 * the product images.
+	 * Syntax: TableColumn<S,T> where S is the type of the TableView and 
+	 * T is the type of the content in all cells of this TableColumn.
+	 * @param imageColumn - column whose cells the cellFactory will be applied to
+	 * Date Modified: 21 May 2014
+	 */
+	public void setUpImageCellFactory(TableColumn<Product, Product> imageColumn) {
+		imageColumn
+				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+					@Override
+					public TableCell<Product, Product> call(
+							TableColumn<Product, Product> imageColumn) {
+						return new TableCell<Product, Product>() {
+							final Button button = new Button();
+
+							@Override
+							public void updateItem(final Product product,
+									boolean empty) {
+								super.updateItem(product, empty);
+								if (product != null) {
+									Image productImage = new Image(getClass()
+											.getResourceAsStream(
+													product.getImage()));
+									button.setGraphic(new ImageView(
+											productImage));
+									button.setPrefSize(80, 60);
+									button.getStyleClass().add("buttonImage");
+									setGraphic(button);
+
+									// Button Event Handler
+									button.setOnAction(new EventHandler<ActionEvent>() {
+										@Override
+										public void handle(ActionEvent event) {
+											System.out
+													.println("Pressed image of product: "
+															+ product.getName());
+										}
+									});
+								} else {
+									setGraphic(null);
+								}
+							}
+						};
+					}
+				});
+	}
+	
+	/**
+	 * setUpProductNameCellFactory generates the cell factory code for the column containing
+	 * the product name.
+	 * Syntax: TableColumn<S,T> where S is the type of the TableView and 
+	 * T is the type of the content in all cells of this TableColumn.
+	 * @param productNameColumn - column whose cells the cellFactory will be applied to
+	 * Date Modified: 21 May 2014
+	 */
+	public void setUpProductNameCellFactory(
+			TableColumn<Product, Product> productNameColumn) {
+		productNameColumn
+				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+					@Override
+					public TableCell<Product, Product> call(
+							TableColumn<Product, Product> productNameColumn) {
+						return new TableCell<Product, Product>() {
+							final Button button = new Button();
+
+							@Override
+							public void updateItem(final Product product,
+									boolean empty) {
+								super.updateItem(product, empty);
+								if (product != null) {
+									setGraphic(button);
+									button.setText(product.getName());
+									// TODO: change styleClass
+									button.getStyleClass().add("buttonChangeQuantity");
+
+									// Button Event Handler
+									button.setOnAction(new EventHandler<ActionEvent>() {
+										@Override
+										public void handle(ActionEvent event) {
+											System.out
+													.println("Pressed name of product: "
+															+ product.getName());
+											// TODO:
+											// loadProduct(product.getName());
+										}
+									});
+								} else {
+									setGraphic(null);
+								}
+							}
+						};
+					}
+				});
+	}
+	
+	/**
+	 * setUpAddButtonCellFactory generates the cell factory code for the column containing
+	 * the add buttons.
+	 * Syntax: TableColumn<S,T> where S is the type of the TableView and 
+	 * T is the type of the content in all cells of this TableColumn.
+	 * @param addColumn - column whose cells the cellFactory will be applied to
+	 * Date Modified: 21 May 2014
+	 */
+	public void setUpAddButtonCellFactory(
+			TableColumn<Product, Product> addColumn) {
+		addColumn
+				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+					@Override
+					public TableCell<Product, Product> call(
+							TableColumn<Product, Product> addColumn) {
+						return new TableCell<Product, Product>() {
+							final Button button = new Button();
+
+							@Override
+							public void updateItem(final Product product,
+									boolean empty) {
+								super.updateItem(product, empty);
+								if (product != null) {
+									button.setText("+");
+									button.getStyleClass().add(
+											"buttonChangeQuantity");
+									setGraphic(button);
+
+									// Button Event Handler
+									button.setOnAction(new EventHandler<ActionEvent>() {
+										@Override
+										public void handle(ActionEvent event) {
+											System.out
+													.println("Pressed add button for product: "
+															+ product.getName());
+										}
+									});
+								} else {
+									setGraphic(null);
+								}
+							}
+						};
+					}
+				});
+	}
+	
+	/**
+	 * setUpRemoveButtonCellFactory generates the cell factory code for the column containing
+	 * the remove buttons.
+	 * Syntax: TableColumn<S,T> where S is the type of the TableView and 
+	 * T is the type of the content in all cells of this TableColumn.
+	 * @param removeColumn - column whose cells the cellFactory will be applied to
+	 * Date Modified: 21 May 2014
+	 */
+	public void setUpRemoveButtonCellFactory(
+			TableColumn<Product, Product> removeColumn) {
+		removeColumn
+				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+					@Override
+					public TableCell<Product, Product> call(
+							TableColumn<Product, Product> removeColumn) {
+						return new TableCell<Product, Product>() {
+							final Button button = new Button();
+
+							@Override
+							public void updateItem(final Product product,
+									boolean empty) {
+								super.updateItem(product, empty);
+								if (product != null) {
+									button.setText("-");
+									button.getStyleClass().add(
+											"buttonChangeQuantity");
+									setGraphic(button);
+
+									// Button Event Handler
+									button.setOnAction(new EventHandler<ActionEvent>() {
+										@Override
+										public void handle(ActionEvent event) {
+											System.out
+													.println("Pressed remove button for product: "
+															+ product.getName());
+
+										}
+									});
+								} else {
+									setGraphic(null);
+								}
+							}
+						};
+					}
+				});
+	}	
 }
 /************** End of ControllerGeneral **************/
