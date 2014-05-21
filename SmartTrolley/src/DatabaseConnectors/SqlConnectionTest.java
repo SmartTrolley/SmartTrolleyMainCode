@@ -25,6 +25,7 @@ public class SqlConnectionTest {
 	private static SqlConnection productsDatabase; 
 	private ObservableList<Product> products;
 	private ObservableList<Product> offers;
+	private ObservableList<String> categories;
 	
 	public String query;
 	
@@ -170,6 +171,21 @@ public class SqlConnectionTest {
 		
 	}
 	
+	@Test
+	public void getListOfCategoriesTest(){
+		categories = productsDatabase.getListOfCategories();
+		
+		String category;
+		
+		int i = 0;
+		while(i<categories.size()){
+			
+			category = categories.get(i);
+			SmartTrolleyPrint.print(category);
+			
+			i++;
+		}
+	}
 	
 	/**
 	 * Tests that the connection closes correctly

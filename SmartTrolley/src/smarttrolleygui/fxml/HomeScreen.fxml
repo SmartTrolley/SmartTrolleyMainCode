@@ -111,7 +111,7 @@
                 <VBox id="VBox" alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="404.0" prefWidth="110.0" spacing="0.0">
                   <children>
                     <Label text="Categories" />
-                    <ListView fx:id="categoriesList" prefHeight="389.0" prefWidth="115.0" />
+                    <ListView fx:id="categoriesList" prefHeight="389.0" prefWidth="115.0" onMouseClicked="#handleMouseClick"/>
                   </children>
                   <padding>
                     <Insets top="5.0" />

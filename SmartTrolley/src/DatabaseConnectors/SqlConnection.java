@@ -41,6 +41,7 @@ import smarttrolleygui.SmartTrolleyGUI;
 				
 		private ObservableList<Product> products;
 		private ObservableList<Product> offers;
+		private ObservableList<String> categories;
 		
 		private String url;
 		Connection connection;
@@ -218,6 +219,74 @@ import smarttrolleygui.SmartTrolleyGUI;
 			return product;
 		}
 		
+		/**
+		 * 
+		 */
+		public String getSpecificCategoryNumber(String value){
+			
+			String categoryNumber = null;
+			
+			openConnection();
+			
+			String query = "Select * From categories where name = '" + value + "';";
+			
+			try {
+				ResultSet results = sendQuery(query);
+				
+				while (results.next()){
+					categoryNumber = results.getString("CategoryID");
+
+				}
+			} catch (SQLException e) {
+				
+				System.out.println("Product could not be found");
+				System.out.println(e.getMessage());
+			}
+			
+			closeConnection();
+			return categoryNumber;
+		}
+		
+		public ObservableList<Product> getProductsWithinSpecificCategory(String List, String Number) {
+			
+			
+			openConnection();
+			
+			products = FXCollections.observableArrayList();
+			
+			String query = "SELECT * FROM " + List + " where CategoryID = " + Number + ";";
+			
+			try {
+				
+				ResultSet results = sendQuery(query);		
+			
+			while (results.next()) {
+				
+				Product product = new Product();
+				
+				// get id
+				product.setId(results.getInt("ProductID"));
+				
+				// get Name
+				product.setName(results.getString("Name"));
+				
+				// get Image
+				product.setImage(results.getString("Image"));
+				
+				// get Price
+				product.setPrice(results.getFloat("Price"));
+				
+				products.add(product);
+			}
+					closeConnection();
+					return products;
+					
+			} catch (SQLException e) {
+			
+			System.out.println("Product could not be found");
+			return null;
+		}
+		}
 	
 		/**
 		 * When called, this method will return the list of offers
@@ -270,6 +339,41 @@ import smarttrolleygui.SmartTrolleyGUI;
 				return null;
 			}
 			
+		}
+		
+		/**
+		 * Method returns the list of category names. Could be modified to return a list of Categories if needed in future
+		 * @return
+		 */
+		public ObservableList<String> getListOfCategories() {
+			
+			productsDatabase = new SqlConnection();
+			
+			openConnection();
+			
+			categories = FXCollections.observableArrayList();
+			
+			String query = "SELECT * FROM categories;";
+			
+			try {
+				ResultSet results = sendQuery(query);
+			
+				while (results.next()) {
+					
+					String category = results.getString("Name");
+					
+			
+					categories.add(category);
+				}
+			
+				closeConnection();
+				return categories;
+			
+			} catch (SQLException e) {
+			
+			System.out.println("Categories could not be found");
+			return null;
+			}
 		}
 
 

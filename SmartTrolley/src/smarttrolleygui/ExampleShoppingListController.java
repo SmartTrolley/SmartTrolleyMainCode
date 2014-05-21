@@ -44,6 +44,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 public class ExampleShoppingListController implements Initializable {
@@ -75,6 +76,7 @@ public class ExampleShoppingListController implements Initializable {
 	private final double MSG_BX_H = 100.0;
 	private final double MSG_BX_W = 400.0;
 	public static SqlConnection productsDatabase;
+	private String categoryNumber = null;
 
 	/**
 	 * initialize is automatically called when the controller is created.
@@ -93,9 +95,49 @@ public class ExampleShoppingListController implements Initializable {
 		categories = initializeCategories();
 		categoriesList.setItems(categories);
 
+		// Create new SqlConnection to retrieve product data
+		SqlConnection sqlConnector = new SqlConnection();
+
+		// Fill table with sample products
+		SmartTrolleyPrint.print("List ID before product table init is: "
+				+ SmartTrolleyGUI.getcurrentListID());
+		productData = sqlConnector.getList(SmartTrolleyGUI.getcurrentListID());
+		productTable.setItems(productData);
+		productTable.setPlaceholder(new Label("No Items in list, please add"));
+
+		
 		initializeProductTable();
 	}
 
+    /**
+     * 
+     */
+    @FXML public void handleMouseClick(MouseEvent arg0){
+    	
+    	SqlConnection sqlConnector = new SqlConnection();
+    	setCategoryNumber(sqlConnector.getSpecificCategoryNumber(categoriesList.getSelectionModel().getSelectedItem()));
+    	System.out.println(getCategoryNumber());
+    	    	
+    	if (Integer.valueOf(getCategoryNumber())  == 1) {
+    		  // Fill table with sample products
+    		productData = sqlConnector.getList(SmartTrolleyGUI.getcurrentListID());
+    		}
+    	else{
+    		// Fill table with sample products
+//    		get list ID
+//    		send to SQL database
+//    		get product Ids on List
+//    		send product Ids to database
+//    		return list of products and their data
+//			Need to check complete product list for items in category and on the users list.
+    		
+    		productData = sqlConnector.getProductsWithinSpecificCategory("products", getCategoryNumber());
+    		}
+    	
+        productTable.setItems(productData);
+        initializeProductTable();
+    }
+    
 	/**
 	 * setApp
 	 * 
@@ -266,23 +308,32 @@ public class ExampleShoppingListController implements Initializable {
 		}
 	}
 
-	/**
-	 * initializeCategories sets up the list of categories that will be
-	 * displayed on screen.
-	 * <p>
-	 * User can navigate through product database.
-	 * 
-	 * @return categories - list of categories
-	 *         <p>
-	 *         Date Modified: 7 Mar 2014
-	 */
-	private ObservableList<String> initializeCategories() {
-		categories = FXCollections.observableArrayList("All", "Bakery",
-				"Fruit & Vegetables", "Dairy & Eggs", "Meat & Seafood",
-				"Frozen", "Drinks", "Snacks & Sweets", "Desserts");
+	  /**
+     * initializeCategories sets up the list of categories that will be
+     * displayed on screen.
+     * <p>
+     * User can navigate through product database.
+     *
+     * @return categories - list of categories
+     * <p>
+     * Date Modified: 7 Mar 2014
+     */
+    public ObservableList<String> initializeCategories() {
+    	//Create new SqlConnection to retrieve product data
+    	SqlConnection sqlConnector = new SqlConnection();    
+         
+        categories = sqlConnector.getListOfCategories();
 
-		return categories;
+        return categories;
+    }
+	
+	public String getCategoryNumber() {
+		return categoryNumber;
 	}
+
+	public void setCategoryNumber(String categoryNumber) {
+		this.categoryNumber = categoryNumber;
+	}    
 
 	/**
 	 * initializeProductTable fills the TableView with data and sets up cell
@@ -293,15 +344,6 @@ public class ExampleShoppingListController implements Initializable {
 	 * Date Modified: 9 May 2014
 	 */
 	private void initializeProductTable() {
-		// Create new SqlConnection to retrieve product data
-		SqlConnection sqlConnector = new SqlConnection();
-
-		// Fill table with sample products
-		SmartTrolleyPrint.print("List ID before product table init is: "
-				+ SmartTrolleyGUI.getcurrentListID());
-		productData = sqlConnector.getList(SmartTrolleyGUI.getcurrentListID());
-		productTable.setItems(productData);
-		productTable.setPlaceholder(new Label("No Items in list, please add"));
 
 		// set up column cell value factories
 		productNameColumn

@@ -34,6 +34,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 public class HomeScreenController implements Initializable {
@@ -54,6 +55,7 @@ public class HomeScreenController implements Initializable {
     private SmartTrolleyGUI application;
     private ObservableList<String> categories;
     private ObservableList<Product> productData;
+	private String categoryNumber;
 
     /**
      * initialize is automatically called when the controller is created.
@@ -65,9 +67,40 @@ public class HomeScreenController implements Initializable {
         // Fill list on the LHS of the screen with different product categories
         categories = initializeCategories();
         categoriesList.setItems(categories);
+        
+    	//Create new SqlConnection to retrieve product data
+    	SqlConnection sqlConnector = new SqlConnection();
+    
+        // Fill table with sample products
+        productData = sqlConnector.getListOfProducts();
+		
+        productTable.setItems(productData);
 
         initializeProductTable();
     }
+    
+    /**
+     * 
+     */
+    @FXML public void handleMouseClick(MouseEvent arg0){
+    	
+    	SqlConnection sqlConnector = new SqlConnection();
+    	setCategoryNumber(sqlConnector.getSpecificCategoryNumber(categoriesList.getSelectionModel().getSelectedItem()));
+    	System.out.println(getCategoryNumber());
+    	    	
+    	if (Integer.valueOf(getCategoryNumber())  == 1) {
+    		  // Fill table with sample products
+            productData = sqlConnector.getListOfProducts();
+    		}
+    	else{
+    		// Fill table with sample products
+    		productData = sqlConnector.getProductsWithinSpecificCategory("products", getCategoryNumber());
+    		}
+    	
+        productTable.setItems(productData);
+        initializeProductTable();
+    }
+    
 
     /**
      * setApp
@@ -162,7 +195,7 @@ public class HomeScreenController implements Initializable {
         }
     }
 
-    /**
+	  /**
      * initializeCategories sets up the list of categories that will be
      * displayed on screen.
      * <p>
@@ -172,21 +205,22 @@ public class HomeScreenController implements Initializable {
      * <p>
      * Date Modified: 7 Mar 2014
      */
-    private ObservableList<String> initializeCategories() {
-        categories = FXCollections.observableArrayList(
-                "All",
-                "Bakery",
-                "Fruit & Vegetables",
-                "Dairy & Eggs",
-                "Meat & Seafood",
-                "Frozen",
-                "Drinks",
-                "Snacks & Sweets",
-                "Desserts"
-        );
+    public ObservableList<String> initializeCategories() {
+    	//Create new SqlConnection to retrieve product data
+    	SqlConnection sqlConnector = new SqlConnection();    
+         
+        categories = sqlConnector.getListOfCategories();
 
         return categories;
     }
+    
+	public String getCategoryNumber() {
+		return categoryNumber;
+	}
+
+	public void setCategoryNumber(String categoryNumber) {
+		this.categoryNumber = categoryNumber;
+	}  
 
     /**
      * initializeProductTable fills the TableView with data and sets up cell
@@ -199,12 +233,12 @@ public class HomeScreenController implements Initializable {
     private void initializeProductTable() {
     	
     	//Create new SqlConnection to retrieve product data
-    	SqlConnection sqlConnector = new SqlConnection();
+    	//SqlConnection sqlConnector = new SqlConnection();
     
         // Fill table with sample products
-        productData = sqlConnector.getListOfProducts();
+        //productData = sqlConnector.getListOfProducts();
 		
-        productTable.setItems(productData);
+        //productTable.setItems(productData);
 
         // set up column cell value factories
         productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
