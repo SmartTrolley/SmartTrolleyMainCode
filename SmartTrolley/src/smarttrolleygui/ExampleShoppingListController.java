@@ -21,11 +21,10 @@ import java.util.ResourceBundle;
 import se.mbaeumer.fxmessagebox.MessageBox;
 import se.mbaeumer.fxmessagebox.MessageBoxResult;
 import se.mbaeumer.fxmessagebox.MessageBoxType;
-
 import DatabaseConnectors.SqlConnection;
 import Printing.SmartTrolleyPrint;
-
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -57,9 +56,9 @@ public class ExampleShoppingListController implements Initializable {
 	@FXML
 	private TableColumn<Product, Product> imageColumn;
 	@FXML
-	private TableColumn<Product, String> productNameColumn;
+	private TableColumn<Product, Product> productNameColumn;
 	@FXML
-	private TableColumn<Product, String> priceColumn;
+	private TableColumn<Product, Float> priceColumn;
 	@FXML
 	private TableColumn<Product, Product> addColumn;
 	@FXML
@@ -300,11 +299,11 @@ public class ExampleShoppingListController implements Initializable {
 
 	/**
 	 * initializeProductTable fills the TableView with data and sets up cell
-	 * factories
+	 * factories and cell value factories
 	 * <p>
 	 * User can navigate through product database
 	 * <p>
-	 * Date Modified: 9 May 2014
+	 * Date Modified: 21 May 2014
 	 */
 	private void initializeProductTable() {
 		// Create new SqlConnection to retrieve product data
@@ -312,27 +311,33 @@ public class ExampleShoppingListController implements Initializable {
 
 		// Get product data from current list
 		productData = sqlConnector.getList(SmartTrolleyGUI.getcurrentListID());
-		// I don't know why this next line was added but does it maybe require an if statement? 
+		// TODO: I don't know why this next line was added but does it maybe require an if statement? 
 		productTable.setPlaceholder(new Label("No Items in list, please add"));
 
 		// set up column cell value factories
-		productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-		priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
+		priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Float>("price"));
 		
+		setUpCellValueFactory(productNameColumn);
 		setUpCellValueFactory(checkBoxColumn);
 		setUpCellValueFactory(imageColumn);
 		setUpCellValueFactory(addColumn);
 		setUpCellValueFactory(removeColumn);
 
-		// set up cell factories for columns containing images / buttons
+		// set up cell factories for columns containing buttons
+		// syntax:
+		// TableColumn<S,T> where S is the type of the TableView (i.e. Product here),
+		// and T is the type of the content in all cells of this TableColumn.
 		checkBoxColumn
 				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
 					@Override
-					public TableCell<Product, Product> call(TableColumn<Product, Product> checkBoxColumn) {
+					public TableCell<Product, Product> call(
+							TableColumn<Product, Product> checkBoxColumn) {
 						return new TableCell<Product, Product>() {
 							final CheckBox checkBox = new CheckBox();
+
 							@Override
-							public void updateItem(final Product product, boolean empty) {
+							public void updateItem(final Product product,
+									boolean empty) {
 								super.updateItem(product, empty);
 								if (product != null) {
 									setGraphic(checkBox);
@@ -341,7 +346,9 @@ public class ExampleShoppingListController implements Initializable {
 									checkBox.setOnAction(new EventHandler<ActionEvent>() {
 										@Override
 										public void handle(ActionEvent event) {
-											System.out.println("Pressed checkbox of product: " + product.getName());
+											System.out
+													.println("Pressed checkbox of product: "
+															+ product.getName());
 										}
 									});
 								} else {
@@ -350,7 +357,46 @@ public class ExampleShoppingListController implements Initializable {
 							}
 						};
 					}
-		});
+				});
+		productNameColumn
+				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+					@Override
+					public TableCell<Product, Product> call(
+							TableColumn<Product, Product> productNameColumn) {
+						return new TableCell<Product, Product>() {
+							final Button button = new Button();
+
+							@Override
+							public void updateItem(final Product product,
+									boolean empty) {
+								super.updateItem(product, empty);
+								if (product != null) {
+									setGraphic(button);
+									button.setText(product.getName());
+									// TODO: if end up using same style, rename
+									// styleClass
+									button.getStyleClass().add(
+											"buttonChangeQuantity");
+
+									// Button Event Handler
+									button.setOnAction(new EventHandler<ActionEvent>() {
+										@Override
+										public void handle(ActionEvent event) {
+											System.out
+													.println("Pressed name of product: "
+															+ product.getName());
+											// TODO:
+											// loadProduct(product.getName());
+										}
+									});
+								} else {
+									setGraphic(null);
+								}
+							}
+						};
+					}
+				});
+		
 		imageColumn
 				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
 					@Override
@@ -389,6 +435,7 @@ public class ExampleShoppingListController implements Initializable {
 						};
 					}
 				});
+
 		addColumn
 				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
 					@Override
@@ -422,7 +469,7 @@ public class ExampleShoppingListController implements Initializable {
 							}
 						};
 					}
-				});
+		});
 
 		removeColumn
 				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
@@ -463,6 +510,7 @@ public class ExampleShoppingListController implements Initializable {
 		productTable.setItems(productData);
 	}
 
+	// TODO: This method is neither used nor commented - can it be removed?
 	public static int getProductDataSize() {
 		return productData.size();
 	}
