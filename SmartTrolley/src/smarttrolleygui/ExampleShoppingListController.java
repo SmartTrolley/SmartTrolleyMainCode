@@ -74,6 +74,7 @@ public class ExampleShoppingListController implements Initializable {
 	private final double MSG_BX_H = 100.0;
 	private final double MSG_BX_W = 400.0;
 	public static SqlConnection productsDatabase;
+	private ControllerGeneral controller = new ControllerGeneral(); 
 
 	/**
 	 * initialize is automatically called when the controller is created.
@@ -189,14 +190,7 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-
-		if (application == null) {
-			// We are running in isolated FXML, possibly in Scene Builder.
-			// NO-OP.
-			System.out.println("error: application == null");
-		} else {
-			application.goToStartScreen();
-		}
+    	controller.loadStartScreen(event, application);
 	}
 
 	/**
@@ -211,14 +205,7 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 28 Feb 2014
 	 */
 	public void loadHomeScreen(ActionEvent event) {
-
-		if (application == null) {
-			// We are running in isolated FXML, possibly in Scene Builder.
-			// NO-OP.
-			System.out.println("error: application == null");
-		} else {
-			application.goToHomeScreen();
-		}
+    	controller.loadHomeScreen(event, application);
 	}
 
 	/**
@@ -233,14 +220,7 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 28 Feb 2014
 	 */
 	public void loadFavourites(ActionEvent event) {
-
-		if (application == null) {
-			// We are running in isolated FXML, possibly in Scene Builder.
-			// NO-OP.
-			System.out.println("error: application == null");
-		} else {
-			application.goToFavourites();
-		}
+    	controller.loadFavourites(event, application);
 	}
 
 	/**
@@ -255,14 +235,7 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 7 Mar 2014
 	 */
 	public void loadOffers(ActionEvent event) {
-
-		if (application == null) {
-			// We are running in isolated FXML, possibly in Scene Builder.
-			// NO-OP.
-			System.out.println("error: application == null");
-		} else {
-			application.goToOffers();
-		}
+    	controller.loadOffers(event, application);
 	}
 
 	/**

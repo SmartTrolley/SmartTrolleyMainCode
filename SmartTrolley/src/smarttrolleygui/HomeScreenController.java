@@ -54,6 +54,7 @@ public class HomeScreenController implements Initializable {
     private SmartTrolleyGUI application;
     private ObservableList<String> categories;
     private ObservableList<Product> productData;
+    private ControllerGeneral controller = new ControllerGeneral(); 
 
     /**
      * initialize is automatically called when the controller is created.
@@ -89,14 +90,7 @@ public class HomeScreenController implements Initializable {
      * Date Modified: 6 Mar 2014
      */
     public void loadStartScreen(ActionEvent event) {
-
-        if (application == null) {
-            // We are running in isolated FXML, possibly in Scene Builder.
-            // NO-OP.
-            System.out.println("error: application == null");
-        } else {
-            application.goToStartScreen();
-        }
+    	controller.loadStartScreen(event, application);
     }
 
     /**
@@ -110,14 +104,7 @@ public class HomeScreenController implements Initializable {
      * Date Modified: 28 Feb 2014
      */
     public void loadFavourites(ActionEvent event) {
-
-        if (application == null) {
-            // We are running in isolated FXML, possibly in Scene Builder.
-            // NO-OP.
-            System.out.println("error: application == null");
-        } else {
-            application.goToFavourites();
-        }
+    	controller.loadFavourites(event, application);
     }
 
     /**
@@ -131,14 +118,7 @@ public class HomeScreenController implements Initializable {
      * Date Modified: 6 Mar 2014
      */
     public void loadShoppingList(ActionEvent event) {
-
-        if (application == null) {
-            // We are running in isolated FXML, possibly in Scene Builder.
-            // NO-OP.
-            System.out.println("error: application == null");
-        } else {
-            application.goToShoppingList();
-        }
+    	controller.loadShoppingList(event, application);
     }
 
     /**
@@ -151,15 +131,8 @@ public class HomeScreenController implements Initializable {
      * <p>
      * Date Modified: 7 Mar 2014
      */
-    public void loadOffers(ActionEvent event) {
-
-        if (application == null) {
-            // We are running in isolated FXML, possibly in Scene Builder.
-            // NO-OP.
-            System.out.println("error: application == null");
-        } else {
-            application.goToOffers();
-        }
+    public void loadOffers(ActionEvent event) {	
+    	controller.loadOffers(event, application);
     }
 
     /**
