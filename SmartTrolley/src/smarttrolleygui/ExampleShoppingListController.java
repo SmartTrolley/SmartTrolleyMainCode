@@ -60,6 +60,7 @@ public class ExampleShoppingListController implements Initializable {
     private SmartTrolleyGUI application;
     private ObservableList<String> categories;
     private ObservableList<Product> productData;
+    private String categoryNumber = null;
     
     /**
      * initialize is automatically called when the controller is created.
@@ -80,9 +81,9 @@ public class ExampleShoppingListController implements Initializable {
      */
     @FXML public void handleMouseClick(MouseEvent arg0){
     	
-    	SqlConnection sqlConnector = new SqlConnection(); 
-    	String category = sqlConnector.getSpecificCategory(categoriesList.getSelectionModel().getSelectedItem());
-    	System.out.println(category);
+    	SqlConnection sqlConnector = new SqlConnection();
+    	setCategoryNumber(sqlConnector.getSpecificCategory(categoriesList.getSelectionModel().getSelectedItem()));
+    	System.out.println(getCategoryNumber());
     }
     
 
@@ -357,6 +358,14 @@ public class ExampleShoppingListController implements Initializable {
                 };
             }
         });
-    }    
+    }
+
+	public String getCategoryNumber() {
+		return categoryNumber;
+	}
+
+	public void setCategoryNumber(String categoryNumber) {
+		this.categoryNumber = categoryNumber;
+	}    
 }
 /**************End of ExampleShoppingListController**************/

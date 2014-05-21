@@ -214,8 +214,7 @@ public class SqlConnection {
 		
 		openConnection();
 		
-		String query = "Select * From categories where name = " + value + ";";
-		System.out.println(query);
+		String query = "Select * From categories where name = '" + value + "';";
 		
 		try {
 			ResultSet results = sendQuery(query);
@@ -227,6 +226,7 @@ public class SqlConnection {
 		} catch (SQLException e) {
 			
 			System.out.println("Product could not be found");
+			System.out.println(e.getMessage());
 		}
 		
 		closeConnection();

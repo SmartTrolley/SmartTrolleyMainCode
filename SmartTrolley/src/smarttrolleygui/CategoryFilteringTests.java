@@ -10,7 +10,7 @@ import org.junit.Test;
 public class CategoryFilteringTests {
 	
 	private ExampleShoppingListController shoppingList;
-	private ObservableList<String> categoryList;
+	private String categoryListNumber;
 	
 	@Before
 	public void setup(){
@@ -18,11 +18,15 @@ public class CategoryFilteringTests {
 		
 	}
 	
+	/**
+	 * This test will ensure that when a category is clicked, the category number is returned from the database
+	 */
 	@Test
 	public void getCategoryIDTest(){
 		
-		categoryList = shoppingList.initializeCategories();
-		assertFalse(categoryList == null);
+		
+		categoryListNumber = shoppingList.getCategoryNumber();
+		assertFalse(categoryListNumber == null);
 		
 	}
 	
