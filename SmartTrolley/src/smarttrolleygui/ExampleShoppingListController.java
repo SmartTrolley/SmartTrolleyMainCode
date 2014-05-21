@@ -283,6 +283,20 @@ public class ExampleShoppingListController implements Initializable {
 
 		return categories;
 	}
+	
+	/**
+	 * setUpCellValueFactory generates the cell value factories for various product table columns
+	 * TODO: move into separate class (maybe controller general) as other screens will also require access to this method.
+	 * Date Modified: 21 May 2014
+	 */
+	private void setUpCellValueFactory(TableColumn<Product, Product> tableColumn) {
+		tableColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+			@Override
+			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
+				return new ReadOnlyObjectWrapper<Product>(features.getValue());
+			}
+		});
+	}
 
 	/**
 	 * initializeProductTable fills the TableView with data and sets up cell
@@ -296,81 +310,38 @@ public class ExampleShoppingListController implements Initializable {
 		// Create new SqlConnection to retrieve product data
 		SqlConnection sqlConnector = new SqlConnection();
 
-		// Fill table with sample products
-		SmartTrolleyPrint.print("List ID before product table init is: "
-				+ SmartTrolleyGUI.getcurrentListID());
+		// Get product data from current list
 		productData = sqlConnector.getList(SmartTrolleyGUI.getcurrentListID());
-		productTable.setItems(productData);
+		// I don't know why this next line was added but does it maybe require an if statement? 
 		productTable.setPlaceholder(new Label("No Items in list, please add"));
 
 		// set up column cell value factories
-		productNameColumn
-				.setCellValueFactory(new PropertyValueFactory<Product, String>(
-						"name"));
-		priceColumn
-				.setCellValueFactory(new PropertyValueFactory<Product, String>(
-						"price"));
-		checkBoxColumn
-				.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-					@Override
-					public ObservableValue<Product> call(
-							CellDataFeatures<Product, Product> features) {
-						return new ReadOnlyObjectWrapper<Product>(features
-								.getValue());
-					}
-				});
-		imageColumn
-				.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-					@Override
-					public ObservableValue<Product> call(
-							CellDataFeatures<Product, Product> features) {
-						return new ReadOnlyObjectWrapper<Product>(features
-								.getValue());
-					}
-				});
-		addColumn
-				.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-					@Override
-					public ObservableValue<Product> call(
-							CellDataFeatures<Product, Product> features) {
-						return new ReadOnlyObjectWrapper<Product>(features
-								.getValue());
-					}
-				});
-		removeColumn
-				.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-					@Override
-					public ObservableValue<Product> call(
-							CellDataFeatures<Product, Product> features) {
-						return new ReadOnlyObjectWrapper<Product>(features
-								.getValue());
-					}
-				});
+		productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+		priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
+		
+		setUpCellValueFactory(checkBoxColumn);
+		setUpCellValueFactory(imageColumn);
+		setUpCellValueFactory(addColumn);
+		setUpCellValueFactory(removeColumn);
 
 		// set up cell factories for columns containing images / buttons
 		checkBoxColumn
 				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
 					@Override
-					public TableCell<Product, Product> call(
-							TableColumn<Product, Product> imageColumn) {
+					public TableCell<Product, Product> call(TableColumn<Product, Product> checkBoxColumn) {
 						return new TableCell<Product, Product>() {
 							final CheckBox checkBox = new CheckBox();
-
 							@Override
-							public void updateItem(final Product product,
-									boolean empty) {
+							public void updateItem(final Product product, boolean empty) {
 								super.updateItem(product, empty);
 								if (product != null) {
-									// button.getStyleClass().add("buttonImage");
 									setGraphic(checkBox);
 
-									// Button Event Handler
+									// CheckBox Event Handler
 									checkBox.setOnAction(new EventHandler<ActionEvent>() {
 										@Override
 										public void handle(ActionEvent event) {
-											System.out
-													.println("Pressed checkbox of product: "
-															+ product.getName());
+											System.out.println("Pressed checkbox of product: " + product.getName());
 										}
 									});
 								} else {
@@ -379,7 +350,7 @@ public class ExampleShoppingListController implements Initializable {
 							}
 						};
 					}
-				});
+		});
 		imageColumn
 				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
 					@Override
@@ -488,6 +459,8 @@ public class ExampleShoppingListController implements Initializable {
 						};
 					}
 				});
+		
+		productTable.setItems(productData);
 	}
 
 	public static int getProductDataSize() {
