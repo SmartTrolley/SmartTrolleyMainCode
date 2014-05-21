@@ -1,14 +1,14 @@
 /**
  * OffersScreenController
  * 
-* Class Description: OffersScreenController allows java interaction with
+ * Class Description: OffersScreenController allows java interaction with
  * OffersScreen.fxml
  * 
-* @author Arne
+ * @author Arne
  * 
-* @author [Checked By:] [Checker(s) fill here]
+ * @author [Checked By:] [Checker(s) fill here]
  * 
-* @version [1.0] [Date Created: 07/03/14]
+ * @version [1.0] [Date Created: 07/03/14]
  */
 package smarttrolleygui;
 
@@ -38,227 +38,231 @@ import javafx.util.Callback;
 public class OffersScreenController implements Initializable {
 
 	@FXML
-    private ListView<String> categoriesList;
-    @FXML
-    private TableView<Product> productTable;
-    @FXML
-    private TableColumn<Product, Product> imageColumn;
-    @FXML
-    private TableColumn<Product, String> productNameColumn;
-    @FXML
-    private TableColumn<Product, String> priceColumn;
-    @FXML
-    private TableColumn<Product, String> offerPriceColumn;    
-    @FXML
-    private TableColumn<Product, Product> addColumn;
-	
-	
-    private SmartTrolleyGUI application;
-    private ObservableList<String> categories;
-    private ObservableList<Product> productData;
-    
-    private ControllerGeneral controller = new ControllerGeneral(); 
+	private ListView<String> categoriesList;
+	@FXML
+	private TableView<Product> productTable;
+	@FXML
+	private TableColumn<Product, Product> imageColumn;
+	@FXML
+	private TableColumn<Product, String> productNameColumn;
+	@FXML
+	private TableColumn<Product, Float> priceColumn;
+	@FXML
+	private TableColumn<Product, Float> offerPriceColumn;
+	@FXML
+	private TableColumn<Product, Product> addColumn;
 
-    /**
-     * initialize is automatically called when the controller is created.
-     * <p>
-     * Date Modified: 07 Mar 2014
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    	// Fill list on the LHS of the screen with different product categories
-        categories = initializeCategories();
-        categoriesList.setItems(categories);
-    	
-    	initializeProductTable();
-    }
+	private SmartTrolleyGUI application;
+	private ObservableList<String> categories;
+	private ObservableList<Product> productData;
 
-    /**
-     * setApp
-     *
-     * @param application
-     * <p>
-     * Date Modified: 28 Feb 2014
-     */
-    public void setApp(SmartTrolleyGUI application) {
-        this.application = application;
-    }
+	private ControllerGeneral controller = new ControllerGeneral();
 
-    /**
-     * loadStartScreen is called when the smart trolley logo is pressed. It
-     * calls the goToStartScreen method in SmartTrolleyGUI.java
-     *
-     * @param event - response to click on smart trolley logo in navigation bar
-     * <p>
-     * Date Modified: 6 Mar 2014
-     */
-    public void loadStartScreen(ActionEvent event) {
-    	controller.loadStartScreen(event, application);
-    }
+	/**
+	 * initialize is automatically called when the controller is created.
+	 * <p>
+	 * Date Modified: 07 Mar 2014
+	 */
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+		// Fill list on the LHS of the screen with different product categories
+		categories = initializeCategories();
+		categoriesList.setItems(categories);
 
-    /**
-     * loadHomeScreen is called when the 'home' button is pressed. It calls the
-     * goToHomeScreen method in SmartTrolleyGUI.java
-     * <p>
-     * User navigates through product database
-     *
-     * @param event - response to click on 'home' button
-     * <p>
-     * Date Modified: 28 Feb 2014
-     */
-    public void loadHomeScreen(ActionEvent event) {
-    	controller.loadHomeScreen(event, application);
+		initializeProductTable();
 	}
 
-    /**
-     * loadFavourites is called when the 'favourites' button is pressed. It
-     * calls the goToFavourites method in SmartTrolleyGUI.java
-     * <p>
-     * User can maintain list of favourite products
-     *
-     * @param event - response to click on 'favourites' button
-     * <p>
-     * Date Modified: 28 Feb 2014
-     */
-    public void loadFavourites(ActionEvent event) {
-    	controller.loadFavourites(event, application);
+	/**
+	 * setApp
+	 * 
+	 * @param application
+	 *            <p>
+	 *            Date Modified: 28 Feb 2014
+	 */
+	public void setApp(SmartTrolleyGUI application) {
+		this.application = application;
 	}
 
-    /**
-     * loadShoppingList is called when the 'list' button is pressed. It calls
-     * the goToShoppingList method in SmartTrolleyGUI.java
-     * <p>
-     * User can view shopping list
-     *
-     * @param event - response to click on 'offers' button
-     * <p>
-     * Date Modified: 6 Mar 2014
-     */
-    public void loadShoppingList(ActionEvent event) {
-    	controller.loadShoppingList(event, application);
-    }
-    
-    /**
-     * initializeCategories sets up the list of categories that will be
-     * displayed on screen.
-     * <p>
-     * User can navigate through product database.
-     *
-     * @return categories - list of categories
-     * <p>
-     * Date Modified: 7 Mar 2014
-     */
-    private ObservableList<String> initializeCategories() {
-        categories = FXCollections.observableArrayList(
-                "All",
-                "Bakery",
-                "Fruit & Vegetables",
-                "Dairy & Eggs",
-                "Meat & Seafood",
-                "Frozen",
-                "Drinks",
-                "Snacks & Sweets",
-                "Desserts"
-        );
+	/**
+	 * loadStartScreen is called when the smart trolley logo is pressed. It
+	 * calls the goToStartScreen method in SmartTrolleyGUI.java
+	 * 
+	 * @param event
+	 *            - response to click on smart trolley logo in navigation bar
+	 *            <p>
+	 *            Date Modified: 6 Mar 2014
+	 */
+	public void loadStartScreen(ActionEvent event) {
+		controller.loadStartScreen(event, application);
+	}
 
-        return categories;
-    }
-    
-    /**
-     * initializeProductTable fills the TableView with data and sets up cell
-     * factories
-     * <p>
-     * User can navigate through product database
-     * <p>
-     * Date Modified: 9 Mar 2014
-     */
-    private void initializeProductTable() {
-    	
-    	//Create new SqlConnection to retrieve product data
-    	SqlConnection sqlConnector = new SqlConnection();
-    
-        // Fill table with sample products
-        productData = sqlConnector.getListOfOffers();
-		
-        productTable.setItems(productData);
+	/**
+	 * loadHomeScreen is called when the 'home' button is pressed. It calls the
+	 * goToHomeScreen method in SmartTrolleyGUI.java
+	 * <p>
+	 * User navigates through product database
+	 * 
+	 * @param event
+	 *            - response to click on 'home' button
+	 *            <p>
+	 *            Date Modified: 28 Feb 2014
+	 */
+	public void loadHomeScreen(ActionEvent event) {
+		controller.loadHomeScreen(event, application);
+	}
 
-        // set up column cell value factories
-        productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
-        offerPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("offerPrice"));
-        addColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-            @Override
-            public ObservableValue<Product> call(TableColumn.CellDataFeatures<Product, Product> features) {
-                return new ReadOnlyObjectWrapper<Product>(features.getValue());
-            }
-        });
-        imageColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-            @Override
-            public ObservableValue<Product> call(TableColumn.CellDataFeatures<Product, Product> features) {
-                return new ReadOnlyObjectWrapper<Product>(features.getValue());
-            }
-        });
+	/**
+	 * loadFavourites is called when the 'favourites' button is pressed. It
+	 * calls the goToFavourites method in SmartTrolleyGUI.java
+	 * <p>
+	 * User can maintain list of favourite products
+	 * 
+	 * @param event
+	 *            - response to click on 'favourites' button
+	 *            <p>
+	 *            Date Modified: 28 Feb 2014
+	 */
+	public void loadFavourites(ActionEvent event) {
+		controller.loadFavourites(event, application);
+	}
 
-        // set up cell factories for columns containing images / buttons
-        addColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
-            @Override
-            public TableCell<Product, Product> call(TableColumn<Product, Product> addColumn) {
-                return new TableCell<Product, Product>() {
-                    final Button button = new Button();
+	/**
+	 * loadShoppingList is called when the 'list' button is pressed. It calls
+	 * the goToShoppingList method in SmartTrolleyGUI.java
+	 * <p>
+	 * User can view shopping list
+	 * 
+	 * @param event
+	 *            - response to click on 'offers' button
+	 *            <p>
+	 *            Date Modified: 6 Mar 2014
+	 */
+	public void loadShoppingList(ActionEvent event) {
+		controller.loadShoppingList(event, application);
+	}
 
-                    @Override
-                    public void updateItem(final Product product, boolean empty) {
-                        super.updateItem(product, empty);
-                        if (product != null) {
-                            button.setText("+");
-                            button.getStyleClass().add("buttonChangeQuantity");
-                            setGraphic(button);
+	/**
+	 * initializeCategories sets up the list of categories that will be
+	 * displayed on screen.
+	 * <p>
+	 * User can navigate through product database.
+	 * 
+	 * @return categories - list of categories
+	 *         <p>
+	 *         Date Modified: 7 Mar 2014
+	 */
+	private ObservableList<String> initializeCategories() {
+		categories = FXCollections.observableArrayList("All", "Bakery",
+				"Fruit & Vegetables", "Dairy & Eggs", "Meat & Seafood",
+				"Frozen", "Drinks", "Snacks & Sweets", "Desserts");
 
-                            // Button Event Handler
-                            button.setOnAction(new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    System.out.println("Pressed add button for product: " + product.getName());
-                                }
-                            });
-                        } else {
-                            setGraphic(null);
-                        }
-                    }
-                };
-            }
-        });
+		return categories;
+	}
 
-        imageColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
-            @Override
-            public TableCell<Product, Product> call(TableColumn<Product, Product> imageColumn) {
-                return new TableCell<Product, Product>() {
-                    final Button button = new Button();
+	/**
+	 * initializeProductTable fills the TableView with data and sets up cell
+	 * factories
+	 * <p>
+	 * User can navigate through product database
+	 * <p>
+	 * Date Modified: 9 Mar 2014
+	 */
+	private void initializeProductTable() {
 
-                    @Override
-                    public void updateItem(final Product product, boolean empty) {
-                        super.updateItem(product, empty);
-                        if (product != null) {
-                            Image productImage = new Image(getClass().getResourceAsStream(product.getImage()));
-                            button.setGraphic(new ImageView(productImage));
-                            button.setPrefSize(80, 60);
-                            button.getStyleClass().add("buttonImage");
-                            setGraphic(button);
+		// Create new SqlConnection to retrieve product data
+		SqlConnection sqlConnector = new SqlConnection();
 
-                            // Button Event Handler
-                            button.setOnAction(new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    System.out.println("Pressed image of product: " + product.getName());
-                                }
-                            });
-                        } else {
-                            setGraphic(null);
-                        }
-                    }
-                };
-            }
-        });
-    }
+		// Fill table with sample products
+		productData = sqlConnector.getListOfOffers();
+
+		// set up column cell value factories
+		productNameColumn
+				.setCellValueFactory(new PropertyValueFactory<Product, String>(
+						"name"));
+		priceColumn
+				.setCellValueFactory(new PropertyValueFactory<Product, Float>(
+						"price"));
+		offerPriceColumn
+				.setCellValueFactory(new PropertyValueFactory<Product, Float>(
+						"offerPrice"));
+		controller.setUpCellValueFactory(addColumn);
+		controller.setUpCellValueFactory(imageColumn);
+
+		// set up cell factories for columns containing images / buttons
+		addColumn
+				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+					@Override
+					public TableCell<Product, Product> call(
+							TableColumn<Product, Product> addColumn) {
+						return new TableCell<Product, Product>() {
+							final Button button = new Button();
+
+							@Override
+							public void updateItem(final Product product,
+									boolean empty) {
+								super.updateItem(product, empty);
+								if (product != null) {
+									button.setText("+");
+									button.getStyleClass().add(
+											"buttonChangeQuantity");
+									setGraphic(button);
+
+									// Button Event Handler
+									button.setOnAction(new EventHandler<ActionEvent>() {
+										@Override
+										public void handle(ActionEvent event) {
+											System.out
+													.println("Pressed add button for product: "
+															+ product.getName());
+										}
+									});
+								} else {
+									setGraphic(null);
+								}
+							}
+						};
+					}
+				});
+
+		imageColumn
+				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+					@Override
+					public TableCell<Product, Product> call(
+							TableColumn<Product, Product> imageColumn) {
+						return new TableCell<Product, Product>() {
+							final Button button = new Button();
+
+							@Override
+							public void updateItem(final Product product,
+									boolean empty) {
+								super.updateItem(product, empty);
+								if (product != null) {
+									Image productImage = new Image(getClass()
+											.getResourceAsStream(
+													product.getImage()));
+									button.setGraphic(new ImageView(
+											productImage));
+									button.setPrefSize(80, 60);
+									button.getStyleClass().add("buttonImage");
+									setGraphic(button);
+
+									// Button Event Handler
+									button.setOnAction(new EventHandler<ActionEvent>() {
+										@Override
+										public void handle(ActionEvent event) {
+											System.out
+													.println("Pressed image of product: "
+															+ product.getName());
+										}
+									});
+								} else {
+									setGraphic(null);
+								}
+							}
+						};
+					}
+				});
+		productTable.setItems(productData);
+	}
 }
-/**************End of OffersScreenController**************/
+/************** End of OffersScreenController **************/

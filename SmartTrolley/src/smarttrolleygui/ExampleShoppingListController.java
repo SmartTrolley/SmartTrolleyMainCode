@@ -74,7 +74,7 @@ public class ExampleShoppingListController implements Initializable {
 	private final double MSG_BX_H = 100.0;
 	private final double MSG_BX_W = 400.0;
 	public static SqlConnection productsDatabase;
-	private ControllerGeneral controller = new ControllerGeneral(); 
+	private ControllerGeneral controller = new ControllerGeneral();
 
 	/**
 	 * initialize is automatically called when the controller is created.
@@ -190,7 +190,7 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-    	controller.loadStartScreen(event, application);
+		controller.loadStartScreen(event, application);
 	}
 
 	/**
@@ -205,7 +205,7 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 28 Feb 2014
 	 */
 	public void loadHomeScreen(ActionEvent event) {
-    	controller.loadHomeScreen(event, application);
+		controller.loadHomeScreen(event, application);
 	}
 
 	/**
@@ -220,7 +220,7 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 28 Feb 2014
 	 */
 	public void loadFavourites(ActionEvent event) {
-    	controller.loadFavourites(event, application);
+		controller.loadFavourites(event, application);
 	}
 
 	/**
@@ -235,7 +235,7 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 7 Mar 2014
 	 */
 	public void loadOffers(ActionEvent event) {
-    	controller.loadOffers(event, application);
+		controller.loadOffers(event, application);
 	}
 
 	/**
@@ -255,20 +255,6 @@ public class ExampleShoppingListController implements Initializable {
 
 		return categories;
 	}
-	
-	/**
-	 * setUpCellValueFactory generates the cell value factories for various product table columns
-	 * TODO: move into separate class (maybe controller general) as other screens will also require access to this method.
-	 * Date Modified: 21 May 2014
-	 */
-	private void setUpCellValueFactory(TableColumn<Product, Product> tableColumn) {
-		tableColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-			@Override
-			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
-				return new ReadOnlyObjectWrapper<Product>(features.getValue());
-			}
-		});
-	}
 
 	/**
 	 * initializeProductTable fills the TableView with data and sets up cell
@@ -284,21 +270,25 @@ public class ExampleShoppingListController implements Initializable {
 
 		// Get product data from current list
 		productData = sqlConnector.getList(SmartTrolleyGUI.getcurrentListID());
-		// TODO: I don't know why this next line was added but does it maybe require an if statement? 
+		// TODO: I don't know why this next line was added but does it maybe
+		// require an if statement?
 		productTable.setPlaceholder(new Label("No Items in list, please add"));
 
 		// set up column cell value factories
-		priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Float>("price"));
-		
-		setUpCellValueFactory(productNameColumn);
-		setUpCellValueFactory(checkBoxColumn);
-		setUpCellValueFactory(imageColumn);
-		setUpCellValueFactory(addColumn);
-		setUpCellValueFactory(removeColumn);
+		priceColumn
+				.setCellValueFactory(new PropertyValueFactory<Product, Float>(
+						"price"));
+
+		controller.setUpCellValueFactory(productNameColumn);
+		controller.setUpCellValueFactory(checkBoxColumn);
+		controller.setUpCellValueFactory(imageColumn);
+		controller.setUpCellValueFactory(addColumn);
+		controller.setUpCellValueFactory(removeColumn);
 
 		// set up cell factories for columns containing buttons
 		// syntax:
-		// TableColumn<S,T> where S is the type of the TableView (i.e. Product here),
+		// TableColumn<S,T> where S is the type of the TableView (i.e. Product
+		// here),
 		// and T is the type of the content in all cells of this TableColumn.
 		checkBoxColumn
 				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
@@ -369,7 +359,7 @@ public class ExampleShoppingListController implements Initializable {
 						};
 					}
 				});
-		
+
 		imageColumn
 				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
 					@Override
@@ -442,7 +432,7 @@ public class ExampleShoppingListController implements Initializable {
 							}
 						};
 					}
-		});
+				});
 
 		removeColumn
 				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
@@ -479,7 +469,7 @@ public class ExampleShoppingListController implements Initializable {
 						};
 					}
 				});
-		
+
 		productTable.setItems(productData);
 	}
 
