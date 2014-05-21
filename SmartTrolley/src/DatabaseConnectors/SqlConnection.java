@@ -11,6 +11,7 @@ import Printing.SmartTrolleyPrint;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import smarttrolleygui.Category;
 import smarttrolleygui.Offer;
 import smarttrolleygui.Product;
 
@@ -205,6 +206,34 @@ public class SqlConnection {
 	}
 	
 	/**
+	 * 
+	 */
+	public String getSpecificCategory(String value){
+		
+		String categoryNumber = null;
+		
+		openConnection();
+		
+		String query = "Select * From categories where name = " + value + ";";
+		System.out.println(query);
+		
+		try {
+			ResultSet results = sendQuery(query);
+			
+			while (results.next()){
+				categoryNumber = results.getString("CategoryID");
+
+			}
+		} catch (SQLException e) {
+			
+			System.out.println("Product could not be found");
+		}
+		
+		closeConnection();
+		return categoryNumber;
+	}
+	
+	/**
 	 * When called, this method will return the list of offers
 	 * and store them as a type offer.
 	 */
@@ -286,7 +315,7 @@ public class SqlConnection {
 		
 		} catch (SQLException e) {
 		
-		System.out.println("Offers could not be found");
+		System.out.println("Categories could not be found");
 		return null;
 		}
 	}

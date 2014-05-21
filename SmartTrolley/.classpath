@@ -3,12 +3,9 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="M:/w2k/SWENG Y3/FXMessageBox.jar"/>
-	<classpathentry kind="lib" path="M:/w2k/SWENG Y3/mysql-connector-java-5.1.18-bin.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files (x86)/Java/jre7/lib/jfxrt.jar" sourcepath=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7"/>
-	<classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk1.7.0_55.jdk/Contents/Home/jre/lib/jfxrt.jar"/>
-	<classpathentry kind="lib" path="/Volumes/Macintosh HD/Users/samgeering/Documents/SWENG/FXMessageBox.jar"/>
-	<classpathentry kind="lib" path="/Volumes/Macintosh HD/Users/samgeering/Documents/SWENG/mysql-connector-java-5.1.18-bin.jar"/>
+	<classpathentry kind="lib" path="M:/Y3Sweng/FXMessageBox.jar"/>
+	<classpathentry kind="lib" path="M:/Y3Sweng/mysql-connector-java-5.1.18-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

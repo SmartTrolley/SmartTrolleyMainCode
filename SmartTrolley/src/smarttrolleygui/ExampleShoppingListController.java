@@ -34,12 +34,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 public class ExampleShoppingListController implements Initializable {
 
     @FXML
     private ListView<String> categoriesList;
+
     @FXML
     private TableView<Product> productTable;
     @FXML
@@ -72,6 +74,17 @@ public class ExampleShoppingListController implements Initializable {
 
         initializeProductTable();
     }
+    
+    /**
+     * 
+     */
+    @FXML public void handleMouseClick(MouseEvent arg0){
+    	
+    	SqlConnection sqlConnector = new SqlConnection(); 
+    	String category = sqlConnector.getSpecificCategory(categoriesList.getSelectionModel().getSelectedItem());
+    	System.out.println(category);
+    }
+    
 
     /**
      * setApp
@@ -176,7 +189,7 @@ public class ExampleShoppingListController implements Initializable {
      * <p>
      * Date Modified: 7 Mar 2014
      */
-    private ObservableList<String> initializeCategories() {
+    public ObservableList<String> initializeCategories() {
     	//Create new SqlConnection to retrieve product data
     	SqlConnection sqlConnector = new SqlConnection();    
          
