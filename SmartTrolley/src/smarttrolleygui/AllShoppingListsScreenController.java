@@ -108,6 +108,7 @@ public class AllShoppingListsScreenController implements Initializable {
 			newButton.setText(listName);
 			newButton.setPrefSize(300, 80);
 			newButton.setMinHeight(50);
+			newButton.getStyleClass().add("buttonLarge");
 			// Load shoppingLists if clicked
 			newButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -131,8 +132,7 @@ public class AllShoppingListsScreenController implements Initializable {
 		newButton.setMaxHeight(Integer.MAX_VALUE);
 		newButton.setMinHeight(100);
 		newButton.setText("Go Back");
-		newButton.getStyleClass().add("largeButton");
-		newButton.getStyleClass().add("button");
+		newButton.getStyleClass().add("buttonLarge");
 		newButton.setPrefSize(300, 80);
 		newButton.setOnAction(new EventHandler<ActionEvent>() {
 
