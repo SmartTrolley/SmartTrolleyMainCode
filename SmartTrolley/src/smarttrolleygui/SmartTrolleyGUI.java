@@ -65,6 +65,7 @@ public class SmartTrolleyGUI extends Application {
 //            goToFavourites();
 //            goToShoppingList();
 //            goToNewOffers();
+            goToProductScreen();
             
             primaryStage.show();
         } catch (Exception ex) {
@@ -199,6 +200,22 @@ public class SmartTrolleyGUI extends Application {
         }
     }
     
+    /**
+     *goToProductScreen is called when a product name is clicked. It loads the screen which holds the product information.
+     *<p>User can view product information
+     *<p> Date Modified: 22 May 2014
+     */
+    private void goToProductScreen() {
+        try {
+            ProductScreenController productScreen = (ProductScreenController) replaceSceneContent("fxml/ProductScreen.fxml");
+            productScreen.setApp(this);
+        } catch (Exception ex) {
+        	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
+        	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
+        	System.exit(-1);
+        }
+	}
+    
     //TODO This should throw a clearer exception(s)
     /**
     *replaceSceneContent loads in the content from the fxml file it is passed 
@@ -249,7 +266,6 @@ public class SmartTrolleyGUI extends Application {
     *The main() method is ignored in correctly deployed JavaFX applications.
     *main() serves only as fallback in case the application cannot be launched
     *through deployment artifacts, e.g., in IDEs with limited FX support.
-    *<p>Test(s)/User Story that it satisfies
     *@param args the command line arguments
     *<p> Date Modified: 22 Feb 2014
     */

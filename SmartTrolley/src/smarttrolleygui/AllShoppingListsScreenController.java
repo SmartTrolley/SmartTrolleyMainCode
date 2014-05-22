@@ -54,7 +54,7 @@ public class AllShoppingListsScreenController implements Initializable {
 		productsDatabase.openConnection();
 
 		try {
-			CreateList();
+			createButtonOfLists();
 
 			
 		} catch (SQLException e) {
@@ -86,7 +86,7 @@ public class AllShoppingListsScreenController implements Initializable {
 	*@throws SQLException
 	*<p> Date Modified: 9 May 2014
 	*/
-	public void CreateList() throws SQLException {
+	public void createButtonOfLists() throws SQLException {
 		String query = "SELECT ListID ,Name from lists";
 		SmartTrolleyPrint.print("returned lists from DB");
 		ResultSet resultSet = productsDatabase.sendQuery(query);
