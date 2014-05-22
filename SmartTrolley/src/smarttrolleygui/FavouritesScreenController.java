@@ -75,7 +75,7 @@ public class FavouritesScreenController implements Initializable {
     	SqlConnection sqlConnector = new SqlConnection();
     	
         // Fill table with sample products
-        productData = sqlConnector.getListOfProducts();
+        productData = sqlConnector.getListOfFavourites("1");
         productTable.setItems(productData);
         
         initializeProductTable();
@@ -92,12 +92,12 @@ public class FavouritesScreenController implements Initializable {
     	    	
     	if (Integer.valueOf(getCategoryNumber())  == 1) {
     		  // Fill table with sample products
-            productData = sqlConnector.getListOfProducts();
+            productData = sqlConnector.getListOfFavourites("1");
     		}
     	else{
     		// Fill table with sample products
     		//"products" should be changed with a favourites equivalent.
-    		productData = sqlConnector.getProductsWithinSpecificCategory("products", getCategoryNumber());
+    		productData = sqlConnector.getListOfFavourites(getCategoryNumber());
     		}
     	
         productTable.setItems(productData);

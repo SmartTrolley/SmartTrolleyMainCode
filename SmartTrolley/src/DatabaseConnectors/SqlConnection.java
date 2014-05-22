@@ -95,9 +95,7 @@ import smarttrolleygui.SmartTrolleyGUI;
 		 * @param productName
 		 * @return product
 		 */
-		public Product getProductByName(String productName) {
-			
-			Product product = new Product();
+		public ObservableList<Product> getProductByName(String productName) {
 			
 			openConnection();
 			
@@ -108,31 +106,21 @@ import smarttrolleygui.SmartTrolleyGUI;
 				ResultSet results = sendQuery(query);
 				
 				while (results.next()) {
-					
-					// get id
-					product.setId(results.getInt("ProductID"));
-					
-					// get Name
-					product.setName(results.getString("Name"));
-					
-					// get Image
-					product.setImage(results.getString("Image"));
-					
-					// get Price
-					product.setPrice(results.getFloat("Price"));
+					storeProductDetails(results);
 				}
+				closeConnection();
+				return products;
 				
 			} catch (SQLException e) {
-				
+				closeConnection();
 				System.out.println("Product could not be found");
-				
+				return null;
 			}
-			
-			closeConnection();
-			return product;
+
 		}
 		
 		/**
+		 * 
 		 * @return products
 		 * @throws SQLException 
 		 * 
@@ -142,42 +130,52 @@ import smarttrolleygui.SmartTrolleyGUI;
 			openConnection();
 			
 			products = FXCollections.observableArrayList();
-			
 			String query = "SELECT * FROM products;";
 			
 			try {
-				
 				ResultSet results = sendQuery(query);		
-			
-			while (results.next()) {
-				
-				Product product = new Product();
-				
-				// get id
-				product.setId(results.getInt("ProductID"));
-				
-				// get Name
-				product.setName(results.getString("Name"));
-				
-				// get Image
-				product.setImage(results.getString("Image"));
-				
-				// get Price
-				product.setPrice(results.getFloat("Price"));
-				
-				products.add(product);
-			}
+				while (results.next()) {
+					storeProductDetails(results);
+				}
 					closeConnection();
-					return products;
-					
-			} catch (SQLException e) {
-			
-			System.out.println("Product could not be found");
-			return null;
-		}
-						
+					return products;	
+				} catch (SQLException e) {
+					System.out.println("Product could not be found");
+					return null;
+				}				
 		}
 		
+		/**Returns either the entire list of favourites, or a version filtered by category
+		 * 
+		 * @param category
+		 * @return products
+		 */
+		public ObservableList<Product> getListOfFavourites(String category) {
+
+			openConnection();
+			
+			products = FXCollections.observableArrayList();
+			
+			String query = null;
+			
+			if(category == "1"){
+				query = "SELECT * FROM products WHERE IsFavourite = 1;";
+			} else {
+				query = "SELECT * FROM products WHERE IsFavourite = 1 AND CategoryID = '" + category + "';";
+			}
+			
+			try {
+				ResultSet results = sendQuery(query);		
+				while (results.next()) {
+					storeProductDetails(results);
+				}
+					closeConnection();
+					return products;	
+				} catch (SQLException e) {
+					System.out.println("Product could not be found");
+					return null;
+				}				
+		}
 		
 		/**
 		 * 
@@ -185,13 +183,19 @@ import smarttrolleygui.SmartTrolleyGUI;
 		 * @param value
 		 * @return product
 		 */
-		public Product getSpecificProduct(String criteria, String value){
+		public Product getSpecificProduct(String criteria, String value, String category){
 			
 			Product product = new Product();
 			
 			openConnection();
 			
-			String query = "Select * From products where " + criteria +" = " + value + ";";
+			String query = null;
+			
+			if(category == "1"){
+				query = "Select * From products where " + criteria +" = " + value + ";";
+			} else {
+				query = "Select * From products where " + criteria +" = " + value + " AND CategoryID = '" + category + "';";
+			}
 			
 			try {
 				ResultSet results = sendQuery(query);
@@ -210,15 +214,17 @@ import smarttrolleygui.SmartTrolleyGUI;
 					//get Price
 					product.setPrice(results.getFloat("Price"));
 				}
+				closeConnection();
+				return product;
 			} catch (SQLException e) {
-				
+				closeConnection();
 				System.out.println("Product could not be found");
+				return null;
 			}
 			
-			closeConnection();
-			return product;
+
 		}
-		
+				
 		/**
 		 * 
 		 */
@@ -247,6 +253,12 @@ import smarttrolleygui.SmartTrolleyGUI;
 			return categoryNumber;
 		}
 		
+		/**
+		 * 
+		 * @param List
+		 * @param Number
+		 * @return
+		 */
 		public ObservableList<Product> getProductsWithinSpecificCategory(String List, String Number) {
 			
 			
@@ -260,32 +272,49 @@ import smarttrolleygui.SmartTrolleyGUI;
 				
 				ResultSet results = sendQuery(query);		
 			
-			while (results.next()) {
-				
-				Product product = new Product();
-				
-				// get id
-				product.setId(results.getInt("ProductID"));
-				
-				// get Name
-				product.setName(results.getString("Name"));
-				
-				// get Image
-				product.setImage(results.getString("Image"));
-				
-				// get Price
-				product.setPrice(results.getFloat("Price"));
-				
-				products.add(product);
+			if(isResultSetEmpty(results) == false){
+				while (results.next()) {
+					storeProductDetails(results);
+				}
+						closeConnection();
+						return products;
+			}else{ 
+				System.out.println("No result");
+				return null;
 			}
-					closeConnection();
-					return products;
-					
+						
 			} catch (SQLException e) {
 			
 			System.out.println("Product could not be found");
 			return null;
 		}
+		}
+		
+		/** Anytime the results of a query need to store a product, this method is called.
+		 * 
+		 * @param results
+		 * @return
+		 * @throws SQLException
+		 */
+		public ObservableList<Product> storeProductDetails(ResultSet results) throws SQLException{
+			
+			Product product = new Product();
+			
+			// get id
+			product.setId(results.getInt("ProductID"));
+			
+			// get Name
+			product.setName(results.getString("Name"));
+			
+			// get Image
+			product.setImage(results.getString("Image"));
+			
+			// get Price
+			product.setPrice(results.getFloat("Price"));
+			
+			products.add(product);
+			
+			return products;
 		}
 	
 		/**
@@ -293,7 +322,7 @@ import smarttrolleygui.SmartTrolleyGUI;
 		 * and store them as a type offer.
 		 * @return offers
 		 */
-		public ObservableList<Product> getListOfOffers() {
+		public ObservableList<Product> getListOfOffers(String category) {
 			
 			productsDatabase = new SqlConnection();
 			
@@ -310,24 +339,27 @@ import smarttrolleygui.SmartTrolleyGUI;
 					
 					Offer offer = new Offer();
 					Product product = new Product();
+					product = productsDatabase.getSpecificProduct("ProductID", String.valueOf(results.getInt("ProductId")), category);
 					
-					// get Offer id
-					offer.setOfferId(results.getInt("OfferID"));
-					
-					// get Product id
-					offer.setProductId(results.getInt("ProductID"));
-					
-					product = productsDatabase.getSpecificProduct("ProductID", String.valueOf(results.getInt("ProductId")));
-					
-					// get Price
-					offer.setOfferPrice(results.getFloat("OfferPrice"));
-					product.setOfferPrice(results.getFloat("OfferPrice"));
-					
-					float savings = product.getPrice() - product.getOfferPrice();
-					
-					product.setSavings(savings);
-					
-					offers.add(product);
+					if(!(product == null)){
+						// get Offer id
+						offer.setOfferId(results.getInt("OfferID"));
+						
+						// get Product id
+						offer.setProductId(results.getInt("ProductID"));
+						
+						// get Price
+						offer.setOfferPrice(results.getFloat("OfferPrice"));
+						product.setOfferPrice(results.getFloat("OfferPrice"));
+						
+						float savings = product.getPrice() - product.getOfferPrice();
+						
+						product.setSavings(savings);
+						
+						offers.add(product);
+					} else { 
+						return null;
+					}
 				}
 				
 				closeConnection();
@@ -359,20 +391,14 @@ import smarttrolleygui.SmartTrolleyGUI;
 				ResultSet results = sendQuery(query);
 			
 				while (results.next()) {
-					
 					String category = results.getString("Name");
-					
-			
 					categories.add(category);
 				}
-			
 				closeConnection();
 				return categories;
-			
 			} catch (SQLException e) {
-			
-			System.out.println("Categories could not be found");
-			return null;
+				System.out.println("Categories could not be found");
+				return null;
 			}
 		}
 
@@ -433,7 +459,6 @@ import smarttrolleygui.SmartTrolleyGUI;
 			System.out.println("lists could not be found");
 
 		}
-		
 
 		try {
 
@@ -454,22 +479,8 @@ import smarttrolleygui.SmartTrolleyGUI;
 				SmartTrolleyPrint.print(isResultSetEmpty(listProducts));
 				listProducts.absolute(1);
 				SmartTrolleyPrint.print("Row Size is = " + listProducts.getRow());
-
-				// get id
-				product.setId(listProducts.getInt("ProductID"));
-
-				// get Name
-				product.setName(listProducts.getString("Name"));
-
-				// get Image
-				product.setImage(listProducts.getString("Image"));
-
-				// get Price
-				product.setPrice(listProducts.getFloat("Price"));
 				
-				SmartTrolleyPrint.print("Product Set");
-
-				products.add(product);
+				storeProductDetails(listProducts);
 				
 				SmartTrolleyPrint.print("Product Stored");
 
@@ -537,22 +548,8 @@ import smarttrolleygui.SmartTrolleyGUI;
 						 do {
 							
 							SmartTrolleyPrint.print("Found Item to be stored");
-						
-							// get id
-							product.setId(listProducts.getInt("ProductID"));
-			
-							// get Name
-							product.setName(listProducts.getString("Name"));
-			
-							// get Image
-							product.setImage(listProducts.getString("Image"));
-			
-							// get Price
-							product.setPrice(listProducts.getFloat("Price"));
 							
-							SmartTrolleyPrint.print("Product Set");
-			
-							products.add(product);
+							storeProductDetails(listProducts);
 							
 							SmartTrolleyPrint.print("Product Stored");
 			

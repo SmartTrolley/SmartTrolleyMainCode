@@ -70,12 +70,11 @@ public class OffersScreenController implements Initializable {
         categories = initializeCategories();
         categoriesList.setItems(categories);
     	
-    	
     	//Create new SqlConnection to retrieve product data
     	SqlConnection sqlConnector = new SqlConnection();
     
         // Fill table with sample products
-        productData = sqlConnector.getListOfOffers();
+        productData = sqlConnector.getListOfOffers("1");
 		
         productTable.setItems(productData);
         
@@ -95,11 +94,12 @@ public class OffersScreenController implements Initializable {
     	    	
     	if (Integer.valueOf(getCategoryNumber())  == 1) {
     		  // Fill table with sample products
-            productData = sqlConnector.getListOfProducts();
+            productData = sqlConnector.getListOfOffers("1");
     		}
     	else{
     		// Fill table with sample products
-    		productData = sqlConnector.getProductsWithinSpecificCategory("Offers", getCategoryNumber());
+    		//productData = sqlConnector.getProductsWithinSpecificCategory("Offers", getCategoryNumber());
+    		productData = sqlConnector.getListOfOffers(categoriesList.getSelectionModel().getSelectedItem());
     		}
     	
         productTable.setItems(productData);
