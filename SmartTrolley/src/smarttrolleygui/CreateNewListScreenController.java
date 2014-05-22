@@ -38,6 +38,8 @@ public class CreateNewListScreenController implements Initializable {
 	@ FXML
 	private Label notifierLabel;
 	
+	private ControllerGeneral controller = new ControllerGeneral(); 
+	
 	/**
 	 * initialize is automatically called when the controller is created.
 	 * <p>
@@ -69,14 +71,7 @@ public class CreateNewListScreenController implements Initializable {
 	 *            Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-
-		if (application == null) {
-			// We are running in isolated FXML, possibly in Scene Builder.
-			// NO-OP.
-			System.out.println("error: application == null");
-		} else {
-			application.goToStartScreen();
-		}
+    	controller.loadStartScreen(event, application);
 	}
 
 	/**
