@@ -6,10 +6,12 @@
  *
  * @author V1.0 Arne
  * @author V1.1 Alick & Prashant [Delete Functionality added]
+ * @author samgeering [Category Filtering added]
  *
  * @author [Checked By:] [Checker(s) fill here]
  *
- * @version [1.1] [Date Created: 06/03/14]
+ * @version [1.2] [Date Created: 22/05/14]
+ * 
  */
 package smarttrolleygui;
 
@@ -98,18 +100,20 @@ public class ExampleShoppingListController implements Initializable {
 		// Create new SqlConnection to retrieve product data
 		SqlConnection sqlConnector = new SqlConnection();
 
-		// Fill table with sample products
+		// Store selected products
 		SmartTrolleyPrint.print("List ID before product table init is: "
 				+ SmartTrolleyGUI.getcurrentListID());
 		productData = sqlConnector.getList(SmartTrolleyGUI.getcurrentListID());
 		productTable.setItems(productData);
 		productTable.setPlaceholder(new Label("No Items in list, please add"));
 
-		
+		//Fill table with selected products
 		initializeProductTable();
 	}
 
-    /**
+    /** Any FXML item with a mouse click handle will use this method to dictate its reaction when clicked
+     * 
+     * This should only be for the Category List (ListView)
      * 
      */
     @FXML public void handleMouseClick(MouseEvent arg0){
@@ -119,19 +123,10 @@ public class ExampleShoppingListController implements Initializable {
     	System.out.println(getCategoryNumber());
     	    	
     	if (Integer.valueOf(getCategoryNumber())  == 1) {
-    		  // Fill table with sample products
     		productData = sqlConnector.getList(SmartTrolleyGUI.getcurrentListID());
     		}
     	else{
-    		// Fill table with sample products
-//    		get list ID
-//    		send to SQL database
-//    		get product Ids on List
-//    		send product Ids to database
-//    		return list of products and their data
-//			Need to check complete product list for items in category and on the users list.
-    		
-    		productData = sqlConnector.getProductsWithinSpecificCategory("products", getCategoryNumber());
+    		productData = sqlConnector.getListByCategory(SmartTrolleyGUI.getcurrentListID(), getCategoryNumber());
     		}
     	
         productTable.setItems(productData);

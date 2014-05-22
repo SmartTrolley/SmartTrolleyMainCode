@@ -82,7 +82,9 @@ public class OffersScreenController implements Initializable {
     	initializeProductTable();
     }
     
-    /**
+    /** Any FXML item with a mouse click handle will use this method to dictate its reaction when clicked
+     * 
+     * This should only be for the Category List (ListView)
      * 
      */
     @FXML public void handleMouseClick(MouseEvent arg0){

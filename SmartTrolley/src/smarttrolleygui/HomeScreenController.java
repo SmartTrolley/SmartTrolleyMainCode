@@ -5,6 +5,7 @@
  * HomeScreen.fxml
  *
  * @author Arne
+ * @author samgeering [Category Filtering added]
  *
  *
  * @author [Checked By:] [Checker(s) fill here]
@@ -71,15 +72,17 @@ public class HomeScreenController implements Initializable {
     	//Create new SqlConnection to retrieve product data
     	SqlConnection sqlConnector = new SqlConnection();
     
-        // Fill table with sample products
+        // Get selected products
         productData = sqlConnector.getListOfProducts();
-		
         productTable.setItems(productData);
-
+        
+        //Fill table with selected products
         initializeProductTable();
     }
     
-    /**
+    /** Any FXML item with a mouse click handle will use this method to dictate its reaction when clicked
+     * 
+     * This should only be for the Category List (ListView)
      * 
      */
     @FXML public void handleMouseClick(MouseEvent arg0){
@@ -91,6 +94,7 @@ public class HomeScreenController implements Initializable {
     	if (Integer.valueOf(getCategoryNumber())  == 1) {
     		  // Fill table with sample products
             productData = sqlConnector.getListOfProducts();
+            System.out.println(";aoskb;sdgb");
     		}
     	else{
     		// Fill table with sample products

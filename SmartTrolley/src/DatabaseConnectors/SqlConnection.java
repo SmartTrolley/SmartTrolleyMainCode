@@ -488,6 +488,94 @@ import smarttrolleygui.SmartTrolleyGUI;
 
 	}
 
+	/**This class will filter the list by category and return what products in that list are in a selected category
+	 * 
+	 * @param listID
+	 * @param categoryNumber
+	 * @return products
+	 */
+	public ObservableList<Product> getListByCategory(int listID, String categoryNumber) {
+		openConnection();
+
+		products = FXCollections.observableArrayList();
+
+		String query = "SELECT * FROM lists_products WHERE listID = " + SmartTrolleyGUI.getcurrentListID();
+		SmartTrolleyPrint.print("query is: " + query);
+
+		ResultSet productIDsInList = null;
+		
+		try {
+			productIDsInList = sendQuery(query);
+
+		} catch (SQLException e) {
+			System.out.println("lists could not be found");
+
+		}
+		
+		try {
+
+			ResultSet listProducts = null;
+			
+				while (productIDsInList.next()) {
+					
+				System.out.println(productIDsInList.getInt("ProductID"));	
+				query = "SELECT * FROM products WHERE ProductID = '" + productIDsInList.getInt("ProductID") + "' AND CategoryID = '" + categoryNumber + "';";
+				SmartTrolleyPrint.print("query is: " + query);
+				listProducts = sendQuery(query);
+				SmartTrolleyPrint.print("Query Sent");
+					
+	
+					Product product = new Product();
+					SmartTrolleyPrint.print("Initializing Product");
+					
+					boolean emptySet  = isResultSetEmpty(listProducts);
+					
+					if(!emptySet){
+						
+						listProducts.absolute(1);
+						
+						 do {
+							
+							SmartTrolleyPrint.print("Found Item to be stored");
+						
+							// get id
+							product.setId(listProducts.getInt("ProductID"));
+			
+							// get Name
+							product.setName(listProducts.getString("Name"));
+			
+							// get Image
+							product.setImage(listProducts.getString("Image"));
+			
+							// get Price
+							product.setPrice(listProducts.getFloat("Price"));
+							
+							SmartTrolleyPrint.print("Product Set");
+			
+							products.add(product);
+							
+							SmartTrolleyPrint.print("Product Stored");
+			
+							SmartTrolleyPrint.print(product.getId() + "  "
+									+ product.getName() + "  " + product.getImage() + "  "
+									+ product.getPrice());
+						} while (listProducts.next());
+					}
+					else {
+						SmartTrolleyPrint.print("empty result, moving to next item");
+					}
+				}
+		} catch (SQLException e) {
+			System.out.println("Product could not be found");
+			return null;
+		}
+		
+		closeConnection();
+		return products;
+
+	}
+
+	
 	/**
 	 * executes statement to SQL server, allow for creation and deleted of
 	 * further lists and tables
