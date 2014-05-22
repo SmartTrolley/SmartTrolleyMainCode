@@ -55,11 +55,10 @@ public class ProductScreenController implements Initializable {
         String productName = "Pink Lady Apples";
 		product = productsDatabase.getProductByName(productName);
 		
-		SmartTrolleyPrint.print("product received: " + product.getImage());
+		SmartTrolleyPrint.print("ProductScreenController.java: product received: " + product.getImage());
 		
 		// get product image and add to anchorpane
 		String productImageURL = product.getImage();
-		SmartTrolleyPrint.print(productImageURL);
 		Image productImage = new Image(getClass().getResourceAsStream(productImageURL));
 		ImageView productImageView = new ImageView(productImage);
 		productImageView.setX(400);
