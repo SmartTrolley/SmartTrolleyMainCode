@@ -41,6 +41,10 @@
     visibility: hidden;
 }
 
+.scroll-pane {
+    -fx-background-color: #ffffff;
+}
+
 .label {
     -fx-font-size: 12px;
     -fx-text-fill: #000000;
