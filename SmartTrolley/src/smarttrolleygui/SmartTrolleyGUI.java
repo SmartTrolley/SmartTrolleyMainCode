@@ -65,6 +65,7 @@ public class SmartTrolleyGUI extends Application {
 //            goToFavourites();
 //            goToShoppingList();
 //            goToNewOffers();
+            goToProductScreen();
             
             primaryStage.show();
         } catch (Exception ex) {
@@ -75,7 +76,7 @@ public class SmartTrolleyGUI extends Application {
         }
     }
 
-    /**
+	/**
     *goToStartScreen is called in 'start' method and loads the application's start-up screen
     *<p>User can choose to create a new shopping list, open an existing one, or import an externally created list.
     *<p>Date Modified: 6 Mar 2014
@@ -198,6 +199,22 @@ public class SmartTrolleyGUI extends Application {
         	System.exit(-1);
         }
     }
+    
+    /**
+     *goToProductScreen is called when a product name is clicked. It loads the screen which holds the product information.
+     *<p>User can view product information
+     *<p> Date Modified: 22 May 2014
+     */
+    private void goToProductScreen() {
+        try {
+            ProductScreenController productScreen = (ProductScreenController) replaceSceneContent("fxml/ProductScreen.fxml");
+            productScreen.setApp(this);
+        } catch (Exception ex) {
+        	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
+        	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
+        	System.exit(-1);
+        }
+	}
     
     //TODO This should throw a clearer exception(s)
     /**

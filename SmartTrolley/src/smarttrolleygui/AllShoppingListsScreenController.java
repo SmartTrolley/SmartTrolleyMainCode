@@ -32,7 +32,7 @@ import javafx.scene.layout.RowConstraints;
 
 public class AllShoppingListsScreenController implements Initializable {
 
-	public SmartTrolleyGUI application;
+	private SmartTrolleyGUI application;
 
 	private SqlConnection productsDatabase;
 
@@ -42,6 +42,8 @@ public class AllShoppingListsScreenController implements Initializable {
 	public static Button list1Button;
 
 	public static ArrayList<Button> buttonList;
+	
+	private ControllerGeneral controller = new ControllerGeneral(); 
 
 	/**
 	 * initialize is automatically called when the controller is created.
@@ -106,6 +108,7 @@ public class AllShoppingListsScreenController implements Initializable {
 			newButton.setText(listName);
 			newButton.setPrefSize(300, 80);
 			newButton.setMinHeight(50);
+			newButton.getStyleClass().add("buttonLarge");
 			// Load shoppingLists if clicked
 			newButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -129,8 +132,7 @@ public class AllShoppingListsScreenController implements Initializable {
 		newButton.setMaxHeight(Integer.MAX_VALUE);
 		newButton.setMinHeight(100);
 		newButton.setText("Go Back");
-		newButton.getStyleClass().add("largeButton");
-		newButton.getStyleClass().add("button");
+		newButton.getStyleClass().add("buttonLarge");
 		newButton.setPrefSize(300, 80);
 		newButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -166,14 +168,7 @@ public class AllShoppingListsScreenController implements Initializable {
 	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-
-		if (application == null) {
-			// We are running in isolated FXML, possibly in Scene Builder.
-			// NO-OP.
-			System.out.println("error: application == null");
-		} else {
-			application.goToStartScreen();
-		}
+    	controller.loadStartScreen(event, application);
 	}
 
 	/**
@@ -187,14 +182,7 @@ public class AllShoppingListsScreenController implements Initializable {
 	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadShoppingList(ActionEvent event) {
-
-		if (application == null) {
-			// We are running in isolated FXML, possibly in Scene Builder.
-			// NO-OP.
-			System.out.println("error: application == null");
-		} else {
-			application.goToShoppingList();
-		}
-	}
+    	controller.loadShoppingList(event, application);
+    }
 }
 /************** End of AllShoppingListsScreenController **************/

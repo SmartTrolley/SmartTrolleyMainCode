@@ -19,15 +19,11 @@
         <Image url="@../img/companyLogoCropped.png" />
       </image>
       <VBox.margin>
-        <Insets bottom="30.0" />
+        <Insets bottom="20.0" top="10.0" />
       </VBox.margin>
     </ImageView>
-    <Line endX="575.0" startX="0.0" strokeLineCap="ROUND">
-      <VBox.margin>
-        <Insets fx:id="x1" />
-      </VBox.margin>
-    </Line>
-    <VBox id="VBox" alignment="CENTER" spacing="0.0">
+    <Line endX="575.0" startX="0.0" strokeLineCap="ROUND" />
+    <VBox id="VBox" alignment="CENTER" spacing="0.0" VBox.vgrow="ALWAYS">
       <children>
         <HBox id="HBox" alignment="CENTER" spacing="5.0">
           <children>
@@ -38,29 +34,26 @@
             <Insets bottom="10.0" />
           </padding>
         </HBox>
-        <Label fx:id="notifierLabel" text="" visible="false" styleClass="labelForUserNotices" />
+        <Label fx:id="notifierLabel" styleClass="labelForUserNotices" text="" visible="false" />
         <HBox id="HBox" alignment="CENTER" spacing="5.0">
           <children>
             <Button fx:id="createNewListButton" mnemonicParsing="false" onAction="#createNewList" prefHeight="75.0" prefWidth="200.0" styleClass="buttonLarge" text="Create new list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
             <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#loadStartScreen" prefHeight="75.0" prefWidth="200.0" styleClass="buttonLarge" text="Go back" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
           </children>
           <padding>
-            <Insets top="100.0" />
+            <Insets top="50.0" />
           </padding>
         </HBox>
       </children>
-      <padding>
+      <VBox.margin>
         <Insets top="75.0" />
-      </padding>
+      </VBox.margin>
     </VBox>
     <HBox prefHeight="21.0" prefWidth="322.0">
       <children>
         <Label text="Create your shopping list online @ " />
         <Hyperlink text="www.smartrolley.org" />
       </children>
-      <padding>
-        <Insets top="66.0" />
-      </padding>
       <VBox.margin>
         <Insets top="50.0" />
       </VBox.margin>
