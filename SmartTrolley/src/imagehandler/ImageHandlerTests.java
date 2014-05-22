@@ -38,7 +38,7 @@ public class ImageHandlerTests {
 	*/
 	@Before
 	public void setup(){
-		imageHandler = new ImageHandler(url, x, y, width, height, duration, startTime);
+		imageHandler = new ImageHandler(url, x, y, width, height, startTime, duration);
 	}
 	
 	/**

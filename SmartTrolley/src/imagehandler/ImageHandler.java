@@ -31,11 +31,11 @@ public class ImageHandler extends ImageView{
 	 * @param y The top left y coordinate of the bounding rectangle
 	 * @param width The width the image should be shown with
 	 * @param height The height the image should be shown with
-	 * @param duration The number of seconds the image appears for
 	 * @param startTime The number of seconds before the image appears
+	 * @param duration The number of seconds the image appears for
 	 */
 	public ImageHandler(String url, int x, int y, int width, int height,
-			int duration, int startTime) {
+			int startTime, int duration) {
 		super(url);
 		
 		this.duration = new SlideElementDuration(this);
