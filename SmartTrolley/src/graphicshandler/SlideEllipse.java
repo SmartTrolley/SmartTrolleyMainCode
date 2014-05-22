@@ -38,7 +38,10 @@ public class SlideEllipse extends Ellipse implements SlideElement{
 	private SlideElementDuration duration;
 
 	/**
-	 * DESCRIPTION OF CONSTRUCTOR
+	 * Creates an ellipse according to PWS standard.
+	 * 
+	 * @see SlideShapeFactory#getShape()
+	 * 
 	 *<p> Date Modified: 2 May 2014
 	 */
 	public SlideEllipse(ShapePoint point, int width, int height) {
@@ -54,9 +57,8 @@ public class SlideEllipse extends Ellipse implements SlideElement{
 	 */
 	@Override
 	public void setDuration(int seconds) {
-		int milliseconds;
-		milliseconds = seconds*1000;
-		duration.setDuration(milliseconds);
+		
+		duration.setDuration(seconds);
 	}
 
 
@@ -111,9 +113,7 @@ public class SlideEllipse extends Ellipse implements SlideElement{
 	 */
 	@Override
 	public void setStartTime(int seconds) {
-		int milliseconds;
-		milliseconds = seconds * 1000;
-		duration.setStartTime(milliseconds);		
+		duration.setStartTime(seconds);		
 	}
 
 	/**Method sets fillColor

@@ -30,7 +30,7 @@ public class ImageHandlerTests {
 	
 	public String url = "http://th03.deviantart.net/fs70/PRE/i/2013/077/8/9/cookie_monster_by_xenia_cat-d5yhjwj.jpg";
 	public int x, y, width = 10, height = 10, duration = 1, startTime = 1;
-	ImageHandler imageHandler;
+	SlideImage imageHandler;
 
 	/**
 	*Setup the image handler with arbitrary PWS input 
@@ -38,7 +38,7 @@ public class ImageHandlerTests {
 	*/
 	@Before
 	public void setup(){
-		imageHandler = new ImageHandler(url, x, y, width, height, startTime, duration);
+		imageHandler = new SlideImage(url, x, y, width, height, startTime, duration);
 	}
 	
 	/**
@@ -98,7 +98,6 @@ public class ImageHandlerTests {
 		try {
 			Thread.sleep(startTime*1001);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

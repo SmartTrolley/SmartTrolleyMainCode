@@ -86,8 +86,11 @@ public class SlideElementDuration {
 	*<p> Date Modified: 25 April 2014
 	
 	*/
-	public void setStartTime(int milliseconds) {
-		startTime = milliseconds;
+	public void setStartTime(int seconds) {
+		
+		//startTime is in milliseconds
+		startTime = seconds*1000;
+		
 	}
 
 	/**
@@ -97,8 +100,9 @@ public class SlideElementDuration {
 	*<p> Date Modified: 25 April 2014
 	
 	*/
-	public void setDuration(int milliseconds) {
-		this.duration = milliseconds;
+	public void setDuration(int seconds) {
+		// duration is in milliseconds
+		duration = seconds * 1000;
 	}
 
 	/**

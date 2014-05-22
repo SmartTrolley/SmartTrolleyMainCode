@@ -1,7 +1,7 @@
 /**
  * SmartTrolley
  *
- * A DESCRIPTION OF THE FILE
+ * The PWS polygon graphic for slideshows
  *
  * @author Name1
  * @author Name2
@@ -11,9 +11,6 @@
  * @version version of this file [Date Created: 1 May 2014]
  */
 
-/*YOUR CODE HERE*/
-
-/**************End of SlidePolygon.java**************/
 package graphicshandler;
 
 import java.util.PriorityQueue;
@@ -86,11 +83,17 @@ public class SlidePolygon extends Polygon implements SlideElement {
 	 * Date Modified: 28 Apr 2014
 	 */
 	public void setDuration(int seconds) {
-		int milliseconds;
-		milliseconds = seconds * 1000;
-		duration.setDuration(milliseconds);
+		
+		duration.setDuration(seconds);
 	}
-
+	
+	/**
+	 * Shows the slide for its duration after startTime has elapsed
+	 * 
+	 * @see SlideElementDuration#show()
+	 * @see this{@link #setDuration(int)}
+	 * @see this{@link #setStartTime(int)}
+	 */
 	public void show() {
 		duration.show();
 	}
@@ -139,9 +142,8 @@ public class SlidePolygon extends Polygon implements SlideElement {
 	 * Date Modified: 28 Apr 2014
 	 */
 	public void setStartTime(int seconds) {
-		int milliseconds;
-		milliseconds = seconds * 1000;
-		duration.setStartTime(milliseconds);
+		
+		duration.setStartTime(seconds);
 	}
 
 	/**
@@ -192,3 +194,5 @@ public class SlidePolygon extends Polygon implements SlideElement {
 	}
 
 }
+/**************End of SlidePolygon.java**************/
+

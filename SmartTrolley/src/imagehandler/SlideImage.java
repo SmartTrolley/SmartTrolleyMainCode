@@ -19,7 +19,7 @@ import javafx.scene.image.ImageView;
  * @author Alasdair
  *
  */
-public class ImageHandler extends ImageView{
+public class SlideImage extends ImageView{
 
 	private SlideElementDuration duration;
 
@@ -34,7 +34,7 @@ public class ImageHandler extends ImageView{
 	 * @param startTime The number of seconds before the image appears
 	 * @param duration The number of seconds the image appears for
 	 */
-	public ImageHandler(String url, int x, int y, int width, int height,
+	public SlideImage(String url, int x, int y, int width, int height,
 			int startTime, int duration) {
 		super(url);
 		
@@ -56,11 +56,9 @@ public class ImageHandler extends ImageView{
 	*@param seconds start delay in seconds
 	*<p> Date Modified: 3 May 2014
 	*/
-	public void setStartTime(int seconds) {
-		int milliseconds;
-		milliseconds = seconds * 1000;
+	protected void setStartTime(int seconds) {
 		
-		duration.setStartTime(milliseconds);
+		duration.setStartTime(seconds);
 		
 	}
 
@@ -70,11 +68,9 @@ public class ImageHandler extends ImageView{
 	*@param duration
 	*<p> Date Modified: May 3, 2014
 	*/
-	public void setDuration(int seconds) {
-		int milliseconds;
-		milliseconds = seconds * 1000;
+	protected void setDuration(int seconds) {
 		
-		duration.setDuration(milliseconds);
+		duration.setDuration(seconds);
 		
 	}
 
@@ -84,6 +80,7 @@ public class ImageHandler extends ImageView{
 	*<p> Date Modified: May 3, 2014
 	*/
 	public void show() {
+		
 		duration.show();
 	}
 
