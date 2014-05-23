@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<VBox id="VBox" alignment="TOP_CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="0.0" styleClass="containerMain" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.ProductScreenController">
+  <children>
+    <HBox fillHeight="false" prefHeight="140.0" prefWidth="600.0" styleClass="containerTop" VBox.vgrow="NEVER">
+      <children>
+        <GridPane focusTraversable="false" gridLinesVisible="false" prefHeight="140.0" prefWidth="600.0" styleClass="grid1">
+          <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+              <children>
+                <Button alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loadStartScreen" prefHeight="130.0" prefWidth="133.0" styleClass="buttonSmartTrolleyLogo" text="Start">
+                  <tooltip>
+                    <Tooltip text="Return to start screen" />
+                  </tooltip>
+                </Button>
+              </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+              <children>
+                <Button fx:id="homeButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadHomeScreen" styleClass="buttonNavigation" text="Home">
+                  <graphic>
+                    <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@../img/icon_home_100x90.jpg" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+                <Button fx:id="listButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadShoppingList" prefWidth="-1.0" styleClass="buttonNavigation" text="List">
+                  <graphic>
+                    <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@../img/icon_list_100x90.jpg" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+                <Button fx:id="offersButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadOffers" styleClass="buttonNavigation" text="Offers">
+                  <graphic>
+                    <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@../img/icon_offers_100x90.jpg" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+                <Button fx:id="favouritesButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadFavourites" styleClass="buttonNavigation" text="Favourites">
+                  <graphic>
+                    <ImageView fitHeight="45.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@../img/icon_star_100x90.jpg" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+              </children>
+            </HBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+              <children>
+                <Label fx:id="currentTotalLabel" text="£ current total" />
+                <Label fx:id="currentSavingsTotal" text="£ current savings" />
+              </children>
+              <padding>
+                <Insets left="10.0" />
+              </padding>
+            </VBox>
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" prefWidth="136.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="349.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="115.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
+      </children>
+    </HBox>
+    <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="NEVER">
+      <children>
+        <Label fx:id="listNameLabel" alignment="CENTER_RIGHT" prefWidth="461.0" styleClass="labelListName" textAlignment="CENTER" wrapText="false" />
+      </children>
+      <padding>
+        <Insets left="10.0" right="10.0" />
+      </padding>
+    </HBox>
+    <Line endX="575.0" startX="0.0" startY="0.0">
+      <VBox.margin>
+        <Insets top="5.0" />
+      </VBox.margin>
+    </Line>
+    <AnchorPane fx:id="productAnchorPane" prefHeight="400.0" prefWidth="600" />
+    <Line endX="575.0" startX="0.0" startY="0.0" />
+  </children>
+  <stylesheets>
+    <URL value="@../StyleSheet.css" />
+  </stylesheets>
+</VBox>
+
