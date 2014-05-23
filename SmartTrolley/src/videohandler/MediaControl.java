@@ -57,7 +57,7 @@ public class MediaControl {
     private Slider timeSlider, timeSliderFS;
     private Label playTime, playTimeFS;
     private Slider volumeSlider;
-    protected VBox overallBox;
+    public VBox overallBox;
 	private InputStream inputStream;
 	private Image playImage, pauseImage, stopImage, fullscreenImage;
 	private Stage stage, stageFS;

@@ -15,7 +15,7 @@ import javafx.scene.media.MediaPlayer;
 
 public class VideoPlayerHandler {
 	
-	protected MediaControl mediaControl;
+	public MediaControl mediaControl;
 	private MediaPlayer mediaPlayer;
 	protected Media media;
 	
