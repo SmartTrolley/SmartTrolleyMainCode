@@ -16,6 +16,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import DatabaseConnectors.SqlConnection;
+import Printing.SmartTrolleyPrint;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
@@ -74,7 +75,7 @@ public class OffersScreenController implements Initializable {
     	SqlConnection sqlConnector = new SqlConnection();
     
         // Fill table with sample products
-        productData = sqlConnector.getListOfOffers("1");
+        productData = sqlConnector.getListOfOffers();
 		
         productTable.setItems(productData);
         
@@ -90,16 +91,17 @@ public class OffersScreenController implements Initializable {
     	
     	SqlConnection sqlConnector = new SqlConnection();
     	setCategoryNumber(sqlConnector.getSpecificCategoryNumber(categoriesList.getSelectionModel().getSelectedItem()));
-    	System.out.println(getCategoryNumber());
+//    	System.out.println(getCategoryNumber());
     	    	
     	if (Integer.valueOf(getCategoryNumber())  == 1) {
     		  // Fill table with sample products
-            productData = sqlConnector.getListOfOffers("1");
+            productData = sqlConnector.getListOfOffers();
     		}
     	else{
     		// Fill table with sample products
-    		//productData = sqlConnector.getProductsWithinSpecificCategory("Offers", getCategoryNumber());
-    		productData = sqlConnector.getListOfOffers(categoriesList.getSelectionModel().getSelectedItem());
+    		SmartTrolleyPrint.print(categoriesList.getSelectionModel().getSelectedItem());
+    		System.out.println(getCategoryNumber());
+    		productData = sqlConnector.getOfferByCategory(getCategoryNumber());
     		}
     	
         productTable.setItems(productData);

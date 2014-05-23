@@ -94,11 +94,10 @@ public class HomeScreenController implements Initializable {
     	if (Integer.valueOf(getCategoryNumber())  == 1) {
     		  // Fill table with sample products
             productData = sqlConnector.getListOfProducts();
-            System.out.println(";aoskb;sdgb");
     		}
     	else{
     		// Fill table with sample products
-    		productData = sqlConnector.getProductsWithinSpecificCategory("products", getCategoryNumber());
+    		productData = sqlConnector.getProductsWithinSpecificCategory(getCategoryNumber());
     		}
     	
         productTable.setItems(productData);
