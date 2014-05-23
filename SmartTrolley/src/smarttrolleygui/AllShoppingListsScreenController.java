@@ -116,6 +116,7 @@ public class AllShoppingListsScreenController implements Initializable {
 				public void handle(ActionEvent event) {
 					SmartTrolleyPrint.print("ListID pressed is: " + listID);				
 					SmartTrolleyGUI.setCurrentListID(listID);
+					SmartTrolleyGUI.setCurrentListName(listName);
 					SmartTrolleyPrint.print("Application ListID: " + SmartTrolleyGUI.getcurrentListID());
 					loadShoppingList(event);
 				}

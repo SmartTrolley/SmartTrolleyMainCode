@@ -98,7 +98,7 @@
             </ImageView>
           </graphic>
         </Button>
-        <Label id="listNameLabel" alignment="CENTER_RIGHT" prefWidth="461.0" styleClass="labelListName" text="current shopping list name" textAlignment="CENTER" wrapText="false" />
+        <Label fx:id="listNameLabel" alignment="CENTER_RIGHT" prefWidth="461.0" styleClass="labelListName" textAlignment="CENTER" wrapText="false" />
       </children>
       <padding>
         <Insets left="10.0" right="10.0" />

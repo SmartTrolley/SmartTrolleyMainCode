@@ -47,7 +47,6 @@ public class CreateNewListScreenController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		// TODO remove if left unused
 	}
 
 	/**
@@ -112,9 +111,10 @@ public class CreateNewListScreenController implements Initializable {
 						+ enteredListName + "');";
 				sqlConnection.executeStatement(sqlStatement);
 				SmartTrolleyPrint.print("Created new list: " + enteredListName);
-
+				
+				SmartTrolleyGUI.setCurrentListName(enteredListName);
+				
 				// move to HomeScreen
-				// TODO: pass on enteredListName, so that it can be displayed / call setCurrentListID 
 				application.goToHomeScreen();
 			} else {
 				// Display error message if no name is entered.

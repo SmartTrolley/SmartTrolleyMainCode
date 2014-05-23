@@ -12,6 +12,7 @@
  */
 package smarttrolleygui;
 
+import Printing.SmartTrolleyPrint;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -267,8 +268,8 @@ public class ControllerGeneral {
 											System.out
 													.println("Pressed name of product: "
 															+ product.getName());
-											// TODO:
-											// loadProduct(product.getName());
+											// TODO: add code to move to product screen here and refactor individual controllers
+											SmartTrolleyGUI.setCurrentProductID(product.getId());
 										}
 									});
 								} else {
@@ -371,6 +372,6 @@ public class ControllerGeneral {
 						};
 					}
 				});
-	}	
+	}
 }
 /************** End of ControllerGeneral **************/

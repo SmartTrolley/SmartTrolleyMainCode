@@ -16,7 +16,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import DatabaseConnectors.SqlConnection;
-
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -26,6 +25,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -51,6 +51,8 @@ public class OffersScreenController implements Initializable {
 	private TableColumn<Product, Float> offerPriceColumn;
 	@FXML
 	private TableColumn<Product, Product> addColumn;
+	@FXML
+	private Label listNameLabel;
 
 	private SmartTrolleyGUI application;
 	private ObservableList<String> categories;
@@ -68,7 +70,8 @@ public class OffersScreenController implements Initializable {
 		// Fill list on the LHS of the screen with different product categories
 		categories = initializeCategories();
 		categoriesList.setItems(categories);
-
+		// show name of current shopping list
+		listNameLabel.setText(SmartTrolleyGUI.getCurrentListName());
 		initializeProductTable();
 	}
 
@@ -188,8 +191,46 @@ public class OffersScreenController implements Initializable {
 
 		// set up cell factories for columns with 'interactive' cells 
 		controller.setUpImageCellFactory(imageColumn);
-		controller.setUpProductNameCellFactory(productNameColumn);
 		controller.setUpAddButtonCellFactory(addColumn);
+		
+//		controller.setUpProductNameCellFactory(productNameColumn);
+		// TODO: once refactored remove following code and uncomment previous line to set up cell factory for product name column
+		productNameColumn
+		.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+			@Override
+			public TableCell<Product, Product> call(
+					TableColumn<Product, Product> productNameColumn) {
+				return new TableCell<Product, Product>() {
+					final Button button = new Button();
+
+					@Override
+					public void updateItem(final Product product,
+							boolean empty) {
+						super.updateItem(product, empty);
+						if (product != null) {
+							setGraphic(button);
+							button.setText(product.getName());
+							button.setPrefHeight(80);
+							button.getStyleClass().add("buttonProductNameTable");
+
+							// Button Event Handler
+							button.setOnAction(new EventHandler<ActionEvent>() {
+								@Override
+								public void handle(ActionEvent event) {
+									System.out
+											.println("Pressed name of product: "
+													+ product.getName());
+									SmartTrolleyGUI.setCurrentProductID(product.getId());
+									application.goToProductScreen();
+								}
+							});
+						} else {
+							setGraphic(null);
+						}
+					}
+				};
+			}
+		});
 		
 		// populate table with product data
 		productTable.setItems(productData);

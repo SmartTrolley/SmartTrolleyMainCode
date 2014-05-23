@@ -13,8 +13,6 @@
 package smarttrolleygui;
 
 import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import DatabaseConnectors.SqlConnection;
@@ -22,6 +20,7 @@ import Printing.SmartTrolleyPrint;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -29,12 +28,16 @@ import javafx.scene.layout.AnchorPane;
 
 public class ProductScreenController implements Initializable {    
     
+	public static SqlConnection productsDatabase;
     private SmartTrolleyGUI application;
-    public static SqlConnection productsDatabase;
+    private ControllerGeneral controller = new ControllerGeneral();
     private Product product;
-
-    @FXML
-    private AnchorPane productAnchorPane;
+    private String productName;
+    private String productImageURL;
+    private float productPrice;
+    
+    @FXML private AnchorPane productAnchorPane;
+    @FXML private Label listNameLabel;
     
     /**
      * initialize is automatically called when the controller is created.
@@ -43,30 +46,33 @@ public class ProductScreenController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    	// add image to anchorpane
-    	Image randomImage = new Image(getClass().getResourceAsStream("img/SampleProducts/large/Activia.jpg"), 100, 100, true, true);
-        ImageView randomImageView = new ImageView(randomImage);
-        randomImageView.setX(25);
-        randomImageView.setY(25);
-        productAnchorPane.getChildren().add(randomImageView);
-        
-        // retrieve product object
-        productsDatabase = new SqlConnection();
-        String productName = "Pink Lady Apples";
-		product = productsDatabase.getProductByName(productName);
+    	getCurrentProductData();
+    	// show name of current shopping list
+		listNameLabel.setText(SmartTrolleyGUI.getCurrentListName());
 		
-		SmartTrolleyPrint.print("ProductScreenController.java: product received: " + product.getImage());
-		
-		// get product image and add to anchorpane
-		String productImageURL = product.getImage();
+		// add product image to anchorpane
 		Image productImage = new Image(getClass().getResourceAsStream(productImageURL));
 		ImageView productImageView = new ImageView(productImage);
 		productImageView.setX(400);
 		productImageView.setY(400);
 		productAnchorPane.getChildren().add(productImageView);
     }
-
+    
     /**
+     * getCurrentProductData retrieves the data of the selected product from the sql database
+     * Date Modified: 22 May 2014
+     */
+    private void getCurrentProductData() {
+        productsDatabase = new SqlConnection();
+        String criteria = "productID";
+        String value = String.valueOf(SmartTrolleyGUI.getCurrentProductID());
+		product = productsDatabase.getSpecificProduct(criteria, value);
+		productName = product.getName();
+		productImageURL = product.getImage();
+		productPrice = product.getPrice();
+	}
+
+	/**
      * setApp
      *
      * @param application
@@ -85,16 +91,9 @@ public class ProductScreenController implements Initializable {
      * <p>
      * Date Modified: 6 Mar 2014
      */
-    public void loadStartScreen(ActionEvent event) {
-
-        if (application == null) {
-            // We are running in isolated FXML, possibly in Scene Builder.
-            // NO-OP.
-            System.out.println("error: application == null");
-        } else {
-            application.goToStartScreen();
-        }
-    }
+	public void loadStartScreen(ActionEvent event) {
+		controller.loadStartScreen(event, application);
+	}
 
     /**
      * loadHomeScreen is called when the 'home' button is pressed. It calls the
@@ -106,16 +105,9 @@ public class ProductScreenController implements Initializable {
      * <p>
      * Date Modified: 28 Feb 2014
      */
-    public void loadHomeScreen(ActionEvent event) {
-
-        if (application == null) {
-            // We are running in isolated FXML, possibly in Scene Builder.
-            // NO-OP.
-            System.out.println("error: application == null");
-        } else {
-            application.goToHomeScreen();
-        }
-    }
+	public void loadHomeScreen(ActionEvent event) {
+		controller.loadHomeScreen(event, application);
+	}
 
     /**
      * loadShoppingList is called when the 'list' button is pressed. It calls
@@ -127,16 +119,9 @@ public class ProductScreenController implements Initializable {
      * <p>
      * Date Modified: 6 Mar 2014
      */
-    public void loadShoppingList(ActionEvent event) {
-
-        if (application == null) {
-            // We are running in isolated FXML, possibly in Scene Builder.
-            // NO-OP.
-            System.out.println("error: application == null");
-        } else {
-            application.goToShoppingList();
-        }
-    }
+	public void loadShoppingList(ActionEvent event) {
+		controller.loadShoppingList(event, application);
+	}
 
     /**
      * loadOffers is called when the 'offers' button is pressed. It calls the
@@ -148,16 +133,9 @@ public class ProductScreenController implements Initializable {
      * <p>
      * Date Modified: 7 Mar 2014
      */
-    public void loadOffers(ActionEvent event) {
-
-        if (application == null) {
-            // We are running in isolated FXML, possibly in Scene Builder.
-            // NO-OP.
-            System.out.println("error: application == null");
-        } else {
-            application.goToOffers();
-        }
-    }
+	public void loadOffers(ActionEvent event) {
+		controller.loadOffers(event, application);
+	}
     
 	/**
 	 * loadFavourites is called when the 'favourites' button is pressed. It
@@ -171,14 +149,7 @@ public class ProductScreenController implements Initializable {
 	 *            Date Modified: 28 Feb 2014
 	 */
 	public void loadFavourites(ActionEvent event) {
-
-		if (application == null) {
-			// We are running in isolated FXML, possibly in Scene Builder.
-			// NO-OP.
-			System.out.println("error: application == null");
-		} else {
-			application.goToFavourites();
-		}
+		controller.loadFavourites(event, application);
 	}
 }
 /**
