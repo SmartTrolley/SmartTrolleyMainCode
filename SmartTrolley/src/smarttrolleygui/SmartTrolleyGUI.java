@@ -19,7 +19,6 @@ import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 import Printing.SmartTrolleyPrint;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +37,8 @@ public class SmartTrolleyGUI extends Application {
     private final double MIN_WINDOW_WIDTH = 600.0;
     private final double MIN_WINDOW_HEIGHT = 600.0;
     private static int currentListID = 0;
+    private static String currentListName;
+    private static int currentProductID = 0;	
     
     StartScreenController startScreen = new StartScreenController();
 
@@ -75,7 +76,7 @@ public class SmartTrolleyGUI extends Application {
         }
     }
 
-    /**
+	/**
     *goToStartScreen is called in 'start' method and loads the application's start-up screen
     *<p>User can choose to create a new shopping list, open an existing one, or import an externally created list.
     *<p>Date Modified: 6 Mar 2014
@@ -199,6 +200,22 @@ public class SmartTrolleyGUI extends Application {
         }
     }
     
+    /**
+     *goToProductScreen is called when a product name is clicked. It loads the screen which holds the product information.
+     *<p>User can view product information
+     *<p> Date Modified: 22 May 2014
+     */
+    public void goToProductScreen() {
+        try {
+            ProductScreenController productScreen = (ProductScreenController) replaceSceneContent("fxml/ProductScreen.fxml");
+            productScreen.setApp(this);
+        } catch (Exception ex) {
+        	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
+        	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
+        	System.exit(-1);
+        }
+	}
+    
     //TODO This should throw a clearer exception(s)
     /**
     *replaceSceneContent loads in the content from the fxml file it is passed 
@@ -236,10 +253,6 @@ public class SmartTrolleyGUI extends Application {
             container.setPrefHeight(stageHeight);
         }
         
-        // next line left in to show need for preceding ~10 lines        
-        // Scene scene = new Scene(container, stage.getWidth(), stage.getHeight());
-        // previous line alone does not work
-        
         stage.setScene(scene);
         stage.sizeToScene();
         return (Initializable) fxmlLoader.getController();
@@ -273,9 +286,43 @@ public class SmartTrolleyGUI extends Application {
 	*<p> Date Modified: 9 May 2014
 	*/
 	public static void setCurrentListID(int listID) {
-		currentListID = listID;
-		
+		currentListID = listID;		
+	}
+	
+	/**
+	*gets list name for use throughout all code
+	*@return
+	*<p> Date Modified: 9 May 2014
+	*/
+	public static String getCurrentListName() {		
+		return currentListName;
+	}
+	
+	/**
+	*Sets the current list name
+	*@param productID
+	*<p> Date Modified: 22 May 2014
+	*/
+	public static void setCurrentListName(String listName) {
+		currentListName = listName;			
+	}
+	
+	/**
+	*gets ProductID for use throughout all code
+	*@return
+	*<p> Date Modified: 22 May 2014
+	*/
+	public static int getCurrentProductID() {		
+		return currentProductID;
 	}
 
+	/**
+	*Sets the current product ID of the product selected
+	*@param productID
+	*<p> Date Modified: 22 May 2014
+	*/
+	public static void setCurrentProductID(int productID) {
+		currentProductID = productID;		
+	}
 }
 /**************End of SmartTrolleyGUI**************/
