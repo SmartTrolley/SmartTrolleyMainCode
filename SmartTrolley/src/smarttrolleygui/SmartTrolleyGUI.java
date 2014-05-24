@@ -19,6 +19,9 @@ import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import se.mbaeumer.fxmessagebox.MessageBox;
+import se.mbaeumer.fxmessagebox.MessageBoxType;
+
 
 import Printing.SmartTrolleyPrint;
 import javafx.application.Application;
@@ -71,7 +74,7 @@ public class SmartTrolleyGUI extends Application {
             
             primaryStage.show();
         } catch (Exception ex) {
-        	//TODO Show a message box to the user here
+        	FXMLNotFound();
         	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
@@ -88,7 +91,7 @@ public class SmartTrolleyGUI extends Application {
             startScreen = (StartScreenController) replaceSceneContent("fxml/StartScreen.fxml");
             startScreen.setApp(this);         
         } catch (Exception ex) {
-        	//TODO Show a message box to the user here
+        	FXMLNotFound();
         	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
@@ -98,8 +101,7 @@ public class SmartTrolleyGUI extends Application {
     /**
     *goToCreateNewListScreen is called when the user chooses to create a new shopping list
     *on the start screen. It loads a screen which allows the user to enter the name for the new list.
-    *TODO: add user story this method satisfies (in next line)
-    *<p>
+    *<p>User creates new list
     *<p>Date Modified: 3 May 2014
     */
     public void goToCreateNewListScreen() {
@@ -157,7 +159,7 @@ public class SmartTrolleyGUI extends Application {
             FavouritesScreenController favourites = (FavouritesScreenController) replaceSceneContent("fxml/FavouritesScreen.fxml");
             favourites.setApp(this);
         } catch (Exception ex) {
-        	//TODO Show a message box to the user here
+        	FXMLNotFound();
         	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);            
@@ -176,7 +178,7 @@ public class SmartTrolleyGUI extends Application {
             exampleShoppingList = (ExampleShoppingListController) replaceSceneContent("fxml/ExampleShoppingList.fxml");
             exampleShoppingList.setApp(this);
         } catch (IOException ex) {
-        	//TODO Show a message box to the user here
+        	FXMLNotFound();
         	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
@@ -195,12 +197,26 @@ public class SmartTrolleyGUI extends Application {
             OffersScreenController offers = (OffersScreenController) replaceSceneContent("fxml/OffersScreen.fxml");
             offers.setApp(this);
         } catch (Exception ex) {
-        	//TODO Show a message box to the user here
+        	FXMLNotFound();
+        	
         	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
         }
     }
+
+	/**
+	*Method/Test Description
+	*<p>Test(s)/User Story that it satisfies
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 24 May 2014
+	*/
+	private void FXMLNotFound() {
+		MessageBox FXMLCrashMsgBx = new MessageBox(
+		"Application crashed. Data for next screen not found", MessageBoxType.OK_ONLY);
+		
+		FXMLCrashMsgBx.showAndWait();
+	}
     
     /**
      *goToProductScreen is called when a product name is clicked. It loads the screen which holds the product information.
@@ -218,7 +234,6 @@ public class SmartTrolleyGUI extends Application {
         }
 	}
     
-    //TODO This should throw a clearer exception(s)
     /**
     *replaceSceneContent loads in the content from the fxml file it is passed 
     *<p>Displays content on screen

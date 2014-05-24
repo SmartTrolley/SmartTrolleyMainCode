@@ -126,6 +126,13 @@ public class ExampleShoppingListController implements Initializable {
 
 		SmartTrolleyPrint.print("Delete Button Pressed");
 		deleteMsgBx.showAndWait();
+		
+		/*The two lines below to set the 
+		*message box height and width
+		*are there because the message box
+		*resized itself (became very small)
+		* when multiple lists were deleted.
+		*/
 		deleteMsgBx.setHeight(MSG_BX_H);
 		deleteMsgBx.setWidth(MSG_BX_W);
 

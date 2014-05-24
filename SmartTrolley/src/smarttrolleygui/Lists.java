@@ -32,18 +32,6 @@ public class Lists {
     private int listID = 0;
 
 	/**
-	 *Method/Test Description
-	 *<p>Test(s)/User Story that it satisfies
-	 *@param args
-	 *[If applicable]@see [Reference URL OR Class#Method]
-	 *<p> Date Modified: 3 May 2014
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
 	*Method/Test Description
 	*<p>Test(s)/User Story that it satisfies
 	*@param i

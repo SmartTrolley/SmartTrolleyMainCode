@@ -32,7 +32,6 @@ public class StartScreenController implements Initializable {
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		
 	}
     
@@ -61,6 +60,26 @@ public class StartScreenController implements Initializable {
         } else {
             application.goToCreateNewListScreen();
         }
+    }
+    
+    /**
+    *
+    *parsePWS is called when the Parse a PWS XML File button is pressed
+    *TODO No user story exists for XML Parser, create this.
+    *<p>Test(s)/User Story that it satisfies
+    *@param event
+    *<p> Date Modified: 24 May 2014
+    */
+    public void parsePWS(ActionEvent event){
+        if (application == null) {
+            // We are running in isolated FXML, possibly in Scene Builder.
+            // NO-OP.
+            System.out.println("error: application == null");
+        } else {
+            //TODO Replace with appropriate method
+        	PWSParser pwsParser = new PWSParser();
+        	pwsParser.parsePWS();
+        }    	
     }
     
     /**
