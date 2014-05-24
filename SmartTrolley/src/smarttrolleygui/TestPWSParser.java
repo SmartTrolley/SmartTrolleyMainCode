@@ -15,8 +15,6 @@ package smarttrolleygui;
 import static org.junit.Assert.*;
 
 import java.util.List;
-
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,32 +30,23 @@ public class TestPWSParser {
 	 */
 	@Before
 	public void setUp() throws Exception {
-	    //XMLReader class created
+	   
         parser = new PWSParser();
-        //Re-factoring to tidy test class
+       
         slideShow = parser.getList(PWSParser.slideShowPath); 
 	}
 
+	
 	/**
-	 * This method runs after every test. Here it ??
-	 *@throws java.lang.Exception
-	 *<p> Date Modified: 24 May 2014
-	 */
-	@After
-	public void slideShowIsList() throws Exception {
-		assertTrue(slideShow instanceof List);
-	}
-
-	/**
-	*Method/Test Description
+	*Tests if the slideshow is a list
 	*<p>User can load PWS compatible XML File into program
+	*@throws Exception
 	*<p> Date Modified: 24 May 2014
 	*/
 	@Test
-	public void test() {
-		fail("Not yet implemented"); // TODO
+	public void slideShowIsList() throws Exception {
+		assertTrue(slideShow instanceof List);
 	}
-
 }
 
 
