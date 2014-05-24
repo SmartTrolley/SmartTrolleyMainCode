@@ -11,7 +11,7 @@
  * @version 2.0 [Date Created: 25 Apr 2014]
  */
 
-package tests;
+package smarttrolleygui;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -24,9 +24,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import smarttrolleygui.AllShoppingListsScreenController;
-import smarttrolleygui.SmartTrolleyGUI;
-import smarttrolleygui.StartScreenController;
 
 import DatabaseConnectors.SqlConnection;
 import Printing.SmartTrolleyPrint;

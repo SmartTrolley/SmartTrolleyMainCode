@@ -11,7 +11,7 @@
  * @version V2.0 [Date Created: 3 May 2014]
  */
 
-package tests;
+package smarttrolleygui;
 
 import static org.junit.Assert.*;
 
@@ -33,9 +33,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-import smarttrolleygui.ExampleShoppingListController;
-import smarttrolleygui.SmartTrolleyGUI;
-import smarttrolleygui.StartScreenController;
 import DatabaseConnectors.SqlConnection;
 import Printing.SmartTrolleyPrint;
 

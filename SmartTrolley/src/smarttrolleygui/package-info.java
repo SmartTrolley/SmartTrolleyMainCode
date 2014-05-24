@@ -11,7 +11,7 @@
  * @version V1.0 [Date Created: 3 May 2014]
  */
 
-package tests;
+package smarttrolleygui;
 
 /**************End of package-info.java**************/
 

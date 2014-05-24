@@ -15,7 +15,10 @@ package smarttrolleygui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Printing.SmartTrolleyPrint;
+
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -26,7 +29,26 @@ import javafx.scene.layout.AnchorPane;
 
 public class ProductScreenController implements Initializable {    
     
-    private SmartTrolleyGUI application;
+    
+	/*Height of the button*/
+	private static final int BTN_HEIGHT = 20;
+	
+	/*Width of the button*/
+	private static final int BTN_WIDTH=30;
+	
+	private static final double X_COORD_CONTROLBUTTONS = 20.0;
+	private static final double Y_COORD_CONTROLBUTTONS = 20.0;
+	
+	//Default button width is 30
+    Button prevSLideButton = new Button("<");
+    Button nextSLideButton = new Button(">");
+    Button moreButton = new Button("...");
+	
+	//TODO Make this comment proper
+	/**Application that is running*/
+	private SmartTrolleyGUI application;
+    
+
 
     @FXML
     private AnchorPane productAnchorPane;
@@ -45,10 +67,44 @@ public class ProductScreenController implements Initializable {
         productImageView.setY(25);
         productAnchorPane.getChildren().add(productImageView);
         
-        Button prevSLideButton = new Button("<");
-
-		createSlideButton(prevSLideButton, 20.0, 20.0);			
+        createPrevMoreNxtSlideButtons();	
     }
+
+	/**
+	*This method creates the previous slide, more and next slide buttons and adds their action listeners
+	*<p>User views products
+	*<p> Date Modified: 24 May 2014
+	*/
+	private void createPrevMoreNxtSlideButtons() {
+
+		createSlideButton(prevSLideButton, X_COORD_CONTROLBUTTONS, Y_COORD_CONTROLBUTTONS);			
+		createSlideButton(nextSLideButton, X_COORD_CONTROLBUTTONS+2*BTN_WIDTH, Y_COORD_CONTROLBUTTONS);	
+		createSlideButton(moreButton, X_COORD_CONTROLBUTTONS+BTN_WIDTH, Y_COORD_CONTROLBUTTONS);
+		
+		prevSLideButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				//TODO Add goto prev slide functionality here
+				SmartTrolleyPrint.print("Pressed prev slide");
+			}
+		});
+		
+		nextSLideButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				//TODO Add goto next slide functionality here
+				SmartTrolleyPrint.print("Pressed next slide");
+			}
+		});
+		
+		moreButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				//TODO Add goto more button functionality here
+				SmartTrolleyPrint.print("Pressed more button");
+			}
+		});
+	}
 
     /**
      * setApp
@@ -183,13 +239,12 @@ private void createSlideButton(Button btn, Double x_coord, Double y_coord) {
 	if (btn.getText() != null && !btn.getText().equals("")) {
 		btn.setId(btn.getText());
 	}
-	
-	//TODO See if a button is created without the prefsize and MinHeight params 
-	//btn.setPrefSize(300, 80);
+	 
+	btn.setPrefSize(BTN_WIDTH, BTN_HEIGHT);
 	//btn.setMinHeight(50);
 	
-	AnchorPane.setTopAnchor(btn, x_coord);
-    AnchorPane.setLeftAnchor(btn, y_coord);
+	AnchorPane.setTopAnchor(btn, y_coord);
+    AnchorPane.setLeftAnchor(btn, x_coord);
 	
 	productAnchorPane.getChildren().add(btn);
 

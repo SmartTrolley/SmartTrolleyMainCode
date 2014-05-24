@@ -44,6 +44,8 @@ public class SmartTrolleyGUI extends Application {
 	AllShoppingListsScreenController allShoppingLists;
 
 	HomeScreenController homeScreen;
+	
+	ProductScreenController productScreen;
 
 	public ExampleShoppingListController exampleShoppingList;
 
@@ -58,7 +60,7 @@ public class SmartTrolleyGUI extends Application {
             stage.getIcons().add(new Image("smarttrolleygui/img/windowIcon.jpg"));
             stage.setMinWidth(MIN_WINDOW_WIDTH);
             stage.setMinHeight(MIN_WINDOW_HEIGHT);
-            goToStartScreen();
+//            goToStartScreen();
             
             //for debugging purposes uncomment ONE of the following four lines and comment previous line
 //            goToHomeScreen();
@@ -205,9 +207,9 @@ public class SmartTrolleyGUI extends Application {
      *<p>User can view product information
      *<p> Date Modified: 22 May 2014
      */
-    private void goToProductScreen() {
+    public void goToProductScreen() {
         try {
-            ProductScreenController productScreen = (ProductScreenController) replaceSceneContent("fxml/ProductScreen.fxml");
+        	productScreen = (ProductScreenController) replaceSceneContent("fxml/ProductScreen.fxml");
             productScreen.setApp(this);
         } catch (Exception ex) {
         	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");

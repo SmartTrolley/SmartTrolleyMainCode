@@ -12,7 +12,7 @@
  */
 
 
-package tests;
+package smarttrolleygui;
 
 import static org.junit.Assert.*;
 
@@ -31,10 +31,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import smarttrolleygui.AllShoppingListsScreenController;
-import smarttrolleygui.ExampleShoppingListController;
-import smarttrolleygui.SmartTrolleyGUI;
-import smarttrolleygui.StartScreenController;
 import DatabaseConnectors.SqlConnection;
 import Printing.SmartTrolleyPrint;
 

@@ -12,7 +12,7 @@
 */
 
 
-package tests;
+package smarttrolleygui;
 
 public class SmartTrolleyDelay {
 		
@@ -33,4 +33,4 @@ public class SmartTrolleyDelay {
 
 }
 
-/**************End of SmartTrolleyDelay.java**************/
+/**************End of SmartTrolleyPrint.java**************/
