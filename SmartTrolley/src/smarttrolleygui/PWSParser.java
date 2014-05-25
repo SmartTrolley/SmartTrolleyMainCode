@@ -19,6 +19,10 @@ import javafx.stage.Stage;
 
 import org.xml.sax.helpers.DefaultHandler;
 
+import com.sun.glass.ui.Application;
+
+import Printing.SmartTrolleyPrint;
+
 /**
  * Enumerated type of the main elements in the PWS
  */
@@ -41,7 +45,7 @@ enum SlideChildElements {
 
 public class PWSParser extends DefaultHandler {
 
-	public static String slideShowPath = "/XMLDocs/trialPWS.xml";
+	public static final String slideShowPath = "../../XMLDocs/trialPWS.xml";
 	/* /SmartTrolley/XMLDocs/trialPWS.xml */
 	private SlideShow slideShow;
 	private Slide slide;
@@ -53,13 +57,16 @@ public class PWSParser extends DefaultHandler {
 	 * <p>
 	 * Date Modified: 24 May 2014
 	 */
-	public void PWSParser() {
+	public PWSParser() {
 
+		SmartTrolleyPrint.print("In PWS Parser");
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open PWS File");
-		
-		//The stage cannot be passed in, perhaps try using the JFX Thread.
-		fileChooser.showOpenDialog(stage);;
+
+		// TODO Now only display XML files and don't allow interaction with any window except the file chooser (by passing the stage to the fileChooser
+		// i.e. fileChooser.showOpenDialog(stage); perhaps with (Stage) label.getScene().getWindow() [http://stackoverflow.com/questions/11994366/how-to-reference-primarystage]
+		// TODO Also pass the file into the XML Parser
+		fileChooser.showOpenDialog(null);
 
 		readXMLFile(slideShowPath);
 		writeSlideShow();
@@ -104,12 +111,11 @@ public class PWSParser extends DefaultHandler {
 		 * if (elementName.equals("slideshow")) { if (slideShow == null) {
 		 * slideShow = new SlideShow();
 		 * 
-		 * } } else if (elementName.equals("documentinfo")){ //TODO Complete
+		 * } } else if (elementName.equals("documentinfo")){ //TODO Complete this
 		 * this } else if (elementName.equals("defaults")){ //TODO Complete this
 		 * } else if (elementName.equals("slide")){ currentSlide = new
 		 * Slide(attributes.getValue(0), attributes.getValue(1),
-		 * attributes.getValue(2)); } //TODO Add else if statements for
-		 * attributes of slide sub-child elements
+		 * attributes.getValue(2)); } //TODO Add else if statements for attributes of slide sub-child elements
 		 */
 	}
 

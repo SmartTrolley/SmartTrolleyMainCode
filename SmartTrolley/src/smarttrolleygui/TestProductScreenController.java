@@ -1,10 +1,9 @@
 /**
  * SmartTrolley
  *
- * A DESCRIPTION OF THE FILE
+ * This file contains the test case for the product screen
  *
- * @author Name1
- * @author Name2
+ * @author Prashant Chakravarty
  *
  * @author Checked By: Checker(s) fill here
  *
@@ -56,8 +55,7 @@ public class TestProductScreenController {
 		newGUIThread = new Thread("New GUI") {
 			public void run() {
 				SmartTrolleyPrint.print("GUI thread");
-				Application.launch(SmartTrolleyGUI.class,
-						(java.lang.String[]) null);
+				Application.launch(GUIboot.getClass(), (java.lang.String[]) null);
 
 			}
 		};
@@ -65,7 +63,7 @@ public class TestProductScreenController {
 
 		// TODO Launch a stage+application, then replace its content with
 		// SmartTrolleyGUI
-		SmartTrolleyDelay.delay(1000);
+		/*SmartTrolleyDelay.delay(1000);
 
 		Platform.runLater(new Runnable() {
 			@Override
@@ -85,14 +83,14 @@ public class TestProductScreenController {
 			public void run() {
 				stage.show();
 			}
-		});
+		});*/
 
 		SmartTrolleyPrint.print("Showing a new stage");
 		SmartTrolleyDelay.delay(1000);
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				GUIboot.start(stage);
+				GUIboot.start(SmartTrolleyGUI.stage);
 			}
 		});
 
@@ -103,6 +101,8 @@ public class TestProductScreenController {
 		// Button nextSlide = new Button();
 		// nextSlide =
 		GUIboot.productScreen.nextSLideButton.fire();
+		
+		while(true);
 
 	}
 
