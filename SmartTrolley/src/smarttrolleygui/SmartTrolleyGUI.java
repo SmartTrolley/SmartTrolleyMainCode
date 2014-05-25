@@ -36,18 +36,31 @@ import javafx.stage.Stage;
 public class SmartTrolleyGUI extends Application {
     
 
+    
+    /**The displayed stage*/
     public static Stage stage; 
     
+    /**Maximum height of the stage*/
     private final double MIN_WINDOW_WIDTH = 600.0;
+    
+    /**Minimum height of the stage*/
     private final double MIN_WINDOW_HEIGHT = 600.0;
+    
+    
+    /**The list ID of the displayed list*/
     private static int currentListID = 0;
     
+    /**The start screen in SmartTrolleyGUI*/
     StartScreenController startScreen = new StartScreenController();
 
+    /**The list of shopping lists screen in SmartTrolleyGUI*/
 	AllShoppingListsScreenController allShoppingLists;
 
+	/**The home screen in SmartTrolleyGUI*/
 	HomeScreenController homeScreen;
 	
+	
+	/**The product screen in SmartTrolleyGUI*/
 	ProductScreenController productScreen;
 
 	public ExampleShoppingListController exampleShoppingList;
@@ -72,7 +85,7 @@ public class SmartTrolleyGUI extends Application {
 //            goToNewOffers();
             goToProductScreen();
             
-            primaryStage.show();
+            stage.show();
         } catch (Exception ex) {
         	FXMLNotFound();
         	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
@@ -225,6 +238,8 @@ public class SmartTrolleyGUI extends Application {
      */
     public void goToProductScreen() {
         try {
+        	
+        	//TODO This needs to be implemented unless Arne has done it: productScreen.addSlideShow(selectedSlideShow);
         	productScreen = (ProductScreenController) replaceSceneContent("fxml/ProductScreen.fxml");
             productScreen.setApp(this);
         } catch (Exception ex) {

@@ -15,11 +15,7 @@ package smarttrolleygui;
 import java.util.List;
 
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-
 import org.xml.sax.helpers.DefaultHandler;
-
-import com.sun.glass.ui.Application;
 
 import Printing.SmartTrolleyPrint;
 
@@ -30,21 +26,24 @@ enum MainElement {
 	DOCUMENTINFO, DEFAULTS, SLIDE
 };
 
+/**
+ * Enumerated type of the documentinfo child elements in the PWS
+ */
 enum DocInfoChildElements {
 	AUTHOR, VERSION, TITLE, COMMENT, WIDTH, HEIGHT
 };
 
+/**
+ * Enumerated type of the defaults child elements in the PWS
+ */
 enum DefaultsChildElements {
 	BACKGROUNDCOLOR, FONT, FONTSIZE, FONTCOLOR, LINECOLOR, FILLCOLOR
 };
 
-// Note that these child elements have attributes as well
-enum SlideChildElements {
-	TEXT, TEXTBODY, SHAPE, AUDIO, IMAGE, VIDEO
-};
-
 public class PWSParser extends DefaultHandler {
 
+	//Refer to slide child elements using xyz = Slide.SlideChildElements. i.e. currentElement = Slide.SlideChildElements.TEXT;
+	
 	public static final String slideShowPath = "../../XMLDocs/trialPWS.xml";
 	/* /SmartTrolley/XMLDocs/trialPWS.xml */
 	private SlideShow slideShow;

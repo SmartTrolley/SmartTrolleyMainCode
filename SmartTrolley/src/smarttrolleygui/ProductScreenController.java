@@ -28,6 +28,13 @@ import javafx.scene.layout.AnchorPane;
 
 public class ProductScreenController implements Initializable {
 
+	
+	/**An image's x-co-ordinate in the slide*/
+	static final double IMAGE_X_COORD = 25;
+	
+	/**An image's y-co-ordinate in the slide*/
+	static final double IMAGE_Y_COORD = 25;
+	
 	/* Height of the button */
 	private static final int BTN_HEIGHT = 20;
 
@@ -47,33 +54,39 @@ public class ProductScreenController implements Initializable {
 	private SmartTrolleyGUI application;
 
 	@FXML
-	private AnchorPane productAnchorPane;
+	private AnchorPane productAnchorPane;	
 
-	private Slide displayedSlide;
+	private SlideShow currentSlideShow;
 
 	/**
 	 * initialize is automatically called when the controller is created.
-	 * <p>
-	 * Date Modified: 22 Feb 2014
+	 * <p> Date Modified: 22 Feb 2014
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		// add image to anchorpane
-		Image productImage = new Image(getClass().getResourceAsStream("img/SampleProducts/Activia.jpg"), 100, 100, true, true);
-		ImageView productImageView = new ImageView(productImage);
-		productImageView.setX(25);
-		productImageView.setY(25);
-		productAnchorPane.getChildren().add(productImageView);
-
+		
 		createPrevMoreNxtSlideButtons();
+	}
+	
+	//TODO Perhaps make the constructor:
+	//public ProductScreenController(SlideShow slideShow) {
+		//this.currentSlideShow = slideShow;
+	//}
+	
+	/**
+	*This method sets the slideshow to be played
+	*<p>User can view PWS Compatible slideshow
+	*@param slideShow
+	*<p> Date Modified: 25 May 2014
+	*/
+	public void setSlideShow(SlideShow slideShow){
+		this.currentSlideShow = slideShow;
 	}
 
 	/**
 	 * This method creates the previous slide, more and next slide buttons and adds their action listeners
-	 * <p>
-	 * User views products
-	 * <p>
-	 * Date Modified: 24 May 2014
+	 * <p> User views products
+	 * <p>Date Modified: 24 May 2014
 	 */
 	private void createPrevMoreNxtSlideButtons() {
 
@@ -110,8 +123,7 @@ public class ProductScreenController implements Initializable {
 	 * setApp
 	 * 
 	 * @param application
-	 *            <p>
-	 *            Date Modified: 28 Feb 2014
+	 * <p> Date Modified: 28 Feb 2014
 	 */
 	public void setApp(SmartTrolleyGUI application) {
 		this.application = application;
@@ -121,10 +133,8 @@ public class ProductScreenController implements Initializable {
 	 * loadStartScreen is called when the smart trolley logo is pressed. It
 	 * calls the goToStartScreen method in SmartTrolleyGUI.java
 	 * 
-	 * @param event
-	 *            - response to click on smart trolley logo in navigation bar
-	 *            <p>
-	 *            Date Modified: 6 Mar 2014
+	 * @param event - response to click on smart trolley logo in navigation bar
+	 * <p>Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
 
@@ -227,14 +237,12 @@ public class ProductScreenController implements Initializable {
 
 	/**
 	 * This method places the button as specified in the arguments
-	 * <p>
-	 * User views products
+	 * <p> User views products
 	 * 
 	 * @param btn
 	 * @param x_coord
 	 * @param y_coord
-	 *            <p>
-	 *            Date Modified: 22 May 2014
+	 * <p> Date Modified: 22 May 2014
 	 */
 	private void createSlideButton(Button btn, Double x_coord, Double y_coord) {
 
@@ -248,22 +256,35 @@ public class ProductScreenController implements Initializable {
 		AnchorPane.setTopAnchor(btn, y_coord);
 		AnchorPane.setLeftAnchor(btn, x_coord);
 
-		productAnchorPane.getChildren().add(btn);
+		getProductAnchorPane().getChildren().add(btn);
 
 	}
+
+
+
 
 	/**
 	*Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
-	*@return
-	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> User views products
+	*@return currentSlideShow - The current slideshow playing
 	*<p> Date Modified: 25 May 2014
 	*/
-	public Slide getDisplayedSlide() {
-		return displayedSlide;
+	public SlideShow getCurrentSlideShow() {
+		return currentSlideShow;
+	}
+
+	/**
+	* This method returns the anchorPane used
+	*<p> User views products
+	*@return productAnchorPane - The AnchorPane used
+	*<p> Date Modified: 25 May 2014
+	*/
+	public AnchorPane getProductAnchorPane() {
+		return productAnchorPane;
 	}
 
 }
+
 /**
  * ************End of ProductScreenController*************
  */
