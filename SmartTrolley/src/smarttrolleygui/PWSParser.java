@@ -63,10 +63,9 @@ public class PWSParser extends DefaultHandler {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open PWS File");
 
-		// TODO Now only display XML files and don't allow interaction with any window except the file chooser (by passing the stage to the fileChooser
-		// i.e. fileChooser.showOpenDialog(stage); perhaps with (Stage) label.getScene().getWindow() [http://stackoverflow.com/questions/11994366/how-to-reference-primarystage]
+		// TODO Now only display XML files and perhaps set a default location to show
 		// TODO Also pass the file into the XML Parser
-		fileChooser.showOpenDialog(null);
+		fileChooser.showOpenDialog(SmartTrolleyGUI.stage);
 
 		readXMLFile(slideShowPath);
 		writeSlideShow();

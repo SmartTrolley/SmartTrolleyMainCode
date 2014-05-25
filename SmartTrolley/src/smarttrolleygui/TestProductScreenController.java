@@ -29,7 +29,7 @@ import Printing.SmartTrolleyPrint;
 public class TestProductScreenController {
 
 	String query;
-	private SmartTrolleyGUI GUIboot;
+	private SmartTrolleyGUI smartTrolleyApplication;
 	Stage stage;
 
 	private final double MIN_WINDOW_WIDTH = 600.0;
@@ -45,64 +45,47 @@ public class TestProductScreenController {
 	@Before
 	public void setUp() throws Exception {
 
+		smartTrolleyApplication = new SmartTrolleyGUI();
+		
 		/*
 		 * Create a new thread which launches the application. If the main
 		 * thread launches the application, the rest of the test will only run
 		 * after the application closes i.e. pointless.
-		 */Thread newGUIThread;
-		GUIboot = new SmartTrolleyGUI();
+		 */
+		Thread newGUIThread;		
 
 		newGUIThread = new Thread("New GUI") {
 			public void run() {
 				SmartTrolleyPrint.print("GUI thread");
-				Application.launch(GUIboot.getClass(), (java.lang.String[]) null);
+				Application.launch(smartTrolleyApplication.getClass(), (java.lang.String[]) null);
 
 			}
 		};
 		newGUIThread.start();
 
-		// TODO Launch a stage+application, then replace its content with
-		// SmartTrolleyGUI
-		/*SmartTrolleyDelay.delay(1000);
-
+		//Delay to allow the application to launch
+		// If you get NullPointer errors around this line, increase the delay
+		SmartTrolleyDelay.delay(200);
+		
+		//Now launch the instance of SmartTrolleyGUI, which takes over the displayed stage
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				stage = new Stage();
-			}
-		});
-		SmartTrolleyDelay.delay(1000);
-		SmartTrolleyPrint.print("Here");
-		stage.setTitle("Smart Trolley");
-		stage.getIcons().add(new Image("smarttrolleygui/img/windowIcon.jpg"));
-		stage.setMinWidth(MIN_WINDOW_WIDTH);
-		stage.setMinHeight(MIN_WINDOW_HEIGHT);
-
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				stage.show();
-			}
-		});*/
-
-		SmartTrolleyPrint.print("Showing a new stage");
-		SmartTrolleyDelay.delay(1000);
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				GUIboot.start(SmartTrolleyGUI.stage);
+				smartTrolleyApplication.start(SmartTrolleyGUI.stage);
 			}
 		});
 
+		//Delay to allow the instance to launch.
+		// If you get NullPointer errors around this line, increase the delay
 		SmartTrolleyDelay.delay(1000);
 
 		// TODO At the moment, the test assumes the product screen is the first
 		// screen that appears.
-		// Button nextSlide = new Button();
-		// nextSlide =
-		GUIboot.productScreen.nextSLideButton.fire();
+		smartTrolleyApplication.productScreen.nextSLideButton.fire();
 		
-		while(true);
+		//Delay to allow the application state to settle before running the test
+		// If you get NullPointer errors around this line, increase the delay
+		SmartTrolleyDelay.delay(500);
 
 	}
 
@@ -124,8 +107,15 @@ public class TestProductScreenController {
 	 * {@link smarttrolleygui.ProductScreenController#loadFavourites(javafx.event.ActionEvent)}
 	 * .
 	 */
+	/**
+	*Method/Test Description
+	*<p>Test(s)/User Story that it satisfies
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 25 May 2014
+	*/
 	@Test
-	public final void testLoadFavourites() {
+	public final void testLoadSlide() {
+		assertTrue(smartTrolleyApplication.productScreen.getDisplayedSlide() instanceof Slide);
 	}
 
 }
