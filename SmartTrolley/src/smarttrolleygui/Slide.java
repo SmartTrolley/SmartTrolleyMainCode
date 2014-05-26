@@ -12,6 +12,7 @@
 
 package smarttrolleygui;
 
+
 import com.sun.javafx.geom.BaseBounds;
 import com.sun.javafx.geom.transform.BaseTransform;
 import com.sun.javafx.jmx.MXNodeAlgorithm;
@@ -58,7 +59,7 @@ public class Slide extends Node {
 	*/
 	public void addNodeToSlide(Node insertInSlide, SlideChildElements type){
 		
-		SmartTrolleyPrint.print("In Slide.add");
+		SmartTrolleyPrint.print("In Slide.addNodeToSlide");
 		if (type == SlideChildElements.IMAGE){
 			
 			ImageView imageToInsert = (ImageView) insertInSlide;
@@ -68,34 +69,47 @@ public class Slide extends Node {
 		}			
 	}
 
-
+	/* (non-Javadoc)
+	 * @see javafx.scene.Node#impl_computeContains(double, double)
+	 */
 	@Override
 	@Deprecated
 	protected boolean impl_computeContains(double arg0, double arg1) {
-		
+		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see javafx.scene.Node#impl_computeGeomBounds(com.sun.javafx.geom.BaseBounds, com.sun.javafx.geom.transform.BaseTransform)
+	 */
 	@Override
 	@Deprecated
 	public BaseBounds impl_computeGeomBounds(BaseBounds arg0, BaseTransform arg1) {
-		
+		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see javafx.scene.Node#impl_createPGNode()
+	 */
 	@Override
 	@Deprecated
 	protected PGNode impl_createPGNode() {
-		
+		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see javafx.scene.Node#impl_processMXNode(com.sun.javafx.jmx.MXNodeAlgorithm, com.sun.javafx.jmx.MXNodeAlgorithmContext)
+	 */
 	@Override
 	@Deprecated
 	public Object impl_processMXNode(MXNodeAlgorithm arg0, MXNodeAlgorithmContext arg1) {
-		
+		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
 }
 
 /**************End of Slide.java**************/

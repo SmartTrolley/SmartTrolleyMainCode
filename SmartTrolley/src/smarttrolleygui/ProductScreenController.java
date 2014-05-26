@@ -121,7 +121,6 @@ public class ProductScreenController implements Initializable {
 
 	/**
 	 * setApp
-	 * 
 	 * @param application
 	 * <p> Date Modified: 28 Feb 2014
 	 */
@@ -150,13 +149,9 @@ public class ProductScreenController implements Initializable {
 	/**
 	 * loadHomeScreen is called when the 'home' button is pressed. It calls the
 	 * goToHomeScreen method in SmartTrolleyGUI.java
-	 * <p>
-	 * User navigates through product database
-	 * 
-	 * @param event
-	 *            - response to click on 'home' button
-	 *            <p>
-	 *            Date Modified: 28 Feb 2014
+	 * <p> User navigates through product database
+	 * @param event - response to click on 'home' button
+	 * <p> Date Modified: 28 Feb 2014
 	 */
 	public void loadHomeScreen(ActionEvent event) {
 
@@ -172,13 +167,9 @@ public class ProductScreenController implements Initializable {
 	/**
 	 * loadShoppingList is called when the 'list' button is pressed. It calls
 	 * the goToShoppingList method in SmartTrolleyGUI.java
-	 * <p>
-	 * User can view shopping list
-	 * 
-	 * @param event
-	 *            - response to click on 'list' button
-	 *            <p>
-	 *            Date Modified: 6 Mar 2014
+	 * <p> User can view shopping list
+	 * @param event - response to click on 'list' button
+	 * <p> Date Modified: 6 Mar 2014
 	 */
 	public void loadShoppingList(ActionEvent event) {
 
@@ -194,13 +185,9 @@ public class ProductScreenController implements Initializable {
 	/**
 	 * loadOffers is called when the 'offers' button is pressed. It calls the
 	 * goToOffers method in SmartTrolleyGUI.java
-	 * <p>
-	 * User can browse store's offers
-	 * 
-	 * @param event
-	 *            - response to click on 'offers' button
-	 *            <p>
-	 *            Date Modified: 7 Mar 2014
+	 * <p> User can browse store's offers
+	 * @param event - response to click on 'offers' button
+	 * <p> Date Modified: 7 Mar 2014
 	 */
 	public void loadOffers(ActionEvent event) {
 
@@ -216,13 +203,9 @@ public class ProductScreenController implements Initializable {
 	/**
 	 * loadFavourites is called when the 'favourites' button is pressed. It
 	 * calls the goToFavourites method in SmartTrolleyGUI.java
-	 * <p>
-	 * User can maintain list of favourite products
-	 * 
-	 * @param event
-	 *            - response to click on 'favourites' button
-	 *            <p>
-	 *            Date Modified: 28 Feb 2014
+	 * <p> User can maintain list of favourite products
+	 * @param event - response to click on 'favourites' button
+	 * <p> Date Modified: 28 Feb 2014
 	 */
 	public void loadFavourites(ActionEvent event) {
 
@@ -238,7 +221,6 @@ public class ProductScreenController implements Initializable {
 	/**
 	 * This method places the button as specified in the arguments
 	 * <p> User views products
-	 * 
 	 * @param btn
 	 * @param x_coord
 	 * @param y_coord
@@ -259,8 +241,6 @@ public class ProductScreenController implements Initializable {
 		getProductAnchorPane().getChildren().add(btn);
 
 	}
-
-
 
 
 	/**
