@@ -98,12 +98,12 @@ public class SlideTextTest {
 	@Test
 	public void heightWidthTest(){
 		//calculate width and height
-		int width = xEnd - xStart;
-		int height = yEnd - yStart;
+		int width = xStart- xEnd;
+		int height = yStart - yEnd;
 		
 		//check actual values
 		assertEquals(width, textBox.getLayoutBounds().getWidth(), 0.0001);
-		assertEquals(height, textBox.getBoundsInParent().getHeight(), 0.0001);
+		assertEquals(height, textBox.getLayoutBounds().getHeight(), 0.0001);
 		
 	}
 	
