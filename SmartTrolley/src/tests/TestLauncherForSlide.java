@@ -43,7 +43,7 @@ public class TestLauncherForSlide extends Application {
 		BorderPane border = new BorderPane();
 		
 		
-		border.setCenter(productSlide.setupAnchorPane(points, imageURL, xImageStart,  yImageStart, imageWidth, imageHeight, imageStartTime, imageDuration));
+		//border.setCenter(productSlide.setupAnchorPane(points, imageURL, xImageStart,  yImageStart, imageWidth, imageHeight, imageStartTime, imageDuration));
 		
 		 Scene scene = new Scene(border);
 	        stage.setScene(scene);
