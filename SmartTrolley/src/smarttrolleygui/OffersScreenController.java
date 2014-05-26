@@ -91,7 +91,7 @@ public class OffersScreenController implements Initializable {
     	
     	SqlConnection sqlConnector = new SqlConnection();
     	setCategoryNumber(sqlConnector.getSpecificCategoryNumber(categoriesList.getSelectionModel().getSelectedItem()));
-//    	System.out.println(getCategoryNumber());
+    	//System.out.println(getCategoryNumber());
     	    	
     	if (Integer.valueOf(getCategoryNumber())  == 1) {
     		  // Fill table with sample products
@@ -99,9 +99,9 @@ public class OffersScreenController implements Initializable {
     		}
     	else{
     		// Fill table with sample products
-    		SmartTrolleyPrint.print(categoriesList.getSelectionModel().getSelectedItem());
     		System.out.println(getCategoryNumber());
     		productData = sqlConnector.getOfferByCategory(getCategoryNumber());
+    		//productData = sqlConnector.getListOfOffers();
     		}
     	
         productTable.setItems(productData);

@@ -69,7 +69,7 @@ public class SqlConnectionTest {
 
 		SmartTrolleyPrint.print("sendQueryTest Start ---------------\n");
 
-		query = "SELECT * FROM products WHERE Name = 'Ariel'";
+		query = "SELECT * FROM products WHERE Name = 'Ariel 3in1 Pods Colour & Style'";
 
 		ResultSet results = productsDatabase.sendQuery(query);
 
@@ -105,7 +105,7 @@ public class SqlConnectionTest {
 	@Test
 	public void getSpecificCategoryNumberTest(){
 		SmartTrolleyPrint
-		.print("\n getProductByNameTest Start ---------------\n");
+		.print("\n getSpecificCategoryNumberTest Start ---------------\n");
 		
 		String catNumber = productsDatabase.getSpecificCategoryNumber("All");
 		
@@ -123,14 +123,16 @@ public class SqlConnectionTest {
 				.print("\n getProductByNameTest Start ---------------\n");
 
 		// retrieve results from server
-		Product product = productsDatabase.getProductByName("Cravendale 2L");
+		Product product = productsDatabase.getProductByName("Cravendale Pure Whole Milk (2L)");
 
 		assertEquals(product.getId(), 2);
-		assertEquals(product.getName(), "Cravendale 2L");
+		
+		assertEquals(product.getName(), "Cravendale Pure Whole Milk (2L)");
 		assertEquals(product.getImage(),
 				"img/SampleProducts/cravendale_2L_milk.jpg");
-		assert (product.getPrice() == 3.99);
+		assert(product.getPrice() == 3.99);
 	}
+
 
 	/**
 	 * Tests that the getListOfProducts() returns a full list of the product
@@ -211,7 +213,7 @@ public class SqlConnectionTest {
 
 		Product product;
 
-		product = productsDatabase.getSpecificProduct("productID", "5");
+		product = productsDatabase.getSpecificProduct("productID", "5", "1");
 
 		assertEquals(product.getId(), 5);
 		assertEquals(product.getName(), "Innocent Noodle Pot");
@@ -341,12 +343,37 @@ public class SqlConnectionTest {
 	}
 
 	/**
+	 * Test that the getOfferByCatergory returns a filtered list of the offers available
+	 */
+	
+	@Test
+	public void getOffersByCategoryTest(){
+		SmartTrolleyPrint
+		.print("\n getOffersByCategoryTest Start ---------------\n");
+		
+		products = productsDatabase.getOfferByCategory("4");
+		
+		assertNotNull(products);
+		Product product;
+		int i = 0;
+		while (i < products.size()) {
+
+			product = products.get(i);
+
+			SmartTrolleyPrint.print(product.getId() + "  " + product.getName()
+					+ "  " + product.getImage() + "  " + product.getPrice() + " " + product.getOfferPrice());
+			i++;
+		}
+		
+		
+	}
+	
+	/**
 	 * Tests that the connection closes correctly
 	 * 
 	 * @throws SQLException
 	 */
-	@Test
-	public void connectionCloseTest() throws SQLException {
+	@Test	public void connectionCloseTest() throws SQLException {
 
 		productsDatabase.closeConnection();
 
