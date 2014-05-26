@@ -99,9 +99,7 @@ public class OffersScreenController implements Initializable {
     		}
     	else{
     		// Fill table with sample products
-    		System.out.println(getCategoryNumber());
     		productData = sqlConnector.getOfferByCategory(getCategoryNumber());
-    		//productData = sqlConnector.getListOfOffers();
     		}
     	
         productTable.setItems(productData);

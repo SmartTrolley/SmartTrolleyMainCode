@@ -48,7 +48,6 @@ public class SqlConnectionTest {
 	 * 
 	 * @throws SQLException
 	 */
-
 	@Test
 	public void connectionOpenTest() throws SQLException {
 
@@ -57,6 +56,7 @@ public class SqlConnectionTest {
 
 	}
 
+	
 	/**
 	 * Sends and example query to the database Checks that the database returns
 	 * something then tests that the returned values are correct for the sent
@@ -133,7 +133,6 @@ public class SqlConnectionTest {
 		assert(product.getPrice() == 3.99);
 	}
 
-
 	/**
 	 * Tests that the getListOfProducts() returns a full list of the product
 	 * data from the database by printing it to the console and manually
@@ -203,10 +202,12 @@ public class SqlConnectionTest {
 
 	}
 
+	
 	/**
 	 * Test getSpecificProduct method by sending a column name and a value and
 	 * should return a result
 	 */
+	@Test
 	public void getSpecificProductTest() {
 		SmartTrolleyPrint
 				.print("\n getSpecificProductTest Start ---------------\n");
@@ -216,11 +217,12 @@ public class SqlConnectionTest {
 		product = productsDatabase.getSpecificProduct("productID", "5", "1");
 
 		assertEquals(product.getId(), 5);
-		assertEquals(product.getName(), "Innocent Noodle Pot");
+		assertEquals(product.getName(), "Innocent Vietnamese Noodles Pot");
 		assertEquals(product.getImage(),
 				"img/SampleProducts/innocent_noodle_pot.jpg");
-		assert (product.getPrice() == 6.99);
+		assert (product.getPrice() == 3.88);
 	}
+	
 
 	/**
 	 * Test getList() to ensure it returns the contents of a List
@@ -267,6 +269,7 @@ public class SqlConnectionTest {
 
 	}
 
+	
 	/**
 	 * Test that the getListOfOffers() returns the full list of offers from the
 	 * database by printing it to the console and then comparing it.
@@ -294,6 +297,7 @@ public class SqlConnectionTest {
 
 	}
 
+	
 	/**
 	 * Test that gets the getProductsWithinSpecificCategory(String) returns a
 	 * list of products from the database that correspond to a category request
@@ -320,6 +324,7 @@ public class SqlConnectionTest {
 		}
 	}
 
+	
 	/**
 	 * Test that the getListOfCategories returns the correct list of categories
 	 * from the database
@@ -342,6 +347,7 @@ public class SqlConnectionTest {
 		}
 	}
 
+	
 	/**
 	 * Test that the getOfferByCatergory returns a filtered list of the offers available
 	 */
@@ -351,7 +357,7 @@ public class SqlConnectionTest {
 		SmartTrolleyPrint
 		.print("\n getOffersByCategoryTest Start ---------------\n");
 		
-		products = productsDatabase.getOfferByCategory("4");
+		products = productsDatabase.getOfferByCategory("1");
 		
 		assertNotNull(products);
 		Product product;
@@ -364,8 +370,6 @@ public class SqlConnectionTest {
 					+ "  " + product.getImage() + "  " + product.getPrice() + " " + product.getOfferPrice());
 			i++;
 		}
-		
-		
 	}
 	
 	/**

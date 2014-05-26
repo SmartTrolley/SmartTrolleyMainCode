@@ -205,10 +205,12 @@ public class SqlConnection {
 		openConnection();
 
 		String query = null;
+		
+		SmartTrolleyPrint.print("category = " + category);
+		
 		if (category == "1"){
-		query = "Select * From products where " + criteria + " = " + value
-				+ ";";
-		} else {
+			query = "Select * From products where " + criteria + " = " + value + ";";
+		} else if (!(category == "1")) {
 			query = "Select * From products where " + criteria + " = " + value
 					+ " AND CategoryID = " + category + ";";
 		}
@@ -217,23 +219,33 @@ public class SqlConnection {
 
 		try {
 			ResultSet results = sendQuery(query);
-
-			while (results.next()) {
-
-				// get id
-				product.setId(results.getInt("ProductID"));
-
-				// get Name
-				product.setName(results.getString("Name"));
-
-				// get Image
-				product.setImage(results.getString("Image"));
-
-				// get Price
-				product.setPrice(results.getFloat("Price"));
+			
+			boolean emptySet = isResultSetEmpty(results);
+			
+			if (!(emptySet)){
+				results.absolute(1);
+				
+					 do {
+						// get id
+						product.setId(results.getInt("ProductID"));
+		
+						// get Name
+						product.setName(results.getString("Name"));
+		
+						// get Image
+						product.setImage(results.getString("Image"));
+		
+						// get Price
+						product.setPrice(results.getFloat("Price"));
+						
+						
+					} while (results.next());
+					closeConnection();
+					return product;
+			} else {
+				closeConnection();
+				return null;
 			}
-			closeConnection();
-			return product;
 		} catch (SQLException e) {
 			closeConnection();
 			System.out.println("Product could not be found");
@@ -363,12 +375,14 @@ public class SqlConnection {
 
 		try {
 			ResultSet results = sendQuery(query);
-
+			
+			Offer offer = new Offer();
+			Product product = new Product();
+			
 			while (results.next()) {
 
-				Offer offer = new Offer();
-				Product product = new Product();
-				product = productsDatabase.getSpecificProduct("ProductID",
+				
+				product = productsDatabase.getSpecificProduct("productID",
 						String.valueOf(results.getInt("ProductId")), "1");
 
 				if (!(product == null)) {
@@ -404,10 +418,17 @@ public class SqlConnection {
 
 	}
 
+	/**
+	 * When called, it will return a the customers list filtered by a selected category
+	 * @param listID
+	 * @param categoryNumber
+	 * @return
+	 */
 	public ObservableList<Product> getListByCategory(int listID,
 			String categoryNumber) {
 		openConnection();
-
+		
+		Product product = new Product();
 		products = FXCollections.observableArrayList();
 
 		String query = "SELECT * FROM lists_products WHERE listID = "
@@ -438,7 +459,6 @@ public class SqlConnection {
 				listProducts = sendQuery(query);
 				SmartTrolleyPrint.print("Query Sent");
 
-				Product product = new Product();
 				SmartTrolleyPrint.print("Initializing Product");
 
 				boolean emptySet = isResultSetEmpty(listProducts);
@@ -451,7 +471,8 @@ public class SqlConnection {
 
 						SmartTrolleyPrint.print("Found Item to be stored");
 
-						storeProductDetails(listProducts);
+						product = storeProductDetails(listProducts);
+						products.add(product);
 
 						SmartTrolleyPrint.print("Product Stored");
 
@@ -616,7 +637,8 @@ public class SqlConnection {
 	 * @return products
 	 */
 	public ObservableList<Product> getOfferByCategory(String categoryNumber) {
-
+		Offer offer = new Offer();
+		Product product = new Product();
 		productsDatabase = new SqlConnection();
 
 		openConnection();
@@ -630,37 +652,35 @@ public class SqlConnection {
 			
 			results.absolute(1);
 
-			while (results.next()) {
-				
-				
-				Offer offer = new Offer();
-				Product product = new Product();
+			do  {
+
 				product = productsDatabase.getSpecificProduct("ProductID",
-						String.valueOf(results.getInt("ProductId")), categoryNumber);
+						String.valueOf(results.getInt("ProductId")),
+						categoryNumber);
 				
-					if (!(product == null)) {
-						
-						// get Offer id
-						offer.setOfferId(results.getInt("OfferID"));
-	
-						// get Product id
-						offer.setProductId(results.getInt("ProductID"));
-	
-						// get Price
-						offer.setOfferPrice(results.getFloat("OfferPrice"));
-						product.setOfferPrice(results.getFloat("OfferPrice"));
-	
-						float savings = product.getPrice()
-								- product.getOfferPrice();
-	
-						product.setSavings(savings);
-	
-						offers.add(product);
-					} else {
-						SmartTrolleyPrint.print("No Offers in that catgory found");
-						return null;
-					}
-			}
+				if (!(product == null)) {
+
+					// get Offer id
+					offer.setOfferId(results.getInt("OfferID"));
+
+					// get Product id
+					offer.setProductId(results.getInt("ProductID"));
+
+					// get Price
+					offer.setOfferPrice(results.getFloat("OfferPrice"));
+					product.setOfferPrice(results.getFloat("OfferPrice"));
+
+					float savings = product.getPrice()
+							- product.getOfferPrice();
+
+					product.setSavings(savings);
+
+					offers.add(product);
+				} else {
+					SmartTrolleyPrint.print("No Offers in that category found");
+				}
+				
+			} while (results.next());
 
 			closeConnection();
 			return offers;
@@ -668,8 +688,10 @@ public class SqlConnection {
 		} catch (SQLException e) {
 			closeConnection();
 			System.out.println("Offers could not be found");
+			System.out.println("SQL ERROR: " + e);
 			return null;
-			}
+		}
+
 	}
 
 	/**
