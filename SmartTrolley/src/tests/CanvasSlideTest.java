@@ -57,7 +57,7 @@ public class CanvasSlideTest {
 		points.add(point2);
 		points.add(point4);
 		
-		assertTrue(productSlide.setupAnchorPane(points, imageURL, xImageStart,  yImageStart, imageWidth, imageHeight, imageStartTime, imageDuration).isVisible());
+		assertTrue(productSlide.anchorPaneStart().isVisible());
 		
 	}
 	
@@ -112,12 +112,9 @@ public class CanvasSlideTest {
 		
 		SmartTrolleyPrint.print("Second Test passed, graphics have loaded");
 		
-		SmartTrolleyDelay.delay(2000);
+		productSlide.clearSlide();
 		
-		productSlide.clearSlide(points, imageURL, xImageStart, yImageStart, imageWidth, imageHeight, imageStartTime, imageDuration);
-		
-		//assertFalse(productSlide.graphicsSetup(points).visibleProperty().get());
-		//assertFalse(productSlide.imageSetup(imageURL, xImageStart, yImageStart, imageWidth, imageHeight, imageStartTime, imageDuration).isVisible());
+		//assertFalse(productSlide.setupAnchorPane(points, imageURL, xImageStart, yImageStart, imageWidth, imageHeight, imageStartTime, imageDuration).getChildren() == null);
 		
 		
 	}
