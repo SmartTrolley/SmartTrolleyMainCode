@@ -23,6 +23,7 @@ import java.util.PriorityQueue;
 
 import texthandler.SlideText;
 import texthandler.SlideTextBody;
+import videohandler.SlideVideo;
 
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Shape;
@@ -52,7 +53,7 @@ public class ProductSlide extends AnchorPane{
 	private String twoString = "He knew he would need the Smart Trolley app to purchase some party food!";
 	private String threeString = "He then realised, Smart Trolley was shit, and used the\n Tesco App instead; stupid fat hobbit!!!";
 	protected int maxStrings = 3;
-			
+
 	/**
 	*Contructor method for product slide, adds all media handlers
 	*<p>display slide
@@ -86,7 +87,15 @@ public class ProductSlide extends AnchorPane{
 	*@param yTextEnd - sets an end location for the text in the x direction
 	*@param textStartTime - displays text at a set time after loading in seconds
 	*@param textDuration - sets a duration the text is displayed in seconds
-	*
+	*@param vidURL
+	*@param xVidStart
+	*@param yVidStart
+	*@param VidWidth
+	*@param VidHeight
+	*@param vidLoop
+	*@param vidStartTime
+	*@param vidDuration
+	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 27 May 2014
 	*/
 	public ProductSlide(PriorityQueue<ShapePoint> points, int numOfPoints, int graphicsWidth,
@@ -97,7 +106,10 @@ public class ProductSlide extends AnchorPane{
 			int imgDuration, String audioURL,int audioStartTime, int audioDuration,
 			double audioVolume, ArrayList<SlideTextBody> texts, String font,
 			String fontColor,int numOfStrings, int fontSize, int xTextStart, int yTextStart,
-			int xTextEnd, int yTextEnd, double textStartTime, double textDuration){
+			int xTextEnd, int yTextEnd, double textStartTime, double textDuration,
+			String vidURL, int xVidStart, int yVidStart, int VidWidth,
+			int VidHeight, boolean vidLoop,
+			double vidStartTime, double vidDuration){
 		
 		getChildren().add(graphicsSetup(points, numOfPoints, graphicsWidth, graphicsHeight,
 				graphicsFillColour, graphicsLineColour, graphicsStartTime,
@@ -107,6 +119,8 @@ public class ProductSlide extends AnchorPane{
 		getChildren().add(textSetup(texts, font,
 				fontColor, numOfStrings, fontSize, xTextStart, yTextStart,
 				xTextEnd, yTextEnd, textStartTime, textDuration));
+		getChildren().add(videoSetup(vidURL, xVidStart,
+				yVidStart, VidWidth, VidHeight,vidLoop, vidStartTime, vidDuration));
 		audioSetup(audioURL, audioStartTime, audioDuration, audioVolume);
 			
 		setVisible(true);
@@ -132,7 +146,7 @@ public class ProductSlide extends AnchorPane{
 	public SlideImage imageSetup(String imgURL, int xImgStart, int yImgStart, int imgWidth,
 			int imgHeight, int imgStartTime, int imgDuration){
 		
-		imagehandler.SlideImage image1 = new imagehandler.SlideImage(imgURL, xImgStart,
+		SlideImage image1 = new SlideImage(imgURL, xImgStart,
 				yImgStart, imgWidth, imgHeight, imgStartTime, imgDuration);
 		image1.show();
 		
@@ -140,14 +154,18 @@ public class ProductSlide extends AnchorPane{
 		
 	}
 	
-//		public Node videoSetup() {
-//		
-//			//VideoPlayerHandler video1 = new videohandler.VideoPlayerHandler(videoURL, xVideoStart, yVideoStart, vidWidth, vidHeight, true, 0, 0);
-//			//Group root = new Group();
-//			//root.getChildren().add(video1.mediaControl.overallBox);
-//			
-//		return null;
-//	}
+		public SlideVideo videoSetup(String vidURL, int xVidStart, 
+				int yVidStart, int VidWidth,
+				int VidHeight, boolean vidLoop,
+				double vidStartTime, double vidDuration) {
+		
+			SlideVideo video1 = new SlideVideo(vidURL, xVidStart,
+				yVidStart, VidWidth, VidHeight,vidLoop, vidStartTime, vidDuration);
+			video1.setVisible(true);
+			video1.show();
+			
+	return video1;
+	}
 
 		/**
 		*Sends a graphic to the graphics handler, 
@@ -166,8 +184,6 @@ public class ProductSlide extends AnchorPane{
 		public Shape graphicsSetup(PriorityQueue<ShapePoint> points, int numOfPoints, int graphicsWidth, 
 				int graphicsHeight, String graphicsFillColour, String graphicsLineColour,
 				int graphicsStartTime, int graphicsDuration) {
-
-			
 			
 			points = new PriorityQueue<ShapePoint>();
 			

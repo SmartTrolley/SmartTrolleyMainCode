@@ -13,7 +13,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
-
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
@@ -69,8 +68,8 @@ public class MediaControl {
 	private HBox fullscreenMediaBar;
 	private Button playButton, playButtonFS;
 	private FadeTransition fadeTransition;
-	private Integer startTime;
-	private Integer playDuration;
+	private double startTime;
+	private double playDuration;
 	private Boolean mpLoop;
 	protected HBox mediaBar;
 	protected boolean continuePlaying = true;
@@ -88,11 +87,11 @@ public class MediaControl {
 	 * @param startTime The PWS optional startTime to delay the video starting to play
 	 * @param playDuration The PWS optional duration to play the video for
 	 */
-	public MediaControl(final MediaPlayer mp, Integer width, Integer height, Boolean loop, Integer startTime, Integer playDuration){
+	public MediaControl(final MediaPlayer mp, Integer width, Integer height, Boolean loop, double startTime, double duration2){
 		
 		this.mp = mp;
 		this.startTime = startTime;
-		this.playDuration = playDuration;
+		this.playDuration = duration2;
 		mediaView = new MediaView(mp);
 		
 		// Retrieve the size of the Screen
@@ -120,17 +119,8 @@ public class MediaControl {
 			this.mpWidth = (int) (bounds.getWidth()/2);
 			this.mpHeight = (int) (bounds.getHeight()/4);
 			mediaView.setPreserveRatio(true);
-            mediaView.setFitWidth(mpWidth);		
+            mediaView.setFitWidth(mpWidth);
 		}
-		
-		if (startTime == null) {
-			// Set start time to be 0 when no startTime is being indicated
-	        this.startTime = 0;
-	        new Thread(startTimerThread).start();
-	    } else {
-	    	// Start the startTimerThread based on the startTime indicated
-	        new Thread(startTimerThread).start();
-	    }
 		
 		// A VBox that contains the MediaView and Control Panel of the MediaPlayer
 		overallBox = new VBox();
@@ -154,7 +144,6 @@ public class MediaControl {
 			inputStream = new FileInputStream("../Resources/fullscreen.png");
 			fullscreenImage = new Image(inputStream);
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -206,6 +195,11 @@ public class MediaControl {
         // Add the mediaBar "box" to the overall MediaControl "bar"
         overallBox.getChildren().add(mediaBar);
     }
+	
+	void show()
+	{
+	        new Thread(startTimerThread).start();
+	}
 	
 	/* 
 	 * Function that creates a volume slider, adds the relevant event handlers to it, and
@@ -313,7 +307,12 @@ public class MediaControl {
         fullscreenButton.setGraphic(new ImageView(fullscreenImage));
         
         // Create a new stage for the fullscreen mode
+    	Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
         stageFS = new Stage();
+			}
+    	});
         fullscreenButton.setOnAction(new EventHandler<ActionEvent>() {
         
         	// ActionHandler for play button.
@@ -700,7 +699,7 @@ public class MediaControl {
 		@Override
 		protected Object call() throws Exception {
 			// Sleep until the start time has elapsed
-			TimeUnit.SECONDS.sleep(startTime);
+			TimeUnit.SECONDS.sleep((long)startTime);
 		 
 			// If  we still wish to continue playing at this stage do so by spawning a new thread
 			if (continuePlaying == true){
@@ -711,7 +710,7 @@ public class MediaControl {
 				});
 				
 				// If the duration to play is not invalid set a stop time
-				if (playDuration != null && playDuration != 0){
+				if (playDuration != 0){
 					mp.setStopTime(Duration.seconds(playDuration));
 				}
 			}
@@ -738,7 +737,6 @@ public class MediaControl {
 				try {
 					TimeUnit.SECONDS.sleep(1);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					count++;

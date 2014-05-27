@@ -56,7 +56,7 @@ public class ProductSlideVisualTest extends Application {
 	/**sets parameters for audio*/
 	private String audURL = "Music/Kalimba.mp3";
 	private int audStartTime = 0;
-	private int audDuration = 5;
+	private int audDuration = 10;
 	private double audVolume = 0.4;
 	
 	
@@ -72,12 +72,24 @@ public class ProductSlideVisualTest extends Application {
 	double textStartTime = 0;
 	double textDuration = 0;
 	int numOfStrings = 3;
+	
+	private String vidURL = "http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv";
+	private int xVidStart = 200;
+	private int yVidStart = 20;
+	private int VidWidth = 150;
+	private int VidHeight = 75;
+	private boolean vidLoop = true;
+	private double vidStartTime = 0;
+	private double vidDuration = 30.0;
+
+
+	public static Stage stage;
 		
 
 	
 	
 	@Override
-	public void start(Stage stage) throws Exception {
+	public void start(Stage startStage) throws Exception {
 		BorderPane border = new BorderPane();
 		
 
@@ -87,12 +99,16 @@ public class ProductSlideVisualTest extends Application {
 				imageHeight, imageStartTime, imageDuration, audURL, audStartTime,
 				audDuration, audVolume, texts, font,
 				fontColor, numOfStrings, fontSize, xTextStart, yTextStart,
-				xTextEnd, yTextEnd, textStartTime, textDuration);
+				xTextEnd, yTextEnd, textStartTime, textDuration, vidURL,
+				xVidStart, yVidStart, VidWidth,
+				VidHeight, vidLoop,
+				vidStartTime, vidDuration);
 		
 		border.setCenter(productSlide);
 	
 		
 		 Scene scene = new Scene(border);
+		 stage = startStage;
 	        stage.setScene(scene);
 	        stage.setTitle("Layout Sample");
 	        stage.show();
