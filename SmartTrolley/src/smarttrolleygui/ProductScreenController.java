@@ -25,15 +25,14 @@ import javafx.scene.layout.AnchorPane;
 import DatabaseConnectors.SqlConnection;
 import Printing.SmartTrolleyPrint;
 
+public class ProductScreenController implements Initializable {
 
-public class ProductScreenController implements Initializable {    
-	
 	/**An image's x-co-ordinate in the slide*/
 	static final double IMAGE_X_COORD = 25;
-	
+
 	/**An image's y-co-ordinate in the slide*/
 	static final double IMAGE_Y_COORD = 25;
-	
+
 	/* Height of the button */
 	private static final int BTN_HEIGHT = 20;
 
@@ -47,72 +46,65 @@ public class ProductScreenController implements Initializable {
 	Button prevSLideButton = new Button("<");
 	Button nextSLideButton = new Button(">");
 	Button moreButton = new Button("...");
-    
+
 	public static SqlConnection productsDatabase;
-	
+
 	/** Application that is running */
-    private SmartTrolleyGUI application;
-    private Product product;
-    private String productName;
-    private String productImageURL;
-    private float productPrice;
-    
-    @FXML private AnchorPane productAnchorPane;
-    @FXML private Label listNameLabel;
-    
-    
-    /**Current slideshow that is playing*/
-    private SlideShow currentSlideShow;
-    
-    /**
-     * initialize is automatically called when the controller is created.
-     * <p>
-     * Date Modified: 22 Feb 2014
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    	getCurrentProductData();
-    	// show name of current shopping list
+	private SmartTrolleyGUI application;
+	private Product product;
+	private String productName;
+	private String productImageURL;
+	private float productPrice;
+
+	@FXML
+	private AnchorPane productAnchorPane;
+	@FXML
+	private Label listNameLabel;
+
+	/**Current slideshow that is playing*/
+	private SlideShow currentSlideShow;
+
+	/**
+	 * initialize is automatically called when the controller is created.
+	 * <p>
+	 * Date Modified: 22 Feb 2014
+	 */
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+		
+		getCurrentProductData();
+		
+		// show name of current shopping list
 		listNameLabel.setText(SmartTrolleyGUI.getCurrentListName());
-		
-		/*I am sending a slide in, so an image does not have to be added in.
-		 * Hence, I am commenting out the code to add the image to anchorpane.
-		 */
-		// add product image to anchorpane
-		/*Image productImage = new Image(getClass().getResourceAsStream(productImageURL));
-		ImageView productImageView = new ImageView(productImage);
-		productImageView.setX(400);
-		productImageView.setY(400);
-		productAnchorPane.getChildren().add(productImageView);*/
-		
+
 		createPrevMoreNxtSlideButtons();
-    }
-    
-    /**
+	}
+
+	/**
 	*This method sets the slideshow to be played
 	*<p>User can view PWS Compatible slideshow
 	*@param slideShow
 	*<p> Date Modified: 25 May 2014
 	*/
-	public void setSlideShow(SlideShow slideShow){
+	protected void setSlideShow(SlideShow slideShow) {
 		this.currentSlideShow = slideShow;
 	}
-    
-    /**
-     * getCurrentProductData retrieves the data of the selected product from the sql database
-     * Date Modified: 22 May 2014
-     */
-    private void getCurrentProductData() {
-        productsDatabase = new SqlConnection();
-        String criteria = "productID";
-        String value = String.valueOf(SmartTrolleyGUI.getCurrentProductID());
+
+	/**
+	 * getCurrentProductData retrieves the data of the selected product from the sql database
+	 * Date Modified: 22 May 2014
+	 */
+	protected void getCurrentProductData() {
+		productsDatabase = new SqlConnection();
+		String criteria = "productID";
+		String value = String.valueOf(SmartTrolleyGUI.getCurrentProductID());
 		product = productsDatabase.getSpecificProduct(criteria, value);
 		productName = product.getName();
 		productImageURL = product.getImage();
 		productPrice = product.getPrice();
 	}
-    
-    /**
+
+	/**
 	 * This method creates the previous slide, more and next slide buttons and adds their action listeners
 	 * <p> User views products
 	 * <p>Date Modified: 24 May 2014
@@ -134,8 +126,9 @@ public class ProductScreenController implements Initializable {
 		nextSLideButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Add goto next slide functionality here
+				
 				SmartTrolleyPrint.print("Pressed next slide");
+				currentSlideShow.nextSlide();
 			}
 		});
 
@@ -149,85 +142,81 @@ public class ProductScreenController implements Initializable {
 	}
 
 	/**
-     * setApp
-     *
-     * @param application
-     * <p>
-     * Date Modified: 28 Feb 2014
-     */
-    public void setApp(SmartTrolleyGUI application) {
-        this.application = application;
-    }
+	 * setApp
+	 *
+	 * @param application
+	 * <p>
+	 * Date Modified: 28 Feb 2014
+	 */
+	public void setApp(SmartTrolleyGUI application) {
+		this.application = application;
+	}
 
-    /**
-     * loadStartScreen is called when the smart trolley logo is pressed. It
-     * calls the goToStartScreen method in SmartTrolleyGUI.java
-     *
-     * @param event - response to click on smart trolley logo in navigation bar
-     * <p>
-     * Date Modified: 6 Mar 2014
-     */
+	/**
+	 * loadStartScreen is called when the smart trolley logo is pressed. It
+	* calls the static loadStartScreen method in ControllerGeneral.java
+	 *
+	 * @param event - response to click on smart trolley logo in navigation bar
+	 * <p>
+	 * Date Modified: 6 Mar 2014
+	 */
 	public void loadStartScreen(ActionEvent event) {
 		ControllerGeneral.loadStartScreen(event, application);
 	}
 
-    /**
-     * loadHomeScreen is called when the 'home' button is pressed. It calls the
-     * goToHomeScreen method in SmartTrolleyGUI.java
-     * <p>
-     * User navigates through product database
-     *
-     * @param event - response to click on 'home' button
-     * <p>
-     * Date Modified: 28 Feb 2014
-     */
+	/**
+	 * loadHomeScreen is called when the 'home' button is pressed. It calls the
+	 * calls the static loadHomeScreen method in ControllerGeneral.java
+	 * <p>
+	 * User navigates through product database
+	 *
+	 * @param event - response to click on 'home' button
+	 * <p>
+	 * Date Modified: 28 Feb 2014
+	 */
 	public void loadHomeScreen(ActionEvent event) {
 		ControllerGeneral.loadHomeScreen(event, application);
 	}
 
-    /**
-     * loadShoppingList is called when the 'list' button is pressed. It calls
-     * the goToShoppingList method in SmartTrolleyGUI.java
-     * <p>
-     * User can view shopping list
-     *
-     * @param event - response to click on 'list' button
-     * <p>
-     * Date Modified: 6 Mar 2014
-     */
+	/**
+	 * loadShoppingList is called when the 'list' button is pressed. It calls
+	 * the goToShoppingList method in SmartTrolleyGUI.java
+	 * <p> User can view shopping list
+	 *
+	 * @param event - response to click on 'list' button
+	 * <p> Date Modified: 6 Mar 2014
+	 */
 	public void loadShoppingList(ActionEvent event) {
 		ControllerGeneral.loadShoppingList(event, application);
 	}
 
-    /**
-     * loadOffers is called when the 'offers' button is pressed. It calls the
-     * goToOffers method in SmartTrolleyGUI.java
-     * <p>
-     * User can browse store's offers
-     *
-     * @param event - response to click on 'offers' button
-     * <p>
-     * Date Modified: 7 Mar 2014
-     */
+	/**
+	 * loadOffers is called when the 'offers' button is pressed. It calls the
+	* calls the static loadOffers method in ControllerGeneral.java
+	 * <p>
+	 * User can browse store's offers
+	 *
+	 * @param event - response to click on 'offers' button
+	 * <p>
+	 * Date Modified: 7 Mar 2014
+	 */
 	public void loadOffers(ActionEvent event) {
 		ControllerGeneral.loadOffers(event, application);
 	}
-    
+
 	/**
 	 * loadFavourites is called when the 'favourites' button is pressed. It
-	 * calls the goToFavourites method in SmartTrolleyGUI.java
+	 * calls the static loadFavourites method in ControllerGeneral.java
 	 * <p>
 	 * User can maintain list of favourite products
 	 * 
-	 * @param event
-	 *            - response to click on 'favourites' button
-	 *            <p>
-	 *            Date Modified: 28 Feb 2014
+	 * @param event - response to click on 'favourites' button
+	 * <p> Date Modified: 28 Feb 2014
 	 */
 	public void loadFavourites(ActionEvent event) {
 		ControllerGeneral.loadFavourites(event, application);
 	}
-	
+
 	/**
 	 * This method places the button as specified in the arguments
 	 * <p> User views products
@@ -252,14 +241,13 @@ public class ProductScreenController implements Initializable {
 
 	}
 
-
 	/**
-	*Method/Test Description
+	* Returns the current slideshow that's running
 	*<p> User views products
 	*@return currentSlideShow - The current slideshow playing
 	*<p> Date Modified: 25 May 2014
 	*/
-	public SlideShow getCurrentSlideShow() {
+	protected SlideShow getCurrentSlideShow() {
 		return currentSlideShow;
 	}
 
@@ -269,7 +257,7 @@ public class ProductScreenController implements Initializable {
 	*@return productAnchorPane - The AnchorPane used
 	*<p> Date Modified: 25 May 2014
 	*/
-	public AnchorPane getProductAnchorPane() {
+	protected AnchorPane getProductAnchorPane() {
 		return productAnchorPane;
 	}
 }

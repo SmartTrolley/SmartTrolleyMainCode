@@ -185,7 +185,7 @@ public class ExampleShoppingListController implements Initializable {
 
 	/**
 	 * loadStartScreen is called when the smart trolley logo is pressed. It
-	 * calls the goToStartScreen method in SmartTrolleyGUI.java
+* calls the static loadStartScreen method in ControllerGeneral.java
 	 * 
 	 * @param event
 	 *            - response to click on smart trolley logo in navigation bar
@@ -198,7 +198,7 @@ public class ExampleShoppingListController implements Initializable {
 
 	/**
 	 * loadHomeScreen is called when the 'home' button is pressed. It calls the
-	 * goToHomeScreen method in SmartTrolleyGUI.java
+	 * calls the static loadHomeScreen method in ControllerGeneral.java
 	 * <p>
 	 * User navigates through product database
 	 * 
@@ -213,7 +213,7 @@ public class ExampleShoppingListController implements Initializable {
 
 	/**
 	 * loadFavourites is called when the 'favourites' button is pressed. It
-	 * calls the goToFavourites method in SmartTrolleyGUI.java
+* calls the static loadFavourites method in ControllerGeneral.java
 	 * <p>
 	 * User can maintain list of favourite products
 	 * 
@@ -228,7 +228,7 @@ public class ExampleShoppingListController implements Initializable {
 
 	/**
 	 * loadOffers is called when the 'offers' button is pressed. It calls the
-	 * goToOffers method in SmartTrolleyGUI.java
+* calls the static loadOffers method in ControllerGeneral.java
 	 * <p>
 	 * User can browse store's offers
 	 * 

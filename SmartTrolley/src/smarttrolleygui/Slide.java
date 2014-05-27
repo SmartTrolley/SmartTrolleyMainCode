@@ -15,15 +15,10 @@ package smarttrolleygui;
 
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import Printing.SmartTrolleyPrint;
 
-import com.sun.javafx.geom.BaseBounds;
-import com.sun.javafx.geom.transform.BaseTransform;
-import com.sun.javafx.jmx.MXNodeAlgorithm;
-import com.sun.javafx.jmx.MXNodeAlgorithmContext;
-import com.sun.javafx.sg.PGNode;
-
-public class Slide extends Node {
+public class Slide extends AnchorPane {
 	
 	/**An image's x-co-ordinate in the slide*/
 	static final double IMAGE_X_COORD = 25;
@@ -54,8 +49,8 @@ public class Slide extends Node {
 	/**
 	*Adds the Node parameter to the pane parameter
 	*<p>User can view PWS Compatible slideshow
-	*@param insertInSlide - Node to be inserted into the slide
-	 * @param type - Subchild element type of the node
+	* @param insertInSlide - Node to be inserted into the slide
+	* @param type - Subchild element type of the node
 	*/
 	public void addNodeToSlide(Node insertInSlide, SlideChildElements type){
 		
@@ -64,52 +59,13 @@ public class Slide extends Node {
 			
 			ImageView imageToInsert = (ImageView) insertInSlide;
 			imageToInsert.setX(IMAGE_X_COORD);
-			imageToInsert.setY(IMAGE_Y_COORD);
+			imageToInsert.setY(IMAGE_Y_COORD);	
+			
+			this.getChildren().add(imageToInsert);
+			
 			SmartTrolleyPrint.print("Image added to slide");			
 		}			
 	}
-
-	/* (non-Javadoc)
-	 * @see javafx.scene.Node#impl_computeContains(double, double)
-	 */
-	@Override
-	@Deprecated
-	protected boolean impl_computeContains(double arg0, double arg1) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	/* (non-Javadoc)
-	 * @see javafx.scene.Node#impl_computeGeomBounds(com.sun.javafx.geom.BaseBounds, com.sun.javafx.geom.transform.BaseTransform)
-	 */
-	@Override
-	@Deprecated
-	public BaseBounds impl_computeGeomBounds(BaseBounds arg0, BaseTransform arg1) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see javafx.scene.Node#impl_createPGNode()
-	 */
-	@Override
-	@Deprecated
-	protected PGNode impl_createPGNode() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see javafx.scene.Node#impl_processMXNode(com.sun.javafx.jmx.MXNodeAlgorithm, com.sun.javafx.jmx.MXNodeAlgorithmContext)
-	 */
-	@Override
-	@Deprecated
-	public Object impl_processMXNode(MXNodeAlgorithm arg0, MXNodeAlgorithmContext arg1) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
 }
 
 /**************End of Slide.java**************/

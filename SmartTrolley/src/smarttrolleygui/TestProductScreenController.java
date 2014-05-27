@@ -1,3 +1,4 @@
+//TODO This test class will not work in the final product since the Product Screen cannot be accessed without user interaction
 /**
  * SmartTrolley
  *
@@ -12,6 +13,7 @@
 
 package smarttrolleygui;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -31,9 +33,6 @@ public class TestProductScreenController {
 
 	/**An instance of the application*/
 	private SmartTrolleyGUI smartTrolleyApplication;
-
-	/**The displayed slide*/
-	private Slide displayedSlide;
 
 	/**A SlideShow created for this test*/
 	private SlideShow testSlideShow;
@@ -78,7 +77,7 @@ public class TestProductScreenController {
 
 		// Delay to allow the instance to launch.
 		// If you get NullPointer errors around this line, increase the delay
-		SmartTrolleyDelay.delay(1500);
+		SmartTrolleyDelay.delay(2500);
 
 		createAndStartTestSlideshow();
 
@@ -86,8 +85,7 @@ public class TestProductScreenController {
 		// screen that appears.
 		// Delay to allow the application state to settle before running the test
 		// If you get NullPointer errors around this line, increase the delay
-		SmartTrolleyDelay.delay(1000);
-		while(true);
+		SmartTrolleyDelay.delay(500);
 
 	}
 
@@ -98,35 +96,31 @@ public class TestProductScreenController {
 	*/
 	private void createAndStartTestSlideshow() {
 
-		displayedSlide = new Slide();
+		Slide firstSlide = new Slide();
 		testSlideShow = new SlideShow(smartTrolleyApplication.productScreen.getProductAnchorPane());
 
 		// TODO User IMAGE_HEIGHT & IMAGE_WIDTH constants instead of magic numbers
 		Image productImage = new Image(getClass().getResourceAsStream("img/SampleProducts/Activia.jpg"), 100, 100, true, true);
 		ImageView productImageView = new ImageView(productImage);
 
-		// Platform.runLater(new Runnable() {
-		// @Override
-		// public void run() {
-		displayedSlide.addNodeToSlide(productImageView, Slide.SlideChildElements.IMAGE);
-		testSlideShow.addSlideToSlideShow(displayedSlide);
-		// }
-		// });
+		firstSlide.addNodeToSlide(productImageView, Slide.SlideChildElements.IMAGE);
+		testSlideShow.addSlideToSlideShow(firstSlide);
 
-		// Platform.runLater(new Runnable() {
-		// @Override
-		// public void run() {
 		productImage = new Image(getClass().getResourceAsStream("img/SampleProducts/alpen_blueberry_cranberry.jpg"), 100, 100, true, true);
 		productImageView = new ImageView(productImage);
-		displayedSlide.addNodeToSlide(productImageView, Slide.SlideChildElements.IMAGE);
-		testSlideShow.addSlideToSlideShow(displayedSlide);
-		// }
-		// });
 
-		 Platform.runLater(new Runnable() {
-		 @Override
-		 public void run() {
-		testSlideShow.startSlideshow();
+		Slide secondSlide = new Slide();
+		secondSlide.addNodeToSlide(productImageView, Slide.SlideChildElements.IMAGE);
+
+		testSlideShow.addSlideToSlideShow(secondSlide);
+
+		SmartTrolleyPrint.print("testSlideShow is " + (testSlideShow == null) + " null.");
+		smartTrolleyApplication.productScreen.setSlideShow(testSlideShow);
+
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				testSlideShow.startSlideshow();
 			}
 		});
 	}
@@ -153,13 +147,33 @@ public class TestProductScreenController {
 		assertNotNull(smartTrolleyApplication.productScreen.getCurrentSlideShow());
 		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides() instanceof LinkedList);
 
-		// I think this is the syntax, but not entirely sure
 		for (Slide slide : smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides()) {
 			assertNotNull(slide);
 			assertTrue(slide instanceof Slide);
 		}
 	}
+	
+	/**
+	*Tests that the first slide is the slide shown when the slideshow is launched
+	*<p> User can view PWS Compatible slideshow
+	*<p> Date Modified: 27 May 2014
+	*/
+	@Test
+	public final void testFirstSlideisDefaultSlideShown() {
+		smartTrolleyApplication.productScreen.nextSLideButton.fire();
+		assertEquals(smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides().get(0), smartTrolleyApplication.productScreen.getCurrentSlideShow().getDisplayedSlide());
+	}
 
+	/**
+	*Tests that the next slide button goes to the next slide
+	*<p> User can view PWS Compatible slideshow
+	*<p> Date Modified: 27 May 2014
+	*/
+	@Test
+	public final void testNextSlideButton() {
+		smartTrolleyApplication.productScreen.nextSLideButton.fire();
+		assertEquals(smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides().get(1), smartTrolleyApplication.productScreen.getCurrentSlideShow().getDisplayedSlide());
+	}
 }
 
 /************** End of TestProductScreenController.java **************/

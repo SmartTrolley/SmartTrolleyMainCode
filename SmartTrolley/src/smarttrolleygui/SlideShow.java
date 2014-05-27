@@ -20,11 +20,19 @@ import javafx.scene.layout.Pane;
 import Printing.SmartTrolleyPrint;
 
 public class SlideShow {
+	
+	/**The linked list of slides*/
 	private LinkedList<Slide> slides;
 
+	
+	/**The slide that is displayed in the pane*/
 	private Slide displayedSlide;
 	
+	/**The pane which will contain the slide*/
 	private Pane displayedPane;
+
+	/**The index of the slide in the slideshow*/
+	private int slideShowIndex;
 
 	/**
 	*The constructor
@@ -43,7 +51,7 @@ public class SlideShow {
 	*@return
 	*<p> Date Modified: 24 May 2014
 	*/
-	public LinkedList<Slide> getSlides() {
+	protected LinkedList<Slide> getSlides() {
 		return slides;
 	}
 	
@@ -64,25 +72,14 @@ public class SlideShow {
 	*/
 	public void startSlideshow(){
 		SmartTrolleyPrint.print("Starting Slideshow");
+			
+		SmartTrolleyPrint.print("The slideshow has " + slides.size() + " slides.");
+		displayedSlide = slides.getFirst();
 		
-		//TODO This is only for testing////
-		//This creates a slide and displays it
-		displayedSlide = new Slide();
-		//testSlideShow = new SlideShow(displayedPane);
-
-		// TODO User IMAGE_HEIGHT & IMAGE_WIDTH constants instead of magic numbers
-		Image productImage = new Image(getClass().getResourceAsStream("img/SampleProducts/Activia.jpg"), 100, 100, true, true);
-		ImageView productImageView = new ImageView(productImage);
-
-		// Platform.runLater(new Runnable() {
-		// @Override
-		// public void run() {
-		displayedSlide.addNodeToSlide(productImageView, Slide.SlideChildElements.IMAGE);
-		//testSlideShow.addSlideToSlideShow(displayedSlide);
-		//////////////////////////////////////
+		slideShowIndex = 1;
 		
-//		displayedPane.getChildren().add(slides.getFirst());
-		displayedPane.getChildren().add(displayedSlide);
+		displaySlide(displayedSlide);
+		
 		SmartTrolleyPrint.print("Started Slideshow");
 	}
 
@@ -112,10 +109,21 @@ public class SlideShow {
 	*@return displayedSlide - The displayed Slide object
 	*<p> Date Modified: 25 May 2014
 	*/
-	public Slide getDisplayedSlide() {
+	protected Slide getDisplayedSlide() {
 
 		return displayedSlide;
 	}
+
+	/**
+	* Goes to the next slide in the slideshow and displays it
+	*<p>  User can view PWs Compatible slideshow
+	*<p> Date Modified: 27 May 2014
+	*/
+	public void nextSlide() {
+		displayedSlide = slides.get(slideShowIndex+1);
+		displaySlide(displayedSlide);
+	}
+
 
 }
 

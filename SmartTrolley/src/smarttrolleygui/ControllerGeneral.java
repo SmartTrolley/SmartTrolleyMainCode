@@ -29,7 +29,7 @@ public class ControllerGeneral {
 
 	/**
 	 * loadStartScreen is called when the smart trolley logo is pressed. It
-	 * calls the goToStartScreen method in SmartTrolleyGUI.java
+* calls the goToStartScreen method in SmartTrolleyGUI.java
 	 * 
 	 * @param event - response to click on smart trolley logo in navigation bar
 	 * <p> Date Modified: 16 May 2014
@@ -80,7 +80,7 @@ public class ControllerGeneral {
 	
 	/**
 	 * loadOffers is called when the 'offers' button is pressed. It calls the
-	 * goToOffers method in SmartTrolleyGUI.java
+* goToOffers method in SmartTrolleyGUI.java
 	 * <p>
 	 * User can browse store's offers
 	 * 
@@ -100,7 +100,7 @@ public class ControllerGeneral {
 	
 	/**
 	 * loadFavourites is called when the 'favourites' button is pressed. It
-	 * calls the goToFavourites method in SmartTrolleyGUI.java
+* calls the static goToFavourites method in SmartTrolleyGUI.java
 	 * <p>
 	 * User can maintain list of favourite products
 	 * 
