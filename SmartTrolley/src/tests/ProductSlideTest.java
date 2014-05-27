@@ -1,5 +1,14 @@
 /**
- * 
+ * SmartTrolley
+ *
+ * This file contains all automated tests for ProductSlide
+ *
+ * @author Alick Jacklin
+ * @author Matthew Wells
+ *
+ * @author Checked By: Checker(s) fill here
+ *
+ * @version V1.4 [Date Created: 26 May 2014]
  */
 package tests;
 
@@ -17,12 +26,7 @@ import smarttrolleygui.ProductSlide;
 import texthandler.SlideTextBody;
 import Printing.SmartTrolleyPrint;
 
-/**
- * @author Matthew Wells
- * @author Alick Jacklin
- *
- */
-public class CanvasSlideTest {
+public class ProductSlideTest {
 	
 	private ProductSlide productSlide;
 	public PriorityQueue<ShapePoint> points;
@@ -48,7 +52,7 @@ public class CanvasSlideTest {
 	
 	private String audURL = "Music/Kalimba.mp3";
 	private int audStartTime = 0;
-	private int audDuration = 100;
+	private int audDuration = 4;
 	private double audVolume = 0.4;
 	
 	private ArrayList<SlideTextBody> texts;
@@ -63,6 +67,10 @@ public class CanvasSlideTest {
 	private double textDuration = 0;
 	private int numOfStrings = 3;
 	
+	/**
+	*Sets up ProductSlide for tests
+	*<p> Date Modified: 27 May 2014
+	*/
 	@Before
 	public void setUp(){
 		
@@ -76,6 +84,10 @@ public class CanvasSlideTest {
 				xTextEnd, yTextEnd, textStartTime, textDuration);
 	}
 	
+	/**
+	*Test that the AnchorPane is visible.
+	*<p> Date Modified: 27 May 2014
+	*/
 	@Test
 	public void slideDisplayTest(){
 		point1 = new ShapePoint(pointLow,pointLow,point1Num);
@@ -93,6 +105,10 @@ public class CanvasSlideTest {
 		
 	}
 	
+	/**
+	*tests that the image is visible on the AnchorPane
+	*<p> Date Modified: 27 May 2014
+	*/
 	@Test
 	public void displayingImageTest(){
 		
@@ -105,6 +121,10 @@ public class CanvasSlideTest {
 //		assertTrue(productSlide.videoSetup().isVisible());
 //	}
 	
+	/**
+	*tests that the graphic is visible on the AnchorPane
+	*<p> Date Modified: 27 May 2014
+	*/
 	@Test
 	public void displayingGraphicsTest(){
 		
@@ -125,6 +145,10 @@ public class CanvasSlideTest {
 				graphicsStartTime, graphicsDuration).visibleProperty().get());
 	}
 	
+		/**
+		*tests that the audio is playing
+		*<p> Date Modified: 27 May 2014
+		*/
 		@Test
 	public void audioIsPlayingTest(){
 		SmartTrolleyDelay.delay(1000);
@@ -132,13 +156,20 @@ public class CanvasSlideTest {
 		productSlide.audio.stop();
 	}
 	
+		/**
+		*tests that the audio has stopped
+		*<p> Date Modified: 27 May 2014
+		*/	
 	@Test
 	public void audioHasStoppedPlayingTest(){
-		SmartTrolleyDelay.delay(1000);
-		productSlide.audio.stop();
+		SmartTrolleyDelay.delay(6000);
 		assertFalse(productSlide.audio.isPlaying());
 	}
 	
+	/**
+	*Tests that the text is visible
+	*<p> Date Modified: 27 May 2014
+	*/
 	@Test
 	public void displayingTextTest(){
 		
@@ -148,6 +179,10 @@ public class CanvasSlideTest {
 	}
 	
 	
+	/**
+	*Tests that all media have been removed from the slide
+	*<p> Date Modified: 27 May 2014
+	*/
 	@Test
 	public void slideClearingTest(){
 		
@@ -176,18 +211,17 @@ public class CanvasSlideTest {
 		SmartTrolleyPrint.print(productSlide.getChildren());
 		
 		SmartTrolleyDelay.delay(1000);
-		productSlide.audio.stop();
-		assertFalse(productSlide.audio.isPlaying());
 		
 		productSlide.clearSlide();
 		
 		SmartTrolleyPrint.print(productSlide.getChildren());
 		
+		assertFalse(productSlide.audio.isPlaying());
+		
 		assertTrue(productSlide.getChildren().isEmpty());
 		
 	}
 	
-
-	
-
 }
+
+/************** End of ProductSlideTest.java **************/

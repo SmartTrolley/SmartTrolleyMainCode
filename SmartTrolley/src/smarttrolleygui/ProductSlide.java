@@ -1,3 +1,17 @@
+/**
+ * SmartTrolley
+ *
+ * This file sets up an anchor pane to display all pws specified media inputs on,
+ * for slide show
+ *
+ * @author Alick Jacklin
+ * @author Matthew Wells
+ *
+ * @author Checked By: Checker(s) fill here
+ *
+ * @version V1.2 [Date Created: 26 May 2014]
+ */
+
 package smarttrolleygui;
 
 import graphicshandler.ShapePoint;
@@ -10,11 +24,11 @@ import java.util.PriorityQueue;
 import texthandler.SlideText;
 import texthandler.SlideTextBody;
 
-import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Shape;
 import Printing.SmartTrolleyPrint;
 import audiohandler.AudioHandler;
+
 
 
 public class ProductSlide extends AnchorPane{
@@ -34,16 +48,47 @@ public class ProductSlide extends AnchorPane{
 	protected int maxPoints= 5;
 	public AudioHandler audio;
 
-	private String oneString = "A Long-Expected Party. When Mr. Bilbo Baggins of Bag End announced\n" + "that he would shortly be celebrating his eleventy-first ";
+	private String oneString = "A Long-Expected Party. When Mr. Bilbo Baggins of Bag End announced\n" + "that he would shortly be celebrating his eleventy-first birthday";
 	private String twoString = "He knew he would need the Smart Trolley app to purchase some party food!";
 	private String threeString = "He then realised, Smart Trolley was shit, and used the\n Tesco App instead; stupid fat hobbit!!!";
 	protected int maxStrings = 3;
 			
 	/**
-	 * @param args
-	 * @return 
-	 * @return 
-	 */
+	*Contructor method for product slide, adds all media handlers
+	*<p>display slide
+	*@param points - an array list of points for a graphical shape
+	*@param numOfPoints - number of points desired for graphical shape, currently set between 1 and 5
+	*@param graphicsWidth - sets the width of the graphical shape
+	*@param graphicsHeight - sets the height of the graphical shape
+	*@param graphicsFillColour - sets the fill colour, string must be in Hex
+	*@param graphicsLineColour - sets the line colour, string must be in Hex
+	*@param graphicsStartTime - sets the graphical start time at which point the graphic will appear in seconds
+	*@param graphicsDuration - sets duration the graphic is displayed for in seconds
+	*@param imgURL - gives an image url to the image handler
+	*@param xImgStart - the starting point of the image in the x direction
+	*@param yImgStart - the starting point of the image in the y direction
+	*@param imgWidth - sets image width
+	*@param imgHeight - sets image height
+	*@param imgStartTime - sets initial display time of image after slide in seconds
+	*@param imgDuration - sets how long the image will display for in seconds
+	*@param audioURL - gives an audio URL to the audio handler
+	*@param audioStartTime - gives a start time in seconds
+	*@param audioDuration - gives a duration in seconds
+	*@param audioVolume - sets volume between 0.0 and 1.0
+	*@param texts - sets an array list of texts
+	*@param font - sets font style, all MS fonts seem to work
+	*@param fontColor - sets font colour, string must be in HEX
+	*@param numOfStrings - sets the number of strings you wish to display
+	*@param fontSize - sets font size
+	*@param xTextStart - sets a start position for the text in the x direction
+	*@param yTextStart - sets a start position for the text in the y direction
+	*@param xTextEnd - sets an end location for the text in the x direction
+	*@param yTextEnd - sets an end location for the text in the x direction
+	*@param textStartTime - displays text at a set time after loading in seconds
+	*@param textDuration - sets a duration the text is displayed in seconds
+	*
+	*<p> Date Modified: 27 May 2014
+	*/
 	public ProductSlide(PriorityQueue<ShapePoint> points, int numOfPoints, int graphicsWidth,
 			int graphicsHeight, String graphicsFillColour, String graphicsLineColour,
 			int graphicsStartTime, int graphicsDuration,
@@ -68,6 +113,22 @@ public class ProductSlide extends AnchorPane{
 					
 	}
 	
+
+	/**
+	*sets up an image in the image handler 
+	*ready to be displayed in the anchorpane.
+	*
+	*@param imgURL - gives an image url to the image handler
+	*@param xImgStart - the starting point of the image in the x direction
+	*@param yImgStart - the starting point of the image in the y direction
+	*@param imgWidth - sets image width
+	*@param imgHeight - sets image height
+	*@param imgStartTime - sets initial display time of image after slide in seconds
+	*@param imgDuration - sets how long the image will display for in seconds
+	*@return image1
+	*
+	*<p> Date Modified: 27 May 2014
+	*/
 	public SlideImage imageSetup(String imgURL, int xImgStart, int yImgStart, int imgWidth,
 			int imgHeight, int imgStartTime, int imgDuration){
 		
@@ -88,6 +149,20 @@ public class ProductSlide extends AnchorPane{
 //		return null;
 //	}
 
+		/**
+		*Sends a graphic to the graphics handler, 
+		*ready to be displayed on the anchorpane.
+		*@param points - an array list of points for a graphical shape
+		*@param numOfPoints - number of points desired for graphical shape, currently set between 1 and 5
+		*@param graphicsWidth - sets the width of the graphical shape
+		*@param graphicsHeight - sets the height of the graphical shape
+		*@param graphicsFillColour - sets the fill colour, string must be in Hex
+		*@param graphicsLineColour - sets the line colour, string must be in Hex
+		*@param graphicsStartTime - sets the graphical start time at which point the graphic will appear in seconds
+		*@param graphicsDuration - sets duration the graphic is displayed for in seconds
+		*@return shape
+		*<p> Date Modified: 27 May 2014
+		*/
 		public Shape graphicsSetup(PriorityQueue<ShapePoint> points, int numOfPoints, int graphicsWidth, 
 				int graphicsHeight, String graphicsFillColour, String graphicsLineColour,
 				int graphicsStartTime, int graphicsDuration) {
@@ -113,6 +188,24 @@ public class ProductSlide extends AnchorPane{
 		return shape;
 	}
 		
+		/**
+		*Sets up text in the texthandler, ready to be displayed
+		*by the anchorpane.
+		*
+		*@param texts - sets an array list of texts
+		*@param font - sets font style, all MS fonts seem to work
+		*@param fontColor - sets font colour, string must be in HEX
+		*@param numOfStrings - sets the number of strings you wish to display
+		*@param fontSize - sets font size
+		*@param xTextStart - sets a start position for the text in the x direction
+		*@param yTextStart - sets a start position for the text in the y direction
+		*@param xTextEnd - sets an end location for the text in the x direction
+		*@param yTextEnd - sets an end location for the text in the x direction
+		*@param textStartTime - displays text at a set time after loading in seconds
+		*@param textDuration - sets a duration the text is displayed in seconds
+		*@return text1
+		*<p> Date Modified: 27 May 2014
+		*/
 		public SlideText textSetup(ArrayList<SlideTextBody> texts, String font,
 				String fontColor, int numOfStrings, int fontSize, int xTextStart, int yTextStart,
 				int xTextEnd, int yTextEnd, double textStartTime, double textDuration){
@@ -136,24 +229,31 @@ public class ProductSlide extends AnchorPane{
 			return text1;
 		}
 		
-		
-		
-		public void clearSlide(){
-				SmartTrolleyPrint.print(getChildren());	
-				audio.stop();
-				getChildren().clear();
-		}
-
+		/**
+		*sets audio, ready to be played
+		*@param audioURL - gives an audio URL to the audio handler
+		*@param audioStartTime - gives a start time in seconds
+		*@param audioDuration - gives a duration in seconds
+		*@param audioVolume - sets volume between 0.0 and 1.0
+		*<p> Date Modified: 27 May 2014
+		*/
 		public void audioSetup(String audioURL, int audioStartTime, int audioDuration, double audioVolume) {
 			
 			audio = new AudioHandler(audioURL, audioStartTime, audioDuration, audioVolume);
 			audio.begin();
 	
 		}
-
-	
 		
-
-
+		/**
+		*clears all children from anchor pane and stop audio.
+		*<p> Date Modified: 27 May 2014
+		*/
+		public void clearSlide(){
+				SmartTrolleyPrint.print(getChildren());	
+				audio.stop();
+				getChildren().clear();
+		}
 
 }
+
+/************** End of ProductSlide.java **************/
