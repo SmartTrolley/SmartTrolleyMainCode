@@ -13,7 +13,7 @@
 
 package tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -31,7 +31,6 @@ import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 
 import smarttrolleygui.ExampleShoppingListController;
 import smarttrolleygui.SmartTrolleyGUI;

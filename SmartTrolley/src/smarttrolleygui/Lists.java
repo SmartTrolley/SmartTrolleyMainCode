@@ -18,7 +18,6 @@
 /**************End of Lists.java**************/
 package smarttrolleygui;
 
-import java.sql.ResultSet;
 
 //TODO A possible way to add listInProducts functionality is to 
 //create a listInProducts hash table. Then whenever a quantity is updated/ product added to the list

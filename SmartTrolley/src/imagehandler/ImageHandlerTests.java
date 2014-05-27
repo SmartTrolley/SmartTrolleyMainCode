@@ -14,7 +14,9 @@
 
 package imagehandler;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import javafx.scene.image.Image;
 
 import org.junit.Before;

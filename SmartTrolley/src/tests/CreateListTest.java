@@ -13,10 +13,12 @@
 
 package tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Group;
@@ -24,9 +26,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import smarttrolleygui.CreateNewListScreenController;
 import smarttrolleygui.SmartTrolleyGUI;
 import smarttrolleygui.StartScreenController;

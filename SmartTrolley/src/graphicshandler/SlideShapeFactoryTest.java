@@ -1,8 +1,9 @@
 package graphicshandler;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.PriorityQueue;
+
 import javafx.geometry.Bounds;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;

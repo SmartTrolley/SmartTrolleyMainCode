@@ -13,6 +13,9 @@
 
 package tests;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Group;
@@ -27,11 +30,8 @@ import org.junit.Test;
 import smarttrolleygui.AllShoppingListsScreenController;
 import smarttrolleygui.SmartTrolleyGUI;
 import smarttrolleygui.StartScreenController;
-
 import DatabaseConnectors.SqlConnection;
 import Printing.SmartTrolleyPrint;
-
-import java.sql.*;
 
 public class DeleteItemsFromListTest {
 

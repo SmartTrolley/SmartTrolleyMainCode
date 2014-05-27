@@ -2,14 +2,15 @@ package tests;
 
 import graphicshandler.ShapePoint;
 
+import java.util.ArrayList;
 import java.util.PriorityQueue;
-
-import smarttrolleygui.ProductSlide;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import smarttrolleygui.ProductSlide;
+import texthandler.SlideTextBody;
 
 public class ProductSlideVisualTest extends Application {
 	
@@ -37,6 +38,18 @@ public class ProductSlideVisualTest extends Application {
 	private int audStartTime = 0;
 	private int audDuration = 100;
 	private double audVolume = 0.4;
+	
+	ArrayList<SlideTextBody> texts;
+	String font = "Comic Sans MS";
+	String fontColor = "FF00FF";
+	int fontSize = 12;
+	int xTextStart = 350;
+	int yTextStart = 467;
+	int xTextEnd = 230;
+	int yTextEnd = 290;
+	double textStartTime = 0;
+	double textDuration = 0;
+	int numOfStrings = 2;
 		
 
 	@Override
@@ -48,7 +61,9 @@ public class ProductSlideVisualTest extends Application {
 				graphicsLineColour, graphicsStartTime, graphicsDuration,
 				imageURL, xImageStart,  yImageStart, imageWidth,
 				imageHeight, imageStartTime, imageDuration, audURL, audStartTime,
-				audDuration, audVolume);
+				audDuration, audVolume, texts, font,
+				fontColor, numOfStrings, fontSize, xTextStart, yTextStart,
+				xTextEnd, yTextEnd, textStartTime, textDuration);
 		
 		border.setCenter(productSlide);
 	

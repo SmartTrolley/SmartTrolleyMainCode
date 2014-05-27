@@ -1,17 +1,20 @@
 package smarttrolleygui;
 
-import java.util.PriorityQueue;
-
-import audiohandler.AudioHandler;
-
-import Printing.SmartTrolleyPrint;
-
 import graphicshandler.ShapePoint;
 import graphicshandler.SlideShapeFactory;
 import imagehandler.SlideImage;
-import javafx.scene.Group;
+
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+
+import texthandler.SlideText;
+import texthandler.SlideTextBody;
+
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Shape;
+import Printing.SmartTrolleyPrint;
+import audiohandler.AudioHandler;
 
 
 public class ProductSlide extends AnchorPane{
@@ -30,6 +33,11 @@ public class ProductSlide extends AnchorPane{
 	protected int pointLow = 60, pentagonX = 25, pentagonY = 25;
 	protected int maxPoints= 5;
 	public AudioHandler audio;
+
+	private String oneString = "A Long-Expected Party. When Mr. Bilbo Baggins of Bag End announced\n" + "that he would shortly be celebrating his eleventy-first ";
+	private String twoString = "He knew he would need the Smart Trolley app to purchase some party food!";
+	private String threeString = "He then realised, Smart Trolley was shit, and used the\n Tesco App instead; stupid fat hobbit!!!";
+	protected int maxStrings = 3;
 			
 	/**
 	 * @param args
@@ -42,13 +50,18 @@ public class ProductSlide extends AnchorPane{
 			String imgURL, int xImgStart, int yImgStart,
 			int imgWidth, int imgHeight, int imgStartTime, 
 			int imgDuration, String audioURL,int audioStartTime, int audioDuration,
-			double audioVolume){
+			double audioVolume, ArrayList<SlideTextBody> texts, String font,
+			String fontColor,int numOfStrings, int fontSize, int xTextStart, int yTextStart,
+			int xTextEnd, int yTextEnd, double textStartTime, double textDuration){
 		
 		getChildren().add(graphicsSetup(points, numOfPoints, graphicsWidth, graphicsHeight,
 				graphicsFillColour, graphicsLineColour, graphicsStartTime,
 				graphicsDuration));
 		getChildren().add(imageSetup(imgURL, xImgStart, yImgStart, imgWidth,
 				imgHeight, imgStartTime, imgDuration));
+		getChildren().add(textSetup(texts, font,
+				fontColor, numOfStrings, fontSize, xTextStart, yTextStart,
+				xTextEnd, yTextEnd, textStartTime, textDuration));
 		audioSetup(audioURL, audioStartTime, audioDuration, audioVolume);
 			
 		setVisible(true);
@@ -78,7 +91,7 @@ public class ProductSlide extends AnchorPane{
 		public Shape graphicsSetup(PriorityQueue<ShapePoint> points, int numOfPoints, int graphicsWidth, 
 				int graphicsHeight, String graphicsFillColour, String graphicsLineColour,
 				int graphicsStartTime, int graphicsDuration) {
-//			
+
 			
 			
 			points = new PriorityQueue<ShapePoint>();
@@ -100,6 +113,29 @@ public class ProductSlide extends AnchorPane{
 		return shape;
 	}
 		
+		public SlideText textSetup(ArrayList<SlideTextBody> texts, String font,
+				String fontColor, int numOfStrings, int fontSize, int xTextStart, int yTextStart,
+				int xTextEnd, int yTextEnd, double textStartTime, double textDuration){
+			
+			texts = new ArrayList<SlideTextBody>();
+			
+			texts.add(new SlideTextBody(oneString , true, true, true, 1));
+			texts.add(new SlideTextBody(twoString , false, false, true, 2));
+			texts.add(new SlideTextBody(threeString , false, false, false, 3));
+			
+			for( int i=0; i< maxStrings - numOfStrings; i++){
+				texts.remove(i);
+			}
+		
+			texthandler.SlideText text1 = new texthandler.SlideText(texts, font, fontColor, fontSize, xTextStart, yTextStart,
+					xTextEnd, yTextEnd, textStartTime, textDuration);
+			
+			
+			text1.setVisible(true);
+			
+			return text1;
+		}
+		
 		
 		
 		public void clearSlide(){
@@ -114,6 +150,8 @@ public class ProductSlide extends AnchorPane{
 			audio.begin();
 	
 		}
+
+	
 		
 
 

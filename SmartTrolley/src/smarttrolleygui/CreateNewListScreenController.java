@@ -17,14 +17,14 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import DatabaseConnectors.SqlConnection;
-import Printing.SmartTrolleyPrint;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import DatabaseConnectors.SqlConnection;
+import Printing.SmartTrolleyPrint;
 
 public class CreateNewListScreenController implements Initializable {
 

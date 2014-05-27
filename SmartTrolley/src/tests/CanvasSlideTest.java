@@ -3,18 +3,19 @@
  */
 package tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import graphicshandler.ShapePoint;
 
+import java.util.ArrayList;
 import java.util.PriorityQueue;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import Printing.SmartTrolleyPrint;
-
 import smarttrolleygui.ProductSlide;
+import texthandler.SlideTextBody;
+import Printing.SmartTrolleyPrint;
 
 /**
  * @author Matthew Wells
@@ -50,6 +51,18 @@ public class CanvasSlideTest {
 	private int audDuration = 100;
 	private double audVolume = 0.4;
 	
+	private ArrayList<SlideTextBody> texts;
+	private String font = "Comic Sans MS";
+	private String fontColor = "FF00FF";
+	private int fontSize = 12;
+	private int xTextStart = 350;
+	private int yTextStart = 467;
+	private int xTextEnd = 230;
+	private int yTextEnd = 290;
+	private double textStartTime = 0;
+	private double textDuration = 0;
+	private int numOfStrings = 3;
+	
 	@Before
 	public void setUp(){
 		
@@ -58,7 +71,9 @@ public class CanvasSlideTest {
 				graphicsStartTime, graphicsDuration,
 				imageURL, xImageStart,  yImageStart,
 				imageWidth, imageHeight, imageStartTime,
-				imageDuration, audURL, audStartTime, audDuration, audVolume);
+				imageDuration, audURL, audStartTime, audDuration, audVolume, texts,
+				font, fontColor, numOfStrings, fontSize, xTextStart, yTextStart,
+				xTextEnd, yTextEnd, textStartTime, textDuration);
 	}
 	
 	@Test
@@ -112,17 +127,26 @@ public class CanvasSlideTest {
 	
 		@Test
 	public void audioIsPlayingTest(){
-		SmartTrolleyDelay.delay(10000);
+		SmartTrolleyDelay.delay(1000);
 		assertTrue(productSlide.audio.isPlaying());
 		productSlide.audio.stop();
 	}
 	
 	@Test
 	public void audioHasStoppedPlayingTest(){
-		SmartTrolleyDelay.delay(10000);
+		SmartTrolleyDelay.delay(1000);
 		productSlide.audio.stop();
 		assertFalse(productSlide.audio.isPlaying());
 	}
+	
+	@Test
+	public void displayingTextTest(){
+		
+		assertTrue(productSlide.textSetup(texts,
+				font, fontColor, numOfStrings, fontSize, xTextStart, yTextStart,
+				xTextEnd, yTextEnd, textStartTime, textDuration).isVisible());
+	}
+	
 	
 	@Test
 	public void slideClearingTest(){

@@ -12,7 +12,6 @@
  */
 package smarttrolleygui;
 
-import Printing.SmartTrolleyPrint;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
