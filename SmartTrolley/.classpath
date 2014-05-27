@@ -3,10 +3,10 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="External Dependencies/FXMessageBox.jar"/>
 	<classpathentry kind="lib" path="External Dependencies/mysql-connector-java-5.1.18-bin.jar"/>
+	<classpathentry kind="lib" path="External Dependencies/jfxrt.jar"/>
+	<classpathentry kind="lib" path="External Dependencies/simple-xml-2.7.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/Java/jre7/lib/jfxrt.jar"/>
 	<classpathentry kind="con" path="at.bestsolution.efxclipse.tooling.jdt.core.JAVAFX_CONTAINER"/>
-	<classpathentry kind="lib" path="H:/SWENG Y3/MyJSpikes/Spikes/simple-xml-2.7.1/jar/simple-xml-2.7.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
