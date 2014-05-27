@@ -1,7 +1,18 @@
-package smarttrolleygui;
+/**
+* SmartTrolley
+*
+* @author Thomas Lea
+*
+* @author Checked By: Checker(s) fill here
+*
+* @version V1.0 [Date Created: 27 May 2014]
+**/
+package slideshowdata;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
+@Root (strict = false)
 public class DocumentInfoData {
 	@Element (name = "author")
 	public String author;
@@ -12,10 +23,8 @@ public class DocumentInfoData {
 	@Element (name = "comment")
 	public String comment;
 	@Element (name = "width")
-	public String width;
+	public int width;
 	@Element (name = "height")
-	public String height;
+	public int height;
 
-	public DocumentInfoData() {
-	}
 }

@@ -1,7 +1,6 @@
 /**
 * SmartTrolley
 *
-* 
 *
 * @author Thomas Lea
 *
@@ -9,14 +8,12 @@
 *
 * @version V1.0 [Date Created: 26 May 2014]
 */
-package smarttrolleygui;
+package slideshowdata;
 
 import java.io.File;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
-
-import Printing.SmartTrolleyPrint;
 
 public class PWSParser {
 	
