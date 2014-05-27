@@ -38,6 +38,8 @@ public class CreateNewListScreenController implements Initializable {
 	@ FXML
 	private Label notifierLabel;
 	
+	private ControllerGeneral controller = new ControllerGeneral(); 
+	
 	/**
 	 * initialize is automatically called when the controller is created.
 	 * <p>
@@ -45,7 +47,6 @@ public class CreateNewListScreenController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		// TODO remove if left unused
 	}
 
 	/**
@@ -69,14 +70,7 @@ public class CreateNewListScreenController implements Initializable {
 	 *            Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-
-		if (application == null) {
-			// We are running in isolated FXML, possibly in Scene Builder.
-			// NO-OP.
-			System.out.println("error: application == null");
-		} else {
-			application.goToStartScreen();
-		}
+    	controller.loadStartScreen(event, application);
 	}
 
 	/**
@@ -117,9 +111,10 @@ public class CreateNewListScreenController implements Initializable {
 						+ enteredListName + "');";
 				sqlConnection.executeStatement(sqlStatement);
 				SmartTrolleyPrint.print("Created new list: " + enteredListName);
-
+				
+				SmartTrolleyGUI.setCurrentListName(enteredListName);
+				
 				// move to HomeScreen
-				// TODO: pass on enteredListName, so that it can be displayed / call setCurrentListID 
 				application.goToHomeScreen();
 			} else {
 				// Display error message if no name is entered.

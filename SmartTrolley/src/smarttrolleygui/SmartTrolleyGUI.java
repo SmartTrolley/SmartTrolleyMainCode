@@ -19,10 +19,6 @@ import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import se.mbaeumer.fxmessagebox.MessageBox;
-import se.mbaeumer.fxmessagebox.MessageBoxType;
-
-
 import Printing.SmartTrolleyPrint;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -36,32 +32,19 @@ import javafx.stage.Stage;
 public class SmartTrolleyGUI extends Application {
     
 
-    
-    /**The displayed stage*/
     public static Stage stage; 
     
-    /**Maximum height of the stage*/
     private final double MIN_WINDOW_WIDTH = 600.0;
-    
-    /**Minimum height of the stage*/
     private final double MIN_WINDOW_HEIGHT = 600.0;
-    
-    
-    /**The list ID of the displayed list*/
     private static int currentListID = 0;
+    private static String currentListName;
+    private static int currentProductID = 0;	
     
-    /**The start screen in SmartTrolleyGUI*/
     StartScreenController startScreen = new StartScreenController();
 
-    /**The list of shopping lists screen in SmartTrolleyGUI*/
 	AllShoppingListsScreenController allShoppingLists;
 
-	/**The home screen in SmartTrolleyGUI*/
 	HomeScreenController homeScreen;
-	
-	
-	/**The product screen in SmartTrolleyGUI*/
-	ProductScreenController productScreen;
 
 	public ExampleShoppingListController exampleShoppingList;
 
@@ -76,25 +59,24 @@ public class SmartTrolleyGUI extends Application {
             stage.getIcons().add(new Image("smarttrolleygui/img/windowIcon.jpg"));
             stage.setMinWidth(MIN_WINDOW_WIDTH);
             stage.setMinHeight(MIN_WINDOW_HEIGHT);
-//            goToStartScreen();
+            goToStartScreen();
             
             //for debugging purposes uncomment ONE of the following four lines and comment previous line
 //            goToHomeScreen();
 //            goToFavourites();
 //            goToShoppingList();
 //            goToNewOffers();
-            goToProductScreen();
             
-            stage.show();
+            primaryStage.show();
         } catch (Exception ex) {
-        	FXMLNotFound();
+        	//TODO Show a message box to the user here
         	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
         }
     }
 
-    /**
+	/**
     *goToStartScreen is called in 'start' method and loads the application's start-up screen
     *<p>User can choose to create a new shopping list, open an existing one, or import an externally created list.
     *<p>Date Modified: 6 Mar 2014
@@ -104,7 +86,7 @@ public class SmartTrolleyGUI extends Application {
             startScreen = (StartScreenController) replaceSceneContent("fxml/StartScreen.fxml");
             startScreen.setApp(this);         
         } catch (Exception ex) {
-        	FXMLNotFound();
+        	//TODO Show a message box to the user here
         	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
@@ -114,7 +96,8 @@ public class SmartTrolleyGUI extends Application {
     /**
     *goToCreateNewListScreen is called when the user chooses to create a new shopping list
     *on the start screen. It loads a screen which allows the user to enter the name for the new list.
-    *<p>User creates new list
+    *TODO: add user story this method satisfies (in next line)
+    *<p>
     *<p>Date Modified: 3 May 2014
     */
     public void goToCreateNewListScreen() {
@@ -172,7 +155,7 @@ public class SmartTrolleyGUI extends Application {
             FavouritesScreenController favourites = (FavouritesScreenController) replaceSceneContent("fxml/FavouritesScreen.fxml");
             favourites.setApp(this);
         } catch (Exception ex) {
-        	FXMLNotFound();
+        	//TODO Show a message box to the user here
         	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);            
@@ -191,7 +174,7 @@ public class SmartTrolleyGUI extends Application {
             exampleShoppingList = (ExampleShoppingListController) replaceSceneContent("fxml/ExampleShoppingList.fxml");
             exampleShoppingList.setApp(this);
         } catch (IOException ex) {
-        	FXMLNotFound();
+        	//TODO Show a message box to the user here
         	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
@@ -210,26 +193,12 @@ public class SmartTrolleyGUI extends Application {
             OffersScreenController offers = (OffersScreenController) replaceSceneContent("fxml/OffersScreen.fxml");
             offers.setApp(this);
         } catch (Exception ex) {
-        	FXMLNotFound();
-        	
+        	//TODO Show a message box to the user here
         	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
         }
     }
-
-	/**
-	*Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
-	*[If applicable]@see [Reference URL OR Class#Method]
-	*<p> Date Modified: 24 May 2014
-	*/
-	private void FXMLNotFound() {
-		MessageBox FXMLCrashMsgBx = new MessageBox(
-		"Application crashed. Data for next screen not found", MessageBoxType.OK_ONLY);
-		
-		FXMLCrashMsgBx.showAndWait();
-	}
     
     /**
      *goToProductScreen is called when a product name is clicked. It loads the screen which holds the product information.
@@ -238,9 +207,7 @@ public class SmartTrolleyGUI extends Application {
      */
     public void goToProductScreen() {
         try {
-        	
-        	//TODO This needs to be implemented unless Arne has done it: productScreen.addSlideShow(selectedSlideShow);
-        	productScreen = (ProductScreenController) replaceSceneContent("fxml/ProductScreen.fxml");
+            ProductScreenController productScreen = (ProductScreenController) replaceSceneContent("fxml/ProductScreen.fxml");
             productScreen.setApp(this);
         } catch (Exception ex) {
         	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
@@ -249,6 +216,7 @@ public class SmartTrolleyGUI extends Application {
         }
 	}
     
+    //TODO This should throw a clearer exception(s)
     /**
     *replaceSceneContent loads in the content from the fxml file it is passed 
     *<p>Displays content on screen
@@ -285,10 +253,6 @@ public class SmartTrolleyGUI extends Application {
             container.setPrefHeight(stageHeight);
         }
         
-        // next line left in to show need for preceding ~10 lines        
-        // Scene scene = new Scene(container, stage.getWidth(), stage.getHeight());
-        // previous line alone does not work
-        
         stage.setScene(scene);
         stage.sizeToScene();
         return (Initializable) fxmlLoader.getController();
@@ -298,6 +262,7 @@ public class SmartTrolleyGUI extends Application {
     *The main() method is ignored in correctly deployed JavaFX applications.
     *main() serves only as fallback in case the application cannot be launched
     *through deployment artifacts, e.g., in IDEs with limited FX support.
+    *<p>Test(s)/User Story that it satisfies
     *@param args the command line arguments
     *<p> Date Modified: 22 Feb 2014
     */
@@ -321,9 +286,43 @@ public class SmartTrolleyGUI extends Application {
 	*<p> Date Modified: 9 May 2014
 	*/
 	public static void setCurrentListID(int listID) {
-		currentListID = listID;
-		
+		currentListID = listID;		
+	}
+	
+	/**
+	*gets list name for use throughout all code
+	*@return
+	*<p> Date Modified: 9 May 2014
+	*/
+	public static String getCurrentListName() {		
+		return currentListName;
+	}
+	
+	/**
+	*Sets the current list name
+	*@param productID
+	*<p> Date Modified: 22 May 2014
+	*/
+	public static void setCurrentListName(String listName) {
+		currentListName = listName;			
+	}
+	
+	/**
+	*gets ProductID for use throughout all code
+	*@return
+	*<p> Date Modified: 22 May 2014
+	*/
+	public static int getCurrentProductID() {		
+		return currentProductID;
 	}
 
+	/**
+	*Sets the current product ID of the product selected
+	*@param productID
+	*<p> Date Modified: 22 May 2014
+	*/
+	public static void setCurrentProductID(int productID) {
+		currentProductID = productID;		
+	}
 }
 /**************End of SmartTrolleyGUI**************/
