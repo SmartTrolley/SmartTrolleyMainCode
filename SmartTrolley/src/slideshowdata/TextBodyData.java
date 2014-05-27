@@ -28,7 +28,7 @@ public class TextBodyData {
 	@Attribute (name = "underlined", required=false)
 	public Boolean underlined;
 	
-	@Element (name = "textstring")
+	@Element (name = "textstring", required = false)
 	public String textstring;
 	
 }

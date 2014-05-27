@@ -33,6 +33,7 @@ public class TestPWSParser {
 		
 		parser  =  new PWSParser();
 		data = new SlideShowData();
+		data = parser.read(fileName);
 	}
 	
 	@After
@@ -41,10 +42,8 @@ public class TestPWSParser {
 
 	
 	@Test
-	public void correctInfoTest() throws Exception{
-		data = parser.read(fileName);
+	public void correctDocumentInfoTest() throws Exception{
 		
-		//DocumentInfo data
 		assertEquals(data.getAuthor() ,"D6 Digital");
 		assertEquals(data.getVersion() ,"2.1");
 		assertEquals(data.getTitle() ,"This is the first chapter ");
@@ -55,7 +54,11 @@ public class TestPWSParser {
 		SmartTrolleyPrint.print("DocumentInfo Data: " + data.getAuthor() + ", " + data.getVersion()+ ", "  + data.getTitle()
 				+ ", " 	+ data.getComment()+ ", "  + data.getWidth()+ ", "  + data.getHeight() + "\n");
 		
-		//Defaults Data
+	}
+	
+	@Test
+	public void correctDefaultsTest() throws Exception{
+		
 		assertEquals(data.getDefaultBackgroundColor() ,"#948A54");
 		assertEquals(data.getDefaultFont() ,"Papyrus");
 		assertEquals(data.getDefaultFontSize() , 18);
@@ -65,11 +68,58 @@ public class TestPWSParser {
 		
 		SmartTrolleyPrint.print("Defaults Data: " + data.getDefaultBackgroundColor() + ", " + data.getDefaultFont()+ ", "  + data.getDefaultFontSize()
 				+ ", " 	+ data.getDefaultFontColor()+ ", "  + data.getDefaultLineColor()+ ", "  + data.getDefaultFillColor() + "\n");
+		
+	}
 	
-		//Slide Data
-		assertEquals(data.getTextString() ,"Text must be within a “bounding” empty text box with the desired formatting"  );
-		SmartTrolleyPrint.print("Slide Data: " + data.getTextString() + "\n");
+	@Test
+	public void correctTextTest() throws Exception{
+		
+		assertEquals(data.getTextXstart() , 20);
+		assertEquals(data.getTextYstart() , 291);
+		assertEquals(data.getTextXend() , 505);
+		assertEquals(data.getTextYend() , 441);
+		assertEquals(data.getTextLayer() , 17);
+		assertEquals(data.getTextDuration() , 0);
+		assertEquals(data.getTextStarttime() , 0);
+		assertEquals(data.getTextFont() , "Papyrus");
+		assertEquals(data.getTextFontcolor() , "#000000");
+		assertEquals(data.getTextFontsize() , 16);
+		
+		SmartTrolleyPrint.print("Text Data: " + data.getTextXstart() + ", " + data.getTextYstart()+ ", "  + data.getTextXend()
+				+ ", " 	+ data.getTextYend()+ ", "  + data.getTextLayer()+ ", "  + data.getTextDuration() + ", "  + data.getTextStarttime()
+				+ ", "  + data.getTextFont() + ", " + data.getTextFontcolor() + ", " + data.getTextFontsize() + "\n");
+	}
 	
+	@Test
+	public void correctTextbodyTest() throws Exception{
+		
+//		assertEquals(data.getTextbodyBranch(0) , 3);
+//		assertEquals(data.getTextbodyItalic(0) , true);
+//		assertEquals(data.getTextbodyBold(0) , true);
+//		assertEquals(data.getTextbodyUnderlined(0) , false);
+//		assertEquals(data.getTextbodyTextstring(0) , "Text must be within a “bounding” empty text box with the desired formatting");
+		
+		SmartTrolleyPrint.print("Textbody Data: " + data.getTextbodyBranch(0) + ", " + data.getTextbodyItalic(0) + ", " + data.getTextbodyBold(0) 
+				+ ", " + data.getTextbodyUnderlined(0) +  ", " + data.getTextbodyTextstring(0) + "\n");
+	}
+	
+	@Test
+	public void correctImageTest() throws Exception{
+		
+		assertEquals(data.getImageURL() ,"resources/images/Desert.jpg");
+		assertEquals(data.getImageXstart() ,383);
+		assertEquals(data.getImageYstart() , 15);
+		assertEquals(data.getImageWidth() , 272);
+		assertEquals(data.getImageHeight() , 122);
+		assertEquals(data.getImageLayer() , 3);
+		assertEquals(data.getImageDuration() , 0);
+		assertEquals(data.getImageStarttime() , 0);
+		assertEquals(data.getImageBranch() , 1);
+		
+		SmartTrolleyPrint.print("Image Data: " + data.getImageURL() + ", " + data.getImageXstart()+ ", "  + data.getImageYstart()
+				+ ", " 	+ data.getImageWidth()+ ", "  + data.getImageHeight()+ ", "  + data.getImageLayer() + data.getImageDuration()
+				+ ", "  + data.getImageStarttime()+ ", "  + data.getImageBranch() + "\n");
+		
 	}
 	
 }

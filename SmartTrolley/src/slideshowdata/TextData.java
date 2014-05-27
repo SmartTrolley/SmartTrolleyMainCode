@@ -10,14 +10,21 @@
 package slideshowdata;
 
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 @Root (strict = false)
 public class TextData {
-	TextBodyData  textbody = new TextBodyData();
 	
+	@ElementList (name = "textbody")
+	public ArrayList<TextBodyData> textbodydatalist;
+		
 	@Attribute (name = "xstart", required=true)
 	public int xstart;
 	
@@ -49,8 +56,7 @@ public class TextData {
 	public int fontsize;
 
 	
-	@Element (name = "textbody")
-	public TextBodyData textbodydata;
+
 	
 	
 

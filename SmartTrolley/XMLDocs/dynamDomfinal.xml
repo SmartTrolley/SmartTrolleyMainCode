@@ -10,15 +10,6 @@
 	</textbody>
 	</text>
 	
-	<shape fillcolor="#F79646" linecolor="#FFFFFF" layer="9" duration="0" starttime="3" totalpoints="8" width="235" height="106"><point num="0" x="269" y="38"/>
-	<point num="1" x="422" y="38"/>
-	<point num="2" x="419" y="0"/>
-	<point num="3" x="505" y="53"/>
-	<point num="4" x="433" y="106"/>
-	<point num="5" x="430" y="67"/>
-	<point num="6" x="278" y="66"/>
-	<point num="7" x="269" y="38"/>
-	</shape>
 	
 	<image urlname="resources/images/Desert.jpg" xstart="383" ystart="15" width="272" height="122" layer="3" duration="0" starttime="0" branch="1"/>
 	<audio urlname="C:\\Users\\Public\\Music\\Sample Music\\Kalimba.mp3" starttime="0" loop="false"/>

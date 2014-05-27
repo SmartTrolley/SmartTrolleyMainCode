@@ -9,6 +9,7 @@
 **/
 package slideshowdata;
 import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 @Root (strict = false)
@@ -37,6 +38,9 @@ public class ShapeData {
 	
 	@Attribute (name = "height", required=true)
 	public int height;
+	
+	@Element (name = "point")
+	private PointData  pointdata;
 	
 	
 	

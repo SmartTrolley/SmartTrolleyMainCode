@@ -25,18 +25,18 @@ public class SlideData {
 	@Attribute (name = "lastSlide", required=false)
 	public Boolean lastSlide;
 	
-	@Element (name = "text") 
+	@Element (name = "text", required = false) 
 	TextData  textdata;
 	
-	@Element (name = "shape")
-	private ShapeData  shapedata;
+	@Element (name = "shape", required = false)
+	ShapeData  shapedata;
 	
-	@Element (name = "image")
-	private ImageData  imagedata;
+	@Element (name = "image", required = false) 
+	ImageData  imagedata;
 	
-	@Element (name = "audio")
-	private AudioData  audiodata;
+	@Element (name = "audio", required = false)
+	AudioData  audiodata;
 	
-	@Element (name = "video")
-	private VideoData  videodata;
+	@Element (name = "video", required = false)
+	VideoData  videodata;
 }
