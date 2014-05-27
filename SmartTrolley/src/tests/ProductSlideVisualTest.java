@@ -43,7 +43,7 @@ public class ProductSlideVisualTest extends Application {
 	String font = "Comic Sans MS";
 	String fontColor = "FF00FF";
 	int fontSize = 12;
-	int xTextStart = 350;
+	int xTextStart = 355;
 	int yTextStart = 467;
 	int xTextEnd = 230;
 	int yTextEnd = 290;
