@@ -115,7 +115,7 @@ public class ProductSlideTest {
 				try {
 					visualTesting.start(ProductSlideVisualTest.stage);
 				} catch (Exception e) {
-					SmartTrolleyPrint.print("whyyyyyYYYYYYYYYYYY");
+					SmartTrolleyPrint.print("Could not load application");
 				}
 			}
 		});
