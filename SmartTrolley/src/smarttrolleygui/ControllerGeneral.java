@@ -12,7 +12,6 @@
  */
 package smarttrolleygui;
 
-import Printing.SmartTrolleyPrint;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -32,12 +31,10 @@ public class ControllerGeneral {
 	 * loadStartScreen is called when the smart trolley logo is pressed. It
 	 * calls the goToStartScreen method in SmartTrolleyGUI.java
 	 * 
-	 * @param event
-	 *            - response to click on smart trolley logo in navigation bar
-	 *            <p>
-	 *            Date Modified: 16 May 2014
+	 * @param event - response to click on smart trolley logo in navigation bar
+	 * <p> Date Modified: 16 May 2014
 	 */
-	protected void loadStartScreen(ActionEvent event, SmartTrolleyGUI application) {
+	protected static void loadStartScreen(ActionEvent event, SmartTrolleyGUI application) {
 		if (application == null) {
 			// We are running in isolated FXML
 			System.out.println("error: application == null1");
@@ -52,12 +49,10 @@ public class ControllerGeneral {
 	 * <p>
 	 * User navigates through product database
 	 * 
-	 * @param event
-	 *            - response to click on 'home' button
-	 *            <p>
-	 *            Date Modified: 16 May 2014
+	 * @param event - response to click on 'home' button
+	 * <p> Date Modified: 16 May 2014
 	 */
-	protected void loadHomeScreen(ActionEvent event, SmartTrolleyGUI application) {
+	protected static void loadHomeScreen(ActionEvent event, SmartTrolleyGUI application) {
 		if (application == null) {
 			// We are running in isolated FXML
 			System.out.println("error: application == null5");
@@ -69,14 +64,11 @@ public class ControllerGeneral {
     /**
      * loadShoppingList is called when the 'list' button is pressed. It calls
      * the goToShoppingList method in SmartTrolleyGUI.java
-     * <p>
-     * User can view shopping list
-     *
+     * <p> User can view shopping list
      * @param event - response to click on 'list' button
-     * <p>
-     * Date Modified: 16 May 2014
+     * <p> Date Modified: 16 May 2014
      */
-	protected void loadShoppingList(ActionEvent event,
+	protected static void loadShoppingList(ActionEvent event,
 			SmartTrolleyGUI application) {
 		if (application == null) {
 			// We are running in isolated FXML
@@ -97,7 +89,7 @@ public class ControllerGeneral {
 	 *            <p>
 	 *            Date Modified: 16 May 2014
 	 */
-	protected void loadOffers(ActionEvent event, SmartTrolleyGUI application) {
+	protected static void loadOffers(ActionEvent event, SmartTrolleyGUI application) {
 		if (application == null) {
 			// We are running in isolated FXML
 			System.out.println("error: application == null4");
@@ -117,7 +109,7 @@ public class ControllerGeneral {
 	 *            <p>
 	 *            Date Modified: 16 May 2014
 	 */
-	protected void loadFavourites(ActionEvent event, SmartTrolleyGUI application) {
+	protected static void loadFavourites(ActionEvent event, SmartTrolleyGUI application) {
 		if (application == null) {
 			// We are running in isolated FXML
 			System.out.println("error: application == null2");
@@ -132,7 +124,7 @@ public class ControllerGeneral {
 	 * @param tableColumn - column whose cells the cellValueFactory will be applied to
 	 * Date Modified: 21 May 2014
 	 */
-	protected void setUpCellValueFactory(TableColumn<Product, Product> tableColumn) {
+	protected static void setUpCellValueFactory(TableColumn<Product, Product> tableColumn) {
 		tableColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
 			@Override
 			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
@@ -149,7 +141,7 @@ public class ControllerGeneral {
 	 * @param checkBoxColumn - column whose cells the cellFactory will be applied to
 	 * Date Modified: 21 May 2014
 	 */
-	public void setUpCheckBoxCellFactory(
+	public static void setUpCheckBoxCellFactory(
 			TableColumn<Product, Product> checkBoxColumn) {
 		checkBoxColumn
 				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
@@ -192,7 +184,7 @@ public class ControllerGeneral {
 	 * @param imageColumn - column whose cells the cellFactory will be applied to
 	 * Date Modified: 21 May 2014
 	 */
-	public void setUpImageCellFactory(TableColumn<Product, Product> imageColumn) {
+	public static void setUpImageCellFactory(TableColumn<Product, Product> imageColumn) {
 		imageColumn
 				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
 					@Override
@@ -241,7 +233,7 @@ public class ControllerGeneral {
 	 * @param productNameColumn - column whose cells the cellFactory will be applied to
 	 * Date Modified: 21 May 2014
 	 */
-	public void setUpProductNameCellFactory(
+	public static void setUpProductNameCellFactory(
 			TableColumn<Product, Product> productNameColumn) {
 		productNameColumn
 				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
@@ -289,7 +281,7 @@ public class ControllerGeneral {
 	 * @param addColumn - column whose cells the cellFactory will be applied to
 	 * Date Modified: 21 May 2014
 	 */
-	public void setUpAddButtonCellFactory(
+	public static void setUpAddButtonCellFactory(
 			TableColumn<Product, Product> addColumn) {
 		addColumn
 				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
@@ -335,7 +327,7 @@ public class ControllerGeneral {
 	 * @param removeColumn - column whose cells the cellFactory will be applied to
 	 * Date Modified: 21 May 2014
 	 */
-	public void setUpRemoveButtonCellFactory(
+	public static void setUpRemoveButtonCellFactory(
 			TableColumn<Product, Product> removeColumn) {
 		removeColumn
 				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {

@@ -13,13 +13,11 @@
 package smarttrolleygui;
 
 import java.util.LinkedList;
-import java.util.List;
-
-import Printing.SmartTrolleyPrint;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import Printing.SmartTrolleyPrint;
 
 public class SlideShow {
 	private LinkedList<Slide> slides;

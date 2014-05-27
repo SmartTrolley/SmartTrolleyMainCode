@@ -16,7 +16,7 @@
 /**************End of ShapePointTest.java**************/
 package graphicshandler;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.PriorityQueue;
 

@@ -13,10 +13,11 @@
 
 package smarttrolleygui;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -24,17 +25,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-
 import DatabaseConnectors.SqlConnection;
 import Printing.SmartTrolleyPrint;
 
-import java.sql.*;
-
-public class DeleteItemsFromListTest {
+public class TestDeleteItemsFromList {
 
 	public Stage stage;
 
-	private SmartTrolleyGUI GUIboot;
+	private SmartTrolleyGUI smartTrolleyApplication;
 	private static SqlConnection productsDatabase;
 	String query;
 
@@ -58,35 +56,32 @@ public class DeleteItemsFromListTest {
 		 */
 		Thread newGUIThread;
 
-		GUIboot = new SmartTrolleyGUI();
-
 		newGUIThread = new Thread("New GUI") {
 			public void run() {
 				SmartTrolleyPrint.print("GUI thread");
-				Application.launch(SmartTrolleyGUI.class, (java.lang.String[]) null);
-				stage = new Stage();
-				stage.setScene(new Scene(new Group(new Button("my second window"))));
-				/*
-				 * GUIboot.start(stage); stage.show();
-				 */
+				Application.launch(smartTrolleyApplication.getClass(), (java.lang.String[]) null);
+
 			}
 		};
-
 		newGUIThread.start();
 
-		/*
-		 * Note that at this point, there are 3 threads running: 1. Main (test)
-		 * thread - Runs this class 2. newGUIThread - Launches the Application
-		 * 3. JavaFX Thread - This thread actually is the application.
-		 */
+		// Delay to allow the application to launch
+		// If you get NullPointer errors around this line, increase the delay
+		SmartTrolleyDelay.delay(200);
 
-		/*
-		 * It is necessary to pause the main (test) thread for some time to
-		 * allow the application to catch up. Failure to implement this delay
-		 * results in a nullPointerException, since the scene has not yet been
-		 * created.
-		 */
-		SmartTrolleyDelay.delay(1000);
+		// Now launch the instance of SmartTrolleyGUI, which takes over the displayed stage
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				smartTrolleyApplication.start(SmartTrolleyGUI.stage);
+			}
+		});
+
+		// Delay to allow the instance to launch.
+		// If you get NullPointer errors around this line, increase the delay
+		SmartTrolleyDelay.delay(1500);
+		
+		//TODO The instance is launched in this test, but the button pushes do not yet use the instance
 
 		/*
 		 * In order to do anything with the user interface, the JavaFX thread
@@ -212,4 +207,4 @@ public class DeleteItemsFromListTest {
 	}
 }
 
-/************** End of DeleteItemsFromListTest.java **************/
+/************** End of TestDeleteItemsFromList.java **************/

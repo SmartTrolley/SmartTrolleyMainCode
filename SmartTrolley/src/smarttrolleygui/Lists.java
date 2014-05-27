@@ -18,8 +18,6 @@
 /**************End of Lists.java**************/
 package smarttrolleygui;
 
-import java.sql.ResultSet;
-
 //TODO A possible way to add listInProducts functionality is to 
 //create a listInProducts hash table. Then whenever a quantity is updated/ product added to the list
 //first check that it is not already present in the hash table, if it is, just update the quantity
@@ -28,9 +26,6 @@ import java.sql.ResultSet;
 //This can be left to a later iteration though.
 public class Lists {
 	private int quantityOfProduct = 0;
-	private int productID = 0;
-    private int listID = 0;
-
 	/**
 	*Method/Test Description
 	*<p>Test(s)/User Story that it satisfies
@@ -38,8 +33,7 @@ public class Lists {
 	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 3 May 2014
 	*/
-	public void setListID(int listid){
-		this.listID = listid;	
+	public void setListID(int listid){	
 	}
 	
 	/**
@@ -50,7 +44,6 @@ public class Lists {
 	*<p> Date Modified: 3 May 2014
 	*/
 	public void setProductID(int productid) {
-		this.productID = productid;
 		
 	}
 

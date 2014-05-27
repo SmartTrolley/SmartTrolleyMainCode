@@ -16,15 +16,17 @@
 /**************End of SlideTextBodyTest.java**************/
 package texthandler;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javafx.scene.text.Text;
+
 import org.junit.Before;
 import org.junit.Test;
-
-import javafx.scene.text.Text;
 
 /** 
  * SmartTrolley

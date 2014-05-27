@@ -15,9 +15,6 @@ package smarttrolleygui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import DatabaseConnectors.SqlConnection;
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,9 +28,8 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.util.Callback;
+import DatabaseConnectors.SqlConnection;
 
 public class OffersScreenController implements Initializable {
 
@@ -57,8 +53,6 @@ public class OffersScreenController implements Initializable {
 	private SmartTrolleyGUI application;
 	private ObservableList<String> categories;
 	private ObservableList<Product> productData;
-
-	private ControllerGeneral controller = new ControllerGeneral();
 
 	/**
 	 * initialize is automatically called when the controller is created.
@@ -96,7 +90,7 @@ public class OffersScreenController implements Initializable {
 	 *            Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-		controller.loadStartScreen(event, application);
+		ControllerGeneral.loadStartScreen(event, application);
 	}
 
 	/**
@@ -111,7 +105,7 @@ public class OffersScreenController implements Initializable {
 	 *            Date Modified: 28 Feb 2014
 	 */
 	public void loadHomeScreen(ActionEvent event) {
-		controller.loadHomeScreen(event, application);
+		ControllerGeneral.loadHomeScreen(event, application);
 	}
 
 	/**
@@ -126,7 +120,7 @@ public class OffersScreenController implements Initializable {
 	 *            Date Modified: 28 Feb 2014
 	 */
 	public void loadFavourites(ActionEvent event) {
-		controller.loadFavourites(event, application);
+		ControllerGeneral.loadFavourites(event, application);
 	}
 
 	/**
@@ -141,7 +135,7 @@ public class OffersScreenController implements Initializable {
 	 *            Date Modified: 6 Mar 2014
 	 */
 	public void loadShoppingList(ActionEvent event) {
-		controller.loadShoppingList(event, application);
+		ControllerGeneral.loadShoppingList(event, application);
 	}
 
 	/**
@@ -185,13 +179,13 @@ public class OffersScreenController implements Initializable {
 		offerPriceColumn
 				.setCellValueFactory(new PropertyValueFactory<Product, Float>(
 						"offerPrice"));
-		controller.setUpCellValueFactory(productNameColumn);
-		controller.setUpCellValueFactory(addColumn);
-		controller.setUpCellValueFactory(imageColumn);
+		ControllerGeneral.setUpCellValueFactory(productNameColumn);
+		ControllerGeneral.setUpCellValueFactory(addColumn);
+		ControllerGeneral.setUpCellValueFactory(imageColumn);
 
 		// set up cell factories for columns with 'interactive' cells 
-		controller.setUpImageCellFactory(imageColumn);
-		controller.setUpAddButtonCellFactory(addColumn);
+		ControllerGeneral.setUpImageCellFactory(imageColumn);
+		ControllerGeneral.setUpAddButtonCellFactory(addColumn);
 		
 //		controller.setUpProductNameCellFactory(productNameColumn);
 		// TODO: once refactored remove following code and uncomment previous line to set up cell factory for product name column

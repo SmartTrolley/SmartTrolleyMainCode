@@ -15,17 +15,15 @@ package smarttrolleygui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import DatabaseConnectors.SqlConnection;
-import Printing.SmartTrolleyPrint;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import DatabaseConnectors.SqlConnection;
+import Printing.SmartTrolleyPrint;
 
 
 public class ProductScreenController implements Initializable {    
@@ -54,8 +52,6 @@ public class ProductScreenController implements Initializable {
 	
 	/** Application that is running */
     private SmartTrolleyGUI application;
-    
-    private ControllerGeneral controller = new ControllerGeneral();
     private Product product;
     private String productName;
     private String productImageURL;
@@ -172,7 +168,7 @@ public class ProductScreenController implements Initializable {
      * Date Modified: 6 Mar 2014
      */
 	public void loadStartScreen(ActionEvent event) {
-		controller.loadStartScreen(event, application);
+		ControllerGeneral.loadStartScreen(event, application);
 	}
 
     /**
@@ -186,7 +182,7 @@ public class ProductScreenController implements Initializable {
      * Date Modified: 28 Feb 2014
      */
 	public void loadHomeScreen(ActionEvent event) {
-		controller.loadHomeScreen(event, application);
+		ControllerGeneral.loadHomeScreen(event, application);
 	}
 
     /**
@@ -200,7 +196,7 @@ public class ProductScreenController implements Initializable {
      * Date Modified: 6 Mar 2014
      */
 	public void loadShoppingList(ActionEvent event) {
-		controller.loadShoppingList(event, application);
+		ControllerGeneral.loadShoppingList(event, application);
 	}
 
     /**
@@ -214,7 +210,7 @@ public class ProductScreenController implements Initializable {
      * Date Modified: 7 Mar 2014
      */
 	public void loadOffers(ActionEvent event) {
-		controller.loadOffers(event, application);
+		ControllerGeneral.loadOffers(event, application);
 	}
     
 	/**
@@ -229,7 +225,7 @@ public class ProductScreenController implements Initializable {
 	 *            Date Modified: 28 Feb 2014
 	 */
 	public void loadFavourites(ActionEvent event) {
-		controller.loadFavourites(event, application);
+		ControllerGeneral.loadFavourites(event, application);
 	}
 	
 	/**

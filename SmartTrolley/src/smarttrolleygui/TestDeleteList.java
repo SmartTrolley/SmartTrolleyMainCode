@@ -13,7 +13,7 @@
 
 package smarttrolleygui;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -32,11 +32,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-
 import DatabaseConnectors.SqlConnection;
 import Printing.SmartTrolleyPrint;
 
-public class DeleteListTest {
+public class TestDeleteList {
 
 	private static SqlConnection productsDatabase;
 	String query;
@@ -253,5 +252,5 @@ public class DeleteListTest {
 
 }
 
-/************** End of DeleteListTest.java **************/
+/************** End of TestDeleteList.java **************/
 

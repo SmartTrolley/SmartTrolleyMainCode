@@ -13,15 +13,15 @@
 package smarttrolleygui;
 
 
+import javafx.scene.Node;
+import javafx.scene.image.ImageView;
+import Printing.SmartTrolleyPrint;
+
 import com.sun.javafx.geom.BaseBounds;
 import com.sun.javafx.geom.transform.BaseTransform;
 import com.sun.javafx.jmx.MXNodeAlgorithm;
 import com.sun.javafx.jmx.MXNodeAlgorithmContext;
 import com.sun.javafx.sg.PGNode;
-
-import Printing.SmartTrolleyPrint;
-import javafx.scene.Node;
-import javafx.scene.image.ImageView;
 
 public class Slide extends Node {
 	

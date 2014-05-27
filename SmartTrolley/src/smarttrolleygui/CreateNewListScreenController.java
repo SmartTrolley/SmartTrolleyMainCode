@@ -17,14 +17,14 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import DatabaseConnectors.SqlConnection;
-import Printing.SmartTrolleyPrint;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import DatabaseConnectors.SqlConnection;
+import Printing.SmartTrolleyPrint;
 
 public class CreateNewListScreenController implements Initializable {
 
@@ -37,8 +37,6 @@ public class CreateNewListScreenController implements Initializable {
 	public static Button createNewListButton;
 	@ FXML
 	private Label notifierLabel;
-	
-	private ControllerGeneral controller = new ControllerGeneral(); 
 	
 	/**
 	 * initialize is automatically called when the controller is created.
@@ -70,7 +68,7 @@ public class CreateNewListScreenController implements Initializable {
 	 *            Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-    	controller.loadStartScreen(event, application);
+    	ControllerGeneral.loadStartScreen(event, application);
 	}
 
 	/**

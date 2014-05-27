@@ -12,19 +12,16 @@
 
 package smarttrolleygui;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
-import java.awt.List;
 import java.util.LinkedList;
 
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 

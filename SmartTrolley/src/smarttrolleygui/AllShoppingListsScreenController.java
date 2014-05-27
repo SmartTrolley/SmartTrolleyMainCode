@@ -19,9 +19,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import DatabaseConnectors.SqlConnection;
-import Printing.SmartTrolleyPrint;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -29,6 +26,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import DatabaseConnectors.SqlConnection;
+import Printing.SmartTrolleyPrint;
 
 public class AllShoppingListsScreenController implements Initializable {
 
@@ -42,8 +41,6 @@ public class AllShoppingListsScreenController implements Initializable {
 	public static Button list1Button;
 
 	public static ArrayList<Button> buttonList;
-	
-	private ControllerGeneral controller = new ControllerGeneral(); 
 
 	/**
 	 * initialize is automatically called when the controller is created.
@@ -67,7 +64,7 @@ public class AllShoppingListsScreenController implements Initializable {
 		 //Add the buttons to the grid pane
             int listNo = 1;
             for (Button button : buttonList) {
-                grdPaneLists.setConstraints(button, 0, listNo);
+                GridPane.setConstraints(button, 0, listNo);
                 listNo++;
             }
             
@@ -169,7 +166,7 @@ public class AllShoppingListsScreenController implements Initializable {
 	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-    	controller.loadStartScreen(event, application);
+    	ControllerGeneral.loadStartScreen(event, application);
 	}
 
 	/**
@@ -183,7 +180,7 @@ public class AllShoppingListsScreenController implements Initializable {
 	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadShoppingList(ActionEvent event) {
-    	controller.loadShoppingList(event, application);
+    	ControllerGeneral.loadShoppingList(event, application);
     }
 }
 /************** End of AllShoppingListsScreenController **************/

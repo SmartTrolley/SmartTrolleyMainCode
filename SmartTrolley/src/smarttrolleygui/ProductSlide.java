@@ -1,38 +1,20 @@
 package smarttrolleygui;
 
-import java.util.PriorityQueue;
-
-import videohandler.VideoPlayerHandler;
 import graphicshandler.ShapePoint;
 import graphicshandler.SlideShapeFactory;
 import imagehandler.SlideImage;
+
+import java.util.PriorityQueue;
+
 import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import Printing.SmartTrolleyPrint;
 
 
 public class ProductSlide extends Application {
 
-	private Group root;
-	private String videoURL = "http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv";
-	private int vidWidth = 200;
-	private int vidHeight = 120;
-	private int xVideoStart = 300;
-	private int yVideoStart = 200;
-	private int videoStartTime = 0;
-	private int videoDuration = 0;
-	
 	private String imageURL = "http://th03.deviantart.net/fs70/PRE/i/2013/077/8/9/cookie_monster_by_xenia_cat-d5yhjwj.jpg";
 	private int xImageStart = 100;
 	private int yImageStart = 100;

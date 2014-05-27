@@ -18,14 +18,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import se.mbaeumer.fxmessagebox.MessageBox;
-import se.mbaeumer.fxmessagebox.MessageBoxResult;
-import se.mbaeumer.fxmessagebox.MessageBoxType;
-import DatabaseConnectors.SqlConnection;
-import Printing.SmartTrolleyPrint;
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,17 +25,18 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.util.Callback;
+import se.mbaeumer.fxmessagebox.MessageBox;
+import se.mbaeumer.fxmessagebox.MessageBoxResult;
+import se.mbaeumer.fxmessagebox.MessageBoxType;
+import DatabaseConnectors.SqlConnection;
+import Printing.SmartTrolleyPrint;
 
 public class ExampleShoppingListController implements Initializable {
 
@@ -77,7 +70,6 @@ public class ExampleShoppingListController implements Initializable {
 	private final double MSG_BX_H = 100.0;
 	private final double MSG_BX_W = 400.0;
 	public static SqlConnection productsDatabase;
-	private ControllerGeneral controller = new ControllerGeneral();
 
 	/**
 	 * initialize is automatically called when the controller is created.
@@ -201,7 +193,7 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-		controller.loadStartScreen(event, application);
+		ControllerGeneral.loadStartScreen(event, application);
 	}
 
 	/**
@@ -216,7 +208,7 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 28 Feb 2014
 	 */
 	public void loadHomeScreen(ActionEvent event) {
-		controller.loadHomeScreen(event, application);
+		ControllerGeneral.loadHomeScreen(event, application);
 	}
 
 	/**
@@ -231,7 +223,7 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 28 Feb 2014
 	 */
 	public void loadFavourites(ActionEvent event) {
-		controller.loadFavourites(event, application);
+		ControllerGeneral.loadFavourites(event, application);
 	}
 
 	/**
@@ -246,7 +238,7 @@ public class ExampleShoppingListController implements Initializable {
 	 *            Date Modified: 7 Mar 2014
 	 */
 	public void loadOffers(ActionEvent event) {
-		controller.loadOffers(event, application);
+		ControllerGeneral.loadOffers(event, application);
 	}
 
 	/**
@@ -290,17 +282,17 @@ public class ExampleShoppingListController implements Initializable {
 				.setCellValueFactory(new PropertyValueFactory<Product, Float>(
 						"price"));
 
-		controller.setUpCellValueFactory(productNameColumn);
-		controller.setUpCellValueFactory(checkBoxColumn);
-		controller.setUpCellValueFactory(imageColumn);
-		controller.setUpCellValueFactory(addColumn);
-		controller.setUpCellValueFactory(removeColumn);
+		ControllerGeneral.setUpCellValueFactory(productNameColumn);
+		ControllerGeneral.setUpCellValueFactory(checkBoxColumn);
+		ControllerGeneral.setUpCellValueFactory(imageColumn);
+		ControllerGeneral.setUpCellValueFactory(addColumn);
+		ControllerGeneral.setUpCellValueFactory(removeColumn);
 
 		// set up cell factories for columns with 'interactive' cells 
-		controller.setUpCheckBoxCellFactory(checkBoxColumn);
-		controller.setUpImageCellFactory(imageColumn);
-		controller.setUpAddButtonCellFactory(addColumn);
-		controller.setUpRemoveButtonCellFactory(removeColumn);
+		ControllerGeneral.setUpCheckBoxCellFactory(checkBoxColumn);
+		ControllerGeneral.setUpImageCellFactory(imageColumn);
+		ControllerGeneral.setUpAddButtonCellFactory(addColumn);
+		ControllerGeneral.setUpRemoveButtonCellFactory(removeColumn);
 		
 //		controller.setUpProductNameCellFactory(productNameColumn);
 		// TODO: once refactored remove following code and uncomment previous line to set up cell factory for product name column
