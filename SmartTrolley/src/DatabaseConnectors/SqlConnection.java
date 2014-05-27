@@ -176,7 +176,6 @@ public class SqlConnection {
 					
 	}
 	
-	
 	/**
 	 * 
 	 * @param criteria
@@ -217,7 +216,6 @@ public class SqlConnection {
 		return product;
 	}
 	
-
 	/**
 	 * When called, this method will return the list of offers
 	 * and store them as a type offer.
@@ -271,7 +269,6 @@ public class SqlConnection {
 		
 	}
 
-
 	/**
 	 * Checks to see if the result set is empty
 	 * <p>
@@ -303,7 +300,6 @@ public class SqlConnection {
 		return empty;
 	}
 	
-
 	/**
 	*Retrieves the list items from the SQL server
 	*<p>User can view list of lists
@@ -415,7 +411,6 @@ public class SqlConnection {
 		return statementExecuted;
 	}
 
-
 	/**
 	 * provides public access to close the productsDatabase
 	 * 
@@ -479,7 +474,6 @@ public class SqlConnection {
 		closeConnection();
 		}
 
-	
 	/**
 	 * 
 	 * @param backgroundcolor
@@ -698,7 +692,6 @@ public class SqlConnection {
 		closeConnection();
 	}
 
-	
 	/**
 	 * 
 	 * @param productid
@@ -754,6 +747,52 @@ public class SqlConnection {
 		query = "ALTER TABLE " + table + " AUTO_INCREMENT = 1";
 		executeStatement(query);
 		closeConnection();	
+	}
+
+	
+	/**
+	 * 
+	 * @param imageNo
+	 * @param urlname
+	 * @param xstart
+	 * @param ystart
+	 * @param width
+	 * @param height
+	 * @param starttime
+	 * @param duration
+	 * @param layer
+	 * @param branch
+	 */
+	public void addImageContents(int imageNo, String urlname, int xstart,
+			int ystart, int width, int height, int starttime, int duration,
+			int layer, int branch) {
+		
+		openConnection();
+		String query = "INSERT INTO `cl36-st`.`image_slide` (`imageNo`, `urlname`, `xstart`, `ystart`, `width`, `height`, `starttime`, `duration`, `layer`, `branch`"
+				+ ") VALUES ('"
+				+ imageNo
+				+ "', '"
+				+ urlname
+				+ "', '"
+				+ xstart
+				+ "', '"
+				+ ystart
+				+ "', '"
+				+ width
+				+ "', '"
+				+ height
+				+ "', '"
+				+ starttime
+				+ "', '"
+				+ duration
+				+ "', '"
+				+ layer
+				+ "', '"
+				+ branch
+				+ "');";
+		executeStatement(query);
+		closeConnection();
+		
 	}
 
 }

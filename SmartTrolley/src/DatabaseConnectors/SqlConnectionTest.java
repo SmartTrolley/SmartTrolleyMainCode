@@ -69,6 +69,7 @@ public class SqlConnectionTest {
 		int width = 20, height = 50;
 		
 		productsDatabase.addDocumentDataContent(author, version, title, comment, width, height);
+		
 	}
 	
 	/**
@@ -282,134 +283,162 @@ public class SqlConnectionTest {
 		productsDatabase.deleteContentAndResetAutoIncrement("video");
 	}
 	
+	/** 
+	 * Test that contents is added to the Image table
+	 */
+	@Test
+	public void addImageContentsTest(){
+		SmartTrolleyPrint.print("\n Start of addImageContentsTest............");
+		
+		int ImageNo = 1,
+			xstart = 30,
+			ystart = 40,
+			width = 50,
+			height = 60,
+			starttime = 3,
+			duration = 10,
+			layer = 2,
+			branch = 3;
+		String urlname = "SOME URL";
+			
+		productsDatabase.addImageContents(ImageNo, urlname, xstart, ystart, width, height, starttime, duration, layer, branch);
+	}
 	
+	/**
+	 * Test that all data is deleted on the video table on the database
+	 */
+	@Test
+	public void deleteImageContentsTest(){
+		SmartTrolleyPrint.print("\n Start of deleteImageContentsTest............");
+		
+		productsDatabase.deleteContentAndResetAutoIncrement("image_slide");
+	}
 	
-//	/**
-//	 * Sends and example query to the database
-//	 * Checks that the database returns something then tests that the returned values are correct for the sent query
-//	 * @throws SQLException
-//	 */
-//	@Test
-//	public void sendQueryTest() throws SQLException {
-//	
-//		query = "SELECT * FROM products WHERE Name = 'Ariel'";
-//		
-//		ResultSet results = productsDatabase.sendQuery(query);
-//		
-//		assertFalse(results == null);
-//		
-//		Product product = new Product();
-//		
-//		
-//		while (results.next()) {
-//			
-//			// get id
-//			product.setId(results.getInt("ProductID"));
-//			
-//			// get Name
-//			product.setName(results.getString("Name"));
-//			
-//			// get Image
-//			product.setImage(results.getString("Image"));
-//			
-//			// get Price
-//			product.setPrice(results.getFloat("Price"));
-//			
-//		}
-//		
-//		assertEquals(product.getId(), 1);
-//		assertEquals(product.getName(), "Ariel");		
-//		assertEquals(product.getImage(), "img/SampleProducts/ariel.jpg");
-//		assert(product.getPrice() == 2.99);		
-//	}
-//	
-//	/**
-//	 * Test that the database returns the correct information corresponding to a product when queried by name
-//	 */
-//	@Test
-//	public void getProductByNameTest(){
-//		
-//		
-//		// retrieve results from server
-//		Product product = productsDatabase.getProductByName("Cravendale 2L");
-//		
-//		assertEquals(product.getId(), 2);
-//		assertEquals(product.getName(), "Cravendale 2L");		
-//		assertEquals(product.getImage(), "img/SampleProducts/cravendale_2L_milk.jpg");
-//		assert(product.getPrice() == 3.99);	
-//	}
-//	
-//	/**
-//	 * Tests that the getListOfProducts() returns a full list of the product data 
-//	 * from the database by printing it to the console and manually comparing it.
-//	 * 
-//	 * @throws SQLException
-//	 */
-//	@Test
-//	public void getListOfProductsTest() throws SQLException{
-//		
-//	products = productsDatabase.getListOfProducts();
-//	Product product;
-//	int i = 0;
-//		while(i<products.size()){
-//			
-//			product = products.get(i);
-//			
-//			SmartTrolleyPrint.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
-//			i++;
-//		}
-//	}
-//	
-//	/**
-//	 * 
-//	 */
-//	@Test
-//	public void getSpecificProductTest(){
-//		
-//		Product product;
-//		
-//		product = productsDatabase.getSpecificProduct("productID","5");
-//		
-//		assertEquals(product.getId(), 5);
-//		assertEquals(product.getName(), "Innocent Noodle Pot");
-//		assertEquals(product.getImage(), "img/SampleProducts/innocent_noodle_pot.jpg");
-//		assert(product.getPrice() == 6.99);
-//	}
-//	
-//	/**
-//	 * Test that the getListOfOffers() returns the full list of offers
-//	 * from the database by printing it to the console and then comparing it.
-//	 */
-//	@Test
-//	public void getListOfOffersTest(){
-//		
-//		offers = productsDatabase.getListOfOffers();
-//		
-//		Product product;
-//		int j = 0;
-//		while(j<offers.size()){
-//			
-//			product = offers.get(j);
-//			
-//			SmartTrolleyPrint.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + "  " + product.getOfferPrice() + "  " + product.getSavings());
-//					
-//			j++;
-//		}
-//		
-//	}
-//	
-//	/**
-//	 * Tests that the connection closes correctly
-//	 * @throws SQLException
-//	 */
-//	@Test
-//	public void connectionCloseTest() throws SQLException  {
-//		
-//		productsDatabase.closeConnection();
-//	
-//		assertTrue(productsDatabase.connection.isClosed());
-//
-//	}
+	/**
+	 * Sends and example query to the database
+	 * Checks that the database returns something then tests that the returned values are correct for the sent query
+	 * @throws SQLException
+	 */
+	@Test
+	public void sendQueryTest() throws SQLException {
+	
+		query = "SELECT * FROM products WHERE Name = 'Ariel'";
+		
+		ResultSet results = productsDatabase.sendQuery(query);
+		
+		assertFalse(results == null);
+		
+		Product product = new Product();
+		
+		
+		while (results.next()) {
+			
+			// get id
+			product.setId(results.getInt("ProductID"));
+			
+			// get Name
+			product.setName(results.getString("Name"));
+			
+			// get Image
+			product.setImage(results.getString("Image"));
+			
+			// get Price
+			product.setPrice(results.getFloat("Price"));
+			
+		}
+		
+		assertEquals(product.getId(), 1);
+		assertEquals(product.getName(), "Ariel");		
+		assertEquals(product.getImage(), "img/SampleProducts/ariel.jpg");
+		assert(product.getPrice() == 2.99);		
+	}
+	
+	/**
+	 * Test that the database returns the correct information corresponding to a product when queried by name
+	 */
+	@Test
+	public void getProductByNameTest(){
+		
+		
+		// retrieve results from server
+		Product product = productsDatabase.getProductByName("Cravendale 2L");
+		
+		assertEquals(product.getId(), 2);
+		assertEquals(product.getName(), "Cravendale 2L");		
+		assertEquals(product.getImage(), "img/SampleProducts/cravendale_2L_milk.jpg");
+		assert(product.getPrice() == 3.99);	
+	}
+	
+	/**
+	 * Tests that the getListOfProducts() returns a full list of the product data 
+	 * from the database by printing it to the console and manually comparing it.
+	 * 
+	 * @throws SQLException
+	 */
+	@Test
+	public void getListOfProductsTest() throws SQLException{
+		
+	products = productsDatabase.getListOfProducts();
+	Product product;
+	int i = 0;
+		while(i<products.size()){
+			
+			product = products.get(i);
+			
+			SmartTrolleyPrint.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
+			i++;
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public void getSpecificProductTest(){
+		
+		Product product;
+		
+		product = productsDatabase.getSpecificProduct("productID","5");
+		
+		assertEquals(product.getId(), 5);
+		assertEquals(product.getName(), "Innocent Noodle Pot");
+		assertEquals(product.getImage(), "img/SampleProducts/innocent_noodle_pot.jpg");
+		assert(product.getPrice() == 6.99);
+	}
+	
+	/**
+	 * Test that the getListOfOffers() returns the full list of offers
+	 * from the database by printing it to the console and then comparing it.
+	 */
+	@Test
+	public void getListOfOffersTest(){
+		
+		offers = productsDatabase.getListOfOffers();
+		
+		Product product;
+		int j = 0;
+		while(j<offers.size()){
+			
+			product = offers.get(j);
+			
+			SmartTrolleyPrint.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + "  " + product.getOfferPrice() + "  " + product.getSavings());
+					
+			j++;
+		}
+		
+	}
+	
+	/**
+	 * Tests that the connection closes correctly
+	 * @throws SQLException
+	 */
+	@Test
+	public void connectionCloseTest() throws SQLException  {
+		
+		productsDatabase.closeConnection();
+	
+		assertTrue(productsDatabase.connection.isClosed());
 
+	}
 	
 }
