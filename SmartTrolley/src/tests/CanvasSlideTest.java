@@ -8,8 +8,7 @@ import graphicshandler.ShapePoint;
 
 import java.util.PriorityQueue;
 
-import javafx.scene.canvas.Canvas;
-
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -38,10 +37,28 @@ public class CanvasSlideTest {
 	private int imageStartTime = 0;
 	private int imageDuration = 0;
 	
+	private String graphicsFillColour = "#0000FF";
+	private String graphicsLineColour = "#0000FF";
+	private int graphicsWidth = 50;
+	private int graphicsHeight = 75;
+	int graphicsStartTime = 0;
+	int graphicsDuration = 0;
+	int numOfPoints = 4;
+	
+	private String audURL = "Music/Kalimba.mp3";
+	private int audStartTime = 0;
+	private int audDuration = 100;
+	private double audVolume = 0.4;
 	
 	@Before
 	public void setUp(){
-		productSlide = new ProductSlide();
+		
+		productSlide= new ProductSlide(points, numOfPoints, graphicsWidth, graphicsHeight,
+				graphicsFillColour, graphicsLineColour,
+				graphicsStartTime, graphicsDuration,
+				imageURL, xImageStart,  yImageStart,
+				imageWidth, imageHeight, imageStartTime,
+				imageDuration, audURL, audStartTime, audDuration, audVolume);
 	}
 	
 	@Test
@@ -57,14 +74,15 @@ public class CanvasSlideTest {
 		points.add(point2);
 		points.add(point4);
 		
-		assertTrue(productSlide.anchorPaneStart().isVisible());
+		assertTrue(productSlide.isVisible());
 		
 	}
 	
 	@Test
 	public void displayingImageTest(){
 		
-		assertTrue(productSlide.imageSetup(imageURL, xImageStart,  yImageStart, imageWidth, imageHeight, imageStartTime, imageDuration).isVisible());
+		assertTrue(productSlide.imageSetup(imageURL, xImageStart, yImageStart, imageWidth,
+				imageHeight, imageStartTime, imageDuration).isVisible());
 	}
 	
 //	@Test
@@ -87,7 +105,23 @@ public class CanvasSlideTest {
 		points.add(point4);
 		
 		
-		assertTrue(productSlide.graphicsSetup(points).visibleProperty().get());
+		assertTrue(productSlide.graphicsSetup(points, numOfPoints, graphicsWidth,
+				graphicsHeight, graphicsFillColour, graphicsLineColour,
+				graphicsStartTime, graphicsDuration).visibleProperty().get());
+	}
+	
+		@Test
+	public void audioIsPlayingTest(){
+		SmartTrolleyDelay.delay(10000);
+		assertTrue(productSlide.audio.isPlaying());
+		productSlide.audio.stop();
+	}
+	
+	@Test
+	public void audioHasStoppedPlayingTest(){
+		SmartTrolleyDelay.delay(10000);
+		productSlide.audio.stop();
+		assertFalse(productSlide.audio.isPlaying());
 	}
 	
 	@Test
@@ -104,18 +138,32 @@ public class CanvasSlideTest {
 		points.add(point2);
 		points.add(point4);
 		
-		assertTrue(productSlide.imageSetup(imageURL, xImageStart,  yImageStart, imageWidth, imageHeight, imageStartTime, imageDuration).isVisible());
+		assertTrue(productSlide.imageSetup(imageURL, xImageStart,  yImageStart,
+				imageWidth, imageHeight, imageStartTime, imageDuration).isVisible());
 		
 		SmartTrolleyPrint.print("First Test Passed, Image has loaded");
 		
-		assertTrue(productSlide.graphicsSetup(points).visibleProperty().get());
+		assertTrue(productSlide.graphicsSetup(points, numOfPoints, graphicsWidth,
+				graphicsHeight, graphicsFillColour, graphicsLineColour,
+				graphicsStartTime, graphicsDuration).visibleProperty().get());
 		
-		SmartTrolleyPrint.print("Second Test passed, graphics have loaded");
+		SmartTrolleyPrint.print("Second Test passed, graphics have loaded" + productSlide);
+		
+		SmartTrolleyPrint.print(productSlide.getChildren());
+		
+		SmartTrolleyDelay.delay(1000);
+		productSlide.audio.stop();
+		assertFalse(productSlide.audio.isPlaying());
 		
 		productSlide.clearSlide();
 		
-		//assertFalse(productSlide.setupAnchorPane(points, imageURL, xImageStart, yImageStart, imageWidth, imageHeight, imageStartTime, imageDuration).getChildren() == null);
+		SmartTrolleyPrint.print(productSlide.getChildren());
 		
+		assertTrue(productSlide.getChildren().isEmpty());
 		
 	}
+	
+
+	
+
 }

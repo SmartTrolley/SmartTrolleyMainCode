@@ -2,18 +2,20 @@ package smarttrolleygui;
 
 import java.util.PriorityQueue;
 
+import audiohandler.AudioHandler;
+
 import Printing.SmartTrolleyPrint;
 
 import graphicshandler.ShapePoint;
 import graphicshandler.SlideShapeFactory;
 import imagehandler.SlideImage;
+import javafx.scene.Group;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Shape;
 
 
-public class ProductSlide extends AnchorPane {
+public class ProductSlide extends AnchorPane{
 	
-	private ProductSlide anchorPane;
 
 //	private Group root;
 //	private String videoURL = "http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv";
@@ -24,33 +26,40 @@ public class ProductSlide extends AnchorPane {
 //	private int videoStartTime = 0;
 //	private int videoDuration = 0;
 	
-	private String fillColour = "#0000FF";
-	private String lineColour = "#0000FF";
-	public ShapePoint point1, point2, point3, point4;
-	int point1Num = 1, point2Num = 2, point3Num = 3, point4Num = 4;
-	int width = 50, height = 50, pointLow = 0, pentagonX = 25, pentagonY = 25;
+	protected int point1Num = 1, point2Num = 2, point3Num = 3, point4Num = 4, point5Num = 5;
+	protected int pointLow = 60, pentagonX = 25, pentagonY = 25;
+	protected int maxPoints= 5;
+	public AudioHandler audio;
 			
 	/**
 	 * @param args
 	 * @return 
 	 * @return 
 	 */
-	public void setupAnchorPane(PriorityQueue<ShapePoint> points, String imgURL, int xImgStart, int yImgStart, int imgWidth, int imgHeight, int imgStartTime, int imgDuration){
+	public ProductSlide(PriorityQueue<ShapePoint> points, int numOfPoints, int graphicsWidth,
+			int graphicsHeight, String graphicsFillColour, String graphicsLineColour,
+			int graphicsStartTime, int graphicsDuration,
+			String imgURL, int xImgStart, int yImgStart,
+			int imgWidth, int imgHeight, int imgStartTime, 
+			int imgDuration, String audioURL,int audioStartTime, int audioDuration,
+			double audioVolume){
 		
-		anchorPaneStart().getChildren().addAll(graphicsSetup(points), imageSetup(imgURL, xImgStart, yImgStart, imgWidth, imgHeight, imgStartTime, imgDuration));		
-		
+		getChildren().add(graphicsSetup(points, numOfPoints, graphicsWidth, graphicsHeight,
+				graphicsFillColour, graphicsLineColour, graphicsStartTime,
+				graphicsDuration));
+		getChildren().add(imageSetup(imgURL, xImgStart, yImgStart, imgWidth,
+				imgHeight, imgStartTime, imgDuration));
+		audioSetup(audioURL, audioStartTime, audioDuration, audioVolume);
+			
+		setVisible(true);
+					
 	}
 	
-	public ProductSlide anchorPaneStart(){
-		anchorPane = new ProductSlide();
-		anchorPane.setVisible(true);
-		return anchorPane;
-	}
-	
-	
-	public SlideImage imageSetup(String imgURL, int xImgStart, int yImgStart, int imgWidth, int imgHeight, int imgStartTime, int imgDuration){
+	public SlideImage imageSetup(String imgURL, int xImgStart, int yImgStart, int imgWidth,
+			int imgHeight, int imgStartTime, int imgDuration){
 		
-		imagehandler.SlideImage image1 = new imagehandler.SlideImage(imgURL, xImgStart, yImgStart, imgWidth, imgHeight, imgStartTime, imgDuration);
+		imagehandler.SlideImage image1 = new imagehandler.SlideImage(imgURL, xImgStart,
+				yImgStart, imgWidth, imgHeight, imgStartTime, imgDuration);
 		image1.show();
 		
 		return image1;
@@ -66,27 +75,44 @@ public class ProductSlide extends AnchorPane {
 //		return null;
 //	}
 
-		public Shape graphicsSetup(PriorityQueue<ShapePoint> points) {
+		public Shape graphicsSetup(PriorityQueue<ShapePoint> points, int numOfPoints, int graphicsWidth, 
+				int graphicsHeight, String graphicsFillColour, String graphicsLineColour,
+				int graphicsStartTime, int graphicsDuration) {
+//			
 			
-			point1 = new ShapePoint(pointLow,pointLow,point1Num);
-			point2 = new ShapePoint(width,pointLow,point2Num);
-			point3 = new ShapePoint(width,height,point3Num);
-			point4 = new ShapePoint(pointLow,width,point4Num);
 			
 			points = new PriorityQueue<ShapePoint>();
-			points.add(point1);
-			points.add(point3);
-			points.add(point2);
-			points.add(point4);
 			
-		 Shape shape = new SlideShapeFactory(points , width, height, fillColour, lineColour, 0, 0).getShape();
+			points.add(new ShapePoint(pointLow,pointLow,point1Num));
+			points.add( new ShapePoint(graphicsWidth,graphicsHeight,point3Num));
+			points.add(new ShapePoint(graphicsWidth,pointLow,point2Num));
+			points.add(new ShapePoint(pointLow,graphicsWidth,point4Num));
+			points.add( new ShapePoint(pentagonX, pentagonY, point5Num));
+			
+			for( int i=0; i< maxPoints - numOfPoints; i++){
+				points.remove();
+			}
+			
+		 Shape shape = new SlideShapeFactory(points , graphicsWidth, graphicsHeight, graphicsFillColour, 
+				 graphicsLineColour, graphicsStartTime, graphicsDuration).getShape();
 		 shape.visibleProperty().set(true);
 			
 		return shape;
 	}
 		
+		
+		
 		public void clearSlide(){
-				SmartTrolleyPrint.print(anchorPane.getChildren());		
+				SmartTrolleyPrint.print(getChildren());	
+				audio.stop();
+				getChildren().clear();
+		}
+
+		public void audioSetup(String audioURL, int audioStartTime, int audioDuration, double audioVolume) {
+			
+			audio = new AudioHandler(audioURL, audioStartTime, audioDuration, audioVolume);
+			audio.begin();
+	
 		}
 		
 
