@@ -33,15 +33,12 @@ import Printing.SmartTrolleyPrint;
 
 public class ProductScreenController implements Initializable {
 
-	
-	private enum slideControl { NEXT, PREVIOUS, MORE}
-	
 	/**Message Box Height*/
 	private final double MSG_BX_H = 100.0;
 
 	/**Message Box Width*/
 	private final double MSG_BX_W = 400.0;
-	
+
 	/**An image's x-co-ordinate in the slide*/
 	static final double IMAGE_X_COORD = 25;
 
@@ -60,7 +57,7 @@ public class ProductScreenController implements Initializable {
 	// Default button width is 30
 	protected Button prevSLideButton = new Button("<");
 	protected Button nextSLideButton = new Button(">");
-	protected Button moreButton = new Button("...");
+	protected Button playButton = new Button("|>");
 
 	public static SqlConnection productsDatabase;
 
@@ -71,11 +68,10 @@ public class ProductScreenController implements Initializable {
 	private String productImageURL;
 	private float productPrice;
 
-	
 	/**VBox that shows the price and slide control buttons*/
 	@FXML
-	private VBox priceAndSlideButtonsVBox;	
-	
+	private VBox priceAndSlideButtonsVBox;
+
 	/**Anchor Pane containing the slide*/
 	@FXML
 	private AnchorPane productAnchorPane;
@@ -92,13 +88,13 @@ public class ProductScreenController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		
+
 		getCurrentProductData();
-		
+
 		// show name of current shopping list
 		listNameLabel.setText(SmartTrolleyGUI.getCurrentListName());
 
-		createPrevMoreNxtSlideButtons();
+		createPrevPlayNxtSlideButtons();
 	}
 
 	/**
@@ -126,46 +122,29 @@ public class ProductScreenController implements Initializable {
 	}
 
 	/**
-	 * This method creates the previous slide, more and next slide buttons and adds their action listeners
+	 * This method creates the previous slide, play and next slide buttons and adds their action listeners
 	 * <p> User views products
 	 * <p>Date Modified: 24 May 2014
 	 */
-	private void createPrevMoreNxtSlideButtons() {
+	private void createPrevPlayNxtSlideButtons() {
 
 		createSlideButton(prevSLideButton, X_COORD_CONTROLBUTTONS, Y_COORD_CONTROLBUTTONS);
 		createSlideButton(nextSLideButton, X_COORD_CONTROLBUTTONS + 2 * BTN_WIDTH, Y_COORD_CONTROLBUTTONS);
-		createSlideButton(moreButton, X_COORD_CONTROLBUTTONS + BTN_WIDTH, Y_COORD_CONTROLBUTTONS);			
-		
-		nextSLideButton.defaultButtonProperty().set(true);					
+		createSlideButton(playButton, X_COORD_CONTROLBUTTONS + BTN_WIDTH, Y_COORD_CONTROLBUTTONS);
+
+		nextSLideButton.defaultButtonProperty().set(true);
 
 		prevSLideButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Add goto prev slide functionality here
 				SmartTrolleyPrint.print("Pressed prev slide");
-				
-				if (currentSlideShow == null){
-					SmartTrolleyPrint.print("No slideshow loaded");
-										
-					MessageBox noSldShowMsgBx = new MessageBox("No slideshow exists, please load one.", MessageBoxType.OK_ONLY);
-					
-					/*
-					 * The two lines below to set the
-					 * message box height and width
-					 * are there because the message box
-					 * resized itself (became very small)
-					 * when multiple lists were deleted.
-					 */
-					noSldShowMsgBx.setHeight(MSG_BX_H);
-					noSldShowMsgBx.setWidth(MSG_BX_W);
-					
-					noSldShowMsgBx.showAndWait();
-					
-					if (noSldShowMsgBx.getMessageBoxResult() == MessageBoxResult.OK){
-						loadStartScreen(event);
-					}
+
+				if (currentSlideShow == null) {
+					noSlideShowLoaded(event);
 				} else {
-				currentSlideShow.prevSlide();
+
+					currentSlideShow.prevSlide();
 				}
 			}
 		});
@@ -173,48 +152,84 @@ public class ProductScreenController implements Initializable {
 		nextSLideButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				
+
 				SmartTrolleyPrint.print("Pressed next slide");
-				
-				if (currentSlideShow == null){
-					SmartTrolleyPrint.print("No slideshow loaded");
-										
-					MessageBox noSldShowMsgBx = new MessageBox("No slideshow exists, please load one.", MessageBoxType.OK_ONLY);
-					
-					/*
-					 * The two lines below to set the
-					 * message box height and width
-					 * are there because the message box
-					 * resized itself (became very small)
-					 * when multiple lists were deleted.
-					 */
-					noSldShowMsgBx.setHeight(MSG_BX_H);
-					noSldShowMsgBx.setWidth(MSG_BX_W);
-					
-					noSldShowMsgBx.showAndWait();
-					
-					if (noSldShowMsgBx.getMessageBoxResult() == MessageBoxResult.OK){
-						loadStartScreen(event);
-					}
+
+				if (currentSlideShow == null) {
+					noSlideShowLoaded(event);
+
 				} else {
-				currentSlideShow.nextSlide();
+
+					currentSlideShow.nextSlide();
 				}
 			}
 		});
 
-		moreButton.setOnAction(new EventHandler<ActionEvent>() {
+		playButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Add goto more button functionality here
-				SmartTrolleyPrint.print("Pressed more button");
+				if (currentSlideShow == null) {
+					
+					noSlideShowLoaded(event);
+					
+				} else {
+					
+					if (currentSlideShow.autoPlay) {
+						disableAutoPlay();
+					} else {
+						currentSlideShow.play();
+					}
+					SmartTrolleyPrint.print("Pressed play button");
+				}
 			}
 		});
-		
+
 		HBox SlideControlButtonsHBox = new HBox();
 		SlideControlButtonsHBox.getChildren().add(prevSLideButton);
-		SlideControlButtonsHBox.getChildren().add(moreButton);
+		SlideControlButtonsHBox.getChildren().add(playButton);
 		SlideControlButtonsHBox.getChildren().add(nextSLideButton);
 		priceAndSlideButtonsVBox.getChildren().add(SlideControlButtonsHBox);
+	}
+
+	/**
+	* Disables auto play, called when the next or previous slide buttons are pressed
+	*<p>User can view PWS Compatible slideShow
+	*<p> Date Modified: 28 May 2014
+	*/
+	private void disableAutoPlay() {
+		// Cancel timer and stop autoplay if autoplay is on
+		if (currentSlideShow.autoPlay) {
+			currentSlideShow.slideTimer.cancel();
+			currentSlideShow.autoPlay = false;
+		}
+	}
+
+	/**
+	* Displays a message box to the user and takes them to the start page to load in a slideShow
+	*<p>User can view PWS Compatible slideshow
+	*@param event
+	*<p> Date Modified: 28 May 2014
+	*/
+	private void noSlideShowLoaded(ActionEvent event) {
+		SmartTrolleyPrint.print("No slideshow loaded");
+
+		MessageBox noSldShowMsgBx = new MessageBox("No slideshow exists, please load one.", MessageBoxType.OK_ONLY);
+
+		/*
+		 * The two lines below to set the
+		 * message box height and width
+		 * are there because the message box
+		 * resized itself (became very small)
+		 * when multiple lists were deleted.
+		 */
+		noSldShowMsgBx.setHeight(MSG_BX_H);
+		noSldShowMsgBx.setWidth(MSG_BX_W);
+
+		noSldShowMsgBx.showAndWait();
+
+		if (noSldShowMsgBx.getMessageBoxResult() == MessageBoxResult.OK) {
+			loadStartScreen(event);
+		}
 	}
 
 	/**

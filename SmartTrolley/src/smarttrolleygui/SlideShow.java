@@ -13,13 +13,23 @@
 package smarttrolleygui;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import se.mbaeumer.fxmessagebox.MessageBox;
 import se.mbaeumer.fxmessagebox.MessageBoxType;
 import Printing.SmartTrolleyPrint;
 
 public class SlideShow {
+
+	/**
+	 * Enumerated type for play direction
+	 */
+	enum PlayDirection {
+		NEXT, PREV
+	}
 
 	/**Message Box Height*/
 	private final double MSG_BX_H = 100.0;
@@ -39,9 +49,16 @@ public class SlideShow {
 	/**The index of the slide in the slideshow*/
 	private int slideShowIndex;
 
-	protected MessageBox endOfListMsgBx;
-	
-	protected MessageBox startOfListMsgBx;
+	/**Message Box to notify user that they are trying to access outside the slideshow*/
+	protected MessageBox outOfSldShwMsgBox;
+
+	/**Field which is true when a slideshow is playing using slide durations rather than button presses*/
+	boolean autoPlay = false;
+
+	/**Timer for slide duration*/
+	Timer slideTimer;
+
+	private PlaySlide playSlide;
 
 	/**
 	*The constructor
@@ -65,13 +82,29 @@ public class SlideShow {
 	}
 
 	/**
-	* This method displays the particular slide that is passed in
+	* This method displays a particular slide by the index that is passed in
 	*<p> User can view PWS Compatible slideshow
-	*@param slideToDisplay - Slide that is displayed
-	*<p> Date Modified: 26 May 2014
+	*@param slideShowIndex - Slide index to be displayed
+	*<p> Date Modified: 28 May 2014
 	*/
-	public void displaySlide(Slide slideToDisplay) {
+	//TODO Consider changing the name to playSlide/startAutoPlay
+	public void displaySlide(int slideShowIndex) {		
+		
+		Slide slideToDisplay = slides.get(slideShowIndex);
+		
 		displayedPane.getChildren().add(slideToDisplay);
+		
+		if (autoPlay) {
+
+			if (displayedSlide.duration != 0) {				
+				/*
+				 * The multiplication by 1000 is because the slide duration is in seconds
+				 * while timer durations are in milliseconds.
+				 */
+				SmartTrolleyPrint.print("In displaySlide for autoplay, scheduling timer now.");
+				slideTimer.schedule(playSlide, (long) displayedSlide.duration * 1000);
+			}
+		}
 	}
 
 	/**
@@ -85,9 +118,19 @@ public class SlideShow {
 		SmartTrolleyPrint.print("The slideshow has " + slides.size() + " slides.");
 		slideShowIndex = 0;
 
-		displayedSlide = slides.get(slideShowIndex);
+		displaySlide(slideShowIndex);
 
-		displaySlide(displayedSlide);
+//		if (autoPlay) {
+//	
+//			if (displayedSlide.duration != 0) {
+//				
+//				/*
+//				 * The multiplication by 1000 is because the slide duration is in seconds
+//				 * while timer durations are in milliseconds.
+//				 */
+//				slideTimer.schedule(playSlide, (long) displayedSlide.duration * 1000);
+//			}
+//		}
 
 		SmartTrolleyPrint.print("Started Slideshow");
 	}
@@ -121,28 +164,50 @@ public class SlideShow {
 	public void nextSlide() {
 
 		SmartTrolleyPrint.print("In nextSlide method");
+
 		// TODO Clear slide here
 		if (slideShowIndex < slides.size() - 1) {
 			SmartTrolleyPrint.print("The next slide will now be displayed");
-			slideShowIndex++;
-			displayedSlide = slides.get(slideShowIndex);
-			displaySlide(displayedSlide);
+			displayedSlide = slides.get(++slideShowIndex);
+			displaySlide(slideShowIndex);
+
+			if (autoPlay && displayedSlide.duration != 0) {
+			playSlide = new PlaySlide(PlayDirection.NEXT);
+			slideTimer.schedule(playSlide, (long) displayedSlide.duration * 1000);
+			}
 		} else {
-			SmartTrolleyPrint.print("Reached end of slideshow.");
-			endOfListMsgBx = new MessageBox("Reached end of slideShow, no next slide", MessageBoxType.OK_ONLY);
-
-			/*
-			 * The two lines below to set the
-			 * message box height and width
-			 * are there because the message box
-			 * resized itself (became very small)
-			 * when multiple lists were deleted.
-			 */
-			endOfListMsgBx.setHeight(MSG_BX_H);
-			endOfListMsgBx.setWidth(MSG_BX_W);
-
-			endOfListMsgBx.showAndWait();
+			String endOfSldShwString = "Reached end of slideShow, no next slide";
+			displayOutOfSldShwMsgBx(endOfSldShwString);
+			
+			if (autoPlay){
+				autoPlay = false;
+			}
 		}
+	}
+
+	/**
+	* Displays a message box informing the user that they are at the edges of the slideshow
+	*<p> User can view PWS Compatible slideshow
+	*<p> Date Modified: 28 May 2014
+	 * @param stringToDisplay - String that is shown in the message box
+	*/
+	private void displayOutOfSldShwMsgBx(String stringToDisplay) {
+		SmartTrolleyPrint.print(stringToDisplay);
+
+		outOfSldShwMsgBox = new MessageBox(stringToDisplay, MessageBoxType.OK_ONLY);
+
+		/*
+		 * The two lines below to set the
+		 * message box height and width
+		 * are there because the message box
+		 * resized itself (became very small)
+		 * when multiple lists were deleted.
+		 */
+		outOfSldShwMsgBox.setHeight(MSG_BX_H);
+		outOfSldShwMsgBox.setWidth(MSG_BX_W);
+
+		outOfSldShwMsgBox.showAndWait();
+
 	}
 
 	/**
@@ -154,27 +219,26 @@ public class SlideShow {
 	public void prevSlide() {
 
 		SmartTrolleyPrint.print("In prevSlide method");
+
 		// TODO Clear slide here
 		if (slideShowIndex > 0) {
 			SmartTrolleyPrint.print("The previous slide will now be displayed");
-			slideShowIndex--;
-			displayedSlide = slides.get(slideShowIndex);
-			displaySlide(displayedSlide);
+			displayedSlide = slides.get(--slideShowIndex);
+			displaySlide(slideShowIndex);
+			
+			if (autoPlay && displayedSlide.duration != 0) {
+				playSlide = new PlaySlide(PlayDirection.PREV);
+				slideTimer.schedule(playSlide, (long) displayedSlide.duration * 1000);
+			}
+			
 		} else {
-			SmartTrolleyPrint.print("Reached start of slideshow.");
-			startOfListMsgBx = new MessageBox("Reached start of slideShow, no previous slide", MessageBoxType.OK_ONLY);
+			String startOfSldShwString = "Reached start of slideshow.";
+			displayOutOfSldShwMsgBx(startOfSldShwString);
+			
+			if (autoPlay){
+				autoPlay = false;
+			}
 
-			/*
-			 * The two lines below to set the
-			 * message box height and width
-			 * are there because the message box
-			 * resized itself (became very small)
-			 * when multiple lists were deleted.
-			 */
-			startOfListMsgBx.setHeight(MSG_BX_H);
-			startOfListMsgBx.setWidth(MSG_BX_W);
-
-			startOfListMsgBx.showAndWait();
 		}
 	}
 
@@ -189,6 +253,48 @@ public class SlideShow {
 		return displayedSlide;
 	}
 
+	/**
+	* Plays the slideshow from the current slide
+	*<p>Test(s)/User Story that it satisfies
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 28 May 2014
+	*/
+	public void play() {
+		
+		autoPlay = true;
+		
+		slideTimer = new Timer();
+
+		playSlide = new PlaySlide(PlayDirection.NEXT);
+		
+		//TODO Clear slide here otherwise duplicate child error will occur		
+
+		displaySlide(slideShowIndex);
+	}
+
+	private class PlaySlide extends TimerTask {
+
+		private PlayDirection playDirection;
+
+		/**
+		 * The constructor assignst the play direction
+		 *<p> Date Modified: 28 May 2014
+		 */
+		public PlaySlide(PlayDirection playDirection) {
+			this.playDirection = playDirection;
+		}
+
+		@Override
+		public void run() {
+			if (this.playDirection == PlayDirection.NEXT) {
+				nextSlide();
+			} else {
+				prevSlide();
+			}
+
+		}
+
+	}
 }
 
 /**************End of SlideShow.java**************/

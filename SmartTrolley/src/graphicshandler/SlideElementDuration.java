@@ -50,7 +50,8 @@ public class SlideElementDuration {
 	 * *<p> Date Modified: 25 April 2014
 	 */
 	public SlideElementDuration(Node node) {
-
+		
+		
 		this.node = node;
 
 		this.node.setVisible(false);

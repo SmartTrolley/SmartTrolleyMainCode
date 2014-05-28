@@ -96,7 +96,7 @@ public class TestProductScreenController {
 	*/
 	private void createAndStartTestSlideshow() {
 
-		Slide firstSlide = new Slide();
+		Slide firstSlide = new Slide(1);
 		testSlideShow = new SlideShow(smartTrolleyApplication.productScreen.getProductAnchorPane());
 
 		// TODO User IMAGE_HEIGHT & IMAGE_WIDTH constants instead of magic numbers
@@ -109,7 +109,7 @@ public class TestProductScreenController {
 		productImage = new Image(getClass().getResourceAsStream("img/SampleProducts/alpen_blueberry_cranberry.jpg"), 100, 100, true, true);
 		productImageView = new ImageView(productImage);
 
-		Slide secondSlide = new Slide();
+		Slide secondSlide = new Slide(2);
 		secondSlide.addNodeToSlide(productImageView, Slide.SlideChildElements.IMAGE);
 
 		testSlideShow.addSlideToSlideShow(secondSlide);
@@ -203,7 +203,7 @@ public class TestProductScreenController {
 		});
 		
 		SmartTrolleyDelay.delay(500);
-		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().endOfListMsgBx.isShowing());
+		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().outOfSldShwMsgBox.isShowing());
 	}
 	
 	/**
@@ -223,7 +223,19 @@ public class TestProductScreenController {
 		});
 		
 		SmartTrolleyDelay.delay(500);
-		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().startOfListMsgBx.isShowing());
+		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().outOfSldShwMsgBox.isShowing());
+	}
+	
+	
+	/**
+	*Tests that slide changes after the duration has elapsed
+	*<p> User can view PWS Compatible slideshow
+	*<p> Date Modified: 27 May 2014
+	*/
+	@Test
+	public final void testSlideDuration() {
+		
+		while(true);
 	}
 	
 	//TODO testStartScreenDisplayedOnNoSlideshow test

@@ -32,22 +32,22 @@ public class Slide extends AnchorPane {
 	// Note that these child elements have attributes as well
 	static enum SlideChildElements {
 		TEXT, TEXTBODY, SHAPE, AUDIO, IMAGE, VIDEO
-	};
-	
-	/**
-	*Sets the duration of the slide 
-	*<p>User can view PWS Compatible slideshow
-	*@param seconds - Duration in seconds
-	*<p> Date Modified: 25 May 2014
-	*/
-	//TODO Unimplemented method
-	public void setDuration(int seconds){
-		
 	}
 
-	//TODO Arne's implementation of this method should be preferred to mine
+	protected double duration;;
+		
 	/**
-	*Adds the Node parameter to the pane parameter
+	 * The constructor gets the slide duration as a parameter
+	 *@param duration - Duration in seconds
+	 *<p> Date Modified: 28 May 2014
+	 */
+	public Slide(double duration){
+		this.duration = duration;
+	}
+
+	//TODO Matt & Alick's implementation of this method should be preferred to mine
+	/**
+	*Adds the Node parameter to the pane
 	*<p>User can view PWS Compatible slideshow
 	* @param insertInSlide - Node to be inserted into the slide
 	* @param type - Subchild element type of the node
