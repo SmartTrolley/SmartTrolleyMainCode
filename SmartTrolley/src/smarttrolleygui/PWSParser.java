@@ -12,14 +12,16 @@
 
 package smarttrolleygui;
 
+import java.io.File;
 import java.util.List;
 
 import javafx.stage.FileChooser;
 
 import org.xml.sax.helpers.DefaultHandler;
 
+import se.mbaeumer.fxmessagebox.MessageBox;
+import se.mbaeumer.fxmessagebox.MessageBoxType;
 import toolBox.SmartTrolleyToolBox;
-
 
 /**
  * Enumerated type of the main elements in the PWS
@@ -44,9 +46,9 @@ enum DefaultsChildElements {
 
 public class PWSParser extends DefaultHandler {
 
-	//Refer to slide child elements using xyz = Slide.SlideChildElements. i.e. currentElement = Slide.SlideChildElements.TEXT;
-	
-	public static final String slideShowPath = "../../XMLDocs/trialPWS.xml";
+	// Refer to slide child elements using xyz = Slide.SlideChildElements. i.e. currentElement = Slide.SlideChildElements.TEXT;
+
+	public static String slideShowPath = "../../XMLDocs/trialPWS.xml";
 	/* /SmartTrolley/XMLDocs/trialPWS.xml */
 	private SlideShow slideShow;
 
@@ -62,13 +64,24 @@ public class PWSParser extends DefaultHandler {
 		SmartTrolleyToolBox.print("In PWS Parser");
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open PWS File");
+		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("(XML) Xtensible Markup Language Files", "*.xml"));
+		// TODO Perhaps set a default location to show
 
-		// TODO Now only display XML files and perhaps set a default location to show
 		// TODO Also pass the file into the XML Parser
-		fileChooser.showOpenDialog(SmartTrolleyGUI.stage);
 
-		readXMLFile(slideShowPath);
-		writeSlideShow();
+		File PWSfile = fileChooser.showOpenDialog(SmartTrolleyGUI.stage);
+
+		if (PWSfile == null) {
+			MessageBox noFileMsgBx = new MessageBox("The file you have selected does not exist.", MessageBoxType.OK_ONLY);
+		} else {
+
+			// TODO The below line can be used to load in a user selected file
+			// slideShowPath = PWSfile.getAbsolutePath();
+			SmartTrolleyToolBox.print(PWSfile.getAbsolutePath());
+
+			readXMLFile(slideShowPath);
+			writeSlideShow();
+		}
 	}
 
 	/**
