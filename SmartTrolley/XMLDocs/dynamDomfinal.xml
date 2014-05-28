@@ -27,6 +27,17 @@
 	<point y="38" x="269" num="7"/> 
 	</shape>
 	
+	<shape duration="0" starttime="3" layer="9" height="106" width="235" totalpoints="8" linecolor="#FFFFFF" fillcolor="#F79646">
+	<point y="38" x="269" num="0"/> 
+	<point y="38" x="422" num="1"/> 
+	<point y="0" x="419" num="2"/> 
+	<point y="53" x="505" num="3"/> 
+	<point y="106" x="433" num="4"/> 
+	<point y="67" x="430" num="5"/> 
+	<point y="66" x="278" num="6"/> 
+	<point y="38" x="269" num="7"/> 
+	</shape>
+	
 	<text xstart="20" ystart="291" xend="505" yend="441" layer="17" duration="0" starttime="0" font="Papyrus" fontcolor="#000000" fontsize="16">
 	
 	<textbody branch="3" bold="true" italic="true" underlined="false">
@@ -59,6 +70,17 @@
 	</textbody>
 	
 	</text>
+	
+	<shape duration="0" starttime="3" layer="9" height="106" width="235" totalpoints="8" linecolor="#FFFFFF" fillcolor="#F79646">
+	<point y="38" x="269" num="0"/> 
+	<point y="38" x="422" num="1"/> 
+	<point y="0" x="419" num="2"/> 
+	<point y="53" x="505" num="3"/> 
+	<point y="106" x="433" num="4"/> 
+	<point y="67" x="430" num="5"/> 
+	<point y="66" x="278" num="6"/> 
+	<point y="38" x="269" num="7"/> 
+	</shape>
 	
 	<shape duration="0" starttime="3" layer="9" height="106" width="235" totalpoints="8" linecolor="#FFFFFF" fillcolor="#F79646">
 	<point y="38" x="269" num="0"/> 

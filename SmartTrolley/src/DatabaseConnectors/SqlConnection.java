@@ -29,6 +29,18 @@ import smarttrolleygui.Offer;
 import smarttrolleygui.Product;
 import smarttrolleygui.SmartTrolleyGUI;
 
+import slideshowdata.AudioData;
+import slideshowdata.DefaultsData;
+import slideshowdata.DocumentInfoData;
+import slideshowdata.ImageData;
+import slideshowdata.PointData;
+import slideshowdata.ShapeData;
+import slideshowdata.SlideData;
+import slideshowdata.SlideShowData;
+import slideshowdata.TextBodyData;
+import slideshowdata.TextData;
+import slideshowdata.VideoData;
+
 	public class SqlConnection {
 		
 		
@@ -847,5 +859,190 @@ import smarttrolleygui.SmartTrolleyGUI;
 	}
 
 						/************** END: ADD XML to DATABASE ***************/
+	
+	public void uploadDefaultData(DefaultsData defaultdata){
+		SqlConnection sqlConnector = new SqlConnection();
+		
+		sqlConnector.addDefaultsContent(defaultdata.getBackgroundcolor(), 
+										defaultdata.getFont(), 
+										defaultdata.getFontsize(), 
+										defaultdata.getLinecolor() , 
+										defaultdata.getFillcolor());
+	}
+	
+	public void uploadDocumentData(DocumentInfoData documentdata){
+		SqlConnection sqlConnector = new SqlConnection();
+
+		sqlConnector.addDocumentDataContent(documentdata.getAuthor(),
+											documentdata.getAuthor(), 
+											documentdata.getTitle(), 
+											documentdata.getComment(), 
+											documentdata.getWidth(), 
+											documentdata.getHeight());
+	}
+	
+	public void uploadXmlData(SlideShowData data){
+		SqlConnection sqlConnector = new SqlConnection();
+		
+		int slideIndex = 0,
+			audioIndex = 0,
+			imageIndex = 0,
+			pointIndex = 0,
+			shapeIndex = 0,
+			textIndex = 0,
+			textbodyIndex = 0,
+			videoIndex = 0;
+		SlideData slidedata;
+		AudioData audiodata;
+		ImageData imagedata;
+		PointData pointdata;
+		ShapeData shapedata;
+		TextData textdata;
+		TextBodyData textbodydata;
+		VideoData videodata;
+		
+		
+		sqlConnector.deleteDocumentDataContent();
+		sqlConnector.deleteDefaultsContent();
+		
+		sqlConnector.uploadDocumentData(data.getDocumentinfo());
+		sqlConnector.uploadDefaultData(data.getDefaults());
+		
+		sqlConnector.deleteContentAndResetAutoIncrement("slide");
+		sqlConnector.deleteContentAndResetAutoIncrement("audio");
+		sqlConnector.deleteContentAndResetAutoIncrement("image_slide");
+		sqlConnector.deleteContentAndResetAutoIncrement("point");
+		sqlConnector.deleteContentAndResetAutoIncrement("shape");
+		sqlConnector.deleteContentAndResetAutoIncrement("text");
+		sqlConnector.deleteContentAndResetAutoIncrement("textbody");
+		sqlConnector.deleteContentAndResetAutoIncrement("video");
+		
+		
+		
+		while(slideIndex<data.getSlides().size()){
+			slidedata = data.getSlides().get(slideIndex);
+			
+			sqlConnector.addSlideContents(slidedata.getId(), 
+					  slidedata.getDuration(), 
+					  "null", //slide descriptor no method yet!
+					  slidedata.getLastSlide(), 
+					  "null"); //background color no method yet!
+			
+			while(audioIndex<data.getSlides().get(slideIndex).getAudios().size()){
+				audiodata = data.getSlides().get(slideIndex).getAudios().get(audioIndex);
+				
+				sqlConnector.addAudioTableContents(1, //maybe changed for slide ID
+												   audiodata.getStarttime(), 
+												   audiodata.getUrlname(), 
+												   50, //not in PWS
+												   audiodata.getLoop());
+				audioIndex++;
+				
+			}
+			
+			while (imageIndex < data.getSlides().get(slideIndex).getImages()
+					.size()) {
+				imagedata = data.getSlides().get(slideIndex).getImages()
+						.get(imageIndex);
+
+				sqlConnector.addImageContents(imagedata.getUrlname(),
+											  imagedata.getXstart(), 
+											  imagedata.getYstart(),
+								  			  imagedata.getWidth(), 
+											  imagedata.getHeight(),
+											  imagedata.getStarttime(), 
+											  imagedata.getDuration(),
+											  imagedata.getLayer(), 
+											  imagedata.getBranch());
+				imageIndex++;
+			}
+			
+			while(shapeIndex < data.getSlides().get(slideIndex).getShapes().size()){
+				shapedata = data.getSlides().get(slideIndex).getShapes().get(shapeIndex);
+				
+				sqlConnector.addShapeContents(1, //productID
+						shapedata.getTotalpoints(), 
+						shapedata.getWidth(), 
+						shapedata.getHeight(),
+						shapedata.getStarttime(), 
+						shapedata.getDuration(), 
+						shapedata.getLayer(), 
+						1, //branch
+						shapedata.getFillcolor(), 
+						shapedata.getLinecolor());
+				
+				while(pointIndex<data.getSlides().get(slideIndex).getShapes().get(shapeIndex).getPoints().size()){
+					pointdata = data.getSlides().get(slideIndex).getShapes().get(shapeIndex).getPoints().get(pointIndex);
+					
+					sqlConnector.addPointContents(1, //productId
+							  shapeIndex, //ShapeNo
+							  pointdata.getNum(), 
+							  pointdata.getX(), 
+							  pointdata.getY());
+					pointIndex++;
+				}
+				pointIndex = 0;
+				shapeIndex++;
+			}
+			
+			while(textIndex<data.getSlides().get(slideIndex).getTexts().size()){
+				textdata = data.getSlides().get(slideIndex).getTexts().get(textIndex);
+				
+				sqlConnector.addTextContents(1, // productID
+						textdata.getFontsize(), 
+						textdata.getXstart(), 
+						textdata.getYstart(), 
+						textdata.getStarttime(), 
+						textdata.getDuration(), 
+						textdata.getLayer(), 
+						textdata.getXend(), 
+						textdata.getYend(), 
+						textdata.getFont(), 
+						textdata.getFontcolor());
+				
+				while(textbodyIndex<data.getSlides().get(slideIndex).getTexts().get(textIndex).getTextbodies().size()){
+					
+					sqlConnector.addTextbodyContents(1, //ProductID, 
+							 textIndex, //TextNo 
+							 data.getSlides().get(slideIndex).getTexts().get(textIndex).getTextbodies().get(textbodyIndex).getBranch(), 
+							 data.getSlides().get(slideIndex).getTexts().get(textIndex).getTextbodies().get(textbodyIndex).getBold(), 
+							 data.getSlides().get(slideIndex).getTexts().get(textIndex).getTextbodies().get(textbodyIndex).getItalic(), 
+							 data.getSlides().get(slideIndex).getTexts().get(textIndex).getTextbodies().get(textbodyIndex).getUnderlined(), 
+							 data.getSlides().get(slideIndex).getTexts().get(textIndex).getTextbodies().get(textbodyIndex).getTextstring());
+					textbodyIndex++;
+				}
+				
+				textbodyIndex = 0;
+				textIndex++;				
+			}
+			
+			while(videoIndex<data.getSlides().get(slideIndex).getVideos().size()){
+				videodata = data.getSlides().get(slideIndex).getVideos().get(videoIndex);
+				
+				sqlConnector.addVideoContents(1, //ProductID 
+											  videodata.getUrlname(), 
+											  videodata.getStarttime(), 
+											  videodata.getLoop(), 
+											  videodata.getXstart(), 
+											  videodata.getYstart(), 
+											  videodata.getWidth(), 
+											  videodata.getHeight(), 
+											  videodata.getLayer(), 
+											  videodata.getDuration());
+				videoIndex++;
+			}
+			
+			audioIndex = 0;
+			imageIndex = 0;
+			pointIndex = 0;
+			shapeIndex = 0;
+			textIndex = 0;
+			textbodyIndex = 0;
+			videoIndex = 0;
+			
+			slideIndex++;
+		}
+		
+	}
 
 }
