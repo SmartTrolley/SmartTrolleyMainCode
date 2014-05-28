@@ -28,7 +28,7 @@ import javafx.scene.layout.Pane;
  *
  * @author [Checked By:] [Checker(s) fill here]
  *
- * @version [version of this class] [Date Created: DD/MM/YY]
+ * @version V1.0 created: 27/05/2014
  */
 public class SlideVideo extends Pane {
 
@@ -43,7 +43,7 @@ public class SlideVideo extends Pane {
 		
 		this.getChildren().add(handler.mediaControl.overallBox);
 		
-		setupDuration(startTime, duration);
+		setupDuration(startTime, duration, loop);
 		
 	}
 
@@ -55,10 +55,16 @@ public class SlideVideo extends Pane {
 	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 27 May 2014
 	*/
-	private void setupDuration(double startTime, double duration) {
+	private void setupDuration(double startTime, double duration, boolean loop) {
 		this.duration = new SlideElementDuration(this);
-		this.duration.setDuration(duration);
 		this.duration.setStartTime(startTime);
+		
+		// if its set to loop stop it from disappearing after duration
+		if(loop){
+			this.duration.setDuration(0);
+		}else{
+			this.duration.setDuration(duration);
+		}
 	}
 	
 	public void show(){
