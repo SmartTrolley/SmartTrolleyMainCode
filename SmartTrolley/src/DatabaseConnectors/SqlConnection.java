@@ -511,6 +511,7 @@ public class SqlConnection {
 	}
 	
 	/**
+	 * Method will add contents to the audio table on the sql server
 	 * 
 	 * @param productID
 	 * @param startTime
@@ -538,6 +539,53 @@ public class SqlConnection {
 	}
 	
 	/**
+	 * Method will add contents to the image table on the sql server
+	 * 
+	 * @param imageNo
+	 * @param urlname
+	 * @param xstart
+	 * @param ystart
+	 * @param width
+	 * @param height
+	 * @param starttime
+	 * @param duration
+	 * @param layer
+	 * @param branch
+	 */
+	public void addImageContents(int imageNo, String urlname, int xstart,
+			int ystart, int width, int height, int starttime, int duration,
+			int layer, int branch) {
+		
+		openConnection();
+		String query = "INSERT INTO `cl36-st`.`image_slide` (`imageNo`, `urlname`, `xstart`, `ystart`, `width`, `height`, `starttime`, `duration`, `layer`, `branch`"
+				+ ") VALUES ('"
+				+ imageNo
+				+ "', '"
+				+ urlname
+				+ "', '"
+				+ xstart
+				+ "', '"
+				+ ystart
+				+ "', '"
+				+ width
+				+ "', '"
+				+ height
+				+ "', '"
+				+ starttime
+				+ "', '"
+				+ duration
+				+ "', '"
+				+ layer
+				+ "', '"
+				+ branch
+				+ "');";
+		executeStatement(query);
+		closeConnection();
+		
+	}
+	
+	/**
+	 * Method will add contents to the point table on the sql server
 	 * 
 	 * @param productid
 	 * @param shapeNo
@@ -565,6 +613,7 @@ public class SqlConnection {
 	}
 	
 	/**
+	 * Method will add contents to the shape table on the sql server
 	 * 
 	 * @param productid
 	 * @param totalPoints
@@ -609,6 +658,7 @@ public class SqlConnection {
 	}
 
 	/**
+	 * Method will add contents to the text table on the sql server
 	 * 
 	 * @param productid
 	 * @param totalPoints
@@ -658,6 +708,7 @@ public class SqlConnection {
 	}
 
 	/**
+	 * Method will add contents to the textbody table on the sql server
 	 * 
 	 * @param productid
 	 * @param textNo
@@ -693,6 +744,7 @@ public class SqlConnection {
 	}
 
 	/**
+	 * Method will add contents to the video table on the sql server
 	 * 
 	 * @param productid
 	 * @param urlname
@@ -737,6 +789,7 @@ public class SqlConnection {
 	}
 
 	/**
+	 * Method will delete all entries of the table it is given
 	 * 
 	 * @param table
 	 */
@@ -747,52 +800,6 @@ public class SqlConnection {
 		query = "ALTER TABLE " + table + " AUTO_INCREMENT = 1";
 		executeStatement(query);
 		closeConnection();	
-	}
-
-	
-	/**
-	 * 
-	 * @param imageNo
-	 * @param urlname
-	 * @param xstart
-	 * @param ystart
-	 * @param width
-	 * @param height
-	 * @param starttime
-	 * @param duration
-	 * @param layer
-	 * @param branch
-	 */
-	public void addImageContents(int imageNo, String urlname, int xstart,
-			int ystart, int width, int height, int starttime, int duration,
-			int layer, int branch) {
-		
-		openConnection();
-		String query = "INSERT INTO `cl36-st`.`image_slide` (`imageNo`, `urlname`, `xstart`, `ystart`, `width`, `height`, `starttime`, `duration`, `layer`, `branch`"
-				+ ") VALUES ('"
-				+ imageNo
-				+ "', '"
-				+ urlname
-				+ "', '"
-				+ xstart
-				+ "', '"
-				+ ystart
-				+ "', '"
-				+ width
-				+ "', '"
-				+ height
-				+ "', '"
-				+ starttime
-				+ "', '"
-				+ duration
-				+ "', '"
-				+ layer
-				+ "', '"
-				+ branch
-				+ "');";
-		executeStatement(query);
-		closeConnection();
-		
 	}
 
 }
