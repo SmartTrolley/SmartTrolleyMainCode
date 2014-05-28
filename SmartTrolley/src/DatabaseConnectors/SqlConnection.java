@@ -432,6 +432,8 @@ public class SqlConnection {
 		url = "jdbc:mysql://" + IP  + "/" + USERNAME + "?";	
 	}
 
+						/**************START: ADD XML to DATABASE***************/
+	
 	/**
 	 * Method will add data to the document_info_data on the SQL database
 	 * 
@@ -801,5 +803,6 @@ public class SqlConnection {
 		executeStatement(query);
 		closeConnection();	
 	}
-
+						
+						/************** END: ADD XML to DATABASE ***************/
 }
