@@ -131,15 +131,8 @@ public class ProductSlideTest {
 
 		SmartTrolleyDelay.delay(1000);
 
-		productSlide = new ProductSlide(slideWidth, slideHeight, points, numOfPoints, graphicsWidth,
-				graphicsHeight, graphicsFillColour, graphicsLineColour,
-				graphicsStartTime, graphicsDuration, imageURL, xImageStart,
-				yImageStart, imageWidth, imageHeight, imageStartTime,
-				imageDuration, audURL, audStartTime, audDuration, audVolume,
-				texts, font, fontColor, numOfStrings, fontSize, xTextStart,
-				yTextStart, xTextEnd, yTextEnd, textStartTime, textDuration,
-				vidURL, xVidStart, yVidStart, VidWidth, VidHeight, vidLoop,
-				vidStartTime, vidDuration);
+		productSlide = new ProductSlide(xScaler, yScaler, graphicsList, imageList, audioList, textList,
+				videoList);
 
 	}
 
@@ -182,7 +175,7 @@ public class ProductSlideTest {
 	public void displayingVideoTest() {
 		SmartTrolleyDelay.delay(1000);
 		assertTrue(productSlide.videoSetup(vidURL, xVidStart, yVidStart,
-				VidWidth, VidHeight, vidLoop, vidStartTime, vidDuration)
+				VidWidth, VidHeight, vidLoop, vidStartTime, vidDuration, xScaler, yScaler)
 				.isVisible());
 
 	}
@@ -246,22 +239,12 @@ public class ProductSlideTest {
 
 		assertTrue(productSlide.textSetup(texts, font, fontColor, numOfStrings,
 				fontSize, xTextStart, yTextStart, xTextEnd, yTextEnd,
-				textStartTime, textDuration).isVisible());
+				textStartTime, textDuration, xScaler, yScaler).isVisible());
 	}
 	
-	@Test
-	public void imageResizeTest(){
-		
-		SmartTrolleyPrint.print("height is:" +  productSlide.imageSetup(imageURL, xImageStart, yImageStart,
-				imageWidth, imageHeight, imageStartTime, imageDuration, xScaler, yScaler).getImage().getRequestedHeight());
-		assertEquals(productSlide.imageSetup(imageURL, xImageStart, yImageStart,
-				(int) imageWidth, (int) imageHeight, imageStartTime, imageDuration, xScaler, yScaler).getBoundsInLocal().getHeight(),
-				imageHeight*yScaler, 0.0001);
-		
-//		double circleWidth =imageHandler.getBoundsInParent().getWidth();
-//		assertEquals(circleWidth, width, 0.0001);
-		
-	}
+
+	
+	
 	/**
 	 * Tests that all media have been removed from the slide
 	 * <p>
@@ -310,30 +293,68 @@ public class ProductSlideTest {
 
 	}
 
-//	@Test
-//	public void graphicsResizeTest(){
-//				
-//			double scaledGraphicsHeight = productSlide.graphicsSetup(points, numOfPoints, (int) graphicsWidth,
-//					(int) graphicsHeight, graphicsFillColour, graphicsLineColour, 
-//					graphicsStartTime, graphicsDuration, xScaler, yScaler).
-//					getLayoutBounds().getHeight();
-//			SmartTrolleyPrint.print(productSlide.graphicsSetup(points, numOfPoints, (int) graphicsWidth,
-//					(int) graphicsHeight, graphicsFillColour, graphicsLineColour, 
-//					graphicsStartTime, graphicsDuration, xScaler, yScaler).
-//					getLayoutBounds().getHeight());
-//			
-//			assertEquals(scaledGraphicsHeight, graphicsHeight*yScaler, 0.1);
-//			
-//			double scaledGraphicsWidth = productSlide.graphicsSetup(points, numOfPoints, (int) graphicsWidth,
-//					(int) graphicsHeight, graphicsFillColour, graphicsLineColour, 
-//					graphicsStartTime, graphicsDuration, xScaler, yScaler).
-//					getBoundsInParent().getWidth();
-//			
-//		
-//			assertEquals(scaledGraphicsWidth, graphicsWidth*xScaler, 0.1);
-//		
-//		}
+
+	@Test
+	public void imageLocationScaleTest(){
+
+		double imageScaledXPos = productSlide.imageSetup(imageURL, xImageStart, yImageStart,
+				imageWidth, imageHeight, imageStartTime, imageDuration, xScaler, yScaler)
+				.getLayoutX(); 
+		assertEquals(imageScaledXPos, xImageStart*xScaler, 0.1);
 		
+		double imageScaledYPos = productSlide.imageSetup(imageURL, xImageStart, yImageStart,
+				imageWidth, imageHeight, imageStartTime, imageDuration, xScaler, yScaler)
+				.getLayoutY(); 
+		assertEquals(imageScaledYPos, yImageStart*yScaler, 0.1);
+		}		
+	
+	@Test
+	public void graphicsLocationScaleTest(){
+
+		double graphicsScaledXPos = productSlide.graphicsSetup(points, numOfPoints, graphicsWidth,
+				graphicsHeight, graphicsFillColour, graphicsLineColour, 
+				graphicsStartTime, graphicsDuration, xScaler, yScaler).
+				getLayoutX(); 
+		assertEquals(graphicsScaledXPos, pointLow*xScaler, 0.1);
+		
+		double graphicsScaledYPos = productSlide.graphicsSetup(points, numOfPoints, graphicsWidth,
+				graphicsHeight, graphicsFillColour, graphicsLineColour, 
+				graphicsStartTime, graphicsDuration, xScaler, yScaler).
+				getLayoutY(); 
+		assertEquals(graphicsScaledYPos, pointLow*yScaler, 0.1);
+		}	
+	
+	@Test
+	public void textLocationScaleTest(){
+
+		double textScaledXPos = productSlide.textSetup(texts, font, fontColor,
+				numOfStrings, fontSize, xTextStart, yTextStart, xTextEnd, 
+				yTextEnd, textStartTime, textDuration, xScaler, yScaler)
+				.getLayoutX(); 
+		assertEquals(textScaledXPos, xTextStart*xScaler, 0.1);
+		
+		double textScaledYPos = productSlide.textSetup(texts, font, fontColor,
+				numOfStrings, fontSize, xTextStart, yTextStart, xTextEnd, 
+				yTextEnd, textStartTime, textDuration, xScaler, yScaler)
+				.getLayoutY(); 
+		assertEquals(textScaledYPos, yTextStart*yScaler, 0.1);
+		}		
+	
+	@Test
+	public void videoLocationScaleTest(){
+
+		double videoScaledXPos = productSlide.videoSetup(vidURL, xVidStart,
+				yVidStart, VidWidth, VidHeight, vidLoop, vidStartTime, 
+				vidDuration, xScaler, yScaler)
+				.getLayoutX(); 
+		assertEquals(videoScaledXPos, xVidStart*xScaler, 0.1);
+		
+		double videoScaledYPos = productSlide.videoSetup(vidURL, xVidStart,
+				yVidStart, VidWidth, VidHeight, vidLoop, vidStartTime, 
+				vidDuration, xScaler, yScaler)
+				.getLayoutY(); 
+		assertEquals(videoScaledYPos, yVidStart*yScaler, 0.1);
+		}		
 
 }
 
