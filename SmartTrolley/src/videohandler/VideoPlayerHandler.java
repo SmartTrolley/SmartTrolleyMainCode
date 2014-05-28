@@ -9,7 +9,6 @@
 
 package videohandler;
 
-import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -33,7 +32,7 @@ public class VideoPlayerHandler {
 	 * @param startTime
 	 * @param duration
 	 */
-	public VideoPlayerHandler(String pathLocation, int xStart, int yStart, Integer width, Integer height, Boolean loop, Integer startTime, Integer duration){
+	public VideoPlayerHandler(String pathLocation, int xStart, int yStart, Integer width, Integer height, Boolean loop, double startTime, double duration){
         
         // Create a MediaPlayer which plays the URL provided
         media = new Media(pathLocation);
@@ -43,18 +42,6 @@ public class VideoPlayerHandler {
         mediaControl = new MediaControl(mediaPlayer, width, height, loop, startTime, duration);
         
         // Set the Location of the MediaPlayer
-        setMediaPlayerLocation(mediaControl.overallBox, xStart, yStart);
+        //setMediaPlayerLocation(mediaControl.overallBox, xStart, yStart);
 	}
-	
-	/* 
-	 * Set the location of the VBox containing the MediaPlayer and MediaControl objects
-	 * 
-	 * @param vbox
-	 * @param xLocation
-	 * @param yLocation
-	 */
-	private void setMediaPlayerLocation(VBox vbox, int xLocation, int yLocation){
-		vbox.setLayoutX(xLocation);
-		vbox.setLayoutY(yLocation);
-	 }
 }

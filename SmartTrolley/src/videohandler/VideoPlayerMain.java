@@ -41,17 +41,20 @@ public class VideoPlayerMain extends Application {
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
         Scene scene = new Scene(root, bounds.getWidth(), bounds.getHeight());
         scene.setFill(Color.BLACK);
-        
         // Create a videoHandler.
-        VideoPlayerHandler videoPlayerHandler = new VideoPlayerHandler("http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv", 300, 300, 600, 400, true, 0, 5);
+        SlideVideo slideVideo = new SlideVideo("http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv", 300, 300, 600, 400, true, 5,5);
         
         // Add the VideoHandler to the scene.
-        root.getChildren().add(videoPlayerHandler.mediaControl.overallBox);
+        root.getChildren().add(slideVideo);
         
         // Configure the stage appropriately.
         primaryStage.setTitle("Video Player");
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
         primaryStage.show(); 
+        
+        slideVideo.show();
+        
+        
     }
 }

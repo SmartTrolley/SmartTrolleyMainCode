@@ -147,5 +147,36 @@ public class SlideTextBody extends Text implements Comparable<SlideTextBody> {
 	}
 	
 	
+	@Override
+	public String toString(){
+		return getText();
+	}
+
+
+	/**
+	*Method/Test Description
+	*<p>Test(s)/User Story that it satisfies
+	*@param font
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 25 May 2014
+	*/
+	public void setFontFamily(String font) {
+		this.fontFamily = font;
+		setupFont();
+	}
+
+
+	/**
+	*Method/Test Description
+	*<p>Test(s)/User Story that it satisfies
+	*@param fontSize
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 25 May 2014
+	*/
+	public void setFontSize(int fontSize) {
+		this.fontSize = fontSize;	
+		setupFont();
+	}
+	
 	
 }

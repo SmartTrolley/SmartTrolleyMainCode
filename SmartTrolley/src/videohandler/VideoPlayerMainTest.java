@@ -15,7 +15,7 @@ public class VideoPlayerMainTest {
 	
 	@Before
 	public void setup() throws AWTException {
-		videoPlayerHandler = new VideoPlayerHandler("http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv", 300, 300, 400, 400, false, 2, 5);    
+		videoPlayerHandler = new VideoPlayerHandler("http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv", 300, 300, 400, 400, true, 10, 5);    
 	}
 	
 	@Test
