@@ -9,34 +9,72 @@
 **/
 package slideshowdata;
 
+import java.util.ArrayList;
+
 import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 @Root (strict = false)
 public class SlideData {
 	
+	@ElementList (entry = "text", inline = true, required = false) 
+	private ArrayList<TextData>  texts;
+	
+	@ElementList (entry = "shape", inline = true, required = false)
+	private ArrayList<ShapeData>  shapes;
+	
+	@ElementList (entry = "image", inline = true, required = false) 
+	private ArrayList<ImageData>  images;
+	
+	@ElementList (entry = "audio", inline = true, required = false)
+	private ArrayList<AudioData>  audios;
+	
+	@ElementList (entry = "video", inline = true, required = false)
+	private ArrayList<VideoData>  videos;
+	
 	@Attribute (name = "id", required=true)
-	public int id;
+	private int id;
 	
 	@Attribute (name = "duration", required=false)
-	public int duration;
+	private int duration;
 	
 	@Attribute (name = "lastSlide", required=false)
-	public Boolean lastSlide;
+	private Boolean lastSlide;
 	
-	@Element (name = "text", required = false) 
-	TextData  textdata;
 	
-	@Element (name = "shape", required = false)
-	ShapeData  shapedata;
+
+	public int getId() {
+		return id;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public Boolean getLastSlide() {
+		return lastSlide;
+	}
+
+	public ArrayList<TextData> getTexts() {
+		return texts;
+	}
+
+	public ArrayList<ShapeData> getShapes() {
+		return shapes;
+	}
+
+	public ArrayList<ImageData> getImages() {
+		return images;
+	}
+
+	public ArrayList<AudioData> getAudios() {
+		return audios;
+	}
+
+	public ArrayList<VideoData> getVideos() {
+		return videos;
+	}
 	
-	@Element (name = "image", required = false) 
-	ImageData  imagedata;
 	
-	@Element (name = "audio", required = false)
-	AudioData  audiodata;
-	
-	@Element (name = "video", required = false)
-	VideoData  videodata;
 }

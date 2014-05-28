@@ -14,17 +14,39 @@ import org.simpleframework.xml.Root;
 
 @Root (strict = false)
 public class DocumentInfoData {
+	
 	@Element (name = "author")
-	public String author;
+	private String author;
 	@Element (name = "version")
-	public String version;
+	private String version;
 	@Element (name = "title")
-	public String title;
+	private String title;
 	@Element (name = "comment")
-	public String comment;
+	private String comment;
 	@Element (name = "width")
-	public int width;
+	private int width;
 	@Element (name = "height")
-	public int height;
+	private int height;
+	
+	public String getAuthor() {
+		return author;
+	}
+	public String getVersion() {
+		return version;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public String getComment() {
+		return comment;
+	}
+	public int getWidth() {
+		return width;
+	}
+	public int getHeight() {
+		return height;
+	}
+	
+	
 
 }

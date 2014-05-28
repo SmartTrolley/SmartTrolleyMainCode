@@ -15,30 +15,68 @@ import org.simpleframework.xml.Root;
 public class VideoData {
 	
 	@Attribute (name = "urlname", required=true)
-	public String urlname;
+	private String urlname;
 	
 	@Attribute (name = "xstart", required=true)
-	public int xstart;
+	private int xstart;
 	
 	@Attribute (name = "ystart", required=true)
-	public int ystart;
+	private int ystart;
 	
 	@Attribute (name = "width", required=false)
-	public int width;
+	private int width;
 	
 	@Attribute (name = "height", required=false)
-	public int height;
+	private int height;
 	
 	@Attribute (name = "layer", required=true)
-	public int layer;
+	private int layer;
 	
 	@Attribute (name = "duration", required=true)
-	public int duration;
+	private int duration;
 	
 	@Attribute (name = "starttime", required=true)
-	public int starttime;
+	private int starttime;
 	
 	@Attribute (name = "loop", required=true)
-	public Boolean loop;
+	private Boolean loop;
+
+	public String getUrlname() {
+		return urlname;
+	}
+
+	public int getXstart() {
+		return xstart;
+	}
+
+	public int getYstart() {
+		return ystart;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public int getLayer() {
+		return layer;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public int getStarttime() {
+		return starttime;
+	}
+
+	public Boolean getLoop() {
+		return loop;
+	}
+	
+	
 
 }

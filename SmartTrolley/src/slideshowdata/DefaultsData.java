@@ -16,16 +16,37 @@ import org.simpleframework.xml.Root;
 public class DefaultsData {
 
 	@Element (name = "backgroundcolor")
-	public String backgroundcolor;
+	private String backgroundcolor;
 	@Element (name = "font")
-	public String font;
+	private String font;
 	@Element (name = "fontsize")
-	public int fontsize;
+	private int fontsize;
 	@Element (name = "fontcolor")
-	public String fontcolor;
+	private String fontcolor;
 	@Element (name = "linecolor")
-	public String linecolor;
+	private String linecolor;
 	@Element (name = "fillcolor")
-	public String fillcolor;
+	private String fillcolor;
+	
+	public String getBackgroundcolor() {
+		return backgroundcolor;
+	}
+	public String getFont() {
+		return font;
+	}
+	public int getFontsize() {
+		return fontsize;
+	}
+	public String getFontcolor() {
+		return fontcolor;
+	}
+	public String getLinecolor() {
+		return linecolor;
+	}
+	public String getFillcolor() {
+		return fillcolor;
+	}
+	
+	
 
 }

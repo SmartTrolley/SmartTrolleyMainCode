@@ -8,39 +8,78 @@
 * @version V1.0 [Date Created: 27 May 2014]
 **/
 package slideshowdata;
+
+import java.util.ArrayList;
+
 import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 @Root (strict = false)
 public class ShapeData {
-
+	
+	@ElementList (entry = "point", inline=true)
+	private ArrayList<PointData> points;
+	
 	@Attribute (name = "fillcolor", required=false)
-	public String fillcolor;
+	private String fillcolor;
 	
 	@Attribute (name = "linecolor", required=false)
-	public String linecolor;
+	private String linecolor;
 	
 	@Attribute (name = "layer", required=false)
-	public int layer;
+	private int layer;
 	
 	@Attribute (name = "duration", required=false)
-	public int duration;
+	private int duration;
 	
 	@Attribute (name = "starttime", required=false)
-	public int starttime;
+	private int starttime;
 	
 	@Attribute (name = "totalpoints", required=true)
-	public int totalpoints;
+	private int totalpoints;
 	
 	@Attribute (name = "width", required=true)
-	public int width;
+	private int width;
 	
 	@Attribute (name = "height", required=true)
-	public int height;
-	
-	@Element (name = "point")
-	private PointData  pointdata;
+	private int height;
+
+	public ArrayList<PointData> getPoints() {
+		return points;
+	}
+
+	public String getFillcolor() {
+		return fillcolor;
+	}
+
+	public String getLinecolor() {
+		return linecolor;
+	}
+
+	public int getLayer() {
+		return layer;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public int getStarttime() {
+		return starttime;
+	}
+
+	public int getTotalpoints() {
+		return totalpoints;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
 	
 	
 	

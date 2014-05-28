@@ -19,42 +19,82 @@ import org.simpleframework.xml.Root;
 @Root (strict = false)
 public class TextData {
 	
-	@ElementList (name = "textbody")
-	public ArrayList<TextBodyData> textbodydatalist;
+	@ElementList (entry = "textbody", inline = true)
+	private ArrayList<TextBodyData> textbodies;
 		
 	@Attribute (name = "xstart", required=true)
-	public int xstart;
+	private int xstart;
 	
 	@Attribute (name = "ystart", required=true)
-	public int ystart;
+	private int ystart;
 	
 	@Attribute (name = "xend", required=true)
-	public int xend;
+	private int xend;
 	
 	@Attribute (name = "yend", required=true)
-	public int yend;
+	private int yend;
 	
 	@Attribute (name = "layer", required=false)
-	public int layer;
+	private int layer;
 	
 	@Attribute (name = "duration", required=false)
-	public int duration;
+	private int duration;
 	
 	@Attribute (name = "starttime", required=false)
-	public int starttime;
+	private int starttime;
 	
 	@Attribute (name = "font", required=false)
-	public String font;
+	private String font;
 	
 	@Attribute (name = "fontcolor", required=false)
-	public String fontcolor;
+	private String fontcolor;
 	
 	@Attribute (name = "fontsize", required=false)
-	public int fontsize;
+	private int fontsize;
 
-	
+	public ArrayList<TextBodyData> getTextbodies() {
+		return textbodies;
+	}
 
-	
-	
+	public int getXstart() {
+		return xstart;
+	}
+
+	public int getYstart() {
+		return ystart;
+	}
+
+	public int getXend() {
+		return xend;
+	}
+
+	public int getYend() {
+		return yend;
+	}
+
+	public int getLayer() {
+		return layer;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public int getStarttime() {
+		return starttime;
+	}
+
+	public String getFont() {
+		return font;
+	}
+
+	public String getFontcolor() {
+		return fontcolor;
+	}
+
+	public int getFontsize() {
+		return fontsize;
+	}
+
 
 }

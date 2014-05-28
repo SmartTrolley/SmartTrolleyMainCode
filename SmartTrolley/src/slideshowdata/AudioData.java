@@ -15,13 +15,24 @@ import org.simpleframework.xml.Root;
 public class AudioData {
 	
 	@Attribute (name = "urlname", required=true)
-	public String urlname;
+	private String urlname;
 	
 	@Attribute (name = "starttime", required=false)
-	public int starttime;
+	private int starttime;
 	
 	@Attribute (name = "loop", required=false)
-	public Boolean loop;
-	
+	private Boolean loop;
 
+	public String getUrlname() {
+		return urlname;
+	}
+
+	public int getStarttime() {
+		return starttime;
+	}
+
+	public Boolean getLoop() {
+		return loop;
+	}
+	
 }

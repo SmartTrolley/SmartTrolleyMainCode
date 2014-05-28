@@ -17,18 +17,47 @@ import org.simpleframework.xml.Root;
 public class TextBodyData {
 
 	@Attribute (name = "branch", required=false)
-	public int branch;
-	
+	private int branch;
+
 	@Attribute (name = "italic", required=false)
-	public Boolean italic;
+	private Boolean italic;
 	
 	@Attribute (name = "bold", required=false)
-	public Boolean bold;
+	private Boolean bold;
 	
 	@Attribute (name = "underlined", required=false)
-	public Boolean underlined;
+	private Boolean underlined;
 	
 	@Element (name = "textstring", required = false)
-	public String textstring;
+	private String textstring;
+	
+	
+	public int getBranch() {
+		return branch;
+	}
+	
+	public Boolean getItalic() {
+		return italic;
+	}
+
+
+	public Boolean getBold() {
+		return bold;
+	}
+
+
+	public Boolean getUnderlined() {
+		return underlined;
+	}
+
+
+	public String getTextstring() {
+		return textstring;
+	}
+
+
+	
+	
+	
 	
 }

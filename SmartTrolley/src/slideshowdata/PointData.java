@@ -15,13 +15,27 @@ import org.simpleframework.xml.Root;
 public class PointData {
 	
 	@Attribute (name = "num", required=true)
-	public int num;
+	private int num;
 	
 	@Attribute (name = "x", required=true)
-	public int x;
+	private int x;
 	
 	@Attribute (name = "y", required=true)
-	public int y;
+	private int y;
+
+	public int getNum() {
+		return num;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+	
+	
 	
 
 }

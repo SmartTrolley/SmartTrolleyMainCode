@@ -12,157 +12,210 @@
 package slideshowdata;
 
 import static org.junit.Assert.*;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 
 import Printing.SmartTrolleyPrint;
 
-
 public class TestPWSParser {
 	
 	private PWSParser parser;
 	private SlideShowData data;
 	private String fileName = " ../../XMLDocs/dynamDomfinal.xml";
+	private SlideData firstSlide;
+	private TextData firstText;
+	private VideoData firstVideo;
+	private ImageData firstImage;
+	private AudioData firstAudio;	
+	private ShapeData firstShape; 	
+	private PointData firstPoint; 
 	
-
-
 	@Before
 	public void setUp() throws Exception {
 		
 		parser  =  new PWSParser();
 		data = new SlideShowData();
 		data = parser.read(fileName);
-	}
+		firstSlide = data.getSlides().get(0);
+		firstText = firstSlide.getTexts().get(0);
+		firstVideo = firstSlide.getVideos().get(0);
+		firstImage = firstSlide.getImages().get(0);
+		firstAudio = firstSlide.getAudios().get(0);
+		firstShape = firstSlide.getShapes().get(0);
+		firstPoint = firstShape.getPoints().get(0);
+		
 	
-	@After
-	public void tearDown() throws Exception {
 	}
-
 	
 	@Test
 	public void correctDocumentInfoTest() throws Exception{
 		
-		assertEquals(data.getAuthor() ,"D6 Digital");
-		assertEquals(data.getVersion() ,"2.1");
-		assertEquals(data.getTitle() ,"This is the first chapter ");
-		assertEquals(data.getComment() ,"example comment for chapter 1");
-		assertEquals(data.getWidth() , 720);
-		assertEquals(data.getHeight() , 540);
+		assertEquals(data.getDocumentinfo().getAuthor() , "D6 Digital");
+		assertEquals(data.getDocumentinfo().getVersion() , "2.1");
+		assertEquals(data.getDocumentinfo().getTitle(), "This is the first chapter ");
+		assertEquals(data.getDocumentinfo().getComment() , "example comment for chapter 1");
+		assertEquals(data.getDocumentinfo().getWidth() , 720);
+		assertEquals(data.getDocumentinfo().getHeight() , 540);
 		
-		SmartTrolleyPrint.print("DocumentInfo Data: " + data.getAuthor() + ", " + data.getVersion()+ ", "  + data.getTitle()
-				+ ", " 	+ data.getComment()+ ", "  + data.getWidth()+ ", "  + data.getHeight() + "\n");
-		
+		SmartTrolleyPrint.print("DocumentInfo Data: " + data.getDocumentinfo().getAuthor() + ", " + data.getDocumentinfo().getVersion() 
+				+ ", "  + data.getDocumentinfo().getTitle() + ", " 	+ data.getDocumentinfo().getComment() + ", "  + data.getDocumentinfo().getWidth() 
+				+ ", "  + data.getDocumentinfo().getHeight() + "\n");
 	}
-	
+		
 	@Test
 	public void correctDefaultsTest() throws Exception{
 		
-		assertEquals(data.getDefaultBackgroundColor() ,"#948A54");
-		assertEquals(data.getDefaultFont() ,"Papyrus");
-		assertEquals(data.getDefaultFontSize() , 18);
-		assertEquals(data.getDefaultFontColor() ,"#FFFFFF");
-		assertEquals(data.getDefaultLineColor() ,"#5C4776");
-		assertEquals(data.getDefaultFillColor() ,"#8064A2");
+		assertEquals(data.getDefaults().getBackgroundcolor() ,"#948A54");
+		assertEquals(data.getDefaults().getFont() ,"Papyrus");
+		assertEquals(data.getDefaults().getFontsize() , 18);
+		assertEquals(data.getDefaults().getFontcolor() ,"#FFFFFF");
+		assertEquals(data.getDefaults().getLinecolor() ,"#5C4776");
+		assertEquals(data.getDefaults().getFillcolor() ,"#8064A2");
 		
-		SmartTrolleyPrint.print("Defaults Data: " + data.getDefaultBackgroundColor() + ", " + data.getDefaultFont()+ ", "  + data.getDefaultFontSize()
-				+ ", " 	+ data.getDefaultFontColor()+ ", "  + data.getDefaultLineColor()+ ", "  + data.getDefaultFillColor() + "\n");
+		SmartTrolleyPrint.print("Defaults Data: " + data.getDefaults().getBackgroundcolor() + ", " + data.getDefaults().getFont()
+				+ ", "  + data.getDefaults().getFontsize()	+ ", " 	+ data.getDefaults().getFontcolor() + ", "  + data.getDefaults().getLinecolor() 
+				+ ", "  + data.getDefaults().getFillcolor() + "\n");
 		
 	}
 	
 	@Test
 	public void correctSlideTest() throws Exception{
 		
-		assertEquals(data.getSlideId() , 0);
-		assertEquals(data.getSlideDuration() , 60);
-		assertEquals(data.getSlideLastSlide() , true);
+		assertEquals(firstSlide.getId() , 0);
+		assertEquals(firstSlide.getDuration() , 60);
+		assertEquals(firstSlide.getLastSlide() , true);
 		
-		SmartTrolleyPrint.print("Slide Data: " + data.getSlideId() + ", " + data.getSlideDuration()+ ", "  + data.getSlideLastSlide() + "\n");
+		SmartTrolleyPrint.print("Slide Data: " + firstSlide.getId() + ", " + firstSlide.getDuration() 
+				+ ", "  + firstSlide.getLastSlide() + "\n");
 		
 	}
 	
 	@Test
 	public void correctTextAttributeTest() throws Exception{
 		
-		assertEquals(data.getTextXstart() , 20);
-		assertEquals(data.getTextYstart() , 291);
-		assertEquals(data.getTextXend() , 505);
-		assertEquals(data.getTextYend() , 441);
-		assertEquals(data.getTextLayer() , 17);
-		assertEquals(data.getTextDuration() , 0);
-		assertEquals(data.getTextStarttime() , 0);
-		assertEquals(data.getTextFont() , "Papyrus");
-		assertEquals(data.getTextFontcolor() , "#000000");
-		assertEquals(data.getTextFontsize() , 16);
+		assertEquals(firstText.getXstart() , 20);
+		assertEquals(firstText.getYstart() , 291);
+		assertEquals(firstText.getXend() , 505);
+		assertEquals(firstText.getYend() , 441);
+		assertEquals(firstText.getLayer() , 17);
+		assertEquals(firstText.getDuration() , 0);
+		assertEquals(firstText.getStarttime() , 0);
+		assertEquals(firstText.getFont() , "Papyrus");
+		assertEquals(firstText.getFontcolor() , "#000000");
+		assertEquals(firstText.getFontsize() , 16);
 		
-		SmartTrolleyPrint.print("Text Attribute Data: " + data.getTextXstart() + ", " + data.getTextYstart()+ ", "  + data.getTextXend()
-				+ ", " 	+ data.getTextYend()+ ", "  + data.getTextLayer()+ ", "  + data.getTextDuration() + ", "  + data.getTextStarttime()
-				+ ", "  + data.getTextFont() + ", " + data.getTextFontcolor() + ", " + data.getTextFontsize() + "\n");
+		SmartTrolleyPrint.print("Text Attribute Data: " + firstText.getXstart() + ", " + firstText.getYstart() + ", "  + firstText.getXend()
+				+ ", " 	+ firstText.getYend() + ", "  + firstText.getLayer() + ", "  + firstText.getDuration() + ", "  + firstText.getStarttime()
+				+ ", "  + firstText.getFont() + ", " + firstText.getFontcolor() + ", " + firstText.getFontsize() + "\n");
 	}
 	
 	@Test
 	public void correctTextbodyTest() throws Exception{
 		
-//		assertEquals(data.getTextbodyBranch(0) , 3);
-//		assertEquals(data.getTextbodyItalic(0) , true);
-//		assertEquals(data.getTextbodyBold(0) , true);
-//		assertEquals(data.getTextbodyUnderlined(0) , false);
-//		assertEquals(data.getTextbodyTextstring(0) , "Text must be within a “bounding” empty text box with the desired formatting");
+		int i = 0;
 		
-		SmartTrolleyPrint.print("Textbody Data: " + data.getTextbodyBranch(0) + ", " + data.getTextbodyItalic(0) + ", " + data.getTextbodyBold(0) 
-				+ ", " + data.getTextbodyUnderlined(0) +  ", " + data.getTextbodyTextstring(0) + "\n");
+		assertEquals(firstText.getTextbodies().get(i).getBranch() , 3);
+		assertEquals(firstText.getTextbodies().get(i).getItalic() , true);
+		assertEquals(firstText.getTextbodies().get(i).getBold() , true);
+		assertEquals(firstText.getTextbodies().get(i).getUnderlined() , false);
+		assertEquals(firstText.getTextbodies().get(i).getTextstring() , "Text must be within a “bounding” empty text box with the desired formatting");
+		
+		
+		SmartTrolleyPrint.print("Textbody Data: " + firstText.getTextbodies().get(i).getBranch() + ", " + firstText.getTextbodies().get(i).getItalic() 
+				+ ", " + firstText.getTextbodies().get(i).getBold()	+ ", " + firstText.getTextbodies().get(i).getUnderlined()
+				+  ", " + firstText.getTextbodies().get(i).getTextstring() + "\n");
+		
+		i = 1;
+		
+		assertEquals(firstText.getTextbodies().get(i).getBranch() , 15);
+		assertEquals(firstText.getTextbodies().get(i).getItalic() , false);
+		assertEquals(firstText.getTextbodies().get(i).getBold() , false);
+		assertEquals(firstText.getTextbodies().get(i).getUnderlined() , true);
+		assertEquals(firstText.getTextbodies().get(i).getTextstring() , "If this works, I will be happy");
+		
+		SmartTrolleyPrint.print("Textbody Data: " + firstText.getTextbodies().get(i).getBranch() + ", " + firstText.getTextbodies().get(i).getItalic() 
+				+ ", " + firstText.getTextbodies().get(i).getBold()	+ ", " + firstText.getTextbodies().get(i).getUnderlined()
+				+  ", " + firstText.getTextbodies().get(i).getTextstring() + "\n");
 	}
 	
 	@Test
 	public void correctVideoTest() throws Exception{
 		
-		assertEquals(data.getVideoURL() ,"resources/video/video/monstersinc_high.mpg");
-		assertEquals(data.getVideoXstart() , 456);
-		assertEquals(data.getVideoYstart() , 402);
-		assertEquals(data.getVideoWidth() , 242);
-		assertEquals(data.getVideoHeight() , 126);
-		assertEquals(data.getVideoLayer() , 23);
-		assertEquals(data.getVideoDuration() , 0);
-		assertEquals(data.getVideoStarttime() , 0);
-		assertEquals(data.getVideoLoop() , false);
+		assertEquals(firstVideo.getUrlname() ,"resources/video/video/monstersinc_high.mpg");
+		assertEquals(firstVideo.getXstart() , 456);
+		assertEquals(firstVideo.getYstart() , 402);
+		assertEquals(firstVideo.getWidth(), 242);
+		assertEquals(firstVideo.getHeight() , 126);
+		assertEquals(firstVideo.getLayer() , 23);
+		assertEquals(firstVideo.getStarttime() , 0);
+		assertEquals(firstVideo.getDuration() , 0);
+		assertEquals(firstVideo.getLoop() , false);
 		
-		SmartTrolleyPrint.print("Video Data: " + data.getVideoURL() + ", " + data.getVideoXstart()+ ", "  + data.getVideoYstart()
-				+ ", " 	+ data.getVideoWidth()+ ", "  + data.getVideoHeight()+ ", "  + data.getVideoLayer() + data.getVideoDuration()
-				+ ", "  + data.getVideoStarttime()+ ", "  + data.getVideoLoop() + "\n");
+		SmartTrolleyPrint.print("Video Data: " + firstVideo.getUrlname() + ", " + firstVideo.getXstart() + ", "  + firstVideo.getYstart()
+				+ ", " 	+ firstVideo.getWidth()+ ", "  + firstVideo.getHeight() + ", "  + firstVideo.getLayer() + firstVideo.getStarttime()
+				+ ", "  + firstVideo.getDuration() + ", "  + firstVideo.getLoop() + "\n");
 		
 	}
 	
 	@Test
 	public void correctImageTest() throws Exception{
 		
-		assertEquals(data.getImageURL() ,"resources/images/Desert.jpg");
-		assertEquals(data.getImageXstart() ,383);
-		assertEquals(data.getImageYstart() , 15);
-		assertEquals(data.getImageWidth() , 272);
-		assertEquals(data.getImageHeight() , 122);
-		assertEquals(data.getImageLayer() , 3);
-		assertEquals(data.getImageDuration() , 0);
-		assertEquals(data.getImageStarttime() , 0);
-		assertEquals(data.getImageBranch() , 1);
+		assertEquals(firstImage.getUrlname() ,"resources/images/Desert.jpg");
+		assertEquals(firstImage.getXstart() ,383);
+		assertEquals(firstImage.getYstart() , 15);
+		assertEquals(firstImage.getWidth() , 272);
+		assertEquals(firstImage.getHeight() , 122);
+		assertEquals(firstImage.getLayer() , 3);
+		assertEquals(firstImage.getDuration() , 0);
+		assertEquals(firstImage.getStarttime() , 0);
+		assertEquals(firstImage.getBranch() , 1);
 		
-		SmartTrolleyPrint.print("Image Data: " + data.getImageURL() + ", " + data.getImageXstart()+ ", "  + data.getImageYstart()
-				+ ", " 	+ data.getImageWidth()+ ", "  + data.getImageHeight()+ ", "  + data.getImageLayer() + data.getImageDuration()
-				+ ", "  + data.getImageStarttime()+ ", "  + data.getImageBranch() + "\n");
+		SmartTrolleyPrint.print("Image Data: " + firstImage.getUrlname() + ", " + firstImage.getXstart() + ", "  + firstImage.getYstart()
+				+ ", " 	+ firstImage.getWidth() + ", "  + firstImage.getHeight()+ ", "  + firstImage.getLayer() + firstImage.getDuration()
+				+ ", "  + firstImage.getStarttime() + ", "  + firstImage.getBranch() + "\n");
+		
+	}
+
+	@Test
+	public void correctAudioTest() throws Exception{
+		
+		assertEquals(firstAudio.getUrlname() ,"C:/Users/Public/Music/Sample Music/Kalimba.mp3");
+		assertEquals(firstAudio.getStarttime() , 0);
+		assertEquals(firstAudio.getLoop() , false);
+		
+		SmartTrolleyPrint.print("Audio Data: " + firstAudio.getUrlname() + ", " + firstAudio.getStarttime() + ", "  + firstAudio.getLoop() + "\n");
 		
 	}
 	
 	@Test
-	public void correctAudioTest() throws Exception{
+	public void correctShapeTest() throws Exception{
 		
-		assertEquals(data.getAudioURL() ,"C:/Users/Public/Music/Sample Music/Kalimba.mp3");
-		assertEquals(data.getAudioStarttime() , 0);
-		assertEquals(data.getAudioLoop() , false);
+		assertEquals(firstShape.getDuration(), 0);
+		assertEquals(firstShape.getStarttime(), 3);
+		assertEquals(firstShape.getLayer(), 9);
+		assertEquals(firstShape.getHeight(), 106);
+		assertEquals(firstShape.getWidth(), 235);
+		assertEquals(firstShape.getTotalpoints(), 8);
+		assertEquals(firstShape.getLinecolor(), "#FFFFFF");
+		assertEquals(firstShape.getFillcolor(), "#F79646");
 		
-		SmartTrolleyPrint.print("Audio Data: " + data.getAudioURL() + ", " + data.getAudioStarttime()+ ", "  + data.getAudioLoop() + "\n");
+		SmartTrolleyPrint.print("Shape Data: " + firstShape.getDuration() + ", " + firstAudio.getStarttime() + ", "  + firstShape.getLayer() 
+				+ ", "  + firstShape.getHeight() + ", "  + firstShape.getWidth() + ", "  + firstShape.getTotalpoints() + ", "  + firstShape.getLinecolor() 
+				+ ", "  + firstShape.getFillcolor() + "\n");
 		
 	}
 	
+	@Test
+	public void correctPointTest() throws Exception{
+		
+		assertEquals(firstPoint.getX(), 269);
+		assertEquals(firstPoint.getY(), 38);
+		assertEquals(firstPoint.getNum(), 0);
+		
+		SmartTrolleyPrint.print("Point Data: " + firstPoint.getX() + ", " + firstPoint.getY() + ", "  + firstPoint.getNum() +  "\n");
+		
+	}
 }
 
 /**************End of TestPWSParser.java**************/
