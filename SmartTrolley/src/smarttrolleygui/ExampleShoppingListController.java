@@ -60,9 +60,8 @@ public class ExampleShoppingListController implements Initializable {
 	public static Button deleteListButton;
 	@FXML
 	private Label listNameLabel;
-	
-	public static MessageBox deleteMsgBx = new MessageBox(
-			"Would you really like to delete the list ?", MessageBoxType.YES_NO);
+
+	public static MessageBox deleteMsgBx = new MessageBox("Would you really like to delete the list ?", MessageBoxType.YES_NO);
 
 	private SmartTrolleyGUI application;
 	private ObservableList<String> categories;
@@ -122,13 +121,14 @@ public class ExampleShoppingListController implements Initializable {
 
 		SmartTrolleyToolBox.print("Delete Button Pressed");
 		deleteMsgBx.showAndWait();
-		
-		/*The two lines below to set the 
-		*message box height and width
-		*are there because the message box
-		*resized itself (became very small)
-		* when multiple lists were deleted.
-		*/
+
+		/*
+		 * The two lines below to set the
+		 * message box height and width
+		 * are there because the message box
+		 * resized itself (became very small)
+		 * when multiple lists were deleted.
+		 */
 		deleteMsgBx.setHeight(MSG_BX_H);
 		deleteMsgBx.setWidth(MSG_BX_W);
 
@@ -136,14 +136,12 @@ public class ExampleShoppingListController implements Initializable {
 			SmartTrolleyToolBox.print("YES");
 			String sqlStatement;
 
-			sqlStatement = "SELECT * FROM lists WHERE listID = "
-					+ SmartTrolleyGUI.getcurrentListID();
+			sqlStatement = "SELECT * FROM lists WHERE listID = " + SmartTrolleyGUI.getcurrentListID();
 			try {
 				result = productsDatabase.sendQuery(sqlStatement);
 				SmartTrolleyToolBox.print("stored list in results for deletion.");
 			} catch (SQLException e) {
-				SmartTrolleyToolBox
-						.print("Unable to send query due to unknown error");
+				SmartTrolleyToolBox.print("Unable to send query due to unknown error");
 			}
 
 			SmartTrolleyToolBox.print(SqlConnection.isResultSetEmpty(result));
@@ -156,18 +154,17 @@ public class ExampleShoppingListController implements Initializable {
 				listID = result.getInt("ListID");
 				SmartTrolleyToolBox.print("LiD: " + result.getInt("ListID"));
 
-				sqlStatement = "DELETE FROM `cl36-st`.`lists` WHERE listID = "
-						+ listID;
+				sqlStatement = "DELETE FROM `cl36-st`.`lists` WHERE listID = " + listID;
 
 				productsDatabase.executeStatement(sqlStatement);
 			} else {
-				MessageBox noListMsgBx = new MessageBox("No such list exists",
-						MessageBoxType.OK_ONLY);
+				MessageBox noListMsgBx = new MessageBox("No such list exists", MessageBoxType.OK_ONLY);
 				noListMsgBx.showAndWait();
 				noListMsgBx.setHeight(MSG_BX_H);
 				noListMsgBx.setWidth(MSG_BX_W);
-
 			}
+			
+			loadStartScreen(event);
 
 		} else {
 			SmartTrolleyToolBox.print("NOOOOOOO");
@@ -175,17 +172,18 @@ public class ExampleShoppingListController implements Initializable {
 
 		try {
 			productsDatabase.closeConnection();
-			result.close();
+			if (result != null) {
+				result.close();
+			}
 		} catch (SQLException ex) {
-			SmartTrolleyToolBox
-					.print("could not close connection, you are eternally fucked");
+			SmartTrolleyToolBox.print("could not close connection, you are eternally fucked");
 			SmartTrolleyToolBox.print("Beepboop son, BeepBoop");
 		}
 	}
 
 	/**
 	 * loadStartScreen is called when the smart trolley logo is pressed. It
-* calls the static loadStartScreen method in ControllerGeneral.java
+	* calls the static loadStartScreen method in ControllerGeneral.java
 	 * 
 	 * @param event
 	 *            - response to click on smart trolley logo in navigation bar
@@ -213,7 +211,7 @@ public class ExampleShoppingListController implements Initializable {
 
 	/**
 	 * loadFavourites is called when the 'favourites' button is pressed. It
-* calls the static loadFavourites method in ControllerGeneral.java
+	* calls the static loadFavourites method in ControllerGeneral.java
 	 * <p>
 	 * User can maintain list of favourite products
 	 * 
@@ -228,7 +226,7 @@ public class ExampleShoppingListController implements Initializable {
 
 	/**
 	 * loadOffers is called when the 'offers' button is pressed. It calls the
-* calls the static loadOffers method in ControllerGeneral.java
+	* calls the static loadOffers method in ControllerGeneral.java
 	 * <p>
 	 * User can browse store's offers
 	 * 
@@ -252,9 +250,7 @@ public class ExampleShoppingListController implements Initializable {
 	 *         Date Modified: 7 Mar 2014
 	 */
 	private ObservableList<String> initializeCategories() {
-		categories = FXCollections.observableArrayList("All", "Bakery",
-				"Fruit & Vegetables", "Dairy & Eggs", "Meat & Seafood",
-				"Frozen", "Drinks", "Snacks & Sweets", "Desserts");
+		categories = FXCollections.observableArrayList("All", "Bakery", "Fruit & Vegetables", "Dairy & Eggs", "Meat & Seafood", "Frozen", "Drinks", "Snacks & Sweets", "Desserts");
 
 		return categories;
 	}
@@ -278,9 +274,7 @@ public class ExampleShoppingListController implements Initializable {
 		productTable.setPlaceholder(new Label("No Items in list, please add"));
 
 		// set up column cell value factories
-		priceColumn
-				.setCellValueFactory(new PropertyValueFactory<Product, Float>(
-						"price"));
+		priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Float>("price"));
 
 		ControllerGeneral.setUpCellValueFactory(productNameColumn);
 		ControllerGeneral.setUpCellValueFactory(checkBoxColumn);
@@ -288,25 +282,22 @@ public class ExampleShoppingListController implements Initializable {
 		ControllerGeneral.setUpCellValueFactory(addColumn);
 		ControllerGeneral.setUpCellValueFactory(removeColumn);
 
-		// set up cell factories for columns with 'interactive' cells 
+		// set up cell factories for columns with 'interactive' cells
 		ControllerGeneral.setUpCheckBoxCellFactory(checkBoxColumn);
 		ControllerGeneral.setUpImageCellFactory(imageColumn);
 		ControllerGeneral.setUpAddButtonCellFactory(addColumn);
 		ControllerGeneral.setUpRemoveButtonCellFactory(removeColumn);
-		
-//		controller.setUpProductNameCellFactory(productNameColumn);
+
+		// controller.setUpProductNameCellFactory(productNameColumn);
 		// TODO: once refactored remove following code and uncomment previous line to set up cell factory for product name column
-		productNameColumn
-		.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+		productNameColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
 			@Override
-			public TableCell<Product, Product> call(
-					TableColumn<Product, Product> productNameColumn) {
+			public TableCell<Product, Product> call(TableColumn<Product, Product> productNameColumn) {
 				return new TableCell<Product, Product>() {
 					final Button button = new Button();
 
 					@Override
-					public void updateItem(final Product product,
-							boolean empty) {
+					public void updateItem(final Product product, boolean empty) {
 						super.updateItem(product, empty);
 						if (product != null) {
 							setGraphic(button);
@@ -318,9 +309,7 @@ public class ExampleShoppingListController implements Initializable {
 							button.setOnAction(new EventHandler<ActionEvent>() {
 								@Override
 								public void handle(ActionEvent event) {
-									System.out
-											.println("Pressed name of product: "
-													+ product.getName());
+									System.out.println("Pressed name of product: " + product.getName());
 									SmartTrolleyGUI.setCurrentProductID(product.getId());
 									application.goToProductScreen();
 								}
@@ -332,7 +321,7 @@ public class ExampleShoppingListController implements Initializable {
 				};
 			}
 		});
-		
+
 		// populate table with product data
 		productTable.setItems(productData);
 	}
