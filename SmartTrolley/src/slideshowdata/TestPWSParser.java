@@ -72,7 +72,18 @@ public class TestPWSParser {
 	}
 	
 	@Test
-	public void correctTextTest() throws Exception{
+	public void correctSlideTest() throws Exception{
+		
+		assertEquals(data.getSlideId() , 0);
+		assertEquals(data.getSlideDuration() , 60);
+		assertEquals(data.getSlideLastSlide() , true);
+		
+		SmartTrolleyPrint.print("Slide Data: " + data.getSlideId() + ", " + data.getSlideDuration()+ ", "  + data.getSlideLastSlide() + "\n");
+		
+	}
+	
+	@Test
+	public void correctTextAttributeTest() throws Exception{
 		
 		assertEquals(data.getTextXstart() , 20);
 		assertEquals(data.getTextYstart() , 291);
@@ -85,7 +96,7 @@ public class TestPWSParser {
 		assertEquals(data.getTextFontcolor() , "#000000");
 		assertEquals(data.getTextFontsize() , 16);
 		
-		SmartTrolleyPrint.print("Text Data: " + data.getTextXstart() + ", " + data.getTextYstart()+ ", "  + data.getTextXend()
+		SmartTrolleyPrint.print("Text Attribute Data: " + data.getTextXstart() + ", " + data.getTextYstart()+ ", "  + data.getTextXend()
 				+ ", " 	+ data.getTextYend()+ ", "  + data.getTextLayer()+ ", "  + data.getTextDuration() + ", "  + data.getTextStarttime()
 				+ ", "  + data.getTextFont() + ", " + data.getTextFontcolor() + ", " + data.getTextFontsize() + "\n");
 	}
@@ -104,6 +115,25 @@ public class TestPWSParser {
 	}
 	
 	@Test
+	public void correctVideoTest() throws Exception{
+		
+		assertEquals(data.getVideoURL() ,"resources/video/video/monstersinc_high.mpg");
+		assertEquals(data.getVideoXstart() , 456);
+		assertEquals(data.getVideoYstart() , 402);
+		assertEquals(data.getVideoWidth() , 242);
+		assertEquals(data.getVideoHeight() , 126);
+		assertEquals(data.getVideoLayer() , 23);
+		assertEquals(data.getVideoDuration() , 0);
+		assertEquals(data.getVideoStarttime() , 0);
+		assertEquals(data.getVideoLoop() , false);
+		
+		SmartTrolleyPrint.print("Video Data: " + data.getVideoURL() + ", " + data.getVideoXstart()+ ", "  + data.getVideoYstart()
+				+ ", " 	+ data.getVideoWidth()+ ", "  + data.getVideoHeight()+ ", "  + data.getVideoLayer() + data.getVideoDuration()
+				+ ", "  + data.getVideoStarttime()+ ", "  + data.getVideoLoop() + "\n");
+		
+	}
+	
+	@Test
 	public void correctImageTest() throws Exception{
 		
 		assertEquals(data.getImageURL() ,"resources/images/Desert.jpg");
@@ -119,6 +149,17 @@ public class TestPWSParser {
 		SmartTrolleyPrint.print("Image Data: " + data.getImageURL() + ", " + data.getImageXstart()+ ", "  + data.getImageYstart()
 				+ ", " 	+ data.getImageWidth()+ ", "  + data.getImageHeight()+ ", "  + data.getImageLayer() + data.getImageDuration()
 				+ ", "  + data.getImageStarttime()+ ", "  + data.getImageBranch() + "\n");
+		
+	}
+	
+	@Test
+	public void correctAudioTest() throws Exception{
+		
+		assertEquals(data.getAudioURL() ,"C:/Users/Public/Music/Sample Music/Kalimba.mp3");
+		assertEquals(data.getAudioStarttime() , 0);
+		assertEquals(data.getAudioLoop() , false);
+		
+		SmartTrolleyPrint.print("Audio Data: " + data.getAudioURL() + ", " + data.getAudioStarttime()+ ", "  + data.getAudioLoop() + "\n");
 		
 	}
 	

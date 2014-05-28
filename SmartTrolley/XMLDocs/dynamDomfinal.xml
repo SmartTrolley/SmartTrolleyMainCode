@@ -1,7 +1,7 @@
 <?xml version="1.0"?><!--sample xml file created using XML DOM object.--><slideshow>
 	<documentinfo><author>D6 Digital</author><version>2.1</version><title>This is the first chapter </title><comment>example comment for chapter 1</comment><width>720</width><height>540</height></documentinfo>
 	<defaults><backgroundcolor>#948A54</backgroundcolor><font>Papyrus</font><fontsize>18</fontsize><fontcolor>#FFFFFF</fontcolor><linecolor>#5C4776</linecolor><fillcolor>#8064A2</fillcolor></defaults>
-	<slide id="0" duration="60" descriptor="Overview of making slides in powerpoint" lastSlide="false" backgroundcolor="#948A54">
+	<slide id="0" duration="60" descriptor="Overview of making slides in powerpoint" lastSlide="true" backgroundcolor="#948A54">
 	<video urlname="resources/video/video/monstersinc_high.mpg" xstart="456" ystart="402" width="242" height="126" layer="23" starttime="0" duration="0" loop="false"/>
 	
 	<text xstart="20" ystart="291" xend="505" yend="441" layer="17" duration="0" starttime="0" font="Papyrus" fontcolor="#000000" fontsize="16">
@@ -12,9 +12,7 @@
 	
 	
 	<image urlname="resources/images/Desert.jpg" xstart="383" ystart="15" width="272" height="122" layer="3" duration="0" starttime="0" branch="1"/>
-	<audio urlname="C:\\Users\\Public\\Music\\Sample Music\\Kalimba.mp3" starttime="0" loop="false"/>
+	<audio urlname="C:/Users/Public/Music/Sample Music/Kalimba.mp3" starttime="0" loop="false"/>
 	
 	</slide>
-	
-	
 </slideshow>

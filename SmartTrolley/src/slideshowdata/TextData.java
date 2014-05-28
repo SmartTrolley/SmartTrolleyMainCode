@@ -10,7 +10,6 @@
 package slideshowdata;
 
 
-
 import java.util.ArrayList;
 
 import org.simpleframework.xml.Attribute;
@@ -21,7 +20,7 @@ import org.simpleframework.xml.Root;
 public class TextData {
 	
 	@ElementList (name = "textbody")
-	ArrayList<TextBodyData> textbodydatalist = new ArrayList<TextBodyData>();
+	public ArrayList<TextBodyData> textbodydatalist;
 		
 	@Attribute (name = "xstart", required=true)
 	public int xstart;

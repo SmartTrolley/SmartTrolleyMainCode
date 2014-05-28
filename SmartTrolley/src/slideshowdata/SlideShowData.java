@@ -27,7 +27,7 @@ public class SlideShowData {
 	private SlideData  slide;
 
 	
-	/**************Start of Document Info**************/
+/**************Start of Document Info**************/
 	
 	/**
 	 * @return author
@@ -71,9 +71,9 @@ public class SlideShowData {
 		return documentinfo.height;
 	}
 
-	/**************End of Document Info**************/
+/**************End of Document Info**************/
 	
-	/**************Start of Defaults*****************/
+/**************Start of Defaults*****************/
 	
 	/**
 	 * @return backgroundcolor
@@ -117,9 +117,9 @@ public class SlideShowData {
 		return defaults.fillcolor;
 	}
 	
-	/****************End of Defaults*****************/
+/****************End of Defaults*****************/
 	
-	/****************Start of Slide******************/
+/****************Start of Slide******************/
 	
 	/**
 	 * @return id
@@ -142,9 +142,9 @@ public class SlideShowData {
 		return slide.lastSlide;
 	}
 
-	/***************End of Slide****************/
+/***************End of Slide****************/
 	
-	/**************Start of Text****************/
+/**************Start of Text****************/
 		
 	/**
 	 * @return branch
@@ -216,9 +216,9 @@ public class SlideShowData {
 		return slide.textdata.fontsize;
 	}
 	
-	/***************End of Text*****************/
-	
-	/**************Start of TextBody****************/
+/***************End of Text*****************/
+
+/**************Start of TextBody****************/
 	
 	/**
 	 * @return branch
@@ -256,9 +256,9 @@ public class SlideShowData {
 	}
 		
 	
-	/**************End of TextBody****************/
+/**************End of TextBody****************/
 	
-	/**************Start of Images****************/
+/**************Start of Images****************/
 	
 	/**
 	 * @return urlname
@@ -323,6 +323,98 @@ public class SlideShowData {
 		return slide.imagedata.branch;
 	}
 	
-	/***************End of Images*****************/
+/***************End of Images*****************/
+	
+/**************Start of Videos****************/
+	
+	/**
+	 * @return urlname
+	 */
+	public String getVideoURL()	{
+		return slide.videodata.urlname;
+	}
+	
+	/**
+	 * @return xstart
+	 */
+	public int getVideoXstart()	{
+		return slide.videodata.xstart;
+	}
+	
+	/**
+	 * @return ystart
+	 */
+	public int getVideoYstart()	{
+		return slide.videodata.ystart;
+	}
+	
+	/**
+	 * @return width
+	 */
+	public int getVideoWidth()	{
+		return slide.videodata.width;
+	}
+	
+	/**
+	 * @return height
+	 */
+	public int getVideoHeight()	{
+		return slide.videodata.height;
+	}
+	
+	/**
+	 * @return layer
+	 */
+	public int getVideoLayer()	{
+		return slide.videodata.layer;
+	}
+	
+	/**
+	 * @return duration
+	 */
+	public int getVideoDuration()	{
+		return slide.videodata.duration;
+	}
+	
+	/**
+	 * @return starttime
+	 */
+	public int getVideoStarttime()	{
+		return slide.videodata.starttime;
+	}
+	
+	/**
+	 * @return loop
+	 */
+	public Boolean getVideoLoop()	{
+		return slide.videodata.loop;
+	}
+	
+/***************End of Videos*****************/
+	
+/***************Start of Audio*****************/	
+	
+	/**
+	 * @return urlname
+	 */
+	public String getAudioURL()	{
+		return slide.audiodata.urlname;
+	}
+	
+	/**
+	 * @return starttime
+	 */
+	public int getAudioStarttime()	{
+		return slide.audiodata.starttime;
+	}
+	
+	/**
+	 * @return loop
+	 */
+	public Boolean getAudioLoop()	{
+		return slide.audiodata.loop;
+	}
+	
+/***************End of Audio*****************/
 }
 

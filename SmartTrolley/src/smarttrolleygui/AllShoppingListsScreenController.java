@@ -19,9 +19,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import DatabaseConnectors.SqlConnection;
-import Printing.SmartTrolleyPrint;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -29,6 +26,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import DatabaseConnectors.SqlConnection;
+import Printing.SmartTrolleyPrint;
 
 public class AllShoppingListsScreenController implements Initializable {
 
