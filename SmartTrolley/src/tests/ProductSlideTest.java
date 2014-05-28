@@ -12,6 +12,7 @@
  */
 package tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import graphicshandler.ShapePoint;
@@ -54,7 +55,7 @@ public class ProductSlideTest {
 	private int graphicsHeight = 75;
 	int graphicsStartTime = 0;
 	int graphicsDuration = 0;
-	int numOfPoints = 4;
+	int numOfPoints = 3;
 
 	private String audURL = "Music/Kalimba.mp3";
 	private int audStartTime = 0;
@@ -62,7 +63,7 @@ public class ProductSlideTest {
 	private double audVolume = 0.4;
 
 	private ArrayList<SlideTextBody> texts;
-	private String font = "Comic Sans MS";
+	private String font = "Times New Roman";
 	private String fontColor = "FF00FF";
 	private int fontSize = 12;
 	private int xTextStart = 350;
@@ -81,6 +82,14 @@ public class ProductSlideTest {
 	private boolean vidLoop = true;
 	private double vidStartTime = 2.0;
 	private double vidDuration = 30.0;
+	
+	//for resizing
+
+	private int slideHeight = 600;
+	private int slideWidth = 800;
+	
+	private double yScaler = slideHeight/1000;
+	private double xScaler = slideWidth/1000;
 
 	/**
 	 * Sets up ProductSlide for tests
@@ -104,7 +113,7 @@ public class ProductSlideTest {
 
 		// Delay to allow the application to launch // If you get NullPointer
 		// errors around this line, increase the delay
-		SmartTrolleyDelay.delay(1000);
+		SmartTrolleyDelay.delay(1500);
 
 		// Now launch the instance of SmartTrolleyGUI, which takes over the
 		// displayed stage
@@ -120,9 +129,9 @@ public class ProductSlideTest {
 			}
 		});
 
-		SmartTrolleyDelay.delay(500);
+		SmartTrolleyDelay.delay(1000);
 
-		productSlide = new ProductSlide(points, numOfPoints, graphicsWidth,
+		productSlide = new ProductSlide(slideWidth, slideHeight, points, numOfPoints, graphicsWidth,
 				graphicsHeight, graphicsFillColour, graphicsLineColour,
 				graphicsStartTime, graphicsDuration, imageURL, xImageStart,
 				yImageStart, imageWidth, imageHeight, imageStartTime,
@@ -165,7 +174,7 @@ public class ProductSlideTest {
 	public void displayingImageTest() {
 
 		assertTrue(productSlide.imageSetup(imageURL, xImageStart, yImageStart,
-				imageWidth, imageHeight, imageStartTime, imageDuration)
+				imageWidth, imageHeight, imageStartTime, imageDuration, xScaler, yScaler)
 				.isVisible());
 	}
 
@@ -200,7 +209,7 @@ public class ProductSlideTest {
 		assertTrue(productSlide
 				.graphicsSetup(points, numOfPoints, graphicsWidth,
 						graphicsHeight, graphicsFillColour, graphicsLineColour,
-						graphicsStartTime, graphicsDuration).visibleProperty()
+						graphicsStartTime, graphicsDuration, xScaler, yScaler).visibleProperty()
 				.get());
 	}
 
@@ -239,7 +248,20 @@ public class ProductSlideTest {
 				fontSize, xTextStart, yTextStart, xTextEnd, yTextEnd,
 				textStartTime, textDuration).isVisible());
 	}
-
+	
+	@Test
+	public void imageResizeTest(){
+		
+		SmartTrolleyPrint.print("height is:" +  productSlide.imageSetup(imageURL, xImageStart, yImageStart,
+				imageWidth, imageHeight, imageStartTime, imageDuration, xScaler, yScaler).getImage().getRequestedHeight());
+		assertEquals(productSlide.imageSetup(imageURL, xImageStart, yImageStart,
+				(int) imageWidth, (int) imageHeight, imageStartTime, imageDuration, xScaler, yScaler).getBoundsInLocal().getHeight(),
+				imageHeight*yScaler, 0.0001);
+		
+//		double circleWidth =imageHandler.getBoundsInParent().getWidth();
+//		assertEquals(circleWidth, width, 0.0001);
+		
+	}
 	/**
 	 * Tests that all media have been removed from the slide
 	 * <p>
@@ -260,7 +282,7 @@ public class ProductSlideTest {
 		points.add(point4);
 
 		assertTrue(productSlide.imageSetup(imageURL, xImageStart, yImageStart,
-				imageWidth, imageHeight, imageStartTime, imageDuration)
+				imageWidth, imageHeight, imageStartTime, imageDuration, xScaler, yScaler)
 				.isVisible());
 
 		SmartTrolleyPrint.print("First Test Passed, Image has loaded");
@@ -268,7 +290,7 @@ public class ProductSlideTest {
 		assertTrue(productSlide
 				.graphicsSetup(points, numOfPoints, graphicsWidth,
 						graphicsHeight, graphicsFillColour, graphicsLineColour,
-						graphicsStartTime, graphicsDuration).visibleProperty()
+						graphicsStartTime, graphicsDuration, xScaler, yScaler).visibleProperty()
 				.get());
 
 		SmartTrolleyPrint.print("Second Test passed, graphics have loaded"
@@ -287,6 +309,31 @@ public class ProductSlideTest {
 		assertTrue(productSlide.getChildren().isEmpty());
 
 	}
+
+//	@Test
+//	public void graphicsResizeTest(){
+//				
+//			double scaledGraphicsHeight = productSlide.graphicsSetup(points, numOfPoints, (int) graphicsWidth,
+//					(int) graphicsHeight, graphicsFillColour, graphicsLineColour, 
+//					graphicsStartTime, graphicsDuration, xScaler, yScaler).
+//					getLayoutBounds().getHeight();
+//			SmartTrolleyPrint.print(productSlide.graphicsSetup(points, numOfPoints, (int) graphicsWidth,
+//					(int) graphicsHeight, graphicsFillColour, graphicsLineColour, 
+//					graphicsStartTime, graphicsDuration, xScaler, yScaler).
+//					getLayoutBounds().getHeight());
+//			
+//			assertEquals(scaledGraphicsHeight, graphicsHeight*yScaler, 0.1);
+//			
+//			double scaledGraphicsWidth = productSlide.graphicsSetup(points, numOfPoints, (int) graphicsWidth,
+//					(int) graphicsHeight, graphicsFillColour, graphicsLineColour, 
+//					graphicsStartTime, graphicsDuration, xScaler, yScaler).
+//					getBoundsInParent().getWidth();
+//			
+//		
+//			assertEquals(scaledGraphicsWidth, graphicsWidth*xScaler, 0.1);
+//		
+//		}
+		
 
 }
 

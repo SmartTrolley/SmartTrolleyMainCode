@@ -33,10 +33,10 @@ public class ProductSlideVisualTest extends Application {
 	
 	/**sets parameters for image*/
 	private String imageURL = "http://th03.deviantart.net/fs70/PRE/i/2013/077/8/9/cookie_monster_by_xenia_cat-d5yhjwj.jpg";
-	private int xImageStart = 100;
-	private int yImageStart = 100;
-	private int imageWidth = 78;
-	private int imageHeight = 128;
+	private int xImageStart = 10;
+	private int yImageStart = 10;
+	private int imageWidth = 100;
+	private int imageHeight = 150;
 	private int imageStartTime = 0;
 	private int imageDuration = 0;
 	
@@ -49,7 +49,7 @@ public class ProductSlideVisualTest extends Application {
 	private int graphicsHeight = 75;
 	int graphicsStartTime = 5;
 	int graphicsDuration = 5;
-	int numOfPoints = 4;
+	int numOfPoints = 1;
 	private PriorityQueue<ShapePoint> points;
 	
 	
@@ -67,8 +67,8 @@ public class ProductSlideVisualTest extends Application {
 	int fontSize = 12;
 	int xTextStart = 355;
 	int yTextStart = 467;
-	int xTextEnd = 230;
-	int yTextEnd = 290;
+	int xTextEnd = 375;
+	int yTextEnd = 487;
 	double textStartTime = 0;
 	double textDuration = 0;
 	int numOfStrings = 3;
@@ -76,12 +76,15 @@ public class ProductSlideVisualTest extends Application {
 	private String vidURL = "http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv";
 	private int xVidStart = 200;
 	private int yVidStart = 20;
-	private int VidWidth = 150;
-	private int VidHeight = 75;
+	private int VidWidth = 480;
+	private int VidHeight = 240;
 	private boolean vidLoop = true;
 	private double vidStartTime = 0;
 	private double vidDuration = 30.0;
 
+
+	private int slideWidth = 500;
+	private int slideHeight = 500;
 
 	public static Stage stage;
 		
@@ -93,7 +96,8 @@ public class ProductSlideVisualTest extends Application {
 		BorderPane border = new BorderPane();
 		
 
-		productSlide = new ProductSlide(points, numOfPoints, graphicsWidth, graphicsHeight, graphicsFillColour,
+	
+		productSlide = new ProductSlide(slideWidth , slideHeight, points, numOfPoints, graphicsWidth, graphicsHeight, graphicsFillColour,
 				graphicsLineColour, graphicsStartTime, graphicsDuration,
 				imageURL, xImageStart,  yImageStart, imageWidth,
 				imageHeight, imageStartTime, imageDuration, audURL, audStartTime,

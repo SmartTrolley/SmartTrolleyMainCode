@@ -53,10 +53,19 @@ public class ProductSlide extends AnchorPane{
 	private String twoString = "He knew he would need the Smart Trolley app to purchase some party food!";
 	private String threeString = "He then realised, Smart Trolley was shit, and used the\n Tesco App instead; stupid fat hobbit!!!";
 	protected int maxStrings = 3;
+	
+	private int defaultSlideWidth = 1000;
+	private int defaultSlideHeight = 1000;
+	private double xScale = 0.0;
+	private double yScale = 0.0;
+	
+
 
 	/**
 	*Contructor method for product slide, adds all media handlers
 	*<p>display slide
+	 * @param defaultSlideHeight 
+	 * @param defaultSlideWidth 
 	*@param points - an array list of points for a graphical shape
 	*@param numOfPoints - number of points desired for graphical shape, currently set between 1 and 5
 	*@param graphicsWidth - sets the width of the graphical shape
@@ -90,16 +99,16 @@ public class ProductSlide extends AnchorPane{
 	*@param vidURL
 	*@param xVidStart
 	*@param yVidStart
-	*@param VidWidth
-	*@param VidHeight
+	*@param vidWidth
+	*@param vidHeight
 	*@param vidLoop
 	*@param vidStartTime
 	*@param vidDuration
 	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 27 May 2014
 	*/
-	public ProductSlide(PriorityQueue<ShapePoint> points, int numOfPoints, int graphicsWidth,
-			int graphicsHeight, String graphicsFillColour, String graphicsLineColour,
+	public ProductSlide(int slideWidth, int slideHeight, PriorityQueue<ShapePoint> points, int numOfPoints, double graphicsWidth,
+			double graphicsHeight, String graphicsFillColour, String graphicsLineColour,
 			int graphicsStartTime, int graphicsDuration,
 			String imgURL, int xImgStart, int yImgStart,
 			int imgWidth, int imgHeight, int imgStartTime, 
@@ -107,23 +116,33 @@ public class ProductSlide extends AnchorPane{
 			double audioVolume, ArrayList<SlideTextBody> texts, String font,
 			String fontColor,int numOfStrings, int fontSize, int xTextStart, int yTextStart,
 			int xTextEnd, int yTextEnd, double textStartTime, double textDuration,
-			String vidURL, int xVidStart, int yVidStart, int VidWidth,
-			int VidHeight, boolean vidLoop,
+			String vidURL, int xVidStart, int yVidStart, int vidWidth,
+			int vidHeight, boolean vidLoop,
 			double vidStartTime, double vidDuration){
+	
+		setMaxWidth(slideWidth);
+		setMaxHeight(slideHeight);
+		
+		
+		xScale = (double) slideWidth/defaultSlideWidth;
+
+		yScale = (double) slideHeight/defaultSlideHeight;
 		
 		getChildren().add(graphicsSetup(points, numOfPoints, graphicsWidth, graphicsHeight,
 				graphicsFillColour, graphicsLineColour, graphicsStartTime,
-				graphicsDuration));
+				graphicsDuration, xScale, yScale));
 		getChildren().add(imageSetup(imgURL, xImgStart, yImgStart, imgWidth,
-				imgHeight, imgStartTime, imgDuration));
+				imgHeight, imgStartTime, imgDuration, xScale, yScale));
 		getChildren().add(textSetup(texts, font,
 				fontColor, numOfStrings, fontSize, xTextStart, yTextStart,
-				xTextEnd, yTextEnd, textStartTime, textDuration));
+				xTextEnd, yTextEnd, textStartTime, textDuration, xScale, yScale));
 		getChildren().add(videoSetup(vidURL, xVidStart,
-				yVidStart, VidWidth, VidHeight,vidLoop, vidStartTime, vidDuration));
+				yVidStart, vidWidth, vidHeight,vidLoop, vidStartTime, vidDuration,
+				xScale, yScale));
 		audioSetup(audioURL, audioStartTime, audioDuration, audioVolume);
-			
+		
 		setVisible(true);
+		
 					
 	}
 	
@@ -144,24 +163,36 @@ public class ProductSlide extends AnchorPane{
 	*<p> Date Modified: 27 May 2014
 	*/
 	public SlideImage imageSetup(String imgURL, int xImgStart, int yImgStart, int imgWidth,
-			int imgHeight, int imgStartTime, int imgDuration){
-		
+			int imgHeight, int imgStartTime, int imgDuration, double xScaler, double yScaler){
+
 		SlideImage image1 = new SlideImage(imgURL, xImgStart,
 				yImgStart, imgWidth, imgHeight, imgStartTime, imgDuration);
+		SmartTrolleyPrint.print("Xscaler is: " + xScaler + "yScaler is: " + yScaler);
+		image1.setScaleX(xScaler);
+		image1.setScaleY(yScaler);
+		SmartTrolleyPrint.print(image1.getScaleX());
 		image1.show();
-		
+		image1.setLayoutX(xScaler*xImgStart);
+		image1.setLayoutY(yScaler*yImgStart);
 		return image1;
 		
 	}
 	
+	
+	
 		public SlideVideo videoSetup(String vidURL, int xVidStart, 
 				int yVidStart, int VidWidth,
 				int VidHeight, boolean vidLoop,
-				double vidStartTime, double vidDuration) {
+				double vidStartTime, double vidDuration,
+				double xScaler, double yScaler) {
 		
 			SlideVideo video1 = new SlideVideo(vidURL, xVidStart,
 				yVidStart, VidWidth, VidHeight,vidLoop, vidStartTime, vidDuration);
 			video1.setVisible(true);
+			video1.setScaleX(xScaler);
+			video1.setScaleY(yScaler);
+			video1.setLayoutX(xScaler*xVidStart);
+			video1.setLayoutY(yScaler*yVidStart);
 			video1.show();
 			
 	return video1;
@@ -181,24 +212,28 @@ public class ProductSlide extends AnchorPane{
 		*@return shape
 		*<p> Date Modified: 27 May 2014
 		*/
-		public Shape graphicsSetup(PriorityQueue<ShapePoint> points, int numOfPoints, int graphicsWidth, 
-				int graphicsHeight, String graphicsFillColour, String graphicsLineColour,
-				int graphicsStartTime, int graphicsDuration) {
+		public Shape graphicsSetup(PriorityQueue<ShapePoint> points, int numOfPoints, double graphicsWidth, 
+				double graphicsHeight, String graphicsFillColour, String graphicsLineColour,
+				int graphicsStartTime, int graphicsDuration, double xScaler, double yScaler) {
 			
 			points = new PriorityQueue<ShapePoint>();
 			
 			points.add(new ShapePoint(pointLow,pointLow,point1Num));
-			points.add( new ShapePoint(graphicsWidth,graphicsHeight,point3Num));
-			points.add(new ShapePoint(graphicsWidth,pointLow,point2Num));
-			points.add(new ShapePoint(pointLow,graphicsWidth,point4Num));
+			points.add( new ShapePoint((int)graphicsWidth,(int)graphicsHeight,point3Num));
+			points.add(new ShapePoint((int)graphicsWidth,pointLow,point2Num));
+			points.add(new ShapePoint(pointLow,(int)graphicsWidth,point4Num));
 			points.add( new ShapePoint(pentagonX, pentagonY, point5Num));
 			
 			for( int i=0; i< maxPoints - numOfPoints; i++){
 				points.remove();
 			}
 			
-		 Shape shape = new SlideShapeFactory(points , graphicsWidth, graphicsHeight, graphicsFillColour, 
+		 Shape shape = new SlideShapeFactory(points , (int)graphicsWidth, (int)graphicsHeight, graphicsFillColour, 
 				 graphicsLineColour, graphicsStartTime, graphicsDuration).getShape();
+		 shape.setScaleX(xScaler);
+		 shape.setScaleY(yScaler);
+		 shape.setLayoutX(xScaler*pointLow);
+		 shape.setLayoutY(yScaler*pointLow);
 		 shape.visibleProperty().set(true);
 			
 		return shape;
@@ -224,7 +259,7 @@ public class ProductSlide extends AnchorPane{
 		*/
 		public SlideText textSetup(ArrayList<SlideTextBody> texts, String font,
 				String fontColor, int numOfStrings, int fontSize, int xTextStart, int yTextStart,
-				int xTextEnd, int yTextEnd, double textStartTime, double textDuration){
+				int xTextEnd, int yTextEnd, double textStartTime, double textDuration, double xScaler, double yScaler){
 			
 			texts = new ArrayList<SlideTextBody>();
 			
@@ -239,7 +274,10 @@ public class ProductSlide extends AnchorPane{
 			texthandler.SlideText text1 = new texthandler.SlideText(texts, font, fontColor, fontSize, xTextStart, yTextStart,
 					xTextEnd, yTextEnd, textStartTime, textDuration);
 			
-			
+			text1.setScaleX(xScaler);
+			text1.setScaleY(yScaler);
+			text1.setLayoutX(xScaler*xTextStart);
+			text1.setLayoutY(yScaler*yTextStart);
 			text1.setVisible(true);
 			
 			return text1;
