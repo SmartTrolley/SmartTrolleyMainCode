@@ -21,10 +21,10 @@ import Printing.SmartTrolleyPrint;
 public class Slide extends AnchorPane {
 	
 	/**An image's x-co-ordinate in the slide*/
-	static final double IMAGE_X_COORD = 25;
+	static final double IMAGE_X_COORD = 100;
 	
 	/**An image's y-co-ordinate in the slide*/
-	static final double IMAGE_Y_COORD = 25;
+	static final double IMAGE_Y_COORD = 100;
 
 	/**
 	 * Enumerated type of the slide child elements in the PWS

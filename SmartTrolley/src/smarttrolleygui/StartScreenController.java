@@ -78,8 +78,8 @@ public class StartScreenController implements Initializable {
             System.out.println("error: application == null");
         } else {
             //TODO Replace with appropriate method
-        	PWSParser pwsParser = new PWSParser();
-        	pwsParser.parsePWS();
+        	PWSParser PWSParser = new PWSParser();
+        	PWSParser.parsePWS();
         }    	
     }
     

@@ -100,7 +100,7 @@ public class ControllerGeneral {
 	
 	/**
 	 * loadFavourites is called when the 'favourites' button is pressed. It
-* calls the static goToFavourites method in SmartTrolleyGUI.java
+* calls the goToFavourites method in SmartTrolleyGUI.java
 	 * <p>
 	 * User can maintain list of favourite products
 	 * 

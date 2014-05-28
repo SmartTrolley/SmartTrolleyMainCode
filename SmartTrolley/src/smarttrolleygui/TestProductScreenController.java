@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -145,14 +145,14 @@ public class TestProductScreenController {
 	public final void slideShowIsList() {
 
 		assertNotNull(smartTrolleyApplication.productScreen.getCurrentSlideShow());
-		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides() instanceof LinkedList);
+		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides() instanceof ArrayList);
 
 		for (Slide slide : smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides()) {
 			assertNotNull(slide);
 			assertTrue(slide instanceof Slide);
 		}
 	}
-	
+
 	/**
 	*Tests that the first slide is the slide shown when the slideshow is launched
 	*<p> User can view PWS Compatible slideshow
@@ -160,8 +160,9 @@ public class TestProductScreenController {
 	*/
 	@Test
 	public final void testFirstSlideisDefaultSlideShown() {
-		smartTrolleyApplication.productScreen.nextSLideButton.fire();
-		assertEquals(smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides().get(0), smartTrolleyApplication.productScreen.getCurrentSlideShow().getDisplayedSlide());
+
+		assertEquals(smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides().get(0), smartTrolleyApplication.productScreen.getCurrentSlideShow()
+				.getDisplayedSlide());
 	}
 
 	/**
@@ -171,9 +172,87 @@ public class TestProductScreenController {
 	*/
 	@Test
 	public final void testNextSlideButton() {
-		smartTrolleyApplication.productScreen.nextSLideButton.fire();
-		assertEquals(smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides().get(1), smartTrolleyApplication.productScreen.getCurrentSlideShow().getDisplayedSlide());
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				smartTrolleyApplication.productScreen.nextSLideButton.fire();
+			}
+		});
+		SmartTrolleyDelay.delay(500);
+		assertEquals(smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides().get(1), smartTrolleyApplication.productScreen.getCurrentSlideShow()
+				.getDisplayedSlide());
 	}
+	
+	/**
+	*Tests that the user is told when there are no more slides
+	*<p> User can view PWS Compatible slideshow
+	*<p> Date Modified: 27 May 2014
+	*/
+	@Test
+	public final void testSlideShowEndsWhenNoMoreSlides() {
+		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				for (Slide slide : smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides()) {
+					smartTrolleyApplication.productScreen.nextSLideButton.fire();
+					SmartTrolleyPrint.print("Next button fired in testSlideShowEndsWhenNoMoreSlides Test");
+				}
+				
+			}
+		});
+		
+		SmartTrolleyDelay.delay(500);
+		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().endOfListMsgBx.isShowing());
+	}
+	
+	/**
+	*Tests that user is notified when prev button is pressed when on 1st slide
+	*<p> User can view PWS Compatible slideshow
+	*<p> Date Modified: 27 May 2014
+	*/
+	@Test
+	public final void testPrevButtonOnFirstSlide() {
+		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {				
+					smartTrolleyApplication.productScreen.prevSLideButton.fire();
+					SmartTrolleyPrint.print("Prev button fired in testPrevButtonOnFirstSlide Test");
+			}
+		});
+		
+		SmartTrolleyDelay.delay(500);
+		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().startOfListMsgBx.isShowing());
+	}
+	
+	//TODO testStartScreenDisplayedOnNoSlideshow test
+	/**
+	* This test checks that if a slideshow is not loaded, the currentSlideshow is null
+	* and the user is taken to the start screen
+	*<p> User can view PWS Compatible slideshow
+	*<p> Date Modified: 27 May 2014
+	
+	@Test
+	public void testStartScreenDisplayedOnNoSlideshow() {
+		smartTrolleyApplication.productScreen.getCurrentSlideShow().setSlides(null);	
+		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides() == null);
+		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				smartTrolleyApplication.productScreen.nextSLideButton.fire();
+			}
+		});
+		
+		//OK now needs to be pressed on the message box to go to the start screen
+		
+		SmartTrolleyGUI.stage.getClass(); 		//This may return the class of the screen that the program is in
+		//assertTrue(smartTrolleyApplication.stage.getClass());
+		
+	}*/
+	
+	
 }
 
 /************** End of TestProductScreenController.java **************/

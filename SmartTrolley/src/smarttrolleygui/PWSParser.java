@@ -48,7 +48,6 @@ public class PWSParser extends DefaultHandler {
 	public static final String slideShowPath = "../../XMLDocs/trialPWS.xml";
 	/* /SmartTrolley/XMLDocs/trialPWS.xml */
 	private SlideShow slideShow;
-	private Slide slide;
 
 	/**
 	 * Constructor method that runs when an instance of this object is created

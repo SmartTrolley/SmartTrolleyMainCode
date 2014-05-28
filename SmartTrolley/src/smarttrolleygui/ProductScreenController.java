@@ -15,6 +15,10 @@ package smarttrolleygui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import se.mbaeumer.fxmessagebox.MessageBox;
+import se.mbaeumer.fxmessagebox.MessageBoxResult;
+import se.mbaeumer.fxmessagebox.MessageBoxType;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,11 +26,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import DatabaseConnectors.SqlConnection;
 import Printing.SmartTrolleyPrint;
 
 public class ProductScreenController implements Initializable {
 
+	
+	private enum slideControl { NEXT, PREVIOUS, MORE}
+	
+	/**Message Box Height*/
+	private final double MSG_BX_H = 100.0;
+
+	/**Message Box Width*/
+	private final double MSG_BX_W = 400.0;
+	
 	/**An image's x-co-ordinate in the slide*/
 	static final double IMAGE_X_COORD = 25;
 
@@ -43,9 +58,9 @@ public class ProductScreenController implements Initializable {
 	private static final double Y_COORD_CONTROLBUTTONS = 20.0;
 
 	// Default button width is 30
-	Button prevSLideButton = new Button("<");
-	Button nextSLideButton = new Button(">");
-	Button moreButton = new Button("...");
+	protected Button prevSLideButton = new Button("<");
+	protected Button nextSLideButton = new Button(">");
+	protected Button moreButton = new Button("...");
 
 	public static SqlConnection productsDatabase;
 
@@ -56,6 +71,12 @@ public class ProductScreenController implements Initializable {
 	private String productImageURL;
 	private float productPrice;
 
+	
+	/**VBox that shows the price and slide control buttons*/
+	@FXML
+	private VBox priceAndSlideButtonsVBox;	
+	
+	/**Anchor Pane containing the slide*/
 	@FXML
 	private AnchorPane productAnchorPane;
 	@FXML
@@ -113,13 +134,39 @@ public class ProductScreenController implements Initializable {
 
 		createSlideButton(prevSLideButton, X_COORD_CONTROLBUTTONS, Y_COORD_CONTROLBUTTONS);
 		createSlideButton(nextSLideButton, X_COORD_CONTROLBUTTONS + 2 * BTN_WIDTH, Y_COORD_CONTROLBUTTONS);
-		createSlideButton(moreButton, X_COORD_CONTROLBUTTONS + BTN_WIDTH, Y_COORD_CONTROLBUTTONS);
+		createSlideButton(moreButton, X_COORD_CONTROLBUTTONS + BTN_WIDTH, Y_COORD_CONTROLBUTTONS);			
+		
+		nextSLideButton.defaultButtonProperty().set(true);					
 
 		prevSLideButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Add goto prev slide functionality here
 				SmartTrolleyPrint.print("Pressed prev slide");
+				
+				if (currentSlideShow == null){
+					SmartTrolleyPrint.print("No slideshow loaded");
+										
+					MessageBox noSldShowMsgBx = new MessageBox("No slideshow exists, please load one.", MessageBoxType.OK_ONLY);
+					
+					/*
+					 * The two lines below to set the
+					 * message box height and width
+					 * are there because the message box
+					 * resized itself (became very small)
+					 * when multiple lists were deleted.
+					 */
+					noSldShowMsgBx.setHeight(MSG_BX_H);
+					noSldShowMsgBx.setWidth(MSG_BX_W);
+					
+					noSldShowMsgBx.showAndWait();
+					
+					if (noSldShowMsgBx.getMessageBoxResult() == MessageBoxResult.OK){
+						loadStartScreen(event);
+					}
+				} else {
+				currentSlideShow.prevSlide();
+				}
 			}
 		});
 
@@ -128,7 +175,30 @@ public class ProductScreenController implements Initializable {
 			public void handle(ActionEvent event) {
 				
 				SmartTrolleyPrint.print("Pressed next slide");
+				
+				if (currentSlideShow == null){
+					SmartTrolleyPrint.print("No slideshow loaded");
+										
+					MessageBox noSldShowMsgBx = new MessageBox("No slideshow exists, please load one.", MessageBoxType.OK_ONLY);
+					
+					/*
+					 * The two lines below to set the
+					 * message box height and width
+					 * are there because the message box
+					 * resized itself (became very small)
+					 * when multiple lists were deleted.
+					 */
+					noSldShowMsgBx.setHeight(MSG_BX_H);
+					noSldShowMsgBx.setWidth(MSG_BX_W);
+					
+					noSldShowMsgBx.showAndWait();
+					
+					if (noSldShowMsgBx.getMessageBoxResult() == MessageBoxResult.OK){
+						loadStartScreen(event);
+					}
+				} else {
 				currentSlideShow.nextSlide();
+				}
 			}
 		});
 
@@ -139,6 +209,12 @@ public class ProductScreenController implements Initializable {
 				SmartTrolleyPrint.print("Pressed more button");
 			}
 		});
+		
+		HBox SlideControlButtonsHBox = new HBox();
+		SlideControlButtonsHBox.getChildren().add(prevSLideButton);
+		SlideControlButtonsHBox.getChildren().add(moreButton);
+		SlideControlButtonsHBox.getChildren().add(nextSLideButton);
+		priceAndSlideButtonsVBox.getChildren().add(SlideControlButtonsHBox);
 	}
 
 	/**
@@ -236,9 +312,6 @@ public class ProductScreenController implements Initializable {
 
 		AnchorPane.setTopAnchor(btn, y_coord);
 		AnchorPane.setLeftAnchor(btn, x_coord);
-
-		getProductAnchorPane().getChildren().add(btn);
-
 	}
 
 	/**
@@ -252,7 +325,7 @@ public class ProductScreenController implements Initializable {
 	}
 
 	/**
-	* This method returns the anchorPane used
+	* This method returns the anchorPane which contains the slide
 	*<p> User views products
 	*@return productAnchorPane - The AnchorPane used
 	*<p> Date Modified: 25 May 2014
