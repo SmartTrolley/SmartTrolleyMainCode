@@ -29,7 +29,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import se.mbaeumer.fxmessagebox.MessageBox;
 import se.mbaeumer.fxmessagebox.MessageBoxType;
-import Printing.SmartTrolleyPrint;
+import toolBox.SmartTrolleyToolBox;
 
 public class SmartTrolleyGUI extends Application {
     
@@ -90,7 +90,7 @@ public class SmartTrolleyGUI extends Application {
             stage.show();
         } catch (Exception ex) {
         	FXMLNotFound();
-        	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
+        	SmartTrolleyToolBox.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
         }
@@ -107,7 +107,7 @@ public class SmartTrolleyGUI extends Application {
             startScreen.setApp(this);         
         } catch (Exception ex) {
         	FXMLNotFound();
-        	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
+        	SmartTrolleyToolBox.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
         }
@@ -139,7 +139,7 @@ public class SmartTrolleyGUI extends Application {
             allShoppingLists = (AllShoppingListsScreenController) replaceSceneContent("fxml/AllShoppingListsScreen.fxml");
             allShoppingLists.setApp(this);
         } catch (Exception ex) {
-        	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
+        	SmartTrolleyToolBox.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
         }
@@ -157,7 +157,7 @@ public class SmartTrolleyGUI extends Application {
             homeScreen = (HomeScreenController) replaceSceneContent("fxml/HomeScreen.fxml");
             homeScreen.setApp(this);
         } catch (Exception ex) {
-        	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
+        	SmartTrolleyToolBox.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
         }
@@ -175,7 +175,7 @@ public class SmartTrolleyGUI extends Application {
             favourites.setApp(this);
         } catch (Exception ex) {
         	FXMLNotFound();
-        	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
+        	SmartTrolleyToolBox.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);            
         }
@@ -194,7 +194,7 @@ public class SmartTrolleyGUI extends Application {
             exampleShoppingList.setApp(this);
         } catch (IOException ex) {
         	FXMLNotFound();
-        	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
+        	SmartTrolleyToolBox.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
            
@@ -213,7 +213,7 @@ public class SmartTrolleyGUI extends Application {
             offers.setApp(this);
         } catch (Exception ex) {
         	FXMLNotFound();        	
-        	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
+        	SmartTrolleyToolBox.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
         }
@@ -243,7 +243,7 @@ public class SmartTrolleyGUI extends Application {
             productScreen = (ProductScreenController) replaceSceneContent("fxml/ProductScreen.fxml");
             productScreen.setApp(this);
         } catch (Exception ex) {
-        	SmartTrolleyPrint.print("Could not get FXML file for next scene. Application crashed ;-(");
+        	SmartTrolleyToolBox.print("Could not get FXML file for next scene. Application crashed ;-(");
         	Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
         	System.exit(-1);
         }

@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import smarttrolleygui.Product;
-import Printing.SmartTrolleyPrint;
+import toolBox.SmartTrolleyToolBox;
 
 /**
  * @author Thomas & Sam
@@ -128,7 +128,7 @@ public class SqlConnectionTest {
 			
 			product = products.get(i);
 			
-			SmartTrolleyPrint.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
+			SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
 			i++;
 		}
 	}
@@ -165,7 +165,7 @@ public class SqlConnectionTest {
 			
 			product = offers.get(j);
 			
-			SmartTrolleyPrint.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + "  " + product.getOfferPrice() + "  " + product.getSavings());
+			SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + "  " + product.getOfferPrice() + "  " + product.getSavings());
 					
 			j++;
 		}

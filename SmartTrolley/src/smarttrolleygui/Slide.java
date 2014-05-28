@@ -16,7 +16,7 @@ package smarttrolleygui;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import Printing.SmartTrolleyPrint;
+import toolBox.SmartTrolleyToolBox;
 
 public class Slide extends AnchorPane {
 	
@@ -54,7 +54,7 @@ public class Slide extends AnchorPane {
 	*/
 	public void addNodeToSlide(Node insertInSlide, SlideChildElements type){
 		
-		SmartTrolleyPrint.print("In Slide.addNodeToSlide");
+		SmartTrolleyToolBox.print("In Slide.addNodeToSlide");
 		if (type == SlideChildElements.IMAGE){
 			
 			ImageView imageToInsert = (ImageView) insertInSlide;
@@ -63,7 +63,7 @@ public class Slide extends AnchorPane {
 			
 			this.getChildren().add(imageToInsert);
 			
-			SmartTrolleyPrint.print("Image added to slide");			
+			SmartTrolleyToolBox.print("Image added to slide");			
 		}			
 	}
 }

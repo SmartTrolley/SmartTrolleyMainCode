@@ -25,7 +25,7 @@ import javafx.collections.ObservableList;
 import smarttrolleygui.Offer;
 import smarttrolleygui.Product;
 import smarttrolleygui.SmartTrolleyGUI;
-import Printing.SmartTrolleyPrint;
+import toolBox.SmartTrolleyToolBox;
 
 	public class SqlConnection {
 		
@@ -292,7 +292,7 @@ import Printing.SmartTrolleyPrint;
 				empty = false;
 			}
 		} catch (SQLException e) {
-			SmartTrolleyPrint
+			SmartTrolleyToolBox
 					.print("Problem parsing ResultSet, probably empty");
 		}
 
@@ -316,7 +316,7 @@ import Printing.SmartTrolleyPrint;
 		products = FXCollections.observableArrayList();
 
 		String query = "SELECT * FROM lists_products WHERE listID = " + SmartTrolleyGUI.getcurrentListID();
-		SmartTrolleyPrint.print("query is: " + query);
+		SmartTrolleyToolBox.print("query is: " + query);
 
 		ResultSet productIDsInList = null;
 		
@@ -336,18 +336,18 @@ import Printing.SmartTrolleyPrint;
 			while (productIDsInList.next()) {
 
 				query = "SELECT * FROM products WHERE ProductID = " + productIDsInList.getInt("ProductID");
-				SmartTrolleyPrint.print("query is: " + query);
+				SmartTrolleyToolBox.print("query is: " + query);
 
 				listProducts = sendQuery(query);
 				
-				SmartTrolleyPrint.print("Query Sent");
+				SmartTrolleyToolBox.print("Query Sent");
 
 				Product product = new Product();
-				SmartTrolleyPrint.print("Initializing Product");
+				SmartTrolleyToolBox.print("Initializing Product");
 				
-				SmartTrolleyPrint.print(isResultSetEmpty(listProducts));
+				SmartTrolleyToolBox.print(isResultSetEmpty(listProducts));
 				listProducts.absolute(1);
-				SmartTrolleyPrint.print("Row Size is = " + listProducts.getRow());
+				SmartTrolleyToolBox.print("Row Size is = " + listProducts.getRow());
 
 				// get id
 				product.setId(listProducts.getInt("ProductID"));
@@ -361,13 +361,13 @@ import Printing.SmartTrolleyPrint;
 				// get Price
 				product.setPrice(listProducts.getFloat("Price"));
 				
-				SmartTrolleyPrint.print("Product Set");
+				SmartTrolleyToolBox.print("Product Set");
 
 				products.add(product);
 				
-				SmartTrolleyPrint.print("Product Stored");
+				SmartTrolleyToolBox.print("Product Stored");
 
-				SmartTrolleyPrint.print(product.getId() + "  "
+				SmartTrolleyToolBox.print(product.getId() + "  "
 						+ product.getName() + "  " + product.getImage() + "  "
 						+ product.getPrice());
 				
@@ -393,18 +393,18 @@ import Printing.SmartTrolleyPrint;
 	public boolean executeStatement(String query) {
 		boolean statementExecuted = false;
 
-		SmartTrolleyPrint.print(query);
+		SmartTrolleyToolBox.print(query);
 		try {
 			preparedStatement = null;
-			SmartTrolleyPrint
+			SmartTrolleyToolBox
 					.print("Reset preparedStatment, preparing to give it information");
 			preparedStatement = connection.prepareStatement(query);
-			SmartTrolleyPrint
+			SmartTrolleyToolBox
 					.print("Statement now prepared, now begining to execute");
 			statementExecuted = preparedStatement.execute();
 
 		} catch (SQLException ex) {
-			SmartTrolleyPrint
+			SmartTrolleyToolBox
 					.print("Cannot execute statement due to unknown error");
 		}
 

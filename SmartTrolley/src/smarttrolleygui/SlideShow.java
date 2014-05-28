@@ -16,11 +16,10 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import se.mbaeumer.fxmessagebox.MessageBox;
 import se.mbaeumer.fxmessagebox.MessageBoxType;
-import Printing.SmartTrolleyPrint;
+import toolBox.SmartTrolleyToolBox;
 
 public class SlideShow {
 
@@ -101,7 +100,7 @@ public class SlideShow {
 				 * The multiplication by 1000 is because the slide duration is in seconds
 				 * while timer durations are in milliseconds.
 				 */
-				SmartTrolleyPrint.print("In displaySlide for autoplay, scheduling timer now.");
+				SmartTrolleyToolBox.print("In displaySlide for autoplay, scheduling timer now.");
 				slideTimer.schedule(playSlide, (long) displayedSlide.duration * 1000);
 			}
 		}
@@ -113,9 +112,9 @@ public class SlideShow {
 	*<p> Date Modified: 26 May 2014
 	*/
 	public void startSlideshow() {
-		SmartTrolleyPrint.print("Starting Slideshow");
+		SmartTrolleyToolBox.print("Starting Slideshow");
 
-		SmartTrolleyPrint.print("The slideshow has " + slides.size() + " slides.");
+		SmartTrolleyToolBox.print("The slideshow has " + slides.size() + " slides.");
 		slideShowIndex = 0;
 
 		displaySlide(slideShowIndex);
@@ -132,7 +131,7 @@ public class SlideShow {
 //			}
 //		}
 
-		SmartTrolleyPrint.print("Started Slideshow");
+		SmartTrolleyToolBox.print("Started Slideshow");
 	}
 
 	/**
@@ -163,11 +162,11 @@ public class SlideShow {
 	*/
 	public void nextSlide() {
 
-		SmartTrolleyPrint.print("In nextSlide method");
+		SmartTrolleyToolBox.print("In nextSlide method");
 
 		// TODO Clear slide here
 		if (slideShowIndex < slides.size() - 1) {
-			SmartTrolleyPrint.print("The next slide will now be displayed");
+			SmartTrolleyToolBox.print("The next slide will now be displayed");
 			displayedSlide = slides.get(++slideShowIndex);
 			displaySlide(slideShowIndex);
 
@@ -192,7 +191,7 @@ public class SlideShow {
 	 * @param stringToDisplay - String that is shown in the message box
 	*/
 	private void displayOutOfSldShwMsgBx(String stringToDisplay) {
-		SmartTrolleyPrint.print(stringToDisplay);
+		SmartTrolleyToolBox.print(stringToDisplay);
 
 		outOfSldShwMsgBox = new MessageBox(stringToDisplay, MessageBoxType.OK_ONLY);
 
@@ -218,11 +217,11 @@ public class SlideShow {
 	*/
 	public void prevSlide() {
 
-		SmartTrolleyPrint.print("In prevSlide method");
+		SmartTrolleyToolBox.print("In prevSlide method");
 
 		// TODO Clear slide here
 		if (slideShowIndex > 0) {
-			SmartTrolleyPrint.print("The previous slide will now be displayed");
+			SmartTrolleyToolBox.print("The previous slide will now be displayed");
 			displayedSlide = slides.get(--slideShowIndex);
 			displaySlide(slideShowIndex);
 			

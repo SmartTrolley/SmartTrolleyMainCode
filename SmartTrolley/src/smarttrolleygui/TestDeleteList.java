@@ -32,8 +32,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-import Printing.SmartTrolleyPrint;
 
 public class TestDeleteList {
 
@@ -68,7 +68,7 @@ public class TestDeleteList {
 
 		newGUIThread = new Thread("New GUI") {
 			public void run() {
-				SmartTrolleyPrint.print("GUI thread");
+				SmartTrolleyToolBox.print("GUI thread");
 				Application.launch(SmartTrolleyGUI.class,
 						(java.lang.String[]) null);
 				stage = new Stage();
@@ -94,7 +94,7 @@ public class TestDeleteList {
 		 * results in a nullPointerException, since the scene has not yet been
 		 * created.
 		 */
-		SmartTrolleyDelay.delay(1000);
+		SmartTrolleyToolBox.delay(1000);
 
 		/*
 		 * In order to do anything with the user interface, the JavaFX thread
@@ -109,12 +109,12 @@ public class TestDeleteList {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				SmartTrolleyPrint.print("Firing Button");
+				SmartTrolleyToolBox.print("Firing Button");
 				// GUIboot.startScreen.viewAllShoppingListsButton.fire();
 				Button viewLists = new Button();
 				viewLists = StartScreenController.viewAllShoppingListsButton;
 				viewLists.fire();
-				SmartTrolleyPrint.print("Fired Button");
+				SmartTrolleyToolBox.print("Fired Button");
 			}
 		});
 
@@ -142,7 +142,7 @@ public class TestDeleteList {
 		 * to load the screens and catch up. Running the test without it means
 		 * some of the UI commands may not run.
 		 */
-		SmartTrolleyDelay.delay(1000);
+		SmartTrolleyToolBox.delay(1000);
 	}
 
 	/**
@@ -163,11 +163,11 @@ public class TestDeleteList {
 		});
 
 		// Allow the GUI to catch up
-		SmartTrolleyDelay.delay(500);
+		SmartTrolleyToolBox.delay(500);
 
 		assertTrue(ExampleShoppingListController.deleteMsgBx.isShowing());
 		
-		SmartTrolleyDelay.delay(500);
+		SmartTrolleyToolBox.delay(500);
 		
 		try{
 		
@@ -183,7 +183,7 @@ public class TestDeleteList {
 			doesNotDeleteBot.keyRelease(KeyEvent.VK_ENTER);
 		
 		} catch (AWTException e) {
-			SmartTrolleyPrint.print("doesNotDeleteBot cannot find buttons.");
+			SmartTrolleyToolBox.print("doesNotDeleteBot cannot find buttons.");
 	        e.printStackTrace();
 		};
 	}
@@ -208,7 +208,7 @@ public class TestDeleteList {
 		});
 		
 		// Allow the GUI to catch up
-		SmartTrolleyDelay.delay(3000);
+		SmartTrolleyToolBox.delay(3000);
 		
 		try{
 			
@@ -224,11 +224,11 @@ public class TestDeleteList {
 			deletionBot.keyRelease(KeyEvent.VK_ENTER);
 		
 		} catch (AWTException e) {
-			SmartTrolleyPrint.print("deletionBot unable to locate buttons.");
+			SmartTrolleyToolBox.print("deletionBot unable to locate buttons.");
 	        e.printStackTrace();
 		};
 		
-		SmartTrolleyDelay.delay(500);
+		SmartTrolleyToolBox.delay(500);
 		
 		query = "SELECT * FROM lists WHERE name = " + listIDForDeletion;
 		ResultSet results = productsDatabase.sendQuery(query);
@@ -247,7 +247,7 @@ public class TestDeleteList {
 	public void closeAll() throws Exception {
 		productsDatabase.closeConnection();
 
-		SmartTrolleyPrint.print("Closing Test.");
+		SmartTrolleyToolBox.print("Closing Test.");
 	}
 
 }

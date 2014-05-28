@@ -27,7 +27,8 @@ import javafx.scene.image.ImageView;
 import org.junit.Before;
 import org.junit.Test;
 
-import Printing.SmartTrolleyPrint;
+import toolBox.SmartTrolleyToolBox;
+
 
 public class TestProductScreenController {
 
@@ -56,7 +57,7 @@ public class TestProductScreenController {
 
 		newGUIThread = new Thread("New GUI") {
 			public void run() {
-				SmartTrolleyPrint.print("GUI thread");
+				SmartTrolleyToolBox.print("GUI thread");
 				Application.launch(smartTrolleyApplication.getClass(), (java.lang.String[]) null);
 
 			}
@@ -65,7 +66,7 @@ public class TestProductScreenController {
 
 		// Delay to allow the application to launch
 		// If you get NullPointer errors around this line, increase the delay
-		SmartTrolleyDelay.delay(200);
+		SmartTrolleyToolBox.delay(200);
 
 		// Now launch the instance of SmartTrolleyGUI, which takes over the displayed stage
 		Platform.runLater(new Runnable() {
@@ -77,7 +78,7 @@ public class TestProductScreenController {
 
 		// Delay to allow the instance to launch.
 		// If you get NullPointer errors around this line, increase the delay
-		SmartTrolleyDelay.delay(2500);
+		SmartTrolleyToolBox.delay(2500);
 
 		createAndStartTestSlideshow();
 
@@ -85,7 +86,7 @@ public class TestProductScreenController {
 		// screen that appears.
 		// Delay to allow the application state to settle before running the test
 		// If you get NullPointer errors around this line, increase the delay
-		SmartTrolleyDelay.delay(500);
+		SmartTrolleyToolBox.delay(500);
 
 	}
 
@@ -114,7 +115,7 @@ public class TestProductScreenController {
 
 		testSlideShow.addSlideToSlideShow(secondSlide);
 
-		SmartTrolleyPrint.print("testSlideShow is " + (testSlideShow == null) + " null.");
+		SmartTrolleyToolBox.print("testSlideShow is " + (testSlideShow == null) + " null.");
 		smartTrolleyApplication.productScreen.setSlideShow(testSlideShow);
 
 		Platform.runLater(new Runnable() {
@@ -178,7 +179,7 @@ public class TestProductScreenController {
 				smartTrolleyApplication.productScreen.nextSLideButton.fire();
 			}
 		});
-		SmartTrolleyDelay.delay(500);
+		SmartTrolleyToolBox.delay(500);
 		assertEquals(smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides().get(1), smartTrolleyApplication.productScreen.getCurrentSlideShow()
 				.getDisplayedSlide());
 	}
@@ -196,13 +197,13 @@ public class TestProductScreenController {
 			public void run() {
 				for (Slide slide : smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides()) {
 					smartTrolleyApplication.productScreen.nextSLideButton.fire();
-					SmartTrolleyPrint.print("Next button fired in testSlideShowEndsWhenNoMoreSlides Test");
+					SmartTrolleyToolBox.print("Next button fired in testSlideShowEndsWhenNoMoreSlides Test");
 				}
 				
 			}
 		});
 		
-		SmartTrolleyDelay.delay(500);
+		SmartTrolleyToolBox.delay(500);
 		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().outOfSldShwMsgBox.isShowing());
 	}
 	
@@ -218,11 +219,11 @@ public class TestProductScreenController {
 			@Override
 			public void run() {				
 					smartTrolleyApplication.productScreen.prevSLideButton.fire();
-					SmartTrolleyPrint.print("Prev button fired in testPrevButtonOnFirstSlide Test");
+					SmartTrolleyToolBox.print("Prev button fired in testPrevButtonOnFirstSlide Test");
 			}
 		});
 		
-		SmartTrolleyDelay.delay(500);
+		SmartTrolleyToolBox.delay(500);
 		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().outOfSldShwMsgBox.isShowing());
 	}
 	

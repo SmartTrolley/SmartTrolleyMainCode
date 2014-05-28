@@ -15,10 +15,6 @@ package smarttrolleygui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import se.mbaeumer.fxmessagebox.MessageBox;
-import se.mbaeumer.fxmessagebox.MessageBoxResult;
-import se.mbaeumer.fxmessagebox.MessageBoxType;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -28,8 +24,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import se.mbaeumer.fxmessagebox.MessageBox;
+import se.mbaeumer.fxmessagebox.MessageBoxResult;
+import se.mbaeumer.fxmessagebox.MessageBoxType;
+import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-import Printing.SmartTrolleyPrint;
 
 public class ProductScreenController implements Initializable {
 
@@ -138,7 +137,7 @@ public class ProductScreenController implements Initializable {
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Add goto prev slide functionality here
-				SmartTrolleyPrint.print("Pressed prev slide");
+				SmartTrolleyToolBox.print("Pressed prev slide");
 
 				if (currentSlideShow == null) {
 					noSlideShowLoaded(event);
@@ -153,7 +152,7 @@ public class ProductScreenController implements Initializable {
 			@Override
 			public void handle(ActionEvent event) {
 
-				SmartTrolleyPrint.print("Pressed next slide");
+				SmartTrolleyToolBox.print("Pressed next slide");
 
 				if (currentSlideShow == null) {
 					noSlideShowLoaded(event);
@@ -179,7 +178,7 @@ public class ProductScreenController implements Initializable {
 					} else {
 						currentSlideShow.play();
 					}
-					SmartTrolleyPrint.print("Pressed play button");
+					SmartTrolleyToolBox.print("Pressed play button");
 				}
 			}
 		});
@@ -211,7 +210,7 @@ public class ProductScreenController implements Initializable {
 	*<p> Date Modified: 28 May 2014
 	*/
 	private void noSlideShowLoaded(ActionEvent event) {
-		SmartTrolleyPrint.print("No slideshow loaded");
+		SmartTrolleyToolBox.print("No slideshow loaded");
 
 		MessageBox noSldShowMsgBx = new MessageBox("No slideshow exists, please load one.", MessageBoxType.OK_ONLY);
 

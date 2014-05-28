@@ -25,8 +25,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-import Printing.SmartTrolleyPrint;
 
 public class TestDeleteItemsFromList {
 
@@ -58,7 +58,7 @@ public class TestDeleteItemsFromList {
 
 		newGUIThread = new Thread("New GUI") {
 			public void run() {
-				SmartTrolleyPrint.print("GUI thread");
+				SmartTrolleyToolBox.print("GUI thread");
 				Application.launch(smartTrolleyApplication.getClass(), (java.lang.String[]) null);
 
 			}
@@ -67,7 +67,7 @@ public class TestDeleteItemsFromList {
 
 		// Delay to allow the application to launch
 		// If you get NullPointer errors around this line, increase the delay
-		SmartTrolleyDelay.delay(200);
+		SmartTrolleyToolBox.delay(200);
 
 		// Now launch the instance of SmartTrolleyGUI, which takes over the displayed stage
 		Platform.runLater(new Runnable() {
@@ -79,7 +79,7 @@ public class TestDeleteItemsFromList {
 
 		// Delay to allow the instance to launch.
 		// If you get NullPointer errors around this line, increase the delay
-		SmartTrolleyDelay.delay(1500);
+		SmartTrolleyToolBox.delay(1500);
 		
 		//TODO The instance is launched in this test, but the button pushes do not yet use the instance
 
@@ -95,11 +95,11 @@ public class TestDeleteItemsFromList {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				SmartTrolleyPrint.print("Firing Button");
+				SmartTrolleyToolBox.print("Firing Button");
 				Button viewLists = new Button();
 				viewLists = StartScreenController.viewAllShoppingListsButton;
 				viewLists.fire();
-				SmartTrolleyPrint.print("Fired Button");
+				SmartTrolleyToolBox.print("Fired Button");
 			}
 		});
 
@@ -111,11 +111,11 @@ public class TestDeleteItemsFromList {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				SmartTrolleyPrint.print("Firing list Button");
+				SmartTrolleyToolBox.print("Firing list Button");
 				Button viewList = new Button();
 				viewList = AllShoppingListsScreenController.list1Button;
 				viewList.fire();
-				SmartTrolleyPrint.print("Fired list Button");
+				SmartTrolleyToolBox.print("Fired list Button");
 			}
 		});
 
@@ -125,7 +125,7 @@ public class TestDeleteItemsFromList {
 		 * to load the screens and catch up. Running the test without it means
 		 * some of the UI commands may not run.
 		 */
-		SmartTrolleyDelay.delay(1000);
+		SmartTrolleyToolBox.delay(1000);
 	}
 
 
@@ -143,18 +143,18 @@ public class TestDeleteItemsFromList {
 		
 		query = "SELECT * FROM lists_products WHERE listid = 2";
 		ResultSet results = productsDatabase.sendQuery(query);
-		SmartTrolleyPrint.print("sending query to sql server to retreive list information");
+		SmartTrolleyToolBox.print("sending query to sql server to retreive list information");
 
 		results.absolute(1);
 
 		int oldQuantity = results.getInt("Quantity");
 
 		// sets product ID
-		SmartTrolleyPrint.print("PiD: " + results.getInt("ProductID"));
+		SmartTrolleyToolBox.print("PiD: " + results.getInt("ProductID"));
 		// sets List ID
-		SmartTrolleyPrint.print("LiD: " + results.getInt("ListID"));
+		SmartTrolleyToolBox.print("LiD: " + results.getInt("ListID"));
 		// sets Quantity of product in list
-		SmartTrolleyPrint.print("Q: " + oldQuantity);
+		SmartTrolleyToolBox.print("Q: " + oldQuantity);
 		
 		//removeButton = ExampleShoppingListController.button;
 		//removeButton.fire();
@@ -164,19 +164,19 @@ public class TestDeleteItemsFromList {
 		/*Button viewLists = new Button();
 		viewLists = ExampleShoppingListController.
 		viewLists.fire();
-		SmartTrolleyPrint.print("Fired Button");*/
+		SmartTrolleyToolBox.print("Fired Button");*/
 		
 		// Recheck database
 		/*
 		 * query = "SELECT * FROM lists_products WHERE listid = 2"; results =
-		 * productsDatabase.sendQuery(query); SmartTrolleyPrint.print(
+		 * productsDatabase.sendQuery(query); SmartTrolleyToolBox.print(
 		 * "sending query to sql server to retreive list information");
 		 */
-		SmartTrolleyDelay.delay(3000);
+		SmartTrolleyToolBox.delay(3000);
 
 		/*
 		 * int Quantity = partyList.getProductQuantity(1);
-		 * SmartTrolleyPrint.print("the quantity of product 1 is: " + Quantity);
+		 * SmartTrolleyToolBox.print("the quantity of product 1 is: " + Quantity);
 		 * int startingQuantity = Quantity;
 		 */
 
@@ -186,7 +186,7 @@ public class TestDeleteItemsFromList {
 		 * partyList.setListID(results.getInt("ListID")); //sets Quantity of
 		 * product in list partyList.setQuantity(results.getInt("Quantity"));
 		 * 
-		 * } SmartTrolleyPrint.print("All data now inserted into list");
+		 * } SmartTrolleyToolBox.print("All data now inserted into list");
 		 */
 
 		// assertTrue(startingQuantity < Quantity);
@@ -203,7 +203,7 @@ public class TestDeleteItemsFromList {
 	public void closeAll() throws Exception {
 		productsDatabase.closeConnection();
 
-		SmartTrolleyPrint.print("Closing Test.");
+		SmartTrolleyToolBox.print("Closing Test.");
 	}
 }
 

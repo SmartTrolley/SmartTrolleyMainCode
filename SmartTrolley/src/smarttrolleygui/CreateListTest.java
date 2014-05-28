@@ -31,8 +31,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-import Printing.SmartTrolleyPrint;
 
 public class CreateListTest {
 
@@ -66,7 +66,7 @@ public class CreateListTest {
 
 		newGUIThread = new Thread("New GUI") {
 			public void run() {
-				SmartTrolleyPrint.print("GUI thread");
+				SmartTrolleyToolBox.print("GUI thread");
 				Application.launch(SmartTrolleyGUI.class,
 						(java.lang.String[]) null);
 				stage = new Stage();
@@ -152,7 +152,7 @@ public class CreateListTest {
 					results = productsDatabase.sendQuery(query);
 					assertFalse(results == null);
 					while (results.next()) {
-						SmartTrolleyPrint.print("List with name: "
+						SmartTrolleyToolBox.print("List with name: "
 								+ results.getString("Name")
 								+ " has been created in the SQL database.");
 					}
@@ -181,7 +181,7 @@ public class CreateListTest {
 	@After
 	public void closeAll() throws Exception {
 		productsDatabase.closeConnection();
-		SmartTrolleyPrint.print("Closing Test.");
+		SmartTrolleyToolBox.print("Closing Test.");
 	}
 
 }

@@ -18,7 +18,8 @@ import javafx.stage.FileChooser;
 
 import org.xml.sax.helpers.DefaultHandler;
 
-import Printing.SmartTrolleyPrint;
+import toolBox.SmartTrolleyToolBox;
+
 
 /**
  * Enumerated type of the main elements in the PWS
@@ -58,7 +59,7 @@ public class PWSParser extends DefaultHandler {
 	 */
 	public PWSParser() {
 
-		SmartTrolleyPrint.print("In PWS Parser");
+		SmartTrolleyToolBox.print("In PWS Parser");
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open PWS File");
 

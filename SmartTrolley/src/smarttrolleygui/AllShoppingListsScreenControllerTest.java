@@ -32,8 +32,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-import Printing.SmartTrolleyPrint;
 
 public class AllShoppingListsScreenControllerTest {
 
@@ -66,7 +66,7 @@ public class AllShoppingListsScreenControllerTest {
 
 		newGUIThread = new Thread("New GUI") {
 			public void run() {
-				SmartTrolleyPrint.print("GUI thread");
+				SmartTrolleyToolBox.print("GUI thread");
 				Application.launch(SmartTrolleyGUI.class, (java.lang.String[]) null);
 			}
 		};
@@ -85,7 +85,7 @@ public class AllShoppingListsScreenControllerTest {
 		 * Failure to implement this delay results in a nullPointerException,
 		 * since the scene has not yet been created.
 		 */
-		SmartTrolleyDelay.delay(1000);
+		SmartTrolleyToolBox.delay(1000);
 
 		/*
 		 * In order to do anything with the user interface, the JavaFX thread must be modified using Platform.
@@ -97,11 +97,11 @@ public class AllShoppingListsScreenControllerTest {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				SmartTrolleyPrint.print("Firing view lists Button");
+				SmartTrolleyToolBox.print("Firing view lists Button");
 				Button viewLists = new Button();
 				viewLists = StartScreenController.viewAllShoppingListsButton;
 				viewLists.fire();
-				SmartTrolleyPrint.print("Fired view lists Button");
+				SmartTrolleyToolBox.print("Fired view lists Button");
 			}
 		});
 
@@ -110,7 +110,7 @@ public class AllShoppingListsScreenControllerTest {
 		 * This delay is also required to allow the JavaFX thread to load the screens and catch up.
 		 * Running the test without it means some of the UI commands may not run.
 		 */
-		SmartTrolleyDelay.delay(1000);
+		SmartTrolleyToolBox.delay(1000);
 	}
 
 	/**
@@ -122,15 +122,15 @@ public class AllShoppingListsScreenControllerTest {
 	@After
 	public void tearDown() throws Exception {
 		
-		SmartTrolleyDelay.delay(1000);
+		SmartTrolleyToolBox.delay(1000);
 		
 		productsDatabase.closeConnection();
 
 		GUIboot.stop();
 
-		SmartTrolleyPrint.print("Closing Test.");
+		SmartTrolleyToolBox.print("Closing Test.");
 
-		SmartTrolleyDelay.delay(1000);
+		SmartTrolleyToolBox.delay(1000);
 
 	}
 
@@ -147,23 +147,23 @@ public class AllShoppingListsScreenControllerTest {
 		try {
 			results = productsDatabase.sendQuery(enquiry);
 		} catch (SQLException e) {
-			SmartTrolleyPrint.print("unable to send query to database for unknown reasons");
+			SmartTrolleyToolBox.print("unable to send query to database for unknown reasons");
 			e.printStackTrace();
 		}
 
 		try {
 			results.absolute(1);
-			SmartTrolleyPrint.print("Number of rows Database is: " + results.getInt(1));
+			SmartTrolleyToolBox.print("Number of rows Database is: " + results.getInt(1));
 			rowSize = results.getInt(1);
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
 		}
 
-		SmartTrolleyDelay.delay(5000);
+		SmartTrolleyToolBox.delay(5000);
 
-		SmartTrolleyPrint.print("rowSize is " + rowSize);
-		SmartTrolleyPrint.print("array size is" + AllShoppingListsScreenController.buttonList.size());
+		SmartTrolleyToolBox.print("rowSize is " + rowSize);
+		SmartTrolleyToolBox.print("array size is" + AllShoppingListsScreenController.buttonList.size());
 
 		assertTrue(rowSize == AllShoppingListsScreenController.buttonList.size() - 1);
 
@@ -177,7 +177,7 @@ public class AllShoppingListsScreenControllerTest {
 	@Test
 	public void correctListDisplayedTest() {
 		
-		SmartTrolleyDelay.delay(3000);
+		SmartTrolleyToolBox.delay(3000);
 		
 		ResultSet results = null;
 		String query;
@@ -189,7 +189,7 @@ public class AllShoppingListsScreenControllerTest {
 		try {
 			results = productsDatabase.sendQuery(query);
 		} catch (SQLException e1) {
-			SmartTrolleyPrint.print("unable to send query, unknown reason");
+			SmartTrolleyToolBox.print("unable to send query, unknown reason");
 		}
 		
 		assertFalse(SqlConnection.isResultSetEmpty(results));
@@ -201,7 +201,7 @@ public class AllShoppingListsScreenControllerTest {
 		 menuRobot.keyRelease(KeyEvent.VK_ENTER);
 		 
 		 } catch (AWTException e) { 
-			 SmartTrolleyPrint.print("Robot cannot function, reasons unknown");
+			 SmartTrolleyToolBox.print("Robot cannot function, reasons unknown");
 
 			 }
 		
@@ -213,20 +213,20 @@ public class AllShoppingListsScreenControllerTest {
 			rowSize = results.getRow();
 			
 		} catch (SQLException e1) {
-			SmartTrolleyPrint.print("no results in ResultSet");
+			SmartTrolleyToolBox.print("no results in ResultSet");
 		}
 		
-		SmartTrolleyDelay.delay(1000);
+		SmartTrolleyToolBox.delay(1000);
 
-		SmartTrolleyPrint.print("row Size is " + rowSize);
+		SmartTrolleyToolBox.print("row Size is " + rowSize);
 		
 		listSize = ExampleShoppingListController.getProductDataSize();
 		
-		SmartTrolleyPrint.print("list Size is " + listSize);
+		SmartTrolleyToolBox.print("list Size is " + listSize);
 		
 		assertTrue(rowSize == listSize);
 		
-		SmartTrolleyDelay.delay(1000);
+		SmartTrolleyToolBox.delay(1000);
 	
 	}
 

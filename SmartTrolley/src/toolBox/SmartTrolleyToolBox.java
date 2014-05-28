@@ -1,4 +1,4 @@
-package Printing;
+package toolBox;
 
 /**
  * SmartTrolley
@@ -13,7 +13,7 @@ package Printing;
  * @version version of this file [Date Created: 11 Mar 2014]
  */
 
-public class SmartTrolleyPrint {
+public class SmartTrolleyToolBox {
 
 	/**
 	 *prints, then flushes buffer
@@ -25,7 +25,22 @@ public class SmartTrolleyPrint {
 		System.out.println(text);
 		System.out.flush();
 	}
+	
+	/**
+	*Inserts a delay in milliseconds into the current code when it is called
+	*@param ms
+	*<p> Date Modified: 13 May 2014
+	*/
+	public static void delay(int ms){
+		
+		try {
+			Thread.sleep(ms);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
+		
+	}
 
 } 
 
-/**************End of SmartTrolleyPrint.java**************/
+/**************End of SmartTrolleyToolBox.java**************/

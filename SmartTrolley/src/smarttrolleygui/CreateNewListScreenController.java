@@ -23,8 +23,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-import Printing.SmartTrolleyPrint;
 
 public class CreateNewListScreenController implements Initializable {
 
@@ -91,7 +91,7 @@ public class CreateNewListScreenController implements Initializable {
 			// NO-OP.
 			System.out.println("error: application == null");
 		} else {
-			SmartTrolleyPrint.print("Create List button has been pressed.");
+			SmartTrolleyToolBox.print("Create List button has been pressed.");
 			
 			// TODO: ensure name entered does not conflict with previously created list
 			// and if it does notify user.
@@ -108,7 +108,7 @@ public class CreateNewListScreenController implements Initializable {
 				String sqlStatement = "INSERT INTO `cl36-st`.`lists` (`Name`) VALUES ('"
 						+ enteredListName + "');";
 				sqlConnection.executeStatement(sqlStatement);
-				SmartTrolleyPrint.print("Created new list: " + enteredListName);
+				SmartTrolleyToolBox.print("Created new list: " + enteredListName);
 				
 				SmartTrolleyGUI.setCurrentListName(enteredListName);
 				
@@ -117,7 +117,7 @@ public class CreateNewListScreenController implements Initializable {
 			} else {
 				// Display error message if no name is entered.
 				String noInputError = "Please enter a name for the list";
-				SmartTrolleyPrint.print(noInputError);
+				SmartTrolleyToolBox.print(noInputError);
 				notifierLabel.setText(noInputError);
 				notifierLabel.setVisible(true);
 			}

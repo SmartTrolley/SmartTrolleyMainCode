@@ -35,8 +35,8 @@ import javafx.util.Callback;
 import se.mbaeumer.fxmessagebox.MessageBox;
 import se.mbaeumer.fxmessagebox.MessageBoxResult;
 import se.mbaeumer.fxmessagebox.MessageBoxType;
+import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-import Printing.SmartTrolleyPrint;
 
 public class ExampleShoppingListController implements Initializable {
 
@@ -120,7 +120,7 @@ public class ExampleShoppingListController implements Initializable {
 
 		int listID = 0;
 
-		SmartTrolleyPrint.print("Delete Button Pressed");
+		SmartTrolleyToolBox.print("Delete Button Pressed");
 		deleteMsgBx.showAndWait();
 		
 		/*The two lines below to set the 
@@ -133,20 +133,20 @@ public class ExampleShoppingListController implements Initializable {
 		deleteMsgBx.setWidth(MSG_BX_W);
 
 		if (deleteMsgBx.getMessageBoxResult() == MessageBoxResult.YES) {
-			SmartTrolleyPrint.print("YES");
+			SmartTrolleyToolBox.print("YES");
 			String sqlStatement;
 
 			sqlStatement = "SELECT * FROM lists WHERE listID = "
 					+ SmartTrolleyGUI.getcurrentListID();
 			try {
 				result = productsDatabase.sendQuery(sqlStatement);
-				SmartTrolleyPrint.print("stored list in results for deletion.");
+				SmartTrolleyToolBox.print("stored list in results for deletion.");
 			} catch (SQLException e) {
-				SmartTrolleyPrint
+				SmartTrolleyToolBox
 						.print("Unable to send query due to unknown error");
 			}
 
-			SmartTrolleyPrint.print(SqlConnection.isResultSetEmpty(result));
+			SmartTrolleyToolBox.print(SqlConnection.isResultSetEmpty(result));
 
 			if (SqlConnection.isResultSetEmpty(result)) {
 				// Go to a specific result in the ResultSet, otherwise errors
@@ -154,7 +154,7 @@ public class ExampleShoppingListController implements Initializable {
 				result.absolute(1);
 
 				listID = result.getInt("ListID");
-				SmartTrolleyPrint.print("LiD: " + result.getInt("ListID"));
+				SmartTrolleyToolBox.print("LiD: " + result.getInt("ListID"));
 
 				sqlStatement = "DELETE FROM `cl36-st`.`lists` WHERE listID = "
 						+ listID;
@@ -170,16 +170,16 @@ public class ExampleShoppingListController implements Initializable {
 			}
 
 		} else {
-			SmartTrolleyPrint.print("NOOOOOOO");
+			SmartTrolleyToolBox.print("NOOOOOOO");
 		}
 
 		try {
 			productsDatabase.closeConnection();
 			result.close();
 		} catch (SQLException ex) {
-			SmartTrolleyPrint
+			SmartTrolleyToolBox
 					.print("could not close connection, you are eternally fucked");
-			SmartTrolleyPrint.print("Beepboop son, BeepBoop");
+			SmartTrolleyToolBox.print("Beepboop son, BeepBoop");
 		}
 	}
 
