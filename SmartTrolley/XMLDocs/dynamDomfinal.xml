@@ -44,4 +44,50 @@
 	<audio urlname="C:/Users/Public/Music/Sample Music/Kalimba.mp3" starttime="0" loop="false"/>
 	
 	</slide>
+	
+	<slide id="1" duration="60" descriptor="Overview of making slides in powerpoint" lastSlide="true" backgroundcolor="#948A54">
+	<video urlname="resources/video/video/monstersinc_high.mpg" xstart="456" ystart="402" width="242" height="126" layer="23" starttime="0" duration="0" loop="false"/>
+	
+	<text xstart="20" ystart="291" xend="505" yend="441" layer="17" duration="0" starttime="0" font="Papyrus" fontcolor="#000000" fontsize="16">
+	
+	<textbody branch="3" bold="true" italic="true" underlined="false">
+	<textstring>Text must be within a “bounding” empty text box with the desired formatting</textstring>
+	</textbody>
+	
+	<textbody branch="15" italic="false" bold="false" underlined="true">
+	<textstring>If this works, I will be happy</textstring>
+	</textbody>
+	
+	</text>
+	
+	<shape duration="0" starttime="3" layer="9" height="106" width="235" totalpoints="8" linecolor="#FFFFFF" fillcolor="#F79646">
+	<point y="38" x="269" num="0"/> 
+	<point y="38" x="422" num="1"/> 
+	<point y="0" x="419" num="2"/> 
+	<point y="53" x="505" num="3"/> 
+	<point y="106" x="433" num="4"/> 
+	<point y="67" x="430" num="5"/> 
+	<point y="66" x="278" num="6"/> 
+	<point y="38" x="269" num="7"/> 
+	</shape>
+	
+	<text xstart="20" ystart="291" xend="505" yend="441" layer="17" duration="0" starttime="0" font="Papyrus" fontcolor="#000000" fontsize="16">
+	
+	<textbody branch="3" bold="true" italic="true" underlined="false">
+	<textstring>Text must be within a “bounding” empty text box with the desired formatting</textstring>
+	</textbody>
+	
+	<textbody branch="15" italic="false" bold="false" underlined="true">
+	<textstring>If this works, I will be happy</textstring>
+	</textbody>
+	
+	</text>
+	
+
+	<image urlname="resources/images/Desert.jpg" xstart="383" ystart="15" width="272" height="122" layer="3" duration="0" starttime="0" branch="1"/>
+	<audio urlname="C:/Users/Public/Music/Sample Music/Kalimba.mp3" starttime="0" loop="false"/>
+	
+	</slide>
+	
+	
 </slideshow>

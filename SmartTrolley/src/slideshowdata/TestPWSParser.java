@@ -14,6 +14,7 @@ package slideshowdata;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import DatabaseConnectors.SqlConnection;
 
 
 import Printing.SmartTrolleyPrint;
@@ -22,7 +23,8 @@ public class TestPWSParser {
 	
 	private PWSParser parser;
 	private SlideShowData data;
-	private String fileName = " ../../XMLDocs/dynamDomfinal.xml";
+	//private String fileName = " ../../XMLDocs/dynamDomfinal.xml";
+	private String fileName = "/Volumes/Macintosh HD/Users/samgeering/Documents/SWENG/SmartTrolleyMainCode/SmartTrolley/XMLDocs/dynamDomfinal.xml";
 	private SlideData firstSlide;
 	private TextData firstText;
 	private VideoData firstVideo;
@@ -45,7 +47,13 @@ public class TestPWSParser {
 		firstShape = firstSlide.getShapes().get(0);
 		firstPoint = firstShape.getPoints().get(0);
 		
+	}
 	
+	@Test
+	public void correctSlideAttributeTest(){
+		assertEquals(data.getSlides().get(0).getId(), 0);
+		assertEquals(data.getSlides().get(0).getDuration(), 60);
+		assertEquals(data.getSlides().get(0).getLastSlide(), true);
 	}
 	
 	@Test
@@ -58,11 +66,11 @@ public class TestPWSParser {
 		assertEquals(data.getDocumentinfo().getWidth() , 720);
 		assertEquals(data.getDocumentinfo().getHeight() , 540);
 		
-		SmartTrolleyPrint.print("DocumentInfo Data: " + data.getDocumentinfo().getAuthor() + ", " + data.getDocumentinfo().getVersion() 
+		SmartTrolleyPrint.print("DocumentInfo Data: " + data.getDocumentinfo().getAuthor() + ", " + data.getDocumentinfo().getAuthor() 
 				+ ", "  + data.getDocumentinfo().getTitle() + ", " 	+ data.getDocumentinfo().getComment() + ", "  + data.getDocumentinfo().getWidth() 
 				+ ", "  + data.getDocumentinfo().getHeight() + "\n");
 	}
-		
+	
 	@Test
 	public void correctDefaultsTest() throws Exception{
 		
@@ -176,7 +184,7 @@ public class TestPWSParser {
 				+ ", "  + firstImage.getStarttime() + ", "  + firstImage.getBranch() + "\n");
 		
 	}
-
+	
 	@Test
 	public void correctAudioTest() throws Exception{
 		
@@ -205,7 +213,7 @@ public class TestPWSParser {
 				+ ", "  + firstShape.getFillcolor() + "\n");
 		
 	}
-	
+		
 	@Test
 	public void correctPointTest() throws Exception{
 		
@@ -213,9 +221,222 @@ public class TestPWSParser {
 		assertEquals(firstPoint.getY(), 38);
 		assertEquals(firstPoint.getNum(), 0);
 		
+		SmartTrolleyPrint.print("Number of points in shape: " + firstShape.getPoints().size());
 		SmartTrolleyPrint.print("Point Data: " + firstPoint.getX() + ", " + firstPoint.getY() + ", "  + firstPoint.getNum() +  "\n");
 		
 	}
+
+	@Test
+	public void uploadCorrectSlideAttributeTest(){
+		
+		int slideIndex = 0;
+		SlideData slidedata;
+		SqlConnection sqlConnector = new SqlConnection();
+		
+		sqlConnector.deleteContentAndResetAutoIncrement("slide");
+		
+		while (slideIndex<firstSlide.getImages().size()){
+			slidedata = data.getSlides().get(slideIndex);
+			
+			sqlConnector.addSlideContents(slideIndex, 
+										  slidedata.getDuration(), 
+										  "null", //slide descriptor no method yet!
+										  slidedata.getLastSlide(), 
+										  "null"); //background color no method yet!
+			
+			slideIndex++;
+		}
+		
+	}
+	
+	@Test
+	public void uploadCorrectDocumentInfoTest() {
+		SqlConnection sqlConnector = new SqlConnection();
+
+		sqlConnector.deleteDocumentDataContent();
+		sqlConnector.addDocumentDataContent(data.getDocumentinfo().getAuthor(),
+											data.getDocumentinfo().getAuthor(), 
+											data.getDocumentinfo().getTitle(), 
+											data.getDocumentinfo().getComment(), 
+											data.getDocumentinfo().getWidth(), 
+											data.getDocumentinfo().getHeight());
+	}
+	
+	@Test
+	public void uploadCorrectDefaultsTest() {
+		SqlConnection sqlConnector = new SqlConnection();
+
+		sqlConnector.deleteDefaultsContent();
+		sqlConnector.addDefaultsContent(data.getDefaults().getBackgroundcolor(), 
+										data.getDefaults().getFont(), 
+										data.getDefaults().getFontsize(), 
+										data.getDefaults().getLinecolor() , 
+										data.getDefaults().getFillcolor());
+	}
+	
+	@Test
+	public void uploadCorrectTextAttributeAndTextbody(){
+		
+		int textIndex = 0;
+		int textBodyIndex = 0;
+		TextData textData = null;
+		SqlConnection sqlConnector = new SqlConnection();
+		
+		sqlConnector.deleteContentAndResetAutoIncrement("text");
+		sqlConnector.deleteContentAndResetAutoIncrement("textbody");
+		
+		while (textIndex<firstSlide.getTexts().size()){
+			textData = firstSlide.getTexts().get(textIndex);
+			
+			sqlConnector.addTextContents(1, // productID
+										textData.getFontsize(), 
+										textData.getXstart(), 
+										textData.getYstart(), 
+										textData.getStarttime(), 
+										textData.getDuration(), 
+										textData.getLayer(), 
+										textData.getXend(), 
+										textData.getYend(), 
+										textData.getFont(), 
+										textData.getFontcolor());
+			while (textBodyIndex<firstText.getTextbodies().size()){
+				
+				sqlConnector.addTextbodyContents(1, //ProductID, 
+												 textIndex, //TextNo 
+												 firstText.getTextbodies().get(textBodyIndex).getBranch(), 
+												 firstText.getTextbodies().get(textBodyIndex).getBold(), 
+												 firstText.getTextbodies().get(textBodyIndex).getItalic(), 
+												 firstText.getTextbodies().get(textBodyIndex).getUnderlined(), 
+												 firstText.getTextbodies().get(textBodyIndex).getTextstring());
+				textBodyIndex++;
+			}
+			
+			textBodyIndex=0;
+			textIndex++;
+		}
+	}
+	
+	@Test
+	public void uploadCorrectVideoTest(){
+		
+		int videoIndex = 0;
+		VideoData videodata;
+		SqlConnection sqlConnector = new SqlConnection();
+		
+		sqlConnector.deleteContentAndResetAutoIncrement("video");
+		
+		while (videoIndex<firstSlide.getVideos().size()){
+			videodata = firstSlide.getVideos().get(videoIndex);
+			
+			sqlConnector.addVideoContents(1, //ProductID 
+										  videodata.getUrlname(), 
+										  videodata.getStarttime(), 
+										  videodata.getLoop(), 
+										  videodata.getXstart(), 
+										  videodata.getYstart(), 
+										  videodata.getWidth(), 
+										  videodata.getHeight(), 
+										  videodata.getLayer(), 
+										  videodata.getDuration());
+			videoIndex++;
+		}
+		
+	}
+	
+	
+	@Test
+	public void uploadCorrectImageTest(){
+		
+		int ImageIndex = 0;
+		ImageData imagedata;
+		SqlConnection sqlConnector = new SqlConnection();
+		
+		sqlConnector.deleteContentAndResetAutoIncrement("image_slide");
+		
+		while (ImageIndex<firstSlide.getImages().size()){
+			imagedata = firstSlide.getImages().get(ImageIndex);
+			
+			sqlConnector.addImageContents(imagedata.getUrlname(), 
+										  imagedata.getXstart(), 
+										  imagedata.getYstart(), 
+										  imagedata.getWidth(), 
+										  imagedata.getHeight(), 
+										  imagedata.getStarttime(), 
+										  imagedata.getDuration(), 
+										  imagedata.getLayer(), 
+										  imagedata.getBranch());
+			ImageIndex++;
+		}
+		
+	}
+	
+	@Test
+	public void uploadCorrectAudioTest(){
+		
+		int audioIndex = 0;
+		AudioData audiodata;
+		SqlConnection sqlConnector = new SqlConnection();
+		
+		sqlConnector.deleteContentAndResetAutoIncrement("audio");
+		
+		while (audioIndex<firstSlide.getAudios().size()){
+			audiodata = firstSlide.getAudios().get(audioIndex);
+			
+			sqlConnector.addAudioTableContents(1, //ProductID
+											   audiodata.getStarttime(), 
+											   audiodata.getUrlname(), 
+											   50, 
+											   audiodata.getLoop());
+			audioIndex++;
+		}
+		
+	}
+	
+	@Test
+	public void uploadCorrectShapeAndPointsTest(){
+		
+		int shapeIndex = 0;
+		int pointIndex = 0;
+		ShapeData shape = null;
+		PointData point = null;
+		SqlConnection sqlConnector = new SqlConnection();
+		
+		sqlConnector.deleteContentAndResetAutoIncrement("shape");
+		sqlConnector.deleteContentAndResetAutoIncrement("point");
+		
+		while (shapeIndex<firstSlide.getShapes().size()){
+			shape = firstSlide.getShapes().get(shapeIndex);
+			
+			sqlConnector.addShapeContents(1, //productID
+											shape.getTotalpoints(), 
+											shape.getWidth(), 
+											shape.getHeight(),
+											shape.getStarttime(), 
+											shape.getDuration(), 
+											shape.getLayer(), 
+											1, //branch
+											shape.getFillcolor(), 
+											shape.getLinecolor());
+			while (pointIndex<firstShape.getPoints().size()){
+				point = firstShape.getPoints().get(pointIndex);
+				
+				sqlConnector.addPointContents(1, //productId
+											  shapeIndex, //ShapeNo
+											  point.getNum(), 
+											  point.getX(), 
+											  point.getY());
+				pointIndex++;
+			}
+			
+			pointIndex=0;
+			shapeIndex++;
+		}
+	}
+
+	//possibly change all the productID values for a value representing the slideID
+	//Does not work for multiple slides
+	//Need to make method in sqlconnection that will do what these upload tests do
+	
 }
 
 /**************End of TestPWSParser.java**************/
