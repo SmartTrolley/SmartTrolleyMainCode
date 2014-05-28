@@ -157,7 +157,7 @@ public class TestDeleteList {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				Button deleteButton = ExampleShoppingListController.deleteListButton;
+				Button deleteButton = ShoppingListController.deleteListButton;
 				deleteButton.fire();
 			}
 		});
@@ -165,7 +165,7 @@ public class TestDeleteList {
 		// Allow the GUI to catch up
 		SmartTrolleyToolBox.delay(500);
 
-		assertTrue(ExampleShoppingListController.deleteMsgBx.isShowing());
+		assertTrue(ShoppingListController.deleteMsgBx.isShowing());
 		
 		SmartTrolleyToolBox.delay(500);
 		
@@ -202,7 +202,7 @@ public class TestDeleteList {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				Button deleteButton = ExampleShoppingListController.deleteListButton;
+				Button deleteButton = ShoppingListController.deleteListButton;
 				deleteButton.fire();
 			}
 		});

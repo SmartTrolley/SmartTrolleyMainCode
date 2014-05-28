@@ -156,13 +156,13 @@ public class TestDeleteItemsFromList {
 		// sets Quantity of product in list
 		SmartTrolleyToolBox.print("Q: " + oldQuantity);
 		
-		//removeButton = ExampleShoppingListController.button;
+		//removeButton = ShoppingListController.button;
 		//removeButton.fire();
 		
 
 		// Now hit - button, update database
 		/*Button viewLists = new Button();
-		viewLists = ExampleShoppingListController.
+		viewLists = ShoppingListController.
 		viewLists.fire();
 		SmartTrolleyToolBox.print("Fired Button");*/
 		

@@ -3,7 +3,7 @@ package toolBox;
 /**
  * SmartTrolley
  *
- * Our own print statement 
+ * This class is a toolbox of utility methods for SmartTrolley's application
  *
  * @author Prashant Chakravarty
  * @author Alick Jacklin

@@ -220,7 +220,7 @@ public class AllShoppingListsScreenControllerTest {
 
 		SmartTrolleyToolBox.print("row Size is " + rowSize);
 		
-		listSize = ExampleShoppingListController.getProductDataSize();
+		listSize = ShoppingListController.getProductDataSize();
 		
 		SmartTrolleyToolBox.print("list Size is " + listSize);
 		

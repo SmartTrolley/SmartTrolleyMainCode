@@ -1,7 +1,7 @@
 /**
- * ExampleShoppingListController
+ * ShoppingListController
  *
- * Class Description: ExampleShoppingListController allows java interaction with
+ * Class Description: ShoppingListController allows java interaction with
  * ExampleShoppingList.fxml
  *
  * @author V1.0 Arne
@@ -38,7 +38,7 @@ import se.mbaeumer.fxmessagebox.MessageBoxType;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
-public class ExampleShoppingListController implements Initializable {
+public class ShoppingListController implements Initializable {
 
 	@FXML
 	private ListView<String> categoriesList;
@@ -332,4 +332,4 @@ public class ExampleShoppingListController implements Initializable {
 	}
 
 }
-/************** End of ExampleShoppingListController **************/
+/************** End of ShoppingListController **************/

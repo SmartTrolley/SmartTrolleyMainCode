@@ -65,7 +65,7 @@ public class SmartTrolleyGUI extends Application {
 	/**The product screen in SmartTrolleyGUI*/
 	ProductScreenController productScreen;
 
-	public ExampleShoppingListController exampleShoppingList;
+	public ShoppingListController exampleShoppingList;
 
     /* (non-Javadoc)
      * @see javafx.application.Application#start(javafx.stage.Stage)
@@ -190,7 +190,7 @@ public class SmartTrolleyGUI extends Application {
     */
     public void goToShoppingList() {
         try {
-            exampleShoppingList = (ExampleShoppingListController) replaceSceneContent("fxml/ExampleShoppingList.fxml");
+            exampleShoppingList = (ShoppingListController) replaceSceneContent("fxml/ShoppingList.fxml");
             exampleShoppingList.setApp(this);
         } catch (IOException ex) {
         	FXMLNotFound();
