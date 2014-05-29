@@ -272,7 +272,7 @@ import toolBox.SmartTrolleyToolBox;
 
 
 	/**
-	 * Checks to see if the result set is empty
+	 * Checks to see if the result set is empty. Returns true if it is.
 	 * <p>
 	 * N/A
 	 * 

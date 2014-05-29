@@ -35,7 +35,7 @@ public class SmartTrolleyGUI extends Application {
     
 
 	/**The displayed stage*/
-	public static Stage stage; 
+	static Stage stage; 
     
     /**Maximum height of the stage*/
     private final double MIN_WINDOW_WIDTH = 600.0;

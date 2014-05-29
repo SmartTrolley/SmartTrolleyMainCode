@@ -233,6 +233,7 @@ public class TestDeleteList {
 		query = "SELECT * FROM lists WHERE name = " + listIDForDeletion;
 		ResultSet results = productsDatabase.sendQuery(query);
 		
+		//This asserts that the list no longer exists
 		assertTrue(SqlConnection.isResultSetEmpty(results));
 
 	}

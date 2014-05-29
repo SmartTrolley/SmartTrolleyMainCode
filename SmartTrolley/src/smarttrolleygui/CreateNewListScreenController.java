@@ -14,6 +14,7 @@
 package smarttrolleygui;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -110,7 +111,19 @@ public class CreateNewListScreenController implements Initializable {
 				sqlConnection.executeStatement(sqlStatement);
 				SmartTrolleyToolBox.print("Created new list: " + enteredListName);
 				
-				SmartTrolleyGUI.setCurrentListName(enteredListName);
+				SmartTrolleyGUI.setCurrentListName(enteredListName);				
+				SmartTrolleyToolBox.print("Set list name in application: " + enteredListName);
+				
+				sqlStatement = "SELECT * FROM lists WHERE Name = \"" + enteredListName + "\"";
+				
+				SmartTrolleyToolBox.print("Sending query to find list id: " + sqlStatement);				
+				
+				ResultSet result = sqlConnection.sendQuery(sqlStatement);
+				result.absolute(1);
+
+				int listID = result.getInt("ListID");
+				SmartTrolleyToolBox.print("LiD: " + result.getInt("ListID"));
+				SmartTrolleyGUI.setCurrentListID(listID);
 				
 				// move to HomeScreen
 				application.goToHomeScreen();

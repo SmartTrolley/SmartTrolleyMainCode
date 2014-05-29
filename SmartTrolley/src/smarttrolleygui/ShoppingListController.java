@@ -144,7 +144,7 @@ public class ShoppingListController implements Initializable {
 				SmartTrolleyToolBox.print("Unable to send query due to unknown error");
 			}
 
-			SmartTrolleyToolBox.print(SqlConnection.isResultSetEmpty(result));
+			SmartTrolleyToolBox.print("Result set to delete list is " + SqlConnection.isResultSetEmpty(result) + " empty.");
 
 			if (SqlConnection.isResultSetEmpty(result)) {
 				// Go to a specific result in the ResultSet, otherwise errors
