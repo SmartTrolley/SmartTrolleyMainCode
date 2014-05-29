@@ -16,80 +16,106 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import graphicshandler.ShapePoint;
+import graphicshandler.SlidePolygon;
+import graphicshandler.SlideShapeFactory;
+
+import imagehandler.SlideImage;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.stage.Stage;
-
+import javafx.scene.shape.Shape;
 import org.junit.Before;
 import org.junit.Test;
 
-import smarttrolleygui.ProductSlide;
+import audiohandler.AudioHandler;
+
+import smarttrolleygui.Slide;
+import texthandler.SlideText;
 import texthandler.SlideTextBody;
+import videohandler.SlideVideo;
 import Printing.SmartTrolleyPrint;
 
 public class ProductSlideTest {
 
 	private ProductSlideVisualTest visualTesting;
-	private Stage stage;
-	private ProductSlide productSlide;
-	public PriorityQueue<ShapePoint> points;
-	public ShapePoint point1, point2, point3, point4;
-	int point1Num = 1, point2Num = 2, point3Num = 3, point4Num = 4;
-	int width = 50, height = 50, pointLow = 0, pentagonX = 25, pentagonY = 25;
-
+	private Slide productSlide;
+	
+	/**sets parameters for image*/
 	private String imageURL = "http://th03.deviantart.net/fs70/PRE/i/2013/077/8/9/cookie_monster_by_xenia_cat-d5yhjwj.jpg";
-	private int xImageStart = 100;
-	private int yImageStart = 100;
-	private int imageWidth = 78;
-	private int imageHeight = 128;
+	private int xImageStart = 10;
+	private int yImageStart = 10;
+	private int xImageStart2 = 200;
+	private int yImageStart2 = 300;
+	private int imageWidth = 100;
+	private int imageHeight = 150;
 	private int imageStartTime = 0;
 	private int imageDuration = 0;
-
+	
+	/**sets parameters for graphics*/
 	private String graphicsFillColour = "#0000FF";
 	private String graphicsLineColour = "#0000FF";
 	private int graphicsWidth = 50;
 	private int graphicsHeight = 75;
-	int graphicsStartTime = 0;
-	int graphicsDuration = 0;
-	int numOfPoints = 3;
-
+	int graphicsStartTime = 5;
+	int graphicsDuration = 5;
+	int numOfPoints = 1;
+	private PriorityQueue<ShapePoint> points;
+	private SlidePolygon pentagon;
+	
+	protected int point1Num = 1, point2Num = 2, point3Num = 3, point4Num = 4, point5Num = 5;
+	protected int pointLow = 60, pentagonX = 25, pentagonY = 25;
+	protected int maxPoints= 5;
+	public AudioHandler audio;
+	
+	/**sets parameters for audio*/
 	private String audURL = "Music/Kalimba.mp3";
+	private String audURL2 = "Music/Shop2.mp3";
 	private int audStartTime = 0;
-	private int audDuration = 4;
+	private int audDuration = 5;
 	private double audVolume = 0.4;
-
-	private ArrayList<SlideTextBody> texts;
-	private String font = "Times New Roman";
-	private String fontColor = "FF00FF";
-	private int fontSize = 12;
-	private int xTextStart = 350;
-	private int yTextStart = 467;
-	private int xTextEnd = 230;
-	private int yTextEnd = 290;
-	private double textStartTime = 0;
-	private double textDuration = 0;
-	private int numOfStrings = 3;
-
+	private double audVolume2 = 1.0;
+	
+	
+	/**sets parameters for text*/
+	ArrayList<SlideTextBody> texts;
+	String font = "Comic Sans MS";
+	String fontColor = "FF00FF";
+	int fontSize = 12;
+	int xTextStart = 355;
+	int yTextStart = 467;
+	int xTextEnd = 375;
+	int yTextEnd = 487;
+	double textStartTime = 0;
+	double textDuration = 0;
+	private String oneString = "A Long-Expected Party. When Mr. Bilbo Baggins of Bag End announced\n" + "that he would shortly be celebrating his eleventy-first birthday";
+	
+	/**sets Parameters for video*/
 	private String vidURL = "http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv";
 	private int xVidStart = 200;
 	private int yVidStart = 20;
-	private int VidWidth = 150;
-	private int VidHeight = 75;
+	private int vidWidth = 480;
+	private int vidHeight = 240;
 	private boolean vidLoop = true;
-	private double vidStartTime = 2.0;
-	private double vidDuration = 30.0;
+	private double vidStartTime = 0;
+	private double vidDuration = 5.0;
 	
-	//for resizing
-
-	private int slideHeight = 600;
-	private int slideWidth = 800;
 	
-	private double yScaler = slideHeight/1000;
-	private double xScaler = slideWidth/1000;
+	
+	/**sets up ArrayLists to store information on various PWS media types*/
+	private ArrayList<Shape> graphicsList;
+	private ArrayList<SlideImage> imageList;
+	private ArrayList<SlideVideo> videoList;
+	private ArrayList<SlideText> textList; 
+	private ArrayList<AudioHandler> audioList;
+	
+	
+	
+	/**sets scalers for all visual based PWS media*/
+	private double xScaler;
+	private double yScaler;
 
 	/**
 	 * Sets up ProductSlide for tests
@@ -128,55 +154,146 @@ public class ProductSlideTest {
 				}
 			}
 		});
+		
+		 setupImage();
+		 setupGraphics();
+		 setupAudio();
+		 setupVideo();
+		 setupText();	
 
-		SmartTrolleyDelay.delay(1000);
+		SmartTrolleyDelay.delay(2000);
+		
+		productSlide = new Slide(xScaler, yScaler, graphicsList,
+				 imageList,  audioList,  textList,
+				 videoList);
 
-		productSlide = new ProductSlide(xScaler, yScaler, graphicsList, imageList, audioList, textList,
-				videoList);
+	}
+	
+	/**
+	*sets up images to be stored in the imageList Array
+	*<p> Date Modified: 29 May 2014
+	*/
+	public void setupImage(){
+		SlideImage image = new SlideImage(imageURL, xImageStart, yImageStart, imageWidth, imageHeight,
+				imageStartTime, 3);
+		
+		SlideImage image2 = new SlideImage(imageURL, xImageStart2, yImageStart2, imageWidth/2, imageHeight/2,
+				imageStartTime, imageDuration);
+	
+		imageList = new ArrayList<SlideImage>();
+		
+		imageList.add(image);
+		imageList.add(image2);
+	}
+	
 
+	/**
+	*sets up graphics to be stored in the graphicsList Array
+	*<p> Date Modified: 29 May 2014
+	*/
+	public void setupGraphics(){
+		points = new PriorityQueue<ShapePoint>();
+		points.add(new ShapePoint(pointLow,pointLow,point1Num));
+		points.add(new ShapePoint(graphicsWidth,pointLow,point2Num));
+		points.add(new ShapePoint(graphicsWidth,graphicsHeight,point3Num));
+		points.add(new ShapePoint(pointLow, graphicsWidth,point4Num));
+		points.add(new ShapePoint(pentagonX, pentagonY, point5Num));
+		
+		SlideShapeFactory shapeFactory = new SlideShapeFactory(points, graphicsHeight,graphicsWidth,
+				graphicsFillColour, graphicsLineColour, graphicsStartTime, graphicsDuration);
+		pentagon = (SlidePolygon) shapeFactory.getShape();
+		
+		graphicsList = new ArrayList<Shape>();
+		
+		graphicsList.add(pentagon);
+	}
+	
+	/**
+	*sets up audio to be stored in the audioList Array
+	*<p> Date Modified: 29 May 2014
+	*/
+	public void setupAudio(){
+		AudioHandler audio = new AudioHandler(audURL, audStartTime, audDuration, audVolume);
+		AudioHandler audio2 = new AudioHandler(audURL2, (int) vidDuration, audDuration, audVolume2);
+		
+		audioList = new ArrayList<AudioHandler>();
+		
+		audioList.add(audio);
+		audioList.add(audio2);
+	}
+	
+	/**
+	*sets up video to be stored in the videoList Array
+	*<p> Date Modified: 29 May 2014
+	*/
+	public void setupVideo(){
+		SlideVideo video = new SlideVideo(vidURL, xVidStart, yVidStart, vidWidth, vidHeight, vidLoop,
+				vidStartTime, vidDuration);
+		
+
+		videoList = new ArrayList<SlideVideo>();
+		videoList.add(video);
+
+	}
+	
+	/**
+	*sets up text to be stored in the textList Array
+	*<p> Date Modified: 29 May 2014
+	*/
+	public void setupText(){
+		texts = new ArrayList<SlideTextBody>();
+		texts.add(new SlideTextBody(oneString, true, true, true, 1));
+		
+		SlideText textBox = new SlideText(texts, font, fontColor, fontSize, xTextStart, yTextStart,
+				xTextEnd, yTextEnd, textStartTime, textDuration);
+		
+		textList = new ArrayList<SlideText>();
+		textList.add(textBox);
+		
 	}
 
 	/**
 	 * Test that the AnchorPane is visible.
-	 * <p>
-	 * Date Modified: 27 May 2014
+	 * <p>Date Modified: 27 May 2014
 	 */
 	@Test
 	public void slideDisplayTest() {
-		point1 = new ShapePoint(pointLow, pointLow, point1Num);
-		point2 = new ShapePoint(width, pointLow, point2Num);
-		point3 = new ShapePoint(width, height, point3Num);
-		point4 = new ShapePoint(pointLow, width, point4Num);
-
-		points = new PriorityQueue<ShapePoint>();
-		points.add(point1);
-		points.add(point3);
-		points.add(point2);
-		points.add(point4);
+		SmartTrolleyDelay.delay(1000);
 
 		assertTrue(productSlide.isVisible());
 
 	}
 
+
 	/**
-	 * tests that the image is visible on the AnchorPane
+	 * Tests that the images are visible on the AnchorPane
+	 * <p> Date Modified: 27 May 2014
+	 */
+	@Test
+	public void displayingImageTest() {
+		assertTrue(imageList.get(0).isVisible());
+		assertTrue(imageList.get(1).isVisible());
+		}
+	/**
+	 * Tests that the audio is playing
 	 * <p>
 	 * Date Modified: 27 May 2014
 	 */
 	@Test
-	public void displayingImageTest() {
+	public void audioIsPlayingTest() {
 
-		assertTrue(productSlide.imageSetup(imageURL, xImageStart, yImageStart,
-				imageWidth, imageHeight, imageStartTime, imageDuration, xScaler, yScaler)
-				.isVisible());
+		assertTrue(audioList.get(0).isPlaying());
+		audioList.get(0).stop();
 	}
 
+	/**
+	*test that video is displayed
+	*<p> Date Modified: 29 May 2014
+	*/
 	@Test
 	public void displayingVideoTest() {
 		SmartTrolleyDelay.delay(1000);
-		assertTrue(productSlide.videoSetup(vidURL, xVidStart, yVidStart,
-				VidWidth, VidHeight, vidLoop, vidStartTime, vidDuration, xScaler, yScaler)
-				.isVisible());
+		assertTrue(videoList.get(0).isVisible());
 
 	}
 
@@ -188,35 +305,11 @@ public class ProductSlideTest {
 	@Test
 	public void displayingGraphicsTest() {
 
-		point1 = new ShapePoint(pointLow, pointLow, point1Num);
-		point2 = new ShapePoint(width, pointLow, point2Num);
-		point3 = new ShapePoint(width, height, point3Num);
-		point4 = new ShapePoint(pointLow, width, point4Num);
-
-		points = new PriorityQueue<ShapePoint>();
-		points.add(point1);
-		points.add(point3);
-		points.add(point2);
-		points.add(point4);
-
-		assertTrue(productSlide
-				.graphicsSetup(points, numOfPoints, graphicsWidth,
-						graphicsHeight, graphicsFillColour, graphicsLineColour,
-						graphicsStartTime, graphicsDuration, xScaler, yScaler).visibleProperty()
-				.get());
+		assertTrue(graphicsList.get(0).isVisible());
 	}
 
-	/**
-	 * tests that the audio is playing
-	 * <p>
-	 * Date Modified: 27 May 2014
-	 */
-	@Test
-	public void audioIsPlayingTest() {
-		SmartTrolleyDelay.delay(500);
-		assertTrue(productSlide.audio.isPlaying());
-		productSlide.audio.stop();
-	}
+
+
 
 	/**
 	 * tests that the audio has stopped
@@ -226,7 +319,7 @@ public class ProductSlideTest {
 	@Test
 	public void audioHasStoppedPlayingTest() {
 		SmartTrolleyDelay.delay(6000);
-		assertFalse(productSlide.audio.isPlaying());
+		assertFalse(audioList.get(0).isPlaying());
 	}
 
 	/**
@@ -237,9 +330,7 @@ public class ProductSlideTest {
 	@Test
 	public void displayingTextTest() {
 
-		assertTrue(productSlide.textSetup(texts, font, fontColor, numOfStrings,
-				fontSize, xTextStart, yTextStart, xTextEnd, yTextEnd,
-				textStartTime, textDuration, xScaler, yScaler).isVisible());
+		assertTrue(textList.get(0).isVisible());
 	}
 	
 
@@ -253,108 +344,78 @@ public class ProductSlideTest {
 	@Test
 	public void slideClearingTest() {
 
-		point1 = new ShapePoint(pointLow, pointLow, point1Num);
-		point2 = new ShapePoint(width, pointLow, point2Num);
-		point3 = new ShapePoint(width, height, point3Num);
-		point4 = new ShapePoint(pointLow, width, point4Num);
-
-		points = new PriorityQueue<ShapePoint>();
-		points.add(point1);
-		points.add(point3);
-		points.add(point2);
-		points.add(point4);
-
-		assertTrue(productSlide.imageSetup(imageURL, xImageStart, yImageStart,
-				imageWidth, imageHeight, imageStartTime, imageDuration, xScaler, yScaler)
-				.isVisible());
-
-		SmartTrolleyPrint.print("First Test Passed, Image has loaded");
-
-		assertTrue(productSlide
-				.graphicsSetup(points, numOfPoints, graphicsWidth,
-						graphicsHeight, graphicsFillColour, graphicsLineColour,
-						graphicsStartTime, graphicsDuration, xScaler, yScaler).visibleProperty()
-				.get());
-
-		SmartTrolleyPrint.print("Second Test passed, graphics have loaded"
-				+ productSlide);
-
-		SmartTrolleyPrint.print(productSlide.getChildren());
-
 		SmartTrolleyDelay.delay(1000);
+		
+		SmartTrolleyPrint.print(productSlide.getChildren());
 
 		productSlide.clearSlide();
 
 		SmartTrolleyPrint.print(productSlide.getChildren());
 
-		assertFalse(productSlide.audio.isPlaying());
+		assertFalse(audioList.get(0).isPlaying());
 
 		assertTrue(productSlide.getChildren().isEmpty());
 
 	}
 
 
+
+	/**
+	*Test that image location is scaled based on scaling factors
+	*<p> Date Modified: 29 May 2014
+	*/
 	@Test
 	public void imageLocationScaleTest(){
 
-		double imageScaledXPos = productSlide.imageSetup(imageURL, xImageStart, yImageStart,
-				imageWidth, imageHeight, imageStartTime, imageDuration, xScaler, yScaler)
-				.getLayoutX(); 
+		double imageScaledXPos = imageList.get(0).getLayoutX();
 		assertEquals(imageScaledXPos, xImageStart*xScaler, 0.1);
 		
-		double imageScaledYPos = productSlide.imageSetup(imageURL, xImageStart, yImageStart,
-				imageWidth, imageHeight, imageStartTime, imageDuration, xScaler, yScaler)
-				.getLayoutY(); 
+		double imageScaledYPos =  imageList.get(0).getLayoutY();
 		assertEquals(imageScaledYPos, yImageStart*yScaler, 0.1);
-		}		
-	
+		}	
+
+	/**
+	*Test that graphics location is scaled based on scaling factors
+	*<p> Date Modified: 29 May 2014
+	*/
 	@Test
 	public void graphicsLocationScaleTest(){
 
-		double graphicsScaledXPos = productSlide.graphicsSetup(points, numOfPoints, graphicsWidth,
-				graphicsHeight, graphicsFillColour, graphicsLineColour, 
-				graphicsStartTime, graphicsDuration, xScaler, yScaler).
-				getLayoutX(); 
+		double graphicsScaledXPos = graphicsList.get(0).getLayoutX(); 
 		assertEquals(graphicsScaledXPos, pointLow*xScaler, 0.1);
 		
-		double graphicsScaledYPos = productSlide.graphicsSetup(points, numOfPoints, graphicsWidth,
-				graphicsHeight, graphicsFillColour, graphicsLineColour, 
-				graphicsStartTime, graphicsDuration, xScaler, yScaler).
-				getLayoutY(); 
+		double graphicsScaledYPos = graphicsList.get(0).getLayoutY();
 		assertEquals(graphicsScaledYPos, pointLow*yScaler, 0.1);
 		}	
-	
+
+	/**
+	*Test that text location is scaled based on scaling factors
+	*<p> Date Modified: 29 May 2014
+	*/
 	@Test
 	public void textLocationScaleTest(){
 
-		double textScaledXPos = productSlide.textSetup(texts, font, fontColor,
-				numOfStrings, fontSize, xTextStart, yTextStart, xTextEnd, 
-				yTextEnd, textStartTime, textDuration, xScaler, yScaler)
-				.getLayoutX(); 
+		double textScaledXPos = textList.get(0).getLayoutX();
 		assertEquals(textScaledXPos, xTextStart*xScaler, 0.1);
 		
-		double textScaledYPos = productSlide.textSetup(texts, font, fontColor,
-				numOfStrings, fontSize, xTextStart, yTextStart, xTextEnd, 
-				yTextEnd, textStartTime, textDuration, xScaler, yScaler)
-				.getLayoutY(); 
+		double textScaledYPos = textList.get(0).getLayoutY(); 
 		assertEquals(textScaledYPos, yTextStart*yScaler, 0.1);
 		}		
-	
+
+	/**
+	*Test that video location is scaled based on scaling factors
+	*<p> Date Modified: 29 May 2014
+	*/
 	@Test
 	public void videoLocationScaleTest(){
 
-		double videoScaledXPos = productSlide.videoSetup(vidURL, xVidStart,
-				yVidStart, VidWidth, VidHeight, vidLoop, vidStartTime, 
-				vidDuration, xScaler, yScaler)
-				.getLayoutX(); 
+		double videoScaledXPos = videoList.get(0).getLayoutX();
 		assertEquals(videoScaledXPos, xVidStart*xScaler, 0.1);
 		
-		double videoScaledYPos = productSlide.videoSetup(vidURL, xVidStart,
-				yVidStart, VidWidth, VidHeight, vidLoop, vidStartTime, 
-				vidDuration, xScaler, yScaler)
-				.getLayoutY(); 
+		double videoScaledYPos = videoList.get(0).getLayoutY();
 		assertEquals(videoScaledYPos, yVidStart*yScaler, 0.1);
-		}		
+		}
+	
 
 }
 

@@ -111,7 +111,7 @@ public class SlideElementDuration {
 	*@param milliseconds	
 	*<p> Date Modified: 25 April 2014
 	 */
-	private class ShowTask extends TimerTask {
+	public class ShowTask extends TimerTask {
 		@Override
 		public void run() {
 			if (started) {
