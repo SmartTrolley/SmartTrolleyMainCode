@@ -5,7 +5,7 @@
  *
  * @author Prashant Chakravarty
  *
- * @author Checked By: Checker(s) fill here
+ * @author Checked By: Alasdair 29 May 2014
  *
  * @version V1.0 [Date Created: 24 May 2014]
  */
@@ -19,7 +19,6 @@ import java.util.TimerTask;
 import javafx.application.Platform;
 import javafx.scene.layout.Pane;
 import se.mbaeumer.fxmessagebox.MessageBox;
-import se.mbaeumer.fxmessagebox.MessageBoxResult;
 import se.mbaeumer.fxmessagebox.MessageBoxType;
 import toolBox.SmartTrolleyToolBox;
 
@@ -51,30 +50,30 @@ public class SlideShow {
 	private int slideShowIndex;
 
 	/**Message Box to notify user that they are trying to access outside the slideshow*/
-	protected MessageBox outOfSldShwMsgBox;
-
+	protected MessageBox outOfSlideShowMessageBox;
+	
 	/**Field which is true when a slideshow is playing using slide durations rather than button presses*/
-	boolean autoPlay = false;
-
+	protected boolean autoPlay = false;
+	
 	/**Timer for slide duration*/
-	Timer slideTimer;
-
+	protected Timer slideTimer;
+	
 	private PlaySlide playSlide;
-
+	
 	/**Direction to play the slideshow*/
 	private PlayDirection playDirection = PlayDirection.NEXT;
-
+	
 	/**
 	 *The constructor
 	 *<p> User can view PWS Compatible slideshow
 	 *@param slideList - The list of slides
 	 *<p> Date Modified: 25 May 2014
 	 */
-	public SlideShow(Pane displayedPane) {
+	protected SlideShow(Pane displayedPane) {
 		this.displayedPane = displayedPane;
 		slides = new ArrayList<Slide>();
 	}
-
+	
 	/**
 	 *This method returns all the slides in the slideshow
 	 *<p>User can load PWS compatible XML File into program
@@ -84,24 +83,24 @@ public class SlideShow {
 	protected ArrayList<Slide> getSlides() {
 		return slides;
 	}
-
+	
 	/**
 	 * This method displays a particular slide by the index that is passed in
 	 *<p> User can view PWS Compatible slideshow
 	 *@param slideShowIndex - Slide index to be displayed
 	 *<p> Date Modified: 28 May 2014
 	 */
-	// TODO Consider changing the name to playSlide/startAutoPlay
-	public void displaySlide(int slideShowIndex) {
+	protected void displaySlide(int slideShowIndex) {
 
 		displayedSlide = slides.get(slideShowIndex);
 
 		displayedPane.getChildren().add(displayedSlide);
-
+		
+		//Setup Timer for new duration if slideshow is autoplaying 
 		if (autoPlay) {
-
 			if (displayedSlide.duration != 0) {
 				playSlide.cancel();
+				
 				/*
 				 * The multiplication by 1000 is because the slide duration is in seconds
 				 * while timer durations are in milliseconds.
@@ -119,7 +118,7 @@ public class SlideShow {
 	 *<p> User can view PWS Compatible slideshow
 	 *<p> Date Modified: 26 May 2014
 	 */
-	public void startSlideshow(PlayDirection playDirection) {
+	protected void startSlideshow(PlayDirection playDirection) {
 		SmartTrolleyToolBox.print("Starting Slideshow");
 
 		this.playDirection = playDirection;
@@ -137,7 +136,7 @@ public class SlideShow {
 	 *@param slideList - The list of slides
 	 *<p> Date Modified: 25 May 2014
 	 */
-	public void setSlides(ArrayList<Slide> slideList) {
+	protected void setSlides(ArrayList<Slide> slideList) {
 		this.slides = slideList;
 	}
 
@@ -147,7 +146,7 @@ public class SlideShow {
 	 *@param slide - A Slide object
 	 *<p> Date Modified: 25 May 2014
 	 */
-	public void addSlideToSlideShow(Slide slide) {
+	protected void addSlideToSlideShow(Slide slide) {
 		slides.add(slide);
 	}
 
@@ -157,7 +156,7 @@ public class SlideShow {
 	 *<p>  User can view PWS Compatible slideshow
 	 *<p> Date Modified: 27 May 2014
 	 */
-	public void nextSlide() {
+	protected void nextSlide() {
 
 		SmartTrolleyToolBox.print("In nextSlide method");
 
@@ -171,7 +170,7 @@ public class SlideShow {
 
 		} else {
 			String endOfSldShwString = "Reached end of slideShow, no next slide";
-			displayOutOfSldShwMsgBx(endOfSldShwString);
+			displayOutOfSlideShowMessageBox(endOfSldShwString);
 			displaySlide(slideShowIndex);
 		}
 	}
@@ -184,6 +183,7 @@ public class SlideShow {
 	private void deleteSlidePane() {
 
 		// TODO Clear slide here: displayedSlide.clearSlide();
+		
 		// Perhaps remove the slide children clearing in clearSlide()
 		SmartTrolleyToolBox.print(displayedPane.getChildren());
 		displayedPane.getChildren().clear();
@@ -191,7 +191,6 @@ public class SlideShow {
 		displayedPane.setVisible(true);
 		SmartTrolleyToolBox.print(displayedPane.getChildren());
 
-		// while (!displayedPane.getChildren().isEmpty());
 		SmartTrolleyToolBox.print("Slide Pane deleted.");
 	}
 
@@ -201,10 +200,10 @@ public class SlideShow {
 	 *<p> Date Modified: 28 May 2014
 	 * @param stringToDisplay - String that is shown in the message box
 	 */
-	private void displayOutOfSldShwMsgBx(String stringToDisplay) {
+	private void displayOutOfSlideShowMessageBox(String stringToDisplay) {
 		SmartTrolleyToolBox.print(stringToDisplay);
 
-		outOfSldShwMsgBox = new MessageBox(stringToDisplay, MessageBoxType.OK_ONLY);
+		outOfSlideShowMessageBox = new MessageBox(stringToDisplay, MessageBoxType.OK_ONLY);
 
 		/*
 		 * The two lines below to set the
@@ -213,10 +212,10 @@ public class SlideShow {
 		 * resized itself (became very small)
 		 * when multiple lists were deleted.
 		 */
-		outOfSldShwMsgBox.setHeight(MSG_BX_H);
-		outOfSldShwMsgBox.setWidth(MSG_BX_W);
+		outOfSlideShowMessageBox.setHeight(MSG_BX_H);
+		outOfSlideShowMessageBox.setWidth(MSG_BX_W);
 
-		outOfSldShwMsgBox.showAndWait();
+		outOfSlideShowMessageBox.showAndWait();
 
 		// Autoplay should be false now regardless of its previous state
 		autoPlay = false;
@@ -230,7 +229,7 @@ public class SlideShow {
 	 *<p>  User can view PWS Compatible slideshow
 	 *<p> Date Modified: 27 May 2014
 	 */
-	public void prevSlide() {
+	protected void prevSlide() {
 
 		SmartTrolleyToolBox.print("In prevSlide method");
 
@@ -242,7 +241,7 @@ public class SlideShow {
 
 		} else {
 			String startOfSldShwString = "Reached start of slideshow.";
-			displayOutOfSldShwMsgBx(startOfSldShwString);
+			displayOutOfSlideShowMessageBox(startOfSldShwString);
 			displaySlide(slideShowIndex);
 		}
 	}
@@ -263,7 +262,7 @@ public class SlideShow {
 	 *<p>Test(s)/User Story that it satisfies
 	 *<p> Date Modified: 28 May 2014
 	 */
-	public void play() {
+	protected void play() {
 
 		autoPlay = true;
 		SmartTrolleyToolBox.print("Autoplay now on");

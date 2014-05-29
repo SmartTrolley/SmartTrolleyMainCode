@@ -63,6 +63,7 @@ public class ProductScreenController implements Initializable {
 	/** Application that is running */
 	private SmartTrolleyGUI application;
 	private Product product;
+	//TODO Remove these if they're still not used after merge
 	private String productName;
 	private String productImageURL;
 	private float productPrice;
@@ -134,6 +135,7 @@ public class ProductScreenController implements Initializable {
 		nextSLideButton.defaultButtonProperty().set(true);
 
 		prevSLideButton.setOnAction(new EventHandler<ActionEvent>() {
+			
 			@Override
 			public void handle(ActionEvent event) {			
 				SmartTrolleyToolBox.print("Pressed prev slide");
@@ -148,6 +150,7 @@ public class ProductScreenController implements Initializable {
 		});
 
 		nextSLideButton.setOnAction(new EventHandler<ActionEvent>() {
+			
 			@Override
 			public void handle(ActionEvent event) {
 
@@ -164,6 +167,7 @@ public class ProductScreenController implements Initializable {
 		});
 
 		playPauseButton.setOnAction(new EventHandler<ActionEvent>() {
+			
 			@Override
 			public void handle(ActionEvent event) {
 				if (currentSlideShow == null) {

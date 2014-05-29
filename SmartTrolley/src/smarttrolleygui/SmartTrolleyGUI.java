@@ -78,14 +78,14 @@ public class SmartTrolleyGUI extends Application {
             stage.getIcons().add(new Image("smarttrolleygui/img/windowIcon.jpg"));
             stage.setMinWidth(MIN_WINDOW_WIDTH);
             stage.setMinHeight(MIN_WINDOW_HEIGHT);
-            //goToStartScreen();
+            goToStartScreen();
             
             //for debugging purposes uncomment ONE of the following four lines and comment previous line
 //            goToHomeScreen();
 //            goToFavourites();
 //            goToShoppingList();
 //            goToNewOffers();
-            goToProductScreen();
+           // goToProductScreen();
             
             stage.show();
         } catch (Exception ex) {

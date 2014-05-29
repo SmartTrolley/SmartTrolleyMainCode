@@ -1,4 +1,3 @@
-//TODO This test class will not work in the final product since the Product Screen cannot be accessed without user interaction
 /**
  * SmartTrolley
  *
@@ -6,7 +5,7 @@
  *
  * @author Prashant Chakravarty
  *
- * @author Checked By: Checker(s) fill here
+ * @author Checked By: Alasdair: 29 May 2014
  *
  * @version V1.0 [Date Created: 24 May 2014]
  */
@@ -38,12 +37,9 @@ public class TestProductScreenController {
 	/**A SlideShow created for this test*/
 	private SlideShow testSlideShow;
 
-	
-	/**Duration of Slide 1*/
-	private int slideDuration1 = 1;
-	
-	/**Duration of Slide 2*/
-	private int slideDuration2 = 2;
+	/**Duration of Slide*/
+	private int slideDuration = 1;
+
 
 	/**
 	 * This method runs before every test.
@@ -80,6 +76,7 @@ public class TestProductScreenController {
 			@Override
 			public void run() {
 				smartTrolleyApplication.start(SmartTrolleyGUI.stage);
+				smartTrolleyApplication.goToProductScreen();
 			}
 		});
 
@@ -89,7 +86,7 @@ public class TestProductScreenController {
 
 		createAndStartTestSlideshow();
 
-		// TODO At the moment, the test assumes the product screen is the first
+		
 		// screen that appears.
 		// Delay to allow the application state to settle before running the test
 		// If you get NullPointer errors around this line, increase the delay
@@ -104,7 +101,7 @@ public class TestProductScreenController {
 	*/
 	private void createAndStartTestSlideshow() {
 
-		Slide firstSlide = new Slide(slideDuration1);
+		Slide firstSlide = new Slide(slideDuration);
 		testSlideShow = new SlideShow(smartTrolleyApplication.productScreen.getProductAnchorPane());
 
 		// TODO User IMAGE_HEIGHT & IMAGE_WIDTH constants instead of magic numbers
@@ -117,7 +114,7 @@ public class TestProductScreenController {
 		productImage = new Image(getClass().getResourceAsStream("img/SampleProducts/alpen_blueberry_cranberry.jpg"), 100, 100, true, true);
 		productImageView = new ImageView(productImage);
 
-		Slide secondSlide = new Slide(slideDuration1);
+		Slide secondSlide = new Slide(slideDuration);
 		secondSlide.addNodeToSlide(productImageView, Slide.SlideChildElements.IMAGE);
 
 		testSlideShow.addSlideToSlideShow(secondSlide);
@@ -202,7 +199,7 @@ public class TestProductScreenController {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				for (Slide slide : smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides()) {
+				for (int i=0; i< smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides().size(); i++) {
 					smartTrolleyApplication.productScreen.nextSLideButton.fire();
 					SmartTrolleyToolBox.print("Next button fired in testSlideShowEndsWhenNoMoreSlides Test");
 				}
@@ -211,7 +208,7 @@ public class TestProductScreenController {
 		});
 
 		SmartTrolleyToolBox.delay(500);
-		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().outOfSldShwMsgBox.isShowing());
+		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().outOfSlideShowMessageBox.isShowing());
 	}
 
 	/**
@@ -231,7 +228,7 @@ public class TestProductScreenController {
 		});
 
 		SmartTrolleyToolBox.delay(500);
-		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().outOfSldShwMsgBox.isShowing());
+		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().outOfSlideShowMessageBox.isShowing());
 	}
 
 	/**
@@ -248,36 +245,10 @@ public class TestProductScreenController {
 				smartTrolleyApplication.productScreen.playPauseButton.fire();
 			}
 		});
-		SmartTrolleyToolBox.delay(2000*slideDuration1);
-		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().outOfSldShwMsgBox.isShowing());
+		SmartTrolleyToolBox.delay(2000 * slideDuration);
+		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().outOfSlideShowMessageBox.isShowing());
 
 	}
-
-	// TODO testStartScreenDisplayedOnNoSlideshow test
-	/**
-	* This test checks that if a slideshow is not loaded, the currentSlideshow is null
-	* and the user is taken to the start screen
-	*<p> User can view PWS Compatible slideshow
-	*<p> Date Modified: 27 May 2014
-	
-	@Test
-	public void testStartScreenDisplayedOnNoSlideshow() {
-		smartTrolleyApplication.productScreen.getCurrentSlideShow().setSlides(null);	
-		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides() == null);
-		
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				smartTrolleyApplication.productScreen.nextSLideButton.fire();
-			}
-		});
-		
-		//OK now needs to be pressed on the message box to go to the start screen
-		
-		SmartTrolleyGUI.stage.getClass(); 		//This may return the class of the screen that the program is in
-		//assertTrue(smartTrolleyApplication.stage.getClass());
-		
-	}*/
 
 }
 

@@ -5,7 +5,7 @@
 *
 * @author Prashant Chakravarty
 *
-* @author Checked By: Checker(s) fill here
+* @author Checked By: Alasdair 29 May2014
 *
 * @version V1.0 [Date Created: 24 May 2014]
 */
