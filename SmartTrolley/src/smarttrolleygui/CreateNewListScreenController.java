@@ -105,12 +105,8 @@ public class CreateNewListScreenController implements Initializable {
 
 				// open SQL connection and create new entry in 'lists' table
 				SqlConnection sqlConnection = new SqlConnection();
-				sqlConnection.openConnection();
 				
-				String sqlStatement = "INSERT INTO `cl36-st`.`lists` (`Name`) VALUES ('"
-						+ enteredListName + "');";
-				sqlConnection.executeStatement(sqlStatement);
-				SmartTrolleyPrint.print("Created new list: " + enteredListName);
+				sqlConnection.createNewList(enteredListName);
 				
 				SmartTrolleyGUI.setCurrentListName(enteredListName);
 				

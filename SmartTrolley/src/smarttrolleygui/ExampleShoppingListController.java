@@ -115,6 +115,9 @@ public class ExampleShoppingListController implements Initializable {
 	 */
 	public void deleteList(ActionEvent event) throws SQLException {
 
+		//TODO check if list selected for deletion is the last list in the database.
+		//If so, use sqlconnection.deleteLastList()
+		
 		productsDatabase = new SqlConnection();
 		ResultSet result = null;
 		productsDatabase.openConnection();

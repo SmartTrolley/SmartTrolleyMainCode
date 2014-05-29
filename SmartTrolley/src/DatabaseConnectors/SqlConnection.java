@@ -331,7 +331,7 @@ import slideshowdata.VideoData;
 		*Retrieves the list items from the SQL server
 		*<p>User can view list of lists
 		*@param listID
-		*@return
+		*@return products
 		*<p> Date Modified: 9 May 2014
 		*/
 		public ObservableList<Product> getList(int listID) {
@@ -448,7 +448,7 @@ import slideshowdata.VideoData;
 		 */
 		public int createNewProduct(String Title, int id){
 			
-			int productid=0;
+			int productid = 0;
 			
 			openConnection();
 			
@@ -482,16 +482,22 @@ import slideshowdata.VideoData;
 		
 		/**
 		 * Deletes the last product in the product list and resets the auto increment 
-		 * @throws SQLException
 		 */
-		public void deleteLastProduct() throws SQLException{
+		public void deleteLastProduct(){
 
 			openConnection();
-			
+			int productid = 0;
 			String query = "SELECT MAX(ProductID) AS ProductID FROM products;";
-			ResultSet results = sendQuery(query);
-			results.absolute(1);
-			int productid = results.getInt("ProductID");
+			ResultSet results;
+			
+			try {
+				results = sendQuery(query);
+				results.absolute(1);
+				productid = results.getInt("ProductID");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			query = "DELETE FROM products where ProductID = " + productid + ";";
 			executeStatement(query);
@@ -502,7 +508,68 @@ import slideshowdata.VideoData;
 			
 		}
 		
-	
+		/**
+		 * 
+		 * @param enteredListName
+		 * @return listid
+		 */
+		public int createNewList(String enteredListName){
+			
+			int listid = 0;
+			
+			openConnection();
+			
+			String query = "INSERT INTO `cl36-st`.`lists` (`Name`) VALUES ('"
+					+ enteredListName + "');";
+			executeStatement(query);
+			SmartTrolleyPrint.print("Created new list: " + enteredListName);
+			
+			query = "SELECT MAX(ListID) AS ListID FROM lists;";
+			ResultSet results=null;
+			try {
+				results = sendQuery(query);
+				results.absolute(1);
+				listid = results.getInt("ListID");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			closeConnection();
+			
+			return listid;
+		}
+		
+		/**
+		 * Deletes the last list in the List of lists and resets the auto increment
+		 */
+		public void deleteLastList(){
+
+			int listid = 0;
+			
+			openConnection();
+			
+			String query = "SELECT MAX(ListID) AS ListID FROM lists;";
+			ResultSet results;
+			
+			try {
+				results = sendQuery(query);
+				results.absolute(1);
+				listid = results.getInt("ListID");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			query = "DELETE FROM lists where ListID = " + listid + ";";
+			executeStatement(query);
+			
+			query = "ALTER TABLE products" + " AUTO_INCREMENT =" + listid + ";";
+			executeStatement(query);
+			closeConnection();
+		}
+
+		
 		/**
 		 * provides public access to close the productsDatabase
 		 * 
@@ -648,7 +715,7 @@ import slideshowdata.VideoData;
 		 * @param layer
 		 * @param branch
 		 */
-		public void addImageContents(int slideID, String urlname, int xstart,
+		public void addImageContents(int productID, int slideID, String urlname, int xstart,
 				int ystart, int width, int height, int starttime, int duration,
 				int layer, int branch) {
 	
@@ -903,7 +970,7 @@ import slideshowdata.VideoData;
 		 * @param lastSlide
 		 * @param backgroundcolor
 		 */
-		public void addSlideContents(int slideid, int duration, String descriptor, 
+		public void addSlideContents(int productid, int slideid, int duration, String descriptor, 
 				boolean lastSlide, String backgroundcolor) {
 	
 			openConnection();
@@ -988,7 +1055,6 @@ import slideshowdata.VideoData;
 		 */
 		public void uploadXmlData(SlideShowData data){
 			
-			SqlConnection sqlConnector = new SqlConnection();
 			
 			int slideIndex = 0,
 				audioIndex = 0,
@@ -999,35 +1065,36 @@ import slideshowdata.VideoData;
 				textbodyIndex = 0,
 				videoIndex = 0;
 			
+			uploadDocumentData(data.getDocumentinfo());
+			uploadDefaultData(data.getDefaults());
 			
-			
-			sqlConnector.uploadDocumentData(data.getDocumentinfo());
-			sqlConnector.uploadDefaultData(data.getDefaults());
+			createNewList(data.getDocumentinfo().getTitle());
 			
 			while(slideIndex<data.getSlides().size()){
 				
 				
 				currentSlide = data.getSlides().get(slideIndex);
 				
-				sqlConnector.createNewProduct(data.getDocumentinfo().getTitle(), currentSlide.getId()+1);
+				int productid = createNewProduct(data.getDocumentinfo().getTitle(), currentSlide.getId()+1);
 				
 				
-				sqlConnector.addSlideContents(currentSlide.getId()+1, 
-											  currentSlide.getDuration(), 
-											  "null", //slide descriptor no method yet!					
-											  currentSlide.getLastSlide(), 
-											  "null"); //background color no method yet!
+				addSlideContents(productid,
+								 currentSlide.getId()+1, 
+								 currentSlide.getDuration(), 
+								 "null", //slide descriptor no method yet!					
+								 currentSlide.getLastSlide(), 
+								 "null"); //background color no method yet!
 				
 				while(audioIndex<currentSlide.getAudios().size()){
 					
 					currentAudio = currentSlide.getAudios().get(audioIndex);
 					
-					sqlConnector.addAudioTableContents(1,
-													   slideIndex+1,
-													   currentAudio.getUrlname(),
-													   currentAudio.getStarttime(),
-													   50, //volume: not in PWS
-													   currentAudio.getLoop());
+					addAudioTableContents(productid,
+										  slideIndex+1,
+										  currentAudio.getUrlname(),
+										  currentAudio.getStarttime(),
+										  50, //volume: not in PWS
+										  currentAudio.getLoop());
 					audioIndex++;
 				}
 				
@@ -1035,16 +1102,17 @@ import slideshowdata.VideoData;
 					
 					currentImage = currentSlide.getImages().get(imageIndex);
 	
-					sqlConnector.addImageContents(slideIndex+1,
-												  currentImage.getUrlname(),
-												  currentImage.getXstart(), 
-												  currentImage.getYstart(),
-												  currentImage.getWidth(), 
-												  currentImage.getHeight(),
-												  currentImage.getStarttime(), 
-												  currentImage.getDuration(),
-												  currentImage.getLayer(), 
-												  currentImage.getBranch());
+					addImageContents(productid,
+									 slideIndex+1,
+								  	 currentImage.getUrlname(),
+								  	 currentImage.getXstart(), 
+								  	 currentImage.getYstart(),
+								  	 currentImage.getWidth(), 
+								  	 currentImage.getHeight(),
+								  	 currentImage.getStarttime(), 
+								  	 currentImage.getDuration(),
+								  	 currentImage.getLayer(), 
+								  	 currentImage.getBranch());
 					imageIndex++;
 				}
 				
@@ -1053,28 +1121,28 @@ import slideshowdata.VideoData;
 					
 					currentShape = currentSlide.getShapes().get(shapeIndex);
 					
-					sqlConnector.addShapeContents(1, //productID
-												  slideIndex+1,
-												  currentShape.getTotalpoints(), 
-												  currentShape.getWidth(), 
-												  currentShape.getHeight(),
-												  currentShape.getStarttime(), 
-												  currentShape.getDuration(), 
-												  currentShape.getLayer(), 
-												  1, //branch
-												  currentShape.getFillcolor(), 
-												  currentShape.getLinecolor());
+					addShapeContents(productid,
+									 slideIndex+1,
+									 currentShape.getTotalpoints(), 
+									 currentShape.getWidth(), 
+									 currentShape.getHeight(),
+									 currentShape.getStarttime(), 
+									 currentShape.getDuration(), 
+									 currentShape.getLayer(), 
+									 1, //branch
+									 currentShape.getFillcolor(), 
+									 currentShape.getLinecolor());
 					
 					while(pointIndex<currentShape.getPoints().size()){
 						
 						currentPoint = currentShape.getPoints().get(pointIndex);
 						
-						sqlConnector.addPointContents(1, //productId
-													  slideIndex+1,
-							  						  shapeIndex+1, //ShapeNo
-							  						  currentPoint.getNum(), 
-							  						  currentPoint.getX(), 
-							  						  currentPoint.getY());
+						addPointContents(productid,
+										 slideIndex+1,
+				  						 shapeIndex+1, //ShapeNo
+				  						 currentPoint.getNum(), 
+				  						 currentPoint.getX(), 
+				  						 currentPoint.getY());
 						pointIndex++;
 					}
 					pointIndex = 0;
@@ -1085,31 +1153,31 @@ import slideshowdata.VideoData;
 					
 					currentText = currentSlide.getTexts().get(textIndex);
 					
-					sqlConnector.addTextContents(1, // productID
-												 slideIndex+1,
-												 currentText.getFontsize(), 
-												 currentText.getXstart(), 
-												 currentText.getYstart(), 
-												 currentText.getStarttime(), 
-												 currentText.getDuration(), 
-												 currentText.getLayer(), 
-												 currentText.getXend(), 
-												 currentText.getYend(), 
-												 currentText.getFont(), 
-												 currentText.getFontcolor());
+					addTextContents(productid,
+									slideIndex+1,
+									currentText.getFontsize(), 
+									currentText.getXstart(), 
+									currentText.getYstart(), 
+									currentText.getStarttime(), 
+									currentText.getDuration(), 
+									currentText.getLayer(), 
+									currentText.getXend(), 
+									currentText.getYend(), 
+									currentText.getFont(), 
+									currentText.getFontcolor());
 					
 					while(textbodyIndex<currentText.getTextbodies().size()){
 						
 						currentTextbody = currentText.getTextbodies().get(textbodyIndex);
 						
-						sqlConnector.addTextbodyContents(1, //ProductID, 
-														 slideIndex+1,
-														 textIndex+1, //TextNo 
-														 currentTextbody.getBranch(), 
-														 currentTextbody.getBold(), 
-														 currentTextbody.getItalic(), 
-														 currentTextbody.getUnderlined(), 
-														 currentTextbody.getTextstring());
+						addTextbodyContents(productid, 
+											slideIndex+1,
+											textIndex+1, //TextNo 
+											currentTextbody.getBranch(), 
+											currentTextbody.getBold(), 
+											currentTextbody.getItalic(), 
+											currentTextbody.getUnderlined(), 
+											currentTextbody.getTextstring());
 						textbodyIndex++;
 					}
 					
@@ -1121,17 +1189,17 @@ import slideshowdata.VideoData;
 					
 					currentVideo = currentSlide.getVideos().get(videoIndex);
 					
-					sqlConnector.addVideoContents(1, //ProductID 
-												  slideIndex+1,
-												  currentVideo.getUrlname(), 
-												  currentVideo.getStarttime(), 
-												  currentVideo.getLoop(), 
-												  currentVideo.getXstart(), 
-												  currentVideo.getYstart(), 
-												  currentVideo.getWidth(), 
-												  currentVideo.getHeight(), 
-												  currentVideo.getLayer(), 
-												  currentVideo.getDuration());
+					addVideoContents(productid, 
+									 slideIndex+1,
+									 currentVideo.getUrlname(), 
+									 currentVideo.getStarttime(), 
+									 currentVideo.getLoop(), 
+									 currentVideo.getXstart(), 
+									 currentVideo.getYstart(), 
+									 currentVideo.getWidth(), 
+									 currentVideo.getHeight(), 
+									 currentVideo.getLayer(), 
+									  currentVideo.getDuration());
 					videoIndex++;
 				}
 				

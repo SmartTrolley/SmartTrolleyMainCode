@@ -284,7 +284,8 @@ public class SqlConnectionTest {
 	public void addImageContentsTest(){
 		SmartTrolleyPrint.print("\n Start of addImageContentsTest............");
 
-		int slideID = 1,
+		int productID = 1,
+			slideID = 1,
 			xstart = 30,
 			ystart = 40,
 			width = 50,
@@ -295,7 +296,7 @@ public class SqlConnectionTest {
 			branch = 3;
 		String urlname = "SOME URL";
 
-		productsDatabase.addImageContents(slideID, urlname, xstart, ystart, width, height, starttime, duration, layer, branch);
+		productsDatabase.addImageContents(productID, slideID, urlname, xstart, ystart, width, height, starttime, duration, layer, branch);
 	}
 
 	/**
