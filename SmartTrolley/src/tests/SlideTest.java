@@ -1,12 +1,12 @@
 /**
  * SmartTrolley
  *
- * This file contains all automated tests for ProductSlide
+ * This file contains all automated tests for Slide
  *
  * @author Alick Jacklin
  * @author Matthew Wells
  *
- * @author Checked By: Checker(s) fill here
+ * @author Checked By: Prashant Chakravarty [29 May 2014]
  *
  * @version V1.4 [Date Created: 26 May 2014]
  */
@@ -38,9 +38,9 @@ import texthandler.SlideTextBody;
 import videohandler.SlideVideo;
 import Printing.SmartTrolleyPrint;
 
-public class ProductSlideTest {
+public class SlideTest {
 
-	private ProductSlideVisualTest visualTesting;
+	private SlideVisualTest visualTesting;
 	private Slide productSlide;
 	
 	/**sets parameters for image*/
@@ -64,20 +64,18 @@ public class ProductSlideTest {
 	int numOfPoints = 1;
 	private PriorityQueue<ShapePoint> points;
 	private SlidePolygon pentagon;
-	
 	protected int point1Num = 1, point2Num = 2, point3Num = 3, point4Num = 4, point5Num = 5;
 	protected int pointLow = 60, pentagonX = 25, pentagonY = 25;
 	protected int maxPoints= 5;
-	public AudioHandler audio;
 	
 	/**sets parameters for audio*/
+	public AudioHandler audio;
 	private String audURL = "Music/Kalimba.mp3";
 	private String audURL2 = "Music/Shop2.mp3";
 	private int audStartTime = 0;
 	private int audDuration = 5;
 	private double audVolume = 0.4;
 	private double audVolume2 = 1.0;
-	
 	
 	/**sets parameters for text*/
 	ArrayList<SlideTextBody> texts;
@@ -102,8 +100,6 @@ public class ProductSlideTest {
 	private double vidStartTime = 0;
 	private double vidDuration = 5.0;
 	
-	
-	
 	/**sets up ArrayLists to store information on various PWS media types*/
 	private ArrayList<Shape> graphicsList;
 	private ArrayList<SlideImage> imageList;
@@ -111,21 +107,19 @@ public class ProductSlideTest {
 	private ArrayList<SlideText> textList; 
 	private ArrayList<AudioHandler> audioList;
 	
-	
-	
 	/**sets scalers for all visual based PWS media*/
 	private double xScaler;
 	private double yScaler;
 
 	/**
-	 * Sets up ProductSlide for tests
+	 * Sets up Slide for tests, by launching the application and setting up media handlers.
 	 * <p>
 	 * Date Modified: 27 May 2014
 	 */
 	@Before
 	public void setUp() {
 
-		visualTesting = new ProductSlideVisualTest();
+		visualTesting = new SlideVisualTest();
 
 		Thread JFXApplThread;
 		JFXApplThread = new Thread("New JFXAppl") {
@@ -141,14 +135,14 @@ public class ProductSlideTest {
 		// errors around this line, increase the delay
 		SmartTrolleyDelay.delay(1500);
 
-		// Now launch the instance of SmartTrolleyGUI, which takes over the
+		// Now launch the instance of SlideVisualTest, which takes over the
 		// displayed stage
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
 
 				try {
-					visualTesting.start(ProductSlideVisualTest.stage);
+					visualTesting.start(SlideVisualTest.stage);
 				} catch (Exception e) {
 					SmartTrolleyPrint.print("Could not load application");
 				}
@@ -170,7 +164,7 @@ public class ProductSlideTest {
 	}
 	
 	/**
-	*sets up images to be stored in the imageList Array
+	*sets up images to be stored in the imageList ArrayList
 	*<p> Date Modified: 29 May 2014
 	*/
 	public void setupImage(){
@@ -188,7 +182,7 @@ public class ProductSlideTest {
 	
 
 	/**
-	*sets up graphics to be stored in the graphicsList Array
+	*sets up graphics to be stored in the graphicsList ArrayList
 	*<p> Date Modified: 29 May 2014
 	*/
 	public void setupGraphics(){
@@ -209,7 +203,7 @@ public class ProductSlideTest {
 	}
 	
 	/**
-	*sets up audio to be stored in the audioList Array
+	*sets up audio to be stored in the audioList ArrayList
 	*<p> Date Modified: 29 May 2014
 	*/
 	public void setupAudio(){
@@ -223,7 +217,7 @@ public class ProductSlideTest {
 	}
 	
 	/**
-	*sets up video to be stored in the videoList Array
+	*sets up video to be stored in the videoList ArrayList
 	*<p> Date Modified: 29 May 2014
 	*/
 	public void setupVideo(){
@@ -237,7 +231,7 @@ public class ProductSlideTest {
 	}
 	
 	/**
-	*sets up text to be stored in the textList Array
+	*sets up text to be stored in the textList ArrayList
 	*<p> Date Modified: 29 May 2014
 	*/
 	public void setupText(){
@@ -324,8 +318,7 @@ public class ProductSlideTest {
 
 	/**
 	 * Tests that the text is visible
-	 * <p>
-	 * Date Modified: 27 May 2014
+	 * <p> Date Modified: 27 May 2014
 	 */
 	@Test
 	public void displayingTextTest() {
@@ -337,9 +330,8 @@ public class ProductSlideTest {
 	
 	
 	/**
-	 * Tests that all media have been removed from the slide
-	 * <p>
-	 * Date Modified: 27 May 2014
+	 * Tests that all media has been removed from the slide
+	 * <p> Date Modified: 27 May 2014
 	 */
 	@Test
 	public void slideClearingTest() {
@@ -419,4 +411,4 @@ public class ProductSlideTest {
 
 }
 
-/************** End of ProductSlideTest.java **************/
+/************** End of SlideTest.java **************/

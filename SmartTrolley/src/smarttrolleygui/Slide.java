@@ -1,13 +1,13 @@
 /**
  * SmartTrolley
  *
- * This file sets up an anchor pane to display all pws specified media inputs on,
+ * This file sets up an anchor pane to display all PWS specified media inputs on,
  * for slide show
  *
  * @author Alick Jacklin
  * @author Matthew Wells
  *
- * @author Checked By: Checker(s) fill here
+ * @author Checked By: Prashant Chakravarty [29 May 2014]
  *
  * @version V2.0 [Date Created: 26 May 2014]
  */
@@ -39,7 +39,8 @@ public class Slide extends AnchorPane{
 	private double yScaler;
 	
 	/**
-	*Constructor for product slide
+	*Constructor takes in lists, and places objects from those lists into the Slide, based on self defined locations. Also takes in scaling factors
+	*and scales objects and their locations based on them.
 	*<p>Displays product information
 	*@param xScaler - scales the width of objects placed on the slide
 	*@param yScaler - scales the height of objects placed on the slide
@@ -92,7 +93,7 @@ public class Slide extends AnchorPane{
 
 
 	/**
-	*sets up the video in a position depending on the scaling factors
+	*adds video to the Slide in a position depending on the scaling factors
 	*@param video - is added to pane in this method
 	*<p> Date Modified: 28 May 2014
 	*/
@@ -112,7 +113,7 @@ public class Slide extends AnchorPane{
 
 
 	/**
-	*sets up the Text in a position depending on the scaling factors
+	*adds text to the Slide in a position depending on the scaling factors
 	*@param text - is added to the pane in this method
 	*<p> Date Modified: 28 May 2014
 	*/
@@ -133,7 +134,7 @@ public class Slide extends AnchorPane{
 
 
 	/**
-	*sets up the graphics in a position depending on the scaling factors
+	*adds graphics to the Slide in a position depending on the scaling factors
 	*@param shape - is added to the pane in this method
 	*<p> Date Modified: 28 May 2014
 	*/
@@ -150,7 +151,7 @@ public class Slide extends AnchorPane{
 
 
 	/**
-	*sets up the image in a position depending on the scaling factors
+	*Adds images to the Slide in a position depending on the scaling factors
 	*@param image - is added to the pane in this method
 	*<p> Date Modified: 28 May 2014
 	*/
@@ -168,7 +169,7 @@ public class Slide extends AnchorPane{
 	}
 	
 	/**
-	*sets all elements that have been added to a visible or show-able state
+	*sets all elements which have been added to the slide, to a visible or show-able state, and plays audio.
 	*<p> Date Modified: 29 May 2014
 	*/
 	public void show(){
@@ -194,7 +195,7 @@ public class Slide extends AnchorPane{
 		
 
 		/**
-		*clears all children from anchor pane and stops audio.
+		*clears all children from slide and stops audio.
 		*<p> Date Modified: 27 May 2014
 		*/
 		public void clearSlide(){
@@ -207,4 +208,4 @@ public class Slide extends AnchorPane{
 
 }
 
-/************** End of ProductSlide.java **************/
+/************** End of Slide.java **************/

@@ -1,14 +1,14 @@
 /**
  * SmartTrolley
  *
- * This file contains all visual tests for ProductSlide
+ * This file contains all visual tests for Slide
  * when run displays a cookie monster jpeg, a graphic shape, some text, video
  * and runs audio.
  *
  * @author Alick Jacklin
  * @author Matthew Wells
  *
- * @author Checked By: Checker(s) fill here
+ * @author Checked By: Prashant Chakravarty [29 May 2014]
  *
  * @version V1.5 [Date Created: 26 May 2014]
  */
@@ -35,7 +35,7 @@ import texthandler.SlideText;
 import texthandler.SlideTextBody;
 import videohandler.SlideVideo;
 
-public class ProductSlideVisualTest extends Application {
+public class SlideVisualTest extends Application {
 	
 	private Slide productSlide;
 
@@ -200,7 +200,7 @@ public class ProductSlideVisualTest extends Application {
 	}
 	
 	/**
-	*sets up a BorderPane to hold the AnchorPane, the images are then handed to the AnchorPane and displayed.
+	*sets up a BorderPane to hold the Slide, the media are then handed to the Slide and displayed.
 	*calls setup methods for all media types.
 	*<p> Date Modified: 29 May 2014
 	*/	
@@ -237,4 +237,4 @@ public class ProductSlideVisualTest extends Application {
 		launch(args);
 	}
 }
-/************** End of ProductSlideVisualTest.java **************/
+/************** End of SlideVisualTest.java **************/
