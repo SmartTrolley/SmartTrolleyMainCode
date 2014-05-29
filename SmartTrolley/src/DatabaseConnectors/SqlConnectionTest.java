@@ -105,12 +105,13 @@ public class SqlConnectionTest {
 		SmartTrolleyPrint.print("\n Start of addAudioTableContentsTest............");
 
 		int productID = 1,
-			startTime = 0;
+			startTime = 0,
+			slideID = 1;
 		String urlName = "img/SampleProducts/large/ariel.jpg";
 		double volume = 50;
 		boolean loop = false;
 
-		productsDatabase.addAudioTableContents(productID, startTime, urlName, volume, loop);
+		productsDatabase.addAudioTableContents(productID, slideID, urlName, startTime,  volume, loop);
 	}
 
 	/**
@@ -132,11 +133,12 @@ public class SqlConnectionTest {
 
 		int productid = 1,
 			shapeNo = 1,
+			slideID = 1,
 			individualPointNo = 3,
 			x = 56,
 			y = 75;
 
-		productsDatabase.addPointContents(productid, shapeNo, individualPointNo, x, y);
+		productsDatabase.addPointContents(productid, slideID, shapeNo, individualPointNo, x, y);
 	}
 
 	/**
@@ -157,6 +159,7 @@ public class SqlConnectionTest {
 		SmartTrolleyPrint.print("\n Start of addShapeContentsTest............");
 
 		int productid = 1,
+			slideID = 1,
 			totalPoints = 4,
 			width = 30,
 			height = 30,
@@ -167,7 +170,7 @@ public class SqlConnectionTest {
 		String fillcolor = "black",
 			   linecolor = "blue";
 
-		productsDatabase.addShapeContents(productid, totalPoints, width, height, starttime, duration, layer, branch, fillcolor, linecolor);
+		productsDatabase.addShapeContents(productid, slideID, totalPoints, width, height, starttime, duration, layer, branch, fillcolor, linecolor);
 	}
 
 	/**
@@ -188,6 +191,7 @@ public class SqlConnectionTest {
 		SmartTrolleyPrint.print("\n Start of addTextContentsTest............");
 
 		int productid = 1,
+			slideID = 1,
 			fontSize = 30,
 			xStart = 30,
 			yStart = 0,
@@ -199,7 +203,7 @@ public class SqlConnectionTest {
 		String font = "comic sans",
 			   FontColor = "blue";
 
-		productsDatabase.addTextContents(productid, fontSize, xStart, yStart, startTime, duration, layer, xend, yend, font, FontColor);
+		productsDatabase.addTextContents(productid, slideID, fontSize, xStart, yStart, startTime, duration, layer, xend, yend, font, FontColor);
 	}
 
 	/**
@@ -220,6 +224,7 @@ public class SqlConnectionTest {
 		SmartTrolleyPrint.print("\n Start of addTextbodyContentsTest............");
 
 		int productid = 1,
+			slideID = 1,
 			TextNo = 30,
 			Branch = 30;
 		Boolean Bold = false,
@@ -227,7 +232,7 @@ public class SqlConnectionTest {
 				underlined = false;
 		String text = "LLLLLOOOOKKIIIE, some text";
 
-		productsDatabase.addTextbodyContents(productid, TextNo, Branch, Bold, italic, underlined, text);
+		productsDatabase.addTextbodyContents(productid, slideID, TextNo, Branch, Bold, italic, underlined, text);
 	}
 
 	/**
@@ -248,6 +253,7 @@ public class SqlConnectionTest {
 		SmartTrolleyPrint.print("\n Start of addVideoContentsTest............");
 
 		int productid = 1,
+			slideID = 1,
 			starttime = 0,
 			xstart = 40,
 			ystart = 70,
@@ -258,7 +264,7 @@ public class SqlConnectionTest {
 		String urlname = "SOME URL";
 		boolean loop = false;
 
-		productsDatabase.addVideoContents(productid, urlname, starttime, loop, xstart, ystart, width, height, layer, duration);
+		productsDatabase.addVideoContents(productid, slideID, urlname, starttime, loop, xstart, ystart, width, height, layer, duration);
 	}
 
 	/**
@@ -278,7 +284,7 @@ public class SqlConnectionTest {
 	public void addImageContentsTest(){
 		SmartTrolleyPrint.print("\n Start of addImageContentsTest............");
 
-		int ImageNo = 1,
+		int slideID = 1,
 			xstart = 30,
 			ystart = 40,
 			width = 50,
@@ -289,7 +295,7 @@ public class SqlConnectionTest {
 			branch = 3;
 		String urlname = "SOME URL";
 
-		productsDatabase.addImageContents(urlname, xstart, ystart, width, height, starttime, duration, layer, branch);
+		productsDatabase.addImageContents(slideID, urlname, xstart, ystart, width, height, starttime, duration, layer, branch);
 	}
 
 	/**
@@ -442,6 +448,17 @@ public class SqlConnectionTest {
 	
 		assertTrue(productsDatabase.connection.isClosed());
 
+	}
+	
+	@Test
+	public void createProductTest() throws SQLException{
+		SqlConnection sqlConnector = new SqlConnection();
+		
+		int test = sqlConnector.createNewProduct("TestProduct", 1);	
+		
+		SmartTrolleyPrint.print(test);
+		
+		sqlConnector.deleteLastProduct();
 	}
 
 }
