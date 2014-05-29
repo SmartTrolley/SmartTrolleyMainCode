@@ -524,7 +524,7 @@ public class MediaControl {
             }
         });
         
-        // Media is playing so set appropiate playButton image
+        // Media is playing so set appropiate playPauseButton image
         mp.setOnPlaying(new Runnable() {
 
             public void run() {
@@ -540,7 +540,7 @@ public class MediaControl {
             }
         });
         
-        // Media is paused so set appropiate playButton image
+        // Media is paused so set appropiate playPauseButton image
         mp.setOnPaused(new Runnable() {
 
             public void run() {
@@ -550,7 +550,7 @@ public class MediaControl {
             }
         });
     
-        // Media is stopped so set appropiate playButton image
+        // Media is stopped so set appropiate playPauseButton image
         mp.setOnStopped(new Runnable() {
         	 
         	public void run() {
@@ -571,7 +571,7 @@ public class MediaControl {
             }
         });
         
-        // Media has finished playing so set appropiate playButton image & handle loops
+        // Media has finished playing so set appropiate playPauseButton image & handle loops
         mp.setOnEndOfMedia(new Runnable() {
 
             public void run() {
@@ -588,7 +588,7 @@ public class MediaControl {
             }
         });
         
-        // Media is repeating so set appropiate playButton image
+        // Media is repeating so set appropiate playPauseButton image
         mp.setOnRepeat(new Runnable() {
         	 
         	public void run() {

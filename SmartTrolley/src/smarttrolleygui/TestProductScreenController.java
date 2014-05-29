@@ -27,8 +27,8 @@ import javafx.scene.image.ImageView;
 import org.junit.Before;
 import org.junit.Test;
 
+import smarttrolleygui.SlideShow.PlayDirection;
 import toolBox.SmartTrolleyToolBox;
-
 
 public class TestProductScreenController {
 
@@ -37,6 +37,13 @@ public class TestProductScreenController {
 
 	/**A SlideShow created for this test*/
 	private SlideShow testSlideShow;
+
+	
+	/**Duration of Slide 1*/
+	private int slideDuration1 = 1;
+	
+	/**Duration of Slide 2*/
+	private int slideDuration2 = 2;
 
 	/**
 	 * This method runs before every test.
@@ -97,7 +104,7 @@ public class TestProductScreenController {
 	*/
 	private void createAndStartTestSlideshow() {
 
-		Slide firstSlide = new Slide(1);
+		Slide firstSlide = new Slide(slideDuration1);
 		testSlideShow = new SlideShow(smartTrolleyApplication.productScreen.getProductAnchorPane());
 
 		// TODO User IMAGE_HEIGHT & IMAGE_WIDTH constants instead of magic numbers
@@ -110,7 +117,7 @@ public class TestProductScreenController {
 		productImage = new Image(getClass().getResourceAsStream("img/SampleProducts/alpen_blueberry_cranberry.jpg"), 100, 100, true, true);
 		productImageView = new ImageView(productImage);
 
-		Slide secondSlide = new Slide(2);
+		Slide secondSlide = new Slide(slideDuration1);
 		secondSlide.addNodeToSlide(productImageView, Slide.SlideChildElements.IMAGE);
 
 		testSlideShow.addSlideToSlideShow(secondSlide);
@@ -121,7 +128,7 @@ public class TestProductScreenController {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				testSlideShow.startSlideshow();
+				testSlideShow.startSlideshow(PlayDirection.PREV);
 			}
 		});
 	}
@@ -183,7 +190,7 @@ public class TestProductScreenController {
 		assertEquals(smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides().get(1), smartTrolleyApplication.productScreen.getCurrentSlideShow()
 				.getDisplayedSlide());
 	}
-	
+
 	/**
 	*Tests that the user is told when there are no more slides
 	*<p> User can view PWS Compatible slideshow
@@ -191,7 +198,7 @@ public class TestProductScreenController {
 	*/
 	@Test
 	public final void testSlideShowEndsWhenNoMoreSlides() {
-		
+
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -199,14 +206,14 @@ public class TestProductScreenController {
 					smartTrolleyApplication.productScreen.nextSLideButton.fire();
 					SmartTrolleyToolBox.print("Next button fired in testSlideShowEndsWhenNoMoreSlides Test");
 				}
-				
+
 			}
 		});
-		
+
 		SmartTrolleyToolBox.delay(500);
 		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().outOfSldShwMsgBox.isShowing());
 	}
-	
+
 	/**
 	*Tests that user is notified when prev button is pressed when on 1st slide
 	*<p> User can view PWS Compatible slideshow
@@ -214,20 +221,19 @@ public class TestProductScreenController {
 	*/
 	@Test
 	public final void testPrevButtonOnFirstSlide() {
-		
+
 		Platform.runLater(new Runnable() {
 			@Override
-			public void run() {				
-					smartTrolleyApplication.productScreen.prevSLideButton.fire();
-					SmartTrolleyToolBox.print("Prev button fired in testPrevButtonOnFirstSlide Test");
+			public void run() {
+				smartTrolleyApplication.productScreen.prevSLideButton.fire();
+				SmartTrolleyToolBox.print("Prev button fired in testPrevButtonOnFirstSlide Test");
 			}
 		});
-		
+
 		SmartTrolleyToolBox.delay(500);
 		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().outOfSldShwMsgBox.isShowing());
 	}
-	
-	
+
 	/**
 	*Tests that slide changes after the duration has elapsed
 	*<p> User can view PWS Compatible slideshow
@@ -235,11 +241,19 @@ public class TestProductScreenController {
 	*/
 	@Test
 	public final void testSlideDuration() {
-		
-		while(true);
+
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				smartTrolleyApplication.productScreen.playPauseButton.fire();
+			}
+		});
+		SmartTrolleyToolBox.delay(2000*slideDuration1);
+		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().outOfSldShwMsgBox.isShowing());
+
 	}
-	
-	//TODO testStartScreenDisplayedOnNoSlideshow test
+
+	// TODO testStartScreenDisplayedOnNoSlideshow test
 	/**
 	* This test checks that if a slideshow is not loaded, the currentSlideshow is null
 	* and the user is taken to the start screen
@@ -264,8 +278,7 @@ public class TestProductScreenController {
 		//assertTrue(smartTrolleyApplication.stage.getClass());
 		
 	}*/
-	
-	
+
 }
 
 /************** End of TestProductScreenController.java **************/

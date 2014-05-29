@@ -12,17 +12,16 @@
 
 package smarttrolleygui;
 
-
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import toolBox.SmartTrolleyToolBox;
 
 public class Slide extends AnchorPane {
-	
+
 	/**An image's x-co-ordinate in the slide*/
 	static final double IMAGE_X_COORD = 100;
-	
+
 	/**An image's y-co-ordinate in the slide*/
 	static final double IMAGE_Y_COORD = 100;
 
@@ -35,36 +34,37 @@ public class Slide extends AnchorPane {
 	}
 
 	protected double duration;;
-		
+
 	/**
-	 * The constructor gets the slide duration as a parameter
-	 *@param duration - Duration in seconds
+	 * The constructor gets the slide duration (in s) as a parameter
+	 *@param seconds - Duration in seconds
 	 *<p> Date Modified: 28 May 2014
 	 */
-	public Slide(double duration){
-		this.duration = duration;
+	public Slide(double seconds) {
+		this.duration = seconds;
 	}
 
-	//TODO Matt & Alick's implementation of this method should be preferred to mine
+
+	// TODO Matt & Alick's implementation of this method should be preferred to mine
 	/**
 	*Adds the Node parameter to the pane
 	*<p>User can view PWS Compatible slideshow
 	* @param insertInSlide - Node to be inserted into the slide
 	* @param type - Subchild element type of the node
 	*/
-	public void addNodeToSlide(Node insertInSlide, SlideChildElements type){
-		
+	public void addNodeToSlide(Node insertInSlide, SlideChildElements type) {
+
 		SmartTrolleyToolBox.print("In Slide.addNodeToSlide");
-		if (type == SlideChildElements.IMAGE){
-			
+		if (type == SlideChildElements.IMAGE) {
+
 			ImageView imageToInsert = (ImageView) insertInSlide;
 			imageToInsert.setX(IMAGE_X_COORD);
-			imageToInsert.setY(IMAGE_Y_COORD);	
-			
+			imageToInsert.setY(IMAGE_Y_COORD);
+
 			this.getChildren().add(imageToInsert);
-			
-			SmartTrolleyToolBox.print("Image added to slide");			
-		}			
+
+			SmartTrolleyToolBox.print("Image added to slide");
+		}
 	}
 }
 

@@ -56,7 +56,7 @@ public class ProductScreenController implements Initializable {
 	// Default button width is 30
 	protected Button prevSLideButton = new Button("<");
 	protected Button nextSLideButton = new Button(">");
-	protected Button playButton = new Button("|>");
+	protected Button playPauseButton = new Button("P");
 
 	public static SqlConnection productsDatabase;
 
@@ -129,14 +129,13 @@ public class ProductScreenController implements Initializable {
 
 		createSlideButton(prevSLideButton, X_COORD_CONTROLBUTTONS, Y_COORD_CONTROLBUTTONS);
 		createSlideButton(nextSLideButton, X_COORD_CONTROLBUTTONS + 2 * BTN_WIDTH, Y_COORD_CONTROLBUTTONS);
-		createSlideButton(playButton, X_COORD_CONTROLBUTTONS + BTN_WIDTH, Y_COORD_CONTROLBUTTONS);
+		createSlideButton(playPauseButton, X_COORD_CONTROLBUTTONS + BTN_WIDTH, Y_COORD_CONTROLBUTTONS);
 
 		nextSLideButton.defaultButtonProperty().set(true);
 
 		prevSLideButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
-			public void handle(ActionEvent event) {
-				// TODO Add goto prev slide functionality here
+			public void handle(ActionEvent event) {			
 				SmartTrolleyToolBox.print("Pressed prev slide");
 
 				if (currentSlideShow == null) {
@@ -164,7 +163,7 @@ public class ProductScreenController implements Initializable {
 			}
 		});
 
-		playButton.setOnAction(new EventHandler<ActionEvent>() {
+		playPauseButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				if (currentSlideShow == null) {
@@ -185,7 +184,7 @@ public class ProductScreenController implements Initializable {
 
 		HBox SlideControlButtonsHBox = new HBox();
 		SlideControlButtonsHBox.getChildren().add(prevSLideButton);
-		SlideControlButtonsHBox.getChildren().add(playButton);
+		SlideControlButtonsHBox.getChildren().add(playPauseButton);
 		SlideControlButtonsHBox.getChildren().add(nextSLideButton);
 		priceAndSlideButtonsVBox.getChildren().add(SlideControlButtonsHBox);
 	}
@@ -200,6 +199,7 @@ public class ProductScreenController implements Initializable {
 		if (currentSlideShow.autoPlay) {
 			currentSlideShow.slideTimer.cancel();
 			currentSlideShow.autoPlay = false;
+			SmartTrolleyToolBox.print("Autoplay now off");
 		}
 	}
 
