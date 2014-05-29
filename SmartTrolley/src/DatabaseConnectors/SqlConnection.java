@@ -212,7 +212,7 @@ import slideshowdata.VideoData;
 			
 			openConnection();
 			
-			String query = "Select * From products where " + criteria +" = " + value + ";";
+			String query = "Select * From products where " + criteria +" = '" + value + "';";
 			
 			try {
 				ResultSet results = sendQuery(query);
@@ -564,11 +564,34 @@ import slideshowdata.VideoData;
 			query = "DELETE FROM lists where ListID = " + listid + ";";
 			executeStatement(query);
 			
-			query = "ALTER TABLE products" + " AUTO_INCREMENT =" + listid + ";";
+			query = "ALTER TABLE lists" + " AUTO_INCREMENT =" + listid + ";";
 			executeStatement(query);
+			
+			query = "DELETE FROM lists_products where ListID = " + listid + ";";
+			executeStatement(query);
+			
 			closeConnection();
 		}
 
+		/**
+		 * adds product to a list 
+		 * @param productid
+		 */
+		public void addProductToList(int productid, int listid){
+			
+			openConnection();
+			
+			String query = "INSERT INTO lists_products (ProductID, ListID, Quantity) VALUES ('"
+					+ productid
+					+ "', '"
+					+ listid
+					+ "', '"
+					+ 1
+					+ "');";
+			
+			executeStatement(query);
+			closeConnection();
+		}
 		
 		/**
 		 * provides public access to close the productsDatabase
@@ -1048,10 +1071,9 @@ import slideshowdata.VideoData;
 		}
 		
 		/**
-		 * Method will upload all data from the XML paser up ot the SQL database
+		 * Method will upload all data from the XML parser up to the SQL database
 		 * 
 		 * @param data
-		 * @throws SQLException 
 		 */
 		public void uploadXmlData(SlideShowData data){
 			
@@ -1068,7 +1090,7 @@ import slideshowdata.VideoData;
 			uploadDocumentData(data.getDocumentinfo());
 			uploadDefaultData(data.getDefaults());
 			
-			createNewList(data.getDocumentinfo().getTitle());
+			int listid = createNewList(data.getDocumentinfo().getTitle());
 			
 			while(slideIndex<data.getSlides().size()){
 				
@@ -1076,7 +1098,7 @@ import slideshowdata.VideoData;
 				currentSlide = data.getSlides().get(slideIndex);
 				
 				int productid = createNewProduct(data.getDocumentinfo().getTitle(), currentSlide.getId()+1);
-				
+				addProductToList(productid, listid);
 				
 				addSlideContents(productid,
 								 currentSlide.getId()+1, 

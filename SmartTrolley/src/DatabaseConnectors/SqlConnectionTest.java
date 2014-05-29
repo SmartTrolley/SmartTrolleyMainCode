@@ -330,7 +330,7 @@ public class SqlConnectionTest {
 	@Test
 	public void sendQueryTest() throws SQLException {
 	
-		query = "SELECT * FROM products WHERE Name = 'Ariel'";
+		query = "SELECT * FROM products WHERE Name = 'Ariel 3in1 Pods Colour & Style'";
 		
 		ResultSet results = productsDatabase.sendQuery(query);
 		
@@ -356,9 +356,9 @@ public class SqlConnectionTest {
 		}
 		
 		assertEquals(product.getId(), 1);
-		assertEquals(product.getName(), "Ariel");		
+		assertEquals(product.getName(), "Ariel 3in1 Pods Colour & Style");		
 		assertEquals(product.getImage(), "img/SampleProducts/ariel.jpg");
-		assert(product.getPrice() == 2.99);		
+		assert(product.getPrice() == 4.75);		
 	}
 	
 	/**
@@ -369,12 +369,12 @@ public class SqlConnectionTest {
 		
 		
 		// retrieve results from server
-		Product product = productsDatabase.getProductByName("Cravendale 2L");
+		Product product = productsDatabase.getProductByName("Cravendale Pure Whole Milk (2L)");
 		
 		assertEquals(product.getId(), 2);
-		assertEquals(product.getName(), "Cravendale 2L");		
+		assertEquals(product.getName(), "Cravendale Pure Whole Milk (2L)");		
 		assertEquals(product.getImage(), "img/SampleProducts/cravendale_2L_milk.jpg");
-		assert(product.getPrice() == 3.99);	
+		assert(product.getPrice() == 2.19);	
 	}
 	
 	/**
@@ -406,12 +406,12 @@ public class SqlConnectionTest {
 		
 		Product product;
 		
-		product = productsDatabase.getSpecificProduct("productID","5");
+		product = productsDatabase.getSpecificProduct("ProductID","5");
 		
 		assertEquals(product.getId(), 5);
-		assertEquals(product.getName(), "Innocent Noodle Pot");
+		assertEquals(product.getName(), "Innocent Vietnamese Noodles Pot");
 		assertEquals(product.getImage(), "img/SampleProducts/innocent_noodle_pot.jpg");
-		assert(product.getPrice() == 6.99);
+		assert(product.getPrice() == 3.88);
 	}
 	
 	

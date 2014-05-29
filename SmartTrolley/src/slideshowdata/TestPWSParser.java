@@ -17,6 +17,7 @@ import java.sql.SQLException;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import DatabaseConnectors.SqlConnection;
 
 import Printing.SmartTrolleyPrint;
@@ -217,23 +218,48 @@ public class TestPWSParser {
 		
 	}
 	
-	@Test
+//	@Test
 	public void uploadDataTest(){
 		SqlConnection sqlConnector = new SqlConnection();
+
+		sqlConnector.uploadXmlData(data);	
 		
-		sqlConnector.uploadXmlData(data);		
+		sqlConnector.deleteContentAndResetAutoIncrement("defaults");
+		sqlConnector.deleteContentAndResetAutoIncrement("document_info_data");
+		sqlConnector.deleteContentAndResetAutoIncrement("slide");
+		sqlConnector.deleteContentAndResetAutoIncrement("audio");
+		sqlConnector.deleteContentAndResetAutoIncrement("image_slide");
+		sqlConnector.deleteContentAndResetAutoIncrement("point");
+		sqlConnector.deleteContentAndResetAutoIncrement("shape");
+		sqlConnector.deleteContentAndResetAutoIncrement("text");
+		sqlConnector.deleteContentAndResetAutoIncrement("textbody");
+		sqlConnector.deleteContentAndResetAutoIncrement("video");
+		
+		sqlConnector.deleteLastList();
+		sqlConnector.deleteLastProduct();
+		sqlConnector.deleteLastProduct();
 	}
 	
-//	@Test
-//	public void createProductTest() throws SQLException{
-//		SqlConnection sqlConnector = new SqlConnection();
-//		
-//		int test = sqlConnector.createNewProduct("TestProduct", 1);	
-//		
-//		SmartTrolleyPrint.print(test);
-//		
-//		sqlConnector.deleteLastProduct();
-//	}
+	
+	
+	@Test
+	public void createProductTest() throws SQLException{
+		SqlConnection sqlConnector = new SqlConnection();
+		
+		
+		int test = sqlConnector.createNewProduct("TestProduct", 1);
+
+		
+		String returnedName = sqlConnector.getSpecificProduct("ProductID", "53").getName();
+		int returnedId = sqlConnector.getSpecificProduct("Name", "TestProduct 1").getId();
+		
+		sqlConnector.deleteLastProduct();
+		
+		assertEquals("TestProduct 1", returnedName);
+		assertEquals(test, returnedId);
+		SmartTrolleyPrint.print(returnedName);
+		
+	}
 	
 }
 
