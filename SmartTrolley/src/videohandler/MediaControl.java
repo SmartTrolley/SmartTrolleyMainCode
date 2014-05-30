@@ -157,7 +157,7 @@ public class MediaControl {
 				}
 				}catch(NullPointerException e){
 					System.out.println("Media Player has been destroyed");
-				}
+				} 
 			}
 		}
 
