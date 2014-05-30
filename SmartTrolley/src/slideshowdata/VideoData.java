@@ -12,7 +12,7 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Root;
 
 @Root (strict = false)
-public class VideoData {
+public class VideoData implements DataType{
 	
 	@Attribute (name = "urlname", required=true)
 	private String urlname;
@@ -75,6 +75,43 @@ public class VideoData {
 
 	public Boolean getLoop() {
 		return loop;
+	}
+	
+
+	public void setUrlname(String urlname) {
+		this.urlname = urlname;
+	}
+
+	public void setXstart(int xstart) {
+		this.xstart = xstart;
+	}
+
+	public void setYstart(int ystart) {
+		this.ystart = ystart;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public void setLayer(int layer) {
+		this.layer = layer;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	public void setStarttime(int starttime) {
+		this.starttime = starttime;
+	}
+
+	public void setLoop(Boolean loop) {
+		this.loop = loop;
 	}
 	
 	

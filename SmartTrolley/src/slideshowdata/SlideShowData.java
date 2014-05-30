@@ -18,7 +18,7 @@ import org.simpleframework.xml.Root;
 
 
 @Root (name = "slideshow", strict = false)
-public class SlideShowData {
+public class SlideShowData implements DataType{
 
 	@Element (name = "documentinfo")
 	private DocumentInfoData  documentinfo;

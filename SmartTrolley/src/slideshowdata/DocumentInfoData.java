@@ -13,7 +13,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 @Root (strict = false)
-public class DocumentInfoData {
+public class DocumentInfoData implements DataType{
 	
 	@Element (name = "author")
 	private String author;
@@ -45,6 +45,26 @@ public class DocumentInfoData {
 	}
 	public int getHeight() {
 		return height;
+	}
+	
+	
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public void setVersion(String version) {
+		this.version = version;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	public void setWidth(int width) {
+		this.width = width;
+	}
+	public void setHeight(int height) {
+		this.height = height;
 	}
 	
 	

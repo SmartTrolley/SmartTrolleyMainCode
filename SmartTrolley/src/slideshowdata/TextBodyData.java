@@ -14,7 +14,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 @Root (strict = false)
-public class TextBodyData {
+public class TextBodyData implements DataType{
 
 	@Attribute (name = "branch", required=false)
 	private int branch;
@@ -50,14 +50,31 @@ public class TextBodyData {
 		return underlined;
 	}
 
-
+	
 	public String getTextstring() {
 		return textstring;
 	}
+	
+	
 
+	public void setBranch(int branch) {
+		this.branch = branch;
+	}
 
-	
-	
-	
+	public void setItalic(Boolean italic) {
+		this.italic = italic;
+	}
+
+	public void setBold(Boolean bold) {
+		this.bold = bold;
+	}
+
+	public void setUnderlined(Boolean underlined) {
+		this.underlined = underlined;
+	}
+
+	public void setTextstring(String textstring) {
+		this.textstring = textstring;
+	}
 	
 }

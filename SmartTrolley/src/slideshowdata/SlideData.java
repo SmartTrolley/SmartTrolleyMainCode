@@ -16,7 +16,7 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 @Root (strict = false)
-public class SlideData {
+public class SlideData implements DataType{
 	
 	@ElementList (entry = "text", inline = true, required = false) 
 	private ArrayList<TextData>  texts;
@@ -74,6 +74,39 @@ public class SlideData {
 
 	public ArrayList<VideoData> getVideos() {
 		return videos;
+	}
+	
+
+	public void setTexts(ArrayList<TextData> texts) {
+		this.texts = texts;
+	}
+
+	public void setShapes(ArrayList<ShapeData> shapes) {
+		this.shapes = shapes;
+	}
+
+	public void setImages(ArrayList<ImageData> images) {
+		this.images = images;
+	}
+
+	public void setAudios(ArrayList<AudioData> audios) {
+		this.audios = audios;
+	}
+
+	public void setVideos(ArrayList<VideoData> videos) {
+		this.videos = videos;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	public void setLastSlide(Boolean lastSlide) {
+		this.lastSlide = lastSlide;
 	}
 	
 	

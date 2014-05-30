@@ -218,27 +218,8 @@ public class TestPWSParser {
 		
 	}
 	
-//	@Test
-	public void uploadDataTest(){
-		SqlConnection sqlConnector = new SqlConnection();
 
-		sqlConnector.uploadXmlData(data);	
-		
-		sqlConnector.deleteContentAndResetAutoIncrement("defaults");
-		sqlConnector.deleteContentAndResetAutoIncrement("document_info_data");
-		sqlConnector.deleteContentAndResetAutoIncrement("slide");
-		sqlConnector.deleteContentAndResetAutoIncrement("audio");
-		sqlConnector.deleteContentAndResetAutoIncrement("image_slide");
-		sqlConnector.deleteContentAndResetAutoIncrement("point");
-		sqlConnector.deleteContentAndResetAutoIncrement("shape");
-		sqlConnector.deleteContentAndResetAutoIncrement("text");
-		sqlConnector.deleteContentAndResetAutoIncrement("textbody");
-		sqlConnector.deleteContentAndResetAutoIncrement("video");
-		
-		sqlConnector.deleteLastList();
-		sqlConnector.deleteLastProduct();
-		sqlConnector.deleteLastProduct();
-	}
+
 	
 	
 	

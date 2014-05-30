@@ -20,10 +20,15 @@ public class PWSParser {
 	public Serializer serializer = new Persister();
 	
 	
-	public SlideShowData read(String document) throws Exception {
+	public SlideShowData read(String document){
 
 		File source = new File(document);
-		SlideShowData thingRead = serializer.read(SlideShowData.class, source);
+		SlideShowData thingRead = null;
+		try {
+			thingRead = serializer.read(SlideShowData.class, source);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return thingRead;
 		

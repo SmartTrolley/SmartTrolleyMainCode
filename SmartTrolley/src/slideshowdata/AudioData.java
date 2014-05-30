@@ -12,7 +12,7 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Root;
 
 @Root (strict = false)
-public class AudioData {
+public class AudioData implements DataType{
 	
 	@Attribute (name = "urlname", required=true)
 	private String urlname;
@@ -33,6 +33,18 @@ public class AudioData {
 
 	public Boolean getLoop() {
 		return loop;
+	}
+
+	public void setUrlname(String urlname) {
+		this.urlname = urlname;
+	}
+
+	public void setStarttime(int starttime) {
+		this.starttime = starttime;
+	}
+
+	public void setLoop(Boolean loop) {
+		this.loop = loop;
 	}
 	
 }

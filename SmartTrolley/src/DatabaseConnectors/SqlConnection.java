@@ -25,28 +25,25 @@ import Printing.SmartTrolleyPrint;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import smarttrolleygui.Offer;
-import smarttrolleygui.Product;
-import smarttrolleygui.SmartTrolleyGUI;
-
 import slideshowdata.AudioData;
+import slideshowdata.DataType;
 import slideshowdata.DefaultsData;
 import slideshowdata.DocumentInfoData;
 import slideshowdata.ImageData;
 import slideshowdata.PointData;
 import slideshowdata.ShapeData;
 import slideshowdata.SlideData;
-import slideshowdata.SlideShowData;
 import slideshowdata.TextBodyData;
 import slideshowdata.TextData;
 import slideshowdata.VideoData;
+import smarttrolleygui.Offer;
+import smarttrolleygui.Product;
+import smarttrolleygui.SmartTrolleyGUI;
 
 	public class SqlConnection {
 		
 		
 		PreparedStatement preparedStatement;
-		private static SqlConnection productsDatabase;
-
 		private static final String IP = "79.170.44.157" ;
 		private static final String USERNAME = "cl36-st";
 		private static final String PASSWORD= "Smarttrolley";
@@ -56,16 +53,6 @@ import slideshowdata.VideoData;
 		
 		private String url;
 		Connection connection;
-		
-		private SlideData currentSlide; 
-		private AudioData currentAudio;
-		private ImageData currentImage;
-		private ShapeData currentShape;
-		private PointData currentPoint;
-		private TextData  currentText;
-		private TextBodyData currentTextbody;
-		private VideoData currentVideo;
-		
 		
 		/**
 		 * Method that receives relevant connection info
@@ -198,8 +185,7 @@ import slideshowdata.VideoData;
 		}
 						
 		}
-		
-		
+	
 		/**
 		 * 
 		 * @param criteria
@@ -240,6 +226,331 @@ import slideshowdata.VideoData;
 			return product;
 		}
 		
+		/**
+		 * 
+		 * @param table
+		 * @param criteria
+		 * @param value
+		 * @return data
+		 */
+		public DataType getSpecificData(String table, String criteria, String value) {
+			
+			ResultSet results = null;
+			
+			DataType data = null;
+			
+			openConnection();
+			
+			String query = "Select * From " + table + " where " + criteria +" = '" + value + "';";
+			
+			
+				try {
+					results = sendQuery(query);
+				
+				
+			switch (table){
+			case "products":
+				Product product = new Product();
+				
+				while (results.next()){
+					
+					//get id
+					product.setId(results.getInt("ProductID"));
+					
+					//get Name
+					product.setName(results.getString("Name"));
+					
+					//get Image
+					product.setImage(results.getString("Image"));
+					
+					//get Price
+					product.setPrice(results.getFloat("Price"));
+				}
+				closeConnection();
+				data = product;
+				break;
+				
+			case "audio":
+				AudioData audiodata = new AudioData();
+				
+				while (results.next()){
+					
+					//get urlname
+					audiodata.setUrlname(results.getString("urlname"));
+					
+					//get starttime
+					audiodata.setStarttime(results.getInt("starttime"));
+					
+					//get loop
+					audiodata.setLoop(results.getBoolean("loop"));
+				}
+				closeConnection();
+				data = audiodata;
+				break;
+				
+			case "defaults":
+				DefaultsData defaultsdata = new DefaultsData();
+				
+				while (results.next()){
+					
+					//get backgroundcolor
+					defaultsdata.setBackgroundcolor(results.getString("backgroundcolor"));
+					
+					//get font
+					defaultsdata.setFont(results.getString("font"));
+					
+					//get fontsize
+					defaultsdata.setFontsize(results.getInt("fontsize"));
+					
+					//get fontcolor
+					defaultsdata.setFontcolor(results.getString("fontcolor"));
+					
+					//get linecolor
+					defaultsdata.setLinecolor(results.getString("linecolor"));
+					
+					//get fillcolor
+					defaultsdata.setFillcolor(results.getString("fillcolor"));
+				}
+				closeConnection();
+				data = defaultsdata;
+				break;
+				
+				case "document_info_data":
+					DocumentInfoData documentinfodata = new DocumentInfoData();
+					
+					while (results.next()){
+						
+						//get author
+						documentinfodata.setAuthor(results.getString("author"));
+						
+						//get version
+						documentinfodata.setVersion(results.getString("version"));
+						
+						//get title
+						documentinfodata.setTitle(results.getString("title"));
+						
+						//get comment
+						documentinfodata.setComment(results.getString("comment"));
+						
+						//get width
+						documentinfodata.setWidth(results.getInt("width"));
+						
+						//get height
+						documentinfodata.setHeight(results.getInt("height"));
+					}
+					data = documentinfodata;
+					break;
+					
+				case "image_slide":
+					ImageData imagedata = new ImageData();
+					
+					while (results.next()){
+						
+						//get urlname
+						imagedata.setUrlname(results.getString("urlname"));
+						
+						//get xstart
+						imagedata.setXstart(results.getInt("xstart"));
+						
+						//get ystart
+						imagedata.setYstart(results.getInt("ystart"));
+						
+						//get width
+						imagedata.setWidth(results.getInt("width"));
+						
+						//get height
+						imagedata.setHeight(results.getInt("height"));
+						
+						//get layer
+						imagedata.setLayer(results.getInt("layer"));
+						
+						//get duration
+						imagedata.setDuration(results.getInt("duration"));
+						
+						//get starttime
+						imagedata.setStarttime(results.getInt("starttime"));
+						
+						//get branch
+						imagedata.setBranch(results.getInt("branch"));
+					}
+					data = imagedata;
+					break;
+					
+				case "point":
+					PointData pointdata = new PointData();
+					
+					while (results.next()){
+						
+						//get num
+						pointdata.setNum(results.getInt("num"));
+						
+						//get x
+						pointdata.setX(results.getInt("x"));
+						
+						//get y
+						pointdata.setY(results.getInt("y"));
+					}
+					data = pointdata;
+					break;
+					
+				case "shape":
+					ShapeData shapedata = new ShapeData();
+					
+					while (results.next()){
+															
+						//get fillcolor
+						shapedata.setFillcolor(results.getString("fillcolor"));
+						
+						//get linecolor
+						shapedata.setLinecolor(results.getString("linecolor"));
+						
+						//get layer
+						shapedata.setLayer(results.getInt("layer"));
+						
+						//get duration
+						shapedata.setDuration(results.getInt("duration"));
+						
+						//get layer
+						shapedata.setStarttime(results.getInt("layer"));
+						
+						//get totalpoints
+						shapedata.setTotalpoints(results.getInt("totalpoints"));
+						
+						//get width
+						shapedata.setWidth(results.getInt("width"));
+						
+						//get height
+						shapedata.setHeight(results.getInt("height"));
+					}
+					data = shapedata;
+					break;
+					
+				case "slide":
+					SlideData slidedata = new SlideData();
+					
+					while (results.next()){
+																		
+						//get id
+						slidedata.setId(results.getInt("id"));
+						
+						//get duration
+						slidedata.setDuration(results.getInt("duration"));
+						
+						//get lastSlide
+						slidedata.setLastSlide(results.getBoolean("lastSlide"));
+					}
+					data = slidedata;
+					break;
+					
+				case "text":
+					TextData textdata = new TextData();
+					
+					while (results.next()){
+															
+						//get xstart
+						textdata.setXstart(results.getInt("xstart"));
+						
+						//get ystart
+						textdata.setYstart(results.getInt("ystart"));
+						
+						//get xend
+						textdata.setXend(results.getInt("xend"));
+						
+						//get yend
+						textdata.setYend(results.getInt("yend"));
+						
+						//get layer
+						textdata.setLayer(results.getInt("layer"));
+						
+						//get duration
+						textdata.setDuration(results.getInt("duration"));
+						
+						//get starttime
+						textdata.setStarttime(results.getInt("starttime"));
+						
+						//get font
+						textdata.setFont(results.getString("font"));
+						
+						//get fontcolor
+						textdata.setFontcolor(results.getString("fontcolor"));
+						
+						//get fontsize
+						textdata.setFontsize(results.getInt("fontsize"));
+					}
+					data = textdata;
+					break;
+					
+				case "textbody":
+					TextBodyData textbodydata = new TextBodyData();
+					
+					while (results.next()){
+														
+						//get branch
+						textbodydata.setBranch(results.getInt("branch"));
+						
+						//get italic
+						textbodydata.setItalic(results.getBoolean("italic"));
+						
+						//get bold
+						textbodydata.setBold(results.getBoolean("bold"));
+						
+						//get underlined
+						textbodydata.setUnderlined(results.getBoolean("underlined"));
+						
+						//get textstring
+						textbodydata.setTextstring(results.getString("textstring"));
+					}
+					data = textbodydata;
+					break;
+					
+				case "video":
+					VideoData videodata = new VideoData();
+					
+					while (results.next()){
+														
+						//get urlname
+						videodata.setUrlname(results.getString("urlname"));
+						
+						//get xstart
+						videodata.setXstart(results.getInt("xstart"));
+						
+						//get ystart
+						videodata.setYstart(results.getInt("ystart"));
+						
+						//get width
+						videodata.setWidth(results.getInt("width"));
+						
+						//get height
+						videodata.setHeight(results.getInt("height"));
+						
+						//get layer
+						videodata.setLayer(results.getInt("layer"));
+						
+						//get duration
+						videodata.setDuration(results.getInt("duration"));
+						
+						//get starttime
+						videodata.setStarttime(results.getInt("starttime"));
+
+						//get loop
+						videodata.setLoop(results.getBoolean("loop"));	
+						
+					}
+					data = videodata;
+					break;
+				
+			default: 
+				closeConnection();
+				data = null;
+			}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			return data;
+		}
+		
 	
 		/**
 		 * When called, this method will return the list of offers
@@ -247,9 +558,7 @@ import slideshowdata.VideoData;
 		 * @return offers
 		 */
 		public ObservableList<Product> getListOfOffers() {
-			
-			productsDatabase = new SqlConnection();
-			
+						
 			openConnection();
 			
 			offers = FXCollections.observableArrayList();
@@ -270,7 +579,7 @@ import slideshowdata.VideoData;
 					// get Product id
 					offer.setProductId(results.getInt("ProductID"));
 					
-					product = productsDatabase.getSpecificProduct("ProductID", String.valueOf(results.getInt("ProductId")));
+					product = getSpecificProduct("ProductID", String.valueOf(results.getInt("ProductId")));
 					
 					// get Price
 					offer.setOfferPrice(results.getFloat("OfferPrice"));
@@ -325,7 +634,7 @@ import slideshowdata.VideoData;
 			}
 			return empty;
 		}
-		
+
 	
 		/**
 		*Retrieves the list items from the SQL server
@@ -613,630 +922,5 @@ import slideshowdata.VideoData;
 			//construct the url assuming use of mysql and the standard port.
 			url = "jdbc:mysql://" + IP  + "/" + USERNAME + "?";	
 		}
-	
-		/**************START: ADD XML to DATABASE***************/
-	
-		/**
-		 * Method will add data to the document_info_data on the SQL database
-		 * 
-		 * @param author
-		 * @param version
-		 * @param title
-		 * @param comment
-		 * @param width
-		 * @param height
-		 */
-		public void addDocumentDataContent(String author, String version,
-				String title, String comment, int width, int height) {
-	
-			openConnection();
-			String query = "INSERT INTO document_info_data (author, version, title, comment, width, height) VALUES ('"
-					+ author
-					+ "', '"
-					+ version
-					+ "', '"
-					+ title
-					+ "', '"
-					+ comment
-					+ "', '"
-					+ width
-					+ "', '"
-					+ height + "');";
-			executeStatement(query);
-			closeConnection();
-		}
-	
-		/**
-		 * Method will delete data from the document_info_data table on the SQL
-		 * database
-		 */
-		public void deleteDocumentDataContent() {
-	
-			openConnection();
-			String query = "DELETE FROM document_info_data";
-			executeStatement(query);
-			closeConnection();
-			}
-	
-		/**
-		 * 
-		 * @param backgroundcolor
-		 * @param font
-		 * @param fontsize
-		 * @param linecolor
-		 * @param fillcolor
-		 */
-		public void addDefaultsContent(String backgroundcolor, String font,
-				int fontsize, String linecolor, String fillcolor) {
-			openConnection();
-			String query = "INSERT INTO defaults (backgroundcolor, font, fontsize, linecolor, fillcolor) VALUES ('"
-					+ backgroundcolor
-					+ "', '"
-					+ font
-					+ "', '"
-					+ fontsize
-					+ "', '"
-					+ linecolor
-					+ "', '"
-					+ fillcolor + "');";
-			executeStatement(query);
-			closeConnection();
-		}
-	
-		/**
-		 * Method will delete data from the defaults table on the SQL
-		 * database
-		 */
-		public void deleteDefaultsContent() {
-			openConnection();
-			String query = "DELETE FROM defaults";
-			executeStatement(query);
-			closeConnection();
-		}
-	
-		/**
-		 * Method will add contents to the audio table on the sql server
-		 * 
-		 * @param productID
-		 * @param startTime
-		 * @param urlName
-		 * @param volume
-		 * @param repeat
-		 */
-		public void addAudioTableContents(int productID, int slideID, 
-				String urlName, int startTime, double volume, boolean loop) {
-			openConnection();
-			String query = "INSERT INTO `cl36-st`.`audio` (`productid`, `slideid`, `urlname`, `starttime`, `volume`, `loop`) VALUES ('"
-					+ productID
-					+ "', '"
-					+ slideID
-					+ "', '"
-					+ urlName
-					+ "', '"
-					+ startTime
-					+ "', '"
-					+ volume
-					+ "', '"
-					+ loop
-					+ "');";
-			executeStatement(query);
-			closeConnection();
-	
-		}
-	
-		/**
-		 * Method will add contents to the image table on the sql server
-		 * 
-		 * @param imageNo
-		 * @param urlname
-		 * @param xstart
-		 * @param ystart
-		 * @param width
-		 * @param height
-		 * @param starttime
-		 * @param duration
-		 * @param layer
-		 * @param branch
-		 */
-		public void addImageContents(int productID, int slideID, String urlname, int xstart,
-				int ystart, int width, int height, int starttime, int duration,
-				int layer, int branch) {
-	
-			openConnection();
-			String query = "INSERT INTO `cl36-st`.`image_slide` (`slideid`, `urlname`, `xstart`, `ystart`, `width`, `height`, `starttime`, `duration`, `layer`, `branch`"
-					+ ") VALUES ('"
-					+ slideID
-					+ "', '"
-					+ urlname
-					+ "', '"
-					+ xstart
-					+ "', '"
-					+ ystart
-					+ "', '"
-					+ width
-					+ "', '"
-					+ height
-					+ "', '"
-					+ starttime
-					+ "', '"
-					+ duration
-					+ "', '"
-					+ layer
-					+ "', '"
-					+ branch
-					+ "');";
-			executeStatement(query);
-			closeConnection();
-	
-		}
-	
-		/**
-		 * Method will add contents to the point table on the sql server
-		 * 
-		 * @param productid
-		 * @param shapeNo
-		 * @param individualPointNo
-		 * @param x
-		 * @param y
-		 */
-		public void addPointContents(int productid, int slideID, int shapeNo,
-				int individualPointNo, int x, int y) {
-	
-			openConnection();
-			String query = "INSERT INTO `cl36-st`.`point` (`productid`, `slideid`, `ShapeNo`, `IndividualPointNo`, `x`, `y`) VALUES ('"
-					+ productid
-					+ "', '"
-					+ slideID
-					+ "', '"
-					+ shapeNo
-					+ "', '"
-					+ individualPointNo
-					+ "', '"
-					+ x
-					+ "', '"
-					+ y
-					+ "');";
-			executeStatement(query);
-			closeConnection();
-		}
-	
-		/**
-		 * Method will add contents to the shape table on the sql server
-		 * 
-		 * @param productid
-		 * @param totalPoints
-		 * @param width
-		 * @param height
-		 * @param starttime
-		 * @param duration
-		 * @param layer
-		 * @param branch
-		 * @param fillcolor
-		 * @param linecolor
-		 */
-		public void addShapeContents(int productid, int slideID, int totalPoints, int width,
-				int height, int starttime, int duration, int layer, int branch,
-				String fillcolor, String linecolor) {
-	
-			openConnection();
-			String query = "INSERT INTO `cl36-st`.`shape` (`productid`, `slideid`, `totalpoints`, `width`, `height`, `fillcolor`, `starttime`, `duration`, `layer`, `linecolor`, `branch`"
-					+ ") VALUES ('"
-					+ productid
-					+ "', '"
-					+ slideID
-					+ "', '"
-					+ totalPoints
-					+ "', '"
-					+ width
-					+ "', '"
-					+ height
-					+ "', '"
-					+ fillcolor
-					+ "', '"
-					+ starttime
-					+ "', '"
-					+ duration
-					+ "', '"
-					+ layer
-					+ "', '"
-					+ linecolor
-					+ "', '"
-					+ branch
-					+ "');";
-			executeStatement(query);
-			closeConnection();
-		}
-	
-		/**
-		 * Method will add contents to the text table on the sql server
-		 * 
-		 * @param productid
-		 * @param totalPoints
-		 * @param fontSize
-		 * @param xStart
-		 * @param yStart
-		 * @param startTime
-		 * @param duration
-		 * @param layer
-		 * @param xend
-		 * @param yend
-		 * @param font
-		 * @param fontColor
-		 */
-		public void addTextContents(int productid, int slideID, int fontSize,
-				int xStart, int yStart, int startTime, int duration, int layer,
-				int xend, int yend, String font, String fontColor) {
-	
-			openConnection();
-			String query = "INSERT INTO `cl36-st`.`text` (`productid`, `slideid`, `font`, `fontSize`, `FontColor`, `xStart`, `yStart`, `startTime`, `duration`, `layer`, `xend`, `yend`"
-					+ ") VALUES ('"
-					+ productid
-					+ "', '"
-					+ slideID
-					+ "', '"
-					+ font
-					+ "', '"
-					+ fontSize
-					+ "', '"
-					+ fontColor
-					+ "', '"
-					+ xStart
-					+ "', '"
-					+ yStart
-					+ "', '"
-					+ startTime
-					+ "', '"
-					+ duration
-					+ "', '"
-					+ layer
-					+ "', '"
-					+ xend
-					+ "', '"
-					+ yend
-					+ "');";
-			executeStatement(query);
-			closeConnection();
-	
-		}
-	
-		/**
-		 * Method will add contents to the textbody table on the sql server
-		 * 
-		 * @param productid
-		 * @param textNo
-		 * @param branch
-		 * @param bold
-		 * @param italic
-		 * @param underlined
-		 * @param text
-		 * @param branch2
-		 */
-		public void addTextbodyContents(int productid, int slideID, int textNo, int branch,
-				Boolean bold, Boolean italic, Boolean underlined, String text) {
-	
-			openConnection();
-			String query = "INSERT INTO `cl36-st`.`textbody` (`productid`, `slideid`, `TextNo`, `Bold`, `Italic`, `Underlined`, `Text`, `Branch`"
-					+ ") VALUES ('"
-					+ productid
-					+ "', '"
-					+ slideID
-					+ "', '"
-					+ textNo
-					+ "', '"
-					+ bold
-					+ "', '"
-					+ italic
-					+ "', '"
-					+ underlined
-					+ "', '"
-					+ text
-					+ "', '"
-					+ branch
-					+ "');";
-			executeStatement(query);
-			closeConnection();
-		}
-	
-		/**
-		 * Method will add contents to the video table on the sql server
-		 * 
-		 * @param productid
-		 * @param urlname
-		 * @param starttime
-		 * @param loop
-		 * @param xstart
-		 * @param ystart
-		 * @param width
-		 * @param height
-		 * @param layer
-		 * @param duration
-		 */
-		public void addVideoContents(int productid, int slideID, String urlname, int starttime,
-				boolean loop, int xstart, int ystart, int width, int height,
-				int layer, int duration) {
-	
-			openConnection();
-			String query = "INSERT INTO `cl36-st`.`video` (`productid`, `slideid`, `urlname`, `starttime`, `loop`, `xstart`, `ystart`, `width`, `height`, `layer`, `duration`"
-					+ ") VALUES ('"
-					+ productid
-					+ "', '"
-					+ slideID
-					+ "', '"
-					+ urlname
-					+ "', '"
-					+ starttime
-					+ "', '"
-					+ loop
-					+ "', '"
-					+ xstart
-					+ "', '"
-					+ ystart
-					+ "', '"
-					+ width
-					+ "', '"
-					+ height
-					+ "', '"
-					+ layer
-					+ "', '"
-					+ duration
-					+ "');";
-			executeStatement(query);
-			closeConnection();
-		}
-		
-		/**
-		 * Method will add contents to the slide table on the sql server
-		 * 
-		 * @param slideid
-		 * @param duration
-		 * @param descriptor
-		 * @param lastSlide
-		 * @param backgroundcolor
-		 */
-		public void addSlideContents(int productid, int slideid, int duration, String descriptor, 
-				boolean lastSlide, String backgroundcolor) {
-	
-			openConnection();
-			String query = "INSERT INTO `cl36-st`.`slide` (`slideID`, `duration`, `descriptor`, `lastSlide`, `backgroundcolor`"
-					+ ") VALUES ('"
-					+ slideid
-					+ "', '"
-					+ duration
-					+ "', '"
-					+ descriptor
-					+ "', '"
-					+ lastSlide
-					+ "', '"
-					+ backgroundcolor
-					+ "');";
-			executeStatement(query);
-			closeConnection();
-		}
-	
-		/**
-		 * Method will delete data from the slide table on the SQL
-		 * database
-		 */
-		public void deleteSlideContent() {
-	
-			openConnection();
-			String query = "DELETE FROM slide";
-			executeStatement(query);
-			closeConnection();
-			}
-		
-		/**
-		 * Method will delete all entries of the table it is given
-		 * 
-		 * @param table
-		 */
-		public void deleteContentAndResetAutoIncrement(String table){
-			openConnection();
-			String query = "DELETE FROM " + table;
-			executeStatement(query);
-			query = "ALTER TABLE " + table + " AUTO_INCREMENT = 1";
-			executeStatement(query);
-			closeConnection();	
-		}
-	
-		/**
-		 * Method will upload default data to sql database
-		 * 
-		 * @param defaultdata
-		 */
-		public void uploadDefaultData(DefaultsData defaultdata){
-			SqlConnection sqlConnector = new SqlConnection();
-			
-			sqlConnector.addDefaultsContent(defaultdata.getBackgroundcolor(), 
-											defaultdata.getFont(), 
-											defaultdata.getFontsize(), 
-											defaultdata.getLinecolor() , 
-											defaultdata.getFillcolor());
-		}
-		
-		/**
-		 * Method will upload Document data to sql database
-		 * 
-		 * @param documentdata
-		 */
-		public void uploadDocumentData(DocumentInfoData documentdata){
-			SqlConnection sqlConnector = new SqlConnection();
-	
-			sqlConnector.addDocumentDataContent(documentdata.getAuthor(),
-												documentdata.getAuthor(), 
-												documentdata.getTitle(), 
-												documentdata.getComment(), 
-												documentdata.getWidth(), 
-												documentdata.getHeight());
-		}
-		
-		/**
-		 * Method will upload all data from the XML parser up to the SQL database
-		 * 
-		 * @param data
-		 */
-		public void uploadXmlData(SlideShowData data){
-			
-			
-			int slideIndex = 0,
-				audioIndex = 0,
-				imageIndex = 0,
-				pointIndex = 0,
-				shapeIndex = 0,
-				textIndex = 0,
-				textbodyIndex = 0,
-				videoIndex = 0;
-			
-			uploadDocumentData(data.getDocumentinfo());
-			uploadDefaultData(data.getDefaults());
-			
-			int listid = createNewList(data.getDocumentinfo().getTitle());
-			
-			while(slideIndex<data.getSlides().size()){
-				
-				
-				currentSlide = data.getSlides().get(slideIndex);
-				
-				int productid = createNewProduct(data.getDocumentinfo().getTitle(), currentSlide.getId()+1);
-				addProductToList(productid, listid);
-				
-				addSlideContents(productid,
-								 currentSlide.getId()+1, 
-								 currentSlide.getDuration(), 
-								 "null", //slide descriptor no method yet!					
-								 currentSlide.getLastSlide(), 
-								 "null"); //background color no method yet!
-				
-				while(audioIndex<currentSlide.getAudios().size()){
-					
-					currentAudio = currentSlide.getAudios().get(audioIndex);
-					
-					addAudioTableContents(productid,
-										  slideIndex+1,
-										  currentAudio.getUrlname(),
-										  currentAudio.getStarttime(),
-										  50, //volume: not in PWS
-										  currentAudio.getLoop());
-					audioIndex++;
-				}
-				
-				while (imageIndex < currentSlide.getImages().size()) {
-					
-					currentImage = currentSlide.getImages().get(imageIndex);
-	
-					addImageContents(productid,
-									 slideIndex+1,
-								  	 currentImage.getUrlname(),
-								  	 currentImage.getXstart(), 
-								  	 currentImage.getYstart(),
-								  	 currentImage.getWidth(), 
-								  	 currentImage.getHeight(),
-								  	 currentImage.getStarttime(), 
-								  	 currentImage.getDuration(),
-								  	 currentImage.getLayer(), 
-								  	 currentImage.getBranch());
-					imageIndex++;
-				}
-				
-				while(shapeIndex < currentSlide.getShapes().size()){
-					
-					
-					currentShape = currentSlide.getShapes().get(shapeIndex);
-					
-					addShapeContents(productid,
-									 slideIndex+1,
-									 currentShape.getTotalpoints(), 
-									 currentShape.getWidth(), 
-									 currentShape.getHeight(),
-									 currentShape.getStarttime(), 
-									 currentShape.getDuration(), 
-									 currentShape.getLayer(), 
-									 1, //branch
-									 currentShape.getFillcolor(), 
-									 currentShape.getLinecolor());
-					
-					while(pointIndex<currentShape.getPoints().size()){
-						
-						currentPoint = currentShape.getPoints().get(pointIndex);
-						
-						addPointContents(productid,
-										 slideIndex+1,
-				  						 shapeIndex+1, //ShapeNo
-				  						 currentPoint.getNum(), 
-				  						 currentPoint.getX(), 
-				  						 currentPoint.getY());
-						pointIndex++;
-					}
-					pointIndex = 0;
-					shapeIndex++;
-				}
-				
-				while(textIndex<currentSlide.getTexts().size()){
-					
-					currentText = currentSlide.getTexts().get(textIndex);
-					
-					addTextContents(productid,
-									slideIndex+1,
-									currentText.getFontsize(), 
-									currentText.getXstart(), 
-									currentText.getYstart(), 
-									currentText.getStarttime(), 
-									currentText.getDuration(), 
-									currentText.getLayer(), 
-									currentText.getXend(), 
-									currentText.getYend(), 
-									currentText.getFont(), 
-									currentText.getFontcolor());
-					
-					while(textbodyIndex<currentText.getTextbodies().size()){
-						
-						currentTextbody = currentText.getTextbodies().get(textbodyIndex);
-						
-						addTextbodyContents(productid, 
-											slideIndex+1,
-											textIndex+1, //TextNo 
-											currentTextbody.getBranch(), 
-											currentTextbody.getBold(), 
-											currentTextbody.getItalic(), 
-											currentTextbody.getUnderlined(), 
-											currentTextbody.getTextstring());
-						textbodyIndex++;
-					}
-					
-					textbodyIndex = 0;
-					textIndex++;				
-				}
-				
-				while(videoIndex<currentSlide.getVideos().size()){
-					
-					currentVideo = currentSlide.getVideos().get(videoIndex);
-					
-					addVideoContents(productid, 
-									 slideIndex+1,
-									 currentVideo.getUrlname(), 
-									 currentVideo.getStarttime(), 
-									 currentVideo.getLoop(), 
-									 currentVideo.getXstart(), 
-									 currentVideo.getYstart(), 
-									 currentVideo.getWidth(), 
-									 currentVideo.getHeight(), 
-									 currentVideo.getLayer(), 
-									  currentVideo.getDuration());
-					videoIndex++;
-				}
-				
-				audioIndex = 0;
-				imageIndex = 0;
-				pointIndex = 0;
-				shapeIndex = 0;
-				textIndex = 0;
-				textbodyIndex = 0;
-				videoIndex = 0;
-				
-				slideIndex++;
-			}
-			
-		}
-					
-					/************** END: ADD XML to DATABASE ***************/
+
 }

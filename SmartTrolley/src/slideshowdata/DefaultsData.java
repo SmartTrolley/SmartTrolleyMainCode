@@ -13,7 +13,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 @Root (strict = false)
-public class DefaultsData {
+public class DefaultsData implements DataType{
 
 	@Element (name = "backgroundcolor")
 	private String backgroundcolor;
@@ -45,6 +45,26 @@ public class DefaultsData {
 	}
 	public String getFillcolor() {
 		return fillcolor;
+	}
+	
+	
+	public void setBackgroundcolor(String backgroundcolor) {
+		this.backgroundcolor = backgroundcolor;
+	}
+	public void setFont(String font) {
+		this.font = font;
+	}
+	public void setFontsize(int fontsize) {
+		this.fontsize = fontsize;
+	}
+	public void setFontcolor(String fontcolor) {
+		this.fontcolor = fontcolor;
+	}
+	public void setLinecolor(String linecolor) {
+		this.linecolor = linecolor;
+	}
+	public void setFillcolor(String fillcolor) {
+		this.fillcolor = fillcolor;
 	}
 	
 	

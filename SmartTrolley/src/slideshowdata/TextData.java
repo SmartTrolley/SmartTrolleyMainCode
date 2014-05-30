@@ -17,7 +17,7 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 @Root (strict = false)
-public class TextData {
+public class TextData implements DataType{
 	
 	@ElementList (entry = "textbody", inline = true)
 	private ArrayList<TextBodyData> textbodies;
@@ -94,6 +94,52 @@ public class TextData {
 
 	public int getFontsize() {
 		return fontsize;
+	}
+	
+	
+
+	public void setTextbodies(ArrayList<TextBodyData> textbodies) {
+		this.textbodies = textbodies;
+	}
+
+	public void setXstart(int xstart) {
+		this.xstart = xstart;
+	}
+
+	public void setYstart(int ystart) {
+		this.ystart = ystart;
+	}
+
+	public void setXend(int xend) {
+		this.xend = xend;
+	}
+
+	public void setYend(int yend) {
+		this.yend = yend;
+	}
+
+	public void setLayer(int layer) {
+		this.layer = layer;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	public void setStarttime(int starttime) {
+		this.starttime = starttime;
+	}
+
+	public void setFont(String font) {
+		this.font = font;
+	}
+
+	public void setFontcolor(String fontcolor) {
+		this.fontcolor = fontcolor;
+	}
+
+	public void setFontsize(int fontsize) {
+		this.fontsize = fontsize;
 	}
 
 

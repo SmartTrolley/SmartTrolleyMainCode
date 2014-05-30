@@ -12,7 +12,7 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Root;
 
 @Root (strict = false)
-public class PointData {
+public class PointData implements DataType{
 	
 	@Attribute (name = "num", required=true)
 	private int num;
@@ -33,6 +33,19 @@ public class PointData {
 
 	public int getY() {
 		return y;
+	}
+	
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
 	}
 	
 	
