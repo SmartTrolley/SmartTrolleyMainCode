@@ -26,7 +26,6 @@ import javafx.scene.image.ImageView;
 import org.junit.Before;
 import org.junit.Test;
 
-import smarttrolleygui.SlideShow.PlayDirection;
 import toolBox.SmartTrolleyToolBox;
 
 public class TestProductScreenController {
@@ -243,7 +242,7 @@ public class TestProductScreenController {
 				smartTrolleyApplication.productScreen.playPauseButton.fire();
 			}
 		});
-		SmartTrolleyToolBox.delay(2000 * slideDuration);
+		SmartTrolleyToolBox.delay(3000 * slideDuration);
 		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().outOfSlideShowMessageBox.isShowing());
 
 	}

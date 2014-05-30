@@ -34,7 +34,7 @@ import smarttrolleygui.SlideShow.PlayDirection;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
-public class ProductScreenController implements Initializable {
+public class ProductScreenController extends ControllerGeneral implements Initializable {
 
 	/**Message Box Height*/
 	private final double MSG_BX_H = 100.0;
@@ -42,20 +42,11 @@ public class ProductScreenController implements Initializable {
 	/**Message Box Width*/
 	private final double MSG_BX_W = 400.0;
 
-	/**An image's x-co-ordinate in the slide*/
-	static final double IMAGE_X_COORD = 25;
-
-	/**An image's y-co-ordinate in the slide*/
-	static final double IMAGE_Y_COORD = 25;
-
 	/* Height of the button */
 	private static final int BTN_HEIGHT = 20;
 
 	/* Width of the button */
 	private static final int BTN_WIDTH = 30;
-
-	private static final double X_COORD_CONTROLBUTTONS = 20.0;
-	private static final double Y_COORD_CONTROLBUTTONS = 20.0;
 
 	// Default button width is 30
 	protected Button prevSLideButton = new Button("<");
@@ -150,10 +141,6 @@ public class ProductScreenController implements Initializable {
 	 * <p>Date Modified: 24 May 2014
 	 */
 	private void createPrevPlayNxtSlideButtons() {
-
-		// createSlideButton(prevSLideButton, X_COORD_CONTROLBUTTONS, Y_COORD_CONTROLBUTTONS);
-		// createSlideButton(nextSLideButton, X_COORD_CONTROLBUTTONS + 2 * BTN_WIDTH, Y_COORD_CONTROLBUTTONS);
-		// createSlideButton(playPauseButton, X_COORD_CONTROLBUTTONS + BTN_WIDTH, Y_COORD_CONTROLBUTTONS);
 
 		createSlideButton(prevSLideButton);
 		createSlideButton(nextSLideButton);
@@ -261,7 +248,7 @@ public class ProductScreenController implements Initializable {
 		noSldShowMsgBx.showAndWait();
 
 		if (noSldShowMsgBx.getMessageBoxResult() == MessageBoxResult.OK) {
-			loadStartScreen(event);
+			loadScreen(Screen.STARTSCREEN, application);
 		}
 	}
 
@@ -285,7 +272,7 @@ public class ProductScreenController implements Initializable {
 	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-		ControllerGeneral.loadStartScreen(event, application);
+		loadScreen(Screen.STARTSCREEN, application);
 	}
 
 	/**
@@ -299,7 +286,7 @@ public class ProductScreenController implements Initializable {
 	 * Date Modified: 28 Feb 2014
 	 */
 	public void loadHomeScreen(ActionEvent event) {
-		ControllerGeneral.loadHomeScreen(event, application);
+		loadScreen(Screen.HOMESCREEN, application);
 	}
 
 	/**
@@ -311,7 +298,7 @@ public class ProductScreenController implements Initializable {
 	 * <p> Date Modified: 6 Mar 2014
 	 */
 	public void loadShoppingList(ActionEvent event) {
-		ControllerGeneral.loadShoppingList(event, application);
+		loadScreen(Screen.SHOPPINGLISTSCREEN, application);
 	}
 
 	/**
@@ -325,7 +312,7 @@ public class ProductScreenController implements Initializable {
 	 * Date Modified: 7 Mar 2014
 	 */
 	public void loadOffers(ActionEvent event) {
-		ControllerGeneral.loadOffers(event, application);
+		loadScreen(Screen.OFFERSSCREEN, application);
 	}
 
 	/**
@@ -338,7 +325,7 @@ public class ProductScreenController implements Initializable {
 	 * <p> Date Modified: 28 Feb 2014
 	 */
 	public void loadFavourites(ActionEvent event) {
-		ControllerGeneral.loadFavourites(event, application);
+		loadScreen(Screen.FAVORITESSCREEN, application);
 	}
 
 	/**
@@ -356,10 +343,6 @@ public class ProductScreenController implements Initializable {
 		}
 
 		btn.setPrefSize(BTN_WIDTH, BTN_HEIGHT);
-		// btn.setMinHeight(50);
-
-		// AnchorPane.setTopAnchor(btn, y_coord);
-		// AnchorPane.setLeftAnchor(btn, x_coord);
 	}
 
 	/**

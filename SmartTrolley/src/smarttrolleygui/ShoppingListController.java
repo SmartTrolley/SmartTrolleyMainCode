@@ -38,7 +38,7 @@ import se.mbaeumer.fxmessagebox.MessageBoxType;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
-public class ShoppingListController implements Initializable {
+public class ShoppingListController extends ControllerGeneral implements Initializable {
 
 	@FXML
 	private ListView<String> categoriesList;
@@ -75,12 +75,6 @@ public class ShoppingListController implements Initializable {
 	 * <p>
 	 * Date Modified: 06 Mar 2014
 	 */
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javafx.fxml.Initializable#initialize(java.net.URL,
-	 * java.util.ResourceBundle)
-	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		// Fill list on the LHS of the screen with different product categories
@@ -95,8 +89,7 @@ public class ShoppingListController implements Initializable {
 	 * setApp
 	 * 
 	 * @param application
-	 *            <p>
-	 *            Date Modified: 06 Mar 2014
+	 * <p> Date Modified: 06 Mar 2014
 	 */
 	public void setApp(SmartTrolleyGUI application) {
 		this.application = application;
@@ -106,10 +99,8 @@ public class ShoppingListController implements Initializable {
 	 * Brings up deleted confirmation screen when delete button is pushed if
 	 * yes, then deletes list from database
 	 * 
-	 * @param event
-	 *            - response to click on delete button
-	 *            <p>
-	 *            Date Modified: 9 May 2014
+	 * @param event - response to click on delete button
+	 * <p> Date Modified: 9 May 2014
 	 */
 	public void deleteList(ActionEvent event) throws SQLException {
 
@@ -185,69 +176,52 @@ public class ShoppingListController implements Initializable {
 	 * loadStartScreen is called when the smart trolley logo is pressed. It
 	* calls the static loadStartScreen method in ControllerGeneral.java
 	 * 
-	 * @param event
-	 *            - response to click on smart trolley logo in navigation bar
-	 *            <p>
-	 *            Date Modified: 6 Mar 2014
+	 * @param event - response to click on smart trolley logo in navigation bar
+	 * <p> Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-		ControllerGeneral.loadStartScreen(event, application);
+		loadScreen(Screen.STARTSCREEN, application);
 	}
 
 	/**
 	 * loadHomeScreen is called when the 'home' button is pressed. It calls the
 	 * calls the static loadHomeScreen method in ControllerGeneral.java
-	 * <p>
-	 * User navigates through product database
-	 * 
-	 * @param event
-	 *            - response to click on 'home' button
-	 *            <p>
-	 *            Date Modified: 28 Feb 2014
+	 * <p> User navigates through product database
+	 * @param event - response to click on 'home' button
+	 * <p> Date Modified: 28 Feb 2014
 	 */
 	public void loadHomeScreen(ActionEvent event) {
-		ControllerGeneral.loadHomeScreen(event, application);
+		loadScreen(Screen.HOMESCREEN, application);
 	}
 
 	/**
 	 * loadFavourites is called when the 'favourites' button is pressed. It
 	* calls the static loadFavourites method in ControllerGeneral.java
-	 * <p>
-	 * User can maintain list of favourite products
-	 * 
-	 * @param event
-	 *            - response to click on 'favourites' button
-	 *            <p>
-	 *            Date Modified: 28 Feb 2014
+	 * <p> User can maintain list of favourite products
+	 * @param event - response to click on 'favourites' button
+	 * <p> Date Modified: 28 Feb 2014
 	 */
 	public void loadFavourites(ActionEvent event) {
-		ControllerGeneral.loadFavourites(event, application);
+		loadScreen(Screen.FAVORITESSCREEN, application);
 	}
 
 	/**
 	 * loadOffers is called when the 'offers' button is pressed. It calls the
 	* calls the static loadOffers method in ControllerGeneral.java
-	 * <p>
-	 * User can browse store's offers
-	 * 
-	 * @param event
-	 *            - response to click on 'offers' button
-	 *            <p>
-	 *            Date Modified: 7 Mar 2014
+	 * <p> User can browse store's offers
+	 * @param event - response to click on 'offers' button
+	 * <p> Date Modified: 7 Mar 2014
 	 */
 	public void loadOffers(ActionEvent event) {
-		ControllerGeneral.loadOffers(event, application);
+		loadScreen(Screen.OFFERSSCREEN, application);
 	}
 
 	/**
 	 * initializeCategories sets up the list of categories that will be
 	 * displayed on screen.
-	 * <p>
-	 * User can navigate through product database.
-	 * 
+	 * <p> User can navigate through product database.
 	 * @return categories - list of categories
-	 *         <p>
-	 *         Date Modified: 7 Mar 2014
+	 * <p> Date Modified: 7 Mar 2014
 	 */
 	private ObservableList<String> initializeCategories() {
 		categories = FXCollections.observableArrayList("All", "Bakery", "Fruit & Vegetables", "Dairy & Eggs", "Meat & Seafood", "Frozen", "Drinks", "Snacks & Sweets", "Desserts");
@@ -258,10 +232,8 @@ public class ShoppingListController implements Initializable {
 	/**
 	 * initializeProductTable fills the TableView with data and sets up cell
 	 * factories and cell value factories
-	 * <p>
-	 * User can navigate through product database
-	 * <p>
-	 * Date Modified: 21 May 2014
+	 * <p> User can navigate through product database
+	 * <p> Date Modified: 21 May 2014
 	 */
 	private void initializeProductTable() {
 		// Create new SqlConnection to retrieve product data
@@ -288,7 +260,7 @@ public class ShoppingListController implements Initializable {
 		ControllerGeneral.setUpAddButtonCellFactory(addColumn);
 		ControllerGeneral.setUpRemoveButtonCellFactory(removeColumn);
 
-		// controller.setUpProductNameCellFactory(productNameColumn);
+		// ControllerGeneral.setUpProductNameCellFactory(productNameColumn);
 		// TODO: once refactored remove following code and uncomment previous line to set up cell factory for product name column
 		productNameColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
 			@Override

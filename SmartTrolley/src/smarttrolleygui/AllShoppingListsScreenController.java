@@ -29,7 +29,7 @@ import javafx.scene.layout.RowConstraints;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
-public class AllShoppingListsScreenController implements Initializable {
+public class AllShoppingListsScreenController extends ControllerGeneral implements Initializable {
 
 	private SmartTrolleyGUI application;
 
@@ -166,7 +166,7 @@ public class AllShoppingListsScreenController implements Initializable {
 	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-    	ControllerGeneral.loadStartScreen(event, application);
+		loadScreen(Screen.STARTSCREEN, application);
 	}
 
 	/**
@@ -180,7 +180,7 @@ public class AllShoppingListsScreenController implements Initializable {
 	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadShoppingList(ActionEvent event) {
-    	ControllerGeneral.loadShoppingList(event, application);
+		loadScreen(Screen.SHOPPINGLISTSCREEN, application);
     }
 }
 /************** End of AllShoppingListsScreenController **************/

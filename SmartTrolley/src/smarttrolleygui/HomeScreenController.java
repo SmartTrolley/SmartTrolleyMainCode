@@ -32,7 +32,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import DatabaseConnectors.SqlConnection;
 
-public class HomeScreenController implements Initializable {
+public class HomeScreenController extends ControllerGeneral implements Initializable {
 
 	@FXML
 	private ListView<String> categoriesList;
@@ -89,12 +89,11 @@ public class HomeScreenController implements Initializable {
 	 *            Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-		ControllerGeneral.loadStartScreen(event, application);
-	}
+		loadScreen(Screen.STARTSCREEN, application);	}
 
 	/**
 	 * loadFavourites is called when the 'favourites' button is pressed. It
-* calls the static loadFavourites method in ControllerGeneral.java
+	 * calls the static loadFavourites method in ControllerGeneral.java
 	 * <p>
 	 * User can maintain list of favourite products
 	 * 
@@ -104,48 +103,35 @@ public class HomeScreenController implements Initializable {
 	 *            Date Modified: 28 Feb 2014
 	 */
 	public void loadFavourites(ActionEvent event) {
-		ControllerGeneral.loadFavourites(event, application);
-	}
+		loadScreen(Screen.FAVORITESSCREEN, application);	}
 
 	/**
 	 * loadShoppingList is called when the 'list' button is pressed. It calls
 	 * the goToShoppingList method in SmartTrolleyGUI.java
-	 * <p>
-	 * User can view shopping list
+	 * <p> User can view shopping list
 	 * 
-	 * @param event
-	 *            - response to click on 'list' button
-	 *            <p>
-	 *            Date Modified: 6 Mar 2014
+	 * @param event - response to click on 'list' button
+	 * <p> Date Modified: 6 Mar 2014
 	 */
 	public void loadShoppingList(ActionEvent event) {
-		ControllerGeneral.loadShoppingList(event, application);
-	}
+		loadScreen(Screen.SHOPPINGLISTSCREEN, application);	}
 
 	/**
 	 * loadOffers is called when the 'offers' button is pressed. It calls the
-* calls the static loadOffers method in ControllerGeneral.java
-	 * <p>
-	 * User can browse store's offers
-	 * 
-	 * @param event
-	 *            - response to click on 'offers' button
-	 *            <p>
-	 *            Date Modified: 7 Mar 2014
+	 * calls the static loadOffers method in ControllerGeneral.java
+	 * <p> User can browse store's offers
+	 * @param event- response to click on 'offers' button
+	 * <p> Date Modified: 7 Mar 2014
 	 */
 	public void loadOffers(ActionEvent event) {
-		ControllerGeneral.loadOffers(event, application);
-	}
+		loadScreen(Screen.OFFERSSCREEN, application);	}
 
 	/**
 	 * initializeCategories sets up the list of categories that will be
 	 * displayed on screen.
-	 * <p>
-	 * User can navigate through product database.
-	 * 
+	 * <p> User can navigate through product database.
 	 * @return categories - list of categories
-	 *         <p>
-	 *         Date Modified: 7 Mar 2014
+	 * <p> Date Modified: 7 Mar 2014
 	 */
 	private ObservableList<String> initializeCategories() {
 		categories = FXCollections.observableArrayList("All", "Bakery",
@@ -158,10 +144,8 @@ public class HomeScreenController implements Initializable {
 	/**
 	 * initializeProductTable fills the TableView with data and sets up cell
 	 * factories
-	 * <p>
-	 * User can navigate through product database
-	 * <p>
-	 * Date Modified: 9 Mar 2014
+	 * <p> User can navigate through product database
+	 * <p> Date Modified: 9 Mar 2014
 	 */
 	private void initializeProductTable() {
 

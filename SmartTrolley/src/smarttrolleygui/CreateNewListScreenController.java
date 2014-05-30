@@ -27,7 +27,7 @@ import javafx.scene.control.TextField;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
-public class CreateNewListScreenController implements Initializable {
+public class CreateNewListScreenController extends ControllerGeneral implements Initializable {
 
 	private SmartTrolleyGUI application;
 	// listNameTextField and createNewListButton are only made public so
@@ -69,7 +69,7 @@ public class CreateNewListScreenController implements Initializable {
 	 *            Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-    	ControllerGeneral.loadStartScreen(event, application);
+		loadScreen(Screen.STARTSCREEN, application);
 	}
 
 	/**
