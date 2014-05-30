@@ -165,8 +165,8 @@ public class AllShoppingListsScreenControllerTest {
 
 		SmartTrolleyDelay.delay(5000);
 
-		SmartTrolleyPrint.print("rowSize is " + rowSize);
-		SmartTrolleyPrint.print("array size is" + AllShoppingListsScreenController.buttonList.size());
+		SmartTrolleyPrint.print("rowSize is: " + rowSize);
+		SmartTrolleyPrint.print("array size is: " + AllShoppingListsScreenController.buttonList.size());
 
 		assertTrue(rowSize == AllShoppingListsScreenController.buttonList.size() - 1);
 
@@ -187,7 +187,7 @@ public class AllShoppingListsScreenControllerTest {
 		int rowSize = 0;
 		int listSize = 0;
 
-		query = "SELECT * FROM lists_products WHERE listID = 43";
+		query = "SELECT * FROM lists_products WHERE listID = 1";
 
 		try {
 			results = productsDatabase.sendQuery(query);
@@ -200,6 +200,8 @@ public class AllShoppingListsScreenControllerTest {
 		
 		 try { Robot menuRobot = new Robot();
 		 
+		 menuRobot.keyPress(KeyEvent.VK_TAB);
+		 menuRobot.keyRelease(KeyEvent.VK_TAB);
 		 menuRobot.keyPress(KeyEvent.VK_ENTER);
 		 menuRobot.keyRelease(KeyEvent.VK_ENTER);
 		 
@@ -211,7 +213,6 @@ public class AllShoppingListsScreenControllerTest {
 
 		try {
 			results.last();
-			results.getRow();
 
 			rowSize = results.getRow();
 			
