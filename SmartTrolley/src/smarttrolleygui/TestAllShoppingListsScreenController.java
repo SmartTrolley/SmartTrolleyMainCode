@@ -35,7 +35,7 @@ import org.junit.Test;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
-public class AllShoppingListsScreenControllerTest {
+public class TestAllShoppingListsScreenController {
 
 	public Stage stage;
 	private static SqlConnection productsDatabase;
@@ -231,4 +231,4 @@ public class AllShoppingListsScreenControllerTest {
 	}
 
 }
-/**************End of AllShoppingListsScreenControllerTest.java**************/
+/**************End of TestAllShoppingListsScreenController.java**************/

@@ -244,6 +244,23 @@ public class TestProductScreenController {
 		});
 		SmartTrolleyToolBox.delay(3000 * slideDuration);
 		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().outOfSlideShowMessageBox.isShowing());
+	}
+	
+	/**
+	*Tests the product is a favorite when the favorite button is pressed
+	*<p> User can set product as favorite
+	*<p> Date Modified: 27 May 2014
+	*/
+	@Test
+	public final void testFavoriteButton() {
+
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				smartTrolleyApplication.productScreen.favoritesButton.fire();
+			}
+		});		
+		//assertTrue(smartTrolleyApplication.productScreen.product.);
 
 	}
 

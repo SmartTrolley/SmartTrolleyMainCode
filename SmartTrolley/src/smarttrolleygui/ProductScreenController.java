@@ -76,7 +76,8 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	/**Current slideshow that is playing*/
 	private SlideShow currentSlideShow;
 
-	private CheckBox playDirectionCheckbox = new CheckBox();
+	Button favoritesButton = new Button();
+	private CheckBox playDirectionCheckbox = new CheckBox("Play Direction");
 
 	/**
 	 * initialize is automatically called when the controller is created.
@@ -103,7 +104,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	protected void setSlideShow(SlideShow slideShow) {
 		this.currentSlideShow = slideShow;
 
-		playDirectionCheckbox.setText("F");
+		playDirectionCheckbox.setText("Play Forwards");
 
 		currentSlideShow.playDirection = PlayDirection.FOR;
 		SmartTrolleyToolBox.print("Play direction is forward");
@@ -112,7 +113,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 			@Override
 			public void changed(ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) {
 
-				playDirectionCheckbox.setText("R");
+				playDirectionCheckbox.setText("Play Reverse");
 				currentSlideShow.playDirection = PlayDirection.REV;
 				SmartTrolleyToolBox.print("Play direction is reverse");
 

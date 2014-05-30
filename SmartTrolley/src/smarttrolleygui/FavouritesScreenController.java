@@ -81,12 +81,9 @@ public class FavouritesScreenController extends ControllerGeneral implements Ini
 
 	/**
 	 * loadStartScreen is called when the smart trolley logo is pressed. It
-* calls the static loadStartScreen method in ControllerGeneral.java
-	 * 
-	 * @param event
-	 *            - response to click on smart trolley logo in navigation bar
-	 *            <p>
-	 *            Date Modified: 6 Mar 2014
+	 * calls the static loadStartScreen method in ControllerGeneral.java	 
+	 * @param event - response to click on smart trolley logo in navigation bar
+	 * <p> Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
 		loadScreen(Screen.STARTSCREEN, application);
@@ -96,11 +93,8 @@ public class FavouritesScreenController extends ControllerGeneral implements Ini
 	 * loadHomeScreen is called when the 'home' button is pressed. It calls the
 	 * calls the static loadHomeScreen method in ControllerGeneral.java
 	 * <p> User navigates through product database
-	 * 
-	 * @param event
-	 *            - response to click on 'home' button
-	 *            <p>
-	 *            Date Modified: 28 Feb 2014
+	 * @param event - response to click on 'home' button
+	 * <p> Date Modified: 28 Feb 2014
 	 */
 	public void loadHomeScreen(ActionEvent event) {
 		loadScreen(Screen.HOMESCREEN, application);
@@ -119,7 +113,7 @@ public class FavouritesScreenController extends ControllerGeneral implements Ini
 
 	/**
 	 * loadOffers is called when the 'offers' button is pressed. It calls the
-* calls the static loadOffers method in ControllerGeneral.java
+	 * calls the static loadOffers method in ControllerGeneral.java
 	 * <p> User can browse store's offers 
 	 * @param event - response to click on 'offers' button
 	 * <p> Date Modified: 7 Mar 2014
