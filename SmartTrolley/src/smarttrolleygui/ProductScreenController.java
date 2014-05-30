@@ -15,11 +15,14 @@ package smarttrolleygui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -27,6 +30,7 @@ import javafx.scene.layout.VBox;
 import se.mbaeumer.fxmessagebox.MessageBox;
 import se.mbaeumer.fxmessagebox.MessageBoxResult;
 import se.mbaeumer.fxmessagebox.MessageBoxType;
+import smarttrolleygui.SlideShow.PlayDirection;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
@@ -63,7 +67,7 @@ public class ProductScreenController implements Initializable {
 	/** Application that is running */
 	private SmartTrolleyGUI application;
 	private Product product;
-	//TODO Remove these if they're still not used after merge
+	// TODO Remove these if they're still not used after merge
 	private String productName;
 	private String productImageURL;
 	private float productPrice;
@@ -80,6 +84,8 @@ public class ProductScreenController implements Initializable {
 
 	/**Current slideshow that is playing*/
 	private SlideShow currentSlideShow;
+
+	private CheckBox playDirectionCheckbox = new CheckBox();
 
 	/**
 	 * initialize is automatically called when the controller is created.
@@ -105,6 +111,23 @@ public class ProductScreenController implements Initializable {
 	*/
 	protected void setSlideShow(SlideShow slideShow) {
 		this.currentSlideShow = slideShow;
+
+		playDirectionCheckbox.setText("F");
+
+		currentSlideShow.playDirection = PlayDirection.FOR;
+		SmartTrolleyToolBox.print("Play direction is forward");
+
+		playDirectionCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>() {
+			@Override
+			public void changed(ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) {
+
+				playDirectionCheckbox.setText("R");
+				currentSlideShow.playDirection = PlayDirection.REV;
+				SmartTrolleyToolBox.print("Play direction is reverse");
+
+			}
+		});
+
 	}
 
 	/**
@@ -128,16 +151,20 @@ public class ProductScreenController implements Initializable {
 	 */
 	private void createPrevPlayNxtSlideButtons() {
 
-		createSlideButton(prevSLideButton, X_COORD_CONTROLBUTTONS, Y_COORD_CONTROLBUTTONS);
-		createSlideButton(nextSLideButton, X_COORD_CONTROLBUTTONS + 2 * BTN_WIDTH, Y_COORD_CONTROLBUTTONS);
-		createSlideButton(playPauseButton, X_COORD_CONTROLBUTTONS + BTN_WIDTH, Y_COORD_CONTROLBUTTONS);
+		// createSlideButton(prevSLideButton, X_COORD_CONTROLBUTTONS, Y_COORD_CONTROLBUTTONS);
+		// createSlideButton(nextSLideButton, X_COORD_CONTROLBUTTONS + 2 * BTN_WIDTH, Y_COORD_CONTROLBUTTONS);
+		// createSlideButton(playPauseButton, X_COORD_CONTROLBUTTONS + BTN_WIDTH, Y_COORD_CONTROLBUTTONS);
+
+		createSlideButton(prevSLideButton);
+		createSlideButton(nextSLideButton);
+		createSlideButton(playPauseButton);
 
 		nextSLideButton.defaultButtonProperty().set(true);
 
 		prevSLideButton.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
-			public void handle(ActionEvent event) {			
+			public void handle(ActionEvent event) {
 				SmartTrolleyToolBox.print("Pressed prev slide");
 
 				if (currentSlideShow == null) {
@@ -150,7 +177,7 @@ public class ProductScreenController implements Initializable {
 		});
 
 		nextSLideButton.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
 
@@ -167,15 +194,15 @@ public class ProductScreenController implements Initializable {
 		});
 
 		playPauseButton.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
 				if (currentSlideShow == null) {
-					
+
 					noSlideShowLoaded(event);
-					
+
 				} else {
-					
+
 					if (currentSlideShow.autoPlay) {
 						disableAutoPlay();
 					} else {
@@ -186,6 +213,9 @@ public class ProductScreenController implements Initializable {
 			}
 		});
 
+		priceAndSlideButtonsVBox.getChildren().add(playDirectionCheckbox);
+
+		// Create a HBox for holding the control buttons
 		HBox SlideControlButtonsHBox = new HBox();
 		SlideControlButtonsHBox.getChildren().add(prevSLideButton);
 		SlideControlButtonsHBox.getChildren().add(playPauseButton);
@@ -319,7 +349,7 @@ public class ProductScreenController implements Initializable {
 	 * @param y_coord
 	 * <p> Date Modified: 22 May 2014
 	 */
-	private void createSlideButton(Button btn, Double x_coord, Double y_coord) {
+	private void createSlideButton(Button btn) {
 
 		if (btn.getText() != null && !btn.getText().equals("")) {
 			btn.setId(btn.getText());
@@ -328,8 +358,8 @@ public class ProductScreenController implements Initializable {
 		btn.setPrefSize(BTN_WIDTH, BTN_HEIGHT);
 		// btn.setMinHeight(50);
 
-		AnchorPane.setTopAnchor(btn, y_coord);
-		AnchorPane.setLeftAnchor(btn, x_coord);
+		// AnchorPane.setTopAnchor(btn, y_coord);
+		// AnchorPane.setLeftAnchor(btn, x_coord);
 	}
 
 	/**

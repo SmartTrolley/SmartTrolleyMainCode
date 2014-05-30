@@ -28,7 +28,7 @@ public class SlideShow {
 	 * Enumerated type for play direction
 	 */
 	enum PlayDirection {
-		NEXT, PREV
+		FOR, REV
 	}
 
 	/**Message Box Height*/
@@ -61,7 +61,7 @@ public class SlideShow {
 	private PlaySlide playSlide;
 	
 	/**Direction to play the slideshow*/
-	private PlayDirection playDirection = PlayDirection.NEXT;
+	protected PlayDirection playDirection = PlayDirection.FOR;
 	
 	/**
 	 *The constructor
@@ -118,10 +118,9 @@ public class SlideShow {
 	 *<p> User can view PWS Compatible slideshow
 	 *<p> Date Modified: 26 May 2014
 	 */
-	protected void startSlideshow(PlayDirection playDirection) {
+	protected void startSlideshow() {
 		SmartTrolleyToolBox.print("Starting Slideshow");
-
-		this.playDirection = playDirection;
+		
 		SmartTrolleyToolBox.print("The slideshow has " + slides.size() + " slides.");
 		slideShowIndex = 0;
 
@@ -294,7 +293,7 @@ public class SlideShow {
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
-					if (playDirection == PlayDirection.NEXT) {
+					if (playDirection == PlayDirection.FOR) {
 						nextSlide();
 					} else {
 						prevSlide();

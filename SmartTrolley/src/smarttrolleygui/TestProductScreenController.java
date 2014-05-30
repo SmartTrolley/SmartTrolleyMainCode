@@ -40,7 +40,6 @@ public class TestProductScreenController {
 	/**Duration of Slide*/
 	private int slideDuration = 1;
 
-
 	/**
 	 * This method runs before every test.
 	 * @throws java.lang.Exception
@@ -86,7 +85,6 @@ public class TestProductScreenController {
 
 		createAndStartTestSlideshow();
 
-		
 		// screen that appears.
 		// Delay to allow the application state to settle before running the test
 		// If you get NullPointer errors around this line, increase the delay
@@ -120,12 +118,12 @@ public class TestProductScreenController {
 		testSlideShow.addSlideToSlideShow(secondSlide);
 
 		SmartTrolleyToolBox.print("testSlideShow is " + (testSlideShow == null) + " null.");
-		smartTrolleyApplication.productScreen.setSlideShow(testSlideShow);
 
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				testSlideShow.startSlideshow(PlayDirection.PREV);
+				smartTrolleyApplication.productScreen.setSlideShow(testSlideShow);
+				testSlideShow.startSlideshow();
 			}
 		});
 	}
@@ -199,7 +197,7 @@ public class TestProductScreenController {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				for (int i=0; i< smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides().size(); i++) {
+				for (int i = 0; i < smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides().size(); i++) {
 					smartTrolleyApplication.productScreen.nextSLideButton.fire();
 					SmartTrolleyToolBox.print("Next button fired in testSlideShowEndsWhenNoMoreSlides Test");
 				}
