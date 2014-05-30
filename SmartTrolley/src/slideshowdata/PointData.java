@@ -33,8 +33,7 @@ public class PointData implements DataType{
 
 	public int getY() {
 		return y;
-	}
-	
+	}	
 
 	public void setNum(int num) {
 		this.num = num;

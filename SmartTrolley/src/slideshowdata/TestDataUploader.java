@@ -48,7 +48,6 @@ public class TestDataUploader {
 
 //		dataUploader.addDocumentDataContent(author, version, title, comment, width, height);
 		
-		
 		dataUploader.deleteDocumentDataContent();
 	}
 
@@ -101,7 +100,10 @@ public class TestDataUploader {
 		boolean loop = false;
 
 		dataUploader.addAudioTableContents(productID, slideID, urlName, startTime,  volume, loop);
-		
+		AudioData audiodata = (AudioData)dataUploader.getSpecificData("audio", "starttime", "0");
+		assertEquals(false, audiodata.getLoop());
+		assertEquals(0, audiodata.getStarttime());
+		assertEquals("img/SampleProducts/large/ariel.jpg", audiodata.getUrlname());
 		dataUploader.deleteLastContentAndResetAutoIncrement("audio");
 	}
 
@@ -130,7 +132,10 @@ public class TestDataUploader {
 			y = 75;
 
 		dataUploader.addPointContents(productid, slideID, shapeNo, individualPointNo, x, y);
-		
+		PointData pointdata = (PointData)dataUploader.getSpecificData("point", "ShapeNo", "1");
+		assertEquals(3,pointdata.getNum());
+		assertEquals(56,pointdata.getX());
+		assertEquals(75,pointdata.getY());
 		dataUploader.deleteLastContentAndResetAutoIncrement("point");
 	}
 
@@ -164,7 +169,15 @@ public class TestDataUploader {
 			   linecolor = "blue";
 
 		dataUploader.addShapeContents(productid, slideID, totalPoints, width, height, starttime, duration, layer, branch, fillcolor, linecolor);
-		
+		ShapeData shapedata = (ShapeData)dataUploader.getSpecificData("shape", "totalpoints", "4");
+		assertEquals("black", shapedata.getFillcolor());
+		assertEquals("blue", shapedata.getLinecolor());
+		assertEquals(3, shapedata.getLayer());
+		assertEquals(10, shapedata.getDuration());
+		assertEquals(0, shapedata.getStarttime());
+		assertEquals(4, shapedata.getTotalpoints());
+		assertEquals(30, shapedata.getWidth());
+		assertEquals(30, shapedata.getHeight());
 		dataUploader.deleteLastContentAndResetAutoIncrement("shape");
 	}
 
@@ -199,7 +212,15 @@ public class TestDataUploader {
 			   FontColor = "blue";
 
 		dataUploader.addTextContents(productid, slideID, fontSize, xStart, yStart, startTime, duration, layer, xend, yend, font, FontColor);
-		
+		TextData textdata = (TextData)dataUploader.getSpecificData("text", "font", "comic sans");
+		assertEquals(30, textdata.getFontsize());
+		assertEquals(30, textdata.getXstart());
+		assertEquals(0, textdata.getYstart());
+		assertEquals(10, textdata.getStarttime());
+		assertEquals(3, textdata.getDuration());
+		assertEquals(4, textdata.getLayer());
+		assertEquals(50, textdata.getXend());
+		assertEquals(50, textdata.getYend());
 		dataUploader.deleteLastContentAndResetAutoIncrement("text");
 	}
 
@@ -230,7 +251,12 @@ public class TestDataUploader {
 		String text = "LLLLLOOOOKKIIIE, some text";
 
 		dataUploader.addTextbodyContents(productid, slideID, TextNo, Branch, Bold, italic, underlined, text);
-		
+		TextBodyData textbodydata = (TextBodyData)dataUploader.getSpecificData("textbody", "TextNo", "30");
+		assertEquals(false, textbodydata.getBold());
+		assertEquals(false, textbodydata.getItalic());
+		assertEquals(false, textbodydata.getUnderlined());
+		assertEquals("LLLLLOOOOKKIIIE, some text", textbodydata.getTextstring());
+		assertEquals(30, textbodydata.getBranch());
 		dataUploader.deleteContentAndResetAutoIncrement("textbody");
 	}
 
@@ -264,7 +290,17 @@ public class TestDataUploader {
 		boolean loop = false;
 
 		dataUploader.addVideoContents(productid, slideID, urlname, starttime, loop, xstart, ystart, width, height, layer, duration);
-		
+		VideoData videodata = (VideoData)dataUploader.getSpecificData("video", "slideID", "1");
+		assertEquals(15,videodata.getDuration());
+		assertEquals(1,videodata.getLayer());
+		assertEquals(60,videodata.getHeight());
+		assertEquals(100,videodata.getWidth());
+		assertEquals(false,videodata.getLoop());
+		assertEquals(0,videodata.getStarttime());
+		assertEquals(40,videodata.getXstart());
+		assertEquals(70,videodata.getYstart());
+		assertEquals(15,videodata.getDuration());
+		assertEquals("SOME URL",videodata.getUrlname());
 		dataUploader.deleteLastContentAndResetAutoIncrement("video");
 	}
 
@@ -298,8 +334,17 @@ public class TestDataUploader {
 		String urlname = "SOME URL";
 
 		dataUploader.addImageContents(productID, slideID, urlname, xstart, ystart, width, height, starttime, duration, layer, branch);
-		
-		dataUploader.deleteLastContentAndResetAutoIncrement("image");
+		ImageData imagedata = (ImageData)dataUploader.getSpecificData("image_slide", "xstart", "30");
+		assertEquals(3,imagedata.getBranch());
+		assertEquals(10,imagedata.getDuration());
+		assertEquals(60,imagedata.getHeight());
+		assertEquals(2,imagedata.getLayer());
+		assertEquals(3,imagedata.getStarttime());
+		assertEquals("SOME URL",imagedata.getUrlname());
+		assertEquals(50,imagedata.getWidth());
+		assertEquals(30,imagedata.getXstart());
+		assertEquals(40,imagedata.getYstart());
+		dataUploader.deleteLastContentAndResetAutoIncrement("image_slide");
 	}
 
 //	@Test

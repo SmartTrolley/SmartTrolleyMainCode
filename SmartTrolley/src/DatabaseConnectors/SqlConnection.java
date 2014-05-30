@@ -381,14 +381,15 @@ import smarttrolleygui.SmartTrolleyGUI;
 					
 					while (results.next()){
 						
-						//get num
-						pointdata.setNum(results.getInt("num"));
+						//get point pointNo
+						pointdata.setNum(results.getInt("IndividualPointNo"));
 						
 						//get x
 						pointdata.setX(results.getInt("x"));
 						
 						//get y
 						pointdata.setY(results.getInt("y"));
+				
 					}
 					data = pointdata;
 					break;
@@ -404,14 +405,14 @@ import smarttrolleygui.SmartTrolleyGUI;
 						//get linecolor
 						shapedata.setLinecolor(results.getString("linecolor"));
 						
+						//get Starttime
+						shapedata.setStarttime(results.getInt("starttime"));
+						
 						//get layer
 						shapedata.setLayer(results.getInt("layer"));
 						
 						//get duration
 						shapedata.setDuration(results.getInt("duration"));
-						
-						//get layer
-						shapedata.setStarttime(results.getInt("layer"));
 						
 						//get totalpoints
 						shapedata.setTotalpoints(results.getInt("totalpoints"));
@@ -498,7 +499,7 @@ import smarttrolleygui.SmartTrolleyGUI;
 						textbodydata.setUnderlined(results.getBoolean("underlined"));
 						
 						//get textstring
-						textbodydata.setTextstring(results.getString("textstring"));
+						textbodydata.setTextstring(results.getString("Text"));
 					}
 					data = textbodydata;
 					break;
