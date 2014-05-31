@@ -184,7 +184,7 @@ public class TestAllShoppingListsScreenController {
 		int rowSize = 0;
 		int listSize = 0;
 
-		query = "SELECT * FROM lists_products WHERE listID = 43";
+		query = "SELECT * FROM lists_products WHERE listID = 1";
 
 		try {
 			results = productsDatabase.sendQuery(query);
@@ -197,6 +197,8 @@ public class TestAllShoppingListsScreenController {
 		
 		 try { Robot menuRobot = new Robot();
 		 
+		 menuRobot.keyPress(KeyEvent.VK_TAB);
+		 menuRobot.keyRelease(KeyEvent.VK_TAB);
 		 menuRobot.keyPress(KeyEvent.VK_ENTER);
 		 menuRobot.keyRelease(KeyEvent.VK_ENTER);
 		 
@@ -208,7 +210,6 @@ public class TestAllShoppingListsScreenController {
 
 		try {
 			results.last();
-			results.getRow();
 
 			rowSize = results.getRow();
 			

@@ -6,19 +6,27 @@
  *
  * @author Arne
  * @author samgeering [Category Filtering added]
+ * @author Alick Jacklin & Prashant Chakravarty V 1.1
  *
  *
  * @author [Checked By:] [Checker(s) fill here]
  *
  * @version [1.0] [Date Created: 22/02/14]
+ * @Verison [1.1] [Date Created: 30/05/2014] 
  */
 package smarttrolleygui;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import toolBox.SmartTrolleyToolBox;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -30,6 +38,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -53,11 +62,18 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 	private TableColumn<Product, Product> addColumn;
 	@FXML
 	private Label listNameLabel;
+	@FXML
+	private TextField searchBox;
+	@FXML
+	private Button searchButton;
 
 	private SmartTrolleyGUI application;
 	private ObservableList<String> categories;
 	private ObservableList<Product> productData;
 	private String categoryNumber;
+	private String query;
+	public static SqlConnection productsDatabase;
+	private ResultSet resultSet;
 
 	/**
 	 * initialize is automatically called when the controller is created.
@@ -184,6 +200,59 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 	public void setCategoryNumber(String categoryNumber) {
 		this.categoryNumber = categoryNumber;
 	}  
+	
+	/**
+	*Searches database for product entered into the TextField.
+	*<p>User is able to search for product
+	*@param event
+	*@throws SQLException
+	*<p> Date Modified: 30 May 2014
+	*/
+	public void searchForProducts(ActionEvent event) throws SQLException{
+		
+		productsDatabase = new SqlConnection();
+		productsDatabase.openConnection();
+		ObservableList<Product> products = FXCollections.observableArrayList();
+		
+		SmartTrolleyToolBox.print(searchBox.getText());
+		
+		query  = "SELECT * FROM products WHERE name LIKE '" + searchBox.getText() + "%';";	
+		
+		try {
+		 resultSet = productsDatabase.sendQuery(query);
+		} catch (SQLException e) {
+			SmartTrolleyToolBox.print("unable to send query");
+		}
+		
+
+			
+			
+			while (resultSet.next()) {
+				
+				Product product = new Product();
+				
+				SmartTrolleyToolBox.print(resultSet.getString("Name"));
+				// get id
+				product.setId(resultSet.getInt("ProductID"));
+				
+				// get Name
+				product.setName(resultSet.getString("Name"));
+				
+				// get Image
+				product.setImage(resultSet.getString("Image"));
+				
+				// get Price
+				product.setPrice(resultSet.getFloat("Price"));
+				
+				products.add(product);
+			}
+			
+			 productTable.setItems(products);
+			// initializeProductTable();
+			
+			
+		productsDatabase.closeConnection();
+	}
 
 	/**
 	 * initializeProductTable fills the TableView with data and sets up cell
