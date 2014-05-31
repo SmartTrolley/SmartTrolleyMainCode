@@ -119,6 +119,8 @@ public class TestProductScreenController {
 	private boolean vidLoop = true;
 	private double vidStartTime = 0;
 	private double vidDuration = 5.0;
+	
+	
 	/**
 	 * This method runs before every test.
 	 * @throws java.lang.Exception
@@ -129,41 +131,13 @@ public class TestProductScreenController {
 
 		smartTrolleyApplication = new SmartTrolleyGUI();
 
-		/*
-		 * Create a new thread which launches the application. If the main
-		 * thread launches the application, the rest of the test will only run
-		 * after the application closes i.e. pointless.
-		 */
-		Thread newGUIThread;
-
-		newGUIThread = new Thread("New GUI") {
-			public void run() {
-				SmartTrolleyToolBox.print("GUI thread");
-				Application.launch(smartTrolleyApplication.getClass(), (java.lang.String[]) null);
-
-			}
-		};
-		newGUIThread.start();
+		smartTrolleyApplication = TestGUINavigationForTests.launchTestApplication(smartTrolleyApplication);
 		
-
 		 setupImage();
 		 setupGraphics();
 		 setupAudio();
 		 setupVideo();
 		 setupText();	
-
-		// Delay to allow the application to launch
-		// If you get NullPointer errors around this line, increase the delay
-		SmartTrolleyToolBox.delay(200);
-
-		// Now launch the instance of SmartTrolleyGUI, which takes over the displayed stage
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				smartTrolleyApplication.start(SmartTrolleyGUI.stage);
-				smartTrolleyApplication.goToProductScreen();
-			}
-		});
 		
 		SmartTrolleyGUI.setCurrentProductID(21);
 
@@ -179,6 +153,7 @@ public class TestProductScreenController {
 		SmartTrolleyToolBox.delay(500);
 
 	}
+
 	
 	/**
 	*sets up images to be stored in the imageList ArrayList
@@ -288,14 +263,7 @@ public class TestProductScreenController {
 				 videoList, slideDuration);
 		testSlideShow = new SlideShow(smartTrolleyApplication.productScreen.getProductAnchorPane());
 
-		// TODO User IMAGE_HEIGHT & IMAGE_WIDTH constants instead of magic numbers
-		//Image productImage = new Image(getClass().getResourceAsStream("img/SampleProducts/Activia.jpg"), 100, 100, true, true);
-		//ImageView productImageView = new ImageView(productImage);
-
 		testSlideShow.addSlideToSlideShow(firstSlide);
-//
-//		productImage = new Image(getClass().getResourceAsStream("img/SampleProducts/alpen_blueberry_cranberry.jpg"), 100, 100, true, true);
-//		productImageView = new ImageView(productImage);
 		
 		setupImage2();
 		setupGraphics();
@@ -368,13 +336,8 @@ public class TestProductScreenController {
 	*/
 	@Test
 	public final void testNextSlideButton() {
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				smartTrolleyApplication.productScreen.nextSLideButton.fire();
-			}
-		});
-		SmartTrolleyToolBox.delay(500);
+		TestGUINavigationForTests.goToNextTestSlide(smartTrolleyApplication);
+		
 		assertEquals(smartTrolleyApplication.productScreen.getCurrentSlideShow().getSlides().get(1), smartTrolleyApplication.productScreen.getCurrentSlideShow()
 				.getDisplayedSlide());
 	}
@@ -410,15 +373,8 @@ public class TestProductScreenController {
 	@Test
 	public final void testPrevButtonOnFirstSlide() {
 
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				smartTrolleyApplication.productScreen.prevSLideButton.fire();
-				SmartTrolleyToolBox.print("Prev button fired in testPrevButtonOnFirstSlide Test");
-			}
-		});
-
-		SmartTrolleyToolBox.delay(500);
+		TestGUINavigationForTests.goToPrevTestSlide(smartTrolleyApplication);
+		
 		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().outOfSlideShowMessageBox.isShowing());
 	}
 
@@ -430,12 +386,8 @@ public class TestProductScreenController {
 	@Test
 	public final void testSlideDuration() {
 
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				smartTrolleyApplication.productScreen.playPauseButton.fire();
-			}
-		});
+		TestGUINavigationForTests.playPauseSlideshow(smartTrolleyApplication);
+		
 		SmartTrolleyToolBox.delay(3000 * slideDuration);
 		assertTrue(smartTrolleyApplication.productScreen.getCurrentSlideShow().outOfSlideShowMessageBox.isShowing());
 	}
@@ -448,7 +400,7 @@ public class TestProductScreenController {
 	@Test
 	public final void testFavoriteButton() {
 
-		while(true);
+		//while(true);
 //		Platform.runLater(new Runnable() {
 //			@Override
 //			public void run() {

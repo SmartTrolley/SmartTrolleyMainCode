@@ -66,8 +66,7 @@ public class StartScreenController extends ControllerGeneral implements Initiali
 	/**
 	*
 	*parsePWS is called when the Parse a PWS XML File button is pressed
-	*TODO No user story exists for XML Parser, create this.
-	*<p>Test(s)/User Story that it satisfies
+	*<p>User can load PWS compatible XML File into program
 	*@param event
 	*<p> Date Modified: 24 May 2014
 	*/
@@ -79,7 +78,6 @@ public class StartScreenController extends ControllerGeneral implements Initiali
 		} else {
 			// TODO Replace with appropriate method
 			PWSParser PWSParser = new PWSParser();
-			PWSParser.parsePWS();
 		}
 	}
 
