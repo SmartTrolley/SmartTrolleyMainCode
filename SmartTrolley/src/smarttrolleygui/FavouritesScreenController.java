@@ -193,7 +193,8 @@ initializeProductTable fills the TableView with data and sets up cell
 	 * <p> Date Modified: 9 Mar 2014
 	 */
 	private void initializeProductTable() {
-        // set up column cell value factories
+
+        // set up column cell value factories
         productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
         addColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {

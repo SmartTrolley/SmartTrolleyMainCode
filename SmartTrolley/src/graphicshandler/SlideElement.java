@@ -32,23 +32,11 @@ package graphicshandler;
 
 public interface SlideElement {
 	
-	/**
-	 *  sets the time that the product appears for using the slideElementDuration class.
-	 *  
-	 * 
-	 */
-	public void setDuration(int seconds);
+
+	public void scale(int xScaler, int yScaler);
 	
 	// shows the element for the selected duration
 	public void show();
 	
-	// sets the height in pixels of the element
-	public void setHeight(int newHeight);
-	
-	// sets the width as above
-	public void setWidth(int newWidth);
-	
-	//sets the delay before the product appears
-	public void setStartTime(int seconds);
 	
 }

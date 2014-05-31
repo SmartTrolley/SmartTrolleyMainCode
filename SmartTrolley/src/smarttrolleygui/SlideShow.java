@@ -181,7 +181,7 @@ public class SlideShow {
 	 */
 	private void deleteSlidePane() {
 
-		// TODO Clear slide here: displayedSlide.clearSlide();
+		displayedSlide.clearSlide();
 		
 		// Perhaps remove the slide children clearing in clearSlide()
 		SmartTrolleyToolBox.print(displayedPane.getChildren());

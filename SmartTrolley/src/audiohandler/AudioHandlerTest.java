@@ -14,7 +14,7 @@ public class AudioHandlerTest {
 	@Before
 	public void setup(){
 		//play audio for 2 seconds after 1 second has passed
-		audio = new AudioHandler("/SmartTrolley/src/audiohandlers/positive_force.mp3", 1, 2, 0.3);
+		audio = new AudioHandler(" /SmartTrolley/src/audiohandlers/positive_force.mp3", 1, 2, 0.3);
 	}
 	
 	@Test

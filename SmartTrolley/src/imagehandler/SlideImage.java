@@ -68,7 +68,7 @@ public class SlideImage extends ImageView{
 	*@param duration
 	*<p> Date Modified: May 3, 2014
 	*/
-	protected void setDuration(int seconds) {
+	protected void setDuration(double seconds) {
 		
 		duration.setDuration(seconds);
 		

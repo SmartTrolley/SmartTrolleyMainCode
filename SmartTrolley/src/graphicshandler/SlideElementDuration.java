@@ -39,8 +39,8 @@ public class SlideElementDuration {
 
 	private Timer timer;
 	private Node node;
-	private int duration = 0;
-	private int startTime = 0;
+	private double duration = 0;
+	private double startTime = 0;
 	private boolean started;
 
 	
@@ -76,7 +76,7 @@ public class SlideElementDuration {
 			started = true;
 
 			TimerTask appear = new ShowTask();
-			timer.schedule(appear, this.startTime);
+			timer.schedule(appear, (long)this.startTime);
 		}
 	}
 
@@ -87,7 +87,7 @@ public class SlideElementDuration {
 	*<p> Date Modified: 25 April 2014
 	
 	*/
-	public void setStartTime(int seconds) {
+	public void setStartTime(double seconds) {
 		
 		//startTime is in milliseconds
 		startTime = seconds*1000;
@@ -101,7 +101,7 @@ public class SlideElementDuration {
 	*<p> Date Modified: 25 April 2014
 	
 	*/
-	public void setDuration(int seconds) {
+	public void setDuration(double seconds) {
 		// duration is in milliseconds
 		duration = seconds * 1000;
 	}
@@ -112,7 +112,7 @@ public class SlideElementDuration {
 	*@param milliseconds	
 	*<p> Date Modified: 25 April 2014
 	 */
-	private class ShowTask extends TimerTask {
+	public class ShowTask extends TimerTask {
 		@Override
 		public void run() {
 			if (started) {
@@ -122,7 +122,7 @@ public class SlideElementDuration {
 
 				// 0 duration keeps shape visible
 				if (duration != 0) {
-					timer.schedule(new ShowTask(), duration);
+					timer.schedule(new ShowTask(), (long)duration);
 				}
 
 			} else {
