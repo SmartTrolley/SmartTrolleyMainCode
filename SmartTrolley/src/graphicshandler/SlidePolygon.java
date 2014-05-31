@@ -32,7 +32,7 @@ import javafx.scene.shape.Polygon;
  * @version [v1.0] [Date Created: 25/04/14]
  */
 
-public class SlidePolygon extends Polygon {
+public class SlidePolygon extends Polygon implements SlideElement {
 
 	private SlideElementDuration duration;
 

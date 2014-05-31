@@ -59,7 +59,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	private SmartTrolleyGUI application;
 	private Product product;
 	// TODO Remove these if they're still not used after merge
-	private String productName;
+	String productName;
 	private String productImageURL;
 	private float productPrice;
 
@@ -130,7 +130,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 		productsDatabase = new SqlConnection();
 		String criteria = "productID";
 		String value = String.valueOf(SmartTrolleyGUI.getCurrentProductID());
-		product = productsDatabase.getSpecificProduct(criteria, value);
+		product = productsDatabase.getSpecificProduct(criteria, value, "1");
 		productName = product.getName();
 		productImageURL = product.getImage();
 		productPrice = product.getPrice();

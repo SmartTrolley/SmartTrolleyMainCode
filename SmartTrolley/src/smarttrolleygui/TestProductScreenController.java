@@ -77,6 +77,8 @@ public class TestProductScreenController {
 				smartTrolleyApplication.goToProductScreen();
 			}
 		});
+		
+		SmartTrolleyGUI.setCurrentProductID(21);
 
 		// Delay to allow the instance to launch.
 		// If you get NullPointer errors around this line, increase the delay

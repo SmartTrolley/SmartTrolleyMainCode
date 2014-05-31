@@ -53,7 +53,7 @@ public class AllShoppingListsScreenController extends ControllerGeneral implemen
 		productsDatabase.openConnection();
 
 		try {
-			createButtonOfLists();
+			createButtonListFromLists();
 
 			
 		} catch (SQLException e) {
@@ -85,7 +85,7 @@ public class AllShoppingListsScreenController extends ControllerGeneral implemen
 	*@throws SQLException
 	*<p> Date Modified: 9 May 2014
 	*/
-	public void createButtonOfLists() throws SQLException {
+	public void createButtonListFromLists() throws SQLException {
 		String query = "SELECT ListID ,Name from lists";
 		SmartTrolleyToolBox.print("returned lists from DB");
 		ResultSet resultSet = productsDatabase.sendQuery(query);
@@ -106,6 +106,7 @@ public class AllShoppingListsScreenController extends ControllerGeneral implemen
 			newButton.setPrefSize(300, 80);
 			newButton.setMinHeight(50);
 			newButton.getStyleClass().add("buttonLarge");
+			
 			// Load shoppingLists if clicked
 			newButton.setOnAction(new EventHandler<ActionEvent>() {
 

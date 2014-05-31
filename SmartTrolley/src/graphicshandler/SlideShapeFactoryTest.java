@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.PriorityQueue;
 
+import javafx.geometry.Bounds;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Shape;
@@ -37,7 +38,7 @@ public class SlideShapeFactoryTest {
 
 	/**
 	*Setup Class For SlideShapeFactory Test
-	*<p> Date Modified: 25 April 2014
+	*<p> Date Modified: 25 Apr 2014
 	*/
 	@Before
 	public void setUp() throws Exception{
@@ -116,6 +117,19 @@ public class SlideShapeFactoryTest {
 		assertEquals(SlidePolygon.class, square.getClass());
 	}
 	
+	/**
+	*Tests that the Height (According to its self) of the polygon 
+	*is equal to the expected height.
+	*
+	*<p> Date Modified: 25 Apr 2014
+	*/
+	@Test
+	public void squareHeightTest()	{
+		Bounds squareBounds = square.getBoundsInLocal();
+		double squareHeight =squareBounds.getHeight();
+		assertEquals(squareHeight, height, 0.0001);
+	}
+	
 	
 	/**
 	*Tests that the points in the list passed to the factory
@@ -182,6 +196,30 @@ public class SlideShapeFactoryTest {
 		squareLineColor = shapeFactory.getLineColor();
 		
 		assertEquals(Color.BLUE, squareLineColor);
+	}
+	
+	
+	
+	/**
+	*Test that setWidth and setHeight correctly change the width and height of
+	*the space the shape occupies in its parent.
+	*<p> Date Modified: 25 Apr 2014
+	*/
+	@Test
+	public void polygonResizeTest(){
+		
+		int extra = 8;
+		
+		int newWidth = width + extra;
+		int newHeight = height + extra;
+		
+		shapeFactory.setWidth(newWidth);
+		shapeFactory.setHeight(newHeight);
+		
+		Shape shape = shapeFactory.getShape();
+		
+		assertEquals(newWidth, shape.getBoundsInParent().getWidth(), 0.001);
+		assertEquals(newHeight, shape.getBoundsInParent().getHeight(), 0.001);
 	}
 	
 	

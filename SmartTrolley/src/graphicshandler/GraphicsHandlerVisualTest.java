@@ -73,6 +73,7 @@ public class GraphicsHandlerVisualTest extends Application {
 	*Setup method for circle inputs points, width, height, fill colour, line colour,
 	*start time and duration to SlideShapeFactory to generate an Ellipse	
 	*<p> Date Modified: 28 April 2014
+	
 	*/
 	private void setupCircle() {
 		
@@ -142,7 +143,6 @@ public class GraphicsHandlerVisualTest extends Application {
 		points.add(point5);
 		
 		shapeFactory = new SlideShapeFactory(points, height,width,blue,blue,startTime, duration);
-		
 		pentagon = (SlidePolygon) shapeFactory.getShape();
 		
 		pentagon.setStroke(Color.AQUA);
@@ -153,9 +153,6 @@ public class GraphicsHandlerVisualTest extends Application {
 	/**
 	*Setup method for square inputs points, width, height, fill colour, line colour,
 	*start time and duration to SlideShapeFactory to generate a square	
-	*
-	*<p>Passes Square visual test
-	*
 	*<p> Date Modified: 28 April 2014
 	*/
 	private void setupSquare() {
@@ -175,10 +172,9 @@ public class GraphicsHandlerVisualTest extends Application {
 	}
 
 	/**
-	 * Runs the constructors for the points
-	 * 
-	 *<p> Date Modified: 28 April 2014
-	 */
+	 * Generates a square using slideShapeFactory
+	*<p> Date Modified: 28 April 2014
+	*/
 	private void setupPoints() {
 		//create a square using slideShapeFactory
 		point1 = new ShapePoint(pointLow,pointLow,point1Num);

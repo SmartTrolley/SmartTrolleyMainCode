@@ -33,7 +33,7 @@ import javafx.scene.shape.Ellipse;
  * @version [v1.0] [Date Created: 25/04/14]
  */
 
-public class SlideEllipse extends Ellipse {
+public class SlideEllipse extends Ellipse implements SlideElement{
 
 	private SlideElementDuration duration;
 
@@ -55,6 +55,7 @@ public class SlideEllipse extends Ellipse {
 	 * Method converts from seconds to milliseconds for setDuration
 	 *<p> Date Modified: 2 May 2014
 	 */
+	@Override
 	public void setDuration(int seconds) {
 		
 		duration.setDuration(seconds);
@@ -64,6 +65,7 @@ public class SlideEllipse extends Ellipse {
 	/**Calls duration.show()
 	 *<p> Date Modified: 2 May 2014
 	 */
+	@Override
 	public void show() {
 		duration.show();
 	}
@@ -74,6 +76,7 @@ public class SlideEllipse extends Ellipse {
 	 * inherent height of the shape, to determine a scaling factor
 	 *<p> Date Modified: 2 May 2014
 	 */
+	@Override
 	public void setHeight(int newHeight) {
 		
 		double inherentHeight = super.getBoundsInLocal().getHeight();
@@ -90,6 +93,7 @@ public class SlideEllipse extends Ellipse {
 	 * Finds the ratio of the newWidth of the shape once it has been resized to the 
 	 * inherent width of the shape, to determine a scaling factor
 	 */
+	@Override
 	public void setWidth(int newWidth) {
 
 		// create local shape to access polygon parameters
@@ -107,6 +111,7 @@ public class SlideEllipse extends Ellipse {
 	 *Method converts from seconds to milliseconds for setStartTime
 	 *<p> Date Modified: 2 May 2014
 	 */
+	@Override
 	public void setStartTime(int seconds) {
 		duration.setStartTime(seconds);		
 	}

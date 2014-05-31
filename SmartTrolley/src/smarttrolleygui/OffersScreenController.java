@@ -15,7 +15,8 @@ package smarttrolleygui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.collections.FXCollections;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -28,6 +29,9 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import DatabaseConnectors.SqlConnection;
 
@@ -40,11 +44,11 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	@FXML
 	private TableColumn<Product, Product> imageColumn;
 	@FXML
-	private TableColumn<Product, Product> productNameColumn;
+    private TableColumn<Product, String> productNameColumn;
 	@FXML
-	private TableColumn<Product, Float> priceColumn;
+    private TableColumn<Product, String> priceColumn;
 	@FXML
-	private TableColumn<Product, Float> offerPriceColumn;
+    private TableColumn<Product, String> offerPriceColumn;    
 	@FXML
 	private TableColumn<Product, Product> addColumn;
 	@FXML
@@ -53,6 +57,7 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	private SmartTrolleyGUI application;
 	private ObservableList<String> categories;
 	private ObservableList<Product> productData;
+	private String categoryNumber = null;
 
 	/**
 	 * initialize is automatically called when the controller is created.
@@ -64,8 +69,42 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 		// Fill list on the LHS of the screen with different product categories
 		categories = initializeCategories();
 		categoriesList.setItems(categories);
+    	
+    	//Create new SqlConnection to retrieve product data
+    	SqlConnection sqlConnector = new SqlConnection();
+    
+        // Fill table with sample products
+        productData = sqlConnector.getListOfOffers();
+		
+        productTable.setItems(productData);
+        
 		// show name of current shopping list
 		listNameLabel.setText(SmartTrolleyGUI.getCurrentListName());
+        
+    	initializeProductTable();
+    }
+    
+    /** Any FXML item with a mouse click handle will use this method to dictate its reaction when clicked
+     * 
+     * This should only be for the Category List (ListView)
+     * 
+     */
+    @FXML public void handleMouseClick(MouseEvent arg0){
+    	
+    	SqlConnection sqlConnector = new SqlConnection();
+    	setCategoryNumber(sqlConnector.getSpecificCategoryNumber(categoriesList.getSelectionModel().getSelectedItem()));
+    	//System.out.println(getCategoryNumber());
+    	    	
+    	if (Integer.valueOf(getCategoryNumber())  == 1) {
+    		  // Fill table with sample products
+            productData = sqlConnector.getListOfOffers();
+    		}
+    	else{
+    		// Fill table with sample products
+    		productData = sqlConnector.getOfferByCategory(getCategoryNumber());
+    		}
+    	
+        productTable.setItems(productData);
 		initializeProductTable();
 	}
 
@@ -129,12 +168,23 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	 * @return categories - list of categories
 	 * <p> Date Modified: 7 Mar 2014
 	 */
-	private ObservableList<String> initializeCategories() {
-		categories = FXCollections.observableArrayList("All", "Bakery", "Fruit & Vegetables", "Dairy & Eggs", "Meat & Seafood", "Frozen", "Drinks", "Snacks & Sweets", "Desserts");
+    public ObservableList<String> initializeCategories() {
+    	//Create new SqlConnection to retrieve product data
+    	SqlConnection sqlConnector = new SqlConnection();    
+         
+        categories = sqlConnector.getListOfCategories();
 
 		return categories;
 	}
 
+	public String getCategoryNumber() {
+		return categoryNumber;
+	}
+
+	public void setCategoryNumber(String categoryNumber) {
+		this.categoryNumber = categoryNumber;
+	}    
+    
 	/**
 	 * initializeProductTable fills the TableView with data and sets up cell
 	 * factories
@@ -143,28 +193,56 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	 */
 	private void initializeProductTable() {
 
-		// Create new SqlConnection to retrieve product data
-		SqlConnection sqlConnector = new SqlConnection();
+        // set up column cell value factories
+        productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
+        offerPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("offerPrice"));
+        addColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+            @Override
+            public ObservableValue<Product> call(TableColumn.CellDataFeatures<Product, Product> features) {
+                return new ReadOnlyObjectWrapper<Product>(features.getValue());
+            }
+        });
+        imageColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+            @Override
+            public ObservableValue<Product> call(TableColumn.CellDataFeatures<Product, Product> features) {
+                return new ReadOnlyObjectWrapper<Product>(features.getValue());
+            }
+        });
 
-		// Get offers data
-		productData = sqlConnector.getListOfOffers();
+        // set up cell factories for columns containing images / buttons
+        addColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+            @Override
+            public TableCell<Product, Product> call(TableColumn<Product, Product> addColumn) {
+                return new TableCell<Product, Product>() {
+                    final Button button = new Button();
 
-		// set up column cell value factories
-		priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Float>("price"));
-		offerPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Float>("offerPrice"));
-		ControllerGeneral.setUpCellValueFactory(productNameColumn);
-		ControllerGeneral.setUpCellValueFactory(addColumn);
-		ControllerGeneral.setUpCellValueFactory(imageColumn);
+                    @Override
+                    public void updateItem(final Product product, boolean empty) {
+                        super.updateItem(product, empty);
+                        if (product != null) {
+                            button.setText("+");
+                            button.getStyleClass().add("buttonChangeQuantity");
+                            setGraphic(button);
 
-		// set up cell factories for columns with 'interactive' cells
-		ControllerGeneral.setUpImageCellFactory(imageColumn);
-		ControllerGeneral.setUpAddButtonCellFactory(addColumn);
+                            // Button Event Handler
+                            button.setOnAction(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent event) {
+                                    System.out.println("Pressed add button for product: " + product.getName());
+                                }
+                            });
+                        } else {
+                            setGraphic(null);
+                        }
+                    }
+                };
+            }
+        });
 
-		// ControllerGeneral.setUpProductNameCellFactory(productNameColumn);
-		// TODO: once refactored remove following code and uncomment previous line to set up cell factory for product name column
-		productNameColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+        imageColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
 			@Override
-			public TableCell<Product, Product> call(TableColumn<Product, Product> productNameColumn) {
+            public TableCell<Product, Product> call(TableColumn<Product, Product> imageColumn) {
 				return new TableCell<Product, Product>() {
 					final Button button = new Button();
 
@@ -172,18 +250,18 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 					public void updateItem(final Product product, boolean empty) {
 						super.updateItem(product, empty);
 						if (product != null) {
+                            Image productImage = new Image(getClass().getResourceAsStream(product.getImage()));
+                            button.setGraphic(new ImageView(productImage));
+                            button.setPrefSize(80, 60);
+                            button.getStyleClass().add("buttonProductNameTable");
 							setGraphic(button);
-							button.setText(product.getName());
-							button.setPrefHeight(80);
-							button.getStyleClass().add("buttonProductNameTable");
+							button.setText(product.getName());					
 
 							// Button Event Handler
 							button.setOnAction(new EventHandler<ActionEvent>() {
 								@Override
 								public void handle(ActionEvent event) {
-									System.out.println("Pressed name of product: " + product.getName());
-									SmartTrolleyGUI.setCurrentProductID(product.getId());
-									application.goToProductScreen();
+                                    System.out.println("Pressed image of product: " + product.getName());
 								}
 							});
 						} else {
@@ -193,9 +271,6 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 				};
 			}
 		});
-
-		// populate table with product data
-		productTable.setItems(productData);
 	}
 }
 /************** End of OffersScreenController **************/

@@ -18,19 +18,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import javafx.collections.FXCollections;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import se.mbaeumer.fxmessagebox.MessageBox;
 import se.mbaeumer.fxmessagebox.MessageBoxResult;
@@ -49,9 +55,9 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 	@FXML
 	private TableColumn<Product, Product> imageColumn;
 	@FXML
-	private TableColumn<Product, Product> productNameColumn;
+	private TableColumn<Product, String> productNameColumn;
 	@FXML
-	private TableColumn<Product, Float> priceColumn;
+	private TableColumn<Product, String> priceColumn;
 	@FXML
 	private TableColumn<Product, Product> addColumn;
 	@FXML
@@ -69,6 +75,7 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 	private final double MSG_BX_H = 100.0;
 	private final double MSG_BX_W = 400.0;
 	public static SqlConnection productsDatabase;
+	private String categoryNumber = null;
 
 	/**
 	 * initialize is automatically called when the controller is created.
@@ -80,9 +87,43 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 		// Fill list on the LHS of the screen with different product categories
 		categories = initializeCategories();
 		categoriesList.setItems(categories);
+
+		// Create new SqlConnection to retrieve product data
+		SqlConnection sqlConnector = new SqlConnection();
+
+		// Store selected products
+		SmartTrolleyToolBox.print("List ID before product table init is: " + SmartTrolleyGUI.getcurrentListID());
+		productData = sqlConnector.getList(SmartTrolleyGUI.getcurrentListID());
+		productTable.setItems(productData);
+		productTable.setPlaceholder(new Label("No Items in list, please add"));
+
 		// show name of current shopping list
 		listNameLabel.setText(SmartTrolleyGUI.getCurrentListName());
+
+		// Fill table with selected products
 		initializeProductTable();
+	}
+
+	/** Any FXML item with a mouse click handle will use this method to dictate its reaction when clicked
+	 * 
+	 * This should only be for the Category List (ListView)
+	 * 
+	 */
+	@FXML
+	public void handleMouseClick(MouseEvent arg0) {
+
+		SqlConnection sqlConnector = new SqlConnection();
+		setCategoryNumber(sqlConnector.getSpecificCategoryNumber(categoriesList.getSelectionModel().getSelectedItem()));
+		System.out.println(getCategoryNumber());
+
+		if (Integer.valueOf(getCategoryNumber()) == 1) {
+			productData = sqlConnector.getList(SmartTrolleyGUI.getcurrentListID());
+		} else {
+			productData = sqlConnector.getListByCategory(SmartTrolleyGUI.getcurrentListID(), getCategoryNumber());
+		}
+
+		productTable.setItems(productData);
+		// initializeProductTable();
 	}
 
 	/**
@@ -154,7 +195,7 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 				noListMsgBx.setHeight(MSG_BX_H);
 				noListMsgBx.setWidth(MSG_BX_W);
 			}
-			
+
 			loadStartScreen(event);
 
 		} else {
@@ -217,16 +258,30 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 	}
 
 	/**
-	 * initializeCategories sets up the list of categories that will be
-	 * displayed on screen.
-	 * <p> User can navigate through product database.
-	 * @return categories - list of categories
-	 * <p> Date Modified: 7 Mar 2014
-	 */
-	private ObservableList<String> initializeCategories() {
-		categories = FXCollections.observableArrayList("All", "Bakery", "Fruit & Vegetables", "Dairy & Eggs", "Meat & Seafood", "Frozen", "Drinks", "Snacks & Sweets", "Desserts");
+	* initializeCategories sets up the list of categories that will be
+	* displayed on screen.
+	* <p>
+	* User can navigate through product database.
+	*
+	* @return categories - list of categories
+	* <p>
+	* Date Modified: 7 Mar 2014
+	*/
+	public ObservableList<String> initializeCategories() {
+		// Create new SqlConnection to retrieve product data
+		SqlConnection sqlConnector = new SqlConnection();
+
+		categories = sqlConnector.getListOfCategories();
 
 		return categories;
+	}
+
+	public String getCategoryNumber() {
+		return categoryNumber;
+	}
+
+	public void setCategoryNumber(String categoryNumber) {
+		this.categoryNumber = categoryNumber;
 	}
 
 	/**
@@ -236,35 +291,65 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 	 * <p> Date Modified: 21 May 2014
 	 */
 	private void initializeProductTable() {
-		// Create new SqlConnection to retrieve product data
-		SqlConnection sqlConnector = new SqlConnection();
-
-		// Get product data from current list
-		productData = sqlConnector.getList(SmartTrolleyGUI.getcurrentListID());
-		// TODO: I don't know why this next line was added but does it maybe
-		// require an if statement?
-		productTable.setPlaceholder(new Label("No Items in list, please add"));
-
 		// set up column cell value factories
-		priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Float>("price"));
-
-		ControllerGeneral.setUpCellValueFactory(productNameColumn);
-		ControllerGeneral.setUpCellValueFactory(checkBoxColumn);
-		ControllerGeneral.setUpCellValueFactory(imageColumn);
-		ControllerGeneral.setUpCellValueFactory(addColumn);
-		ControllerGeneral.setUpCellValueFactory(removeColumn);
-
-		// set up cell factories for columns with 'interactive' cells
-		ControllerGeneral.setUpCheckBoxCellFactory(checkBoxColumn);
-		ControllerGeneral.setUpImageCellFactory(imageColumn);
-		ControllerGeneral.setUpAddButtonCellFactory(addColumn);
-		ControllerGeneral.setUpRemoveButtonCellFactory(removeColumn);
-
-		// ControllerGeneral.setUpProductNameCellFactory(productNameColumn);
-		// TODO: once refactored remove following code and uncomment previous line to set up cell factory for product name column
-		productNameColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+		productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+		priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
+		checkBoxColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
 			@Override
-			public TableCell<Product, Product> call(TableColumn<Product, Product> productNameColumn) {
+			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
+				return new ReadOnlyObjectWrapper<Product>(features.getValue());
+			}
+		});
+		imageColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+			@Override
+			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
+				return new ReadOnlyObjectWrapper<Product>(features.getValue());
+			}
+		});
+		addColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+			@Override
+			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
+				return new ReadOnlyObjectWrapper<Product>(features.getValue());
+			}
+		});
+		removeColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+			@Override
+			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
+				return new ReadOnlyObjectWrapper<Product>(features.getValue());
+			}
+		});
+
+		// set up cell factories for columns containing images / buttons
+		checkBoxColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+			@Override
+			public TableCell<Product, Product> call(TableColumn<Product, Product> imageColumn) {
+				return new TableCell<Product, Product>() {
+					final CheckBox checkBox = new CheckBox();
+
+					@Override
+					public void updateItem(final Product product, boolean empty) {
+						super.updateItem(product, empty);
+						if (product != null) {
+							// button.getStyleClass().add("buttonImage");
+							setGraphic(checkBox);
+
+							// Button Event Handler
+							checkBox.setOnAction(new EventHandler<ActionEvent>() {
+								@Override
+								public void handle(ActionEvent event) {
+									System.out.println("Pressed checkbox of product: " + product.getName());
+								}
+							});
+						} else {
+							setGraphic(null);
+						}
+					}
+				};
+			}
+		});
+		imageColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+			@Override
+			public TableCell<Product, Product> call(TableColumn<Product, Product> imageColumn) {
 				return new TableCell<Product, Product>() {
 					final Button button = new Button();
 
@@ -272,18 +357,45 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 					public void updateItem(final Product product, boolean empty) {
 						super.updateItem(product, empty);
 						if (product != null) {
+							Image productImage = new Image(getClass().getResourceAsStream(product.getImage()));
+							button.setGraphic(new ImageView(productImage));
+							button.setPrefSize(80, 60);
+							button.getStyleClass().add("buttonImage");
 							setGraphic(button);
-							button.setText(product.getName());
-							button.setPrefHeight(80);
-							button.getStyleClass().add("buttonProductNameTable");
 
 							// Button Event Handler
 							button.setOnAction(new EventHandler<ActionEvent>() {
 								@Override
 								public void handle(ActionEvent event) {
-									System.out.println("Pressed name of product: " + product.getName());
-									SmartTrolleyGUI.setCurrentProductID(product.getId());
-									application.goToProductScreen();
+									System.out.println("Pressed image of product: " + product.getName());
+								}
+							});
+						} else {
+							setGraphic(null);
+						}
+					}
+				};
+			}
+		});
+		addColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+			@Override
+			public TableCell<Product, Product> call(TableColumn<Product, Product> addColumn) {
+				return new TableCell<Product, Product>() {
+					final Button button = new Button();
+
+					@Override
+					public void updateItem(final Product product, boolean empty) {
+						super.updateItem(product, empty);
+						if (product != null) {
+							button.setText("+");
+							button.getStyleClass().add("buttonChangeQuantity");
+							setGraphic(button);
+
+							// Button Event Handler
+							button.setOnAction(new EventHandler<ActionEvent>() {
+								@Override
+								public void handle(ActionEvent event) {
+									System.out.println("Pressed add button for product: " + product.getName());
 								}
 							});
 						} else {
@@ -294,8 +406,35 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 			}
 		});
 
-		// populate table with product data
-		productTable.setItems(productData);
+		removeColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+			@Override
+			public TableCell<Product, Product> call(TableColumn<Product, Product> removeColumn) {
+				return new TableCell<Product, Product>() {
+					final Button button = new Button();
+
+					@Override
+					public void updateItem(final Product product, boolean empty) {
+						super.updateItem(product, empty);
+						if (product != null) {
+							button.setText("-");
+							button.getStyleClass().add("buttonChangeQuantity");
+							setGraphic(button);
+
+							// Button Event Handler
+							button.setOnAction(new EventHandler<ActionEvent>() {
+								@Override
+								public void handle(ActionEvent event) {
+									System.out.println("Pressed remove button for product: " + product.getName());
+
+								}
+							});
+						} else {
+							setGraphic(null);
+						}
+					}
+				};
+			}
+		});
 	}
 
 	// TODO: This method is neither used nor commented - can it be removed?
