@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.PriorityQueue;
 
-import javafx.geometry.Bounds;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Shape;
@@ -38,7 +37,7 @@ public class SlideShapeFactoryTest {
 
 	/**
 	*Setup Class For SlideShapeFactory Test
-	*<p> Date Modified: 25 Apr 2014
+	*<p> Date Modified: 25 April 2014
 	*/
 	@Before
 	public void setUp() throws Exception{
