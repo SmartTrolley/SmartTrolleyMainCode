@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Printing.SmartTrolleyPrint;
-
+import smarttrolleygui.ListProduct;
 import smarttrolleygui.Product;
 
 import java.sql.*;
@@ -23,7 +23,7 @@ import javafx.collections.ObservableList;
 public class SqlConnectionTest {
 
 	private static SqlConnection productsDatabase; 
-	private ObservableList<Product> products;
+	private ObservableList<ListProduct> products;
 	private ObservableList<Product> offers;
 	
 	public String query;

@@ -21,6 +21,17 @@ public class Product {
     private float price;
     private float offerPrice;
     private float savings;
+    
+    Product(String imageURL, String productName, float productPrice, Integer categoryID, Boolean isFavourite, Integer productID) {
+    	this.image = imageURL;
+        this.name = productName;
+        this.price = productPrice;
+        this.id = productID;
+    }
+    
+	public Product() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getId() {
 		return id;

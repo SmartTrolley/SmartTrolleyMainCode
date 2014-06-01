@@ -31,7 +31,7 @@ public class ProductScreenController implements Initializable {
 	public static SqlConnection productsDatabase;
     private SmartTrolleyGUI application;
     private ControllerGeneral controller = new ControllerGeneral();
-    private Product product;
+    private ListProduct product;
     private String productName;
     private String productImageURL;
     private float productPrice;

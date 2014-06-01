@@ -21,10 +21,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import Printing.SmartTrolleyPrint;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
+import smarttrolleygui.ListProduct;
 import smarttrolleygui.Offer;
 import smarttrolleygui.Product;
 import smarttrolleygui.SmartTrolleyGUI;
@@ -39,7 +38,7 @@ import smarttrolleygui.SmartTrolleyGUI;
 		private static final String USERNAME = "cl36-st";
 		private static final String PASSWORD= "Smarttrolley";
 				
-		private ObservableList<Product> products;
+		private ObservableList<ListProduct> products;
 		private ObservableList<Product> offers;
 		
 		private String url;
@@ -89,6 +88,125 @@ import smarttrolleygui.SmartTrolleyGUI;
 			return results;
 		}
 		
+		public void execute(String query) throws SQLException {
+			
+			Statement statement = connection.createStatement();
+			statement.execute(query);
+			
+		}
+		
+		//Removes all product references to the lists (i.e. removes items within lists)
+		public void removeAllProductsInTheLists() throws SQLException{
+			execute("DELETE FROM lists_products");
+		}
+		
+		public void removeProductFromList(int listId, int productId) throws SQLException{
+			execute("DELETE FROM lists_products WHERE ProductID = " + String.valueOf(productId) + " AND ListID = " + String.valueOf(listId));
+		}
+		
+		public void updateQuantity(int listId, int productId, int quantity) throws SQLException{
+			execute("UPDATE lists_products SET Quantity = " + String.valueOf(quantity) + " WHERE ProductID = " + String.valueOf(productId) + " AND ListID = " + String.valueOf(listId));
+		}
+		
+		public void removeAllLists() throws SQLException{
+			execute("DELETE FROM lists");
+		}
+		
+		public void AddList(int Id, String listName) throws SQLException{
+			String qry = "INSERT INTO lists VALUES (" + String.valueOf(Id) + ", " + listName + ")";
+			execute(qry);
+		}
+		
+		public void AddList(String listName) throws SQLException{
+			String qry = "INSERT INTO lists ('Name') VALUES (" + listName + ")";
+			execute(qry);
+		}
+		
+		public void AddProductToList(int ListId, int ProductId, int quantity) throws SQLException{
+			String qry = "INSERT INTO lists_products VALUES (" + String.valueOf(ProductId) + ", " + String.valueOf(ListId) + ", " + quantity + ")";
+			execute(qry);
+		}
+		
+		public int getItemsTotal() throws SQLException{
+			String query = "SELECT sum(Quantity) as 'Total' FROM lists_products";
+			ResultSet results = sendQuery(query);
+			
+			results.next();
+			return results.getInt("Total");
+		}
+		
+		public int getProductQuantity(int listId, int productId) throws SQLException{
+			String query = "SELECT Quantity FROM lists_products WHERE ProductID = " + String.valueOf(productId) + " AND ListID = " + String.valueOf(listId);
+			ResultSet results = sendQuery(query);
+			
+			results.next();
+			return results.getInt("Quantity");
+		}
+		
+		public ResultSet getProductInList(int listId, int productId) throws SQLException{
+			String query = "SELECT * FROM lists_products WHERE ProductID = " + String.valueOf(productId) + " AND ListID = " + String.valueOf(listId);
+			return sendQuery(query);
+			
+		}
+		
+		public void updateListName(int ListId, String name) throws SQLException{
+			String query = "UPDATE lists SET Name = '"+ name +"' WHERE ListID = " + String.valueOf(ListId);
+			execute(query);
+		}
+		
+		public ResultSet getList(int listId) throws SQLException{
+			String query = "SELECT * FROM lists WHERE ListID = " + String.valueOf(listId);
+			return sendQuery(query);
+		}
+		
+		public ResultSet getCategories() throws SQLException{
+			String query = "SELECT * FROM categories";
+			return sendQuery(query);
+		}
+		
+		public ResultSet getAllListItems(int listId) throws SQLException{
+			java.sql.PreparedStatement preparedStatement = connection.prepareStatement("SELECT p.ProductID, p.Name, p.Price, p.CategoryID, p.IsFavourite, p.Image, lp.Quantity FROM smarttrolley.lists l "
+					+ "join smarttrolley.lists_products lp on lp.ListID = l.ListID " + "join smarttrolley.products p on p.ProductID = lp.ProductID " + "where l.ListID = ?");
+
+			preparedStatement.setInt(1, listId);
+			
+			return preparedStatement.executeQuery();
+		}
+		
+		public ResultSet getListItemsByCategory(int listId, String categoryName) throws SQLException{
+			java.sql.PreparedStatement preparedStatement = connection.prepareStatement("SELECT p.ProductID, p.Name, p.Price, p.CategoryID, p.IsFavourite, p.Image, lp.Quantity FROM smarttrolley.lists l\n"
+					+ "join smarttrolley.lists_products lp on lp.ListID = l.ListID\n" + "join smarttrolley.products p on p.ProductID = lp.ProductID\n"
+					+ "join smarttrolley.categories c on c.CategoryID = p.CategoryID\n" + "where c.Name = ? AND l.ListID = ?");
+
+			preparedStatement.setString(1, categoryName);
+			preparedStatement.setInt(2, listId);
+			
+			return preparedStatement.executeQuery();
+		}
+		
+		public void removeList(int listId) throws SQLException{
+			execute("DELETE FROM lists WHERE ListID = " + String.valueOf(listId));
+		}
+		
+		public ResultSet getAllLists() throws SQLException{
+			String query = "SELECT * FROM lists";
+			return sendQuery(query);
+		}
+		
+		public ResultSet getAllProducts() throws SQLException{
+			String query = "SELECT * FROM products";
+			return sendQuery(query);
+		}
+		
+		public ResultSet getProductsByCategory(String categoryName) throws SQLException{
+			java.sql.PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from smarttrolley.products p " +
+	                "join smarttrolley.categories c on c.CategoryID = p.CategoryID where c.Name = ?");
+
+			preparedStatement.setString(1, categoryName);
+			
+			return preparedStatement.executeQuery();
+		}
+		
 		/**
 		 * Executes SQL query that returns the information for a particular product (by name)
 		 * @param productName
@@ -136,7 +254,7 @@ import smarttrolleygui.SmartTrolleyGUI;
 		 * @throws SQLException 
 		 * 
 		 */
-		public ObservableList<Product> getListOfProducts() {
+		public ObservableList<ListProduct> getListOfProducts() {
 
 			openConnection();
 			
@@ -150,21 +268,21 @@ import smarttrolleygui.SmartTrolleyGUI;
 			
 			while (results.next()) {
 				
-				Product product = new Product();
+				ListProduct listProduct = new ListProduct();
 				
 				// get id
-				product.setId(results.getInt("ProductID"));
+				listProduct.setId(results.getInt("ProductID"));
 				
 				// get Name
-				product.setName(results.getString("Name"));
+				listProduct.setName(results.getString("Name"));
 				
 				// get Image
-				product.setImage(results.getString("Image"));
+				listProduct.setImage(results.getString("Image"));
 				
 				// get Price
-				product.setPrice(results.getFloat("Price"));
+				listProduct.setPrice(results.getFloat("Price"));
 				
-				products.add(product);
+				products.add(listProduct);
 			}
 					closeConnection();
 					return products;
@@ -184,9 +302,9 @@ import smarttrolleygui.SmartTrolleyGUI;
 		 * @param value
 		 * @return product
 		 */
-		public Product getSpecificProduct(String criteria, String value){
+		public ListProduct getSpecificProduct(String criteria, String value){
 			
-			Product product = new Product();
+			ListProduct product = new ListProduct();
 			
 			openConnection();
 			
@@ -312,77 +430,77 @@ import smarttrolleygui.SmartTrolleyGUI;
 	*@return
 	*<p> Date Modified: 9 May 2014
 	*/
-	public ObservableList<Product> getList(int listID) {
-		openConnection();
-
-		products = FXCollections.observableArrayList();
-
-		String query = "SELECT * FROM lists_products WHERE listID = " + SmartTrolleyGUI.getcurrentListID();
-		SmartTrolleyPrint.print("query is: " + query);
-
-		ResultSet productIDsInList = null;
-		
-		try {
-			productIDsInList = sendQuery(query);
-
-		} catch (SQLException e) {
-			System.out.println("lists could not be found");
-
-		}
-		
-
-		try {
-
-			ResultSet listProducts;
-
-			while (productIDsInList.next()) {
-
-				query = "SELECT * FROM products WHERE ProductID = " + productIDsInList.getInt("ProductID");
-				SmartTrolleyPrint.print("query is: " + query);
-
-				listProducts = sendQuery(query);
-				
-				SmartTrolleyPrint.print("Query Sent");
-
-				Product product = new Product();
-				SmartTrolleyPrint.print("Initializing Product");
-				
-				SmartTrolleyPrint.print(isResultSetEmpty(listProducts));
-				listProducts.absolute(1);
-				SmartTrolleyPrint.print("Row Size is = " + listProducts.getRow());
-
-				// get id
-				product.setId(listProducts.getInt("ProductID"));
-
-				// get Name
-				product.setName(listProducts.getString("Name"));
-
-				// get Image
-				product.setImage(listProducts.getString("Image"));
-
-				// get Price
-				product.setPrice(listProducts.getFloat("Price"));
-				
-				SmartTrolleyPrint.print("Product Set");
-
-				products.add(product);
-				
-				SmartTrolleyPrint.print("Product Stored");
-
-				SmartTrolleyPrint.print(product.getId() + "  "
-						+ product.getName() + "  " + product.getImage() + "  "
-						+ product.getPrice());
-				
-			}
-		} catch (SQLException e) {
-			System.out.println("Product could not be found");
-			return null;
-		}
-		
-		closeConnection();
-		return products;
-
-	}
+//	public ObservableList<Product> getList(int listID) {
+//		openConnection();
+//
+//		products = FXCollections.observableArrayList();
+//
+//		String query = "SELECT * FROM lists_products WHERE listID = " + SmartTrolleyGUI.getcurrentListID();
+//		SmartTrolleyPrint.print("query is: " + query);
+//
+//		ResultSet productIDsInList = null;
+//		
+//		try {
+//			productIDsInList = sendQuery(query);
+//
+//		} catch (SQLException e) {
+//			System.out.println("lists could not be found");
+//
+//		}
+//		
+//
+//		try {
+//
+//			ResultSet listProducts;
+//
+//			while (productIDsInList.next()) {
+//
+//				query = "SELECT * FROM products WHERE ProductID = " + productIDsInList.getInt("ProductID");
+//				SmartTrolleyPrint.print("query is: " + query);
+//
+//				listProducts = sendQuery(query);
+//				
+//				SmartTrolleyPrint.print("Query Sent");
+//
+//				Product product = new Product();
+//				SmartTrolleyPrint.print("Initializing Product");
+//				
+//				SmartTrolleyPrint.print(isResultSetEmpty(listProducts));
+//				listProducts.absolute(1);
+//				SmartTrolleyPrint.print("Row Size is = " + listProducts.getRow());
+//
+//				// get id
+//				product.setId(listProducts.getInt("ProductID"));
+//
+//				// get Name
+//				product.setName(listProducts.getString("Name"));
+//
+//				// get Image
+//				product.setImage(listProducts.getString("Image"));
+//
+//				// get Price
+//				product.setPrice(listProducts.getFloat("Price"));
+//				
+//				SmartTrolleyPrint.print("Product Set");
+//
+//				products.add(product);
+//				
+//				SmartTrolleyPrint.print("Product Stored");
+//
+//				SmartTrolleyPrint.print(product.getId() + "  "
+//						+ product.getName() + "  " + product.getImage() + "  "
+//						+ product.getPrice());
+//				
+//			}
+//		} catch (SQLException e) {
+//			System.out.println("Product could not be found");
+//			return null;
+//		}
+//		
+//		closeConnection();
+//		return products;
+//
+//	}
 
 	/**
 	 * executes statement to SQL server, allow for creation and deleted of

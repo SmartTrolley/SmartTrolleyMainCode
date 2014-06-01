@@ -15,6 +15,7 @@ package smarttrolleygui;
 import Printing.SmartTrolleyPrint;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -22,6 +23,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
@@ -50,7 +52,7 @@ public class ControllerGeneral {
 	 * loadHomeScreen is called when the 'home' button is pressed. It calls the
 	 * goToHomeScreen method in SmartTrolleyGUI.java
 	 * <p>
-	 * User navigates through product database
+	 * User navigates through ListProduct database
 	 * 
 	 * @param event
 	 *            - response to click on 'home' button
@@ -132,11 +134,11 @@ public class ControllerGeneral {
 	 * @param tableColumn - column whose cells the cellValueFactory will be applied to
 	 * Date Modified: 21 May 2014
 	 */
-	protected void setUpCellValueFactory(TableColumn<Product, Product> tableColumn) {
-		tableColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+	protected void setUpCellValueFactory(TableColumn<ListProduct, ListProduct> tableColumn) {
+		tableColumn.setCellValueFactory(new Callback<CellDataFeatures<ListProduct, ListProduct>, ObservableValue<ListProduct>>() {
 			@Override
-			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
-				return new ReadOnlyObjectWrapper<Product>(features.getValue());
+			public ObservableValue<ListProduct> call(CellDataFeatures<ListProduct, ListProduct> features) {
+				return new ReadOnlyObjectWrapper<ListProduct>(features.getValue());
 			}
 		});
 	}
@@ -150,20 +152,20 @@ public class ControllerGeneral {
 	 * Date Modified: 21 May 2014
 	 */
 	public void setUpCheckBoxCellFactory(
-			TableColumn<Product, Product> checkBoxColumn) {
+			TableColumn<ListProduct, ListProduct> checkBoxColumn) {
 		checkBoxColumn
-				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+				.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
 					@Override
-					public TableCell<Product, Product> call(
-							TableColumn<Product, Product> checkBoxColumn) {
-						return new TableCell<Product, Product>() {
+					public TableCell<ListProduct, ListProduct> call(
+							TableColumn<ListProduct, ListProduct> checkBoxColumn) {
+						return new TableCell<ListProduct, ListProduct>() {
 							final CheckBox checkBox = new CheckBox();
 
 							@Override
-							public void updateItem(final Product product,
+							public void updateItem(final ListProduct ListProduct,
 									boolean empty) {
-								super.updateItem(product, empty);
-								if (product != null) {
+								super.updateItem(ListProduct, empty);
+								if (ListProduct != null) {
 									setGraphic(checkBox);
 
 									// CheckBox Event Handler
@@ -171,8 +173,8 @@ public class ControllerGeneral {
 										@Override
 										public void handle(ActionEvent event) {
 											System.out
-													.println("Pressed checkbox of product: "
-															+ product.getName());
+													.println("Pressed checkbox of ListProduct: "
+															+ ListProduct.getName());
 										}
 									});
 								} else {
@@ -186,29 +188,29 @@ public class ControllerGeneral {
 	
 	/**
 	 * setUpImageCellFactory generates the cell factory code for the column containing
-	 * the product images.
+	 * the ListProduct images.
 	 * Syntax: TableColumn<S,T> where S is the type of the TableView and 
 	 * T is the type of the content in all cells of this TableColumn.
 	 * @param imageColumn - column whose cells the cellFactory will be applied to
 	 * Date Modified: 21 May 2014
 	 */
-	public void setUpImageCellFactory(TableColumn<Product, Product> imageColumn) {
+	public void setUpImageCellFactory(TableColumn<ListProduct, ListProduct> imageColumn) {
 		imageColumn
-				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+				.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
 					@Override
-					public TableCell<Product, Product> call(
-							TableColumn<Product, Product> imageColumn) {
-						return new TableCell<Product, Product>() {
+					public TableCell<ListProduct, ListProduct> call(
+							TableColumn<ListProduct, ListProduct> imageColumn) {
+						return new TableCell<ListProduct, ListProduct>() {
 							final Button button = new Button();
 
 							@Override
-							public void updateItem(final Product product,
+							public void updateItem(final ListProduct ListProduct,
 									boolean empty) {
-								super.updateItem(product, empty);
-								if (product != null) {
+								super.updateItem(ListProduct, empty);
+								if (ListProduct != null) {
 									Image productImage = new Image(getClass()
 											.getResourceAsStream(
-													product.getImage()));
+													ListProduct.getImage()));
 									button.setGraphic(new ImageView(
 											productImage));
 									button.setPrefSize(80, 60);
@@ -220,8 +222,8 @@ public class ControllerGeneral {
 										@Override
 										public void handle(ActionEvent event) {
 											System.out
-													.println("Pressed image of product: "
-															+ product.getName());
+													.println("Pressed image of ListProduct: "
+															+ ListProduct.getName());
 										}
 									});
 								} else {
@@ -235,29 +237,29 @@ public class ControllerGeneral {
 	
 	/**
 	 * setUpProductNameCellFactory generates the cell factory code for the column containing
-	 * the product name.
+	 * the ListProduct name.
 	 * Syntax: TableColumn<S,T> where S is the type of the TableView and 
 	 * T is the type of the content in all cells of this TableColumn.
 	 * @param productNameColumn - column whose cells the cellFactory will be applied to
 	 * Date Modified: 21 May 2014
 	 */
 	public void setUpProductNameCellFactory(
-			TableColumn<Product, Product> productNameColumn) {
+			TableColumn<ListProduct, ListProduct> productNameColumn) {
 		productNameColumn
-				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+				.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
 					@Override
-					public TableCell<Product, Product> call(
-							TableColumn<Product, Product> productNameColumn) {
-						return new TableCell<Product, Product>() {
+					public TableCell<ListProduct, ListProduct> call(
+							TableColumn<ListProduct, ListProduct> productNameColumn) {
+						return new TableCell<ListProduct, ListProduct>() {
 							final Button button = new Button();
 
 							@Override
-							public void updateItem(final Product product,
+							public void updateItem(final ListProduct ListProduct,
 									boolean empty) {
-								super.updateItem(product, empty);
-								if (product != null) {
+								super.updateItem(ListProduct, empty);
+								if (ListProduct != null) {
 									setGraphic(button);
-									button.setText(product.getName());
+									button.setText(ListProduct.getName());
 									button.setPrefHeight(80);
 									button.getStyleClass().add("buttonProductNameTable");
 
@@ -266,10 +268,10 @@ public class ControllerGeneral {
 										@Override
 										public void handle(ActionEvent event) {
 											System.out
-													.println("Pressed name of product: "
-															+ product.getName());
-											// TODO: add code to move to product screen here and refactor individual controllers
-											SmartTrolleyGUI.setCurrentProductID(product.getId());
+													.println("Pressed name of ListProduct: "
+															+ ListProduct.getName());
+											// TODO: add code to move to ListProduct screen here and refactor individual controllers
+											SmartTrolleyGUI.setCurrentProductID(ListProduct.getId());
 										}
 									});
 								} else {
@@ -288,22 +290,23 @@ public class ControllerGeneral {
 	 * T is the type of the content in all cells of this TableColumn.
 	 * @param addColumn - column whose cells the cellFactory will be applied to
 	 * Date Modified: 21 May 2014
+	 * @param productTable 
 	 */
 	public void setUpAddButtonCellFactory(
-			TableColumn<Product, Product> addColumn) {
+			TableColumn<ListProduct, ListProduct> addColumn, final TableView<ListProduct> productTable) {
 		addColumn
-				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+				.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
 					@Override
-					public TableCell<Product, Product> call(
-							TableColumn<Product, Product> addColumn) {
-						return new TableCell<Product, Product>() {
+					public TableCell<ListProduct, ListProduct> call(
+							TableColumn<ListProduct, ListProduct> addColumn) {
+						return new TableCell<ListProduct, ListProduct>() {
 							final Button button = new Button();
 
 							@Override
-							public void updateItem(final Product product,
+							public void updateItem(final ListProduct ListProduct,
 									boolean empty) {
-								super.updateItem(product, empty);
-								if (product != null) {
+								super.updateItem(ListProduct, empty);
+								if (ListProduct != null) {
 									button.setText("+");
 									button.getStyleClass().add(
 											"buttonChangeQuantity");
@@ -314,8 +317,14 @@ public class ControllerGeneral {
 										@Override
 										public void handle(ActionEvent event) {
 											System.out
-													.println("Pressed add button for product: "
-															+ product.getName());
+													.println("Pressed add button for ListProduct: "
+															+ ListProduct.getName());
+											
+											ObservableList<ListProduct> data = productTable.getItems();
+											ListProduct.setQuantity(ListProduct.getQuantity() + 1);
+
+											// Now refresh the table
+											refreshTable(data, ListProduct, productTable);
 										}
 									});
 								} else {
@@ -327,6 +336,14 @@ public class ControllerGeneral {
 				});
 	}
 	
+	private void refreshTable(ObservableList<ListProduct> data, ListProduct selectedProduct, final TableView<ListProduct> productTable) {
+
+		productTable.setItems(null);
+		productTable.layout();
+		productTable.setItems(data);
+		productTable.getSelectionModel().select(selectedProduct);
+	}
+	
 	/**
 	 * setUpRemoveButtonCellFactory generates the cell factory code for the column containing
 	 * the remove buttons.
@@ -334,22 +351,23 @@ public class ControllerGeneral {
 	 * T is the type of the content in all cells of this TableColumn.
 	 * @param removeColumn - column whose cells the cellFactory will be applied to
 	 * Date Modified: 21 May 2014
+	 * @param productTable 
 	 */
 	public void setUpRemoveButtonCellFactory(
-			TableColumn<Product, Product> removeColumn) {
+			TableColumn<ListProduct, ListProduct> removeColumn, final TableView<ListProduct> productTable) {
 		removeColumn
-				.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+				.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
 					@Override
-					public TableCell<Product, Product> call(
-							TableColumn<Product, Product> removeColumn) {
-						return new TableCell<Product, Product>() {
+					public TableCell<ListProduct, ListProduct> call(
+							TableColumn<ListProduct, ListProduct> removeColumn) {
+						return new TableCell<ListProduct, ListProduct>() {
 							final Button button = new Button();
 
 							@Override
-							public void updateItem(final Product product,
+							public void updateItem(final ListProduct ListProduct,
 									boolean empty) {
-								super.updateItem(product, empty);
-								if (product != null) {
+								super.updateItem(ListProduct, empty);
+								if (ListProduct != null) {
 									button.setText("-");
 									button.getStyleClass().add(
 											"buttonChangeQuantity");
@@ -360,8 +378,19 @@ public class ControllerGeneral {
 										@Override
 										public void handle(ActionEvent event) {
 											System.out
-													.println("Pressed remove button for product: "
-															+ product.getName());
+													.println("Pressed remove button for ListProduct: "
+															+ ListProduct.getName());
+											
+											ObservableList<ListProduct> data = productTable.getItems();
+											Integer qty = ListProduct.getQuantity() - 1;
+
+											if (qty < 0) {
+												qty = 0;
+											}
+											ListProduct.setQuantity(qty);
+
+											// Now refresh the table
+											refreshTable(data, ListProduct, productTable);
 
 										}
 									});

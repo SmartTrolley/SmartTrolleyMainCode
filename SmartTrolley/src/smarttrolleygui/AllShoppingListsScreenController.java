@@ -89,9 +89,9 @@ public class AllShoppingListsScreenController implements Initializable {
 	*<p> Date Modified: 9 May 2014
 	*/
 	public void CreateList() throws SQLException {
-		String query = "SELECT ListID ,Name from lists";
+		//String query = "SELECT ListID ,Name from lists";
 		SmartTrolleyPrint.print("returned lists from DB");
-		ResultSet resultSet = productsDatabase.sendQuery(query);
+		ResultSet resultSet = productsDatabase.getAllLists();
 		
 
 		buttonList = new ArrayList<Button>();
