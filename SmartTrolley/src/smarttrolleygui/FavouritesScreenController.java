@@ -193,7 +193,10 @@ initializeProductTable fills the TableView with data and sets up cell
 	 * <p> Date Modified: 9 Mar 2014
 	 */
 	private void initializeProductTable() {
-
+		
+		//Set the table empty text
+		productTable.setPlaceholder(new Label("No Favorites, please add"));
+		
         // set up column cell value factories
         productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
@@ -209,6 +212,42 @@ initializeProductTable fills the TableView with data and sets up cell
                 return new ReadOnlyObjectWrapper<Product>(features.getValue());
             }
         });
+        
+		productNameColumn.setCellFactory(new Callback<TableColumn<Product, String>, TableCell<Product, String>>() {
+			@Override
+			public TableCell<Product, String> call(TableColumn<Product, String> productNameColumn) {
+				return new TableCell<Product, String>() {
+					final Button button = new Button();
+
+					@Override
+					public void updateItem(final String productName, boolean empty) {
+						super.updateItem(productName, empty);
+						if (productName != null) {
+														
+							setGraphic(button);
+							button.setText(productName);
+							button.setPrefHeight(80);
+							button.getStyleClass().add("buttonProductNameTable");
+
+							// Button Event Handler
+							button.setOnAction(new EventHandler<ActionEvent>() {
+								@Override
+								public void handle(ActionEvent event) {
+									SqlConnection sqlConnection = new SqlConnection();
+									
+									System.out.println("Pressed name of product: " + productName);
+									// TODO: add code to move to product screen here and refactor individual controllers
+									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(productName).getId());
+									application.goToProductScreen();
+								}
+							});
+						} else {
+							setGraphic(null);
+						}
+					}
+				};
+			}
+		});
 
         // set up cell factories for columns containing images / buttons
         addColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
@@ -255,7 +294,6 @@ initializeProductTable fills the TableView with data and sets up cell
                             button.setPrefSize(80, 60);
                             button.getStyleClass().add("buttonImage");
 							setGraphic(button);
-							button.setText(product.getName());
 							button.setPrefHeight(80);
 							button.getStyleClass().add("buttonProductNameTable");
 

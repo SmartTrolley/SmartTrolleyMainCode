@@ -24,7 +24,7 @@ public class TestGUINavigationForTests {
 	 * @return The launched application
 	*/
 	protected static SmartTrolleyGUI launchTestApplication(SmartTrolleyGUI smartTrolleyApplication) {
-		
+
 		final SmartTrolleyGUI testApplication = smartTrolleyApplication;
 		/*
 		 * Create a new thread which launches the application. If the main
@@ -51,18 +51,32 @@ public class TestGUINavigationForTests {
 			@Override
 			public void run() {
 				testApplication.start(SmartTrolleyGUI.stage);
-				testApplication.goToProductScreen();
 			}
 		});
+
+		/*
+		 * Note that at this point, there are 3 threads running: 1. Main (test)
+		 * thread - Runs this class 2. newGUIThread - Launches the Application
+		 * 3. JavaFX Thread - This thread actually is the application.
+		 */
+
+		/*
+		 * It is necessary to pause the main (test) thread for some time to
+		 * allow the application to catch up. Failure to implement this delay
+		 * results in a nullPointerException, since the scene has not yet been
+		 * created.
+		 */
+		SmartTrolleyToolBox.delay(2500);
+		
 		return testApplication;
 	}
-	
+
 	/**
 	* Go to the next slide in the test slideshow
 	*<p> Date Modified: 31 May 2014
 	*/
 	protected static void goToNextTestSlide(final SmartTrolleyGUI smartTrolleyApplication) {
-		
+
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -72,13 +86,13 @@ public class TestGUINavigationForTests {
 		});
 		SmartTrolleyToolBox.delay(500);
 	}
-	
+
 	/**
 	* Go to the previous slide in the test slideshow
 	*<p> Date Modified: 31 May 2014
 	*/
-	protected static void goToPrevTestSlide(final SmartTrolleyGUI smartTrolleyApplication) {		
-		
+	protected static void goToPrevTestSlide(final SmartTrolleyGUI smartTrolleyApplication) {
+
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -88,14 +102,13 @@ public class TestGUINavigationForTests {
 		});
 		SmartTrolleyToolBox.delay(500);
 	}
-	
-	
+
 	/**
 	* Press the play/pause button on the slideshow
 	*<p> Date Modified: 31 May 2014
 	*/
-	protected static void playPauseSlideshow(final SmartTrolleyGUI smartTrolleyApplication) {		
-		
+	protected static void playPauseSlideshow(final SmartTrolleyGUI smartTrolleyApplication) {
+
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -104,7 +117,22 @@ public class TestGUINavigationForTests {
 			}
 		});
 	}
-	
+
+	/**
+	* Method that takes the test to the product screen
+	*@param smartTrolleyApplication - The launched application
+	*<p> Date Modified: 1 Jun 2014
+	*/
+	public static void goToProductScreen(final SmartTrolleyGUI smartTrolleyApplication) {
+
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				smartTrolleyApplication.goToProductScreen();
+			}
+		});
+
+	}
 }
 
 /**************End of TestGUINavigationForTests.java**************/

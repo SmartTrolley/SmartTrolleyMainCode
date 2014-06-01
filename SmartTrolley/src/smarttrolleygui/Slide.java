@@ -24,12 +24,12 @@ package smarttrolleygui;
 import imagehandler.SlideImage;
 
 import java.util.ArrayList;
-import texthandler.SlideText;
-import videohandler.SlideVideo;
 
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Shape;
+import texthandler.SlideText;
 import toolBox.SmartTrolleyToolBox;
+import videohandler.SlideVideo;
 import audiohandler.AudioHandler;
 
 public class Slide extends AnchorPane {
@@ -221,9 +221,9 @@ public class Slide extends AnchorPane {
 	*/
 	public void clearSlide() {
 		SmartTrolleyToolBox.print(getChildren());
-		// for(AudioHandler audio: audioList){
-		// audio.stop();
-		// }
+		 for(AudioHandler audio: audioList){
+		 audio.stop();
+		 }
 
 		getChildren().clear();
 	}

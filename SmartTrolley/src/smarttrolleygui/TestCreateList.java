@@ -39,8 +39,8 @@ public class TestCreateList {
 	private static SqlConnection productsDatabase;
 	String query;
 	Stage stage;
-	
-	
+	private int listID;
+		
 	/**
 	 * This method runs before every test. It sets up a
 	 * database connection and moves to the shopping list screen
@@ -131,8 +131,10 @@ public class TestCreateList {
 	*/
 	@Test
 	public void listIsCreated() throws SQLException {
-
+		
 		Platform.runLater(new Runnable() {
+			
+
 			@Override
 			public void run() {
 				// set text of TextField to arbitrary input as an example name for a new list
@@ -155,6 +157,7 @@ public class TestCreateList {
 						SmartTrolleyToolBox.print("List with name: "
 								+ results.getString("Name")
 								+ " has been created in the SQL database.");
+						listID = results.getInt("ListID");
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -180,6 +183,11 @@ public class TestCreateList {
 	 */
 	@After
 	public void closeAll() throws Exception {
+		
+		String sqlStatement = "DELETE FROM `cl36-st`.`lists` WHERE listID = " + listID;
+
+		productsDatabase.executeStatement(sqlStatement);
+		
 		productsDatabase.closeConnection();
 		SmartTrolleyToolBox.print("Closing Test.");
 	}

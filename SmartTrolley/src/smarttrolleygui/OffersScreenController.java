@@ -192,7 +192,10 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	 * <p> Date Modified: 9 Mar 2014
 	 */
 	private void initializeProductTable() {
-
+		
+		//Set the table empty text
+		productTable.setPlaceholder(new Label("It's ALL GONE! No Offers at the moment, please check back later."));
+		
         // set up column cell value factories
         productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
@@ -211,6 +214,42 @@ public class OffersScreenController extends ControllerGeneral implements Initial
         });
 
         // set up cell factories for columns containing images / buttons
+        productNameColumn.setCellFactory(new Callback<TableColumn<Product, String>, TableCell<Product, String>>() {
+			@Override
+			public TableCell<Product, String> call(TableColumn<Product, String> productNameColumn) {
+				return new TableCell<Product, String>() {
+					final Button button = new Button();
+
+					@Override
+					public void updateItem(final String productName, boolean empty) {
+						super.updateItem(productName, empty);
+						if (productName != null) {
+														
+							setGraphic(button);
+							button.setText(productName);
+							button.setPrefHeight(80);
+							button.getStyleClass().add("buttonProductNameTable");
+
+							// Button Event Handler
+							button.setOnAction(new EventHandler<ActionEvent>() {
+								@Override
+								public void handle(ActionEvent event) {
+									SqlConnection sqlConnection = new SqlConnection();
+									
+									System.out.println("Pressed name of product: " + productName);
+									// TODO: add code to move to product screen here and refactor individual controllers
+									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(productName).getId());
+									application.goToProductScreen();
+								}
+							});
+						} else {
+							setGraphic(null);
+						}
+					}
+				};
+			}
+		});
+        
         addColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
             @Override
             public TableCell<Product, Product> call(TableColumn<Product, Product> addColumn) {
@@ -254,8 +293,7 @@ public class OffersScreenController extends ControllerGeneral implements Initial
                             button.setGraphic(new ImageView(productImage));
                             button.setPrefSize(80, 60);
                             button.getStyleClass().add("buttonProductNameTable");
-							setGraphic(button);
-							button.setText(product.getName());					
+							setGraphic(button);				
 
 							// Button Event Handler
 							button.setOnAction(new EventHandler<ActionEvent>() {

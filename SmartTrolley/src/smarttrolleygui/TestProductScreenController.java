@@ -15,7 +15,6 @@ package smarttrolleygui;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
 import graphicshandler.ShapePoint;
 import graphicshandler.SlidePolygon;
 import graphicshandler.SlideShapeFactory;
@@ -24,21 +23,17 @@ import imagehandler.SlideImage;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
-import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.shape.Shape;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import audiohandler.AudioHandler;
-
 import texthandler.SlideText;
 import texthandler.SlideTextBody;
 import toolBox.SmartTrolleyToolBox;
 import videohandler.SlideVideo;
+import audiohandler.AudioHandler;
 
 public class TestProductScreenController {
 
@@ -132,18 +127,15 @@ public class TestProductScreenController {
 		smartTrolleyApplication = new SmartTrolleyGUI();
 
 		smartTrolleyApplication = TestGUINavigationForTests.launchTestApplication(smartTrolleyApplication);
-		
+		TestGUINavigationForTests.goToProductScreen(smartTrolleyApplication);
 		 setupImage();
 		 setupGraphics();
 		 setupAudio();
 		 setupVideo();
 		 setupText();	
 		
-		SmartTrolleyGUI.setCurrentProductID(21);
+		 SmartTrolleyGUI.setCurrentProductID(21);
 
-		// Delay to allow the instance to launch.
-		// If you get NullPointer errors around this line, increase the delay
-		SmartTrolleyToolBox.delay(2500);
 
 		createAndStartTestSlideshow();
 

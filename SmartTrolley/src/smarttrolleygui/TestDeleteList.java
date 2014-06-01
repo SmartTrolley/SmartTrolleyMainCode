@@ -1,3 +1,4 @@
+//TODO THis test needs to be refactored to launch the application as an instance
 /**
  * SmartTrolley
  *
@@ -21,10 +22,7 @@ import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -39,7 +37,7 @@ public class TestDeleteList {
 
 	private static SqlConnection productsDatabase;
 	String query;
-	private SmartTrolleyGUI GUIboot;
+	private SmartTrolleyGUI smartTrolleyApplication;
 	Stage stage;
 	
 	
@@ -57,44 +55,10 @@ public class TestDeleteList {
 		productsDatabase = new SqlConnection();
 		productsDatabase.openConnection();
 
-		/*
-		 * Create a new thread which launches the application. If the main
-		 * thread launches the application, the rest of the test will only run
-		 * after the application closes i.e. pointless.
-		 */
-		Thread newGUIThread;
 
-		GUIboot = new SmartTrolleyGUI();
+		smartTrolleyApplication = new SmartTrolleyGUI();
 
-		newGUIThread = new Thread("New GUI") {
-			public void run() {
-				SmartTrolleyToolBox.print("GUI thread");
-				Application.launch(SmartTrolleyGUI.class,
-						(java.lang.String[]) null);
-				stage = new Stage();
-				stage.setScene(new Scene(new Group(new Button(
-						"my second window"))));
-				/*
-				 * GUIboot.start(stage); stage.show();
-				 */
-			}
-		};
-
-		newGUIThread.start();
-
-		/*
-		 * Note that at this point, there are 3 threads running: 1. Main (test)
-		 * thread - Runs this class 2. newGUIThread - Launches the Application
-		 * 3. JavaFX Thread - This thread actually is the application.
-		 */
-
-		/*
-		 * It is necessary to pause the main (test) thread for some time to
-		 * allow the application to catch up. Failure to implement this delay
-		 * results in a nullPointerException, since the scene has not yet been
-		 * created.
-		 */
-		SmartTrolleyToolBox.delay(1000);
+		smartTrolleyApplication = TestGUINavigationForTests.launchTestApplication(smartTrolleyApplication);
 
 		/*
 		 * In order to do anything with the user interface, the JavaFX thread
@@ -110,10 +74,10 @@ public class TestDeleteList {
 			@Override
 			public void run() {
 				SmartTrolleyToolBox.print("Firing Button");
-				// GUIboot.startScreen.viewAllShoppingListsButton.fire();
-				Button viewLists = new Button();
+				smartTrolleyApplication.startScreen.viewAllShoppingListsButton.fire();
+				/*Button viewLists = new Button();
 				viewLists = StartScreenController.viewAllShoppingListsButton;
-				viewLists.fire();
+				viewLists.fire();*/
 				SmartTrolleyToolBox.print("Fired Button");
 			}
 		});

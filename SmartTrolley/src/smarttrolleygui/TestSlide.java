@@ -18,7 +18,6 @@ import static org.junit.Assert.assertTrue;
 import graphicshandler.ShapePoint;
 import graphicshandler.SlidePolygon;
 import graphicshandler.SlideShapeFactory;
-
 import imagehandler.SlideImage;
 
 import java.util.ArrayList;
@@ -27,18 +26,17 @@ import java.util.PriorityQueue;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.shape.Shape;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import audiohandler.AudioHandler;
-
-import smarttrolleygui.Slide;
 import texthandler.SlideText;
 import texthandler.SlideTextBody;
-import videohandler.SlideVideo;
 import toolBox.SmartTrolleyToolBox;
+import videohandler.SlideVideo;
+import audiohandler.AudioHandler;
 
-public class SlideTest {
+public class TestSlide {
 
 	private TestSlideVisual visualTesting;
 	private Slide productSlide;
@@ -414,4 +412,4 @@ public class SlideTest {
 
 }
 
-/************** End of SlideTest.java **************/
+/************** End of TestSlide.java **************/

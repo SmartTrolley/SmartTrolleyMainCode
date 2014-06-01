@@ -24,6 +24,7 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
+import DatabaseConnectors.SqlConnection;
 
 public class ControllerGeneral {
 
@@ -227,48 +228,6 @@ public class ControllerGeneral {
 								@Override
 								public void handle(ActionEvent event) {
 									System.out.println("Pressed image of product: " + product.getName());
-								}
-							});
-						} else {
-							setGraphic(null);
-						}
-					}
-				};
-			}
-		});
-	}
-
-	/**
-	 * setUpProductNameCellFactory generates the cell factory code for the column containing
-	 * the product name.
-	 * Syntax: TableColumn<S,T> where S is the type of the TableView and 
-	 * T is the type of the content in all cells of this TableColumn.
-	 * @param productNameColumn - column whose cells the cellFactory will be applied to
-	 * Date Modified: 21 May 2014
-	 */
-	public static void setUpProductNameCellFactory(TableColumn<Product, Product> productNameColumn) {
-		productNameColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
-			@Override
-			public TableCell<Product, Product> call(TableColumn<Product, Product> productNameColumn) {
-				return new TableCell<Product, Product>() {
-					final Button button = new Button();
-
-					@Override
-					public void updateItem(final Product product, boolean empty) {
-						super.updateItem(product, empty);
-						if (product != null) {
-							setGraphic(button);
-							button.setText(product.getName());
-							button.setPrefHeight(80);
-							button.getStyleClass().add("buttonProductNameTable");
-
-							// Button Event Handler
-							button.setOnAction(new EventHandler<ActionEvent>() {
-								@Override
-								public void handle(ActionEvent event) {
-									System.out.println("Pressed name of product: " + product.getName());
-									// TODO: add code to move to product screen here and refactor individual controllers
-									SmartTrolleyGUI.setCurrentProductID(product.getId());
 								}
 							});
 						} else {

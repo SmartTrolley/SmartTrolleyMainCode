@@ -17,13 +17,10 @@ package smarttrolleygui;
 import graphicshandler.ShapePoint;
 import graphicshandler.SlidePolygon;
 import graphicshandler.SlideShapeFactory;
-
 import imagehandler.SlideImage;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;
-
-import audiohandler.AudioHandler;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -33,6 +30,7 @@ import javafx.stage.Stage;
 import texthandler.SlideText;
 import texthandler.SlideTextBody;
 import videohandler.SlideVideo;
+import audiohandler.AudioHandler;
 
 public class TestSlideVisual extends Application {
 	
