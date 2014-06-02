@@ -3,14 +3,14 @@
  * 
  * This file tests for list deletion - Inspired from Alasdair's spike
  * 
- * @author Thomas
- * @author Sam
+ * @author V1.0 Thomas
+ * @author V2.0 Sam
  * @author V2.1 Alick & Prashant [boolean class added for ResultSet testing]
  *         [also added execute statement]
+ * @author V2.2 Arash & Jonny
  * @author Checked By: Checker(s) fill here
- * @author Arash
  * 
- * @version V2.1 [Date Created: 2 June 2014]
+ * @version V2.2 [Date Created: 2 June 2014]
  */
 package DatabaseConnectors;
 
@@ -96,38 +96,75 @@ import smarttrolleygui.SmartTrolleyGUI;
 			
 		}
 		
-		//Removes all product references to the lists (i.e. removes items within lists)
+		/**
+		 * Removes all product references to the lists (i.e. removes items within lists)
+		 * @throws SQLException
+		 */
 		public void removeAllProductsInTheLists() throws SQLException{
 			execute("DELETE FROM lists_products");
 		}
 		
+		/**
+		 * Removes a product in a list 
+		 * @throws SQLException
+		 * @param listId, productId
+		 */
 		public void removeProductFromList(int listId, int productId) throws SQLException{
 			execute("DELETE FROM lists_products WHERE ProductID = " + String.valueOf(productId) + " AND ListID = " + String.valueOf(listId));
 		}
 		
+		/**
+		 * Updates product quantity in a list
+		 * @throws SQLException
+		 * @param listId, productId, quantity
+		 */
 		public void updateQuantity(int listId, int productId, int quantity) throws SQLException{
 			execute("UPDATE lists_products SET Quantity = " + String.valueOf(quantity) + " WHERE ProductID = " + String.valueOf(productId) + " AND ListID = " + String.valueOf(listId));
 		}
 		
+		/**
+		 * Removes all lists (used by Unit test)
+		 * @throws SQLException
+		 */
 		public void removeAllLists() throws SQLException{
 			execute("DELETE FROM lists");
 		}
 		
+		/**
+		 * Creates list
+		 * @throws SQLException
+		 * @param Id, listName
+		 */
 		public void AddList(int Id, String listName) throws SQLException{
 			String qry = "INSERT INTO lists VALUES (" + String.valueOf(Id) + ", " + listName + ")";
 			execute(qry);
 		}
 		
+		/**
+		 * Creates list
+		 * @throws SQLException
+		 * @param listName
+		 */ 
 		public void AddList(String listName) throws SQLException{
 			String qry = "INSERT INTO lists ('Name') VALUES (" + listName + ")";
 			execute(qry);
 		}
 		
+		/**
+		 * Add product to list
+		 * @throws SQLException
+		 * @param ListId, ProductsId, quantity
+		 */ 
 		public void AddProductToList(int ListId, int ProductId, int quantity) throws SQLException{
 			String qry = "INSERT INTO lists_products VALUES (" + String.valueOf(ProductId) + ", " + String.valueOf(ListId) + ", " + quantity + ")";
 			execute(qry);
 		}
 		
+		/**
+		 * Gets the total number of items in all the lists
+		 * @throws SQLException
+		 * @return Total
+		 */
 		public int getItemsTotal() throws SQLException{
 			String query = "SELECT sum(Quantity) as 'Total' FROM lists_products";
 			ResultSet results = sendQuery(query);
@@ -136,6 +173,12 @@ import smarttrolleygui.SmartTrolleyGUI;
 			return results.getInt("Total");
 		}
 		
+		/**
+		 * Gets the quantity of a product in a list
+		 * @throws SQLException
+		 * @param listId, productId
+		 * @return Quantity
+		 */
 		public int getProductQuantity(int listId, int productId) throws SQLException{
 			String query = "SELECT Quantity FROM lists_products WHERE ProductID = " + String.valueOf(productId) + " AND ListID = " + String.valueOf(listId);
 			ResultSet results = sendQuery(query);
@@ -144,27 +187,55 @@ import smarttrolleygui.SmartTrolleyGUI;
 			return results.getInt("Quantity");
 		}
 		
+		/**
+		 * Gets the product in a list
+		 * @throws SQLException
+		 * @param listId, productId
+		 * @return query
+		 */
 		public ResultSet getProductInList(int listId, int productId) throws SQLException{
 			String query = "SELECT * FROM lists_products WHERE ProductID = " + String.valueOf(productId) + " AND ListID = " + String.valueOf(listId);
 			return sendQuery(query);
 			
 		}
 		
+		/**
+		 * Updates the list name
+		 * @throws SQLException
+		 * @param ListId, name
+		 */
 		public void updateListName(int ListId, String name) throws SQLException{
 			String query = "UPDATE lists SET Name = '"+ name +"' WHERE ListID = " + String.valueOf(ListId);
 			execute(query);
 		}
 		
+		/**
+		 * Gets the list ID
+		 * @throws SQLException
+		 * @param listId
+		 * @return query
+		 */
 		public ResultSet getList(int listId) throws SQLException{
 			String query = "SELECT * FROM lists WHERE ListID = " + String.valueOf(listId);
 			return sendQuery(query);
 		}
 		
+		/**
+		 * Gets categories
+		 * @throws SQLException
+		 * @return query
+		 */
 		public ResultSet getCategories() throws SQLException{
 			String query = "SELECT * FROM categories";
 			return sendQuery(query);
 		}
 		
+		/**
+		 * Gets the products in a list
+		 * @throws SQLException
+		 * @param listId
+		 * @returns ProductID, Name, Price, Category, Image, Quantity, IsFavourite
+		 */
 		public ResultSet getAllListItems(int listId) throws SQLException{
 			java.sql.PreparedStatement preparedStatement = connection.prepareStatement("SELECT p.ProductID, p.Name, p.Price, p.CategoryID, p.IsFavourite, p.Image, lp.Quantity FROM smarttrolley.lists l "
 					+ "join smarttrolley.lists_products lp on lp.ListID = l.ListID " + "join smarttrolley.products p on p.ProductID = lp.ProductID " + "where l.ListID = ?");
@@ -174,6 +245,12 @@ import smarttrolleygui.SmartTrolleyGUI;
 			return preparedStatement.executeQuery();
 		}
 		
+		/**
+		 * Gets items in a list by category name
+		 * @throws SQLException
+		 * @param listId, categoryName
+		 * @returns ProductID, Name, Price, Category, Image, Quantity, IsFavourite
+		 */
 		public ResultSet getListItemsByCategory(int listId, String categoryName) throws SQLException{
 			java.sql.PreparedStatement preparedStatement = connection.prepareStatement("SELECT p.ProductID, p.Name, p.Price, p.CategoryID, p.IsFavourite, p.Image, lp.Quantity FROM smarttrolley.lists l\n"
 					+ "join smarttrolley.lists_products lp on lp.ListID = l.ListID\n" + "join smarttrolley.products p on p.ProductID = lp.ProductID\n"
@@ -185,20 +262,41 @@ import smarttrolleygui.SmartTrolleyGUI;
 			return preparedStatement.executeQuery();
 		}
 		
+		/**
+		 * Removes list by ID
+		 * @throws SQLException
+		 * @param listId
+		 */
 		public void removeList(int listId) throws SQLException{
 			execute("DELETE FROM lists WHERE ListID = " + String.valueOf(listId));
 		}
 		
+		/**
+		 * Gets all the lists
+		 * @throws SQLException
+		 * @return query
+		 */
 		public ResultSet getAllLists() throws SQLException{
 			String query = "SELECT * FROM lists";
 			return sendQuery(query);
 		}
 		
+		/**
+		 * Gets all the products
+		 * @throws SQLException
+		 * @return query
+		 */
 		public ResultSet getAllProducts() throws SQLException{
 			String query = "SELECT * FROM products";
 			return sendQuery(query);
 		}
 		
+		/**
+		 * Gets product by category name
+		 * @throws SQLException
+		 * @param categoryName
+		 * @return Category and Product column
+		 */
 		public ResultSet getProductsByCategory(String categoryName) throws SQLException{
 			java.sql.PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from smarttrolley.products p " +
 	                "join smarttrolley.categories c on c.CategoryID = p.CategoryID where c.Name = ?");

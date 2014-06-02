@@ -4,12 +4,12 @@
  * Class Description: HomeScreenController allows java interaction with
  * HomeScreen.fxml
  *
- * @author Arne
- *
+ * @author V1.0 Arne
+ * @author V1.1 Arash & Jonny
  *
  * @author [Checked By:] [Checker(s) fill here]
  *
- * @version [1.0] [Date Created: 22/02/14]
+ * @version [1.1] [Date Created: 22/02/14]
  */
 package smarttrolleygui;
 

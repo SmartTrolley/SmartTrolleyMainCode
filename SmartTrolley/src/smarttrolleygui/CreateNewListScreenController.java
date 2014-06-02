@@ -4,11 +4,12 @@
  * Class Description: 
  * CreateNewListScreenController allows java interaction with CreateNewListScreen.fxml
  *
- * @author Arne
+ * @author  V1.0 Arne
+ * @@author V1.1 Arash & Jonny
  *
  * @author [Checked By:] [Checker(s) fill here]
  *
- * @version [1.0] [Date Created: 03/05/14]
+ * @version [1.1] [Date Created: 02/06/14]
  */
 
 package smarttrolleygui;

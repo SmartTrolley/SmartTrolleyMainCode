@@ -6,10 +6,11 @@
  *
  * @author V1.0 Arne
  * @author V1.1 Alick & Prashant [Delete Functionality added]
+ * @author V1.2 Arash & Jonny
  *
  * @author [Checked By:] [Checker(s) fill here]
  *
- * @version [1.1] [Date Created: 06/03/14]
+ * @version [1.2] [Date Created: 02/06/14]
  */
 package smarttrolleygui;
 
@@ -135,10 +136,7 @@ public class ExampleShoppingListController implements Initializable {
 
 		if (deleteMsgBx.getMessageBoxResult() == MessageBoxResult.YES) {
 			SmartTrolleyPrint.print("YES");
-//			String sqlStatement;
-//
-//			sqlStatement = "SELECT * FROM lists WHERE listID = "
-//					+ SmartTrolleyGUI.getcurrentListID();
+
 			try {
 				result = productsDatabase.getList(SmartTrolleyGUI.getcurrentListID());
 				SmartTrolleyPrint.print("stored list in results for deletion.");
@@ -156,9 +154,6 @@ public class ExampleShoppingListController implements Initializable {
 
 				listID = result.getInt("ListID");
 				SmartTrolleyPrint.print("LiD: " + result.getInt("ListID"));
-
-//				sqlStatement = "DELETE FROM `cl36-st`.`lists` WHERE listID = "
-//						+ listID;
 
 				productsDatabase.removeList(listID);
 			} else {

@@ -1,12 +1,20 @@
+/**
+ * ListProduct
+ *
+ * Class Description: 
+ *
+ * @author Arash & Jonny
+ *
+ * @author [Checked By:] [Checker(s) fill here]
+ *
+ * @version [1.0] [Date Created: 2/06/14]
+ */
+
 package smarttrolleygui;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-/**
- *
- * @author Arash
- */
 public class ListProduct extends Product{
 
     private IntegerProperty quantity = new SimpleIntegerProperty();

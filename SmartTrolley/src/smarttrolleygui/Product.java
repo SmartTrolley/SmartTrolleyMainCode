@@ -5,11 +5,12 @@
  * Product stores the product's data including:
  * path to product image, product name, product price
  * 
- * @author Arne
+ * @author V1.0 Arne
+ * @author V1.1 Arash & Jonny
  * 
  * @author [Checked By:] [Checker(s) fill here]
  * 
- * @version [1.0] [Date Created: 28/02/14]
+ * @version [1.1] [Date Created: 2/06/14]
  */
 
 package smarttrolleygui;

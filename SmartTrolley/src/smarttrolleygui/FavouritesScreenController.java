@@ -4,12 +4,12 @@
  * Class Description: FavouritesScreenController allows java interaction with
  * Favourites.fxml
  *
- * @author Arne
- * @author Arash
+ * @author V1.0 Arne
+ * @author V1.1 Arash & Jonny
  *
  * @author [Checked By:] [Checker(s) fill here]
  *
- * @version [1.0] [Date Created: 2/06/14]
+ * @version [1.1] [Date Created: 2/06/14]
  */
 package smarttrolleygui;
 
@@ -190,7 +190,7 @@ public class FavouritesScreenController implements Initializable {
 		controller.setUpImageCellFactory(imageColumn);
 		controller.setUpAddButtonCellFactory(addColumn, productTable);
 		
-//		controller.setUpProductNameCellFactory(productNameColumn);
+        // controller.setUpProductNameCellFactory(productNameColumn);
 		// TODO: once refactored remove following code and uncomment previous line to set up cell factory for ListProduct name column
 		productNameColumn
 		.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {

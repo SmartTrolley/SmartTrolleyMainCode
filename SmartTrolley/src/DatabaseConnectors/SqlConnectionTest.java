@@ -1,3 +1,14 @@
+/**
+ * @author V1.0 Thomas & Sam
+ * @author V1.1 Arash & Jonny 
+ * 
+ * Test case for testing the SqlConnection
+ * 
+ * @author Checked By: Checker(s) fill here
+ * 
+ * @version V1.1 [Date Created: 2 June 2014]
+ */
+
 package DatabaseConnectors;
 
 import static org.junit.Assert.*;
@@ -14,12 +25,6 @@ import java.sql.*;
 
 import javafx.collections.ObservableList;
 
-/**
- * @author Thomas & Sam
- * 
- * Test case for testing the SqlConnection
- * 
- */
 public class SqlConnectionTest {
 
 	private static SqlConnection productsDatabase; 

@@ -4,11 +4,12 @@
  * Class Description: ProductScreenController allows java interaction with
  * ProductScreen.fxml
  *
- * @author Arne
+ * @author V1.0 Arne
+ * @author V1.1 Arash & Jonny
  *
  * @author [Checked By:] [Checker(s) fill here]
  *
- * @version [1.0] [Date Created: 22/05/14]
+ * @version [1.1] [Date Created: 2/06/14]
  */
 package smarttrolleygui;
 

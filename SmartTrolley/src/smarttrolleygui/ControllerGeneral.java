@@ -3,11 +3,12 @@
  * 
  * Class Description: This class will hold methods that are used by multiple controller classes.
  * 
- * @author Sam
+ * @author V1.0 Sam
+ * @author V1.1 Arash & Jonny
  * 
  * @author [Checked By:] [Checker(s) fill here]
  *
- * @version [1.0] [Date Created: 15/05/14]
+ * @version [1.1] [Date Created: 2/06/14]
  *
  */
 package smarttrolleygui;
