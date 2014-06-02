@@ -39,7 +39,7 @@ import smarttrolleygui.SmartTrolleyGUI;
 		private static final String PASSWORD= "Smarttrolley";
 				
 		private ObservableList<ListProduct> products;
-		private ObservableList<Product> offers;
+		private ObservableList<ListProduct> offers;
 		
 		private String url;
 		Connection connection;
@@ -342,7 +342,7 @@ import smarttrolleygui.SmartTrolleyGUI;
 		 * and store them as a type offer.
 		 * @return offers
 		 */
-		public ObservableList<Product> getListOfOffers() {
+		public ObservableList<ListProduct> getListOfOffers() {
 			
 			productsDatabase = new SqlConnection();
 			
@@ -358,7 +358,7 @@ import smarttrolleygui.SmartTrolleyGUI;
 				while (results.next()) {
 					
 					Offer offer = new Offer();
-					Product product = new Product();
+					ListProduct product = new ListProduct();
 					
 					// get Offer id
 					offer.setOfferId(results.getInt("OfferID"));
@@ -430,77 +430,77 @@ import smarttrolleygui.SmartTrolleyGUI;
 	*@return
 	*<p> Date Modified: 9 May 2014
 	*/
-//	public ObservableList<Product> getList(int listID) {
-//		openConnection();
-//
-//		products = FXCollections.observableArrayList();
-//
-//		String query = "SELECT * FROM lists_products WHERE listID = " + SmartTrolleyGUI.getcurrentListID();
-//		SmartTrolleyPrint.print("query is: " + query);
-//
-//		ResultSet productIDsInList = null;
-//		
-//		try {
-//			productIDsInList = sendQuery(query);
-//
-//		} catch (SQLException e) {
-//			System.out.println("lists could not be found");
-//
-//		}
-//		
-//
-//		try {
-//
-//			ResultSet listProducts;
-//
-//			while (productIDsInList.next()) {
-//
-//				query = "SELECT * FROM products WHERE ProductID = " + productIDsInList.getInt("ProductID");
-//				SmartTrolleyPrint.print("query is: " + query);
-//
-//				listProducts = sendQuery(query);
-//				
-//				SmartTrolleyPrint.print("Query Sent");
-//
-//				Product product = new Product();
-//				SmartTrolleyPrint.print("Initializing Product");
-//				
-//				SmartTrolleyPrint.print(isResultSetEmpty(listProducts));
-//				listProducts.absolute(1);
-//				SmartTrolleyPrint.print("Row Size is = " + listProducts.getRow());
-//
-//				// get id
-//				product.setId(listProducts.getInt("ProductID"));
-//
-//				// get Name
-//				product.setName(listProducts.getString("Name"));
-//
-//				// get Image
-//				product.setImage(listProducts.getString("Image"));
-//
-//				// get Price
-//				product.setPrice(listProducts.getFloat("Price"));
-//				
-//				SmartTrolleyPrint.print("Product Set");
-//
-//				products.add(product);
-//				
-//				SmartTrolleyPrint.print("Product Stored");
-//
-//				SmartTrolleyPrint.print(product.getId() + "  "
-//						+ product.getName() + "  " + product.getImage() + "  "
-//						+ product.getPrice());
-//				
-//			}
-//		} catch (SQLException e) {
-//			System.out.println("Product could not be found");
-//			return null;
-//		}
-//		
-//		closeConnection();
-//		return products;
-//
-//	}
+	public ObservableList<ListProduct> getListProducts(int listID) {
+		openConnection();
+
+		products = FXCollections.observableArrayList();
+
+		String query = "SELECT * FROM lists_products WHERE listID = " + SmartTrolleyGUI.getcurrentListID();
+		SmartTrolleyPrint.print("query is: " + query);
+
+		ResultSet productIDsInList = null;
+		
+		try {
+			productIDsInList = sendQuery(query);
+
+		} catch (SQLException e) {
+			System.out.println("lists could not be found");
+
+		}
+		
+
+		try {
+
+			ResultSet listProducts;
+
+			while (productIDsInList.next()) {
+
+				query = "SELECT * FROM products WHERE ProductID = " + productIDsInList.getInt("ProductID");
+				SmartTrolleyPrint.print("query is: " + query);
+
+				listProducts = sendQuery(query);
+				
+				SmartTrolleyPrint.print("Query Sent");
+
+				ListProduct product = new ListProduct();
+				SmartTrolleyPrint.print("Initializing Product");
+				
+				SmartTrolleyPrint.print(isResultSetEmpty(listProducts));
+				listProducts.absolute(1);
+				SmartTrolleyPrint.print("Row Size is = " + listProducts.getRow());
+
+				// get id
+				product.setId(listProducts.getInt("ProductID"));
+
+				// get Name
+				product.setName(listProducts.getString("Name"));
+
+				// get Image
+				product.setImage(listProducts.getString("Image"));
+
+				// get Price
+				product.setPrice(listProducts.getFloat("Price"));
+				
+				SmartTrolleyPrint.print("Product Set");
+
+				products.add(product);
+				
+				SmartTrolleyPrint.print("Product Stored");
+
+				SmartTrolleyPrint.print(product.getId() + "  "
+						+ product.getName() + "  " + product.getImage() + "  "
+						+ product.getPrice());
+				
+			}
+		} catch (SQLException e) {
+			System.out.println("Product could not be found");
+			return null;
+		}
+		
+		closeConnection();
+		return products;
+
+	}
 
 	/**
 	 * executes statement to SQL server, allow for creation and deleted of

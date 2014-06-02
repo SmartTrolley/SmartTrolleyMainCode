@@ -24,7 +24,7 @@ public class SqlConnectionTest {
 
 	private static SqlConnection productsDatabase; 
 	private ObservableList<ListProduct> products;
-	private ObservableList<Product> offers;
+	private ObservableList<ListProduct> offers;
 	
 	public String query;
 	

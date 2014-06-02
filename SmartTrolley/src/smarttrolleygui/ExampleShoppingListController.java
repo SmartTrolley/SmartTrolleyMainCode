@@ -273,7 +273,7 @@ public class ExampleShoppingListController implements Initializable {
 		SqlConnection sqlConnector = new SqlConnection();
 
 		// Get ListProduct data from current list
-		productData = sqlConnector.getList(SmartTrolleyGUI.getcurrentListID());
+		productData = sqlConnector.getListProducts(SmartTrolleyGUI.getcurrentListID());
 		// TODO: I don't know why this next line was added but does it maybe
 		// require an if statement?
 		productTable.setPlaceholder(new Label("No Items in list, please add"));

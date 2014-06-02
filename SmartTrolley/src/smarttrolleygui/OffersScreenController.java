@@ -40,23 +40,23 @@ public class OffersScreenController implements Initializable {
 	@FXML
 	private ListView<String> categoriesList;
 	@FXML
-	private TableView<Product> productTable;
+	private TableView<ListProduct> productTable;
 	@FXML
-	private TableColumn<Product, Product> imageColumn;
+	private TableColumn<ListProduct, ListProduct> imageColumn;
 	@FXML
-	private TableColumn<Product, Product> productNameColumn;
+	private TableColumn<ListProduct, ListProduct> productNameColumn;
 	@FXML
-	private TableColumn<Product, Float> priceColumn;
+	private TableColumn<ListProduct, Float> priceColumn;
 	@FXML
-	private TableColumn<Product, Float> offerPriceColumn;
+	private TableColumn<ListProduct, Float> offerPriceColumn;
 	@FXML
-	private TableColumn<Product, Product> addColumn;
+	private TableColumn<ListProduct, ListProduct> addColumn;
 	@FXML
 	private Label listNameLabel;
 
 	private SmartTrolleyGUI application;
 	private ObservableList<String> categories;
-	private ObservableList<Product> productData;
+	private ObservableList<ListProduct> productData;
 
 	private ControllerGeneral controller = new ControllerGeneral();
 
@@ -67,7 +67,7 @@ public class OffersScreenController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		// Fill list on the LHS of the screen with different product categories
+		// Fill list on the LHS of the screen with different ListProduct categories
 		categories = initializeCategories();
 		categoriesList.setItems(categories);
 		// show name of current shopping list
@@ -103,7 +103,7 @@ public class OffersScreenController implements Initializable {
 	 * loadHomeScreen is called when the 'home' button is pressed. It calls the
 	 * goToHomeScreen method in SmartTrolleyGUI.java
 	 * <p>
-	 * User navigates through product database
+	 * User navigates through ListProduct database
 	 * 
 	 * @param event
 	 *            - response to click on 'home' button
@@ -148,7 +148,7 @@ public class OffersScreenController implements Initializable {
 	 * initializeCategories sets up the list of categories that will be
 	 * displayed on screen.
 	 * <p>
-	 * User can navigate through product database.
+	 * User can navigate through ListProduct database.
 	 * 
 	 * @return categories - list of categories
 	 *         <p>
@@ -166,13 +166,13 @@ public class OffersScreenController implements Initializable {
 	 * initializeProductTable fills the TableView with data and sets up cell
 	 * factories
 	 * <p>
-	 * User can navigate through product database
+	 * User can navigate through ListProduct database
 	 * <p>
 	 * Date Modified: 9 Mar 2014
 	 */
 	private void initializeProductTable() {
 
-		// Create new SqlConnection to retrieve product data
+		// Create new SqlConnection to retrieve ListProduct data
 		SqlConnection sqlConnector = new SqlConnection();
 
 		// Get offers data
@@ -180,10 +180,10 @@ public class OffersScreenController implements Initializable {
 
 		// set up column cell value factories
 		priceColumn
-				.setCellValueFactory(new PropertyValueFactory<Product, Float>(
+				.setCellValueFactory(new PropertyValueFactory<ListProduct, Float>(
 						"price"));
 		offerPriceColumn
-				.setCellValueFactory(new PropertyValueFactory<Product, Float>(
+				.setCellValueFactory(new PropertyValueFactory<ListProduct, Float>(
 						"offerPrice"));
 		controller.setUpCellValueFactory(productNameColumn);
 		controller.setUpCellValueFactory(addColumn);
@@ -191,25 +191,25 @@ public class OffersScreenController implements Initializable {
 
 		// set up cell factories for columns with 'interactive' cells 
 		controller.setUpImageCellFactory(imageColumn);
-		controller.setUpAddButtonCellFactory(addColumn);
+		controller.setUpAddButtonCellFactory(addColumn, productTable);
 		
 //		controller.setUpProductNameCellFactory(productNameColumn);
-		// TODO: once refactored remove following code and uncomment previous line to set up cell factory for product name column
+		// TODO: once refactored remove following code and uncomment previous line to set up cell factory for ListProduct name column
 		productNameColumn
-		.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+		.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
 			@Override
-			public TableCell<Product, Product> call(
-					TableColumn<Product, Product> productNameColumn) {
-				return new TableCell<Product, Product>() {
+			public TableCell<ListProduct, ListProduct> call(
+					TableColumn<ListProduct, ListProduct> productNameColumn) {
+				return new TableCell<ListProduct, ListProduct>() {
 					final Button button = new Button();
 
 					@Override
-					public void updateItem(final Product product,
+					public void updateItem(final ListProduct ListProduct,
 							boolean empty) {
-						super.updateItem(product, empty);
-						if (product != null) {
+						super.updateItem(ListProduct, empty);
+						if (ListProduct != null) {
 							setGraphic(button);
-							button.setText(product.getName());
+							button.setText(ListProduct.getName());
 							button.setPrefHeight(80);
 							button.getStyleClass().add("buttonProductNameTable");
 
@@ -218,9 +218,9 @@ public class OffersScreenController implements Initializable {
 								@Override
 								public void handle(ActionEvent event) {
 									System.out
-											.println("Pressed name of product: "
-													+ product.getName());
-									SmartTrolleyGUI.setCurrentProductID(product.getId());
+											.println("Pressed name of ListProduct: "
+													+ ListProduct.getName());
+									SmartTrolleyGUI.setCurrentProductID(ListProduct.getId());
 									application.goToProductScreen();
 								}
 							});
@@ -232,7 +232,7 @@ public class OffersScreenController implements Initializable {
 			}
 		});
 		
-		// populate table with product data
+		// populate table with ListProduct data
 		productTable.setItems(productData);
 	}
 }
