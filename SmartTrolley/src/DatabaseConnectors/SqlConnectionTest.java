@@ -308,7 +308,7 @@ public class SqlConnectionTest {
 		SmartTrolleyPrint
 				.print("\n getProducsWithinSpecificCategoryTest Start ---------------\n");
 
-		products = productsDatabase.getProductsWithinSpecificCategory("2");
+		products = productsDatabase.getProductsWithinSpecificCategory("4");
 
 		assertNotNull(products);
 

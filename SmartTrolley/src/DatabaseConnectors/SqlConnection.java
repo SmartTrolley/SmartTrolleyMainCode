@@ -296,10 +296,10 @@ public class SqlConnection {
 				SmartTrolleyPrint.print("Results found");
 				results.absolute(1);
 
-				while (results.next()) {
+				do {
 					product = storeProductDetails(results);
 					products.add(product);
-				}
+				} while (results.next());
 				SmartTrolleyPrint.print("Results stored");
 				closeConnection();
 				return products;
