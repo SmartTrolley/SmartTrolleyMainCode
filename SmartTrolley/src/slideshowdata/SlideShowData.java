@@ -43,6 +43,19 @@ public class SlideShowData implements DataType{
 	public ArrayList<SlideData> getSlides() {
 		return slides;
 	}
+
+	public void setDocumentinfo(DocumentInfoData documentinfo) {
+		this.documentinfo = documentinfo;
+	}
+
+	public void setDefaults(DefaultsData defaults) {
+		this.defaults = defaults;
+	}
+
+	public void setSlides(ArrayList<SlideData> slides) {
+		this.slides = slides;
+	}
+	
 	
 	
 }

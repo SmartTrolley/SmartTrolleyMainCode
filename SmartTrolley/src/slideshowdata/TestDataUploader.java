@@ -2,6 +2,8 @@ package slideshowdata;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -101,10 +103,10 @@ public class TestDataUploader {
 
 		dataUploader.addAudioTableContents(productID, slideID, urlName, startTime,  volume, loop);
 		
-		AudioData audiodata = (AudioData)dataUploader.getSpecificData("audio", "starttime", "0");
-		assertEquals(false, audiodata.getLoop());
-		assertEquals(0, audiodata.getStarttime());
-		assertEquals("img/SampleProducts/large/ariel.jpg", audiodata.getUrlname());
+		ArrayList<AudioData> audiodatalist = (ArrayList<AudioData>)dataUploader.getSpecificData("audio", "starttime", "0");
+		assertEquals(false, audiodatalist.get(0).getLoop());
+		assertEquals(0, audiodatalist.get(0).getStarttime());
+		assertEquals("img/SampleProducts/large/ariel.jpg", audiodatalist.get(0).getUrlname());
 		
 		dataUploader.deleteLastContentAndResetAutoIncrement("audio");
 	}
@@ -125,10 +127,10 @@ public class TestDataUploader {
 
 		dataUploader.addPointContents(productid, slideID, shapeNo, individualPointNo, x, y);
 		
-		PointData pointdata = (PointData)dataUploader.getSpecificData("point", "ShapeNo", "1");
-		assertEquals(3,pointdata.getNum());
-		assertEquals(56,pointdata.getX());
-		assertEquals(75,pointdata.getY());
+		ArrayList<PointData> pointdatalist = (ArrayList<PointData>)dataUploader.getSpecificData("point", "ProductID", "1");
+		assertEquals(3,pointdatalist.get(0).getNum());
+		assertEquals(56,pointdatalist.get(0).getX());
+		assertEquals(75,pointdatalist.get(0).getY());
 		
 		dataUploader.deleteLastContentAndResetAutoIncrement("point");
 	}
@@ -154,15 +156,15 @@ public class TestDataUploader {
 
 		dataUploader.addShapeContents(productid, slideID, totalPoints, width, height, starttime, duration, layer, branch, fillcolor, linecolor);
 		
-		ShapeData shapedata = (ShapeData)dataUploader.getSpecificData("shape", "totalpoints", "4");
-		assertEquals("black", shapedata.getFillcolor());
-		assertEquals("blue", shapedata.getLinecolor());
-		assertEquals(3, shapedata.getLayer());
-		assertEquals(10, shapedata.getDuration());
-		assertEquals(0, shapedata.getStarttime());
-		assertEquals(4, shapedata.getTotalpoints());
-		assertEquals(30, shapedata.getWidth());
-		assertEquals(30, shapedata.getHeight());
+		ArrayList<ShapeData> shapedatalist = (ArrayList<ShapeData>)dataUploader.getSpecificData("shape", "totalpoints", "4");
+		assertEquals("black", shapedatalist.get(0).getFillcolor());
+		assertEquals("blue", shapedatalist.get(0).getLinecolor());
+		assertEquals(3, shapedatalist.get(0).getLayer());
+		assertEquals(10, shapedatalist.get(0).getDuration());
+		assertEquals(0, shapedatalist.get(0).getStarttime());
+		assertEquals(4, shapedatalist.get(0).getTotalpoints());
+		assertEquals(30, shapedatalist.get(0).getWidth());
+		assertEquals(30, shapedatalist.get(0).getHeight());
 		
 		dataUploader.deleteLastContentAndResetAutoIncrement("shape");
 	}
@@ -189,15 +191,15 @@ public class TestDataUploader {
 
 		dataUploader.addTextContents(productid, slideID, fontSize, xStart, yStart, startTime, duration, layer, xend, yend, font, FontColor);
 		
-		TextData textdata = (TextData)dataUploader.getSpecificData("text", "font", "comic sans");
-		assertEquals(30, textdata.getFontsize());
-		assertEquals(30, textdata.getXstart());
-		assertEquals(0, textdata.getYstart());
-		assertEquals(10, textdata.getStarttime());
-		assertEquals(3, textdata.getDuration());
-		assertEquals(4, textdata.getLayer());
-		assertEquals(50, textdata.getXend());
-		assertEquals(50, textdata.getYend());
+		ArrayList<TextData> textdatalist = (ArrayList<TextData>)dataUploader.getSpecificData("text", "font", "comic sans");
+		assertEquals(30, textdatalist.get(0).getFontsize());
+		assertEquals(30, textdatalist.get(0).getXstart());
+		assertEquals(0, textdatalist.get(0).getYstart());
+		assertEquals(10, textdatalist.get(0).getStarttime());
+		assertEquals(3, textdatalist.get(0).getDuration());
+		assertEquals(4, textdatalist.get(0).getLayer());
+		assertEquals(50, textdatalist.get(0).getXend());
+		assertEquals(50, textdatalist.get(0).getYend());
 		
 		dataUploader.deleteLastContentAndResetAutoIncrement("text");
 	}
@@ -220,12 +222,12 @@ public class TestDataUploader {
 
 		dataUploader.addTextbodyContents(productid, slideID, TextNo, Branch, Bold, italic, underlined, text);
 		
-		TextBodyData textbodydata = (TextBodyData)dataUploader.getSpecificData("textbody", "TextNo", "30");
-		assertEquals(false, textbodydata.getBold());
-		assertEquals(false, textbodydata.getItalic());
-		assertEquals(false, textbodydata.getUnderlined());
-		assertEquals("LLLLLOOOOKKIIIE, some text", textbodydata.getTextstring());
-		assertEquals(30, textbodydata.getBranch());
+		ArrayList<TextBodyData>textbodydatalist = (ArrayList<TextBodyData>)dataUploader.getSpecificData("textbody", "TextNo", "30");
+		assertEquals(false, textbodydatalist.get(0).getBold());
+		assertEquals(false, textbodydatalist.get(0).getItalic());
+		assertEquals(false, textbodydatalist.get(0).getUnderlined());
+		assertEquals("LLLLLOOOOKKIIIE, some text", textbodydatalist.get(0).getTextstring());
+		assertEquals(30, textbodydatalist.get(0).getBranch());
 		
 		dataUploader.deleteContentAndResetAutoIncrement("textbody");
 	}
@@ -251,17 +253,17 @@ public class TestDataUploader {
 
 		dataUploader.addVideoContents(productid, slideID, urlname, starttime, loop, xstart, ystart, width, height, layer, duration);
 		
-		VideoData videodata = (VideoData)dataUploader.getSpecificData("video", "slideID", "1");
-		assertEquals(15,videodata.getDuration());
-		assertEquals(1,videodata.getLayer());
-		assertEquals(60,videodata.getHeight());
-		assertEquals(100,videodata.getWidth());
-		assertEquals(false,videodata.getLoop());
-		assertEquals(0,videodata.getStarttime());
-		assertEquals(40,videodata.getXstart());
-		assertEquals(70,videodata.getYstart());
-		assertEquals(15,videodata.getDuration());
-		assertEquals("SOME URL",videodata.getUrlname());
+		ArrayList<VideoData> videodatalist = (ArrayList<VideoData>)dataUploader.getSpecificData("video", "slideID", "1");
+		assertEquals(15,videodatalist.get(0).getDuration());
+		assertEquals(1,videodatalist.get(0).getLayer());
+		assertEquals(60,videodatalist.get(0).getHeight());
+		assertEquals(100,videodatalist.get(0).getWidth());
+		assertEquals(false,videodatalist.get(0).getLoop());
+		assertEquals(0,videodatalist.get(0).getStarttime());
+		assertEquals(40,videodatalist.get(0).getXstart());
+		assertEquals(70,videodatalist.get(0).getYstart());
+		assertEquals(15,videodatalist.get(0).getDuration());
+		assertEquals("SOME URL",videodatalist.get(0).getUrlname());
 		
 		dataUploader.deleteLastContentAndResetAutoIncrement("video");
 	}
@@ -287,24 +289,24 @@ public class TestDataUploader {
 
 		dataUploader.addImageContents(productID, slideID, urlname, xstart, ystart, width, height, starttime, duration, layer, branch);
 		
-		ImageData imagedata = (ImageData)dataUploader.getSpecificData("image_slide", "xstart", "30");
-		assertEquals(3,imagedata.getBranch());
-		assertEquals(10,imagedata.getDuration());
-		assertEquals(60,imagedata.getHeight());
-		assertEquals(2,imagedata.getLayer());
-		assertEquals(3,imagedata.getStarttime());
-		assertEquals("SOME URL",imagedata.getUrlname());
-		assertEquals(50,imagedata.getWidth());
-		assertEquals(30,imagedata.getXstart());
-		assertEquals(40,imagedata.getYstart());
+		ArrayList<ImageData> imagedatalist = (ArrayList<ImageData>)dataUploader.getSpecificData("image_slide", "xstart", "30");
+		assertEquals(3,imagedatalist.get(0).getBranch());
+		assertEquals(10,imagedatalist.get(0).getDuration());
+		assertEquals(60,imagedatalist.get(0).getHeight());
+		assertEquals(2,imagedatalist.get(0).getLayer());
+		assertEquals(3,imagedatalist.get(0).getStarttime());
+		assertEquals("SOME URL",imagedatalist.get(0).getUrlname());
+		assertEquals(50,imagedatalist.get(0).getWidth());
+		assertEquals(30,imagedatalist.get(0).getXstart());
+		assertEquals(40,imagedatalist.get(0).getYstart());
 		
 		dataUploader.deleteLastContentAndResetAutoIncrement("image_slide");
 	}
 
-	@Test
+//	@Test
 	public void uploadDataTest(){
 
-		dataUploader.uploadXmlData(fileName);	
+//		dataUploader.uploadXmlData(fileName);	
 		
 //		dataUploader.deleteContentAndResetAutoIncrement("defaults");
 //		dataUploader.deleteContentAndResetAutoIncrement("document_info_data");

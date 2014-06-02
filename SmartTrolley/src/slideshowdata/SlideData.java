@@ -111,6 +111,30 @@ public class SlideData implements DataType{
 	
 	
 
+	public void setTexts(ArrayList<TextData> texts) {
+		this.texts = texts;
+	}
+
+	public void setShapes(ArrayList<ShapeData> shapes) {
+		this.shapes = shapes;
+	}
+
+	public void setImages(ArrayList<ImageData> images) {
+		this.images = images;
+	}
+
+	public void setAudios(ArrayList<AudioData> audios) {
+		this.audios = audios;
+	}
+
+	public void setVideos(ArrayList<VideoData> videos) {
+		this.videos = videos;
+	}
+
+	public void setIsFavourite(int isFavourite) {
+		this.isFavourite = isFavourite;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
