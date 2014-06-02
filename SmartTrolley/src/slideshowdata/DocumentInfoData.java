@@ -29,8 +29,8 @@ public class DocumentInfoData implements DataType{
 	@Element (name = "height")
 	private int height;
 	
-	@Attribute (name = "noList", required = false)
-	private Boolean noList;
+//	@Attribute (name = "noList", required = false)
+//	private String noList;
 	
 	public String getAuthor() {
 		return author;
@@ -50,9 +50,9 @@ public class DocumentInfoData implements DataType{
 	public int getHeight() {
 		return height;
 	}
-	public Boolean getNoList() {
-		return noList;
-	}
+//	public String getNoList() {
+//		return noList;
+//	}
 	
 	
 	
@@ -75,8 +75,8 @@ public class DocumentInfoData implements DataType{
 		this.height = height;
 	}
 	
-	public void setNoList(boolean noList) {
-		this.noList = noList;
-	}
+//	public void setNoList(String noList) {
+//		this.noList = noList;
+//	}
 
 }

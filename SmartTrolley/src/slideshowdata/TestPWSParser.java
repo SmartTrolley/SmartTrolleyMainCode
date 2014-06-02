@@ -229,7 +229,7 @@ public class TestPWSParser {
 		SqlConnection sqlConnector = new SqlConnection();
 		
 		
-		int test = sqlConnector.createNewProduct("TestProduct", 1, null, 0, 1, false);
+		int test = sqlConnector.createNewProduct("TestProduct", 1, null, 0, 1, 0);
 		
 		int returnedId = sqlConnector.getSpecificProduct("Name", "TestProduct 1").getId();
 		

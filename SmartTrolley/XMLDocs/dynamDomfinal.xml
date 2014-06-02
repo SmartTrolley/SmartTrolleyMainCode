@@ -1,7 +1,8 @@
 <?xml version="1.0"?><!--sample xml file created using XML DOM object.--><slideshow>
-	<documentinfo noList="true"><author>D6 Digital</author><version>2.1</version><title>This is the first chapter </title><comment>example comment for chapter 1</comment><width>720</width><height>540</height></documentinfo>
+	<documentinfo><author>D6 Digital</author><version>2.1</version><title>This is the first chapter </title><comment>example comment for chapter 1</comment><width>720</width><height>540</height></documentinfo>
 	<defaults><backgroundcolor>#948A54</backgroundcolor><font>Papyrus</font><fontsize>18</fontsize><fontcolor>#FFFFFF</fontcolor><linecolor>#5C4776</linecolor><fillcolor>#8064A2</fillcolor></defaults>
-	<slide product_name="Test Product Name" id="0" duration="60" descriptor="Overview of making slides in powerpoint" lastSlide="true" backgroundcolor="#948A54">
+	<slide product_name="Test Product Name" imgURL="Test URL" price="10.0" categoryID="5" isFavourite="1"
+	id="0" duration="60" descriptor="Overview of making slides in powerpoint" lastSlide="true" backgroundcolor="#948A54">
 	<video urlname="resources/video/video/monstersinc_high.mpg" xstart="456" ystart="402" width="242" height="126" layer="23" starttime="0" duration="0" loop="false"/>
 	
 	<text xstart="20" ystart="291" xend="505" yend="441" layer="17" duration="0" starttime="0" font="Papyrus" fontcolor="#000000" fontsize="16">

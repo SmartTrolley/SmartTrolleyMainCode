@@ -756,17 +756,26 @@ import smarttrolleygui.SmartTrolleyGUI;
 		 * @return productid
 		 * @throws SQLException
 		 */
-		public int createNewProduct(String Title, int id, String Image, double Price, int CategoryID, boolean IsFavourite){
+		public int createNewProduct(String Title, int id, String Image, double Price, int CategoryID, int IsFavourite){
 			
-			int productid = 0;
+			int productid = 0,
+				categoryID = 0;
 			
 			String productName = null;
+			
 			if (id == 0){
 				productName = Title;
 			}
 			else{
 				productName = Title + " " + id;
 			}
+
+			if (CategoryID == 0){
+				categoryID = 1;
+			}
+			else{
+				categoryID = CategoryID;
+			}			
 			
 			openConnection();
 			
@@ -777,7 +786,7 @@ import smarttrolleygui.SmartTrolleyGUI;
 					+ "', '"
 					+ Price
 					+ "', '"
-					+ CategoryID
+					+ categoryID
 					+ "', '"
 					+ IsFavourite
 					+ "');";

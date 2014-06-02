@@ -533,12 +533,12 @@ public class DataUploader extends SqlConnection{
 		uploadDocumentData(data.getDocumentinfo());
 		uploadDefaultData(data.getDefaults());
 		
+		
 		int listid = createNewList(data.getDocumentinfo().getTitle());
 		
-		while(slideIndex<data.getSlides().size()){
-			
-			
-			currentSlide = data.getSlides().get(slideIndex);
+		
+
+		for(SlideData currentSlide : data.getSlides()){
 			
 			productName = currentSlide.getProductName();
 			
@@ -550,8 +550,8 @@ public class DataUploader extends SqlConnection{
 											 currentSlide.getIsFavourite());
 				
 			}
-			else{
-				productid = createNewProduct(data.getDocumentinfo().getTitle(), currentSlide.getId()+1, null, 0, 1, false);
+		else{
+				productid = createNewProduct(data.getDocumentinfo().getTitle(), currentSlide.getId()+1, null, 0, 1, 0);
 				addProductToList(productid, listid);	
 			}
 			

@@ -306,19 +306,19 @@ public class TestDataUploader {
 
 		dataUploader.uploadXmlData(fileName);	
 		
-		dataUploader.deleteContentAndResetAutoIncrement("defaults");
-		dataUploader.deleteContentAndResetAutoIncrement("document_info_data");
-		dataUploader.deleteContentAndResetAutoIncrement("slide");
-		dataUploader.deleteContentAndResetAutoIncrement("audio");
-		dataUploader.deleteContentAndResetAutoIncrement("image_slide");
-		dataUploader.deleteContentAndResetAutoIncrement("point");
-		dataUploader.deleteContentAndResetAutoIncrement("shape");
-		dataUploader.deleteContentAndResetAutoIncrement("text");
-		dataUploader.deleteContentAndResetAutoIncrement("textbody");
-		dataUploader.deleteContentAndResetAutoIncrement("video");
+//		dataUploader.deleteContentAndResetAutoIncrement("defaults");
+//		dataUploader.deleteContentAndResetAutoIncrement("document_info_data");
+//		dataUploader.deleteContentAndResetAutoIncrement("slide");
+//		dataUploader.deleteContentAndResetAutoIncrement("audio");
+//		dataUploader.deleteContentAndResetAutoIncrement("image_slide");
+//		dataUploader.deleteContentAndResetAutoIncrement("point");
+//		dataUploader.deleteContentAndResetAutoIncrement("shape");
+//		dataUploader.deleteContentAndResetAutoIncrement("text");
+//		dataUploader.deleteContentAndResetAutoIncrement("textbody");
+//		dataUploader.deleteContentAndResetAutoIncrement("video");
 		
-		dataUploader.deleteLastList();
-		dataUploader.deleteLastProduct();
-		dataUploader.deleteLastProduct();
+//		dataUploader.deleteLastList();
+//		dataUploader.deleteLastProduct();
+//		dataUploader.deleteLastProduct();
 	}
 }

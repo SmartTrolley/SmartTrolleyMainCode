@@ -55,7 +55,7 @@ public class SlideData implements DataType{
 	private int categoryID;
 	
 	@Attribute (name = "isFavourite", required = false)
-	private boolean isFavourite;
+	private int isFavourite;
 
 	public int getId() {
 		return id;
@@ -105,7 +105,7 @@ public class SlideData implements DataType{
 		return categoryID;
 	}
 
-	public boolean getIsFavourite() {
+	public int getIsFavourite() {
 		return isFavourite;
 	}
 	
@@ -139,7 +139,7 @@ public class SlideData implements DataType{
 		this.categoryID = categoryID;
 	}
 
-	public void setFavourite(boolean isFavourite) {
+	public void setFavourite(int isFavourite) {
 		this.isFavourite = isFavourite;
 	}
 }
