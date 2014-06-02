@@ -213,7 +213,7 @@ public class SqlConnectionTest {
 	public void createProductTest(){
 		SqlConnection sqlConnector = new SqlConnection();
 		
-		int test = sqlConnector.createNewProduct("TestProduct", 1);	
+		int test = sqlConnector.createNewProduct("TestProduct", 1, null, 0, 1, false);	
 		
 		SmartTrolleyPrint.print(test);
 		

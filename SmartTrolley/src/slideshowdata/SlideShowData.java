@@ -12,6 +12,7 @@ package slideshowdata;
 
 import java.util.ArrayList;
 
+import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
@@ -28,6 +29,8 @@ public class SlideShowData implements DataType{
 	
 	@ElementList (entry = "slide", inline = true) 
 	private ArrayList<SlideData>  slides;
+	
+	
 
 	public DocumentInfoData getDocumentinfo() {
 		return documentinfo;
@@ -40,6 +43,7 @@ public class SlideShowData implements DataType{
 	public ArrayList<SlideData> getSlides() {
 		return slides;
 	}
+	
 	
 }
 

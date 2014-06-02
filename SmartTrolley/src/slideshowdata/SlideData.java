@@ -42,7 +42,20 @@ public class SlideData implements DataType{
 	@Attribute (name = "lastSlide", required=false)
 	private Boolean lastSlide;
 	
+	@Attribute (name = "product_name", required = false)
+	private String productName;
 	
+	@Attribute (name = "imgURL", required = false)
+	private String imgURL;
+	
+	@Attribute (name = "price", required = false)
+	private double price;
+	
+	@Attribute (name = "categoryID", required = false)
+	private int categoryID;
+	
+	@Attribute (name = "isFavourite", required = false)
+	private boolean isFavourite;
 
 	public int getId() {
 		return id;
@@ -76,26 +89,27 @@ public class SlideData implements DataType{
 		return videos;
 	}
 	
-
-	public void setTexts(ArrayList<TextData> texts) {
-		this.texts = texts;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setShapes(ArrayList<ShapeData> shapes) {
-		this.shapes = shapes;
+	public String getImgURL() {
+		return imgURL;
 	}
 
-	public void setImages(ArrayList<ImageData> images) {
-		this.images = images;
+	public double getPrice() {
+		return price;
 	}
 
-	public void setAudios(ArrayList<AudioData> audios) {
-		this.audios = audios;
+	public int getCategoryID() {
+		return categoryID;
 	}
 
-	public void setVideos(ArrayList<VideoData> videos) {
-		this.videos = videos;
+	public boolean getIsFavourite() {
+		return isFavourite;
 	}
+	
+	
 
 	public void setId(int id) {
 		this.id = id;
@@ -108,6 +122,24 @@ public class SlideData implements DataType{
 	public void setLastSlide(Boolean lastSlide) {
 		this.lastSlide = lastSlide;
 	}
-	
-	
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public void setImgURL(String imgURL) {
+		this.imgURL = imgURL;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public void setCategoryID(int categoryID) {
+		this.categoryID = categoryID;
+	}
+
+	public void setFavourite(boolean isFavourite) {
+		this.isFavourite = isFavourite;
+	}
 }

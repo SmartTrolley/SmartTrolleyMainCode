@@ -9,6 +9,7 @@
 **/
 package slideshowdata;
 
+import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
@@ -28,6 +29,9 @@ public class DocumentInfoData implements DataType{
 	@Element (name = "height")
 	private int height;
 	
+	@Attribute (name = "noList", required = false)
+	private Boolean noList;
+	
 	public String getAuthor() {
 		return author;
 	}
@@ -46,6 +50,10 @@ public class DocumentInfoData implements DataType{
 	public int getHeight() {
 		return height;
 	}
+	public Boolean getNoList() {
+		return noList;
+	}
+	
 	
 	
 	public void setAuthor(String author) {
@@ -67,6 +75,8 @@ public class DocumentInfoData implements DataType{
 		this.height = height;
 	}
 	
-	
+	public void setNoList(boolean noList) {
+		this.noList = noList;
+	}
 
 }

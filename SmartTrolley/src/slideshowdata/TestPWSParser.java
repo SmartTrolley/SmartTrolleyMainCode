@@ -96,9 +96,10 @@ public class TestPWSParser {
 		assertEquals(firstSlide.getId() , 0);
 		assertEquals(firstSlide.getDuration() , 60);
 		assertEquals(firstSlide.getLastSlide() , true);
+		assertEquals(firstSlide.getProductName(), "Test Product Name");
 		
 		SmartTrolleyPrint.print("Slide Data: " + firstSlide.getId() + ", " + firstSlide.getDuration() 
-				+ ", "  + firstSlide.getLastSlide() + "\n");
+				+ ", "  + firstSlide.getLastSlide() + ", "  + firstSlide.getLastSlide() + firstSlide.getProductName() + "\n");
 		
 	}
 	
@@ -228,17 +229,13 @@ public class TestPWSParser {
 		SqlConnection sqlConnector = new SqlConnection();
 		
 		
-		int test = sqlConnector.createNewProduct("TestProduct", 1);
-
+		int test = sqlConnector.createNewProduct("TestProduct", 1, null, 0, 1, false);
 		
-		String returnedName = sqlConnector.getSpecificProduct("ProductID", "53").getName();
 		int returnedId = sqlConnector.getSpecificProduct("Name", "TestProduct 1").getId();
 		
 		sqlConnector.deleteLastProduct();
 		
-		assertEquals("TestProduct 1", returnedName);
 		assertEquals(test, returnedId);
-		SmartTrolleyPrint.print(returnedName);
 		
 	}
 	

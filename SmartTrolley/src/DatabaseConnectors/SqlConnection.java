@@ -756,22 +756,30 @@ import smarttrolleygui.SmartTrolleyGUI;
 		 * @return productid
 		 * @throws SQLException
 		 */
-		public int createNewProduct(String Title, int id){
+		public int createNewProduct(String Title, int id, String Image, double Price, int CategoryID, boolean IsFavourite){
 			
 			int productid = 0;
+			
+			String productName = null;
+			if (id == 0){
+				productName = Title;
+			}
+			else{
+				productName = Title + " " + id;
+			}
 			
 			openConnection();
 			
 			String query = "INSERT INTO `cl36-st`.`products` (`image`, `Name`, `Price`, `CategoryID`, `IsFavourite`) VALUES ('"
-					+ "null"
+					+ Image
 					+ "', '"
-					+ Title + " " + id
+					+ productName
 					+ "', '"
-					+ 0
+					+ Price
 					+ "', '"
-					+ 1
+					+ CategoryID
 					+ "', '"
-					+ 0
+					+ IsFavourite
 					+ "');";
 			executeStatement(query);
 			query = "SELECT MAX(ProductID) AS ProductID FROM products;";

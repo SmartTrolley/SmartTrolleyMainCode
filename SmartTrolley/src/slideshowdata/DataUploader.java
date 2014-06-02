@@ -525,10 +525,11 @@ public class DataUploader extends SqlConnection{
 			shapeIndex = 0,
 			textIndex = 0,
 			textbodyIndex = 0,
-			videoIndex = 0;
+			videoIndex = 0,
+			productid = 0;
 		
+		String productName = null;
 
-		
 		uploadDocumentData(data.getDocumentinfo());
 		uploadDefaultData(data.getDefaults());
 		
@@ -539,8 +540,21 @@ public class DataUploader extends SqlConnection{
 			
 			currentSlide = data.getSlides().get(slideIndex);
 			
-			int productid = createNewProduct(data.getDocumentinfo().getTitle(), currentSlide.getId()+1);
-			addProductToList(productid, listid);
+			productName = currentSlide.getProductName();
+			
+			if (productName != null){
+				productid = createNewProduct(productName, 0, 
+											 currentSlide.getImgURL(), 
+											 currentSlide.getPrice(), 
+											 currentSlide.getCategoryID(),
+											 currentSlide.getIsFavourite());
+				
+			}
+			else{
+				productid = createNewProduct(data.getDocumentinfo().getTitle(), currentSlide.getId()+1, null, 0, 1, false);
+				addProductToList(productid, listid);	
+			}
+			
 			
 			addSlideContents(productid,
 							 currentSlide.getId()+1, 
