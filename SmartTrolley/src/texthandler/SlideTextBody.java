@@ -59,6 +59,15 @@ public class SlideTextBody extends Text implements Comparable<SlideTextBody> {
 	}
 
 
+	public SlideTextBody(String text, Boolean bold, Boolean italic,
+			Boolean underlined) {
+		setText(text);
+		setBold(bold);
+		setItalic(italic);
+		setUnderline(underlined);
+	}
+
+
 	/**
 	*Sets the font Weight according to an input boolean
 	*<p>Test: weightTest, weightBoolTest

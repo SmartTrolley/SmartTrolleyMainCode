@@ -20,6 +20,8 @@ import javafx.application.Platform;
 import javafx.scene.layout.Pane;
 import se.mbaeumer.fxmessagebox.MessageBox;
 import se.mbaeumer.fxmessagebox.MessageBoxType;
+import slideshowdata.SlideDataImporter;
+import slideshowdata.SlideShowData;
 import toolBox.SmartTrolleyToolBox;
 
 public class SlideShow {
@@ -69,9 +71,15 @@ public class SlideShow {
 	 *@param slideList - The list of slides
 	 *<p> Date Modified: 25 May 2014
 	 */
-	protected SlideShow(Pane displayedPane) {
+	public SlideShow(Pane displayedPane) {
 		this.displayedPane = displayedPane;
 		slides = new ArrayList<Slide>();
+	}
+	
+	public SlideShow(Pane displayedPane, SlideShowData data) {
+		SlideDataImporter importer = new SlideDataImporter(data);
+		
+		this.slides = importer.getSlides();
 	}
 	
 	/**
