@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 /**
  *
- * @author Omid
+ * @author Arash
  */
 public class ListProduct extends Product{
 

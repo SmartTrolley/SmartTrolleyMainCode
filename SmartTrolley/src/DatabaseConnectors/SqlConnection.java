@@ -8,8 +8,9 @@
  * @author V2.1 Alick & Prashant [boolean class added for ResultSet testing]
  *         [also added execute statement]
  * @author Checked By: Checker(s) fill here
+ * @author Arash
  * 
- * @version V2.1 [Date Created: 3 May 2014]
+ * @version V2.1 [Date Created: 2 June 2014]
  */
 package DatabaseConnectors;
 

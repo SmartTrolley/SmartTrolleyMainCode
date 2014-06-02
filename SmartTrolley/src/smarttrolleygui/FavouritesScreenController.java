@@ -5,10 +5,11 @@
  * Favourites.fxml
  *
  * @author Arne
+ * @author Arash
  *
  * @author [Checked By:] [Checker(s) fill here]
  *
- * @version [1.0] [Date Created: 28/02/14]
+ * @version [1.0] [Date Created: 2/06/14]
  */
 package smarttrolleygui;
 
