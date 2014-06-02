@@ -46,7 +46,14 @@ public class TestDataUploader {
 			   comment = "some trolling comment";
 		int width = 20, height = 50;
 
-//		dataUploader.addDocumentDataContent(author, version, title, comment, width, height);
+		dataUploader.addDocumentDataContent(author, version, title, comment, width, height);
+		
+		DocumentInfoData docinfo = (DocumentInfoData)dataUploader.getSpecificData("document_info_data", "author", "Jack");
+		assertEquals("1.0", docinfo.getVersion());
+		assertEquals("some title", docinfo.getTitle());
+		assertEquals("some trolling comment", docinfo.getComment());
+		assertEquals(20, docinfo.getWidth());
+		assertEquals(50, docinfo.getHeight());
 		
 		dataUploader.deleteDocumentDataContent();
 	}
@@ -68,22 +75,15 @@ public class TestDataUploader {
 		int fontsize = 25;
 
 		dataUploader.addDefaultsContent(backgroundcolor, font, fontsize, fontcolor, linecolor, fillcolor);
+		
 		DefaultsData defaults = (DefaultsData)dataUploader.getSpecificData("defaults", "backgroundcolor", "black");
 		assertEquals("comic Sans", defaults.getFont());
 		assertEquals("black", defaults.getLinecolor());
 		assertEquals("white", defaults.getFillcolor());
+		
 		dataUploader.deleteDefaultsContent();
 	}
 
-	/**
-	 * Tests that all data is deleted on the defaults list on the database
-	 */
-//	@Test
-	public void deleteDefaultsContentTest(){
-		SmartTrolleyPrint.print("\n Start of deleteDefaultsContentTest............");
-
-		dataUploader.deleteLastContentAndResetAutoIncrement("defaults");
-	}
 
 	/**
 	 * Test that contents is added to the audio table
@@ -100,21 +100,13 @@ public class TestDataUploader {
 		boolean loop = false;
 
 		dataUploader.addAudioTableContents(productID, slideID, urlName, startTime,  volume, loop);
+		
 		AudioData audiodata = (AudioData)dataUploader.getSpecificData("audio", "starttime", "0");
 		assertEquals(false, audiodata.getLoop());
 		assertEquals(0, audiodata.getStarttime());
 		assertEquals("img/SampleProducts/large/ariel.jpg", audiodata.getUrlname());
+		
 		dataUploader.deleteLastContentAndResetAutoIncrement("audio");
-	}
-
-	/**
-	 * Test that all data is deleted on the audio table on the database
-	 */
-//	@Test
-	public void deleteAudioTableContentsTest(){
-		SmartTrolleyPrint.print("\n Start of deleteAudioTableContentsTest............");
-
-		dataUploader.deleteContentAndResetAutoIncrement("audio");
 	}
 
 	/**
@@ -132,20 +124,12 @@ public class TestDataUploader {
 			y = 75;
 
 		dataUploader.addPointContents(productid, slideID, shapeNo, individualPointNo, x, y);
+		
 		PointData pointdata = (PointData)dataUploader.getSpecificData("point", "ShapeNo", "1");
 		assertEquals(3,pointdata.getNum());
 		assertEquals(56,pointdata.getX());
 		assertEquals(75,pointdata.getY());
-		dataUploader.deleteLastContentAndResetAutoIncrement("point");
-	}
-
-	/**
-	 * Test that all data is deleted on the point table on the database
-	 */
-//	@Test
-	public void deletePointContentsTest(){
-		SmartTrolleyPrint.print("\n Start of deleteAudioTableContentsTest............");
-
+		
 		dataUploader.deleteLastContentAndResetAutoIncrement("point");
 	}
 
@@ -169,6 +153,7 @@ public class TestDataUploader {
 			   linecolor = "blue";
 
 		dataUploader.addShapeContents(productid, slideID, totalPoints, width, height, starttime, duration, layer, branch, fillcolor, linecolor);
+		
 		ShapeData shapedata = (ShapeData)dataUploader.getSpecificData("shape", "totalpoints", "4");
 		assertEquals("black", shapedata.getFillcolor());
 		assertEquals("blue", shapedata.getLinecolor());
@@ -178,17 +163,8 @@ public class TestDataUploader {
 		assertEquals(4, shapedata.getTotalpoints());
 		assertEquals(30, shapedata.getWidth());
 		assertEquals(30, shapedata.getHeight());
+		
 		dataUploader.deleteLastContentAndResetAutoIncrement("shape");
-	}
-
-	/**
-	 * Test that all data is deleted on the shape table on the database
-	 */
-//	@Test
-	public void deleteShapeContentsTest(){
-		SmartTrolleyPrint.print("\n Start of deleteShapeContentsTest............");
-
-		dataUploader.deleteContentAndResetAutoIncrement("shape");
 	}
 
 	/**
@@ -212,6 +188,7 @@ public class TestDataUploader {
 			   FontColor = "blue";
 
 		dataUploader.addTextContents(productid, slideID, fontSize, xStart, yStart, startTime, duration, layer, xend, yend, font, FontColor);
+		
 		TextData textdata = (TextData)dataUploader.getSpecificData("text", "font", "comic sans");
 		assertEquals(30, textdata.getFontsize());
 		assertEquals(30, textdata.getXstart());
@@ -221,17 +198,8 @@ public class TestDataUploader {
 		assertEquals(4, textdata.getLayer());
 		assertEquals(50, textdata.getXend());
 		assertEquals(50, textdata.getYend());
+		
 		dataUploader.deleteLastContentAndResetAutoIncrement("text");
-	}
-
-	/**
-	 * Test that all data is deleted on the text table on the database
-	 */
-//	@Test
-	public void deleteTextContentsTest(){
-		SmartTrolleyPrint.print("\n Start of deleteTextContentsTest............");
-
-		dataUploader.deleteContentAndResetAutoIncrement("text");
 	}
 
 	/**
@@ -251,22 +219,14 @@ public class TestDataUploader {
 		String text = "LLLLLOOOOKKIIIE, some text";
 
 		dataUploader.addTextbodyContents(productid, slideID, TextNo, Branch, Bold, italic, underlined, text);
+		
 		TextBodyData textbodydata = (TextBodyData)dataUploader.getSpecificData("textbody", "TextNo", "30");
 		assertEquals(false, textbodydata.getBold());
 		assertEquals(false, textbodydata.getItalic());
 		assertEquals(false, textbodydata.getUnderlined());
 		assertEquals("LLLLLOOOOKKIIIE, some text", textbodydata.getTextstring());
 		assertEquals(30, textbodydata.getBranch());
-		dataUploader.deleteContentAndResetAutoIncrement("textbody");
-	}
-
-	/**
-	 * Test that all data is deleted on the textbody table on the database
-	 */
-//	@Test
-	public void deleteTextbodyContentsTest(){
-		SmartTrolleyPrint.print("\n Start of deleteTextbodyContentsTest............");
-
+		
 		dataUploader.deleteContentAndResetAutoIncrement("textbody");
 	}
 
@@ -290,6 +250,7 @@ public class TestDataUploader {
 		boolean loop = false;
 
 		dataUploader.addVideoContents(productid, slideID, urlname, starttime, loop, xstart, ystart, width, height, layer, duration);
+		
 		VideoData videodata = (VideoData)dataUploader.getSpecificData("video", "slideID", "1");
 		assertEquals(15,videodata.getDuration());
 		assertEquals(1,videodata.getLayer());
@@ -301,17 +262,8 @@ public class TestDataUploader {
 		assertEquals(70,videodata.getYstart());
 		assertEquals(15,videodata.getDuration());
 		assertEquals("SOME URL",videodata.getUrlname());
+		
 		dataUploader.deleteLastContentAndResetAutoIncrement("video");
-	}
-
-	/**
-	 * Test that all data is deleted on the video table on the database
-	 */
-//	@Test
-	public void deleteVideoContentsTest(){
-		SmartTrolleyPrint.print("\n Start of deleteVideoContentsTest............");
-
-		dataUploader.deleteContentAndResetAutoIncrement("video");
 	}
 
 	/** 
@@ -334,6 +286,7 @@ public class TestDataUploader {
 		String urlname = "SOME URL";
 
 		dataUploader.addImageContents(productID, slideID, urlname, xstart, ystart, width, height, starttime, duration, layer, branch);
+		
 		ImageData imagedata = (ImageData)dataUploader.getSpecificData("image_slide", "xstart", "30");
 		assertEquals(3,imagedata.getBranch());
 		assertEquals(10,imagedata.getDuration());
@@ -344,10 +297,11 @@ public class TestDataUploader {
 		assertEquals(50,imagedata.getWidth());
 		assertEquals(30,imagedata.getXstart());
 		assertEquals(40,imagedata.getYstart());
+		
 		dataUploader.deleteLastContentAndResetAutoIncrement("image_slide");
 	}
 
-//	@Test
+	@Test
 	public void uploadDataTest(){
 
 		dataUploader.uploadXmlData(fileName);	

@@ -404,11 +404,10 @@ public class DataUploader extends SqlConnection{
 	 * @param lastSlide
 	 * @param backgroundcolor
 	 */
-	public void addSlideContents(int productid, int slideid, int duration, String descriptor, 
-			boolean lastSlide, String backgroundcolor) {
+	public void addSlideContents(int productid, int slideid, int duration, boolean lastSlide) {
 
 		openConnection();
-		String query = "INSERT INTO `cl36-st`.`slide` (`productID`, `slideID`, `duration`, `descriptor`, `lastSlide`, `backgroundcolor`"
+		String query = "INSERT INTO `cl36-st`.`slide` (`productID`, `slideID`, `duration`, `lastSlide`"
 				+ ") VALUES ('"
 				+ productid
 				+ "', '"
@@ -416,11 +415,7 @@ public class DataUploader extends SqlConnection{
 				+ "', '"
 				+ duration
 				+ "', '"
-				+ descriptor
-				+ "', '"
 				+ lastSlide
-				+ "', '"
-				+ backgroundcolor
 				+ "');";
 		executeStatement(query);
 		closeConnection();
@@ -549,10 +544,8 @@ public class DataUploader extends SqlConnection{
 			
 			addSlideContents(productid,
 							 currentSlide.getId()+1, 
-							 currentSlide.getDuration(), 
-							 "null", //slide descriptor no method yet!					
-							 currentSlide.getLastSlide(), 
-							 "null"); //background color no method yet!
+							 currentSlide.getDuration(), 					
+							 currentSlide.getLastSlide());
 			
 			while(audioIndex<currentSlide.getAudios().size()){
 				
