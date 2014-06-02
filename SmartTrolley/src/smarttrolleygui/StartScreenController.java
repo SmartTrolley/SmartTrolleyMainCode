@@ -29,7 +29,7 @@ public class StartScreenController extends ControllerGeneral implements Initiali
 	public static Button createNewListButton;
 
 	@FXML
-	public static Button viewAllShoppingListsButton;
+	public Button viewAllShoppingListsButton;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

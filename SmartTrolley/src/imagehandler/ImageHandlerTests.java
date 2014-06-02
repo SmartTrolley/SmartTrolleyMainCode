@@ -68,7 +68,7 @@ public class ImageHandlerTests {
 	}
 	
 	/**
-	*Check that the X and Y positions in the slide are those fed to the constructor
+	*Check that the X and Y positions in the slideshow are those fed to the constructor
 	*<p> Date Modified: 5 May 2014
 	*/
 	@Test

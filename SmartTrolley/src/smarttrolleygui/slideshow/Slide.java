@@ -1,6 +1,6 @@
 /**
  * SmartTrolley
- ** An instance of this object contains all the information required to render a particular slide.
+ ** An instance of this object contains all the information required to render a particular slideshow.
 *
 * @author Prashant Chakravarty
 *
@@ -9,7 +9,7 @@
 * @version V1.0 [Date Created: 24 May 2014]
 * 
  * This class also sets up an anchor pane to display all PWS specified media inputs on,
- * for slide show
+ * for slideshow show
  *
  * @author Alick Jacklin
  * @author Matthew Wells
@@ -19,7 +19,7 @@
  * @version V2.0 [Date Created: 26 May 2014]
  */
 
-package smarttrolleygui;
+package smarttrolleygui.slideshow;
 
 import imagehandler.SlideImage;
 
@@ -47,8 +47,8 @@ public class Slide extends AnchorPane {
 	*Constructor takes in lists, and places objects from those lists into the Slide, based on self defined locations. Also takes in scaling factors
 	*and scales objects and their locations based on them.
 	*<p>Displays product information
-	*@param xScaler - scales the width of objects placed on the slide
-	*@param yScaler - scales the height of objects placed on the slide
+	*@param xScaler - scales the width of objects placed on the slideshow
+	*@param yScaler - scales the height of objects placed on the slideshow
 	*@param graphicsList - sorts a list of objects of type graphics, contains all relevant information on the graphic
 	*@param imageList - sorts a list of objects of type image, contains all relevant information on the image
 	*@param audioList - sorts a list of objects of type audio, contains all relevant information on the audio
@@ -67,7 +67,7 @@ public class Slide extends AnchorPane {
 		// TODO Test if graphics is null here
 		/*
 		 * if (graphicsList == null){
-		 * SmartTrolleyToolBox.print("Graphics list is null for this slide.")
+		 * SmartTrolleyToolBox.print("Graphics list is null for this slideshow.")
 		 */
 		this.graphicsList = graphicsList;
 
@@ -78,14 +78,14 @@ public class Slide extends AnchorPane {
 		// TODO Test if audio is null here
 		/*
 		 * if (audioList == null){
-		 * SmartTrolleyToolBox.print("Audio list is null for this slide.")
+		 * SmartTrolleyToolBox.print("Audio list is null for this slideshow.")
 		 */
 		this.audioList = audioList; // file path should have no spaces
 
 		// TODO Test if image is null here
 		/*
 		 * if (imageList == null){
-		 * SmartTrolleyToolBox.print("Image list is null for this slide.")
+		 * SmartTrolleyToolBox.print("Image list is null for this slideshow.")
 		 */
 		this.imageList = imageList;// file path should have no spaces
 
@@ -96,7 +96,7 @@ public class Slide extends AnchorPane {
 		// TODO Test if text is null here
 		/*
 		 * if (textList == null){
-		 * SmartTrolleyToolBox.print("Text list is null for this slide.")
+		 * SmartTrolleyToolBox.print("Text list is null for this slideshow.")
 		 */
 		this.textList = textList;
 
@@ -107,7 +107,7 @@ public class Slide extends AnchorPane {
 		// TODO Test if video is null here
 		/*
 		 * if (videoList == null){
-		 * SmartTrolleyToolBox.print("Video list is null for this slide.")
+		 * SmartTrolleyToolBox.print("Video list is null for this slideshow.")
 		 */
 		this.videoList = videoList;// file path should have no spaces
 
@@ -191,7 +191,7 @@ public class Slide extends AnchorPane {
 	}
 
 	/**
-	*sets all elements which have been added to the slide, to a visible or show-able state, and plays audio.
+	*sets all elements which have been added to the slideshow, to a visible or show-able state, and plays audio.
 	*<p> Date Modified: 29 May 2014
 	*/
 	public void show() {
@@ -216,7 +216,7 @@ public class Slide extends AnchorPane {
 	}
 
 	/**
-	*clears all children from slide and stops audio.
+	*clears all children from slideshow and stops audio.
 	*<p> Date Modified: 27 May 2014
 	*/
 	public void clearSlide() {

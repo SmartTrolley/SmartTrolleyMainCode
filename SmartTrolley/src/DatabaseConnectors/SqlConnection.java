@@ -305,10 +305,10 @@ public class SqlConnection {
 				SmartTrolleyToolBox.print("Results found");
 				results.absolute(1);
 
-				while (results.next()) {
+				do {
 					product = storeProductDetails(results);
 					products.add(product);
-				}
+				}while (results.next());
 				SmartTrolleyToolBox.print("Results stored");
 
 				closeConnection();

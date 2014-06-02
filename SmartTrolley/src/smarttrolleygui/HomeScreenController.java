@@ -17,13 +17,11 @@
 package smarttrolleygui;
 
 import java.net.URL;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -41,7 +39,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
-import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
 public class HomeScreenController extends ControllerGeneral implements Initializable {
@@ -69,8 +66,6 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 	private ObservableList<String> categories;
 	private ObservableList<Product> productData;
 	private String categoryNumber;
-	private String query;	
-	private ResultSet resultSet;
 
 	/**
 	 * initialize is automatically called when the controller is created.
@@ -211,43 +206,7 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 	*/
 	public void searchForProducts(ActionEvent event) throws SQLException {
 
-		SqlConnection productsDatabase = new SqlConnection();
-		productsDatabase.openConnection();
-		ObservableList<Product> products = FXCollections.observableArrayList();
-
-		SmartTrolleyToolBox.print(searchBox.getText());
-
-		query = "SELECT * FROM products WHERE name LIKE '" + searchBox.getText() + "%';";
-
-		try {
-			resultSet = productsDatabase.sendQuery(query);
-		} catch (SQLException e) {
-			SmartTrolleyToolBox.print("unable to send query");
-		}
-
-		while (resultSet.next()) {
-
-			Product product = new Product();
-
-			SmartTrolleyToolBox.print(resultSet.getString("Name"));
-			// get id
-			product.setId(resultSet.getInt("ProductID"));
-
-			// get Name
-			product.setName(resultSet.getString("Name"));
-
-			// get Image
-			product.setImage(resultSet.getString("Image"));
-
-			// get Price
-			product.setPrice(resultSet.getFloat("Price"));
-
-			products.add(product);
-		}
-
-		productTable.setItems(products);
-
-		productsDatabase.closeConnection();
+		productTable.setItems(searchForProductInSearchBox(searchBox.getText()));
 	}
 
 	/**

@@ -88,7 +88,7 @@ public class SlidePolygon extends Polygon{
 	}
 	
 	/**
-	 * Shows the slide for its duration after startTime has elapsed
+	 * Shows the slideshow for its duration after startTime has elapsed
 	 * 
 	 * @see SlideElementDuration#show()
 	 * @see this{@link #setDuration(int)}

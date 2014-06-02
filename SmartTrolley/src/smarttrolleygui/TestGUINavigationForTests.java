@@ -17,6 +17,30 @@ import javafx.application.Platform;
 import toolBox.SmartTrolleyToolBox;
 
 public class TestGUINavigationForTests {
+
+	/**
+	* Navigates to the all shopping lists screen from the start screen by pressing the "View your shopping Lists" button
+	*<p> Date Modified: 2 Jun 2014
+	*/
+	protected static void goToAllShoppingListsFromStartScreen(final SmartTrolleyGUI smartTrolleyApplication) {
+		/*
+		 * In order to do anything with the user interface, the JavaFX thread must be modified using Platform.
+		 * runlater etc etc If you try to monitor the UX outside this thread, there will be errors.
+		 * Please note that for any elements of the UX that you want to modify,
+		 * there must be the corresponding variable (with an @FXML tag above it i.e.
+		 * 
+		 * @FXML protected static Button viewAllShoppingListsButton;) in order to use it.
+		 */
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				SmartTrolleyToolBox.print("Firing view lists Button");
+				smartTrolleyApplication.startScreen.viewAllShoppingListsButton.fire();
+				SmartTrolleyToolBox.print("Fired view lists Button");
+			}
+		});
+	}
+
 	/**
 	* Launches the SmartTrolley Application required for the test to take place
 	*<p> Date Modified: 31 May 2014
@@ -67,12 +91,12 @@ public class TestGUINavigationForTests {
 		 * created.
 		 */
 		SmartTrolleyToolBox.delay(2500);
-		
+
 		return testApplication;
 	}
 
 	/**
-	* Go to the next slide in the test slideshow
+	* Go to the next slideshow in the test slideshow
 	*<p> Date Modified: 31 May 2014
 	*/
 	protected static void goToNextTestSlide(final SmartTrolleyGUI smartTrolleyApplication) {
@@ -88,7 +112,7 @@ public class TestGUINavigationForTests {
 	}
 
 	/**
-	* Go to the previous slide in the test slideshow
+	* Go to the previous slideshow in the test slideshow
 	*<p> Date Modified: 31 May 2014
 	*/
 	protected static void goToPrevTestSlide(final SmartTrolleyGUI smartTrolleyApplication) {

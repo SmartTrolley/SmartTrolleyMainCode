@@ -24,8 +24,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import smarttrolleygui.ControllerGeneral.Screen;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
@@ -36,9 +38,6 @@ public class AllShoppingListsScreenController extends ControllerGeneral implemen
 	private SqlConnection productsDatabase;
 
 	public GridPane grdPaneLists = new GridPane();
-
-	@FXML
-	public static Button list1Button;
 
 	public static ArrayList<Button> buttonList;
 
@@ -63,19 +62,46 @@ public class AllShoppingListsScreenController extends ControllerGeneral implemen
         }
 		 //Add the buttons to the grid pane
             int listNo = 1;
+            
+            if (buttonList.size() != 0){
             for (Button button : buttonList) {
                 GridPane.setConstraints(button, 0, listNo);
                 listNo++;
             }
-            
-            grdPaneLists.vgapProperty().set(20);
             grdPaneLists.getChildren().addAll(buttonList);
+            } else {
+            	SmartTrolleyToolBox.print("No lists exist");
+            	
+            	Label noListsLabel = new Label("Please Create a List");  
+            	
+            	noListsLabel.setMinHeight(100);
+            	noListsLabel.setText("Please Create a List");
+            	noListsLabel.getStyleClass().add("buttonLarge");
+            	noListsLabel.setPrefSize(300, 80);
+        		                        
+            	Button createNewListButton = new Button("Create a new shopping list");
+            	createNewListButton.setOnAction(new EventHandler<ActionEvent>() {
+
+    				@Override
+    				public void handle(ActionEvent event) {
+    					loadScreen(Screen.CREATENEWLISTSCREEN, application);
+    				}
+    			});
+            	
+            	grdPaneLists.getChildren().add(noListsLabel);   
+            	grdPaneLists.getChildren().addAll(createNewListButton);
+            }
+            
+            
+            grdPaneLists.vgapProperty().set(20);            
             //Set row height
             for (RowConstraints rc : grdPaneLists.getRowConstraints()) {
                 rc.setMaxHeight(Integer.MAX_VALUE);
                 rc.setPrefHeight(500);
               
             }
+            
+            createGoBackButton();
 		
 	}
 
@@ -124,8 +150,16 @@ public class AllShoppingListsScreenController extends ControllerGeneral implemen
 		}
 		
 		resultSet.close();
-		SmartTrolleyToolBox.print("Total Number of Lists: " + buttonList.size());
+		
+		SmartTrolleyToolBox.print("Total Number of Lists: " + buttonList.size());			
 
+	}
+
+	/**
+	* Creates the go back button and adds it to the grid pane
+	*<p> Date Modified: 2 Jun 2014
+	*/
+	private void createGoBackButton() {
 		// Add the Go Back button
 		Button newButton = new Button();
 		newButton.setMaxHeight(Integer.MAX_VALUE);
@@ -141,10 +175,7 @@ public class AllShoppingListsScreenController extends ControllerGeneral implemen
 			}
 		});
 
-		buttonList.add(newButton);
-		
-		SmartTrolleyToolBox.print("Arraylist size is: " + buttonList.size());
-
+		grdPaneLists.getChildren().add(newButton);
 	}
 
 	/**

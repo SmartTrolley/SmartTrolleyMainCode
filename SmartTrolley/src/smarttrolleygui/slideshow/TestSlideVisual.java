@@ -12,7 +12,7 @@
  *
  * @version V1.5 [Date Created: 26 May 2014]
  */
-package smarttrolleygui;
+package smarttrolleygui.slideshow;
 
 import graphicshandler.ShapePoint;
 import graphicshandler.SlidePolygon;

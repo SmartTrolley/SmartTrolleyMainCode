@@ -11,7 +11,6 @@
  * @version version of this file [Date Created: 4 May 2014]
  */
 
-
 package smarttrolleygui;
 
 import static org.junit.Assert.assertFalse;
@@ -25,7 +24,6 @@ import java.sql.SQLException;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import org.junit.After;
@@ -39,8 +37,7 @@ public class TestAllShoppingListsScreenController {
 
 	public Stage stage;
 	private static SqlConnection productsDatabase;
-	private SmartTrolleyGUI GUIboot;
-	
+	private SmartTrolleyGUI smartTrolleyApplication;
 
 	/**
 	 * It sets up a database connection and moves to the lists screen
@@ -54,57 +51,52 @@ public class TestAllShoppingListsScreenController {
 		productsDatabase = new SqlConnection();
 		productsDatabase.openConnection();
 
+		smartTrolleyApplication = new SmartTrolleyGUI();
+
 		/*
-		 * Create a new thread which launches the application. 
-		 * If the main thread launches the application, 
-		 * the rest of the test will only run after the application closes i.e. pointless.
+		 * Create a new thread which launches the application. If the main
+		 * thread launches the application, the rest of the test will only run
+		 * after the application closes i.e. pointless.
 		 */
 		Thread newGUIThread;
-		
-
-		GUIboot = new SmartTrolleyGUI();
 
 		newGUIThread = new Thread("New GUI") {
 			public void run() {
 				SmartTrolleyToolBox.print("GUI thread");
 				Application.launch(SmartTrolleyGUI.class, (java.lang.String[]) null);
+
 			}
 		};
-
 		newGUIThread.start();
 
+		// Delay to allow the application to launch
+		// If you get NullPointer errors around this line, increase the delay
+		SmartTrolleyToolBox.delay(200);
+
+		// Now launch the instance of SmartTrolleyGUI, which takes over the displayed stage
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				smartTrolleyApplication.start(SmartTrolleyGUI.stage);
+			}
+		});
+
 		/*
-		 * Note that at this point, there are 3 threads running: 
-		 * 1. Main (test) thread - Runs this class 
-		 * 2. newGUIThread - Launches the Application 
+		 * Note that at this point, there are 3 threads running: 1. Main (test)
+		 * thread - Runs this class 2. newGUIThread - Launches the Application
 		 * 3. JavaFX Thread - This thread actually is the application.
 		 */
 
 		/*
-		 * It is necessary to pause the main (test) thread for some time to allow the application to catch up.
-		 * Failure to implement this delay results in a nullPointerException,
-		 * since the scene has not yet been created.
+		 * It is necessary to pause the main (test) thread for some time to
+		 * allow the application to catch up. Failure to implement this delay
+		 * results in a nullPointerException, since the scene has not yet been
+		 * created.
 		 */
-		SmartTrolleyToolBox.delay(1000);
+		SmartTrolleyToolBox.delay(2500);
 
-		/*
-		 * In order to do anything with the user interface, the JavaFX thread must be modified using Platform.
-		 * runlater etc etc If you try to monitor the UX outside this thread, there will be errors.
-		 * Please note that for any elements of the UX that you want to modify,
-		 *  there must be the corresponding variable (with an @FXML tag above it i.e.
-		 * @FXML protected static Button viewAllShoppingListsButton;) in order to use it.
-		 */
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				SmartTrolleyToolBox.print("Firing view lists Button");
-				Button viewLists = new Button();
-				viewLists = StartScreenController.viewAllShoppingListsButton;
-				viewLists.fire();
-				SmartTrolleyToolBox.print("Fired view lists Button");
-			}
-		});
-
+		TestGUINavigationForTests.goToAllShoppingListsFromStartScreen(smartTrolleyApplication);
+		
 		/*
 		 * You can visually see where your test ends up if you uncomment the two lines below.
 		 * This delay is also required to allow the JavaFX thread to load the screens and catch up.
@@ -121,16 +113,14 @@ public class TestAllShoppingListsScreenController {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		
+
 		SmartTrolleyToolBox.delay(1000);
-		
+
 		productsDatabase.closeConnection();
 
-		GUIboot.stop();
+		smartTrolleyApplication.stop();
 
 		SmartTrolleyToolBox.print("Closing Test.");
-
-		SmartTrolleyToolBox.delay(1000);
 
 	}
 
@@ -156,16 +146,16 @@ public class TestAllShoppingListsScreenController {
 			SmartTrolleyToolBox.print("Number of rows Database is: " + results.getInt(1));
 			rowSize = results.getInt(1);
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
 
-		SmartTrolleyToolBox.delay(5000);
+		SmartTrolleyToolBox.delay(500);
 
 		SmartTrolleyToolBox.print("rowSize is " + rowSize);
 		SmartTrolleyToolBox.print("array size is" + AllShoppingListsScreenController.buttonList.size());
 
-		assertTrue(rowSize == AllShoppingListsScreenController.buttonList.size() - 1);
+		assertTrue(rowSize == AllShoppingListsScreenController.buttonList.size());
 
 	}
 
@@ -176,9 +166,9 @@ public class TestAllShoppingListsScreenController {
 	 */
 	@Test
 	public void correctListDisplayedTest() {
-		
+
 		SmartTrolleyToolBox.delay(3000);
-		
+
 		ResultSet results = null;
 		String query;
 		int rowSize = 0;
@@ -191,44 +181,43 @@ public class TestAllShoppingListsScreenController {
 		} catch (SQLException e1) {
 			SmartTrolleyToolBox.print("unable to send query, unknown reason");
 		}
-		
+
 		assertFalse(SqlConnection.isResultSetEmpty(results));
 
-		
-		 try { Robot menuRobot = new Robot();
-		 
-		 menuRobot.keyPress(KeyEvent.VK_TAB);
-		 menuRobot.keyRelease(KeyEvent.VK_TAB);
-		 menuRobot.keyPress(KeyEvent.VK_ENTER);
-		 menuRobot.keyRelease(KeyEvent.VK_ENTER);
-		 
-		 } catch (AWTException e) { 
-			 SmartTrolleyToolBox.print("Robot cannot function, reasons unknown");
+		try {
+			Robot menuRobot = new Robot();
 
-			 }
-		
+			menuRobot.keyPress(KeyEvent.VK_TAB);
+			menuRobot.keyRelease(KeyEvent.VK_TAB);
+			menuRobot.keyPress(KeyEvent.VK_ENTER);
+			menuRobot.keyRelease(KeyEvent.VK_ENTER);
+
+		} catch (AWTException e) {
+			SmartTrolleyToolBox.print("Robot cannot function, reasons unknown");
+
+		}
 
 		try {
 			results.last();
 
 			rowSize = results.getRow();
-			
+
 		} catch (SQLException e1) {
 			SmartTrolleyToolBox.print("no results in ResultSet");
 		}
-		
+
 		SmartTrolleyToolBox.delay(1000);
 
 		SmartTrolleyToolBox.print("row Size is " + rowSize);
-		
+
 		listSize = ShoppingListController.getProductDataSize();
-		
+
 		SmartTrolleyToolBox.print("list Size is " + listSize);
-		
+
 		assertTrue(rowSize == listSize);
-		
+
 		SmartTrolleyToolBox.delay(1000);
-	
+
 	}
 
 }

@@ -15,7 +15,6 @@ package smarttrolleygui;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
 import graphicshandler.ShapePoint;
 import graphicshandler.SlidePolygon;
 import graphicshandler.SlideShapeFactory;
@@ -26,19 +25,18 @@ import java.util.PriorityQueue;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.shape.Shape;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import audiohandler.AudioHandler;
-
+import smarttrolleygui.slideshow.Slide;
+import smarttrolleygui.slideshow.SlideShow;
 import texthandler.SlideText;
 import texthandler.SlideTextBody;
 import toolBox.SmartTrolleyToolBox;
 import videohandler.SlideVideo;
+import audiohandler.AudioHandler;
 
 public class TestProductScreenController {
 
@@ -90,7 +88,6 @@ public class TestProductScreenController {
 	/**sets parameters for audio*/
 	public AudioHandler audio;
 	private String audURL = "Music/Kalimba.mp3";
-	private String audURL2 = "Music/Shop2.mp3";
 	private int audStartTime = 0;
 	private int audDuration = 5;
 	private double audVolume = 0.4;
@@ -331,7 +328,7 @@ public class TestProductScreenController {
 	}
 
 	/**
-	*Tests that the displayed slide is not null and slide 
+	*Tests that the displayed slideshow is not null and slideshow 
 	*<p>User views products
 	*<p> Date Modified: 25 May 2014
 	*/
@@ -359,7 +356,7 @@ public class TestProductScreenController {
 	}
 
 	/**
-	*Tests that the first slide is the slide shown when the slideshow is launched
+	*Tests that the first slideshow is the slideshow shown when the slideshow is launched
 	*<p> User can view PWS Compatible slideshow
 	*<p> Date Modified: 27 May 2014
 	*/
@@ -371,7 +368,7 @@ public class TestProductScreenController {
 	}
 
 	/**
-	*Tests that the next slide button goes to the next slide
+	*Tests that the next slideshow button goes to the next slideshow
 	*<p> User can view PWS Compatible slideshow
 	*<p> Date Modified: 27 May 2014
 	*/
@@ -407,7 +404,7 @@ public class TestProductScreenController {
 	}
 
 	/**
-	*Tests that user is notified when prev button is pressed when on 1st slide
+	*Tests that user is notified when prev button is pressed when on 1st slideshow
 	*<p> User can view PWS Compatible slideshow
 	*<p> Date Modified: 27 May 2014
 	*/
@@ -420,7 +417,7 @@ public class TestProductScreenController {
 	}
 
 	/**
-	*Tests that slide changes after the duration has elapsed
+	*Tests that slideshow changes after the duration has elapsed
 	*<p> User can view PWS Compatible slideshow
 	*<p> Date Modified: 27 May 2014
 	*/

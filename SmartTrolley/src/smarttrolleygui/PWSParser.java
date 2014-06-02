@@ -21,6 +21,8 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import se.mbaeumer.fxmessagebox.MessageBox;
 import se.mbaeumer.fxmessagebox.MessageBoxType;
+import smarttrolleygui.slideshow.Slide;
+import smarttrolleygui.slideshow.SlideShow;
 import toolBox.SmartTrolleyToolBox;
 
 /**
@@ -46,7 +48,7 @@ enum DefaultsChildElements {
 
 public class PWSParser extends DefaultHandler {
 
-	// Refer to slide child elements using xyz = Slide.SlideChildElements. i.e. currentElement = Slide.SlideChildElements.TEXT;
+	// Refer to slideshow child elements using xyz = Slide.SlideChildElements. i.e. currentElement = Slide.SlideChildElements.TEXT;
 
 	public static String slideShowPath = "../../XMLDocs/trialPWS.xml";
 	/* /SmartTrolley/XMLDocs/trialPWS.xml */

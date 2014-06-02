@@ -24,7 +24,6 @@ import java.sql.SQLException;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import org.junit.After;

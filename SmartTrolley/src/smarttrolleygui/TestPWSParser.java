@@ -19,6 +19,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import smarttrolleygui.slideshow.Slide;
+
 public class TestPWSParser {
 	
 	private PWSParser parser;

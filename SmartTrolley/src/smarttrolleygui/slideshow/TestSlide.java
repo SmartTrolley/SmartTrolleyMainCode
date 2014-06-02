@@ -10,7 +10,7 @@
  *
  * @version V1.4 [Date Created: 26 May 2014]
  */
-package smarttrolleygui;
+package smarttrolleygui.slideshow;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -331,7 +331,7 @@ public class TestSlide {
 	
 	
 	/**
-	 * Tests that all media has been removed from the slide
+	 * Tests that all media has been removed from the slideshow
 	 * <p> Date Modified: 27 May 2014
 	 */
 	@Test

@@ -10,7 +10,7 @@
  * @version V1.0 [Date Created: 24 May 2014]
  */
 
-package smarttrolleygui;
+package smarttrolleygui.slideshow;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -27,7 +27,7 @@ public class SlideShow {
 	/**
 	 * Enumerated type for play direction
 	 */
-	enum PlayDirection {
+	public enum PlayDirection {
 		FOR, REV
 	}
 
@@ -40,28 +40,28 @@ public class SlideShow {
 	/**The array list of slides*/
 	private ArrayList<Slide> slides;
 
-	/**The slide that is displayed in the pane*/
+	/**The slideshow that is displayed in the pane*/
 	private Slide displayedSlide;
 
-	/**The pane which will contain the slide*/
+	/**The pane which will contain the slideshow*/
 	private Pane displayedPane;
 
-	/**The index of the slide in the slideshow*/
+	/**The index of the slideshow in the slideshow*/
 	private int slideShowIndex;
 
 	/**Message Box to notify user that they are trying to access outside the slideshow*/
-	protected MessageBox outOfSlideShowMessageBox;
+	public MessageBox outOfSlideShowMessageBox;
 	
-	/**Field which is true when a slideshow is playing using slide durations rather than button presses*/
-	protected boolean autoPlay = false;
+	/**Field which is true when a slideshow is playing using slideshow durations rather than button presses*/
+	private boolean autoPlay = false;
 	
-	/**Timer for slide duration*/
-	protected Timer slideTimer;
+	/**Timer for slideshow duration*/
+	private Timer slideTimer;
 	
 	private PlaySlide playSlide;
 	
 	/**Direction to play the slideshow*/
-	protected PlayDirection playDirection = PlayDirection.FOR;
+	private PlayDirection playDirection = PlayDirection.FOR;
 	
 	/**
 	 *The constructor
@@ -69,7 +69,7 @@ public class SlideShow {
 	 *@param slideList - The list of slides
 	 *<p> Date Modified: 25 May 2014
 	 */
-	protected SlideShow(Pane displayedPane) {
+	public SlideShow(Pane displayedPane) {
 		this.displayedPane = displayedPane;
 		slides = new ArrayList<Slide>();
 	}
@@ -80,12 +80,12 @@ public class SlideShow {
 	 *@return
 	 *<p> Date Modified: 24 May 2014
 	 */
-	protected ArrayList<Slide> getSlides() {
+	public ArrayList<Slide> getSlides() {
 		return slides;
 	}
 	
 	/**
-	 * This method displays a particular slide by the index that is passed in
+	 * This method displays a particular slideshow by the index that is passed in
 	 *<p> User can view PWS Compatible slideshow
 	 *@param slideShowIndex - Slide index to be displayed
 	 *<p> Date Modified: 28 May 2014
@@ -97,16 +97,16 @@ public class SlideShow {
 		displayedPane.getChildren().add(displayedSlide);
 		
 		//Setup Timer for new duration if slideshow is autoplaying 
-		if (autoPlay) {
+		if (isAutoPlay()) {
 			if (displayedSlide.duration != 0) {
 				playSlide.cancel();
 				
 				/*
-				 * The multiplication by 1000 is because the slide duration is in seconds
+				 * The multiplication by 1000 is because the slideshow duration is in seconds
 				 * while timer durations are in milliseconds.
 				 */
-				playSlide = new PlaySlide(playDirection);
-				slideTimer.schedule(playSlide, (long) displayedSlide.duration * 1000);
+				playSlide = new PlaySlide(getPlayDirection());
+				getSlideTimer().schedule(playSlide, (long) displayedSlide.duration * 1000);
 
 				SmartTrolleyToolBox.print("In displaySlide for autoplay, scheduling timer now.");
 			}
@@ -114,11 +114,11 @@ public class SlideShow {
 	}
 
 	/**
-	 * This method starts the slideshow by displaying the first slide
+	 * This method starts the slideshow by displaying the first slideshow
 	 *<p> User can view PWS Compatible slideshow
 	 *<p> Date Modified: 26 May 2014
 	 */
-	protected void startSlideshow() {
+	public void startSlideshow() {
 		SmartTrolleyToolBox.print("Starting Slideshow");
 		
 		SmartTrolleyToolBox.print("The slideshow has " + slides.size() + " slides.");
@@ -140,42 +140,42 @@ public class SlideShow {
 	}
 
 	/**
-	 *This method adds a slide to the slideshow
+	 *This method adds a slideshow to the slideshow
 	 *<p>User can load PWS compatible XML File into program
-	 *@param slide - A Slide object
+	 *@param slideshow - A Slide object
 	 *<p> Date Modified: 25 May 2014
 	 */
-	protected void addSlideToSlideShow(Slide slide) {
+	public void addSlideToSlideShow(Slide slide) {
 		slides.add(slide);
 	}
 
 	/**
-	 * Goes to the next slide in the slideshow and displays it
-	 *  If there is no next slide, it displays a message box notifying the user
+	 * Goes to the next slideshow in the slideshow and displays it
+	 *  If there is no next slideshow, it displays a message box notifying the user
 	 *<p>  User can view PWS Compatible slideshow
 	 *<p> Date Modified: 27 May 2014
 	 */
-	protected void nextSlide() {
+	public void nextSlide() {
 
 		SmartTrolleyToolBox.print("In nextSlide method");
 
 		deleteSlidePane();
 		if (slideShowIndex < slides.size() - 1) {
 
-			SmartTrolleyToolBox.print("The next slide will now be displayed");
+			SmartTrolleyToolBox.print("The next slideshow will now be displayed");
 
 			displayedSlide = slides.get(++slideShowIndex);
 			displaySlide(slideShowIndex);
 
 		} else {
-			String endOfSldShwString = "Reached end of slideShow, no next slide";
+			String endOfSldShwString = "Reached end of slideShow, no next slideshow";
 			displayOutOfSlideShowMessageBox(endOfSldShwString);
 			displaySlide(slideShowIndex);
 		}
 	}
 
 	/**
-	 * This method deletes the slide pane
+	 * This method deletes the slideshow pane
 	 *<p>User can view PWS Compatible slideshow
 	 *<p> Date Modified: 29 May 2014
 	 */
@@ -183,7 +183,7 @@ public class SlideShow {
 
 		displayedSlide.clearSlide();
 		
-		// Perhaps remove the slide children clearing in clearSlide()
+		// Perhaps remove the slideshow children clearing in clearSlide()
 		SmartTrolleyToolBox.print(displayedPane.getChildren());
 		displayedPane.getChildren().clear();
 		SmartTrolleyToolBox.print("Deleting Slide Pane.");
@@ -217,24 +217,24 @@ public class SlideShow {
 		outOfSlideShowMessageBox.showAndWait();
 
 		// Autoplay should be false now regardless of its previous state
-		autoPlay = false;
+		setAutoPlay(false);
 		SmartTrolleyToolBox.print("Autoplay now off");
 
 	}
 
 	/**
-	 * Goes to the previous slide in the slideshow and displays it.
-	 * If there is no previous slide, it displays a message box notifying the user
+	 * Goes to the previous slideshow in the slideshow and displays it.
+	 * If there is no previous slideshow, it displays a message box notifying the user
 	 *<p>  User can view PWS Compatible slideshow
 	 *<p> Date Modified: 27 May 2014
 	 */
-	protected void prevSlide() {
+	public void prevSlide() {
 
 		SmartTrolleyToolBox.print("In prevSlide method");
 
 		deleteSlidePane();
 		if (slideShowIndex > 0) {
-			SmartTrolleyToolBox.print("The previous slide will now be displayed");
+			SmartTrolleyToolBox.print("The previous slideshow will now be displayed");
 			displayedSlide = slides.get(--slideShowIndex);
 			displaySlide(slideShowIndex);
 
@@ -246,34 +246,76 @@ public class SlideShow {
 	}
 
 	/**
-	 *This method returns the displayed slide
+	 *This method returns the displayed slideshow
 	 *<p> User can view PWS Compatible slideshow
 	 *@return displayedSlide - The displayed Slide object
 	 *<p> Date Modified: 25 May 2014
 	 */
-	protected Slide getDisplayedSlide() {
+	public Slide getDisplayedSlide() {
 
 		return displayedSlide;
 	}
 
 	/**
-	 * Plays the slideshow from the current slide
+	 * Plays the slideshow from the current slideshow
 	 *<p>Test(s)/User Story that it satisfies
 	 *<p> Date Modified: 28 May 2014
 	 */
-	protected void play() {
+	public void play() {
 
-		autoPlay = true;
+		setAutoPlay(true);
 		SmartTrolleyToolBox.print("Autoplay now on");
 
-		slideTimer = new Timer();
+		setSlideTimer(new Timer());
 
-		playSlide = new PlaySlide(playDirection);
+		playSlide = new PlaySlide(getPlayDirection());
 
 		deleteSlidePane();
 
 		displaySlide(slideShowIndex);
 
+	}
+
+	/**
+	 * @return the playDirection
+	 */
+	public PlayDirection getPlayDirection() {
+		return playDirection;
+	}
+
+	/**
+	 * @param playDirection the playDirection to set
+	 */
+	public void setPlayDirection(PlayDirection playDirection) {
+		this.playDirection = playDirection;
+	}
+
+	/**
+	 * @return the autoPlay
+	 */
+	public boolean isAutoPlay() {
+		return autoPlay;
+	}
+
+	/**
+	 * @param autoPlay the autoPlay to set
+	 */
+	public void setAutoPlay(boolean autoPlay) {
+		this.autoPlay = autoPlay;
+	}
+
+	/**
+	 * @return the slideTimer
+	 */
+	public Timer getSlideTimer() {
+		return slideTimer;
+	}
+
+	/**
+	 * @param slideTimer the slideTimer to set
+	 */
+	public void setSlideTimer(Timer slideTimer) {
+		this.slideTimer = slideTimer;
 	}
 
 	private class PlaySlide extends TimerTask {

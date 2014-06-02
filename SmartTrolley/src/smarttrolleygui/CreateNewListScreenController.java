@@ -99,7 +99,7 @@ public class CreateNewListScreenController extends ControllerGeneral implements 
 			
 			// check input is not empty
 			if (listNameTextField.getText() != null
-					&& !listNameTextField.getText().isEmpty()) {
+					&& !listNameTextField.getText().isEmpty() && !listNameTextField.getText().contains(";")) {
 				String enteredListName = listNameTextField.getText();
 
 				// open SQL connection and create new entry in 'lists' table
@@ -129,7 +129,7 @@ public class CreateNewListScreenController extends ControllerGeneral implements 
 				application.goToHomeScreen();
 			} else {
 				// Display error message if no name is entered.
-				String noInputError = "Please enter a name for the list";
+				String noInputError = "Please enter a valid name for the list";
 				SmartTrolleyToolBox.print(noInputError);
 				notifierLabel.setText(noInputError);
 				notifierLabel.setVisible(true);

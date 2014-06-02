@@ -28,6 +28,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -53,6 +54,11 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	private TableColumn<Product, Product> addColumn;
 	@FXML
 	private Label listNameLabel;
+	
+	@FXML
+	private TextField searchBox;
+	@FXML
+	private Button searchButton;
 
 	private SmartTrolleyGUI application;
 	private ObservableList<String> categories;
@@ -83,6 +89,18 @@ public class OffersScreenController extends ControllerGeneral implements Initial
         
     	initializeProductTable();
     }
+	
+	/**
+	*Searches database for product entered into the TextField.
+	*<p>User is able to search for product
+	*@param event
+	*@throws SQLException
+	*<p> Date Modified: 30 May 2014
+	
+	public void searchForProducts(ActionEvent event) throws SQLException {
+
+		productTable.setItems(searchForProductInSearchBox(searchBox.getText()));
+	}*/
     
     /** Any FXML item with a mouse click handle will use this method to dictate its reaction when clicked
      * 

@@ -12,8 +12,13 @@
  */
 package smarttrolleygui;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -24,6 +29,7 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
+import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
 public class ControllerGeneral {
@@ -33,6 +39,57 @@ public class ControllerGeneral {
 	 */
 	enum Screen {
 		STARTSCREEN, HOMESCREEN, SHOPPINGLISTSCREEN, OFFERSSCREEN, FAVORITESSCREEN, CREATENEWLISTSCREEN, ALLSHOPPINGLISTSSCREEN
+	}
+	
+	/**
+	*Searches database for product entered into the TextField.
+	*<p>User is able to search for product
+	*@param event
+	 * @return 
+	*@throws SQLException
+	*<p> Date Modified: 30 May 2014
+	*/
+	public ObservableList<Product> searchForProductInSearchBox(String searchString) throws SQLException {
+
+		SqlConnection productsDatabase = new SqlConnection();
+		String query;	
+		ResultSet resultSet = null;
+		productsDatabase.openConnection();
+		ObservableList<Product> products = FXCollections.observableArrayList();
+
+		SmartTrolleyToolBox.print(searchString);
+
+		query = "SELECT * FROM products WHERE name LIKE '" + searchString + "%';";
+
+		try {
+			resultSet = productsDatabase.sendQuery(query);
+		} catch (SQLException e) {
+			SmartTrolleyToolBox.print("unable to send query");
+		}
+
+		while (resultSet.next()) {
+
+			Product product = new Product();
+
+			SmartTrolleyToolBox.print(resultSet.getString("Name"));
+			// get id
+			product.setId(resultSet.getInt("ProductID"));
+
+			// get Name
+			product.setName(resultSet.getString("Name"));
+
+			// get Image
+			product.setImage(resultSet.getString("Image"));
+
+			// get Price
+			product.setPrice(resultSet.getFloat("Price"));
+
+			products.add(product);
+		}
+
+		productsDatabase.closeConnection();
+		
+		return products;
 	}
 
 	/**

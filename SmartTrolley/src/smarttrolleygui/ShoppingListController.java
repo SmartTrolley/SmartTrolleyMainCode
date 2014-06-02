@@ -63,11 +63,11 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 	@FXML
 	public TableColumn<Product, Product> removeColumn;
 	@FXML
-	public static Button deleteListButton;
+	public Button deleteListButton;
 	@FXML
 	private Label listNameLabel;
 
-	public static MessageBox deleteMsgBx = new MessageBox("Would you really like to delete the list ?", MessageBoxType.YES_NO);
+	public MessageBox deleteMsgBx = new MessageBox("Would you really like to delete the list ?", MessageBoxType.YES_NO);
 
 	private SmartTrolleyGUI application;
 	private ObservableList<String> categories;
@@ -359,8 +359,14 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 					public void updateItem(final Product product, boolean empty) {
 						super.updateItem(product, empty);
 						if (product != null) {
+							try{
 							Image productImage = new Image(getClass().getResourceAsStream(product.getImage()));
 							button.setGraphic(new ImageView(productImage));
+							}
+							catch (NullPointerException noImage) {
+								SmartTrolleyToolBox.print("Image URL invalid or null.");
+							}
+							
 							button.setPrefSize(80, 60);
 							button.getStyleClass().add("buttonImage");
 							setGraphic(button);

@@ -24,13 +24,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import se.mbaeumer.fxmessagebox.MessageBox;
 import se.mbaeumer.fxmessagebox.MessageBoxResult;
 import se.mbaeumer.fxmessagebox.MessageBoxType;
-import smarttrolleygui.SlideShow.PlayDirection;
+import smarttrolleygui.slideshow.SlideShow;
+import smarttrolleygui.slideshow.SlideShow.PlayDirection;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
@@ -63,11 +66,11 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	private String productImageURL;
 	private float productPrice;
 
-	/**VBox that shows the price and slide control buttons*/
+	/**VBox that shows the price and slideshow control buttons*/
 	@FXML
 	private VBox priceAndSlideButtonsVBox;
 
-	/**Anchor Pane containing the slide*/
+	/**Anchor Pane containing the slideshow*/
 	@FXML
 	private AnchorPane productAnchorPane;
 	@FXML
@@ -106,7 +109,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 
 		playDirectionCheckbox.setText("Play Forwards");
 
-		currentSlideShow.playDirection = PlayDirection.FOR;
+		currentSlideShow.setPlayDirection(PlayDirection.FOR);
 		SmartTrolleyToolBox.print("Play direction is forward");
 
 		playDirectionCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>() {
@@ -114,7 +117,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 			public void changed(ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) {
 
 				playDirectionCheckbox.setText("Play Reverse");
-				currentSlideShow.playDirection = PlayDirection.REV;
+				currentSlideShow.setPlayDirection(PlayDirection.REV);
 				SmartTrolleyToolBox.print("Play direction is reverse");
 
 			}
@@ -137,7 +140,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	}
 
 	/**
-	 * This method creates the previous slide, play and next slide buttons and adds their action listeners
+	 * This method creates the previous slideshow, play and next slideshow buttons and adds their action listeners
 	 * <p> User views products
 	 * <p>Date Modified: 24 May 2014
 	 */
@@ -147,13 +150,16 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 		createSlideButton(nextSLideButton);
 		createSlideButton(playPauseButton);
 
+		Image playPauseImage = new Image(getClass().getResourceAsStream(" GUIImages/button_play_pause.png"));
+		playPauseButton.setGraphic(new ImageView(playPauseImage));
+		
 		nextSLideButton.defaultButtonProperty().set(true);
 
 		prevSLideButton.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
-				SmartTrolleyToolBox.print("Pressed prev slide");
+				SmartTrolleyToolBox.print("Pressed prev slideshow");
 
 				if (currentSlideShow == null) {
 					noSlideShowLoaded(event);
@@ -169,7 +175,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 			@Override
 			public void handle(ActionEvent event) {
 
-				SmartTrolleyToolBox.print("Pressed next slide");
+				SmartTrolleyToolBox.print("Pressed next slideshow");
 
 				if (currentSlideShow == null) {
 					noSlideShowLoaded(event);
@@ -191,7 +197,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 
 				} else {
 
-					if (currentSlideShow.autoPlay) {
+					if (currentSlideShow.isAutoPlay()) {
 						disableAutoPlay();
 					} else {
 						currentSlideShow.play();
@@ -212,15 +218,15 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	}
 
 	/**
-	* Disables auto play, called when the next or previous slide buttons are pressed
+	* Disables auto play, called when the next or previous slideshow buttons are pressed
 	*<p>User can view PWS Compatible slideShow
 	*<p> Date Modified: 28 May 2014
 	*/
 	private void disableAutoPlay() {
 		// Cancel timer and stop autoplay if autoplay is on
-		if (currentSlideShow.autoPlay) {
-			currentSlideShow.slideTimer.cancel();
-			currentSlideShow.autoPlay = false;
+		if (currentSlideShow.isAutoPlay()) {
+			currentSlideShow.getSlideTimer().cancel();
+			currentSlideShow.setAutoPlay(false);
 			SmartTrolleyToolBox.print("Autoplay now off");
 		}
 	}
@@ -357,7 +363,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	}
 
 	/**
-	* This method returns the anchorPane which contains the slide
+	* This method returns the anchorPane which contains the slideshow
 	*<p> User views products
 	*@return productAnchorPane - The AnchorPane used
 	*<p> Date Modified: 25 May 2014
