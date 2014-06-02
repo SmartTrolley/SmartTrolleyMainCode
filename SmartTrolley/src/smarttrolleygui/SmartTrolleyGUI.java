@@ -65,7 +65,7 @@ public class SmartTrolleyGUI extends Application {
 	/**The product screen in SmartTrolleyGUI*/
 	ProductScreenController productScreen;
 
-	public ShoppingListController exampleShoppingList;
+	public ShoppingListController shoppingList;
 
     /* (non-Javadoc)
      * @see javafx.application.Application#start(javafx.stage.Stage)
@@ -190,8 +190,8 @@ public class SmartTrolleyGUI extends Application {
     */
     public void goToShoppingList() {
         try {
-            exampleShoppingList = (ShoppingListController) replaceSceneContent("fxml/ShoppingList.fxml");
-            exampleShoppingList.setApp(this);
+            shoppingList = (ShoppingListController) replaceSceneContent("fxml/ShoppingList.fxml");
+            shoppingList.setApp(this);
         } catch (IOException ex) {
         	FXMLNotFound();
         	SmartTrolleyToolBox.print("Could not get FXML file for next scene. Application crashed ;-(");

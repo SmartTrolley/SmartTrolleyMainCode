@@ -15,6 +15,7 @@ package smarttrolleygui;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
 import graphicshandler.ShapePoint;
 import graphicshandler.SlidePolygon;
 import graphicshandler.SlideShapeFactory;
@@ -23,17 +24,21 @@ import imagehandler.SlideImage;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
+import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Shape;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import audiohandler.AudioHandler;
+
 import texthandler.SlideText;
 import texthandler.SlideTextBody;
 import toolBox.SmartTrolleyToolBox;
 import videohandler.SlideVideo;
-import audiohandler.AudioHandler;
 
 public class TestProductScreenController {
 
@@ -125,17 +130,61 @@ public class TestProductScreenController {
 	public void setUp() throws Exception {
 
 		smartTrolleyApplication = new SmartTrolleyGUI();
+		
+		/*
+		 * Create a new thread which launches the application. If the main
+		 * thread launches the application, the rest of the test will only run
+		 * after the application closes i.e. pointless.
+		 */
+		Thread newGUIThread;
 
-		smartTrolleyApplication = TestGUINavigationForTests.launchTestApplication(smartTrolleyApplication);
-		TestGUINavigationForTests.goToProductScreen(smartTrolleyApplication);
+		newGUIThread = new Thread("New GUI") {
+			public void run() {
+				SmartTrolleyToolBox.print("GUI thread");
+				Application.launch(SmartTrolleyGUI.class, (java.lang.String[]) null);
+
+			}
+		};
+		newGUIThread.start();
+
+		// Delay to allow the application to launch
+		// If you get NullPointer errors around this line, increase the delay
+		SmartTrolleyToolBox.delay(200);
+
+		// Now launch the instance of SmartTrolleyGUI, which takes over the displayed stage
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				smartTrolleyApplication.start(SmartTrolleyGUI.stage);
+			}
+		});
+
+		/*
+		 * Note that at this point, there are 3 threads running: 1. Main (test)
+		 * thread - Runs this class 2. newGUIThread - Launches the Application
+		 * 3. JavaFX Thread - This thread actually is the application.
+		 */
+
+		/*
+		 * It is necessary to pause the main (test) thread for some time to
+		 * allow the application to catch up. Failure to implement this delay
+		 * results in a nullPointerException, since the scene has not yet been
+		 * created.
+		 */
+		SmartTrolleyToolBox.delay(2500);
+		
 		 setupImage();
 		 setupGraphics();
 		 setupAudio();
 		 setupVideo();
 		 setupText();	
 		
-		 SmartTrolleyGUI.setCurrentProductID(21);
-
+		SmartTrolleyGUI.setCurrentProductID(21);
+		TestGUINavigationForTests.goToProductScreen(smartTrolleyApplication);
+		
+		// Delay to allow the instance to change screens.
+		// If you get NullPointer errors around this line, increase the delay
+		SmartTrolleyToolBox.delay(1000);
 
 		createAndStartTestSlideshow();
 

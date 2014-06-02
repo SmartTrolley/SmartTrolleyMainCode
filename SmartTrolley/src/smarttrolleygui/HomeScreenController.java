@@ -69,8 +69,7 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 	private ObservableList<String> categories;
 	private ObservableList<Product> productData;
 	private String categoryNumber;
-	private String query;
-	public static SqlConnection productsDatabase;
+	private String query;	
 	private ResultSet resultSet;
 
 	/**
@@ -212,7 +211,7 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 	*/
 	public void searchForProducts(ActionEvent event) throws SQLException {
 
-		productsDatabase = new SqlConnection();
+		SqlConnection productsDatabase = new SqlConnection();
 		productsDatabase.openConnection();
 		ObservableList<Product> products = FXCollections.observableArrayList();
 
@@ -247,7 +246,6 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 		}
 
 		productTable.setItems(products);
-		// initializeProductTable();
 
 		productsDatabase.closeConnection();
 	}

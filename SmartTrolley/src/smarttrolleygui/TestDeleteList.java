@@ -22,6 +22,7 @@ import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -58,7 +59,47 @@ public class TestDeleteList {
 
 		smartTrolleyApplication = new SmartTrolleyGUI();
 
-		smartTrolleyApplication = TestGUINavigationForTests.launchTestApplication(smartTrolleyApplication);
+		/*
+		 * Create a new thread which launches the application. If the main
+		 * thread launches the application, the rest of the test will only run
+		 * after the application closes i.e. pointless.
+		 */
+		Thread newGUIThread;
+
+		newGUIThread = new Thread("New GUI") {
+			public void run() {
+				SmartTrolleyToolBox.print("GUI thread");
+				Application.launch(SmartTrolleyGUI.class, (java.lang.String[]) null);
+
+			}
+		};
+		newGUIThread.start();
+
+		// Delay to allow the application to launch
+		// If you get NullPointer errors around this line, increase the delay
+		SmartTrolleyToolBox.delay(200);
+
+		// Now launch the instance of SmartTrolleyGUI, which takes over the displayed stage
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				smartTrolleyApplication.start(SmartTrolleyGUI.stage);
+			}
+		});
+
+		/*
+		 * Note that at this point, there are 3 threads running: 1. Main (test)
+		 * thread - Runs this class 2. newGUIThread - Launches the Application
+		 * 3. JavaFX Thread - This thread actually is the application.
+		 */
+
+		/*
+		 * It is necessary to pause the main (test) thread for some time to
+		 * allow the application to catch up. Failure to implement this delay
+		 * results in a nullPointerException, since the scene has not yet been
+		 * created.
+		 */
+		SmartTrolleyToolBox.delay(2500);
 
 		/*
 		 * In order to do anything with the user interface, the JavaFX thread
@@ -88,6 +129,9 @@ public class TestDeleteList {
 		 */
 		Robot listDroid = new Robot();
 		
+		//listDroid presses tab
+		listDroid.keyPress(KeyEvent.VK_TAB);
+		listDroid.keyRelease(KeyEvent.VK_TAB);
 		//listDroid moves button selection down 1
 		listDroid.keyPress(KeyEvent.VK_DOWN);
 		listDroid.keyRelease(KeyEvent.VK_DOWN);
@@ -121,15 +165,14 @@ public class TestDeleteList {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				Button deleteButton = ShoppingListController.deleteListButton;
-				deleteButton.fire();
+				smartTrolleyApplication.shoppingList.deleteListButton.fire();
 			}
 		});
 
 		// Allow the GUI to catch up
 		SmartTrolleyToolBox.delay(500);
 
-		assertTrue(ShoppingListController.deleteMsgBx.isShowing());
+		assertTrue(smartTrolleyApplication.shoppingList.deleteMsgBx.isShowing());
 		
 		SmartTrolleyToolBox.delay(500);
 		
@@ -166,8 +209,7 @@ public class TestDeleteList {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				Button deleteButton = ShoppingListController.deleteListButton;
-				deleteButton.fire();
+				smartTrolleyApplication.shoppingList.deleteListButton.fire();
 			}
 		});
 		
@@ -217,5 +259,5 @@ public class TestDeleteList {
 
 }
 
-/************** End of TestDeleteList.java **************/
+/*************** End of TestDeleteList.java **************/
 
