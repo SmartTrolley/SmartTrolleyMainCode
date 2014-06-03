@@ -39,6 +39,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
+import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
 public class HomeScreenController extends ControllerGeneral implements Initializable {
@@ -205,8 +206,10 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 	*<p> Date Modified: 30 May 2014
 	*/
 	public void searchForProducts(ActionEvent event) throws SQLException {
+		
+		SqlConnection Sqlconnection = new SqlConnection();
 
-		productTable.setItems(searchForProductInSearchBox(searchBox.getText()));
+		productTable.setItems(Sqlconnection.wildcardSearchForProduct(searchBox.getText()));
 	}
 
 	/**
@@ -312,17 +315,25 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 					public void updateItem(final Product product, boolean empty) {
 						super.updateItem(product, empty);
 						if (product != null) {
+							try{
 							Image productImage = new Image(getClass().getResourceAsStream(product.getImage()));
 							button.setGraphic(new ImageView(productImage));
-							button.setPrefSize(80, 60);
-							setGraphic(button);
-							button.getStyleClass().add("buttonProductNameTable");
+							}
+							catch (NullPointerException noImage) {
+								SmartTrolleyToolBox.print("Image URL invalid or null.");
+							}								
+                        button.setPrefSize(80, 60);
+                        button.getStyleClass().add("buttonProductNameTable");
+						setGraphic(button);	
 
 							// Button Event Handler
 							button.setOnAction(new EventHandler<ActionEvent>() {
 								@Override
 								public void handle(ActionEvent event) {
+									SqlConnection sqlConnection = new SqlConnection();
 									System.out.println("Pressed image of product: " + product.getName());
+									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(product.getName()).getId());
+									application.goToProductScreen();
 								}
 							});
 						} else {

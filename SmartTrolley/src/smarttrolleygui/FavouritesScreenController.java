@@ -34,6 +34,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
+import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
 public class FavouritesScreenController extends ControllerGeneral implements Initializable {
@@ -288,20 +289,27 @@ initializeProductTable fills the TableView with data and sets up cell
 					@Override
                     public void updateItem(final Product product, boolean empty) {
 						super.updateItem(product, empty);
-						if (product != null) {
-                            Image productImage = new Image(getClass().getResourceAsStream(product.getImage()));
-                            button.setGraphic(new ImageView(productImage));
+							if (product != null) {
+								try{
+								Image productImage = new Image(getClass().getResourceAsStream(product.getImage()));
+								button.setGraphic(new ImageView(productImage));
+								}
+								catch (NullPointerException noImage) {
+									SmartTrolleyToolBox.print("Image URL invalid or null.");
+								}								
                             button.setPrefSize(80, 60);
                             button.getStyleClass().add("buttonImage");
 							setGraphic(button);
-							button.setPrefHeight(80);
 							button.getStyleClass().add("buttonProductNameTable");
 
 							// Button Event Handler
 							button.setOnAction(new EventHandler<ActionEvent>() {
 								@Override
 								public void handle(ActionEvent event) {
-                                    System.out.println("Pressed image of product: " + product.getName());
+									SqlConnection sqlConnection = new SqlConnection();
+									System.out.println("Pressed image of product: " + product.getName());
+									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(product.getName()).getId());
+									application.goToProductScreen();
 								}
 							});
 						} else {

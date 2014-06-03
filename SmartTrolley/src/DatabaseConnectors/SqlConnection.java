@@ -101,18 +101,17 @@ public class SqlConnection {
 	public Product getProductByName(String productName) {
 
 		openConnection();
-		
+
 		Product product = new Product();
 
-		String query = "SELECT * FROM products WHERE Name = '" + productName
-				+ "';";
+		String query = "SELECT * FROM products WHERE Name = '" + productName + "';";
 
 		try {
 
 			ResultSet results = sendQuery(query);
 
 			while (results.next()) {
-				product = storeProductDetails(results);
+				product = createProductFromResultSet(results);
 			}
 			closeConnection();
 			return product;
@@ -142,7 +141,7 @@ public class SqlConnection {
 		try {
 			ResultSet results = sendQuery(query);
 			while (results.next()) {
-				product = storeProductDetails(results);
+				product = createProductFromResultSet(results);
 				products.add(product);
 			}
 			closeConnection();
@@ -172,14 +171,13 @@ public class SqlConnection {
 		if (category == "1") {
 			query = "SELECT * FROM products WHERE IsFavourite = 1;";
 		} else {
-			query = "SELECT * FROM products WHERE IsFavourite = 1 AND CategoryID = '"
-					+ category + "';";
+			query = "SELECT * FROM products WHERE IsFavourite = 1 AND CategoryID = '" + category + "';";
 		}
 
 		try {
 			ResultSet results = sendQuery(query);
 			while (results.next()) {
-				product = storeProductDetails(results);
+				product = createProductFromResultSet(results);
 				products.add(product);
 			}
 			closeConnection();
@@ -188,6 +186,72 @@ public class SqlConnection {
 			System.out.println("Product could not be found");
 			return null;
 		}
+	}
+
+	/**
+	*Searches database for product entered into the TextField.
+	*<p>User is able to search for product
+	*@param event
+	* @return list of products matching search term
+	*@throws SQLException
+	*<p> Date Modified: 30 May 2014
+	*/
+	public ObservableList<Product> wildcardSearchForProduct(String searchString) throws SQLException {
+
+		String query;
+		ResultSet resultSet = null;
+		openConnection();
+		ObservableList<Product> products = FXCollections.observableArrayList();
+
+		SmartTrolleyToolBox.print(searchString);
+
+		query = "SELECT * FROM products WHERE name LIKE '" + searchString + "%';";
+
+		try {
+			resultSet = sendQuery(query);
+		} catch (SQLException e) {
+			SmartTrolleyToolBox.print("unable to send query");
+		}
+
+		while (resultSet.next()) {
+
+			Product product = createProductFromResultSet(resultSet);
+
+			products.add(product);
+		}
+
+		closeConnection();
+
+		return products;
+	}
+
+	/**
+	* This method creates and returns a product from a ResultSet passed in
+	*@param resultSet
+	*@return product - The product created
+	*@throws SQLException
+	*<p> Date Modified: 3 Jun 2014
+	*/
+	private Product createProductFromResultSet(ResultSet resultSet) throws SQLException {
+		
+		Product product = new Product();
+
+		SmartTrolleyToolBox.print(resultSet.getString("Name"));
+		// get id
+		product.setId(resultSet.getInt("ProductID"));
+
+		// get Name
+		product.setName(resultSet.getString("Name"));
+
+		// get Image
+		product.setImage(resultSet.getString("Image"));
+
+		// get Price
+		product.setPrice(resultSet.getFloat("Price"));
+
+		// get Favorite status
+		product.setFavorite(resultSet.getInt("IsFavourite"));
+		return product;
 	}
 
 	/**
@@ -203,43 +267,31 @@ public class SqlConnection {
 		openConnection();
 
 		String query = null;
-		
+
 		SmartTrolleyToolBox.print("category = " + category);
-		
-		if (category == "1"){
+
+		if (category == "1") {
 			query = "Select * From products where " + criteria + " = " + value + ";";
 		} else if (!(category == "1")) {
-			query = "Select * From products where " + criteria + " = " + value
-					+ " AND CategoryID = " + category + ";";
+			query = "Select * From products where " + criteria + " = " + value + " AND CategoryID = " + category + ";";
 		}
-		
+
 		SmartTrolleyToolBox.print(query);
 
 		try {
 			ResultSet results = sendQuery(query);
-			
+
 			boolean emptySet = isResultSetEmpty(results);
-			
-			if (!(emptySet)){
+
+			if (!(emptySet)) {
 				results.absolute(1);
-				
-					 do {
-						// get id
-						product.setId(results.getInt("ProductID"));
-		
-						// get Name
-						product.setName(results.getString("Name"));
-		
-						// get Image
-						product.setImage(results.getString("Image"));
-		
-						// get Price
-						product.setPrice(results.getFloat("Price"));
-						
-						
-					} while (results.next());
-					closeConnection();
-					return product;
+
+				do {
+					product = createProductFromResultSet(results);
+
+				} while (results.next());
+				closeConnection();
+				return product;
 			} else {
 				closeConnection();
 				return null;
@@ -286,16 +338,14 @@ public class SqlConnection {
 	 * @param Number
 	 * @return
 	 */
-	public ObservableList<Product> getProductsWithinSpecificCategory(
-			String Number) {
+	public ObservableList<Product> getProductsWithinSpecificCategory(String Number) {
 
 		openConnection();
 		Product product = new Product();
 
 		products = FXCollections.observableArrayList();
 
-		String query = "SELECT * FROM products WHERE CategoryID = " + Number
-				+ ";";
+		String query = "SELECT * FROM products WHERE CategoryID = " + Number + ";";
 
 		try {
 			ResultSet results = sendQuery(query);
@@ -306,9 +356,9 @@ public class SqlConnection {
 				results.absolute(1);
 
 				do {
-					product = storeProductDetails(results);
+					product = createProductFromResultSet(results);
 					products.add(product);
-				}while (results.next());
+				} while (results.next());
 				SmartTrolleyToolBox.print("Results stored");
 
 				closeConnection();
@@ -325,35 +375,7 @@ public class SqlConnection {
 			System.out.println("Product could not be found");
 			return null;
 		}
-	}
-
-	/**
-	 * Anytime the results of a query need to store a product, this method is
-	 * called.
-	 * 
-	 * @param results
-	 * @return
-	 * @throws SQLException
-	 */
-	public Product storeProductDetails(ResultSet results)
-			throws SQLException {
-
-		Product product = new Product();
-
-		// get id
-		product.setId(results.getInt("ProductID"));
-
-		// get Name
-		product.setName(results.getString("Name"));
-
-		// get Image
-		product.setImage(results.getString("Image"));
-
-		// get Price
-		product.setPrice(results.getFloat("Price"));
-
-		return product;
-	}
+	}	
 
 	/**
 	 * When called, this method will return the list of offers and store them as
@@ -373,15 +395,13 @@ public class SqlConnection {
 
 		try {
 			ResultSet results = sendQuery(query);
-			
+
 			Offer offer = new Offer();
 			Product product = new Product();
-			
+
 			while (results.next()) {
 
-				
-				product = productsDatabase.getSpecificProduct("productID",
-						String.valueOf(results.getInt("ProductId")), "1");
+				product = productsDatabase.getSpecificProduct("productID", String.valueOf(results.getInt("ProductId")), "1");
 
 				if (!(product == null)) {
 					// get Offer id
@@ -394,8 +414,7 @@ public class SqlConnection {
 					offer.setOfferPrice(results.getFloat("OfferPrice"));
 					product.setOfferPrice(results.getFloat("OfferPrice"));
 
-					float savings = product.getPrice()
-							- product.getOfferPrice();
+					float savings = product.getPrice() - product.getOfferPrice();
 
 					product.setSavings(savings);
 
@@ -422,15 +441,13 @@ public class SqlConnection {
 	 * @param categoryNumber
 	 * @return
 	 */
-	public ObservableList<Product> getListByCategory(int listID,
-			String categoryNumber) {
+	public ObservableList<Product> getListByCategory(int listID, String categoryNumber) {
 		openConnection();
-		
+
 		Product product = new Product();
 		products = FXCollections.observableArrayList();
 
-		String query = "SELECT * FROM lists_products WHERE listID = "
-				+ listID;
+		String query = "SELECT * FROM lists_products WHERE listID = " + listID;
 		SmartTrolleyToolBox.print("query is: " + query);
 
 		ResultSet productIDsInList = null;
@@ -450,9 +467,7 @@ public class SqlConnection {
 			while (productIDsInList.next()) {
 
 				System.out.println(productIDsInList.getInt("ProductID"));
-				query = "SELECT * FROM products WHERE ProductID = '"
-						+ productIDsInList.getInt("ProductID")
-						+ "' AND CategoryID = '" + categoryNumber + "';";
+				query = "SELECT * FROM products WHERE ProductID = '" + productIDsInList.getInt("ProductID") + "' AND CategoryID = '" + categoryNumber + "';";
 				SmartTrolleyToolBox.print("query is: " + query);
 				listProducts = sendQuery(query);
 				SmartTrolleyToolBox.print("Query Sent");
@@ -469,18 +484,15 @@ public class SqlConnection {
 
 						SmartTrolleyToolBox.print("Found Item to be stored");
 
-						product = storeProductDetails(listProducts);
+						product = createProductFromResultSet(listProducts);
 						products.add(product);
 
 						SmartTrolleyToolBox.print("Product Stored");
 
-						SmartTrolleyToolBox.print(product.getId() + "  "
-								+ product.getName() + "  " + product.getImage()
-								+ "  " + product.getPrice());
+						SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
 					} while (listProducts.next());
 				} else {
-					SmartTrolleyToolBox
-							.print("empty result, moving to next item");
+					SmartTrolleyToolBox.print("empty result, moving to next item");
 				}
 			}
 		} catch (SQLException e) {
@@ -545,8 +557,7 @@ public class SqlConnection {
 				empty = false;
 			}
 		} catch (SQLException e) {
-			SmartTrolleyToolBox
-					.print("Problem parsing ResultSet, probably empty");
+			SmartTrolleyToolBox.print("Problem parsing ResultSet, probably empty");
 		}
 
 		if (empty) {
@@ -564,7 +575,7 @@ public class SqlConnection {
 	 */
 	public ObservableList<Product> getList(int listID) {
 		openConnection();
-		
+
 		products = FXCollections.observableArrayList();
 
 		String query = "SELECT * FROM lists_products WHERE listID = " + SmartTrolleyGUI.getcurrentListID();
@@ -589,33 +600,27 @@ public class SqlConnection {
 				query = "SELECT * FROM products WHERE ProductID = " + productIDsInList.getInt("ProductID");
 				SmartTrolleyToolBox.print("query is: " + query);
 
-
 				listProducts = sendQuery(query);
-				
-				SmartTrolleyToolBox.print("Query Sent");
 
+				SmartTrolleyToolBox.print("Query Sent");
 
 				Product product = new Product();
 				SmartTrolleyToolBox.print("Initializing Product");
-				
+
 				SmartTrolleyToolBox.print(isResultSetEmpty(listProducts));
 
 				listProducts.absolute(1);
 
 				SmartTrolleyToolBox.print("Row Size is = " + listProducts.getRow());
 
-
-				product = storeProductDetails(listProducts);
+				product = createProductFromResultSet(listProducts);
 				SmartTrolleyToolBox.print("Product Set");
-				
+
 				products.add(product);
-				
+
 				SmartTrolleyToolBox.print("Product Stored");
 
-
-				SmartTrolleyToolBox.print(product.getId() + "  "
-						+ product.getName() + "  " + product.getImage() + "  "
-						+ product.getPrice());
+				SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
 
 			}
 		} catch (SQLException e) {
@@ -649,15 +654,13 @@ public class SqlConnection {
 
 		try {
 			ResultSet results = sendQuery(query);
-			
+
 			results.absolute(1);
 
-			do  {
+			do {
 
-				product = productsDatabase.getSpecificProduct("ProductID",
-						String.valueOf(results.getInt("ProductId")),
-						categoryNumber);
-				
+				product = productsDatabase.getSpecificProduct("ProductID", String.valueOf(results.getInt("ProductId")), categoryNumber);
+
 				if (!(product == null)) {
 
 					// get Offer id
@@ -670,8 +673,7 @@ public class SqlConnection {
 					offer.setOfferPrice(results.getFloat("OfferPrice"));
 					product.setOfferPrice(results.getFloat("OfferPrice"));
 
-					float savings = product.getPrice()
-							- product.getOfferPrice();
+					float savings = product.getPrice() - product.getOfferPrice();
 
 					product.setSavings(savings);
 
@@ -679,7 +681,7 @@ public class SqlConnection {
 				} else {
 					SmartTrolleyToolBox.print("No Offers in that category found");
 				}
-				
+
 			} while (results.next());
 
 			closeConnection();
@@ -707,16 +709,13 @@ public class SqlConnection {
 		SmartTrolleyToolBox.print(query);
 		try {
 			preparedStatement = null;
-			SmartTrolleyToolBox
-					.print("Reset preparedStatment, preparing to give it information");
+			SmartTrolleyToolBox.print("Reset preparedStatment, preparing to give it information");
 			preparedStatement = connection.prepareStatement(query);
-			SmartTrolleyToolBox
-					.print("Statement now prepared, now begining to execute");
+			SmartTrolleyToolBox.print("Statement now prepared, now begining to execute");
 			statementExecuted = preparedStatement.execute();
 
 		} catch (SQLException ex) {
-			SmartTrolleyToolBox
-					.print("Cannot execute statement due to unknown error");
+			SmartTrolleyToolBox.print("Cannot execute statement due to unknown error");
 		}
 
 		return statementExecuted;

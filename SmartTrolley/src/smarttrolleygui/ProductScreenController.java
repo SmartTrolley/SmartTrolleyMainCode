@@ -24,8 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -56,15 +55,11 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	protected Button nextSLideButton = new Button(">");
 	protected Button playPauseButton = new Button("P");
 
-	public static SqlConnection productsDatabase;
+	private SqlConnection productsDatabase;
 
 	/** Application that is running */
 	private SmartTrolleyGUI application;
 	private Product product;
-	// TODO Remove these if they're still not used after merge
-	String productName;
-	private String productImageURL;
-	private float productPrice;
 
 	/**VBox that shows the price and slideshow control buttons*/
 	@FXML
@@ -79,7 +74,8 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	/**Current slideshow that is playing*/
 	private SlideShow currentSlideShow;
 
-	Button favoritesButton = new Button();
+	private ToggleButton favoritesButton = new ToggleButton("F");
+	
 	private CheckBox playDirectionCheckbox = new CheckBox("Play Direction");
 
 	/**
@@ -90,12 +86,34 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 
-		getCurrentProductData();
-
+		getCurrentProductData();		
+				
 		// show name of current shopping list
 		listNameLabel.setText(SmartTrolleyGUI.getCurrentListName());
 
-		createPrevPlayNxtSlideButtons();
+		createPrevPlayNxtSlideButtons();		
+		
+		//TODO Move this to a more suitable method i.e. when a product is loaded in, otherwise may have problems if product is null
+		//TODO Check if product is favorite or not, and un/select the button accordingly
+		favoritesButton.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override 
+		    public void handle(ActionEvent e) {
+		    	SmartTrolleyToolBox.print("Pressed favorites button.");
+		    	String sqlStatement = "UPDATE `products` SET `IsFavourite`= " + !product.getFavorite() + " WHERE `ProductID` = " + SmartTrolleyGUI.getCurrentProductID();
+		    	
+		    	SmartTrolleyToolBox.print(sqlStatement);
+		    	
+		    	productsDatabase.executeStatement(sqlStatement);
+		    	
+		    	if (favoritesButton.isSelected()){
+		    		SmartTrolleyToolBox.print("Favorites button set.");		    	
+		    	}
+		    	else {		    				    
+		    		SmartTrolleyToolBox.print("Favorites button unset.");
+		    	}
+		    }
+		});
+		
 	}
 
 	/**
@@ -121,8 +139,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 				SmartTrolleyToolBox.print("Play direction is reverse");
 
 			}
-		});
-
+		});			
 	}
 
 	/**
@@ -134,9 +151,6 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 		String criteria = "productID";
 		String value = String.valueOf(SmartTrolleyGUI.getCurrentProductID());
 		product = productsDatabase.getSpecificProduct(criteria, value, "1");
-		productName = product.getName();
-		productImageURL = product.getImage();
-		productPrice = product.getPrice();
 	}
 
 	/**
@@ -150,8 +164,8 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 		createSlideButton(nextSLideButton);
 		createSlideButton(playPauseButton);
 
-		Image playPauseImage = new Image(getClass().getResourceAsStream(" GUIImages/button_play_pause.png"));
-		playPauseButton.setGraphic(new ImageView(playPauseImage));
+		/*Image playPauseImage = new Image(" ../../GUIImages/button_play_pause.png");
+		playPauseButton.setGraphic(new ImageView(playPauseImage));*/
 		
 		nextSLideButton.defaultButtonProperty().set(true);
 
@@ -206,7 +220,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 				}
 			}
 		});
-
+		
 		priceAndSlideButtonsVBox.getChildren().add(playDirectionCheckbox);
 
 		// Create a HBox for holding the control buttons
@@ -215,6 +229,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 		SlideControlButtonsHBox.getChildren().add(playPauseButton);
 		SlideControlButtonsHBox.getChildren().add(nextSLideButton);
 		priceAndSlideButtonsVBox.getChildren().add(SlideControlButtonsHBox);
+		priceAndSlideButtonsVBox.getChildren().add(favoritesButton);
 	}
 
 	/**

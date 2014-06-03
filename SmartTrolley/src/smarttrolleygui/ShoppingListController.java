@@ -96,7 +96,7 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 		productData = sqlConnector.getList(SmartTrolleyGUI.getcurrentListID());
 		productTable.setItems(productData);
 
-		//Set the table empty text
+		// Set the table empty text
 		productTable.setPlaceholder(new Label("No Items in list, please add"));
 
 		// show name of current shopping list
@@ -292,7 +292,7 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 	 * <p> Date Modified: 21 May 2014
 	 */
 	private void initializeProductTable() {
-				
+
 		// set up column cell value factories
 		productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
 		priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
@@ -359,23 +359,24 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 					public void updateItem(final Product product, boolean empty) {
 						super.updateItem(product, empty);
 						if (product != null) {
-							try{
-							Image productImage = new Image(getClass().getResourceAsStream(product.getImage()));
-							button.setGraphic(new ImageView(productImage));
-							}
-							catch (NullPointerException noImage) {
+							try {
+								Image productImage = new Image(getClass().getResourceAsStream(product.getImage()));
+								button.setGraphic(new ImageView(productImage));
+							} catch (NullPointerException noImage) {
 								SmartTrolleyToolBox.print("Image URL invalid or null.");
 							}
-							
 							button.setPrefSize(80, 60);
-							button.getStyleClass().add("buttonImage");
+							button.getStyleClass().add("buttonProductNameTable");
 							setGraphic(button);
 
 							// Button Event Handler
 							button.setOnAction(new EventHandler<ActionEvent>() {
 								@Override
 								public void handle(ActionEvent event) {
+									SqlConnection sqlConnection = new SqlConnection();
 									System.out.println("Pressed image of product: " + product.getName());
+									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(product.getName()).getId());
+									application.goToProductScreen();
 								}
 							});
 						} else {
@@ -443,7 +444,7 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 				};
 			}
 		});
-		
+
 		productNameColumn.setCellFactory(new Callback<TableColumn<Product, String>, TableCell<Product, String>>() {
 			@Override
 			public TableCell<Product, String> call(TableColumn<Product, String> productNameColumn) {
@@ -454,7 +455,7 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 					public void updateItem(final String productName, boolean empty) {
 						super.updateItem(productName, empty);
 						if (productName != null) {
-														
+
 							setGraphic(button);
 							button.setText(productName);
 							button.setPrefHeight(80);
@@ -465,7 +466,7 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 								@Override
 								public void handle(ActionEvent event) {
 									SqlConnection sqlConnection = new SqlConnection();
-									
+
 									System.out.println("Pressed name of product: " + productName);
 									// TODO: add code to move to product screen here and refactor individual controllers
 									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(productName).getId());
