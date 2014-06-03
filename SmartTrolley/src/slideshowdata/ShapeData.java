@@ -18,6 +18,8 @@ import org.simpleframework.xml.Root;
 @Root (strict = false)
 public class ShapeData implements DataType{
 	
+	private int shapeno;
+	
 	@ElementList (entry = "point", inline=true)
 	private ArrayList<PointData> points;
 	
@@ -44,11 +46,18 @@ public class ShapeData implements DataType{
 	
 	@Attribute (name = "height", required=true)
 	private int height;
+	
+	@Attribute (name = "branch", required=false)
+	private int branch;
 
 	public ArrayList<PointData> getPoints() {
 		return points;
 	}
-
+	
+	public int getShapeNo() {
+			return shapeno;
+		}
+	
 	public String getFillcolor() {
 		return fillcolor;
 	}
@@ -81,6 +90,9 @@ public class ShapeData implements DataType{
 		return height;
 	}
 	
+	public int getBranch() {
+		return branch;
+	}
 	
 
 	public void setPoints(ArrayList<PointData> points) {
@@ -119,6 +131,13 @@ public class ShapeData implements DataType{
 		this.height = height;
 	}
 	
+	public void setBranch(int branch) {
+		this.branch = branch;
+	}
+	
+	public void setShapeNo(int shapeno) {
+		this.shapeno = shapeno;
+	}
 	
 	
 }

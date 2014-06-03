@@ -1,3 +1,14 @@
+/**
+* SmartTrolley
+*
+* Tests DataUploader.java with the user story: User can upload all media data for a slide to SQL database
+*
+* @author Thomas Lea
+*
+* @author Checked By: Checker(s) fill here
+*
+* @version V1.0 [Date Created: 28 May 2014]
+**/
 package slideshowdata;
 
 import static org.junit.Assert.*;
@@ -46,11 +57,12 @@ public class TestDataUploader {
 			   version = "1.0", 
 			   title = "some title",
 			   comment = "some trolling comment";
-		int width = 20, height = 50;
+		int width = 20, height = 50, listId = 1;
 
-		dataUploader.addDocumentDataContent(author, version, title, comment, width, height);
+		dataUploader.addDocumentDataContent(listId, author, version, title, comment, width, height);
 		
 		DocumentInfoData docinfo = (DocumentInfoData)dataUploader.getSpecificData("document_info_data", "author", "Jack");
+		assertEquals(1, docinfo.getListId());
 		assertEquals("1.0", docinfo.getVersion());
 		assertEquals("some title", docinfo.getTitle());
 		assertEquals("some trolling comment", docinfo.getComment());
@@ -74,11 +86,13 @@ public class TestDataUploader {
 			   fontcolor = "black",
 			   linecolor = "black",
 			   fillcolor = "white";
-		int fontsize = 25;
+		int fontsize = 25, listId = 1;
 
-		dataUploader.addDefaultsContent(backgroundcolor, font, fontsize, fontcolor, linecolor, fillcolor);
+		dataUploader.addDefaultsContent(listId, backgroundcolor, font, fontsize, fontcolor, linecolor, fillcolor);
 		
 		DefaultsData defaults = (DefaultsData)dataUploader.getSpecificData("defaults", "backgroundcolor", "black");
+		
+		assertEquals(1, defaults.getListId());
 		assertEquals("comic Sans", defaults.getFont());
 		assertEquals("black", defaults.getLinecolor());
 		assertEquals("white", defaults.getFillcolor());

@@ -16,6 +16,8 @@ import org.simpleframework.xml.Root;
 @Root (strict = false)
 public class DocumentInfoData implements DataType{
 	
+	private int listid;
+	
 	@Element (name = "author")
 	private String author;
 	@Element (name = "version")
@@ -50,6 +52,10 @@ public class DocumentInfoData implements DataType{
 	public int getHeight() {
 		return height;
 	}
+	
+	public int getListId() {
+		return listid;
+	}
 //	public String getNoList() {
 //		return noList;
 //	}
@@ -73,6 +79,9 @@ public class DocumentInfoData implements DataType{
 	}
 	public void setHeight(int height) {
 		this.height = height;
+	}
+	public void setListId(int listid) {
+		this.listid = listid;
 	}
 	
 //	public void setNoList(String noList) {

@@ -34,11 +34,13 @@ public class DataUploader extends SqlConnection{
 	 * @param width
 	 * @param height
 	 */
-	public void addDocumentDataContent(String author, String version,
+	public void addDocumentDataContent(int ListId, String author, String version,
 			String title, String comment, int width, int height) {
 
 		openConnection();
-		String query = "INSERT INTO document_info_data (author, version, title, comment, width, height) VALUES ('"
+		String query = "INSERT INTO document_info_data (ListID, author, version, title, comment, width, height) VALUES ('"
+				+ ListId
+				+ "', '"
 				+ author
 				+ "', '"
 				+ version
@@ -74,10 +76,12 @@ public class DataUploader extends SqlConnection{
 	 * @param linecolor
 	 * @param fillcolor
 	 */
-	public void addDefaultsContent(String backgroundcolor, String font,
+	public void addDefaultsContent(int ListId, String backgroundcolor, String font,
 			int fontsize, String fontcolor, String linecolor, String fillcolor) {
 		openConnection();
-		String query = "INSERT INTO defaults (backgroundcolor, font, fontsize, fontcolor, linecolor, fillcolor) VALUES ('"
+		String query = "INSERT INTO defaults (ListID, backgroundcolor, font, fontsize, fontcolor, linecolor, fillcolor) VALUES ('"
+				+ ListId
+				+ "', '"
 				+ backgroundcolor
 				+ "', '"
 				+ font
@@ -483,14 +487,15 @@ public class DataUploader extends SqlConnection{
 	 * 
 	 * @param defaultdata
 	 */
-	public void uploadDefaultData(DefaultsData defaultdata){
+	public void uploadDefaultData(DefaultsData defaultdata, int ListId){
 		
-		addDefaultsContent(defaultdata.getBackgroundcolor(), 
-										defaultdata.getFont(), 
-										defaultdata.getFontsize(),
-										defaultdata.getFontcolor(),
-										defaultdata.getLinecolor(), 
-										defaultdata.getFillcolor());
+		addDefaultsContent(ListId,
+						   defaultdata.getBackgroundcolor(), 
+						   defaultdata.getFont(), 
+						   defaultdata.getFontsize(),
+						   defaultdata.getFontcolor(),
+						   defaultdata.getLinecolor(), 
+						   defaultdata.getFillcolor());
 	}
 	
 	/**
@@ -498,14 +503,15 @@ public class DataUploader extends SqlConnection{
 	 * 
 	 * @param documentdata
 	 */
-	public void uploadDocumentData(DocumentInfoData documentdata){
+	public void uploadDocumentData(DocumentInfoData documentdata, int ListId){
 		
-		addDocumentDataContent(documentdata.getAuthor(),
-											documentdata.getAuthor(), 
-											documentdata.getTitle(), 
-											documentdata.getComment(), 
-											documentdata.getWidth(), 
-											documentdata.getHeight());
+		addDocumentDataContent(ListId,
+							   documentdata.getAuthor(),
+							   documentdata.getAuthor(), 
+							   documentdata.getTitle(), 
+							   documentdata.getComment(), 
+							   documentdata.getWidth(), 
+							   documentdata.getHeight());
 	}
 	
 	/**
@@ -531,12 +537,13 @@ public class DataUploader extends SqlConnection{
 		
 		String productName = null;
 
-		uploadDocumentData(data.getDocumentinfo());
-		uploadDefaultData(data.getDefaults());
+		
 		
 		
 		int listid = createNewList(data.getDocumentinfo().getTitle());
 		
+		uploadDocumentData(data.getDocumentinfo(), listid);
+		uploadDefaultData(data.getDefaults(), listid);
 		
 
 		for(SlideData currentSlide : data.getSlides()){
@@ -606,9 +613,13 @@ public class DataUploader extends SqlConnection{
 								 currentShape.getStarttime(), 
 								 currentShape.getDuration(), 
 								 currentShape.getLayer(), 
-								 1, //branch
+								 currentShape.getBranch(),
 								 currentShape.getFillcolor(), 
 								 currentShape.getLinecolor());
+				
+				ArrayList<ShapeData> shapedata =(ArrayList<ShapeData>)getSpecificData("shape", "ProductID", ""+productid);
+				
+				int ShapeNo = shapedata.get(0).getShapeNo();
 				
 				while(pointIndex<currentShape.getPoints().size()){
 					
@@ -616,7 +627,7 @@ public class DataUploader extends SqlConnection{
 					
 					addPointContents(productid,
 									 slideIndex+1,
-			  						 shapeIndex+1, //ShapeNo
+									 ShapeNo, 
 			  						 currentPoint.getNum(), 
 			  						 currentPoint.getX(), 
 			  						 currentPoint.getY());
@@ -680,7 +691,7 @@ public class DataUploader extends SqlConnection{
 								 currentVideo.getWidth(), 
 								 currentVideo.getHeight(), 
 								 currentVideo.getLayer(), 
-								  currentVideo.getDuration());
+								 currentVideo.getDuration());
 				videoIndex++;
 			}
 			

@@ -8,11 +8,11 @@
 	<text xstart="20" ystart="291" xend="505" yend="441" layer="17" duration="0" starttime="0" font="Papyrus" fontcolor="#000000" fontsize="16">
 	
 	<textbody branch="3" bold="true" italic="true" underlined="false">
-	<textstring>Text must be within a “bounding” empty text box with the desired formatting</textstring>
+	<textstring>Text must be within a “bounding” empty text box with the desired formatting S1T1TB1</textstring>
 	</textbody>
 	
 	<textbody branch="15" italic="false" bold="false" underlined="true">
-	<textstring>If this works, I will be happy</textstring>
+	<textstring>If this works, I will be happy S1T1TB2</textstring>
 	</textbody>
 	
 	</text>
@@ -42,11 +42,11 @@
 	<text xstart="20" ystart="291" xend="505" yend="441" layer="17" duration="0" starttime="0" font="Papyrus" fontcolor="#000000" fontsize="16">
 	
 	<textbody branch="3" bold="true" italic="true" underlined="false">
-	<textstring>Text must be within a “bounding” empty text box with the desired formatting</textstring>
+	<textstring>Text must be within a “bounding” empty text box with the desired formatting S1T2TB1</textstring>
 	</textbody>
 	
 	<textbody branch="15" italic="false" bold="false" underlined="true">
-	<textstring>If this works, I will be happy</textstring>
+	<textstring>If this works, I will be happy S1T2TB2</textstring>
 	</textbody>
 	
 	</text>
@@ -60,14 +60,14 @@
 	<slide id="1" duration="1060" descriptor="Overview of making slides in powerpoint" lastSlide="true" backgroundcolor="#948A54">
 	<video urlname="resources/video/video/monstersinc_high.mpg" xstart="456" ystart="402" width="242" height="126" layer="23" starttime="0" duration="0" loop="false"/>
 	
-	<text xstart="20" ystart="291" xend="505" yend="441" layer="17" duration="0" starttime="0" font="Comic Sans" fontcolor="#000000" fontsize="16">
+	<text xstart="20" ystart="291" xend="505" yend="441" layer="17" duration="42" starttime="0" font="Comic Sans" fontcolor="#000000" fontsize="16">
 	
 	<textbody branch="3" bold="true" italic="true" underlined="false">
-	<textstring>Text must be within a “bounding” empty text box with the desired formatting</textstring>
+	<textstring>Text must be within a “bounding” empty text box with the desired formatting S2T1TB1</textstring>
 	</textbody>
 	
 	<textbody branch="15" italic="false" bold="false" underlined="true">
-	<textstring>If this works, I will be happy</textstring>
+	<textstring>If this works, I will be happy S2T1TB2</textstring>
 	</textbody>
 	
 	</text>
@@ -97,11 +97,11 @@
 	<text xstart="20" ystart="291" xend="505" yend="441" layer="17" duration="0" starttime="0" font="Comic Sans" fontcolor="#000000" fontsize="16">
 	
 	<textbody branch="3" bold="true" italic="true" underlined="false">
-	<textstring>Text must be within a “bounding” empty text box with the desired formatting</textstring>
+	<textstring>Text must be within a “bounding” empty text box with the desired formatting S2T2TB1</textstring>
 	</textbody>
 	
 	<textbody branch="15" italic="false" bold="false" underlined="true">
-	<textstring>If this works, I will be happy</textstring>
+	<textstring>If this works, I will be happy S2T2TB2</textstring>
 	</textbody>
 	
 	</text>

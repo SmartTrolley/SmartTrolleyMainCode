@@ -229,7 +229,8 @@ import smarttrolleygui.SmartTrolleyGUI;
 		}
 		
 		/**
-		 * 
+		 * method to return any data from the SQL database from a specified table criteria and value.
+		 * returns an object that must me cast to the required type
 		 * @param table
 		 * @param criteria
 		 * @param value
@@ -240,6 +241,8 @@ import smarttrolleygui.SmartTrolleyGUI;
 			ResultSet results = null;
 			
 			Object data = null;
+			
+			int index = 0;
 			
 			openConnection();
 			
@@ -288,7 +291,8 @@ import smarttrolleygui.SmartTrolleyGUI;
 					//get loop
 					audiodata.setLoop(results.getBoolean("loop"));
 					
-					audiodatalist.add(audiodata);
+					audiodatalist.add(index, audiodata);
+					index++;
 				}
 				closeConnection();
 				data = audiodatalist;
@@ -298,6 +302,9 @@ import smarttrolleygui.SmartTrolleyGUI;
 				DefaultsData defaultsdata = new DefaultsData();
 				
 				while (results.next()){
+					
+					//get listid
+					defaultsdata.setListId(results.getInt("listid"));
 					
 					//get backgroundcolor
 					defaultsdata.setBackgroundcolor(results.getString("backgroundcolor"));
@@ -325,6 +332,9 @@ import smarttrolleygui.SmartTrolleyGUI;
 					DocumentInfoData documentinfodata = new DocumentInfoData();
 					
 					while (results.next()){
+						
+						//get listid
+						documentinfodata.setListId(results.getInt("listid"));
 						
 						//get author
 						documentinfodata.setAuthor(results.getString("author"));
@@ -380,7 +390,8 @@ import smarttrolleygui.SmartTrolleyGUI;
 						//get branch
 						imagedata.setBranch(results.getInt("branch"));
 						
-						imagedatalist.add(imagedata);
+						imagedatalist.add(index, imagedata);
+						index++;
 					}
 					
 					data = imagedatalist;
@@ -401,7 +412,8 @@ import smarttrolleygui.SmartTrolleyGUI;
 						
 						//get y
 						pointdata.setY(results.getInt("y"));
-						pointdatalist.add(pointdata);
+						pointdatalist.add(index, pointdata);
+						index++;
 					}
 					data = pointdatalist;
 					break;
@@ -413,7 +425,10 @@ import smarttrolleygui.SmartTrolleyGUI;
 					ArrayList<ShapeData> shapedatalist = new ArrayList<ShapeData>();
 					
 					while (results.next()){
-															
+							
+						//get ShapeNo
+						shapedata.setShapeNo(results.getInt("shapeno"));
+						
 						//get fillcolor
 						shapedata.setFillcolor(results.getString("fillcolor"));
 						
@@ -438,7 +453,11 @@ import smarttrolleygui.SmartTrolleyGUI;
 						//get height
 						shapedata.setHeight(results.getInt("height"));
 						
-						shapedatalist.add(shapedata);
+						//get branch
+						shapedata.setBranch(results.getInt("branch"));
+						
+						shapedatalist.add(index, shapedata);
+						index++;
 					}
 					data = shapedatalist;
 					break;
@@ -449,7 +468,7 @@ import smarttrolleygui.SmartTrolleyGUI;
 					while (results.next()){
 																		
 						//get id
-						slidedata.setId(results.getInt("id"));
+						slidedata.setId(results.getInt("slideid"));
 						
 						//get duration
 						slidedata.setDuration(results.getInt("duration"));
@@ -500,7 +519,8 @@ import smarttrolleygui.SmartTrolleyGUI;
 						//get fontsize
 						textdata.setFontsize(results.getInt("fontsize"));
 						
-						textdatalist.add(textdata);
+						textdatalist.add(index, textdata);
+						index++;
 					}
 					data = textdatalist;
 					break;
@@ -527,7 +547,8 @@ import smarttrolleygui.SmartTrolleyGUI;
 						//get textstring
 						textbodydata.setTextstring(results.getString("Text"));
 						
-						textbodydatalist.add(textbodydata);
+						textbodydatalist.add(index, textbodydata);
+						index++;
 					}
 					data = textbodydatalist;
 					break;
@@ -567,8 +588,8 @@ import smarttrolleygui.SmartTrolleyGUI;
 						//get loop
 						videodata.setLoop(results.getBoolean("loop"));	
 						
-						videodatalist.add(videodata);
-						
+						videodatalist.add(index, videodata);
+						index++;
 					}
 					data = videodatalist;
 					break;

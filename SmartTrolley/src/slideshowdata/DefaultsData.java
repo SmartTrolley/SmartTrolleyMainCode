@@ -15,6 +15,8 @@ import org.simpleframework.xml.Root;
 @Root (strict = false)
 public class DefaultsData implements DataType{
 
+	private int listid;
+	
 	@Element (name = "backgroundcolor")
 	private String backgroundcolor;
 	@Element (name = "font")
@@ -47,6 +49,10 @@ public class DefaultsData implements DataType{
 		return fillcolor;
 	}
 	
+	public int getListId() {
+		return listid;
+	}
+	
 	
 	public void setBackgroundcolor(String backgroundcolor) {
 		this.backgroundcolor = backgroundcolor;
@@ -65,6 +71,10 @@ public class DefaultsData implements DataType{
 	}
 	public void setFillcolor(String fillcolor) {
 		this.fillcolor = fillcolor;
+	}
+	public void setListId(int listid) {
+		this.listid = listid;
+		
 	}
 	
 	
