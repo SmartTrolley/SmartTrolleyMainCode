@@ -100,7 +100,7 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 
 		SqlConnection sqlConnector = new SqlConnection();
 		setCategoryNumber(sqlConnector.getSpecificCategoryNumber(categoriesList.getSelectionModel().getSelectedItem()));
-		System.out.println(getCategoryNumber());
+		SmartTrolleyToolBox.print(getCategoryNumber());
 
 		if (Integer.valueOf(getCategoryNumber()) == 1) {
 			// Fill table with sample products
@@ -261,7 +261,7 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 								public void handle(ActionEvent event) {
 									SqlConnection sqlConnection = new SqlConnection();
 
-									System.out.println("Pressed name of product: " + productName);
+									SmartTrolleyToolBox.print("Pressed name of product: " + productName);
 									// TODO: add code to move to product screen here and refactor individual controllers
 									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(productName).getId());
 									application.goToProductScreen();
@@ -294,7 +294,7 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 							button.setOnAction(new EventHandler<ActionEvent>() {
 								@Override
 								public void handle(ActionEvent event) {
-									System.out.println("Pressed add button for product: " + product.getName());
+									SmartTrolleyToolBox.print("Pressed add button for product: " + product.getName());
 								}
 							});
 						} else {
@@ -321,6 +321,7 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 							}
 							catch (NullPointerException noImage) {
 								SmartTrolleyToolBox.print("Image URL invalid or null.");
+								button.setGraphic(null);
 							}								
                         button.setPrefSize(80, 60);
                         button.getStyleClass().add("buttonProductNameTable");
@@ -331,9 +332,10 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 								@Override
 								public void handle(ActionEvent event) {
 									SqlConnection sqlConnection = new SqlConnection();
-									System.out.println("Pressed image of product: " + product.getName());
+									SmartTrolleyToolBox.print("Pressed image of product: " + product.getName());
 									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(product.getName()).getId());
 									application.goToProductScreen();
+									
 								}
 							});
 						} else {

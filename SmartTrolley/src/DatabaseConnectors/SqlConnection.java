@@ -51,7 +51,7 @@ public class SqlConnection {
 		try {
 			Class.forName("java.sql.DriverManager");
 		} catch (ClassNotFoundException e) {
-			System.out.println("couldnt launch sql driver");
+			SmartTrolleyToolBox.print("couldnt launch sql driver");
 		}
 
 		compileUrl();
@@ -70,7 +70,7 @@ public class SqlConnection {
 			connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
 		} catch (SQLException ex) {
 
-			System.out.println("Connection failed to open");
+			SmartTrolleyToolBox.print("Connection failed to open");
 
 		}
 	}
@@ -78,7 +78,7 @@ public class SqlConnection {
 	/**
 	 * Send a query to the predefined database and returns the results returned
 	 * by the server
-	 * 
+	 * Connection needs to be opened and closed externally to this method
 	 * @param query
 	 * @return results
 	 * @throws SQLException
@@ -118,7 +118,7 @@ public class SqlConnection {
 
 		} catch (SQLException e) {
 			closeConnection();
-			System.out.println("Product could not be found");
+			SmartTrolleyToolBox.print("Product could not be found");
 			return null;
 		}
 
@@ -147,7 +147,7 @@ public class SqlConnection {
 			closeConnection();
 			return products;
 		} catch (SQLException e) {
-			System.out.println("Product could not be found");
+			SmartTrolleyToolBox.print("Product could not be found");
 			return null;
 		}
 	}
@@ -183,7 +183,7 @@ public class SqlConnection {
 			closeConnection();
 			return products;
 		} catch (SQLException e) {
-			System.out.println("Product could not be found");
+			SmartTrolleyToolBox.print("Product could not be found");
 			return null;
 		}
 	}
@@ -251,6 +251,9 @@ public class SqlConnection {
 
 		// get Favorite status
 		product.setFavorite(resultSet.getInt("IsFavourite"));
+		
+		SmartTrolleyToolBox.print("Product Created where: " + product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " " + product.getFavorite());
+		
 		return product;
 	}
 
@@ -298,7 +301,7 @@ public class SqlConnection {
 			}
 		} catch (SQLException e) {
 			closeConnection();
-			System.out.println("Product could not be found");
+			SmartTrolleyToolBox.print("Product could not be found");
 			return null;
 		}
 
@@ -324,8 +327,8 @@ public class SqlConnection {
 			}
 		} catch (SQLException e) {
 
-			System.out.println("Product could not be found");
-			System.out.println(e.getMessage());
+			SmartTrolleyToolBox.print("Product could not be found");
+			SmartTrolleyToolBox.print(e.getMessage());
 		}
 
 		closeConnection();
@@ -366,13 +369,13 @@ public class SqlConnection {
 
 			} else {
 				closeConnection();
-				System.out.println("No result");
+				SmartTrolleyToolBox.print("No result");
 				return null;
 			}
 
 		} catch (SQLException e) {
 			closeConnection();
-			System.out.println("Product could not be found");
+			SmartTrolleyToolBox.print("Product could not be found");
 			return null;
 		}
 	}	
@@ -429,7 +432,7 @@ public class SqlConnection {
 
 		} catch (SQLException e) {
 
-			System.out.println("Offers could not be found");
+			SmartTrolleyToolBox.print("Offers could not be found");
 			return null;
 		}
 
@@ -456,7 +459,7 @@ public class SqlConnection {
 			productIDsInList = sendQuery(query);
 
 		} catch (SQLException e) {
-			System.out.println("lists could not be found");
+			SmartTrolleyToolBox.print("lists could not be found");
 
 		}
 
@@ -466,7 +469,7 @@ public class SqlConnection {
 
 			while (productIDsInList.next()) {
 
-				System.out.println(productIDsInList.getInt("ProductID"));
+				SmartTrolleyToolBox.print(productIDsInList.getInt("ProductID"));
 				query = "SELECT * FROM products WHERE ProductID = '" + productIDsInList.getInt("ProductID") + "' AND CategoryID = '" + categoryNumber + "';";
 				SmartTrolleyToolBox.print("query is: " + query);
 				listProducts = sendQuery(query);
@@ -489,14 +492,14 @@ public class SqlConnection {
 
 						SmartTrolleyToolBox.print("Product Stored");
 
-						SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
+						SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " " + product.getFavorite());
 					} while (listProducts.next());
 				} else {
 					SmartTrolleyToolBox.print("empty result, moving to next item");
 				}
 			}
 		} catch (SQLException e) {
-			System.out.println("Product could not be found");
+			SmartTrolleyToolBox.print("Product could not be found");
 			return null;
 		}
 
@@ -531,7 +534,7 @@ public class SqlConnection {
 			closeConnection();
 			return categories;
 		} catch (SQLException e) {
-			System.out.println("Categories could not be found");
+			SmartTrolleyToolBox.print("Categories could not be found");
 			return null;
 		}
 	}
@@ -587,7 +590,7 @@ public class SqlConnection {
 			productIDsInList = sendQuery(query);
 
 		} catch (SQLException e) {
-			System.out.println("lists could not be found");
+			SmartTrolleyToolBox.print("lists could not be found");
 
 		}
 
@@ -620,11 +623,11 @@ public class SqlConnection {
 
 				SmartTrolleyToolBox.print("Product Stored");
 
-				SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
+				SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " " + product.getFavorite());
 
 			}
 		} catch (SQLException e) {
-			System.out.println("Product could not be found");
+			SmartTrolleyToolBox.print("Product could not be found");
 			return null;
 		}
 
@@ -689,8 +692,8 @@ public class SqlConnection {
 
 		} catch (SQLException e) {
 			closeConnection();
-			System.out.println("Offers could not be found");
-			System.out.println("SQL ERROR: " + e);
+			SmartTrolleyToolBox.print("Offers could not be found");
+			SmartTrolleyToolBox.print("SQL ERROR: " + e);
 			return null;
 		}
 
@@ -699,13 +702,14 @@ public class SqlConnection {
 	/**
 	 * executes statement to SQL server, allow for creation and deleted of
 	 * further lists and tables
-	 * 
+	 * Connection needs to be opened and closed externally to this method
 	 * @param query
-	 * @return boolean statementExecuted Date Modified: 4 May 2014
+	 * @return boolean statementExecuted
+	 * Date Modified: 4 May 2014
 	 */
 	public boolean executeStatement(String query) {
 		boolean statementExecuted = false;
-
+		
 		SmartTrolleyToolBox.print(query);
 		try {
 			preparedStatement = null;
@@ -715,7 +719,7 @@ public class SqlConnection {
 			statementExecuted = preparedStatement.execute();
 
 		} catch (SQLException ex) {
-			SmartTrolleyToolBox.print("Cannot execute statement due to unknown error");
+			SmartTrolleyToolBox.print("Cannot execute statement due to error: "+ ex);
 		}
 
 		return statementExecuted;
@@ -730,7 +734,7 @@ public class SqlConnection {
 		try {
 			connection.close();
 		} catch (SQLException ex) {
-			System.out.println("Connection did not close properly");
+			SmartTrolleyToolBox.print("Connection did not close properly");
 		}
 	}
 

@@ -89,9 +89,9 @@ public class Product {
 	*/
 	public void setFavorite(int isFavorite) {
 		if (isFavorite == 0) {
-			this.isFavorite = true;
-		} else {
 			this.isFavorite = false;
+		} else {
+			this.isFavorite = true;
 		}
 
 	}

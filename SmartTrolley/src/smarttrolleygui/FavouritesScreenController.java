@@ -89,7 +89,7 @@ public class FavouritesScreenController extends ControllerGeneral implements Ini
     	
     	SqlConnection sqlConnector = new SqlConnection();
     	setCategoryNumber(sqlConnector.getSpecificCategoryNumber(categoriesList.getSelectionModel().getSelectedItem()));
-    	System.out.println(getCategoryNumber());
+    	SmartTrolleyToolBox.print(getCategoryNumber());
     	    	
     	if (Integer.valueOf(getCategoryNumber())  == 1) {
     		  // Fill table with sample products
@@ -236,7 +236,7 @@ initializeProductTable fills the TableView with data and sets up cell
 								public void handle(ActionEvent event) {
 									SqlConnection sqlConnection = new SqlConnection();
 									
-									System.out.println("Pressed name of product: " + productName);
+									SmartTrolleyToolBox.print("Pressed name of product: " + productName);
 									// TODO: add code to move to product screen here and refactor individual controllers
 									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(productName).getId());
 									application.goToProductScreen();
@@ -269,7 +269,7 @@ initializeProductTable fills the TableView with data and sets up cell
                             button.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
-                                    System.out.println("Pressed add button for product: " + product.getName());
+                                    SmartTrolleyToolBox.print("Pressed add button for product: " + product.getName());
                                 }
                             });
                         } else {
@@ -296,6 +296,7 @@ initializeProductTable fills the TableView with data and sets up cell
 								}
 								catch (NullPointerException noImage) {
 									SmartTrolleyToolBox.print("Image URL invalid or null.");
+									button.setGraphic(null);
 								}								
                             button.setPrefSize(80, 60);
                             button.getStyleClass().add("buttonImage");
@@ -307,7 +308,7 @@ initializeProductTable fills the TableView with data and sets up cell
 								@Override
 								public void handle(ActionEvent event) {
 									SqlConnection sqlConnection = new SqlConnection();
-									System.out.println("Pressed image of product: " + product.getName());
+									SmartTrolleyToolBox.print("Pressed image of product: " + product.getName());
 									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(product.getName()).getId());
 									application.goToProductScreen();
 								}

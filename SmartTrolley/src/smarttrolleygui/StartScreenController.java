@@ -16,6 +16,8 @@ package smarttrolleygui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import toolBox.SmartTrolleyToolBox;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -57,7 +59,7 @@ public class StartScreenController extends ControllerGeneral implements Initiali
 		if (application == null) {
 			// We are running in isolated FXML, possibly in Scene Builder.
 			// NO-OP.
-			System.out.println("error: application == null");
+			SmartTrolleyToolBox.print("error: application == null");
 		} else {
 			loadScreen(Screen.CREATENEWLISTSCREEN, application);
 		}
@@ -74,7 +76,7 @@ public class StartScreenController extends ControllerGeneral implements Initiali
 		if (application == null) {
 			// We are running in isolated FXML, possibly in Scene Builder.
 			// NO-OP.
-			System.out.println("error: application == null");
+			SmartTrolleyToolBox.print("error: application == null");
 		} else {
 			// TODO Replace with appropriate method
 			PWSParser PWSParser = new PWSParser();
@@ -94,7 +96,7 @@ public class StartScreenController extends ControllerGeneral implements Initiali
 		if (application == null) {
 			// We are running in isolated FXML, possibly in Scene Builder.
 			// NO-OP.
-			System.out.println("error: application == null");
+			SmartTrolleyToolBox.print("error: application == null");
 		} else {
 			loadScreen(Screen.ALLSHOPPINGLISTSSCREEN, application);
 		}

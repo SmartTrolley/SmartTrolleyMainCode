@@ -12,6 +12,8 @@ import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
+import toolBox.SmartTrolleyToolBox;
+
 /**
  * A JUnit {@link Rule} for running tests on the JavaFX thread and performing
  * JavaFX initialisation. To include in your test case, add the following code:
@@ -81,9 +83,9 @@ public class JavaFXThreadingRule implements TestRule {
 					latch.countDown();
 				}
 			});
-			System.out.println("javafx initialising...");
+			SmartTrolleyToolBox.print("javafx initialising...");
 			latch.await();
-			System.out.println("javafx is initialised in "
+			SmartTrolleyToolBox.print("javafx is initialised in "
 					+ (System.currentTimeMillis() - timeMillis) + "ms");
 		}
 	}

@@ -90,7 +90,7 @@ public class CreateNewListScreenController extends ControllerGeneral implements 
 		if (application == null) {
 			// We are running in isolated FXML, possibly in Scene Builder.
 			// NO-OP.
-			System.out.println("error: application == null");
+			SmartTrolleyToolBox.print("error: application == null");
 		} else {
 			SmartTrolleyToolBox.print("Create List button has been pressed.");
 			

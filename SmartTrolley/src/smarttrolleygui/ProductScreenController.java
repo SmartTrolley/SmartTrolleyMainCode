@@ -74,7 +74,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	/**Current slideshow that is playing*/
 	private SlideShow currentSlideShow;
 
-	private ToggleButton favoritesButton = new ToggleButton("F");
+	private ToggleButton favoritesButton = new ToggleButton("Favorite");
 	
 	private CheckBox playDirectionCheckbox = new CheckBox("Play Direction");
 
@@ -91,29 +91,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 		// show name of current shopping list
 		listNameLabel.setText(SmartTrolleyGUI.getCurrentListName());
 
-		createPrevPlayNxtSlideButtons();		
-		
-		//TODO Move this to a more suitable method i.e. when a product is loaded in, otherwise may have problems if product is null
-		//TODO Check if product is favorite or not, and un/select the button accordingly
-		favoritesButton.setOnAction(new EventHandler<ActionEvent>() {
-		    @Override 
-		    public void handle(ActionEvent e) {
-		    	SmartTrolleyToolBox.print("Pressed favorites button.");
-		    	String sqlStatement = "UPDATE `products` SET `IsFavourite`= " + !product.getFavorite() + " WHERE `ProductID` = " + SmartTrolleyGUI.getCurrentProductID();
-		    	
-		    	SmartTrolleyToolBox.print(sqlStatement);
-		    	
-		    	productsDatabase.executeStatement(sqlStatement);
-		    	
-		    	if (favoritesButton.isSelected()){
-		    		SmartTrolleyToolBox.print("Favorites button set.");		    	
-		    	}
-		    	else {		    				    
-		    		SmartTrolleyToolBox.print("Favorites button unset.");
-		    	}
-		    }
-		});
-		
+		createPrevPlayNxtSlideButtons();						
 	}
 
 	/**
@@ -139,7 +117,44 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 				SmartTrolleyToolBox.print("Play direction is reverse");
 
 			}
-		});			
+		});		
+		
+		
+		configureFavoritesButton();
+	
+	}
+
+	/**
+	* Configures the favorites button
+	*<p>User views products
+	*<p> Date Modified: 3 Jun 2014
+	*/
+	private void configureFavoritesButton() {
+		favoritesButton.setSelected(product.getFavorite());
+		SmartTrolleyToolBox.print(product.getFavorite());
+	
+	favoritesButton.setOnAction(new EventHandler<ActionEvent>() {
+	    @Override 
+	    public void handle(ActionEvent e) {
+	    	SmartTrolleyToolBox.print("Pressed favorites button.");		    			    			 
+	    	productsDatabase.openConnection();
+	    	
+	    	if (favoritesButton.isSelected()){
+	    		SmartTrolleyToolBox.print("Favorites button set.");		   
+	    		String sqlStatement = "UPDATE `products` SET `IsFavourite`=1 WHERE `ProductID` = " + SmartTrolleyGUI.getCurrentProductID();
+	    		
+		    	productsDatabase.executeStatement(sqlStatement);
+	    	}
+	    	else {		    				    
+	    		SmartTrolleyToolBox.print("Favorites button unset.");
+	    		String sqlStatement = "UPDATE `products` SET `IsFavourite`=0 WHERE `ProductID` = " + SmartTrolleyGUI.getCurrentProductID();		    	
+		    	
+		    	productsDatabase.executeStatement(sqlStatement);
+	    	}
+	    	
+	    	productsDatabase.closeConnection();
+	    }
+	});
 	}
 
 	/**

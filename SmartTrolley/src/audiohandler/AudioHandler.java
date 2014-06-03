@@ -2,6 +2,8 @@ package audiohandler;
 
 import java.util.concurrent.TimeUnit;
 
+import toolBox.SmartTrolleyToolBox;
+
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.MediaException;
 
@@ -64,9 +66,9 @@ public class AudioHandler {
 		try {
 			audio = new AudioClip(path);
 		} catch (IllegalArgumentException i) {
-			System.out.println("Audio File not found at " + path);
+			SmartTrolleyToolBox.print("Audio File not found at " + path);
 		} catch (MediaException m) {
-			System.out.println("Audio File " + path + " was of an unexpected format");
+			SmartTrolleyToolBox.print("Audio File " + path + " was of an unexpected format");
 		}
 	}
 

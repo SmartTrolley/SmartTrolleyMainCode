@@ -17,6 +17,8 @@ import java.io.InputStream;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import toolBox.SmartTrolleyToolBox;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
@@ -157,7 +159,7 @@ public class MediaControl {
 					
 				}
 				}catch(NullPointerException e){
-					System.out.println("Media Player has been destroyed");
+					SmartTrolleyToolBox.print("Media Player has been destroyed");
 				}
 			}
 		}

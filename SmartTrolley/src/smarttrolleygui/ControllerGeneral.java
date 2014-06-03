@@ -46,7 +46,7 @@ public class ControllerGeneral {
 	protected static void loadScreen(Screen screenToLoad, SmartTrolleyGUI application) {
 		if (application == null) {
 			// We are running in isolated FXML
-			System.out.println("error: application == null1");
+			SmartTrolleyToolBox.print("error: application == null1");
 		} else {
 			switch (screenToLoad) {
 			case STARTSCREEN:
@@ -83,7 +83,7 @@ public class ControllerGeneral {
 	protected static void loadStartScreen(SmartTrolleyGUI application) {
 		if (application == null) {
 			// We are running in isolated FXML
-			System.out.println("error: application == null1");
+			SmartTrolleyToolBox.print("error: application == null1");
 		} else {
 			application.goToStartScreen();
 		}
@@ -98,7 +98,7 @@ public class ControllerGeneral {
 	protected static void loadHomeScreen(SmartTrolleyGUI application) {
 		if (application == null) {
 			// We are running in isolated FXML
-			System.out.println("error: application == null5");
+			SmartTrolleyToolBox.print("error: application == null5");
 		} else {
 			application.goToHomeScreen();
 		}
@@ -112,7 +112,7 @@ public class ControllerGeneral {
 	protected static void loadShoppingList(SmartTrolleyGUI application) {
 		if (application == null) {
 			// We are running in isolated FXML
-			System.out.println("error: application == null3");
+			SmartTrolleyToolBox.print("error: application == null3");
 		} else {
 			application.goToShoppingList();
 		}
@@ -127,7 +127,7 @@ public class ControllerGeneral {
 	protected static void loadOffers(SmartTrolleyGUI application) {
 		if (application == null) {
 			// We are running in isolated FXML
-			System.out.println("error: application == null4");
+			SmartTrolleyToolBox.print("error: application == null4");
 		} else {
 			application.goToOffers();
 		}
@@ -142,7 +142,7 @@ public class ControllerGeneral {
 	protected static void loadFavourites(SmartTrolleyGUI application) {
 		if (application == null) {
 			// We are running in isolated FXML
-			System.out.println("error: application == null2");
+			SmartTrolleyToolBox.print("error: application == null2");
 		} else {
 			application.goToFavourites();
 		}
@@ -188,7 +188,7 @@ public class ControllerGeneral {
 							checkBox.setOnAction(new EventHandler<ActionEvent>() {
 								@Override
 								public void handle(ActionEvent event) {
-									System.out.println("Pressed checkbox of product: " + product.getName());
+									SmartTrolleyToolBox.print("Pressed checkbox of product: " + product.getName());
 								}
 							});
 						} else {
@@ -234,7 +234,7 @@ public class ControllerGeneral {
 							button.setOnAction(new EventHandler<ActionEvent>() {
 								@Override
 								public void handle(ActionEvent event) {
-									System.out.println("Pressed image of product: " + product.getName());
+									SmartTrolleyToolBox.print("Pressed image of product: " + product.getName());
 								}
 							});
 						} else {
@@ -273,7 +273,7 @@ public class ControllerGeneral {
 							button.setOnAction(new EventHandler<ActionEvent>() {
 								@Override
 								public void handle(ActionEvent event) {
-									System.out.println("Pressed add button for product: " + product.getName());
+									SmartTrolleyToolBox.print("Pressed add button for product: " + product.getName());
 								}
 							});
 						} else {
@@ -312,7 +312,7 @@ public class ControllerGeneral {
 							button.setOnAction(new EventHandler<ActionEvent>() {
 								@Override
 								public void handle(ActionEvent event) {
-									System.out.println("Pressed remove button for product: " + product.getName());
+									SmartTrolleyToolBox.print("Pressed remove button for product: " + product.getName());
 
 								}
 							});

@@ -12,6 +12,8 @@ import javafx.scene.shape.Shape;
 import org.junit.Before;
 import org.junit.Test;
 
+import toolBox.SmartTrolleyToolBox;
+
 /** 
 * SmartTrolley
 * 
@@ -111,7 +113,7 @@ public class SlideShapeFactoryTest {
 		
 		String shapetype = square.getClass().getName();
 		// print the class of square to the console for manual test
-		System.out.println("square is a: " + shapetype);
+		SmartTrolleyToolBox.print("square is a: " + shapetype);
 		
 		//check that getShape returns a polygon using junit
 		assertEquals(SlidePolygon.class, square.getClass());

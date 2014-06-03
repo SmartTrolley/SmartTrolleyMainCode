@@ -88,7 +88,7 @@ public class TestCategoryFiltering {
 
 			shoppingList = new HomeScreenController();
 			categoryListNumber = shoppingList.getCategoryNumber();
-			System.out.println(categoryListNumber);
+			SmartTrolleyToolBox.print(categoryListNumber);
 			assertFalse(categoryListNumber == null);
 		}
 	}
