@@ -108,10 +108,10 @@ public class CreateNewListScreenController implements Initializable {
 				SqlConnection sqlConnection = new SqlConnection();
 				sqlConnection.openConnection();
 				
-//				String sqlStatement = "INSERT INTO `cl36-st`.`lists` (`Name`) VALUES ('"
-//						+ enteredListName + "');";
-//				sqlConnection.executeStatement(sqlStatement);
-				sqlConnection.AddList(enteredListName);
+				String sqlStatement = "INSERT INTO `cl36-st`.`lists` (`Name`) VALUES ('"
+						+ enteredListName + "');";
+				sqlConnection.executeStatement(sqlStatement);
+				//sqlConnection.AddList(enteredListName);
 				
 				SmartTrolleyPrint.print("Created new list: " + enteredListName);
 				

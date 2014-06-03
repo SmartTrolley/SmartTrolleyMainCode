@@ -32,7 +32,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import smarttrolleygui.AllShoppingListsScreenController;
-import smarttrolleygui.ExampleShoppingListController;
+import smarttrolleygui.ShoppingListController;
 import smarttrolleygui.SmartTrolleyGUI;
 import smarttrolleygui.StartScreenController;
 import DatabaseConnectors.SqlConnection;
@@ -223,7 +223,7 @@ public class AllShoppingListsScreenControllerTest {
 
 		SmartTrolleyPrint.print("row Size is " + rowSize);
 		
-		listSize = ExampleShoppingListController.getProductDataSize();
+		listSize = ShoppingListController.getProductDataSize();
 		
 		SmartTrolleyPrint.print("list Size is " + listSize);
 		

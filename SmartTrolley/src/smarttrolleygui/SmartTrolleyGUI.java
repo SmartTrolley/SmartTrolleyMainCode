@@ -46,7 +46,7 @@ public class SmartTrolleyGUI extends Application {
 
 	HomeScreenController homeScreen;
 
-	public ExampleShoppingListController exampleShoppingList;
+	public ShoppingListController exampleShoppingList;
 
     /* (non-Javadoc)
      * @see javafx.application.Application#start(javafx.stage.Stage)
@@ -171,7 +171,7 @@ public class SmartTrolleyGUI extends Application {
     */
     public void goToShoppingList() {
         try {
-            exampleShoppingList = (ExampleShoppingListController) replaceSceneContent("fxml/ExampleShoppingList.fxml");
+            exampleShoppingList = (ShoppingListController) replaceSceneContent("fxml/ExampleShoppingList.fxml");
             exampleShoppingList.setApp(this);
         } catch (IOException ex) {
         	//TODO Show a message box to the user here

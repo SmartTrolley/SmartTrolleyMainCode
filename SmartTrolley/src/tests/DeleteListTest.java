@@ -33,7 +33,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-import smarttrolleygui.ExampleShoppingListController;
+import smarttrolleygui.ShoppingListController;
 import smarttrolleygui.SmartTrolleyGUI;
 import smarttrolleygui.StartScreenController;
 import DatabaseConnectors.SqlConnection;
@@ -161,7 +161,7 @@ public class DeleteListTest {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				Button deleteButton = ExampleShoppingListController.deleteListButton;
+				Button deleteButton = ShoppingListController.deleteListButton;
 				deleteButton.fire();
 			}
 		});
@@ -169,7 +169,7 @@ public class DeleteListTest {
 		// Allow the GUI to catch up
 		SmartTrolleyDelay.delay(500);
 
-		assertTrue(ExampleShoppingListController.deleteMsgBx.isShowing());
+		assertTrue(ShoppingListController.deleteMsgBx.isShowing());
 		
 		SmartTrolleyDelay.delay(500);
 		
@@ -206,7 +206,7 @@ public class DeleteListTest {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				Button deleteButton = ExampleShoppingListController.deleteListButton;
+				Button deleteButton = ShoppingListController.deleteListButton;
 				deleteButton.fire();
 			}
 		});

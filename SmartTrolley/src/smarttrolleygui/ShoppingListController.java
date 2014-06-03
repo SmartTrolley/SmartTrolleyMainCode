@@ -46,7 +46,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 
-public class ExampleShoppingListController implements Initializable {
+public class ShoppingListController implements Initializable {
 
 	@FXML
 	private ListView<String> categoriesList;
