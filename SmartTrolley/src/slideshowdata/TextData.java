@@ -19,6 +19,8 @@ import org.simpleframework.xml.Root;
 @Root (strict = false)
 public class TextData implements DataType{
 	
+	private int textno;
+	
 	@ElementList (entry = "textbody", inline = true)
 	private ArrayList<TextBodyData> textbodies;
 		
@@ -55,7 +57,10 @@ public class TextData implements DataType{
 	public ArrayList<TextBodyData> getTextbodies() {
 		return textbodies;
 	}
-
+	
+	public int getTextNo() {
+		return textno;
+	}
 	public int getXstart() {
 		return xstart;
 	}
@@ -100,6 +105,10 @@ public class TextData implements DataType{
 
 	public void setTextbodies(ArrayList<TextBodyData> textbodies) {
 		this.textbodies = textbodies;
+	}
+	
+	public void setTextNo(int textno){
+		this.textno = textno;
 	}
 
 	public void setXstart(int xstart) {

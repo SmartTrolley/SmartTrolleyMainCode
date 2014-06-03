@@ -466,7 +466,10 @@ import smarttrolleygui.SmartTrolleyGUI;
 					ArrayList<TextData> textdatalist = new ArrayList<TextData>();
 							
 					while (results.next()){
-															
+									
+						//get TextNo
+						textdata.setTextNo(results.getInt("textno"));
+						
 						//get xstart
 						textdata.setXstart(results.getInt("xstart"));
 						

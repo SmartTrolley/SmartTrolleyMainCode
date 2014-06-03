@@ -2,6 +2,7 @@ package slideshowdata;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import DatabaseConnectors.SqlConnection;
 
@@ -642,13 +643,17 @@ public class DataUploader extends SqlConnection{
 								currentText.getFont(), 
 								currentText.getFontcolor());
 				
+				ArrayList<TextData> textdata =(ArrayList<TextData>)getSpecificData("text", "ProductID", ""+productid);
+				
+				int TextNo = textdata.get(0).getTextNo();
+				
 				while(textbodyIndex<currentText.getTextbodies().size()){
 					
 					currentTextbody = currentText.getTextbodies().get(textbodyIndex);
 					
 					addTextbodyContents(productid, 
 										slideIndex+1,
-										textIndex+1, //TextNo 
+										TextNo,  
 										currentTextbody.getBranch(), 
 										currentTextbody.getBold(), 
 										currentTextbody.getItalic(), 
