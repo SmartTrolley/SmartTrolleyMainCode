@@ -565,7 +565,7 @@ public class DataUploader extends SqlConnection{
 			
 			
 			addSlideContents(productid,
-							 currentSlide.getId()+1, 
+							 currentSlide.getId(), 
 							 currentSlide.getDuration(), 					
 							 currentSlide.getLastSlide());
 			
@@ -574,7 +574,7 @@ public class DataUploader extends SqlConnection{
 				currentAudio = currentSlide.getAudios().get(audioIndex);
 				
 				addAudioTableContents(productid,
-									  slideIndex+1,
+									  slideIndex,
 									  currentAudio.getUrlname(),
 									  currentAudio.getStarttime(),
 									  50, //volume: not in PWS
@@ -587,7 +587,7 @@ public class DataUploader extends SqlConnection{
 				currentImage = currentSlide.getImages().get(imageIndex);
 
 				addImageContents(productid,
-								 slideIndex+1,
+								 slideIndex,
 							  	 currentImage.getUrlname(),
 							  	 currentImage.getXstart(), 
 							  	 currentImage.getYstart(),
@@ -606,7 +606,7 @@ public class DataUploader extends SqlConnection{
 				currentShape = currentSlide.getShapes().get(shapeIndex);
 				
 				addShapeContents(productid,
-								 slideIndex+1,
+								 slideIndex,
 								 currentShape.getTotalpoints(), 
 								 currentShape.getWidth(), 
 								 currentShape.getHeight(),
@@ -619,14 +619,14 @@ public class DataUploader extends SqlConnection{
 				
 				ArrayList<ShapeData> shapedata =(ArrayList<ShapeData>)getSpecificData("shape", "ProductID", ""+productid);
 				
-				int ShapeNo = shapedata.get(0).getShapeNo();
+				int ShapeNo = shapedata.get(shapeIndex).getShapeNo();
 				
 				while(pointIndex<currentShape.getPoints().size()){
 					
 					currentPoint = currentShape.getPoints().get(pointIndex);
 					
 					addPointContents(productid,
-									 slideIndex+1,
+									 slideIndex,
 									 ShapeNo, 
 			  						 currentPoint.getNum(), 
 			  						 currentPoint.getX(), 
@@ -642,7 +642,7 @@ public class DataUploader extends SqlConnection{
 				currentText = currentSlide.getTexts().get(textIndex);
 				
 				addTextContents(productid,
-								slideIndex+1,
+								slideIndex,
 								currentText.getFontsize(), 
 								currentText.getXstart(), 
 								currentText.getYstart(), 
@@ -656,14 +656,14 @@ public class DataUploader extends SqlConnection{
 				
 				ArrayList<TextData> textdata =(ArrayList<TextData>)getSpecificData("text", "ProductID", ""+productid);
 				
-				int TextNo = textdata.get(0).getTextNo();
+				int TextNo = textdata.get(textIndex).getTextNo();
 				
 				while(textbodyIndex<currentText.getTextbodies().size()){
 					
 					currentTextbody = currentText.getTextbodies().get(textbodyIndex);
 					
 					addTextbodyContents(productid, 
-										slideIndex+1,
+										slideIndex,
 										TextNo,  
 										currentTextbody.getBranch(), 
 										currentTextbody.getBold(), 
@@ -682,7 +682,7 @@ public class DataUploader extends SqlConnection{
 				currentVideo = currentSlide.getVideos().get(videoIndex);
 				
 				addVideoContents(productid, 
-								 slideIndex+1,
+								 slideIndex,
 								 currentVideo.getUrlname(), 
 								 currentVideo.getStarttime(), 
 								 currentVideo.getLoop(), 

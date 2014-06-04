@@ -36,32 +36,43 @@ public class TestDataDownloader {
 	@Test
 	public void test() {
 		
-		dataUploader.uploadXmlData(fileName);	
+		dataUploader.uploadXmlData(fileName);
+		SmartTrolleyPrint.print("Starting download");
 		SlideShowData slideshow = dataDownloader.populateSlideshow(1);
+		SmartTrolleyPrint.print("Finished download");
+	
+		try{
+			assertEquals(1, slideshow.getSlides().get(0).getId());
+			assertEquals(1060, slideshow.getSlides().get(0).getDuration());
+			assertEquals("resources/video/video/monstersinc_high.mpg", slideshow.getSlides().get(0).getVideos().get(0).getUrlname());
+			assertEquals(42, slideshow.getSlides().get(0).getTexts().get(0).getDuration());
+			assertEquals(true, slideshow.getSlides().get(0).getTexts().get(0).getTextbodies().get(0).getBold());
+			assertEquals("If this works, I will be happy S2T1TB2", slideshow.getSlides().get(0).getTexts().get(0).getTextbodies().get(1).getTextstring());
+			assertEquals("Text must be within a “bounding” empty text box with the desired formatting S2T2TB1", slideshow.getSlides().get(0).getTexts().get(1).getTextbodies().get(0).getTextstring());
+			assertEquals("C:/Users/Public/Music/Sample Music/Kalimba.mp3", slideshow.getSlides().get(0).getAudios().get(0).getUrlname());
+			assertEquals("resources/images/Desert.jpg", slideshow.getSlides().get(0).getImages().get(0).getUrlname());
+			assertEquals("#F79646", slideshow.getSlides().get(0).getShapes().get(1).getFillcolor());
+			assertEquals(2, slideshow.getSlides().get(0).getShapes().get(1).getPoints().get(2).getNum());
+			assertEquals(42, slideshow.getSlides().get(0).getShapes().get(1).getPoints().get(2).getY());
+		}
+
+		finally{
+			dataUploader.deleteContentAndResetAutoIncrement("defaults");
+			dataUploader.deleteContentAndResetAutoIncrement("document_info_data");
+			dataUploader.deleteContentAndResetAutoIncrement("slide");
+			dataUploader.deleteContentAndResetAutoIncrement("audio");
+			dataUploader.deleteContentAndResetAutoIncrement("image_slide");
+			dataUploader.deleteContentAndResetAutoIncrement("point");
+			dataUploader.deleteContentAndResetAutoIncrement("shape");
+			dataUploader.deleteContentAndResetAutoIncrement("text");
+			dataUploader.deleteContentAndResetAutoIncrement("textbody");
+			dataUploader.deleteContentAndResetAutoIncrement("video");
+			
+			dataUploader.deleteLastList();
+			dataUploader.deleteLastProduct();
+			dataUploader.deleteLastProduct();
+		}
 		
-		SmartTrolleyPrint.print("Product name :" + slideshow.getSlides().get(0).getProductName());
-		SmartTrolleyPrint.print("Price  :" + slideshow.getSlides().get(0).getPrice());
-		SmartTrolleyPrint.print("Text 1 duration :" + slideshow.getSlides().get(0).getTexts().get(0).getDuration());
-		SmartTrolleyPrint.print("Text 1 Text number :" + slideshow.getSlides().get(0).getTexts().get(0).getTextNo());
-		SmartTrolleyPrint.print("Text 1 Text number :" + slideshow.getSlides().get(0).getTexts().get(0));		
-		SmartTrolleyPrint.print("Text 1 textbody 1 textstring :" + slideshow.getSlides().get(0).getTexts().get(0).getTextbodies().get(0).getTextstring());
-		SmartTrolleyPrint.print("Text 1 textbody 1 Italic :" + slideshow.getSlides().get(0).getTexts().get(0).getTextbodies().get(0).getItalic());
-		SmartTrolleyPrint.print("Text 1 textbody 1 Underlined :" + slideshow.getSlides().get(0).getTexts().get(0).getTextbodies().get(0).getUnderlined());
-		
-//		dataUploader.deleteContentAndResetAutoIncrement("defaults");
-//		dataUploader.deleteContentAndResetAutoIncrement("document_info_data");
-//		dataUploader.deleteContentAndResetAutoIncrement("slide");
-//		dataUploader.deleteContentAndResetAutoIncrement("audio");
-//		dataUploader.deleteContentAndResetAutoIncrement("image_slide");
-//		dataUploader.deleteContentAndResetAutoIncrement("point");
-//		dataUploader.deleteContentAndResetAutoIncrement("shape");
-//		dataUploader.deleteContentAndResetAutoIncrement("text");
-//		dataUploader.deleteContentAndResetAutoIncrement("textbody");
-//		dataUploader.deleteContentAndResetAutoIncrement("video");
-//		
-//		dataUploader.deleteLastList();
-//		dataUploader.deleteLastProduct();
-//		dataUploader.deleteLastProduct();
 	}
 
 }

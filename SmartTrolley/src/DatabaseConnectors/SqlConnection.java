@@ -9,7 +9,7 @@
  *         [also added execute statement]
  * @author Checked By: Checker(s) fill here
  * 
- * @version V2.1 [Date Created: 3 May 2014]
+ * @version V3.0 [Date Created: 4 Jun 2014]
  */
 package DatabaseConnectors;
 
@@ -242,22 +242,24 @@ import smarttrolleygui.SmartTrolleyGUI;
 			
 			Object data = null;
 			
-			int index = 0;
-			
 			openConnection();
 			
 			String query = "Select * From " + table + " where " + criteria +" = '" + value + "';";
 			
 			
 				try {
+					
 					results = sendQuery(query);
-				
+					results.absolute(1);
 				
 			switch (table){
+			
 			case "products":
-				Product product = new Product();
 				
-				while (results.next()){
+				Product product = null;
+				
+				do {
+					product = new Product();
 					
 					//get id
 					product.setId(results.getInt("ProductID"));
@@ -270,17 +272,19 @@ import smarttrolleygui.SmartTrolleyGUI;
 					
 					//get Price
 					product.setPrice(results.getFloat("Price"));
-				}
+					
+				} while (results.next());
+				
 				closeConnection();
 				data = product;
 				break;
 				
 			case "audio":
-				AudioData audiodata = new AudioData();
 
 				ArrayList<AudioData> audiodatalist = new ArrayList<AudioData>();
 				
-				while (results.next()){
+				do {
+					AudioData audiodata = new AudioData();
 					
 					//get urlname
 					audiodata.setUrlname(results.getString("urlname"));
@@ -291,17 +295,20 @@ import smarttrolleygui.SmartTrolleyGUI;
 					//get loop
 					audiodata.setLoop(results.getBoolean("loop"));
 					
-					audiodatalist.add(index, audiodata);
-					index++;
-				}
+					audiodatalist.add(audiodata);
+					
+				} while (results.next());
+				
 				closeConnection();
 				data = audiodatalist;
 				break;
 				
 			case "defaults":
-				DefaultsData defaultsdata = new DefaultsData();
 				
-				while (results.next()){
+				DefaultsData defaultsdata = null;
+				
+				do {
+					defaultsdata = new DefaultsData();
 					
 					//get listid
 					defaultsdata.setListId(results.getInt("listid"));
@@ -323,15 +330,19 @@ import smarttrolleygui.SmartTrolleyGUI;
 					
 					//get fillcolor
 					defaultsdata.setFillcolor(results.getString("fillcolor"));
-				}
+					
+				} while (results.next());
+				
 				closeConnection();
 				data = defaultsdata;
 				break;
 				
 				case "document_info_data":
-					DocumentInfoData documentinfodata = new DocumentInfoData();
 					
-					while (results.next()){
+					DocumentInfoData documentinfodata = null;
+					
+					do {
+						documentinfodata = new DocumentInfoData();
 						
 						//get listid
 						documentinfodata.setListId(results.getInt("listid"));
@@ -353,15 +364,18 @@ import smarttrolleygui.SmartTrolleyGUI;
 						
 						//get height
 						documentinfodata.setHeight(results.getInt("height"));
-					}
+						
+					} while (results.next());
+					
 					data = documentinfodata;
 					break;
 					
 				case "image_slide":
-					ImageData imagedata = new ImageData();
+					
 					ArrayList<ImageData> imagedatalist = new ArrayList<ImageData>();
 					
-					while (results.next()){
+					do {
+						ImageData imagedata = new ImageData();
 						
 						//get urlname
 						imagedata.setUrlname(results.getString("urlname"));
@@ -390,19 +404,19 @@ import smarttrolleygui.SmartTrolleyGUI;
 						//get branch
 						imagedata.setBranch(results.getInt("branch"));
 						
-						imagedatalist.add(index, imagedata);
-						index++;
-					}
+						imagedatalist.add(imagedata);
+
+					} while (results.next());
 					
 					data = imagedatalist;
 					break;
 					
 				case "point":
-					PointData pointdata = new PointData();
 					
 					ArrayList<PointData> pointdatalist = new ArrayList<PointData>();
 					
-					while (results.next()){
+					do {
+						PointData pointdata = new PointData();
 						
 						//get point pointNo
 						pointdata.setNum(results.getInt("IndividualPointNo"));
@@ -412,19 +426,19 @@ import smarttrolleygui.SmartTrolleyGUI;
 						
 						//get y
 						pointdata.setY(results.getInt("y"));
-						pointdatalist.add(index, pointdata);
-						index++;
-					}
+						pointdatalist.add(pointdata);
+
+					} while (results.next());
+					
 					data = pointdatalist;
 					break;
 					
 				case "shape":
-					ShapeData shapedata = new ShapeData();
 					
-
 					ArrayList<ShapeData> shapedatalist = new ArrayList<ShapeData>();
 					
-					while (results.next()){
+					do {
+						ShapeData shapedata = new ShapeData();
 							
 						//get ShapeNo
 						shapedata.setShapeNo(results.getInt("shapeno"));
@@ -456,16 +470,19 @@ import smarttrolleygui.SmartTrolleyGUI;
 						//get branch
 						shapedata.setBranch(results.getInt("branch"));
 						
-						shapedatalist.add(index, shapedata);
-						index++;
-					}
+						shapedatalist.add(shapedata);
+
+					} while (results.next());
+					
 					data = shapedatalist;
 					break;
 					
 				case "slide":
-					SlideData slidedata = new SlideData();
 					
-					while (results.next()){
+					SlideData slidedata = null;
+					
+					do {
+						slidedata = new SlideData();
 																		
 						//get id
 						slidedata.setId(results.getInt("slideid"));
@@ -475,16 +492,18 @@ import smarttrolleygui.SmartTrolleyGUI;
 						
 						//get lastSlide
 						slidedata.setLastSlide(results.getBoolean("lastSlide"));
-					}
+						
+					} while (results.next());
+					
 					data = slidedata;
 					break;
 					
 				case "text":
-					TextData textdata = new TextData();
-
+					
 					ArrayList<TextData> textdatalist = new ArrayList<TextData>();
 							
-					while (results.next()){
+					do {
+						TextData textdata = new TextData();
 									
 						//get TextNo
 						textdata.setTextNo(results.getInt("textno"));
@@ -519,18 +538,19 @@ import smarttrolleygui.SmartTrolleyGUI;
 						//get fontsize
 						textdata.setFontsize(results.getInt("fontsize"));
 						
-						textdatalist.add(index, textdata);
-						index++;
-					}
+						textdatalist.add(textdata);
+
+					} while (results.next());
+					
 					data = textdatalist;
 					break;
 					
 				case "textbody":
-					TextBodyData textbodydata = new TextBodyData();
-
+					
 					ArrayList<TextBodyData> textbodydatalist = new ArrayList<TextBodyData>();
 					
-					while (results.next()){
+					do {
+						TextBodyData textbodydata = new TextBodyData();
 														
 						//get branch
 						textbodydata.setBranch(results.getInt("branch"));
@@ -547,19 +567,19 @@ import smarttrolleygui.SmartTrolleyGUI;
 						//get textstring
 						textbodydata.setTextstring(results.getString("Text"));
 						
-						textbodydatalist.add(index, textbodydata);
-						index++;
-					}
+						textbodydatalist.add(textbodydata);
+						
+					} while (results.next());
+					
 					data = textbodydatalist;
 					break;
 					
 				case "video":
-					VideoData videodata = new VideoData();
 					
-
 					ArrayList<VideoData> videodatalist = new ArrayList<VideoData>();
 					
-					while (results.next()){
+					do {
+						VideoData videodata = new VideoData();
 														
 						//get urlname
 						videodata.setUrlname(results.getString("urlname"));
@@ -588,9 +608,10 @@ import smarttrolleygui.SmartTrolleyGUI;
 						//get loop
 						videodata.setLoop(results.getBoolean("loop"));	
 						
-						videodatalist.add(index, videodata);
-						index++;
-					}
+						videodatalist.add(videodata);
+						
+					} while (results.next());
+					
 					data = videodatalist;
 					break;
 				

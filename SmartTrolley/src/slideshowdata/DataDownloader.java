@@ -54,7 +54,7 @@ public class DataDownloader extends SqlConnection{
 				k++;
 			}
 			
-			ArrayList<ImageData>  images = (ArrayList<ImageData>)getSpecificData("shape", "ProductID", ""+productid);
+			ArrayList<ImageData>  images = (ArrayList<ImageData>)getSpecificData("image_slide", "ProductID", ""+productid);
 			
 			ArrayList<VideoData>  videos = (ArrayList<VideoData>)getSpecificData("video", "ProductID", ""+productid);
 			
