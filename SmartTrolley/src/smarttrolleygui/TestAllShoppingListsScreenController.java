@@ -155,7 +155,7 @@ public class TestAllShoppingListsScreenController {
 		SmartTrolleyToolBox.print("rowSize is " + rowSize);
 		SmartTrolleyToolBox.print("array size is" + AllShoppingListsScreenController.buttonList.size());
 
-		assertTrue(rowSize == AllShoppingListsScreenController.buttonList.size());
+		assertTrue(rowSize == AllShoppingListsScreenController.buttonList.size()-1);
 
 	}
 

@@ -4,10 +4,12 @@
  * This file contains the test case for the product screen {@link smarttrolleygui.ProductScreenController}
  *
  * @author Prashant Chakravarty
+ * @author Prashant Chakravarty V2.0 - Refactored delays which wait for the application to be while loops
  *
  * @author Checked By: Alasdair: 29 May 2014
  *
  * @version V1.0 [Date Created: 24 May 2014]
+ * @version V2.0 [Date Created: 04 June 2014]
  */
 
 package smarttrolleygui;
@@ -144,9 +146,8 @@ public class TestProductScreenController {
 		};
 		newGUIThread.start();
 
-		// Delay to allow the application to launch
-		// If you get NullPointer errors around this line, increase the delay
-		SmartTrolleyToolBox.delay(200);
+		// Pause to allow the application to launch
+		while (SmartTrolleyGUI.stage == null);
 
 		// Now launch the instance of SmartTrolleyGUI, which takes over the displayed stage
 		Platform.runLater(new Runnable() {
@@ -164,11 +165,9 @@ public class TestProductScreenController {
 
 		/*
 		 * It is necessary to pause the main (test) thread for some time to
-		 * allow the application to catch up. Failure to implement this delay
-		 * results in a nullPointerException, since the scene has not yet been
-		 * created.
+		 * allow the application to catch up. That is what this while loop does. 
 		 */
-		SmartTrolleyToolBox.delay(2500);
+		while (smartTrolleyApplication.stage == null);
 		
 		 setupImage();
 		 setupGraphics();
@@ -179,16 +178,11 @@ public class TestProductScreenController {
 		SmartTrolleyGUI.setCurrentProductID(21);
 		TestGUINavigationForTests.goToProductScreen(smartTrolleyApplication);
 		
-		// Delay to allow the instance to change screens.
-		// If you get NullPointer errors around this line, increase the delay
-		SmartTrolleyToolBox.delay(1000);
-
+		// While loop to allow the instance to change screens.
+		while (smartTrolleyApplication.productScreen == null);
+		
 		createAndStartTestSlideshow();
 
-		// screen that appears.
-		// Delay to allow the application state to settle before running the test
-		// If you get NullPointer errors around this line, increase the delay
-		SmartTrolleyToolBox.delay(500);
 
 	}
 
@@ -325,6 +319,9 @@ public class TestProductScreenController {
 				testSlideShow.startSlideshow();
 			}
 		});
+		
+		//Wait until the slide is displayed, to avoid NullPointer Exceptions
+		while(testSlideShow.getDisplayedSlide() == null);
 	}
 
 	/**

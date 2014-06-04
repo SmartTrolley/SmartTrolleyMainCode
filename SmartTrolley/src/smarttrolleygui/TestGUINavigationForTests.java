@@ -39,61 +39,7 @@ public class TestGUINavigationForTests {
 				SmartTrolleyToolBox.print("Fired view lists Button");
 			}
 		});
-	}
-
-	/**
-	* Launches the SmartTrolley Application required for the test to take place
-	*<p> Date Modified: 31 May 2014
-	 * @param smartTrolleyApplication
-	 * @return The launched application
-	*/
-	protected static SmartTrolleyGUI launchTestApplication(SmartTrolleyGUI smartTrolleyApplication) {
-
-		final SmartTrolleyGUI testApplication = smartTrolleyApplication;
-		/*
-		 * Create a new thread which launches the application. If the main
-		 * thread launches the application, the rest of the test will only run
-		 * after the application closes i.e. pointless.
-		 */
-		Thread newGUIThread;
-
-		newGUIThread = new Thread("New GUI") {
-			public void run() {
-				SmartTrolleyToolBox.print("GUI thread");
-				Application.launch(SmartTrolleyGUI.class, (java.lang.String[]) null);
-
-			}
-		};
-		newGUIThread.start();
-
-		// Delay to allow the application to launch
-		// If you get NullPointer errors around this line, increase the delay
-		SmartTrolleyToolBox.delay(200);
-
-		// Now launch the instance of SmartTrolleyGUI, which takes over the displayed stage
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				testApplication.start(SmartTrolleyGUI.stage);
-			}
-		});
-
-		/*
-		 * Note that at this point, there are 3 threads running: 1. Main (test)
-		 * thread - Runs this class 2. newGUIThread - Launches the Application
-		 * 3. JavaFX Thread - This thread actually is the application.
-		 */
-
-		/*
-		 * It is necessary to pause the main (test) thread for some time to
-		 * allow the application to catch up. Failure to implement this delay
-		 * results in a nullPointerException, since the scene has not yet been
-		 * created.
-		 */
-		SmartTrolleyToolBox.delay(2500);
-
-		return testApplication;
-	}
+	}	
 
 	/**
 	* Go to the next slideshow in the test slideshow
