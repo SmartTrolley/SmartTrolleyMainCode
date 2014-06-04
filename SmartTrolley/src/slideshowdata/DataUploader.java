@@ -519,10 +519,7 @@ public class DataUploader extends SqlConnection{
 	 * 
 	 * @param data
 	 */
-	public void uploadXmlData(String filename){
-		
-		parser  =  new PWSParser();
-		SlideShowData data = parser.read(filename);
+	public void uploadXmlData(SlideShowData slideShowData){
 		
 		
 		int slideIndex = 0,
@@ -540,13 +537,13 @@ public class DataUploader extends SqlConnection{
 		
 		
 		
-		int listid = createNewList(data.getDocumentinfo().getTitle());
+		int listid = createNewList(slideShowData.getDocumentinfo().getTitle());
 		
-		uploadDocumentData(data.getDocumentinfo(), listid);
-		uploadDefaultData(data.getDefaults(), listid);
+		uploadDocumentData(slideShowData.getDocumentinfo(), listid);
+		uploadDefaultData(slideShowData.getDefaults(), listid);
 		
 
-		for(SlideData currentSlide : data.getSlides()){
+		for(SlideData currentSlide : slideShowData.getSlides()){
 			
 			productName = currentSlide.getProductName();
 			
@@ -559,7 +556,7 @@ public class DataUploader extends SqlConnection{
 				
 			}
 		else{
-				productid = createNewProduct(data.getDocumentinfo().getTitle(), currentSlide.getId()+1, null, 0, 1, 0);
+				productid = createNewProduct(slideShowData.getDocumentinfo().getTitle(), currentSlide.getId(), null, 0, 1, 0);
 				addProductToList(productid, listid);	
 			}
 			

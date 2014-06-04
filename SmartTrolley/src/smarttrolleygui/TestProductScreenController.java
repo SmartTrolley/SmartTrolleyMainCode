@@ -147,13 +147,13 @@ public class TestProductScreenController {
 		newGUIThread.start();
 
 		// Pause to allow the application to launch
-		while (SmartTrolleyGUI.stage == null);
+		while (SmartTrolleyGUI.getStage() == null);
 
 		// Now launch the instance of SmartTrolleyGUI, which takes over the displayed stage
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				smartTrolleyApplication.start(SmartTrolleyGUI.stage);
+				smartTrolleyApplication.start(SmartTrolleyGUI.getStage());
 			}
 		});
 
@@ -167,7 +167,7 @@ public class TestProductScreenController {
 		 * It is necessary to pause the main (test) thread for some time to
 		 * allow the application to catch up. That is what this while loop does. 
 		 */
-		while (smartTrolleyApplication.stage == null);
+		while (smartTrolleyApplication.getStage() == null);
 		
 		 setupImage();
 		 setupGraphics();

@@ -13,6 +13,7 @@
 
 package smarttrolleygui;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,6 +21,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.stage.FileChooser;
+import se.mbaeumer.fxmessagebox.MessageBox;
+import se.mbaeumer.fxmessagebox.MessageBoxType;
+import slideshowdata.DataUploader;
+import slideshowdata.PWSParser;
+import slideshowdata.SlideShowData;
 import toolBox.SmartTrolleyToolBox;
 
 public class StartScreenController extends ControllerGeneral implements Initializable {
@@ -77,8 +84,33 @@ public class StartScreenController extends ControllerGeneral implements Initiali
 			// NO-OP.
 			SmartTrolleyToolBox.print("error: application == null");
 		} else {
+			
 			// TODO Replace with appropriate method
-			PWSParser PWSParser = new PWSParser();
+			PWSParser parser = new PWSParser();
+			
+			SmartTrolleyToolBox.print("In PWS Parser");
+			FileChooser fileChooser = new FileChooser();
+			fileChooser.setTitle("Open PWS File");
+			fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("(XML) Xtensible Markup Language Files", "*.xml"));
+			// TODO Perhaps set a default location to show
+
+			// TODO Also pass the file into the XML Parser
+
+			File file = fileChooser.showOpenDialog(SmartTrolleyGUI.getStage());
+
+			if (file == null) {
+				MessageBox noFileMsgBx = new MessageBox("The file you have selected does not exist.", MessageBoxType.OK_ONLY);
+			} else {
+
+				// TODO The below line can be used to load in a user selected file
+				// slideShowPath = PWSfile.getAbsolutePath();
+				SmartTrolleyToolBox.print(file.getAbsolutePath());
+				SlideShowData slideShowData = parser.read(file);
+				
+				DataUploader dataUploader = new DataUploader();
+				dataUploader.uploadXmlData(slideShowData);								
+			}
+			
 		}
 	}
 

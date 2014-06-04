@@ -23,6 +23,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -37,6 +38,8 @@ import javafx.util.Callback;
 import se.mbaeumer.fxmessagebox.MessageBox;
 import se.mbaeumer.fxmessagebox.MessageBoxResult;
 import se.mbaeumer.fxmessagebox.MessageBoxType;
+import slideshowdata.DataDownloader;
+import smarttrolleygui.slideshow.SlideShow;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
@@ -99,7 +102,7 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 		listNameLabel.setText(SmartTrolleyGUI.getCurrentListName());
 
 		// Fill table with selected products
-		initializeProductTable();
+		initializeProductTable();	
 	}
 
 	/** Any FXML item with a mouse click handle will use this method to dictate its reaction when clicked
@@ -387,6 +390,9 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 									SqlConnection sqlConnection = new SqlConnection();
 									SmartTrolleyToolBox.print("Pressed image of product: " + product.getName());
 									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(product.getName()).getId());
+									
+									SmartTrolleyGUI.setCurrentSlideID((((Product) sqlConnection.getSpecificData("slide", "productID", product.getName())).getId()));
+									
 									application.goToProductScreen();
 								}
 							});

@@ -21,6 +21,8 @@ import toolBox.SmartTrolleyToolBox;
 
 public class TestDataDownloader {
 
+	private PWSParser parser;
+	
 	private static DataUploader dataUploader; 
 	private static DataDownloader dataDownloader; 
 	private String fileName = " ../../XMLDocs/dynamDomfinal.xml";
@@ -37,7 +39,10 @@ public class TestDataDownloader {
 	@Test
 	public void test() {
 		
-		dataUploader.uploadXmlData(fileName);
+		parser  =  new PWSParser();
+		SlideShowData slideShowData = parser.read(fileName);
+		dataUploader.uploadXmlData(slideShowData);
+		
 		SmartTrolleyToolBox.print("Starting download");
 		SlideShowData slideshow = dataDownloader.populateSlideshow(1);
 		SmartTrolleyToolBox.print("Finished download");

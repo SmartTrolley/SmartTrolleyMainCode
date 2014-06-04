@@ -13,6 +13,7 @@
 package imagehandler;
 
 import graphicshandler.SlideElementDuration;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -36,7 +37,12 @@ public class SlideImage extends ImageView{
 	 */
 	public SlideImage(String url, int x, int y, int width, int height,
 			int startTime, int duration) {
-		super(url);
+		super();
+		try{
+		this.setImage(new Image(url));
+		}catch(IllegalArgumentException e){
+			this.setImage(new Image("http://th03.deviantart.net/fs70/PRE/i/2013/077/8/9/cookie_monster_by_xenia_cat-d5yhjwj.jpg"));
+		}
 		
 		this.duration = new SlideElementDuration(this);
 		

@@ -19,19 +19,35 @@ public class PWSParser {
 	
 	public Serializer serializer = new Persister();
 	
+	/**
+	 * Constructor method that runs when an instance of this object is created
+	 * <p>
+	 * User can load PWS compatible XML File into program
+	 * <p>
+	 * Date Modified: 24 May 2014
+	 */
+	public PWSParser() {
+		
+	}	
+	
 	
 	public SlideShowData read(String document){
 
 		File source = new File(document);
-		SlideShowData thingRead = null;
+		
+		return read(source);
+	}
+	
+	public SlideShowData read(File source){
+
+		SlideShowData parsedSlideShowData = null;
 		try {
-			thingRead = serializer.read(SlideShowData.class, source);
+			parsedSlideShowData = serializer.read(SlideShowData.class, source);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return thingRead;
-		
+		return parsedSlideShowData;
 	}
 	
 }

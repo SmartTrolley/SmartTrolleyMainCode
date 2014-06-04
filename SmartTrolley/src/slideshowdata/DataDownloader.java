@@ -21,7 +21,10 @@ public class DataDownloader extends SqlConnection{
 		ArrayList<SlideData> slidelist = new ArrayList<SlideData>();
 		SlideShowData slideshowdata = new SlideShowData();
 		
+		
 		DefaultsData defaults = (DefaultsData)getSpecificData("defaults", "ListID", ""+ListId);
+		
+		
 		DocumentInfoData documentinfo = (DocumentInfoData)getSpecificData("document_info_data", "ListID", ""+ListId);
 		
 		while(i<slides.size()){

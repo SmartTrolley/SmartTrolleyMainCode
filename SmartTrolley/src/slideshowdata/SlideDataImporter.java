@@ -15,18 +15,16 @@ import videohandler.SlideVideo;
 import audiohandler.AudioHandler;
 
 public class SlideDataImporter {
-	SlideShowData data;
-	ArrayList<Slide> mediaSlideList;
+	static SlideShowData data;
+	static ArrayList<Slide> mediaSlideList;
 	
 	public SlideDataImporter(SlideShowData data){
-		this.data = data;
 		
-		mediaSlideList = importSlides();
 		
 		
 	}
 
-	private ArrayList<Slide> importSlides() {
+	private static ArrayList<Slide> importSlides() {
 		ArrayList<Slide> slides = new ArrayList<Slide>();
 		
 		for(SlideData slide : data.getSlides()){
@@ -36,7 +34,7 @@ public class SlideDataImporter {
 		return slides;
 	}
 
-	private Slide importSlide(SlideData slideData) {
+	private static Slide importSlide(SlideData slideData) {
 		Slide slide;
 		ArrayList<SlideImage> images = importImages(slideData.getImages());
 		ArrayList<SlideVideo> videos = importVideos(slideData.getVideos());
@@ -52,7 +50,7 @@ public class SlideDataImporter {
 		return slide;
 	}
 
-	private ArrayList<AudioHandler> importAudios(ArrayList<AudioData> audioDatas) {
+	private static ArrayList<AudioHandler> importAudios(ArrayList<AudioData> audioDatas) {
 		
 		int defaultVolume = 1;
 		ArrayList<AudioHandler> audios = new ArrayList<AudioHandler>();
@@ -64,7 +62,7 @@ public class SlideDataImporter {
 		return audios;
 	}
 
-	private ArrayList<SlideText> importTexts(ArrayList<TextData> textDatas ) {
+	private static ArrayList<SlideText> importTexts(ArrayList<TextData> textDatas ) {
 		
 		ArrayList<SlideText> texts = new ArrayList<SlideText>();
 		ArrayList<SlideTextBody> bodies = new ArrayList<SlideTextBody>();
@@ -87,7 +85,7 @@ public class SlideDataImporter {
 		return texts;
 	}
 
-	private ArrayList<SlideTextBody> importTextBodies(ArrayList<TextBodyData> bodyDatas) {
+	private static ArrayList<SlideTextBody> importTextBodies(ArrayList<TextBodyData> bodyDatas) {
 		ArrayList<SlideTextBody> bodies = new ArrayList<SlideTextBody>();
 		
 		for(TextBodyData body : bodyDatas){
@@ -98,7 +96,7 @@ public class SlideDataImporter {
 		return bodies;
 	}
 
-	private ArrayList<Shape> importShapes(ArrayList<ShapeData> shapeDatas) {
+	private static ArrayList<Shape> importShapes(ArrayList<ShapeData> shapeDatas) {
 		ArrayList<Shape> shapes = new ArrayList<Shape>();
 		SlideShapeFactory shapeFactory;
 		PriorityQueue<ShapePoint> points;
@@ -120,7 +118,7 @@ public class SlideDataImporter {
 		return shapes;
 	}
 
-	private PriorityQueue<ShapePoint> importPoints(ArrayList<PointData> pointDatas) {
+	private static PriorityQueue<ShapePoint> importPoints(ArrayList<PointData> pointDatas) {
 		PriorityQueue<ShapePoint> points = new PriorityQueue<ShapePoint>();
 		
 		for(PointData pointData: pointDatas){
@@ -130,7 +128,7 @@ public class SlideDataImporter {
 		return points;
 	}
 
-	private ArrayList<SlideVideo> importVideos(ArrayList<VideoData> videoDatas) {
+	private static ArrayList<SlideVideo> importVideos(ArrayList<VideoData> videoDatas) {
 		ArrayList<SlideVideo> videos = new ArrayList<SlideVideo>();
 		
 		for(VideoData videoData : videoDatas){
@@ -148,12 +146,12 @@ public class SlideDataImporter {
 		return videos;
 	}
 
-	private ArrayList<SlideImage> importImages(ArrayList<ImageData> imageDatas) {
-		ArrayList<SlideImage> audios = new ArrayList<SlideImage>();
+	private static ArrayList<SlideImage> importImages(ArrayList<ImageData> imageDatas) {
+		ArrayList<SlideImage> images = new ArrayList<SlideImage>();
 		
 		for(ImageData imageData : imageDatas){
 			
-			audios.add(new SlideImage(imageData.getUrlname(),
+			images.add(new SlideImage(imageData.getUrlname(),
 									  imageData.getXstart(), 
 									  imageData.getYstart(), 
 									  imageData.getWidth(), 
@@ -162,10 +160,14 @@ public class SlideDataImporter {
 									  imageData.getDuration()));
 		}
 		
-		return audios;
+		return images;
 	}
 
-	public ArrayList<Slide> getSlides() {
-		return mediaSlideList;
+	public static ArrayList<Slide> getSlides(SlideShowData showData) {
+		
+		
+		SlideDataImporter.data = showData;
+		
+		return importSlides();
 	}
 }

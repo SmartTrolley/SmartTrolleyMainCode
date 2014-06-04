@@ -42,6 +42,7 @@ public class Slide extends AnchorPane {
 	private double xScaler;
 	private double yScaler;
 	protected double duration;
+	private int slideID;
 
 	/**
 	*Constructor takes in lists, and places objects from those lists into the Slide, based on self defined locations. Also takes in scaling factors
@@ -114,9 +115,6 @@ public class Slide extends AnchorPane {
 		for (SlideVideo video : videoList) {
 			addVideo(video);
 		}
-
-		setVisible(true);
-		show();
 
 	}
 
@@ -212,6 +210,8 @@ public class Slide extends AnchorPane {
 			video.setVisible(true);
 			video.show();
 		}
+		
+		setVisible(true);
 
 	}
 
@@ -226,6 +226,20 @@ public class Slide extends AnchorPane {
 		 }
 
 		getChildren().clear();
+	}
+
+	/**
+	 * @return the slideID
+	 */
+	public int getSlideID() {
+		return slideID;
+	}
+
+	/**
+	 * @param slideID the slideID to set
+	 */
+	public void setSlideID(int slideID) {
+		this.slideID = slideID;
 	}
 
 }
