@@ -40,7 +40,7 @@ public class TestCreateList {
 	String query;
 	Stage stage;
 	private int listID;
-		
+
 	/**
 	 * This method runs before every test. It sets up a
 	 * database connection and moves to the shopping list screen
@@ -53,7 +53,7 @@ public class TestCreateList {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		
+
 		productsDatabase = new SqlConnection();
 		productsDatabase.openConnection();
 
@@ -67,11 +67,9 @@ public class TestCreateList {
 		newGUIThread = new Thread("New GUI") {
 			public void run() {
 				SmartTrolleyToolBox.print("GUI thread");
-				Application.launch(SmartTrolleyGUI.class,
-						(java.lang.String[]) null);
+				Application.launch(SmartTrolleyGUI.class, (java.lang.String[]) null);
 				stage = new Stage();
-				stage.setScene(new Scene(new Group(new Button(
-						"my second window"))));				 
+				stage.setScene(new Scene(new Group(new Button("my second window"))));
 			}
 		};
 
@@ -107,20 +105,20 @@ public class TestCreateList {
 		 */
 		Platform.runLater(new Runnable() {
 			@Override
-			public void run() {				
+			public void run() {
 				// move to 'Create New List' screen
-				Button createNewListButton = StartScreenController.createNewListButton;				
-				createNewListButton.fire();			
+				Button createNewListButton = StartScreenController.createNewListButton;
+				createNewListButton.fire();
 			}
 		});
-		
+
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}
-	}	
-	
+	}
+
 	/**
 	*Check that the list is created when the user
 	*presses 'Create new list' button.
@@ -131,9 +129,8 @@ public class TestCreateList {
 	*/
 	@Test
 	public void listIsCreated() throws SQLException {
-		
+
 		Platform.runLater(new Runnable() {
-			
 
 			@Override
 			public void run() {
@@ -146,7 +143,7 @@ public class TestCreateList {
 				// fire 'Create New List' button
 				Button createNewListButton = CreateNewListScreenController.createNewListButton;
 				createNewListButton.fire();
-				
+
 				// search database for newly created list name
 				query = "SELECT * FROM lists WHERE name = '" + textInput + "'";
 				ResultSet results;
@@ -154,24 +151,22 @@ public class TestCreateList {
 					results = productsDatabase.sendQuery(query);
 					assertFalse(results == null);
 					while (results.next()) {
-						SmartTrolleyToolBox.print("List with name: "
-								+ results.getString("Name")
-								+ " has been created in the SQL database.");
+						SmartTrolleyToolBox.print("List with name: " + results.getString("Name") + " has been created in the SQL database.");
 						listID = results.getInt("ListID");
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
-				}				
+				}
 			}
 		});
-		
+
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}
 	}
-	
+
 	// TODO: create a test to check input is valid
 
 	/**
@@ -183,13 +178,10 @@ public class TestCreateList {
 	 */
 	@After
 	public void closeAll() throws Exception {
-		
-		String sqlStatement = "DELETE FROM `cl36-st`.`lists` WHERE listID = " + listID;
 
-		productsDatabase.executeStatement(sqlStatement);
-		
-		productsDatabase.closeConnection();
+		productsDatabase.deleteLastList();
 		SmartTrolleyToolBox.print("Closing Test.");
+
 	}
 
 }

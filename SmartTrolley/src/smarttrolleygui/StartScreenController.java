@@ -16,12 +16,11 @@ package smarttrolleygui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import toolBox.SmartTrolleyToolBox;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import toolBox.SmartTrolleyToolBox;
 
 public class StartScreenController extends ControllerGeneral implements Initializable {
 

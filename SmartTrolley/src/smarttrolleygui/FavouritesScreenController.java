@@ -15,8 +15,6 @@ package smarttrolleygui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,7 +25,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -199,20 +196,25 @@ initializeProductTable fills the TableView with data and sets up cell
 		productTable.setPlaceholder(new Label("No Favorites, please add"));
 		
         // set up column cell value factories
-        productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+		setUpCellValueFactory(addColumn);
+		setUpCellValueFactory(imageColumn);
+		
+//        productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+        
+//        addColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+//            @Override
+//            public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
+//                return new ReadOnlyObjectWrapper<Product>(features.getValue());
+//            }
+//        });
+//        imageColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+//            @Override
+//            public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
+//                return new ReadOnlyObjectWrapper<Product>(features.getValue());
+//            }
+//        });
+		
         priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
-        addColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-            @Override
-            public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
-                return new ReadOnlyObjectWrapper<Product>(features.getValue());
-            }
-        });
-        imageColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-            @Override
-            public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
-                return new ReadOnlyObjectWrapper<Product>(features.getValue());
-            }
-        });
         
 		productNameColumn.setCellFactory(new Callback<TableColumn<Product, String>, TableCell<Product, String>>() {
 			@Override

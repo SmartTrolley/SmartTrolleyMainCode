@@ -40,10 +40,11 @@ public class SqlConnectionTest {
 	}
 
 	@After
-	public void setup2() {
+
+	public  void tearDown(){
 		productsDatabase.closeConnection();
 	}
-
+	
 	/**
 	 * Tests for an instance of connection and that the connection is not closed
 	 * 
@@ -95,12 +96,14 @@ public class SqlConnectionTest {
 
 		assertEquals(product.getId(), 1);
 		assertEquals(product.getName(), "Ariel 3in1 Pods Colour & Style");
+
 		assertEquals(product.getImage(), "img/SampleProducts/ariel.jpg");
 		assert (product.getPrice() == 4.75);
+
 	}
 
 	/**
-	 * Test getSpecificCategoryNumber returns the number of a category when given the name
+	 * Tests that the database returns the correct information corresponding to a product when queried by name
 	 */
 	@Test
 	public void getSpecificCategoryNumberTest() {
@@ -110,6 +113,7 @@ public class SqlConnectionTest {
 
 		assertNotNull(catNumber);
 		assertEquals(catNumber, "1");
+
 	}
 
 	/**
@@ -127,7 +131,7 @@ public class SqlConnectionTest {
 
 		assertEquals(product.getName(), "Cravendale Pure Whole Milk (2L)");
 		assertEquals(product.getImage(), "img/SampleProducts/cravendale_2L_milk.jpg");
-		assert (product.getPrice() == 3.99);
+		assert (product.getPrice() == 2.19);
 	}
 
 	/**
@@ -163,6 +167,7 @@ public class SqlConnectionTest {
 	 */
 	@Test
 	public void getListOfFavouritesTest() {
+		
 		SmartTrolleyToolBox.print("\n getListOfFavouritesTest Start ---------------\n");
 
 		SmartTrolleyToolBox.print("First Test");
@@ -170,6 +175,7 @@ public class SqlConnectionTest {
 		assertNotNull(products);
 		Product product;
 		int i = 0;
+		
 		while (i < products.size()) {
 
 			product = products.get(i);
@@ -188,7 +194,7 @@ public class SqlConnectionTest {
 			SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + "  " + product.getOfferPrice());
 			i++;
 		}
-
+	
 	}
 
 	/**
@@ -300,16 +306,32 @@ public class SqlConnectionTest {
 
 	/**
 	 * Tests that the connection closes correctly
-	 * 
-	 * @throws SQLException
 	 */
 	@Test
-	public void connectionCloseTest() throws SQLException {
-
+	public void connectionCloseTest(){
+		
 		productsDatabase.closeConnection();
+	
+		try {
+			assertTrue(productsDatabase.connection.isClosed());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-		assertTrue(productsDatabase.connection.isClosed());
-
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public void createProductTest(){
+		SqlConnection sqlConnector = new SqlConnection();
+		
+		int test = sqlConnector.createNewProduct("TestProduct", 1, null, 0, 1, 0);	
+		
+		SmartTrolleyToolBox.print(test);
+		
+		sqlConnector.deleteLastProduct();
 	}
 
 }

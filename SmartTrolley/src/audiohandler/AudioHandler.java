@@ -2,10 +2,9 @@ package audiohandler;
 
 import java.util.concurrent.TimeUnit;
 
-import toolBox.SmartTrolleyToolBox;
-
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.MediaException;
+import toolBox.SmartTrolleyToolBox;
 
 public class AudioHandler {
 

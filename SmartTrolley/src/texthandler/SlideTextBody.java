@@ -60,6 +60,18 @@ public class SlideTextBody extends Text implements Comparable<SlideTextBody> {
 
 
 	/**
+	 * DESCRIPTION OF CONSTRUCTOR
+	 *<p> Date Modified: 4 Jun 2014
+	 */
+	public SlideTextBody(String textString, Boolean bold, Boolean italic, Boolean underlined) {
+		setText(textString);
+		setBold(bold);
+		setItalic(italic);
+		setUnderline(underlined);
+	}
+
+
+	/**
 	*Sets the font Weight according to an input boolean
 	*<p>Test: weightTest, weightBoolTest
 	*@param bold

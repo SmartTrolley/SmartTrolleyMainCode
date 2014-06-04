@@ -30,7 +30,6 @@ import javafx.scene.shape.Shape;
 import org.junit.Before;
 import org.junit.Test;
 
-import smarttrolleygui.SmartTrolleyGUI;
 import texthandler.SlideText;
 import texthandler.SlideTextBody;
 import toolBox.SmartTrolleyToolBox;

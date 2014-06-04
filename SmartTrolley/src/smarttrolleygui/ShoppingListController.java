@@ -18,20 +18,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -145,6 +141,9 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 	 * <p> Date Modified: 9 May 2014
 	 */
 	public void deleteList(ActionEvent event) throws SQLException {
+		
+		//TODO check if list selected for deletion is the last list in the database.
+		//If so, use sqlconnection.deleteLastList()
 
 		productsDatabase = new SqlConnection();
 		ResultSet result = null;
@@ -293,62 +292,73 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 	 */
 	private void initializeProductTable() {
 
-		// set up column cell value factories
+		// set up column cell value factories		
+		setUpCellValueFactory(checkBoxColumn);
+		setUpCellValueFactory(imageColumn);
+		setUpCellValueFactory(addColumn);
+		setUpCellValueFactory(removeColumn);
+
+		// set up cell factories for columns with 'interactive' cells 
+		setUpCheckBoxCellFactory(checkBoxColumn);
+		setUpAddButtonCellFactory(addColumn);
+		setUpRemoveButtonCellFactory(removeColumn);
+		
+		
 		productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
 		priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
-		checkBoxColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-			@Override
-			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
-				return new ReadOnlyObjectWrapper<Product>(features.getValue());
-			}
-		});
-		imageColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-			@Override
-			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
-				return new ReadOnlyObjectWrapper<Product>(features.getValue());
-			}
-		});
-		addColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-			@Override
-			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
-				return new ReadOnlyObjectWrapper<Product>(features.getValue());
-			}
-		});
-		removeColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-			@Override
-			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
-				return new ReadOnlyObjectWrapper<Product>(features.getValue());
-			}
-		});
+//		checkBoxColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+//			@Override
+//			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
+//				return new ReadOnlyObjectWrapper<Product>(features.getValue());
+//			}
+//		});
+//		imageColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+//			@Override
+//			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
+//				return new ReadOnlyObjectWrapper<Product>(features.getValue());
+//			}
+//		});
+//		addColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+//			@Override
+//			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
+//				return new ReadOnlyObjectWrapper<Product>(features.getValue());
+//			}
+//		});
+//		removeColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+//			@Override
+//			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
+//				return new ReadOnlyObjectWrapper<Product>(features.getValue());
+//			}
+//		});
 
 		// set up cell factories for columns containing images / buttons
-		checkBoxColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
-			@Override
-			public TableCell<Product, Product> call(TableColumn<Product, Product> imageColumn) {
-				return new TableCell<Product, Product>() {
-					final CheckBox checkBox = new CheckBox();
-
-					@Override
-					public void updateItem(final Product product, boolean empty) {
-						super.updateItem(product, empty);
-						if (product != null) {
-							// button.getStyleClass().add("buttonImage");
-							setGraphic(checkBox);
-
-							// Button Event Handler
-							checkBox.setOnAction(new EventHandler<ActionEvent>() {
-								@Override
-								public void handle(ActionEvent event) {
-									SmartTrolleyToolBox.print("Pressed checkbox of product: " + product.getName());
-								}
-							});
-						} else {
-							setGraphic(null);
-						}
-					}
-				};
-			}
-		});
+//		checkBoxColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+//			@Override
+//			public TableCell<Product, Product> call(TableColumn<Product, Product> imageColumn) {
+//				return new TableCell<Product, Product>() {
+//					final CheckBox checkBox = new CheckBox();
+//
+//					@Override
+//					public void updateItem(final Product product, boolean empty) {
+//						super.updateItem(product, empty);
+//						if (product != null) {
+//							// button.getStyleClass().add("buttonImage");
+//							setGraphic(checkBox);
+//
+//							// Button Event Handler
+//							checkBox.setOnAction(new EventHandler<ActionEvent>() {
+//								@Override
+//								public void handle(ActionEvent event) {
+//									SmartTrolleyToolBox.print("Pressed checkbox of product: " + product.getName());
+//								}
+//							});
+//						} else {
+//							setGraphic(null);
+//						}
+//					}
+//				};
+//			}
+//		});
 		imageColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
 			@Override
 			public TableCell<Product, Product> call(TableColumn<Product, Product> imageColumn) {
@@ -387,64 +397,64 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 				};
 			}
 		});
-		addColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
-			@Override
-			public TableCell<Product, Product> call(TableColumn<Product, Product> addColumn) {
-				return new TableCell<Product, Product>() {
-					final Button button = new Button();
-
-					@Override
-					public void updateItem(final Product product, boolean empty) {
-						super.updateItem(product, empty);
-						if (product != null) {
-							button.setText("+");
-							button.getStyleClass().add("buttonChangeQuantity");
-							setGraphic(button);
-
-							// Button Event Handler
-							button.setOnAction(new EventHandler<ActionEvent>() {
-								@Override
-								public void handle(ActionEvent event) {
-									SmartTrolleyToolBox.print("Pressed add button for product: " + product.getName());
-								}
-							});
-						} else {
-							setGraphic(null);
-						}
-					}
-				};
-			}
-		});
-
-		removeColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
-			@Override
-			public TableCell<Product, Product> call(TableColumn<Product, Product> removeColumn) {
-				return new TableCell<Product, Product>() {
-					final Button button = new Button();
-
-					@Override
-					public void updateItem(final Product product, boolean empty) {
-						super.updateItem(product, empty);
-						if (product != null) {
-							button.setText("-");
-							button.getStyleClass().add("buttonChangeQuantity");
-							setGraphic(button);
-
-							// Button Event Handler
-							button.setOnAction(new EventHandler<ActionEvent>() {
-								@Override
-								public void handle(ActionEvent event) {
-									SmartTrolleyToolBox.print("Pressed remove button for product: " + product.getName());
-
-								}
-							});
-						} else {
-							setGraphic(null);
-						}
-					}
-				};
-			}
-		});
+//		addColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+//			@Override
+//			public TableCell<Product, Product> call(TableColumn<Product, Product> addColumn) {
+//				return new TableCell<Product, Product>() {
+//					final Button button = new Button();
+//
+//					@Override
+//					public void updateItem(final Product product, boolean empty) {
+//						super.updateItem(product, empty);
+//						if (product != null) {
+//							button.setText("+");
+//							button.getStyleClass().add("buttonChangeQuantity");
+//							setGraphic(button);
+//
+//							// Button Event Handler
+//							button.setOnAction(new EventHandler<ActionEvent>() {
+//								@Override
+//								public void handle(ActionEvent event) {
+//									SmartTrolleyToolBox.print("Pressed add button for product: " + product.getName());
+//								}
+//							});
+//						} else {
+//							setGraphic(null);
+//						}
+//					}
+//				};
+//			}
+//		});
+//
+//		removeColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+//			@Override
+//			public TableCell<Product, Product> call(TableColumn<Product, Product> removeColumn) {
+//				return new TableCell<Product, Product>() {
+//					final Button button = new Button();
+//
+//					@Override
+//					public void updateItem(final Product product, boolean empty) {
+//						super.updateItem(product, empty);
+//						if (product != null) {
+//							button.setText("-");
+//							button.getStyleClass().add("buttonChangeQuantity");
+//							setGraphic(button);
+//
+//							// Button Event Handler
+//							button.setOnAction(new EventHandler<ActionEvent>() {
+//								@Override
+//								public void handle(ActionEvent event) {
+//									SmartTrolleyToolBox.print("Pressed remove button for product: " + product.getName());
+//
+//								}
+//							});
+//						} else {
+//							setGraphic(null);
+//						}
+//					}
+//				};
+//			}
+//		});
 
 		productNameColumn.setCellFactory(new Callback<TableColumn<Product, String>, TableCell<Product, String>>() {
 			@Override

@@ -12,7 +12,6 @@
 
 package smarttrolleygui;
 
-import javafx.application.Application;
 import javafx.application.Platform;
 import toolBox.SmartTrolleyToolBox;
 

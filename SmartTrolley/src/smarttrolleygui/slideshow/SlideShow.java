@@ -21,6 +21,7 @@ import javafx.scene.layout.Pane;
 import se.mbaeumer.fxmessagebox.MessageBox;
 import se.mbaeumer.fxmessagebox.MessageBoxType;
 import slideshowdata.SlideDataImporter;
+import slideshowdata.SlideShowData;
 import toolBox.SmartTrolleyToolBox;
 
 public class SlideShow {

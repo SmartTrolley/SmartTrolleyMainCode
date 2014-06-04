@@ -86,7 +86,7 @@ public class CreateNewListScreenController extends ControllerGeneral implements 
 	 *            Date Modified: 3 May 2014
 	 */
 	public void createNewList(ActionEvent event) throws SQLException {
-
+		
 		if (application == null) {
 			// We are running in isolated FXML, possibly in Scene Builder.
 			// NO-OP.
@@ -104,25 +104,12 @@ public class CreateNewListScreenController extends ControllerGeneral implements 
 
 				// open SQL connection and create new entry in 'lists' table
 				SqlConnection sqlConnection = new SqlConnection();
-				sqlConnection.openConnection();
-				
-				String sqlStatement = "INSERT INTO `cl36-st`.`lists` (`Name`) VALUES ('"
-						+ enteredListName + "');";
-				sqlConnection.executeStatement(sqlStatement);
-				SmartTrolleyToolBox.print("Created new list: " + enteredListName);
+
+				int listID = sqlConnection.createNewList(enteredListName);
 				
 				SmartTrolleyGUI.setCurrentListName(enteredListName);				
-				SmartTrolleyToolBox.print("Set list name in application: " + enteredListName);
 				
-				sqlStatement = "SELECT * FROM lists WHERE Name = \"" + enteredListName + "\"";
-				
-				SmartTrolleyToolBox.print("Sending query to find list id: " + sqlStatement);				
-				
-				ResultSet result = sqlConnection.sendQuery(sqlStatement);
-				result.absolute(1);
-
-				int listID = result.getInt("ListID");
-				SmartTrolleyToolBox.print("LiD: " + result.getInt("ListID"));
+				SmartTrolleyToolBox.print("LiD: " +listID);
 				SmartTrolleyGUI.setCurrentListID(listID);
 				
 				// move to HomeScreen

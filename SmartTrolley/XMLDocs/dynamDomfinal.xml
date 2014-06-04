@@ -1,0 +1,115 @@
+<?xml version="1.0"?><!--sample xml file created using XML DOM object.--><slideshow>
+	<documentinfo><author>D6 Digital</author><version>2.1</version><title>This is the first chapter </title><comment>example comment for chapter 1</comment><width>720</width><height>540</height></documentinfo>
+	<defaults><backgroundcolor>#948A54</backgroundcolor><font>Papyrus</font><fontsize>18</fontsize><fontcolor>#FFFFFF</fontcolor><linecolor>#5C4776</linecolor><fillcolor>#8064A2</fillcolor></defaults>
+	<slide product_name="Test Product Name" imgURL="Test URL" price="10.0" categoryID="5" isFavourite="1"
+	id="0" duration="60" descriptor="Overview of making slides in powerpoint" lastSlide="true" backgroundcolor="#948A54">
+	<video urlname="FirstVideoUrlCheck" xstart="456" ystart="402" width="242" height="126" layer="23" starttime="0" duration="0" loop="false"/>
+	
+	<text xstart="20" ystart="291" xend="505" yend="441" layer="17" duration="0" starttime="0" font="Papyrus" fontcolor="#000000" fontsize="16">
+	
+	<textbody branch="3" bold="true" italic="true" underlined="false">
+	<textstring>Text must be within a “bounding” empty text box with the desired formatting S1T1TB1</textstring>
+	</textbody>
+	
+	<textbody branch="15" italic="false" bold="false" underlined="true">
+	<textstring>If this works, I will be happy S1T1TB2</textstring>
+	</textbody>
+	
+	</text>
+	
+	<shape duration="0" starttime="3" layer="9" height="106" width="235" totalpoints="8" linecolor="#FFFFFF" fillcolor="#F79646">
+	<point y="38" x="269" num="0"/> 
+	<point y="38" x="422" num="1"/> 
+	<point y="0" x="419" num="2"/> 
+	<point y="53" x="505" num="3"/> 
+	<point y="106" x="433" num="4"/> 
+	<point y="67" x="430" num="5"/> 
+	<point y="66" x="278" num="6"/> 
+	<point y="38" x="269" num="7"/> 
+	</shape>
+	
+	<shape duration="0" starttime="3" layer="9" height="106" width="235" totalpoints="8" linecolor="#FFFFFF" fillcolor="#F79646">
+	<point y="38" x="269" num="0"/> 
+	<point y="38" x="422" num="1"/> 
+	<point y="0" x="419" num="2"/> 
+	<point y="53" x="505" num="3"/> 
+	<point y="106" x="433" num="4"/> 
+	<point y="67" x="430" num="5"/> 
+	<point y="66" x="278" num="6"/> 
+	<point y="38" x="269" num="7"/> 
+	</shape>
+	
+	<text xstart="20" ystart="291" xend="505" yend="441" layer="17" duration="0" starttime="0" font="Papyrus" fontcolor="#000000" fontsize="16">
+	
+	<textbody branch="3" bold="true" italic="true" underlined="false">
+	<textstring>Text must be within a “bounding” empty text box with the desired formatting S1T2TB1</textstring>
+	</textbody>
+	
+	<textbody branch="15" italic="false" bold="false" underlined="true">
+	<textstring>If this works, I will be happy S1T2TB2</textstring>
+	</textbody>
+	
+	</text>
+	
+
+	<image urlname="resources/images/Desert.jpg" xstart="383" ystart="15" width="272" height="122" layer="3" duration="0" starttime="0" branch="1"/>
+	<audio urlname="C:/Users/Public/Music/Sample Music/Kalimba.mp3" starttime="0" loop="false"/>
+	
+	</slide>
+	
+	<slide id="1" duration="1060" descriptor="Overview of making slides in powerpoint" lastSlide="true" backgroundcolor="#948A54">
+	<video urlname="resources/video/video/monstersinc_high.mpg" xstart="456" ystart="402" width="242" height="126" layer="23" starttime="0" duration="0" loop="false"/>
+	
+	<text xstart="20" ystart="291" xend="505" yend="441" layer="17" duration="42" starttime="0" font="Comic Sans" fontcolor="#000000" fontsize="16">
+	
+	<textbody branch="3" bold="true" italic="true" underlined="false">
+	<textstring>Text must be within a “bounding” empty text box with the desired formatting S2T1TB1</textstring>
+	</textbody>
+	
+	<textbody branch="15" italic="false" bold="false" underlined="true">
+	<textstring>If this works, I will be happy S2T1TB2</textstring>
+	</textbody>
+	
+	</text>
+	
+	<shape duration="0" starttime="3" layer="9" height="106" width="235" totalpoints="8" linecolor="#FFFFFF" fillcolor="#F79646">
+	<point y="38" x="269" num="0"/> 
+	<point y="38" x="422" num="1"/> 
+	<point y="0" x="419" num="2"/> 
+	<point y="53" x="505" num="3"/> 
+	<point y="106" x="433" num="4"/> 
+	<point y="67" x="430" num="5"/> 
+	<point y="66" x="278" num="6"/> 
+	<point y="38" x="269" num="7"/> 
+	</shape>
+	
+	<shape duration="0" starttime="3" layer="9" height="106" width="235" totalpoints="8" linecolor="#FFFFFF" fillcolor="#F79646">
+	<point y="40" x="269" num="0"/> 
+	<point y="41" x="422" num="1"/> 
+	<point y="42" x="419" num="2"/> 
+	<point y="43" x="505" num="3"/> 
+	<point y="44" x="433" num="4"/> 
+	<point y="45" x="430" num="5"/> 
+	<point y="46" x="278" num="6"/> 
+	<point y="47" x="269" num="7"/> 
+	</shape>
+	
+	<text xstart="20" ystart="291" xend="505" yend="441" layer="17" duration="0" starttime="0" font="Comic Sans" fontcolor="#000000" fontsize="16">
+	
+	<textbody branch="3" bold="true" italic="true" underlined="false">
+	<textstring>Text must be within a “bounding” empty text box with the desired formatting S2T2TB1</textstring>
+	</textbody>
+	
+	<textbody branch="15" italic="false" bold="false" underlined="true">
+	<textstring>If this works, I will be happy S2T2TB2</textstring>
+	</textbody>
+	
+	</text>
+	
+
+	<image urlname="resources/images/Desert.jpg" xstart="383" ystart="15" width="272" height="122" layer="3" duration="0" starttime="0" branch="1"/>
+	<audio urlname="C:/Users/Public/Music/Sample Music/Kalimba.mp3" starttime="0" loop="false"/>
+	
+	</slide>	
+	
+</slideshow>

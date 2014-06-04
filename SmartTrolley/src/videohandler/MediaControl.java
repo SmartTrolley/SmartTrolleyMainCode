@@ -17,8 +17,6 @@ import java.io.InputStream;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import toolBox.SmartTrolleyToolBox;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
@@ -27,6 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Screen;
+import toolBox.SmartTrolleyToolBox;
 
 public class MediaControl {
 	

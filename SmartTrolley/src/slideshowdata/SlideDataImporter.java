@@ -1,19 +1,18 @@
 package slideshowdata;
 
-import java.util.ArrayList;
-import java.util.PriorityQueue;
-
-import audiohandler.AudioHandler;
-
-import javafx.scene.shape.Shape;
-
-import smarttrolleygui.Slide;
-import texthandler.SlideText;
-import texthandler.SlideTextBody;
-import videohandler.SlideVideo;
 import graphicshandler.ShapePoint;
 import graphicshandler.SlideShapeFactory;
 import imagehandler.SlideImage;
+
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+
+import javafx.scene.shape.Shape;
+import smarttrolleygui.slideshow.Slide;
+import texthandler.SlideText;
+import texthandler.SlideTextBody;
+import videohandler.SlideVideo;
+import audiohandler.AudioHandler;
 
 public class SlideDataImporter {
 	SlideShowData data;
