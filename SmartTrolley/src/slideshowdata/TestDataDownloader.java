@@ -38,7 +38,7 @@ public class TestDataDownloader {
 		
 		dataUploader.uploadXmlData(fileName);
 		SmartTrolleyPrint.print("Starting download");
-		SlideShowData slideshow = dataDownloader.populateSlideshow(1);
+		SlideShowData slideshow = dataDownloader.populateSlideshow(3);
 		SmartTrolleyPrint.print("Finished download");
 	
 		try{

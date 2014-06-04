@@ -26,10 +26,30 @@ public class DataDownloader extends SqlConnection{
 		
 		while(i<slides.size()){
 			
+			int productid = slides.get(i).getId();
+		
+			SlideData slide = populateSlide(productid);
+			
+			slidelist.add(index, slide);
+			
+			index++;		
+			i++;
+		}
+		
+		
+		
+		slideshowdata.setSlides(slidelist);
+		slideshowdata.setDefaults(defaults);
+		slideshowdata.setDocumentinfo(documentinfo);
+		
+		return slideshowdata;
+	}
+	
+	public SlideData populateSlide(int productid){
+		
 			int		j = 0,
 					k = 0;
 			
-			int productid = slides.get(i).getId();
 			
 			SlideData  slide = (SlideData)getSpecificData("slide", "ProductID", ""+productid);
 			
@@ -67,20 +87,7 @@ public class DataDownloader extends SqlConnection{
 			slide.setAudios(audios);
 			slide.setImages(images);
 		
-			
-			slidelist.add(index, slide);
-			
-			index++;		
-			i++;
-		}
-		
-		
-		
-		slideshowdata.setSlides(slidelist);
-		slideshowdata.setDefaults(defaults);
-		slideshowdata.setDocumentinfo(documentinfo);
-		
-		return slideshowdata;
+		return slide;
 		
 		
 	}
