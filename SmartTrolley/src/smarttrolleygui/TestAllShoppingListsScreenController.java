@@ -77,7 +77,7 @@ public class TestAllShoppingListsScreenController {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				smartTrolleyApplication.start(SmartTrolleyGUI.stage);
+				smartTrolleyApplication.start(SmartTrolleyGUI.getStage());
 			}
 		});
 

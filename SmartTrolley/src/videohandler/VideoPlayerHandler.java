@@ -35,7 +35,12 @@ public class VideoPlayerHandler {
 	public VideoPlayerHandler(String pathLocation, int xStart, int yStart, Integer width, Integer height, Boolean loop, double startTime, double duration){
         
         // Create a MediaPlayer which plays the URL provided
-        media = new Media(pathLocation);
+		try{
+			media = new Media(pathLocation);
+		}catch(IllegalArgumentException e){
+			mediaControl = null;
+			return;
+		}
         mediaPlayer = new MediaPlayer(media);
         
         // Pass the mediaPlayer into the MediaControl class to have it's interface setup with the appropriate conditions 

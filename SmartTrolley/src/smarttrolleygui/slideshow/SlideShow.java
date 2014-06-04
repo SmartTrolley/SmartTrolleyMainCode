@@ -17,6 +17,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javafx.application.Platform;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import se.mbaeumer.fxmessagebox.MessageBox;
 import se.mbaeumer.fxmessagebox.MessageBoxType;
@@ -71,11 +72,20 @@ public class SlideShow {
 	 *@param slideList - The list of slides
 	 *<p> Date Modified: 25 May 2014
 	 */
-	public SlideShow(Pane displayedPane) {
-		this.displayedPane = displayedPane;
-		slides = new ArrayList<Slide>();
+	public SlideShow(SlideShowData slideShowData, Pane displayedPane) {
+		
+		this.slides = SlideDataImporter.getSlides(slideShowData);
+		setPane(displayedPane);
 	}
 	
+	/**
+	 * DESCRIPTION OF CONSTRUCTOR
+	 *<p> Date Modified: 4 Jun 2014
+	 */
+	public SlideShow(AnchorPane productAnchorPane) {
+		setPane(productAnchorPane);
+	}
+
 	/**
 	 *This method returns all the slides in the slideshow
 	 *<p>User can load PWS compatible XML File into program
@@ -86,17 +96,25 @@ public class SlideShow {
 		return slides;
 	}
 	
+	protected void setPane(Pane displayedPane){
+		this.displayedPane = displayedPane;
+	}
+	
 	/**
 	 * This method displays a particular slideshow by the index that is passed in
 	 *<p> User can view PWS Compatible slideshow
 	 *@param slideShowIndex - Slide index to be displayed
 	 *<p> Date Modified: 28 May 2014
 	 */
-	protected void displaySlide(int slideShowIndex) {
-
+	public void displaySlide(int slideShowIndex) {
+				
 		displayedSlide = slides.get(slideShowIndex);
+		
+		displayedSlide.show();
 
 		displayedPane.getChildren().add(displayedSlide);
+		
+		
 		
 		//Setup Timer for new duration if slideshow is autoplaying 
 		if (isAutoPlay()) {
@@ -109,7 +127,7 @@ public class SlideShow {
 				 */
 				playSlide = new PlaySlide(getPlayDirection());
 				getSlideTimer().schedule(playSlide, (long) displayedSlide.duration * 1000);
-
+				
 				SmartTrolleyToolBox.print("In displaySlide for autoplay, scheduling timer now.");
 			}
 		}
@@ -139,7 +157,7 @@ public class SlideShow {
 	 */
 	protected void setSlides(SlideShowData slides) {
 		SlideDataImporter importer = new SlideDataImporter(slides);
-		this.slides = importer.getSlides();
+		this.slides = SlideDataImporter.getSlides(slides);
 	}
 
 	/**
@@ -184,11 +202,15 @@ public class SlideShow {
 	 */
 	private void deleteSlidePane() {
 
-		displayedSlide.clearSlide();
+		//displayedSlide.clearSlide();
 		
 		// Perhaps remove the slideshow children clearing in clearSlide()
+		try{
 		SmartTrolleyToolBox.print(displayedPane.getChildren());
 		displayedPane.getChildren().clear();
+		} catch (NullPointerException e){
+			SmartTrolleyToolBox.print("No slide was displayed, so none deleted.");
+		}
 		SmartTrolleyToolBox.print("Deleting Slide Pane.");
 		displayedPane.setVisible(true);
 		SmartTrolleyToolBox.print(displayedPane.getChildren());

@@ -74,7 +74,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	/**Current slideshow that is playing*/
 	private SlideShow currentSlideShow;
 
-	private ToggleButton favoritesButton = new ToggleButton("Favorite");
+	private ToggleButton favoritesButton = new ToggleButton("Favourite");
 	
 	private CheckBox playDirectionCheckbox = new CheckBox("Play Direction");
 
@@ -131,7 +131,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	*/
 	private void configureFavoritesButton() {
 		favoritesButton.setSelected(product.getFavorite());
-		SmartTrolleyToolBox.print(product.getFavorite());
+		SmartTrolleyToolBox.print("Product is favorite: "+product.getFavorite());
 	
 	favoritesButton.setOnAction(new EventHandler<ActionEvent>() {
 	    @Override 

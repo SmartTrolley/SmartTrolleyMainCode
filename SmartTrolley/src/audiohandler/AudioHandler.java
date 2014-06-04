@@ -54,9 +54,13 @@ public class AudioHandler {
 	public AudioHandler(String path, int startDelay, int duration, double volume) {
 //		load the specified audio file (private method in this class)
 		loadAudio("file:" + path);
+		if (audio == null){
+			return;
+		}
+			audio.setVolume(volume);
+		SmartTrolleyToolBox.print("audio not found");
 		
-		audio.setVolume(volume);
-
+		
 		this.startDelay = startDelay;
 		this.duration = duration;
 	}
@@ -75,9 +79,11 @@ public class AudioHandler {
 	 * Audio will begin to play after specified delay has elapsed.
 	 */
 	public void begin() {
-		audio.stop();
-		startTimerThread.start();
-		stopped = false;
+		if(audio != null){
+			audio.stop();
+			startTimerThread.start();
+			stopped = false;
+		}
 	}
 
 	private Thread startTimerThread = new Thread("startTimer") {

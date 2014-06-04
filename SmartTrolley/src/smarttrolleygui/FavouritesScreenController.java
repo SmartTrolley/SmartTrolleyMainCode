@@ -199,7 +199,7 @@ initializeProductTable fills the TableView with data and sets up cell
 		setUpCellValueFactory(addColumn);
 		setUpCellValueFactory(imageColumn);
 		
-//        productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+        productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         
 //        addColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
 //            @Override

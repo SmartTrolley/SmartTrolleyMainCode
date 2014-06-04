@@ -30,6 +30,9 @@ import toolBox.SmartTrolleyToolBox;
  */
 public class TestDataUploader {
 	
+
+	private PWSParser parser;
+	
 	private static DataUploader dataUploader; 
 	private String fileName = " ../../XMLDocs/dynamDomfinal.xml";
 	
@@ -320,7 +323,9 @@ public class TestDataUploader {
 //	@Test
 	public void uploadDataTest(){
 
-//		dataUploader.uploadXmlData(fileName);	
+		parser  =  new PWSParser();
+		SlideShowData slideShowData = parser.read(fileName);
+		dataUploader.uploadXmlData(slideShowData);	
 		
 //		dataUploader.deleteContentAndResetAutoIncrement("defaults");
 //		dataUploader.deleteContentAndResetAutoIncrement("document_info_data");
