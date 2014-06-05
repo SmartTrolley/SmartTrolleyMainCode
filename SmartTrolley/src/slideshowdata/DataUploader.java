@@ -4,26 +4,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
+public class DataUploader extends SqlConnection {
 
-public class DataUploader extends SqlConnection{
-	
 	private PWSParser parser;
-	 
-	private SlideData currentSlide; 
+
+	private SlideData currentSlide;
 	private AudioData currentAudio;
 	private ImageData currentImage;
 	private ShapeData currentShape;
 	private PointData currentPoint;
-	private TextData  currentText;
+	private TextData currentText;
 	private TextBodyData currentTextbody;
 	private VideoData currentVideo;
-	
-	public DataUploader(){
+
+	public DataUploader() {
 		super();
 	}
-	
+
 	/**
 	 * Method will add data to the document_info_data on the SQL database
 	 * 
@@ -34,24 +34,11 @@ public class DataUploader extends SqlConnection{
 	 * @param width
 	 * @param height
 	 */
-	public void addDocumentDataContent(int ListId, String author, String version,
-			String title, String comment, int width, int height) {
+	public void addDocumentDataContent(int ListId, String author, String version, String title, String comment, int width, int height) {
 
 		openConnection();
-		String query = "INSERT INTO document_info_data (ListID, author, version, title, comment, width, height) VALUES ('"
-				+ ListId
-				+ "', '"
-				+ author
-				+ "', '"
-				+ version
-				+ "', '"
-				+ title
-				+ "', '"
-				+ comment
-				+ "', '"
-				+ width
-				+ "', '"
-				+ height + "');";
+		String query = "INSERT INTO document_info_data (ListID, author, version, title, comment, width, height) VALUES ('" + ListId + "', '" + author + "', '" + version + "', '"
+				+ title + "', '" + comment + "', '" + width + "', '" + height + "');";
 		executeStatement(query);
 		closeConnection();
 	}
@@ -66,7 +53,7 @@ public class DataUploader extends SqlConnection{
 		String query = "DELETE FROM document_info_data";
 		executeStatement(query);
 		closeConnection();
-		}
+	}
 
 	/**
 	 * 
@@ -76,23 +63,10 @@ public class DataUploader extends SqlConnection{
 	 * @param linecolor
 	 * @param fillcolor
 	 */
-	public void addDefaultsContent(int ListId, String backgroundcolor, String font,
-			int fontsize, String fontcolor, String linecolor, String fillcolor) {
+	public void addDefaultsContent(int ListId, String backgroundcolor, String font, int fontsize, String fontcolor, String linecolor, String fillcolor) {
 		openConnection();
-		String query = "INSERT INTO defaults (ListID, backgroundcolor, font, fontsize, fontcolor, linecolor, fillcolor) VALUES ('"
-				+ ListId
-				+ "', '"
-				+ backgroundcolor
-				+ "', '"
-				+ font
-				+ "', '"
-				+ fontsize
-				+ "', '"
-				+ fontcolor
-				+ "', '"
-				+ linecolor
-				+ "', '"
-				+ fillcolor + "');";
+		String query = "INSERT INTO defaults (ListID, backgroundcolor, font, fontsize, fontcolor, linecolor, fillcolor) VALUES ('" + ListId + "', '" + backgroundcolor + "', '"
+				+ font + "', '" + fontsize + "', '" + fontcolor + "', '" + linecolor + "', '" + fillcolor + "');";
 		executeStatement(query);
 		closeConnection();
 	}
@@ -117,22 +91,10 @@ public class DataUploader extends SqlConnection{
 	 * @param volume
 	 * @param repeat
 	 */
-	public void addAudioTableContents(int productid, int slideid, 
-			String urlName, int startTime, double volume, boolean loop) {
+	public void addAudioTableContents(int productid, int slideid, String urlName, int startTime, double volume, boolean loop) {
 		openConnection();
-		String query = "INSERT INTO `cl36-st`.`audio` (`productID`, `slideID`, `urlname`, `starttime`, `volume`, `loop`) VALUES ('"
-				+ productid
-				+ "', '"
-				+ slideid
-				+ "', '"
-				+ urlName
-				+ "', '"
-				+ startTime
-				+ "', '"
-				+ volume
-				+ "', '"
-				+ loop
-				+ "');";
+		String query = "INSERT INTO `cl36-st`.`audio` (`productID`, `slideID`, `urlname`, `starttime`, `volume`, `loop`) VALUES ('" + productid + "', '" + slideid + "', '"
+				+ urlName + "', '" + startTime + "', '" + volume + "', '" + loop + "');";
 		executeStatement(query);
 		closeConnection();
 
@@ -152,9 +114,7 @@ public class DataUploader extends SqlConnection{
 	 * @param layer
 	 * @param branch
 	 */
-	public void addImageContents(int productid, int slideid, String urlname, int xstart,
-			int ystart, int width, int height, int starttime, int duration,
-			int layer, int branch) {
+	public void addImageContents(int productid, int slideid, String urlname, int xstart, int ystart, int width, int height, int starttime, int duration, int layer, int branch) {
 
 		openConnection();
 		String query = "INSERT INTO `cl36-st`.`image_slide` (`productID`, `slideID`, `urlname`, `xstart`, `ystart`, `width`, `height`, `starttime`, `duration`, `layer`, `branch`"
@@ -176,11 +136,7 @@ public class DataUploader extends SqlConnection{
 				+ starttime
 				+ "', '"
 				+ duration
-				+ "', '"
-				+ layer
-				+ "', '"
-				+ branch
-				+ "');";
+				+ "', '" + layer + "', '" + branch + "');";
 		executeStatement(query);
 		closeConnection();
 
@@ -195,23 +151,11 @@ public class DataUploader extends SqlConnection{
 	 * @param x
 	 * @param y
 	 */
-	public void addPointContents(int productid, int slideid, int shapeNo,
-			int individualPointNo, int x, int y) {
+	public void addPointContents(int productid, int slideid, int shapeNo, int individualPointNo, int x, int y) {
 
 		openConnection();
-		String query = "INSERT INTO `cl36-st`.`point` (`productID`, `slideID`, `ShapeNo`, `IndividualPointNo`, `x`, `y`) VALUES ('"
-				+ productid
-				+ "', '"
-				+ slideid
-				+ "', '"
-				+ shapeNo
-				+ "', '"
-				+ individualPointNo
-				+ "', '"
-				+ x
-				+ "', '"
-				+ y
-				+ "');";
+		String query = "INSERT INTO `cl36-st`.`point` (`productID`, `slideID`, `ShapeNo`, `IndividualPointNo`, `x`, `y`) VALUES ('" + productid + "', '" + slideid + "', '"
+				+ shapeNo + "', '" + individualPointNo + "', '" + x + "', '" + y + "');";
 		executeStatement(query);
 		closeConnection();
 	}
@@ -230,9 +174,8 @@ public class DataUploader extends SqlConnection{
 	 * @param fillcolor
 	 * @param linecolor
 	 */
-	public void addShapeContents(int productid, int slideid, int totalPoints, int width,
-			int height, int starttime, int duration, int layer, int branch,
-			String fillcolor, String linecolor) {
+	public void addShapeContents(int productid, int slideid, int totalPoints, int width, int height, int starttime, int duration, int layer, int branch, String fillcolor,
+			String linecolor) {
 
 		openConnection();
 		String query = "INSERT INTO `cl36-st`.`shape` (`productID`, `slideID`, `totalpoints`, `width`, `height`, `fillcolor`, `starttime`, `duration`, `layer`, `linecolor`, `branch`"
@@ -253,12 +196,7 @@ public class DataUploader extends SqlConnection{
 				+ "', '"
 				+ duration
 				+ "', '"
-				+ layer
-				+ "', '"
-				+ linecolor
-				+ "', '"
-				+ branch
-				+ "');";
+				+ layer + "', '" + linecolor + "', '" + branch + "');";
 		executeStatement(query);
 		closeConnection();
 	}
@@ -279,9 +217,8 @@ public class DataUploader extends SqlConnection{
 	 * @param font
 	 * @param fontColor
 	 */
-	public void addTextContents(int productid, int slideid, int fontSize,
-			int xStart, int yStart, int startTime, int duration, int layer,
-			int xend, int yend, String font, String fontColor) {
+	public void addTextContents(int productid, int slideid, int fontSize, int xStart, int yStart, int startTime, int duration, int layer, int xend, int yend, String font,
+			String fontColor) {
 
 		openConnection();
 		String query = "INSERT INTO `cl36-st`.`text` (`productID`, `slideID`, `font`, `fontSize`, `FontColor`, `xStart`, `yStart`, `startTime`, `duration`, `layer`, `xend`, `yend`"
@@ -302,14 +239,7 @@ public class DataUploader extends SqlConnection{
 				+ "', '"
 				+ startTime
 				+ "', '"
-				+ duration
-				+ "', '"
-				+ layer
-				+ "', '"
-				+ xend
-				+ "', '"
-				+ yend
-				+ "');";
+				+ duration + "', '" + layer + "', '" + xend + "', '" + yend + "');";
 		executeStatement(query);
 		closeConnection();
 
@@ -327,28 +257,11 @@ public class DataUploader extends SqlConnection{
 	 * @param text
 	 * @param branch2
 	 */
-	public void addTextbodyContents(int productid, int slideid, int textNo, int branch,
-			Boolean bold, Boolean italic, Boolean underlined, String text) {
+	public void addTextbodyContents(int productid, int slideid, int textNo, int branch, Boolean bold, Boolean italic, Boolean underlined, String text) {
 
 		openConnection();
-		String query = "INSERT INTO `cl36-st`.`textbody` (`productID`, `slideID`, `TextNo`, `Bold`, `Italic`, `Underlined`, `Text`, `Branch`"
-				+ ") VALUES ('"
-				+ productid
-				+ "', '"
-				+ slideid
-				+ "', '"
-				+ textNo
-				+ "', '"
-				+ bold
-				+ "', '"
-				+ italic
-				+ "', '"
-				+ underlined
-				+ "', '"
-				+ text
-				+ "', '"
-				+ branch
-				+ "');";
+		String query = "INSERT INTO `cl36-st`.`textbody` (`productID`, `slideID`, `TextNo`, `Bold`, `Italic`, `Underlined`, `Text`, `Branch`" + ") VALUES ('" + productid + "', '"
+				+ slideid + "', '" + textNo + "', '" + bold + "', '" + italic + "', '" + underlined + "', '" + text + "', '" + branch + "');";
 		executeStatement(query);
 		closeConnection();
 	}
@@ -367,9 +280,7 @@ public class DataUploader extends SqlConnection{
 	 * @param layer
 	 * @param duration
 	 */
-	public void addVideoContents(int productid, int slideid, String urlname, int starttime,
-			boolean loop, int xstart, int ystart, int width, int height,
-			int layer, int duration) {
+	public void addVideoContents(int productid, int slideid, String urlname, int starttime, boolean loop, int xstart, int ystart, int width, int height, int layer, int duration) {
 
 		openConnection();
 		String query = "INSERT INTO `cl36-st`.`video` (`productID`, `slideID`, `urlname`, `starttime`, `loop`, `xstart`, `ystart`, `width`, `height`, `layer`, `duration`"
@@ -391,15 +302,11 @@ public class DataUploader extends SqlConnection{
 				+ width
 				+ "', '"
 				+ height
-				+ "', '"
-				+ layer
-				+ "', '"
-				+ duration
-				+ "');";
+				+ "', '" + layer + "', '" + duration + "');";
 		executeStatement(query);
 		closeConnection();
 	}
-	
+
 	/**
 	 * Method will add contents to the slide table on the sql server
 	 * 
@@ -412,16 +319,8 @@ public class DataUploader extends SqlConnection{
 	public void addSlideContents(int productid, int slideid, int duration, boolean lastSlide) {
 
 		openConnection();
-		String query = "INSERT INTO `cl36-st`.`slide` (`productID`, `slideID`, `duration`, `lastSlide`"
-				+ ") VALUES ('"
-				+ productid
-				+ "', '"
-				+ slideid
-				+ "', '"
-				+ duration
-				+ "', '"
-				+ lastSlide
-				+ "');";
+		String query = "INSERT INTO `cl36-st`.`slide` (`productID`, `slideID`, `duration`, `lastSlide`" + ") VALUES ('" + productid + "', '" + slideid + "', '" + duration + "', '"
+				+ lastSlide + "');";
 		executeStatement(query);
 		closeConnection();
 	}
@@ -436,35 +335,35 @@ public class DataUploader extends SqlConnection{
 		String query = "DELETE FROM slide";
 		executeStatement(query);
 		closeConnection();
-		}
-	
+	}
+
 	/**
 	 * Method will delete all entries of the table it is given
 	 * 
 	 * @param table
 	 */
-	public void deleteContentAndResetAutoIncrement(String table){
+	public void deleteContentAndResetAutoIncrement(String table) {
 		openConnection();
 		String query = "DELETE FROM " + table;
 		executeStatement(query);
 		query = "ALTER TABLE " + table + " AUTO_INCREMENT = 1";
 		executeStatement(query);
-		closeConnection();	
+		closeConnection();
 	}
-	
+
 	/**
 	 * Method will delete all entries of the table it is given
 	 * 
 	 * @param table
 	 */
-	public void deleteLastContentAndResetAutoIncrement(String table){
-		
+	public void deleteLastContentAndResetAutoIncrement(String table) {
+
 		int productid = 0;
-		
+
 		openConnection();
-		
+
 		String query = "SELECT MAX(ProductID) AS ProductID FROM " + table + ";";
-		
+
 		ResultSet results;
 		try {
 			results = sendQuery(query);
@@ -474,12 +373,12 @@ public class DataUploader extends SqlConnection{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		query = "DELETE FROM " + table + " WHERE ProductID = " + productid + ";";
 		executeStatement(query);
-		query = "ALTER TABLE " + table + " AUTO_INCREMENT = "+ productid + ";";
+		query = "ALTER TABLE " + table + " AUTO_INCREMENT = " + productid + ";";
 		executeStatement(query);
-		closeConnection();	
+		closeConnection();
 	}
 
 	/**
@@ -487,211 +386,146 @@ public class DataUploader extends SqlConnection{
 	 * 
 	 * @param defaultdata
 	 */
-	public void uploadDefaultData(DefaultsData defaultdata, int ListId){
-		
-		addDefaultsContent(ListId,
-						   defaultdata.getBackgroundcolor(), 
-						   defaultdata.getFont(), 
-						   defaultdata.getFontsize(),
-						   defaultdata.getFontcolor(),
-						   defaultdata.getLinecolor(), 
-						   defaultdata.getFillcolor());
+	public void uploadDefaultData(DefaultsData defaultdata, int ListId) {
+
+		addDefaultsContent(ListId, defaultdata.getBackgroundcolor(), defaultdata.getFont(), defaultdata.getFontsize(), defaultdata.getFontcolor(), defaultdata.getLinecolor(),
+				defaultdata.getFillcolor());
 	}
-	
+
 	/**
 	 * Method will upload Document data to sql database
 	 * 
 	 * @param documentdata
 	 */
-	public void uploadDocumentData(DocumentInfoData documentdata, int ListId){
-		
-		addDocumentDataContent(ListId,
-							   documentdata.getAuthor(),
-							   documentdata.getAuthor(), 
-							   documentdata.getTitle(), 
-							   documentdata.getComment(), 
-							   documentdata.getWidth(), 
-							   documentdata.getHeight());
+	public void uploadDocumentData(DocumentInfoData documentdata, int ListId) {
+
+		addDocumentDataContent(ListId, documentdata.getAuthor(), documentdata.getAuthor(), documentdata.getTitle(), documentdata.getComment(), documentdata.getWidth(),
+				documentdata.getHeight());
 	}
-	
+
 	/**
 	 * Method will upload all data from the XML parser up to the SQL database
 	 * 
 	 * @param data
 	 */
-	public void uploadXmlData(SlideShowData slideShowData){
-		
-		
-		int slideIndex = 0,
-			audioIndex = 0,
-			imageIndex = 0,
-			pointIndex = 0,
-			shapeIndex = 0,
-			textIndex = 0,
-			textbodyIndex = 0,
-			videoIndex = 0,
-			productid = 0;
-		
+	public void uploadXmlData(SlideShowData slideShowData) {
+
+		int slideIndex = 0, audioIndex = 0, imageIndex = 0, pointIndex = 0, shapeIndex = 0, textIndex = 0, textbodyIndex = 0, videoIndex = 0, productid = 0;
+
 		String productName = null;
 
-		
-		
-		
 		int listid = createNewList(slideShowData.getDocumentinfo().getTitle());
-		
+
 		uploadDocumentData(slideShowData.getDocumentinfo(), listid);
 		uploadDefaultData(slideShowData.getDefaults(), listid);
-		
 
-		for(SlideData currentSlide : slideShowData.getSlides()){
-			
+		for (SlideData currentSlide : slideShowData.getSlides()) {
+
 			productName = currentSlide.getProductName();
-			
-			if (productName != null){
-				productid = createNewProduct(productName, 0, 
-											 currentSlide.getImgURL(), 
-											 currentSlide.getPrice(), 
-											 currentSlide.getCategoryID(),
-											 currentSlide.getIsFavourite());
-				
-			}
-		else{
-				productid = createNewProduct(slideShowData.getDocumentinfo().getTitle(), currentSlide.getId(), null, 0, 1, 0);
-				addProductToList(productid, listid);	
-			}
-			
-			
-			addSlideContents(productid,
-							 currentSlide.getId(), 
-							 currentSlide.getDuration(), 					
-							 currentSlide.getLastSlide());
-			
-			while(audioIndex<currentSlide.getAudios().size()){
-				
-				currentAudio = currentSlide.getAudios().get(audioIndex);
-				
-				addAudioTableContents(productid,
-									  slideIndex,
-									  currentAudio.getUrlname(),
-									  currentAudio.getStarttime(),
-									  50, //volume: not in PWS
-									  currentAudio.getLoop());
-				audioIndex++;
-			}
-			
-			while (imageIndex < currentSlide.getImages().size()) {
-				
-				currentImage = currentSlide.getImages().get(imageIndex);
 
-				addImageContents(productid,
-								 slideIndex,
-							  	 currentImage.getUrlname(),
-							  	 currentImage.getXstart(), 
-							  	 currentImage.getYstart(),
-							  	 currentImage.getWidth(), 
-							  	 currentImage.getHeight(),
-							  	 currentImage.getStarttime(), 
-							  	 currentImage.getDuration(),
-							  	 currentImage.getLayer(), 
-							  	 currentImage.getBranch());
-				imageIndex++;
+			if (productName != null) {
+				productid = createNewProduct(productName, 0, currentSlide.getImgURL(), currentSlide.getPrice(), currentSlide.getCategoryID(), currentSlide.getIsFavourite());
+
+			} else {
+				productid = createNewProduct(slideShowData.getDocumentinfo().getTitle(), currentSlide.getId(), null, 0, 1, 0);
+				addProductToList(productid, listid);
 			}
+
+			addSlideContents(productid, currentSlide.getId(), currentSlide.getDuration(), currentSlide.getLastSlide());
 			
-			while(shapeIndex < currentSlide.getShapes().size()){
-				
-				
-				currentShape = currentSlide.getShapes().get(shapeIndex);
-				
-				addShapeContents(productid,
-								 slideIndex,
-								 currentShape.getTotalpoints(), 
-								 currentShape.getWidth(), 
-								 currentShape.getHeight(),
-								 currentShape.getStarttime(), 
-								 currentShape.getDuration(), 
-								 currentShape.getLayer(), 
-								 currentShape.getBranch(),
-								 currentShape.getFillcolor(), 
-								 currentShape.getLinecolor());
-				
-				ArrayList<ShapeData> shapedata =(ArrayList<ShapeData>)getSpecificData("shape", "ProductID", ""+productid);
-				
-				int ShapeNo = shapedata.get(shapeIndex).getShapeNo();
-				
-				while(pointIndex<currentShape.getPoints().size()){
-					
-					currentPoint = currentShape.getPoints().get(pointIndex);
-					
-					addPointContents(productid,
-									 slideIndex,
-									 ShapeNo, 
-			  						 currentPoint.getNum(), 
-			  						 currentPoint.getX(), 
-			  						 currentPoint.getY());
-					pointIndex++;
+			try {
+				while (audioIndex < currentSlide.getAudios().size()) {
+
+					currentAudio = currentSlide.getAudios().get(audioIndex);
+
+					addAudioTableContents(productid, slideIndex, currentAudio.getUrlname(), currentAudio.getStarttime(), 50, // volume: not in PWS
+							currentAudio.getLoop());
+					audioIndex++;
 				}
-				pointIndex = 0;
-				shapeIndex++;
+			} catch (NullPointerException e) {
+				SmartTrolleyToolBox.print("No audio in this slide.");
 			}
-			
-			while(textIndex<currentSlide.getTexts().size()){
-				
-				currentText = currentSlide.getTexts().get(textIndex);
-				
-				addTextContents(productid,
-								slideIndex,
-								currentText.getFontsize(), 
-								currentText.getXstart(), 
-								currentText.getYstart(), 
-								currentText.getStarttime(), 
-								currentText.getDuration(), 
-								currentText.getLayer(), 
-								currentText.getXend(), 
-								currentText.getYend(), 
-								currentText.getFont(), 
-								currentText.getFontcolor());
-				
-				ArrayList<TextData> textdata =(ArrayList<TextData>)getSpecificData("text", "ProductID", ""+productid);
-				
-				int TextNo = textdata.get(textIndex).getTextNo();
-				
-				while(textbodyIndex<currentText.getTextbodies().size()){
-					
-					currentTextbody = currentText.getTextbodies().get(textbodyIndex);
-					
-					addTextbodyContents(productid, 
-										slideIndex,
-										TextNo,  
-										currentTextbody.getBranch(), 
-										currentTextbody.getBold(), 
-										currentTextbody.getItalic(), 
-										currentTextbody.getUnderlined(), 
-										currentTextbody.getTextstring());
-					textbodyIndex++;
+
+			try {
+				while (imageIndex < currentSlide.getImages().size()) {
+
+					currentImage = currentSlide.getImages().get(imageIndex);
+
+					addImageContents(productid, slideIndex, currentImage.getUrlname(), currentImage.getXstart(), currentImage.getYstart(), currentImage.getWidth(),
+							currentImage.getHeight(), currentImage.getStarttime(), currentImage.getDuration(), currentImage.getLayer(), currentImage.getBranch());
+					imageIndex++;
 				}
-				
-				textbodyIndex = 0;
-				textIndex++;				
+			} catch (NullPointerException e) {
+				SmartTrolleyToolBox.print("No image in this slide.");
 			}
-			
-			while(videoIndex<currentSlide.getVideos().size()){
-				
-				currentVideo = currentSlide.getVideos().get(videoIndex);
-				
-				addVideoContents(productid, 
-								 slideIndex,
-								 currentVideo.getUrlname(), 
-								 currentVideo.getStarttime(), 
-								 currentVideo.getLoop(), 
-								 currentVideo.getXstart(), 
-								 currentVideo.getYstart(), 
-								 currentVideo.getWidth(), 
-								 currentVideo.getHeight(), 
-								 currentVideo.getLayer(), 
-								 currentVideo.getDuration());
-				videoIndex++;
+
+			try {
+				while (shapeIndex < currentSlide.getShapes().size()) {
+
+					currentShape = currentSlide.getShapes().get(shapeIndex);
+
+					addShapeContents(productid, slideIndex, currentShape.getTotalpoints(), currentShape.getWidth(), currentShape.getHeight(), currentShape.getStarttime(),
+							currentShape.getDuration(), currentShape.getLayer(), currentShape.getBranch(), currentShape.getFillcolor(), currentShape.getLinecolor());
+
+					ArrayList<ShapeData> shapedata = (ArrayList<ShapeData>) getSpecificData("shape", "ProductID", "" + productid);
+
+					int ShapeNo = shapedata.get(shapeIndex).getShapeNo();
+
+					while (pointIndex < currentShape.getPoints().size()) {
+
+						currentPoint = currentShape.getPoints().get(pointIndex);
+
+						addPointContents(productid, slideIndex, ShapeNo, currentPoint.getNum(), currentPoint.getX(), currentPoint.getY());
+						pointIndex++;
+					}
+					pointIndex = 0;
+					shapeIndex++;
+				}
+			} catch (NullPointerException e3) {
+				SmartTrolleyToolBox.print("No shapes in this slide.");
 			}
-			
+
+			try {
+				while (textIndex < currentSlide.getTexts().size()) {
+
+					currentText = currentSlide.getTexts().get(textIndex);
+
+					addTextContents(productid, slideIndex, currentText.getFontsize(), currentText.getXstart(), currentText.getYstart(), currentText.getStarttime(),
+							currentText.getDuration(), currentText.getLayer(), currentText.getXend(), currentText.getYend(), currentText.getFont(), currentText.getFontcolor());
+
+					ArrayList<TextData> textdata = (ArrayList<TextData>) getSpecificData("text", "ProductID", "" + productid);
+
+					int TextNo = textdata.get(textIndex).getTextNo();
+
+					while (textbodyIndex < currentText.getTextbodies().size()) {
+
+						currentTextbody = currentText.getTextbodies().get(textbodyIndex);
+
+						addTextbodyContents(productid, slideIndex, TextNo, currentTextbody.getBranch(), currentTextbody.getBold(), currentTextbody.getItalic(),
+								currentTextbody.getUnderlined(), currentTextbody.getTextstring());
+						textbodyIndex++;
+					}
+
+					textbodyIndex = 0;
+					textIndex++;
+				}
+			} catch (NullPointerException e1) {
+				SmartTrolleyToolBox.print("No text in this slide.");
+			}
+
+			try {
+				while (videoIndex < currentSlide.getVideos().size()) {
+
+					currentVideo = currentSlide.getVideos().get(videoIndex);
+
+					addVideoContents(productid, slideIndex, currentVideo.getUrlname(), currentVideo.getStarttime(), currentVideo.getLoop(), currentVideo.getXstart(),
+							currentVideo.getYstart(), currentVideo.getWidth(), currentVideo.getHeight(), currentVideo.getLayer(), currentVideo.getDuration());
+					videoIndex++;
+				}
+			} catch (NullPointerException e2) {
+				SmartTrolleyToolBox.print("No video in this slide.");
+			}
+
 			audioIndex = 0;
 			imageIndex = 0;
 			pointIndex = 0;
@@ -699,10 +533,9 @@ public class DataUploader extends SqlConnection{
 			textIndex = 0;
 			textbodyIndex = 0;
 			videoIndex = 0;
-			
+
 			slideIndex++;
 		}
-		
-	}
 
+	}
 }

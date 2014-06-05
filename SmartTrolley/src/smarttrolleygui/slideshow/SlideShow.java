@@ -183,13 +183,13 @@ public class SlideShow {
 		deleteSlidePane();
 		if (slideShowIndex < slides.size() - 1) {
 
-			SmartTrolleyToolBox.print("The next slideshow will now be displayed");
+			SmartTrolleyToolBox.print("The next slide will now be displayed");
 
 			displayedSlide = slides.get(++slideShowIndex);
 			displaySlide(slideShowIndex);
 
 		} else {
-			String endOfSldShwString = "Reached end of slideShow, no next slideshow";
+			String endOfSldShwString = "Reached end of slideshow, no next slide";
 			displayOutOfSlideShowMessageBox(endOfSldShwString);
 			displaySlide(slideShowIndex);
 		}

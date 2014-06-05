@@ -107,7 +107,7 @@ public class SqlConnection {
 	public Product getProductByName(String productName) {
 
 		Product product = new Product();
-			
+
 		openConnection();
 
 		String query = "SELECT * FROM products WHERE Name = '" + productName + "';";
@@ -238,7 +238,7 @@ public class SqlConnection {
 	*<p> Date Modified: 3 Jun 2014
 	*/
 	private Product createProductFromResultSet(ResultSet resultSet) throws SQLException {
-		
+
 		Product product = new Product();
 
 		SmartTrolleyToolBox.print(resultSet.getString("Name"));
@@ -256,9 +256,10 @@ public class SqlConnection {
 
 		// get Favorite status
 		product.setFavorite(resultSet.getInt("IsFavourite"));
-		
-		SmartTrolleyToolBox.print("Product Created where: " + product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " " + product.getFavorite());
-		
+
+		SmartTrolleyToolBox.print("Product Created where: " + product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " "
+				+ product.getFavorite());
+
 		return product;
 	}
 
@@ -321,396 +322,397 @@ public class SqlConnection {
 	 * @return data
 	 */
 	public Object getSpecificData(String table, String criteria, String value) {
-		
-		ResultSet results = null;
-		
-		Object data = null;
-		
-		openConnection();
-		
-		String query = "Select * From " + table + " where " + criteria +" = '" + value + "';";
-		
-		
-			try {
-				
-				results = sendQuery(query);
-				results.absolute(1);
-			
-		switch (table){
-		
-		case "products":
-			
-			Product product = null;
-			
-			do {
-				product = new Product();
-				
-				//get id
-				product.setId(results.getInt("ProductID"));
-				
-				//get Name
-				product.setName(results.getString("Name"));
-				
-				//get Image
-				product.setImage(results.getString("Image"));
-				
-				//get Price
-				product.setPrice(results.getFloat("Price"));
-				
-			} while (results.next());
-			
-			closeConnection();
-			data = product;
-			break;
-			
-		case "audio":
 
-			ArrayList<AudioData> audiodatalist = new ArrayList<AudioData>();
-			
-			do {
-				AudioData audiodata = new AudioData();
-				
-				//get urlname
-				audiodata.setUrlname(results.getString("urlname"));
-				
-				//get starttime
-				audiodata.setStarttime(results.getInt("starttime"));
-				
-				//get loop
-				audiodata.setLoop(results.getBoolean("loop"));
-				
-				audiodatalist.add(audiodata);
-				
-			} while (results.next());
-			
-			closeConnection();
-			data = audiodatalist;
-			break;
-			
-		case "defaults":
-			
-			DefaultsData defaultsdata = null;
-			
-			do {
-				defaultsdata = new DefaultsData();
-				
-				//get listid
-				defaultsdata.setListId(results.getInt("listid"));
-				
-				//get backgroundcolor
-				defaultsdata.setBackgroundcolor(results.getString("backgroundcolor"));
-				
-				//get font
-				defaultsdata.setFont(results.getString("font"));
-				
-				//get fontsize
-				defaultsdata.setFontsize(results.getInt("fontsize"));
-				
-				//get fontcolor
-				defaultsdata.setFontcolor(results.getString("fontcolor"));
-				
-				//get linecolor
-				defaultsdata.setLinecolor(results.getString("linecolor"));
-				
-				//get fillcolor
-				defaultsdata.setFillcolor(results.getString("fillcolor"));
-				
-			} while (results.next());
-			
-			closeConnection();
-			data = defaultsdata;
-			break;
-			
+		ResultSet results = null;
+
+		Object data = null;
+
+		openConnection();
+
+		String query = "Select * From " + table + " where " + criteria + " = '" + value + "';";
+		SmartTrolleyToolBox.print("Query sent from getSpecificData is: " + query);
+
+		try {
+
+			results = sendQuery(query);
+			results.absolute(1);
+
+			switch (table) {
+
+			case "products":
+
+				Product product = null;
+
+				do {
+					product = new Product();
+
+					// get id
+					product.setId(results.getInt("ProductID"));
+
+					// get Name
+					product.setName(results.getString("Name"));
+
+					// get Image
+					product.setImage(results.getString("Image"));
+
+					// get Price
+					product.setPrice(results.getFloat("Price"));
+
+				} while (results.next());
+
+				closeConnection();
+				data = product;
+				break;
+
+			case "audio":
+
+				ArrayList<AudioData> audiodatalist = new ArrayList<AudioData>();
+
+				do {
+					AudioData audiodata = new AudioData();
+
+					// get urlname
+					audiodata.setUrlname(results.getString("urlname"));
+
+					// get starttime
+					audiodata.setStarttime(results.getInt("starttime"));
+
+					// get loop
+					audiodata.setLoop(results.getBoolean("loop"));
+
+					audiodatalist.add(audiodata);
+
+				} while (results.next());
+
+				closeConnection();
+				data = audiodatalist;
+				break;
+
+			case "defaults":
+
+				DefaultsData defaultsdata = null;
+
+				do {
+					defaultsdata = new DefaultsData();
+
+					// get listid
+					defaultsdata.setListId(results.getInt("listid"));
+
+					// get backgroundcolor
+					defaultsdata.setBackgroundcolor(results.getString("backgroundcolor"));
+
+					// get font
+					defaultsdata.setFont(results.getString("font"));
+
+					// get fontsize
+					defaultsdata.setFontsize(results.getInt("fontsize"));
+
+					// get fontcolor
+					defaultsdata.setFontcolor(results.getString("fontcolor"));
+
+					// get linecolor
+					defaultsdata.setLinecolor(results.getString("linecolor"));
+
+					// get fillcolor
+					defaultsdata.setFillcolor(results.getString("fillcolor"));
+
+				} while (results.next());
+
+				closeConnection();
+				data = defaultsdata;
+				break;
+
 			case "document_info_data":
-				
+
 				DocumentInfoData documentinfodata = null;
-				
+
 				do {
 					documentinfodata = new DocumentInfoData();
-					
-					//get listid
+
+					// get listid
 					documentinfodata.setListId(results.getInt("listid"));
-					
-					//get author
+
+					// get author
 					documentinfodata.setAuthor(results.getString("author"));
-					
-					//get version
+
+					// get version
 					documentinfodata.setVersion(results.getString("version"));
-					
-					//get title
+
+					// get title
 					documentinfodata.setTitle(results.getString("title"));
-					
-					//get comment
+
+					// get comment
 					documentinfodata.setComment(results.getString("comment"));
-					
-					//get width
+
+					// get width
 					documentinfodata.setWidth(results.getInt("width"));
-					
-					//get height
+
+					// get height
 					documentinfodata.setHeight(results.getInt("height"));
-					
+
 				} while (results.next());
-				
+
 				data = documentinfodata;
 				break;
-				
+
 			case "image_slide":
-				
+
 				ArrayList<ImageData> imagedatalist = new ArrayList<ImageData>();
-				
+
 				do {
 					ImageData imagedata = new ImageData();
-					
-					//get urlname
+
+					// get urlname
 					imagedata.setUrlname(results.getString("urlname"));
-					
-					//get xstart
+
+					// get xstart
 					imagedata.setXstart(results.getInt("xstart"));
-					
-					//get ystart
+
+					// get ystart
 					imagedata.setYstart(results.getInt("ystart"));
-					
-					//get width
+
+					// get width
 					imagedata.setWidth(results.getInt("width"));
-					
-					//get height
+
+					// get height
 					imagedata.setHeight(results.getInt("height"));
-					
-					//get layer
+
+					// get layer
 					imagedata.setLayer(results.getInt("layer"));
-					
-					//get duration
+
+					// get duration
 					imagedata.setDuration(results.getInt("duration"));
-					
-					//get starttime
+
+					// get starttime
 					imagedata.setStarttime(results.getInt("starttime"));
-					
-					//get branch
+
+					// get branch
 					imagedata.setBranch(results.getInt("branch"));
-					
+
 					imagedatalist.add(imagedata);
 
 				} while (results.next());
-				
+
 				data = imagedatalist;
 				break;
-				
+
 			case "point":
-				
+
 				ArrayList<PointData> pointdatalist = new ArrayList<PointData>();
-				
+
 				do {
 					PointData pointdata = new PointData();
-					
-					//get point pointNo
+
+					// get point pointNo
 					pointdata.setNum(results.getInt("IndividualPointNo"));
-					
-					//get x
+
+					// get x
 					pointdata.setX(results.getInt("x"));
-					
-					//get y
+
+					// get y
 					pointdata.setY(results.getInt("y"));
 					pointdatalist.add(pointdata);
 
 				} while (results.next());
-				
+
 				data = pointdatalist;
 				break;
-				
+
 			case "shape":
-				
+
 				ArrayList<ShapeData> shapedatalist = new ArrayList<ShapeData>();
-				
+
 				do {
 					ShapeData shapedata = new ShapeData();
-						
-					//get ShapeNo
+
+					// get ShapeNo
 					shapedata.setShapeNo(results.getInt("shapeno"));
-					
-					//get fillcolor
+
+					// get fillcolor
 					shapedata.setFillcolor(results.getString("fillcolor"));
-					
-					//get linecolor
+
+					// get linecolor
 					shapedata.setLinecolor(results.getString("linecolor"));
-					
-					//get Starttime
+
+					// get Starttime
 					shapedata.setStarttime(results.getInt("starttime"));
-					
-					//get layer
+
+					// get layer
 					shapedata.setLayer(results.getInt("layer"));
-					
-					//get duration
+
+					// get duration
 					shapedata.setDuration(results.getInt("duration"));
-					
-					//get totalpoints
+
+					// get totalpoints
 					shapedata.setTotalpoints(results.getInt("totalpoints"));
-					
-					//get width
+
+					// get width
 					shapedata.setWidth(results.getInt("width"));
-					
-					//get height
+
+					// get height
 					shapedata.setHeight(results.getInt("height"));
-					
-					//get branch
+
+					// get branch
 					shapedata.setBranch(results.getInt("branch"));
-					
+
 					shapedatalist.add(shapedata);
 
 				} while (results.next());
-				
+
 				data = shapedatalist;
 				break;
-				
+
 			case "slide":
-				
+
 				SlideData slidedata = null;
-				
+
 				do {
 					slidedata = new SlideData();
-																	
-					//get id
+
+					// get id
 					slidedata.setId(results.getInt("slideid"));
-					
-					//get duration
+
+					// get duration
 					slidedata.setDuration(results.getInt("duration"));
-					
-					//get lastSlide
+
+					// get lastSlide
 					slidedata.setLastSlide(results.getBoolean("lastSlide"));
-					
+
 				} while (results.next());
-				
+
 				data = slidedata;
 				break;
-				
+
 			case "text":
-				
+
 				ArrayList<TextData> textdatalist = new ArrayList<TextData>();
-						
+
 				do {
 					TextData textdata = new TextData();
-								
-					//get TextNo
+
+					// get TextNo
 					textdata.setTextNo(results.getInt("textno"));
-					
-					//get xstart
+
+					// get xstart
 					textdata.setXstart(results.getInt("xstart"));
-					
-					//get ystart
+
+					// get ystart
 					textdata.setYstart(results.getInt("ystart"));
-					
-					//get xend
+
+					// get xend
 					textdata.setXend(results.getInt("xend"));
-					
-					//get yend
+
+					// get yend
 					textdata.setYend(results.getInt("yend"));
-					
-					//get layer
+
+					// get layer
 					textdata.setLayer(results.getInt("layer"));
-					
-					//get duration
+
+					// get duration
 					textdata.setDuration(results.getInt("duration"));
-					
-					//get starttime
+
+					// get starttime
 					textdata.setStarttime(results.getInt("starttime"));
-					
-					//get font
+
+					// get font
 					textdata.setFont(results.getString("font"));
-					
-					//get fontcolor
+
+					// get fontcolor
 					textdata.setFontcolor(results.getString("fontcolor"));
-					
-					//get fontsize
+
+					// get fontsize
 					textdata.setFontsize(results.getInt("fontsize"));
-					
+
 					textdatalist.add(textdata);
 
 				} while (results.next());
-				
+
 				data = textdatalist;
 				break;
-				
+
 			case "textbody":
-				
+
 				ArrayList<TextBodyData> textbodydatalist = new ArrayList<TextBodyData>();
-				
+
 				do {
 					TextBodyData textbodydata = new TextBodyData();
-													
-					//get branch
+
+					// get branch
 					textbodydata.setBranch(results.getInt("branch"));
-					
-					//get italic
+
+					// get italic
 					textbodydata.setItalic(results.getBoolean("italic"));
-					
-					//get bold
+
+					// get bold
 					textbodydata.setBold(results.getBoolean("bold"));
-					
-					//get underlined
+
+					// get underlined
 					textbodydata.setUnderlined(results.getBoolean("underlined"));
-					
-					//get textstring
+
+					// get textstring
 					textbodydata.setTextstring(results.getString("Text"));
-					
+
 					textbodydatalist.add(textbodydata);
-					
+
 				} while (results.next());
-				
+
 				data = textbodydatalist;
 				break;
-				
+
 			case "video":
-				
+
 				ArrayList<VideoData> videodatalist = new ArrayList<VideoData>();
-				
+
 				do {
 					VideoData videodata = new VideoData();
-													
-					//get urlname
+
+					// get urlname
 					videodata.setUrlname(results.getString("urlname"));
-					
-					//get xstart
+
+					// get xstart
 					videodata.setXstart(results.getInt("xstart"));
-					
-					//get ystart
+
+					// get ystart
 					videodata.setYstart(results.getInt("ystart"));
-					
-					//get width
+
+					// get width
 					videodata.setWidth(results.getInt("width"));
-					
-					//get height
+
+					// get height
 					videodata.setHeight(results.getInt("height"));
-					
-					//get layer
+
+					// get layer
 					videodata.setLayer(results.getInt("layer"));
-					
-					//get duration
+
+					// get duration
 					videodata.setDuration(results.getInt("duration"));
-					
-					//get starttime
+
+					// get starttime
 					videodata.setStarttime(results.getInt("starttime"));
 
-					//get loop
-					videodata.setLoop(results.getBoolean("loop"));	
-					
+					// get loop
+					videodata.setLoop(results.getBoolean("loop"));
+
 					videodatalist.add(videodata);
-					
+
 				} while (results.next());
-				
+
 				data = videodatalist;
 				break;
-			
-		default: 
-			closeConnection();
-			data = null;
-		}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+			default:
+				closeConnection();
+				data = null;
 			}
-			
+		} catch (SQLException e) {			
+
+			SmartTrolleyToolBox.print("SQL Exception in getSpecificData: "+e);
+			return null;
+		}
+
 		return data;
 	}
-	
+
 	/**
 		 * 
 		 */
@@ -782,7 +784,7 @@ public class SqlConnection {
 			SmartTrolleyToolBox.print("Product could not be found");
 			return null;
 		}
-	}	
+	}
 
 	/**
 	 * When called, this method will return the list of offers and store them as
@@ -1105,7 +1107,7 @@ public class SqlConnection {
 	 */
 	public boolean executeStatement(String query) {
 		boolean statementExecuted = false;
-		
+
 		SmartTrolleyToolBox.print(query);
 		try {
 			preparedStatement = null;
@@ -1115,7 +1117,7 @@ public class SqlConnection {
 			statementExecuted = preparedStatement.execute();
 
 		} catch (SQLException ex) {
-			SmartTrolleyToolBox.print("Cannot execute statement due to error: "+ ex);
+			SmartTrolleyToolBox.print("Cannot execute statement due to error: " + ex);
 		}
 
 		return statementExecuted;
@@ -1129,43 +1131,31 @@ public class SqlConnection {
 	 * @return productid
 	 * @throws SQLException
 	 */
-	public int createNewProduct(String Title, int id, String Image, double Price, int CategoryID, int IsFavourite){
-		
-		int productid = 0,
-			categoryID = 0;
-		
+	public int createNewProduct(String Title, int id, String Image, double Price, int CategoryID, int IsFavourite) {
+
+		int productid = 0, categoryID = 0;
+
 		String productName = null;
-		
-		if (id == 0){
+
+		if (id == 0) {
 			productName = Title;
-		}
-		else{
+		} else {
 			productName = Title + " " + id;
 		}
 
-		if (CategoryID == 0){
+		if (CategoryID == 0) {
 			categoryID = 1;
-		}
-		else{
+		} else {
 			categoryID = CategoryID;
-		}			
-		
+		}
+
 		openConnection();
-		
-		String query = "INSERT INTO `cl36-st`.`products` (`image`, `Name`, `Price`, `CategoryID`, `IsFavourite`) VALUES ('"
-				+ Image
-				+ "', '"
-				+ productName
-				+ "', '"
-				+ Price
-				+ "', '"
-				+ categoryID
-				+ "', '"
-				+ IsFavourite
-				+ "');";
+
+		String query = "INSERT INTO `cl36-st`.`products` (`image`, `Name`, `Price`, `CategoryID`, `IsFavourite`) VALUES ('" + Image + "', '" + productName + "', '" + Price
+				+ "', '" + categoryID + "', '" + IsFavourite + "');";
 		executeStatement(query);
 		query = "SELECT MAX(ProductID) AS ProductID FROM products;";
-		ResultSet results=null;
+		ResultSet results = null;
 		try {
 			results = sendQuery(query);
 			results.absolute(1);
@@ -1174,22 +1164,22 @@ public class SqlConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		closeConnection();
-		
+
 		return productid;
 	}
-	
+
 	/**
 	 * Deletes the last product in the product list and resets the auto increment 
 	 */
-	public void deleteLastProduct(){
+	public void deleteLastProduct() {
 
 		openConnection();
 		int productid = 0;
 		String query = "SELECT MAX(ProductID) AS ProductID FROM products;";
 		ResultSet results;
-		
+
 		try {
 			results = sendQuery(query);
 			results.absolute(1);
@@ -1198,34 +1188,33 @@ public class SqlConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		query = "DELETE FROM products where ProductID = " + productid + ";";
 		executeStatement(query);
-		
+
 		query = "ALTER TABLE products" + " AUTO_INCREMENT =" + productid + ";";
 		executeStatement(query);
-		closeConnection();	
-		
+		closeConnection();
+
 	}
-	
+
 	/**
 	 * 
 	 * @param enteredListName
 	 * @return listid
 	 */
-	public int createNewList(String enteredListName){
-		
+	public int createNewList(String enteredListName) {
+
 		int listid = 0;
-		
+
 		openConnection();
-		
-		String query = "INSERT INTO `cl36-st`.`lists` (`Name`) VALUES ('"
-				+ enteredListName + "');";
+
+		String query = "INSERT INTO `cl36-st`.`lists` (`Name`) VALUES ('" + enteredListName + "');";
 		executeStatement(query);
 		SmartTrolleyToolBox.print("Created new list: " + enteredListName);
-		
+
 		query = "SELECT MAX(ListID) AS ListID FROM lists;";
-		ResultSet results=null;
+		ResultSet results = null;
 		try {
 			results = sendQuery(query);
 			results.absolute(1);
@@ -1234,24 +1223,24 @@ public class SqlConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		closeConnection();
-		
+
 		return listid;
 	}
-	
+
 	/**
 	 * Deletes the last list in the List of lists and resets the auto increment
 	 */
-	public void deleteLastList(){
+	public void deleteLastList() {
 
 		int listid = 0;
-		
+
 		openConnection();
-		
+
 		String query = "SELECT MAX(ListID) AS ListID FROM lists;";
 		ResultSet results;
-		
+
 		try {
 			results = sendQuery(query);
 			results.absolute(1);
@@ -1260,39 +1249,33 @@ public class SqlConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		query = "DELETE FROM lists where ListID = " + listid + ";";
 		executeStatement(query);
-		
+
 		query = "ALTER TABLE lists" + " AUTO_INCREMENT =" + listid + ";";
 		executeStatement(query);
-		
+
 		query = "DELETE FROM lists_products where ListID = " + listid + ";";
 		executeStatement(query);
-		
+
 		closeConnection();
 	}
-	
+
 	/**
 	 * adds product to a list 
 	 * @param productid
 	 */
-	public void addProductToList(int productid, int listid){
-		
+	public void addProductToList(int productid, int listid) {
+
 		openConnection();
-		
-		String query = "INSERT INTO lists_products (ProductID, ListID, Quantity) VALUES ('"
-				+ productid
-				+ "', '"
-				+ listid
-				+ "', '"
-				+ 1
-				+ "');";
-		
+
+		String query = "INSERT INTO lists_products (ProductID, ListID, Quantity) VALUES ('" + productid + "', '" + listid + "', '" + 1 + "');";
+
 		executeStatement(query);
 		closeConnection();
 	}
-	
+
 	/**
 	 * provides public access to close the productsDatabase
 	 * 

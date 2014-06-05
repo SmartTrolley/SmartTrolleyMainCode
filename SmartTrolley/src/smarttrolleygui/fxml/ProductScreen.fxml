@@ -100,7 +100,13 @@
         <Insets top="5.0" />
       </VBox.margin>
     </Line>
+    
+    <ScrollPane id="ScrollPane" fitToHeight="false" fitToWidth="false" prefViewportHeight="395.0" prefViewportWidth="575.0" VBox.vgrow="ALWAYS">
+      <content>
     <AnchorPane fx:id="productAnchorPane" prefHeight="400.0" prefWidth="600" />
+    </content>
+    </ScrollPane>
+    
     <Line endX="575.0" startX="0.0" startY="0.0" />
   </children>
   <stylesheets>

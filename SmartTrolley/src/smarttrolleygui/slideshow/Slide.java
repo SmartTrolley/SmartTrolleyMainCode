@@ -39,17 +39,25 @@ public class Slide extends AnchorPane {
 	private ArrayList<SlideVideo> videoList;
 	private ArrayList<SlideText> textList;
 	private ArrayList<AudioHandler> audioList;
+	
+	/**Ratio of our slide width to the slideshow's XML slide width.*/
 	private double xScaler;
+	
+	/**Ratio of our slide width to the slideshow's XML slide width.*/
 	private double yScaler;
+	
+	/**Duration of slide.*/
 	protected double duration;
+	
+	/**Unique identifier of the slide in the slideshow.*/
 	private int slideID;
 
 	/**
 	*Constructor takes in lists, and places objects from those lists into the Slide, based on self defined locations. Also takes in scaling factors
 	*and scales objects and their locations based on them.
 	*<p>Displays product information
-	*@param xScaler - scales the width of objects placed on the slideshow
-	*@param yScaler - scales the height of objects placed on the slideshow
+	*@param xScaler - scales the width and x-position of objects placed on the slideshow
+	*@param yScaler - scales the height and y-position  of objects placed on the slideshow
 	*@param graphicsList - sorts a list of objects of type graphics, contains all relevant information on the graphic
 	*@param imageList - sorts a list of objects of type image, contains all relevant information on the image
 	*@param audioList - sorts a list of objects of type audio, contains all relevant information on the audio
@@ -76,40 +84,20 @@ public class Slide extends AnchorPane {
 			addGraphics(shape);
 		}
 
-		// TODO Test if audio is null here
-		/*
-		 * if (audioList == null){
-		 * SmartTrolleyToolBox.print("Audio list is null for this slideshow.")
-		 */
 		this.audioList = audioList; // file path should have no spaces
 
-		// TODO Test if image is null here
-		/*
-		 * if (imageList == null){
-		 * SmartTrolleyToolBox.print("Image list is null for this slideshow.")
-		 */
 		this.imageList = imageList;// file path should have no spaces
 
 		for (SlideImage image : imageList) {
 			addImage(image);
 		}
 
-		// TODO Test if text is null here
-		/*
-		 * if (textList == null){
-		 * SmartTrolleyToolBox.print("Text list is null for this slideshow.")
-		 */
 		this.textList = textList;
 
 		for (SlideText text : textList) {
 			addText(text);
 		}
 
-		// TODO Test if video is null here
-		/*
-		 * if (videoList == null){
-		 * SmartTrolleyToolBox.print("Video list is null for this slideshow.")
-		 */
 		this.videoList = videoList;// file path should have no spaces
 
 		for (SlideVideo video : videoList) {
@@ -141,15 +129,21 @@ public class Slide extends AnchorPane {
 	*<p> Date Modified: 28 May 2014
 	*/
 	private void addText(SlideText text) {
-		text.setScaleX(xScaler);
+		/*text.setScaleX(xScaler);
 		text.setScaleY(yScaler);
 
-		SmartTrolleyToolBox.print(text.getLayoutX());
-		text.setLayoutX((xScaler * text.getLayoutX()));
-		SmartTrolleyToolBox.print(text.getLayoutX());
-		SmartTrolleyToolBox.print(text.getLayoutY());
+		SmartTrolleyToolBox.print("Original x-coord for text was: " + text.getLayoutX());		
+		text.setLayoutX((xScaler * text.getLayoutX()));		
+		SmartTrolleyToolBox.print("Rescaled x-coord for text is: " + text.getLayoutX());
+		
+		SmartTrolleyToolBox.print("Original y-coord for text was: " + text.getLayoutY());
 		text.setLayoutY((yScaler * text.getLayoutY()));
-		SmartTrolleyToolBox.print(text.getLayoutY());
+		SmartTrolleyToolBox.print("Rescaled y-coord for text is: " + text.getLayoutY());*/
+		
+		SmartTrolleyToolBox.print("Original x-coord for text was: " + text.getXStart());
+		SmartTrolleyToolBox.print("Original y-coord for text was: " + text.getYStart());
+		
+		text.relocateText(text.getXStart()*xScaler,text.getYStart()*yScaler);
 
 		getChildren().add(text);
 
@@ -181,8 +175,8 @@ public class Slide extends AnchorPane {
 		image.setScaleX(xScaler);
 		image.setScaleY(yScaler);
 
-		image.setLayoutX((xScaler * image.getLayoutX()));
-		image.setLayoutY((yScaler * image.getLayoutY()));
+		image.setLayoutX((xScaler * image.getx()));
+		image.setLayoutY((yScaler * image.gety()));
 
 		getChildren().add(image);
 

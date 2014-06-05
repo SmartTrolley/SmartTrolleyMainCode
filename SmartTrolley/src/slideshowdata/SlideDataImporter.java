@@ -20,8 +20,6 @@ public class SlideDataImporter {
 	
 	public SlideDataImporter(SlideShowData data){
 		
-		
-		
 	}
 
 	private static ArrayList<Slide> importSlides() {
@@ -33,9 +31,12 @@ public class SlideDataImporter {
 		
 		return slides;
 	}
+	
 
 	private static Slide importSlide(SlideData slideData) {
+		
 		Slide slide;
+		
 		ArrayList<SlideImage> images = importImages(slideData.getImages());
 		ArrayList<SlideVideo> videos = importVideos(slideData.getVideos());
 		ArrayList<Shape> shapes= importShapes(slideData.getShapes());
@@ -43,29 +44,35 @@ public class SlideDataImporter {
 		ArrayList<AudioHandler> audios = importAudios(slideData.getAudios());
 		
 		
-		slide = new Slide(1,1,shapes, images, audios, texts, videos, slideData.getDuration());
+		slide = new Slide(0.83,1.1,shapes, images, audios, texts, videos, slideData.getDuration());
 		
 		slide.setStyle("background-color:"+ data.getDefaults().getBackgroundcolor());
 		
 		return slide;
 	}
+	
 
 	private static ArrayList<AudioHandler> importAudios(ArrayList<AudioData> audioDatas) {
 		
 		int defaultVolume = 1;
 		ArrayList<AudioHandler> audios = new ArrayList<AudioHandler>();
 		
+		if (audioDatas != null){
 		for(AudioData audioData : audioDatas){
 			audios.add(new AudioHandler(audioData.getUrlname(),audioData.getStarttime(),defaultVolume));
+		}
 		}
 		
 		return audios;
 	}
+	
 
 	private static ArrayList<SlideText> importTexts(ArrayList<TextData> textDatas ) {
 		
 		ArrayList<SlideText> texts = new ArrayList<SlideText>();
 		ArrayList<SlideTextBody> bodies = new ArrayList<SlideTextBody>();
+		
+		if (textDatas != null){
 		for(TextData textData : textDatas){
 			
 			bodies = importTextBodies(textData.getTextbodies());
@@ -74,20 +81,23 @@ public class SlideDataImporter {
 										textData.getFont(), 
 										textData.getFontcolor(), 
 										textData.getFontsize(), 
-										textData.getXstart(), textData.getXstart(), 
+										textData.getXstart(),
+										textData.getYstart(), 
 										textData.getXend(), 
 										textData.getYend(), 
 										textData.getStarttime(), 
 										textData.getDuration())
 			);
-		}
+		}}
 		
 		return texts;
 	}
+	
 
 	private static ArrayList<SlideTextBody> importTextBodies(ArrayList<TextBodyData> bodyDatas) {
-		ArrayList<SlideTextBody> bodies = new ArrayList<SlideTextBody>();
 		
+		ArrayList<SlideTextBody> bodies = new ArrayList<SlideTextBody>();
+
 		for(TextBodyData body : bodyDatas){
 			
 			bodies.add(new SlideTextBody(body.getTextstring(), body.getBold(), body.getItalic(), body.getUnderlined()));
@@ -95,12 +105,15 @@ public class SlideDataImporter {
 		}
 		return bodies;
 	}
+	
 
 	private static ArrayList<Shape> importShapes(ArrayList<ShapeData> shapeDatas) {
+		
 		ArrayList<Shape> shapes = new ArrayList<Shape>();
 		SlideShapeFactory shapeFactory;
 		PriorityQueue<ShapePoint> points;
 		
+		if (shapeDatas != null){
 		for(ShapeData shapeData : shapeDatas){
 			points = importPoints(shapeData.getPoints());
 			
@@ -113,12 +126,14 @@ public class SlideDataImporter {
 													shapeData.getStarttime(), 
 													shapeData.getDuration());
 			shapes.add(shapeFactory.getShape());
-		}
+		}}
 		
 		return shapes;
 	}
+	
 
 	private static PriorityQueue<ShapePoint> importPoints(ArrayList<PointData> pointDatas) {
+		
 		PriorityQueue<ShapePoint> points = new PriorityQueue<ShapePoint>();
 		
 		for(PointData pointData: pointDatas){
@@ -127,10 +142,13 @@ public class SlideDataImporter {
 		
 		return points;
 	}
+	
 
 	private static ArrayList<SlideVideo> importVideos(ArrayList<VideoData> videoDatas) {
+		
 		ArrayList<SlideVideo> videos = new ArrayList<SlideVideo>();
 		
+		if (videoDatas != null){
 		for(VideoData videoData : videoDatas){
 			
 			videos.add(new SlideVideo(videoData.getUrlname(),
@@ -141,14 +159,17 @@ public class SlideDataImporter {
 									  videoData.getLoop(), 
 									  videoData.getStarttime(),
 									  videoData.getDuration()));
-		}
+		}}
 		
 		return videos;
 	}
+	
 
 	private static ArrayList<SlideImage> importImages(ArrayList<ImageData> imageDatas) {
+		
 		ArrayList<SlideImage> images = new ArrayList<SlideImage>();
 		
+		if (imageDatas != null){
 		for(ImageData imageData : imageDatas){
 			
 			images.add(new SlideImage(imageData.getUrlname(),
@@ -158,10 +179,11 @@ public class SlideDataImporter {
 									  imageData.getHeight(), 
 									  imageData.getStarttime(),
 									  imageData.getDuration()));
-		}
+		}}
 		
 		return images;
 	}
+	
 
 	public static ArrayList<Slide> getSlides(SlideShowData showData) {
 		

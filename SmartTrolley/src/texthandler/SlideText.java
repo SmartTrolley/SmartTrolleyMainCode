@@ -22,10 +22,13 @@ import java.util.ArrayList;
 
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
+import toolBox.SmartTrolleyToolBox;
 
 public class SlideText extends FlowPane{
 
 	private int width, height;
+	private int xStart;
+	private int yStart;
 
 	/**
 	 * DESCRIPTION OF CONSTRUCTOR
@@ -46,10 +49,20 @@ public class SlideText extends FlowPane{
 			body.setFontFamily(font);
 			body.setFontSize(fontSize);
 			body.setFill(Color.web(fontColor));
-			setupWrappingWidth(body);
-			
+			setupWrappingWidth(body);			
 		}
+		
+		this.xStart = xStart;
+		this.yStart = yStart;
 
+	}
+	
+	public int getXStart(){
+		return xStart;
+	}
+	
+	public int getYStart(){
+		return yStart;
 	}
 
 	/**
@@ -85,6 +98,21 @@ public class SlideText extends FlowPane{
 			body.setWrappingWidth(width - xpos);
 			
 		}
+	}
+
+	/**
+	* Method to relocate the text to new coordinates
+	*<p>Test(s)/User Story that it satisfies
+	*@param x_coord
+	*@param y_coord
+	*<p> Date Modified: 5 Jun 2014
+	*/
+	public void relocateText(double x_coord, double y_coord) {
+		
+		SmartTrolleyToolBox.print("Rescaled x-coord for text is: " + x_coord);
+		SmartTrolleyToolBox.print("Rescaled y-coord for text is: " + y_coord);
+		
+		relocate(x_coord, y_coord);
 	}
 
 }

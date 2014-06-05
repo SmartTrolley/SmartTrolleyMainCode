@@ -23,6 +23,8 @@ import javafx.scene.image.ImageView;
 public class SlideImage extends ImageView{
 
 	private SlideElementDuration duration;
+	private int x;
+	private int y;
 
 	/**
 	 * The Full PWS Constructor for images. completely fulfills PWS Specification for images
@@ -45,6 +47,8 @@ public class SlideImage extends ImageView{
 		}
 		
 		this.duration = new SlideElementDuration(this);
+		this.x = x;
+		this.y = y;
 		
 		setDuration(duration);
 		setStartTime(startTime);
@@ -79,6 +83,13 @@ public class SlideImage extends ImageView{
 		duration.setDuration(seconds);
 		
 	}
+	
+	/**
+	 * @return the x-coordinate of the image
+	 */
+	public int getx(){
+		return x;
+	}
 
 	/**
 	*When Show is called, the image appears after the start time and is visible for the duration.
@@ -88,6 +99,13 @@ public class SlideImage extends ImageView{
 	public void show() {
 		
 		duration.show();
+	}
+
+	/**
+	 * @return the y-coordinate of the image
+	 */
+	public int gety() {
+		return y;
 	}
 
 }
