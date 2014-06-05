@@ -55,6 +55,10 @@ public class SmartTrolleyGUI extends Application {
 
 	private static int currentSlideID;
 
+	
+	/**Boolean to decide whether to download new list or not*/
+	protected static boolean getNewList = true;
+
 	/**The start screen in SmartTrolleyGUI*/
 	StartScreenController startScreen = new StartScreenController();
 
@@ -244,13 +248,23 @@ public class SmartTrolleyGUI extends Application {
 		try {
 			// TODO This needs to be implemented unless Arne has done it: productScreen.addSlideShow(selectedSlideShow);
 			productScreen = (ProductScreenController) replaceSceneContent("fxml/ProductScreen.fxml");
-
+			SlideShow slideShow = null, oldSlideShow = null;
+			
+			if (getNewList){
+				SmartTrolleyToolBox.print("This is a new list, downloading it.");
 			DataDownloader dataDownloader = new DataDownloader();
-			SlideShow slideShow = new SlideShow(dataDownloader.populateSlideshow(SmartTrolleyGUI.getcurrentListID()), productScreen.getProductAnchorPane());
-			productScreen.setSlideShow(slideShow);
+			slideShow = new SlideShow(dataDownloader.populateSlideshow(SmartTrolleyGUI.getcurrentListID()), productScreen.getProductAnchorPane());
+			productScreen.setSlideShow(slideShow);	
+			getNewList=false;
+			oldSlideShow = slideShow;
+			} else {
+			
+			productScreen.setSlideShow(oldSlideShow);
+			}
 			productScreen.getCurrentSlideShow().displaySlide(SmartTrolleyGUI.getCurrentSlideID());
-
+			
 			productScreen.setApp(this);
+			
 		} catch (Exception ex) {
 			SmartTrolleyToolBox.print("Could not get FXML file for next scene. Application crashed ;-(");
 			Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -388,7 +402,7 @@ public class SmartTrolleyGUI extends Application {
 	*/
 	public static void setCurrentSlideID(int i) {
 		currentSlideID = i;
-		
+
 	}
 
 	/**
@@ -398,7 +412,7 @@ public class SmartTrolleyGUI extends Application {
 	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 4 Jun 2014
 	*/
-	public static int getCurrentSlideID() {		
+	public static int getCurrentSlideID() {
 		return currentSlideID;
 	}
 }

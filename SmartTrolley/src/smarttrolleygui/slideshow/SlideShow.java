@@ -108,14 +108,14 @@ public class SlideShow {
 	 */
 	public void displaySlide(int slideShowIndex) {
 				
+		this.slideShowIndex = slideShowIndex;
+		
 		displayedSlide = slides.get(slideShowIndex);
 		
 		displayedSlide.show();
 
 		displayedPane.getChildren().add(displayedSlide);
-		
-		
-		
+
 		//Setup Timer for new duration if slideshow is autoplaying 
 		if (isAutoPlay()) {
 			if (displayedSlide.duration != 0) {
@@ -156,7 +156,7 @@ public class SlideShow {
 	 *<p> Date Modified: 25 May 2014
 	 */
 	protected void setSlides(SlideShowData slides) {
-		SlideDataImporter importer = new SlideDataImporter(slides);
+		
 		this.slides = SlideDataImporter.getSlides(slides);
 	}
 

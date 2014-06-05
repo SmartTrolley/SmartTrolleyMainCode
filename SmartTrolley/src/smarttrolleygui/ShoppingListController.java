@@ -37,6 +37,7 @@ import javafx.util.Callback;
 import se.mbaeumer.fxmessagebox.MessageBox;
 import se.mbaeumer.fxmessagebox.MessageBoxResult;
 import se.mbaeumer.fxmessagebox.MessageBoxType;
+import slideshowdata.SlideData;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
@@ -306,59 +307,7 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 		
 		productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
 		priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
-//		checkBoxColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-//			@Override
-//			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
-//				return new ReadOnlyObjectWrapper<Product>(features.getValue());
-//			}
-//		});
-//		imageColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-//			@Override
-//			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
-//				return new ReadOnlyObjectWrapper<Product>(features.getValue());
-//			}
-//		});
-//		addColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-//			@Override
-//			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
-//				return new ReadOnlyObjectWrapper<Product>(features.getValue());
-//			}
-//		});
-//		removeColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-//			@Override
-//			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
-//				return new ReadOnlyObjectWrapper<Product>(features.getValue());
-//			}
-//		});
 
-		// set up cell factories for columns containing images / buttons
-//		checkBoxColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
-//			@Override
-//			public TableCell<Product, Product> call(TableColumn<Product, Product> imageColumn) {
-//				return new TableCell<Product, Product>() {
-//					final CheckBox checkBox = new CheckBox();
-//
-//					@Override
-//					public void updateItem(final Product product, boolean empty) {
-//						super.updateItem(product, empty);
-//						if (product != null) {
-//							// button.getStyleClass().add("buttonImage");
-//							setGraphic(checkBox);
-//
-//							// Button Event Handler
-//							checkBox.setOnAction(new EventHandler<ActionEvent>() {
-//								@Override
-//								public void handle(ActionEvent event) {
-//									SmartTrolleyToolBox.print("Pressed checkbox of product: " + product.getName());
-//								}
-//							});
-//						} else {
-//							setGraphic(null);
-//						}
-//					}
-//				};
-//			}
-//		});
 		imageColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
 			@Override
 			public TableCell<Product, Product> call(TableColumn<Product, Product> imageColumn) {
@@ -386,10 +335,11 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 								public void handle(ActionEvent event) {
 									SqlConnection sqlConnection = new SqlConnection();
 									SmartTrolleyToolBox.print("Pressed image of product: " + product.getName());
+									//TODO Can delete the currentProductID field in SmartTrolleyGUI
 									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(product.getName()).getId());
 									
-									SmartTrolleyGUI.setCurrentSlideID((((Product) sqlConnection.getSpecificData("slide", "productID", product.getName())).getId()));
-									
+									SmartTrolleyGUI.setCurrentSlideID(((SlideData) sqlConnection.getSpecificData("slide", "productID", Integer.toString(product.getId()))).getId());
+									SmartTrolleyToolBox.print("The current slideID is: " + SmartTrolleyGUI.getCurrentSlideID());
 									application.goToProductScreen();
 								}
 							});
@@ -400,64 +350,6 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 				};
 			}
 		});
-//		addColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
-//			@Override
-//			public TableCell<Product, Product> call(TableColumn<Product, Product> addColumn) {
-//				return new TableCell<Product, Product>() {
-//					final Button button = new Button();
-//
-//					@Override
-//					public void updateItem(final Product product, boolean empty) {
-//						super.updateItem(product, empty);
-//						if (product != null) {
-//							button.setText("+");
-//							button.getStyleClass().add("buttonChangeQuantity");
-//							setGraphic(button);
-//
-//							// Button Event Handler
-//							button.setOnAction(new EventHandler<ActionEvent>() {
-//								@Override
-//								public void handle(ActionEvent event) {
-//									SmartTrolleyToolBox.print("Pressed add button for product: " + product.getName());
-//								}
-//							});
-//						} else {
-//							setGraphic(null);
-//						}
-//					}
-//				};
-//			}
-//		});
-//
-//		removeColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
-//			@Override
-//			public TableCell<Product, Product> call(TableColumn<Product, Product> removeColumn) {
-//				return new TableCell<Product, Product>() {
-//					final Button button = new Button();
-//
-//					@Override
-//					public void updateItem(final Product product, boolean empty) {
-//						super.updateItem(product, empty);
-//						if (product != null) {
-//							button.setText("-");
-//							button.getStyleClass().add("buttonChangeQuantity");
-//							setGraphic(button);
-//
-//							// Button Event Handler
-//							button.setOnAction(new EventHandler<ActionEvent>() {
-//								@Override
-//								public void handle(ActionEvent event) {
-//									SmartTrolleyToolBox.print("Pressed remove button for product: " + product.getName());
-//
-//								}
-//							});
-//						} else {
-//							setGraphic(null);
-//						}
-//					}
-//				};
-//			}
-//		});
 
 		productNameColumn.setCellFactory(new Callback<TableColumn<Product, String>, TableCell<Product, String>>() {
 			@Override
@@ -484,6 +376,10 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 									SmartTrolleyToolBox.print("Pressed name of product: " + productName);
 									// TODO: add code to move to product screen here and refactor individual controllers
 									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(productName).getId());
+									
+									
+									SmartTrolleyGUI.setCurrentSlideID(((SlideData) sqlConnection.getSpecificData("slide", "productID", Integer.toString(sqlConnection.getProductByName(productName).getId()))).getId());
+									SmartTrolleyToolBox.print("The current slideID is: " + SmartTrolleyGUI.getCurrentSlideID());
 									application.goToProductScreen();
 								}
 							});

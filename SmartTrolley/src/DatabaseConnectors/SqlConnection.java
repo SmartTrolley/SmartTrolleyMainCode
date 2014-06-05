@@ -74,6 +74,7 @@ public class SqlConnection {
 		try {
 			connection = null;
 			connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
+			SmartTrolleyToolBox.print("Connection Opened");
 		} catch (SQLException ex) {
 
 			SmartTrolleyToolBox.print("Connection failed to open");
@@ -452,6 +453,7 @@ public class SqlConnection {
 
 				} while (results.next());
 
+				closeConnection();
 				data = documentinfodata;
 				break;
 
@@ -493,6 +495,7 @@ public class SqlConnection {
 
 				} while (results.next());
 
+				closeConnection();
 				data = imagedatalist;
 				break;
 
@@ -515,6 +518,7 @@ public class SqlConnection {
 
 				} while (results.next());
 
+				closeConnection();
 				data = pointdatalist;
 				break;
 
@@ -559,6 +563,7 @@ public class SqlConnection {
 
 				} while (results.next());
 
+				closeConnection();
 				data = shapedatalist;
 				break;
 
@@ -580,6 +585,7 @@ public class SqlConnection {
 
 				} while (results.next());
 
+				closeConnection();
 				data = slidedata;
 				break;
 
@@ -627,6 +633,7 @@ public class SqlConnection {
 
 				} while (results.next());
 
+				closeConnection();
 				data = textdatalist;
 				break;
 
@@ -656,6 +663,7 @@ public class SqlConnection {
 
 				} while (results.next());
 
+				closeConnection();
 				data = textbodydatalist;
 				break;
 
@@ -697,6 +705,7 @@ public class SqlConnection {
 
 				} while (results.next());
 
+				closeConnection();
 				data = videodatalist;
 				break;
 
@@ -1284,6 +1293,7 @@ public class SqlConnection {
 	public void closeConnection() {
 		try {
 			connection.close();
+			SmartTrolleyToolBox.print("Connection Closed");
 		} catch (SQLException ex) {
 			SmartTrolleyToolBox.print("Connection did not close properly");
 		}

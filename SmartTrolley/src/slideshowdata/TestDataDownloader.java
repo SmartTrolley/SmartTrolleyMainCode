@@ -71,10 +71,19 @@ public class TestDataDownloader {
 			dataUploader.deleteContentAndResetAutoIncrement("textbody");
 			dataUploader.deleteContentAndResetAutoIncrement("video");
 			
-			dataUploader.deleteLastList();
 //			dataUploader.deleteLastList();
-//			dataUploader.deleteLastProduct();
+			dataUploader.deleteLastList();
 			dataUploader.deleteLastProduct();
+			dataUploader.deleteLastProduct();
+			dataUploader.deleteLastProduct();
+			dataUploader.deleteLastProduct();
+			dataUploader.deleteLastProduct();
+			dataUploader.deleteLastProduct();
+			dataUploader.deleteLastProduct();
+			dataUploader.deleteLastProduct();
+			dataUploader.deleteLastProduct();
+			dataUploader.deleteLastProduct();
+			
 		}
 		
 	}

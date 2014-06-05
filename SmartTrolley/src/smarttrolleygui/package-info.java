@@ -1,7 +1,7 @@
 /**
  * SmartTrolley
  *
- * This package contains all the test classes used
+ * This package contains all the classes and subpackages used for the GUI
  *
  * @author Prashant
  * @author Alick

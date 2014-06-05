@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
 import smarttrolleygui.Product;
+import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
 public class DataDownloader extends SqlConnection {
@@ -39,6 +40,8 @@ public class DataDownloader extends SqlConnection {
 		slideshowdata.setSlides(slidelist);
 		slideshowdata.setDefaults(defaults);
 		slideshowdata.setDocumentinfo(documentinfo);
+		
+		SmartTrolleyToolBox.print("Finished downloading slideshow.");
 
 		return slideshowdata;
 	}

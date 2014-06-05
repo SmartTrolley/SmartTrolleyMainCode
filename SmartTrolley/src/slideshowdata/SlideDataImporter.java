@@ -98,11 +98,12 @@ public class SlideDataImporter {
 		
 		ArrayList<SlideTextBody> bodies = new ArrayList<SlideTextBody>();
 
+		if (bodyDatas != null){
 		for(TextBodyData body : bodyDatas){
 			
 			bodies.add(new SlideTextBody(body.getTextstring(), body.getBold(), body.getItalic(), body.getUnderlined()));
 			
-		}
+		}}
 		return bodies;
 	}
 	

@@ -112,10 +112,20 @@ public class AllShoppingListsScreenController extends ControllerGeneral implemen
 
 				@Override
 				public void handle(ActionEvent event) {
+					
+					if (listID != SmartTrolleyGUI.getcurrentListID()){
+						SmartTrolleyGUI.getNewList = true;
+						SmartTrolleyToolBox.print("Not same list.");
+					} else {
+						SmartTrolleyGUI.getNewList = false;
+						SmartTrolleyToolBox.print("Same list.");
+					}
+					
 					SmartTrolleyToolBox.print("ListID pressed is: " + listID);				
 					SmartTrolleyGUI.setCurrentListID(listID);
 					SmartTrolleyGUI.setCurrentListName(listName);
 					SmartTrolleyToolBox.print("Application ListID: " + SmartTrolleyGUI.getcurrentListID());
+					
 					loadShoppingList(event);
 				}
 			});

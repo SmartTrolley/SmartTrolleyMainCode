@@ -112,9 +112,16 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 			@Override
 			public void changed(ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) {
 
+				if (playDirectionCheckbox.isSelected()){
 				playDirectionCheckbox.setText("Play Reverse");
 				currentSlideShow.setPlayDirection(PlayDirection.REV);
 				SmartTrolleyToolBox.print("Play direction is reverse");
+				}
+				else {
+					playDirectionCheckbox.setText("Play Reverse");
+					currentSlideShow.setPlayDirection(PlayDirection.FOR);
+					SmartTrolleyToolBox.print("Play direction is reverse");	
+				}
 
 			}
 		});		
