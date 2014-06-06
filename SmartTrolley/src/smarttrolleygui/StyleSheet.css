@@ -7,27 +7,29 @@
     -fx-background-color: linear-gradient(to bottom, #f8f8f8, #b5b5b5); 
 */
 
+.root {
+    -fx-focus-color: #0093ff;
+}
+
 .containerMain {
     -fx-border-width: 5px;    
     /*top right bottom left*/
     -fx-padding: 10px 0 10px 0;
     /* border color can be uncommented for debugging purposes */
     /*-fx-border-color: blue;*/
-}
-.containerTop {    
-    /* border can be uncommented for debugging purposes */
-    /*-fx-border-width: 5px 5px 0 5px;*/ 
-    /*-fx-border-color: black;*/
+    /*-fx-background-color:*/
+    /*linear-gradient(to bottom, #f2f2f2, #d4d4d4);*/
 }
 
-.containerBottom {
-    /* border can be uncommented for debugging purposes */
-    /*-fx-border-width: 3px;*/
-    /*-fx-border-color: black;*/
+.containerListName {
+    /*-fx-background-color:*/
+    /*linear-gradient(to bottom, #f2f2f2, #d4d4d4);*/
 }
 
 .grid1 {
     -fx-background-color: #ffffff;
+    /*-fx-background-color:*/
+    /*linear-gradient(#d0d0d0 0%, #f2f2f2 25%, #ffffff 75%, #d4d4d4 100%);*/
     -fx-border-width: 5px;
     /* border color can be uncommented for debugging purposes */
     /*-fx-border-color: yellow;*/
@@ -85,9 +87,23 @@
 }
 
 .button1 {
-    -fx-cursor: hand;
-    -fx-font-family: "Arial Narrow";
-    -fx-font-size: 15px; 
+-fx-background-color:
+        linear-gradient(#dbdbdb, #b9b9b9),
+        radial-gradient(center 50% -40%, radius 200%, #dbdbdb 45%, #b9b9b9 50%);
+    -fx-background-radius: 6, 5;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+    -fx-border-color: gray;
+    -fx-border-radius:4px;
+}
+
+.button1:hover {
+    -fx-background-color:
+        linear-gradient(#dfdfdf, #b9b9b9),
+    radial-gradient(center 50% -40%, radius 200%, #dbdbdb 45%, #b9b9b9 60%);
+    -fx-background-radius: 6, 5;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow(three-pass-box , rgba(0,0,0,0.4) , 20, 0.0 , 0 , 1 );
 }
 
 .buttonNavigation {
@@ -97,15 +113,16 @@
     -fx-background-color: #ffffff;
 	-fx-border-color: #ffffff;
     -fx-border-width: 0 0 3px 0;
+    -fx-font-weight:bold; 
 }
 
 .buttonNavigation:focused {
-    -fx-border-color: #000000;
+    -fx-border-color: #740CE8;
     -fx-border-radius: 0;
 } 
 
 .buttonNavigation:hover {
-    -fx-border-color: #000000;
+    -fx-border-color: #0093ff;
     -fx-border-radius: 0;
 } 
 
@@ -113,10 +130,12 @@
     -fx-font-family: "Arial Narrow";
     -fx-font-size: 15px;
     -fx-background-color: #ffffff;
-    -fx-border-color: #000000;
+    -fx-border-color: #740CE8;
 	-fx-border-width: 0 0 3px 0;
     -fx-border-radius: 0;
+    -fx-font-weight:bold;    
 } 
+
 .buttonLarge {
     -fx-cursor: hand;
     -fx-font-family: "Arial Narrow";
@@ -137,17 +156,17 @@
 
 .buttonChangeQuantity {
     -fx-cursor: hand;
-    -fx-border-width: 1px;
+    -fx-border-width: 0px;
     -fx-border-color: transparent;
-    -fx-border-radius: 2px;
+    -fx-border-radius: 0px;
     -fx-background-color: transparent;
+    -fx-font-size: 15px;
 }
 
 .buttonChangeQuantity:hover {
-    -fx-border-width: 0;
-    -fx-border-color: transparent;
-    -fx-border-radius: 2px;
-    -fx-background-color: linear-gradient(#ffffff, #00ff33);
+/*    -fx-font-size: 20px;*/
+/*    -fx-font-weight:bold;*/
+    -fx-text-fill: #0093ff;
     -fx-effect: dropshadow(three-pass-box , rgba(0,0,0,0.6), 5, 0.0, 0, 1);
 }
 
@@ -165,11 +184,10 @@
 .buttonProductNameTable {	
 	-fx-cursor: hand;	
 	-fx-background-color: transparent;	
-	-fx-underline: false;
 }
 
 .buttonProductNameTable:hover {	
-	-fx-underline: true;
+    -fx-text-fill: #0093ff;
 }
 
 .buttonSmartTrolleyLogo {
@@ -181,364 +199,66 @@
     -fx-background-position: center;
 	-fx-font-family: "Arial Narrow";
     -fx-font-size: 15px;
+    -fx-font-weight:bold; 
 	-fx-border-width: 0 0 3px 0;
 	-fx-border-color: #ffffff;
 }
 
 .buttonSmartTrolleyLogo:hover {
-    -fx-background-image:url("img/companyLogoSmallHover.png");
-	-fx-border-color: #000000;
+/*    -fx-background-image:url("img/companyLogoSmallHover.png");*/
+	-fx-border-color: #0093FF;
+    -fx-effect: dropshadow(three-pass-box , #740CE8, 5, 0.0, 0, 1);
+    
 }
 
-.table-view .column-header {
-    -fx-alignment: center;    
+.search-box .text-field {
+    -fx-background-image: url("img/lupe.png");
+    -fx-background-repeat: no-repeat;  
+    -fx-background-position: left;
+	-fx-font-family: "Arial Narrow";
+    -fx-font-size: 14px;
+    -fx-padding: 0 0 0 15px;
+    -fx-prompt-text-fill: gray;
+    -fx-border-color:gray;
+    -fx-border-radius:5px;
 }
-
-.table-view .table-cell {
-    -fx-alignment: center;
+.search-box .text-field:focused {
+    -fx-background-color: -fx-focus-color, white;
+    -fx-background-insets: -1.4, 1;
+    -fx-background-radius: 5px;
 }
-
-/* source: caspian.css */
-/*******************************************************************************
- *                                                                             *
- * TableView                                                                   *
- *                                                                             *
- ******************************************************************************/
  
 .table-view {
-    -fx-skin: "com.sun.javafx.scene.control.skin.TableViewSkin";
-    -fx-background-color: -fx-box-border, -fx-control-inner-background;
-    -fx-background-insets: 0,1;
- 
-    /* There is some oddness if padding is in em values rather than pixels,
-       in particular, the left border of the control doesn't show. */
-    -fx-padding: 1; /* 0.083333em; */
- 
-    /* Constants used throughout the tableview.
-     * TODO: Should these be derived from the palette in .scene?
-     */
-    -fx-table-header-border-color: #959595;
-/*    -fx-table-header-background-color: linear (0%,0%) to (0%,100%) stops (80%, #bbbbbb) (10%, #f6f6f6);*/
-    -fx-table-cell-border-color: #bbbbbb;
     -fx-border-color: transparent transparent transparent #000000;
     -fx-border-width: 1px;
 }
- 
-/** Draws focus border around tableview */
-.table-view:focused {
-    -fx-background-color: #ffffff;
-    -fx-background-insets: 0, 0, 0;
-    /*-fx-background-insets: -1.4, 0, 1;*/
-    /*-fx-background-radius: 1.4, 0, 0;*/
-    -fx-background-radius: 0, 0, 0;
- 
-    /* There is some oddness if padding is in em values rather than pixels,
-       in particular, the left border of the control doesn't show. */
-    /*-fx-padding: 1;  0.083333em; */
-    -fx-padding: 0; /* 0.083333em; */
-}
- 
-.table-view:disabled {
-    -fx-opacity: -fx-disabled-opacity;
-}
 
-.table-view .scroll-bar:vertical{
-    -fx-background-insets: 0, 0 0 0 1;
-    -fx-padding: 0.0 0.0 0.0 0.0;
-}
- 
-.table-view .scroll-bar:horizontal{
-    -fx-background-insets: 0, 1 0 0 0;
-    -fx-padding: 0.0 0.0 0.0 0.0;
-}
- 
-.table-view .corner {
-    -fx-background-color: -fx-box-border, -fx-base;
-    -fx-background-insets: 0, 1 0 0 1;
-}
- 
-/* Each row in the table is a table-row-cell. Inside a table-row-cell is any
-   number of table-cell. */
-.table-row-cell {
-    -fx-skin: "com.sun.javafx.scene.control.skin.TableRowSkin";
-    -fx-background-color: -fx-table-cell-border-color, -fx-control-inner-background;
-    -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em; /* 0 */
-    -fx-text-fill: -fx-text-inner-color;
-    /* set fixed row height */
-    -fx-cell-size: 70px;
-}
- 
-.table-row-cell:odd {
-    -fx-background-color: -fx-table-cell-border-color, derive(-fx-control-inner-background,-5%);
-    -fx-background-insets: 0, 0 0 1 0;
-}
- 
-.table-row-cell:focused {
-    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, -fx-control-inner-background;
-    -fx-background-insets: 0, 1, 2;
-}
- 
-.table-row-cell:focused:odd {
-    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, derive(-fx-control-inner-background,-5%);
-    -fx-background-insets: 0, 1, 2;
-}
- 
-/* When the table-row-cell is selected and focused */
-.table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, -fx-selection-bar;
-    -fx-background-insets: 0, 1, 2;
-    -fx-background: -fx-accent;
-    -fx-text-fill: -fx-selection-bar-text;
-}
- 
-.table-view:focused .table-row-cell:filled:selected .table-cell {
-    -fx-text-fill: -fx-selection-bar-text;
-}
- 
-.table-view:focused .table-row-cell:filled:selected, .table-view:row-selection .table-row-cell:filled:hover:selected {
-    -fx-background: -fx-accent;
-    -fx-background-color: -fx-selection-bar;
-    -fx-text-fill: -fx-selection-bar-text;
-}
- 
-.table-view:focused .table-row-cell:filled:focused:selected:hover {
-    -fx-background: -fx-accent;
-    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, -fx-selection-bar;
-    -fx-background-insets: 0, 1, 2;
-    -fx-text-fill: -fx-selection-bar-text;
-}
- 
-/* When the TableView is _not_ focused, we show alternate selection colors */
-.table-row-cell:filled:selected:focused, .table-row-cell:filled:selected {
-    -fx-background-color: lightgray;
-    -fx-text-fill: -fx-selection-bar-text;
-}
- 
-.table-row-cell:selected:disabled {
-    -fx-opacity: -fx-disabled-opacity;
-}
- 
-.table-view:row-selection .table-row-cell:filled:hover {
-    -fx-background-color: -fx-table-cell-border-color, -fx-cell-hover-color;
-    -fx-background-insets: 0, 0 0 1 0;
-    -fx-text-fill: -fx-text-inner-color;
-}
- 
-.table-view:row-selection .table-row-cell:filled:focused:hover {
-    -fx-background-color: -fx-table-cell-border-color, -fx-focus-color, -fx-cell-focus-inner-border, -fx-cell-hover-color;
-    -fx-background-insets: 0, 0 0 1 0, 1 1 2 1, 2 2 3 2, 3 3 4 3;
-    -fx-text-fill: -fx-text-inner-color;
-}
- 
 .table-cell {
-    -fx-skin: "com.sun.javafx.scene.control.skin.TableCellSkin";
-    -fx-padding: 0.166667em; /* 2px, plus border adds 1px */
- 
-    -fx-background-color: transparent;
-    -fx-border-color: transparent -fx-table-cell-border-color transparent transparent;
-    -fx-border-width: 0.083333em; /* 1 */
-    -fx-cell-size: 2.0em; /* 24 */
-    -fx-text-fill: -fx-text-inner-color;
-}
- 
-/* When in constrained resize mode, the right-most visible cell should not have
-   a right-border, as it is not possible to get this cleanly out of view without
-   introducing horizontal scrollbars (see RT-14886). */
-.table-view:constrained-resize .table-cell:last-visible {
+/*    set table cell alignment here*/
     -fx-border-color: transparent;
-}
-.table-view:constrained-resize .column-header:last-visible {
-    -fx-border-width: 0.083333em 0.0em 0.083333em 0.083333em, 0.083333em 0.0em 0.083333em 0.083333em;
-}
-.table-view:constrained-resize .filler {
-    -fx-border-color:
-        derive(-fx-base, 80%)
-        linear-gradient(to bottom, derive(-fx-base,80%) 20%, derive(-fx-base,-10%) 90%)
-        derive(-fx-base, 10%)
-        linear-gradient(to bottom, derive(-fx-base,80%) 20%, derive(-fx-base,-10%) 90%),
-        /* Outer border: */
-        transparent -fx-table-header-border-color -fx-table-header-border-color -fx-table-header-border-color;
-    -fx-border-insets: 0 1 1 1, 0 0 0 0;
-}
- 
-.table-view:focused .table-cell:focused {
-    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, -fx-control-inner-background;
-    -fx-background-insets: 0 1 0 0, 1 2 1 1, 2 3 2 2;
-}
- 
-.table-view:focused .table-row-cell:filled .table-cell:focused:selected {
-    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, -fx-selection-bar;
-    -fx-background-insets: 0 1 0 0, 1 2 1 1, 2 3 2 2;
-    -fx-background: -fx-accent;
-    -fx-text-fill: -fx-selection-bar-text;
-}
- 
-.table-view:focused .table-row-cell:filled .table-cell:selected, .table-view:cell-selection .table-row-cell:filled .table-cell:hover:selected {
-    -fx-background: -fx-accent;
-    -fx-background-color: -fx-selection-bar;
-    -fx-text-fill: -fx-selection-bar-text;
-    -fx-background-insets: 0 0 1 0;
-}
- 
-.table-view:focused .table-row-cell:filled .table-cell:focused:selected:hover {
-    -fx-background: -fx-accent;
-    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, -fx-selection-bar;
-    -fx-background-insets: 0 1 0 0, 1 2 1 1, 2 3 2 2;
-    -fx-text-fill: -fx-selection-bar-text;
-}
- 
-/* When the TableView is _not_ focused, we show alternate selection colors */
- .table-row-cell:filled .table-cell:selected:focused,  .table-row-cell:filled .table-cell:selected {
-    -fx-background-color: lightgray;
-    -fx-text-fill: -fx-selection-bar-text;
-}
- 
-.table-cell:selected:disabled {
-    -fx-opacity: -fx-disabled-opacity;
-}
- 
-.table-view:cell-selection  .table-row-cell:filled .table-cell:hover {
-    -fx-background-color: -fx-cell-hover-color;
-    -fx-text-fill: -fx-text-inner-color;
-    -fx-background-insets: 0 0 1 0;
-}
- 
-.table-view:cell-selection .table-row-cell:filled .table-cell:focused:hover {
-    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, -fx-cell-hover-color;
-    -fx-background-insets: 0 1 0 0, 1 2 1 1, 2 3 2 2;
-    -fx-text-fill: -fx-text-inner-color;
-}
- 
-/* The column-resize-line is shown when the user is attempting to resize a column. */
-.table-view .column-resize-line {
-    -fx-background: -fx-accent;
-    -fx-background-color: -fx-selection-bar;
-    -fx-padding: 0.0em 0.0416667em 0.0em 0.0416667em; /* 0 0.571429 0 0.571429 */
-}
- 
-/* This is the area behind the column headers. An ideal place to specify background
-   and border colors for the whole area (not individual column-header's). */
-.table-view .column-header-background {
-    /*edit column header bg here*/
-    /*-fx-background-color: -fx-body-color;*/
-    -fx-background-color: linear-gradient(to bottom, #fff, #d0d0d0);
-    -fx-padding: 0;
-}
- 
-/* The column header row is made up of a number of column-header, one for each
-   TableColumn, and a 'filler' area that extends from the right-most column
-   to the edge of the tableview, or up to the 'column control' button. */
-.table-view .column-header, .table-view .filler {
-    -fx-text-fill: -fx-selection-bar-text;
- 
-    /* TODO: for some reason, this doesn't scale. */
-    -fx-font-size: 1.083333em; /* 13pt - 1 more than the default font */
-    -fx-size: 25;
-    -fx-border-style: solid;
-    -fx-border-color:
-        /*
-          Inner border: we have different colours along the top, right, bottom and left.
-          Refer to RT-12298 for the spec.
-        */
-        derive(-fx-base, 80%)
-        linear-gradient(to bottom, derive(-fx-base,80%) 20%, derive(-fx-base,-10%) 90%)
-        derive(-fx-base, 10%)
-        linear-gradient(to bottom, derive(-fx-base,80%) 20%, derive(-fx-base,-10%) 90%),
-        /* Outer border: */
-        transparent -fx-table-header-border-color -fx-table-header-border-color transparent;
-    -fx-border-insets: 0 1 1 0, 0 0 0 0;
-    -fx-border-width: 0.083333em, 0.083333em;
-}
- 
-.table-view .column-header .sort-order {
-    -fx-font-size: 0.916667em; /* 11pt - 1 less than the default font */
-}
-  
-/* When a column is being 'dragged' to be placed in a different position, there
-   is a region that follows along the column header area to indicate where the
-   column will be dropped. This region can be styled using the .column-drag-header
-   name. */
-.table-view .column-drag-header {
-    -fx-background: -fx-accent;
-    -fx-background-color: -fx-selection-bar;
-    -fx-border-color: transparent;
-    -fx-opacity: 0.6;
-}
- 
-/* Semi-transparent overlay to indicate the column that is currently being moved */
-.table-view .column-overlay {
-    -fx-background-color: darkgray;
-    -fx-opacity: 0.3;
-}
- 
-.table-view .arrow {
-    -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
-    -fx-background-insets: 1 0 -1 0, 0;
-    -fx-padding: 0.25em 0.3125em 0.25em 0.3125em; /* 3 3.75 3 3.75 */
-    -fx-shape: "M 0 0 h 7 l -3.5 4 z";
-}
- 
-/* This is shown when the table has no rows and/or no columns. */
-.table-view .empty-table {
-    -fx-background-color: white;
-    -fx-font-size: 1.166667em; /* 14pt - 2 more than the default font */
 }
 
-/* source: caspian.css */
-/*******************************************************************************
- *                                                                             *
- * ListView and ListCell                                                       *
- *                                                                             *
- ******************************************************************************/
- 
-.list-view {
-    /*-fx-skin: "com.sun.javafx.scene.control.skin.ListViewSkin";*/
-    /*-fx-background-color: -fx-box-border, -fx-control-inner-background;*/
-    -fx-background-insets: 0, 1;
- 
-     /* There is some oddness if padding is in em values rather than pixels,
-        in particular, the left border of the control doesn't show. */
-    -fx-padding: 1; /* 0.083333em; */
+.table-view .column-header-background {
+    /*edit column header bg*/
+/*    -fx-background-color: linear-gradient(#f0f0f0 50%, #ffffff);*/
+    -fx-background-color: linear-gradient(#ffffff 1%, #f0f0f0 50%, #ffffff);
 }
- 
+
+/*border between column headers*/
+.table-view .column-header, .table-view .filler {
+    -fx-border-color: transparent;
+}
+
+
+ /* style for list-view (contains category names) */
 .list-view:focused {
     -fx-background-color: #ffffff;
-    -fx-background-insets: -1.4, 0, 1;
-    -fx-background-radius: 1.4, 0, 0;
- 
-    /* There is some oddness if padding is in em values rather than pixels,
-       in particular, the left border of the control doesn't show. */
-    -fx-padding: 1; /* 0.083333em; */
-}
- 
-.list-view .scroll-bar:vertical{
-    -fx-background-insets: 0, 0 0 0 1;
-    -fx-padding: 0.0 0.0 0.0 0.0;
-}
- 
-.list-view .scroll-bar:horizontal{
-    -fx-background-insets: 0, 1 0 0 0;
-    -fx-padding: 0.0 0.0 0.0 0.0;
-}
- 
-.list-view:disabled {
-    -fx-opacity: -fx-disabled-opacity;
-}
- 
-.list-view .corner {
-    -fx-background-color: -fx-box-border, -fx-base;
-    -fx-background-insets: 0, 1 0 0 1;
 }
  
 .list-cell {
     -fx-background-color: #ffffff;
 }
- 
-.list-cell:odd {
-    /*-fx-background-color: derive(-fx-control-inner-background,-5%);*/
-}
- 
+
 .list-view:focused .list-cell:focused {
     -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, -fx-control-inner-background;
     -fx-background-insets: 0, 1, 2;
@@ -549,7 +269,6 @@
     -fx-background-insets: 0, 1, 2;
 }
  
-/* When the list-cell is selected and focused */
 .list-view:focused .list-cell:filled:focused:selected {
     -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, -fx-selection-bar;
     -fx-background-insets: 0, 1, 2;
@@ -570,27 +289,7 @@
     -fx-text-fill: -fx-selection-bar-text;
 }
  
-/* When the ListView is _not_ focused, we show alternate selection colors */
-.list-cell:filled:selected:focused, .list-cell:filled:selected, .list-view:horizontal .list-cell:filled:selected {
-    /*-fx-background-color: lightgray;*/
-    -fx-text-fill: -fx-selection-bar-text;
-}
- 
-.list-cell:filled:selected:focused:disabled, .list-cell:filled:selected:disabled {
-    -fx-opacity: -fx-disabled-opacity;
-}
- 
 .list-cell:filled:hover {
     -fx-background-color: -fx-cell-hover-color;
     -fx-text-fill: -fx-text-inner-color;
-}
- 
-.list-view:focused .list-cell:filled:focused:hover {
-    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, -fx-cell-hover-color;
-    -fx-background-insets: 0, 1, 2;
-    -fx-text-fill: -fx-text-inner-color;
-}
- 
-.list-view:horizontal .list-cell:filled:selected, .list-view:horizontal .list-cell:filled:selected:hover {
-    /*-fx-background-color: linear-gradient(to right, derive(-fx-accent,-7%), derive(-fx-accent,-25%));*/
 }
