@@ -39,31 +39,31 @@
                     <element name="fillcolor" type="string"/>
                 </type>
             </element>
-            <element name="slide">
+            <element name="slideshow">
                 <annotation>
                     <info>
-                        Individual slide
+                        Individual slideshow
                     </info>
                 </annotation>
                 <type>
                     <attribute name="id" type="string" >
                         <annotation>
                             <info>
-                                ID for this slide - could be used to leap around slideshow.
+                                ID for this slideshow - could be used to leap around slideshow.
                             </info>
                         </annotation>
                     </attribute>
                     <attribute name="duration" type="int">
                         <annotation>
                             <type>
-                                Period (in secs) for which this slide should be displayed.
+                                Period (in secs) for which this slideshow should be displayed.
                             </type>
                         </annotation>
                     </attribute>
 					<attribute name="lastslide" type="'true' | 'false'">
                         <annotation>
                             <type>
-                                Is the last slide of the presentation or not, useful for branching
+                                Is the last slideshow of the presentation or not, useful for branching
                             </type>
                         </annotation>
                     </attribute>
@@ -179,14 +179,14 @@
                             <attribute name="starttime" type="int">
                                 <annotation>
                                     <info>
-                                        Number of seconds video should start playing after slide is loaded.
+                                        Number of seconds video should start playing after slideshow is loaded.
                                     </info>
                                 </annotation>
                             </attribute>
                             <attribute name="loop" type="boolean">
                                 <annotation>
                                     <info>
-                                        Whether the video should loop for the current slide - loop if set to true.
+                                        Whether the video should loop for the current slideshow - loop if set to true.
                                     </info>
                                 </annotation>
                             </attribute>

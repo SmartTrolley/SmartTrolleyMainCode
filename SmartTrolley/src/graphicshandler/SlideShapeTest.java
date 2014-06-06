@@ -14,7 +14,9 @@
 
 package graphicshandler;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.PriorityQueue;
 
@@ -295,7 +297,6 @@ public class SlideShapeTest {
 		try {
 			Thread.sleep(startTime*1001);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -330,8 +331,7 @@ public class SlideShapeTest {
 		// sleep for a little longer than start time
 		try {
 			Thread.sleep(startTime*1001);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+		} catch (InterruptedException e) {			
 			e.printStackTrace();
 		}
 		

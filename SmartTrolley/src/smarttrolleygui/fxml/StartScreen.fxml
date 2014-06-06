@@ -12,14 +12,14 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<VBox id="VBox" alignment="CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="0.0" styleClass="containerMain" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.StartScreenController">
+<VBox id="VBox" alignment="CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="10.0" styleClass="containerMain" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="smarttrolleygui.StartScreenController">
   <children>
     <ImageView fitHeight="150.0" fitWidth="450.0" pickOnBounds="true" preserveRatio="true" smooth="true">
       <image>
         <Image url="@../img/companyLogoCropped.png" />
       </image>
       <VBox.margin>
-        <Insets bottom="20.0" top="10.0" />
+        <Insets bottom="10.0" />
       </VBox.margin>
     </ImageView>
     <Line endX="575.0" startX="0.0" strokeLineCap="ROUND">
@@ -27,13 +27,10 @@
         <Insets bottom="30.0" />
       </VBox.margin>
     </Line>
-    <VBox id="VBox" alignment="CENTER" spacing="5.0" VBox.vgrow="ALWAYS">
-      <children>
-        <Button fx:id="createNewListButton" mnemonicParsing="false" onAction="#loadCreateNewListScreen" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="Create a new shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
-        <Button fx:id="viewAllShoppingListsButton" mnemonicParsing="false" onAction="#loadAllShoppingListsScreen" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="View your shopping lists" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
-        <Button mnemonicParsing="false" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="Import shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
-      </children>
-    </VBox>
+    <Button fx:id="parsePWSButton" mnemonicParsing="false" onAction="#parsePWS" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="Parse a PWS XML File" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
+    <Button fx:id="createNewListButton" mnemonicParsing="false" onAction="#loadCreateNewListScreen" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="Create a new shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
+    <Button fx:id="viewAllShoppingListsButton" mnemonicParsing="false" onAction="#loadAllShoppingListsScreen" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="View your shopping lists" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
+    <Button mnemonicParsing="false" prefHeight="113.0" prefWidth="380.0" styleClass="buttonLarge" text="Import shopping list" textAlignment="LEFT" textFill="BLACK" underline="false" wrapText="false" />
     <HBox prefHeight="21.0" prefWidth="322.0">
       <children>
         <Label text="Create your shopping list online @ " />

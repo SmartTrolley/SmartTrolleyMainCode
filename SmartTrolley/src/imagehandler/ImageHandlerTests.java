@@ -14,7 +14,9 @@
 
 package imagehandler;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import javafx.scene.image.Image;
 
 import org.junit.Before;
@@ -66,7 +68,7 @@ public class ImageHandlerTests {
 	}
 	
 	/**
-	*Check that the X and Y positions in the slide are those fed to the constructor
+	*Check that the X and Y positions in the slideshow are those fed to the constructor
 	*<p> Date Modified: 5 May 2014
 	*/
 	@Test

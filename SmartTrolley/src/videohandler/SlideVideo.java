@@ -39,7 +39,8 @@ public class SlideVideo extends Pane {
 			boolean loop, double startTime, double duration) {
 		
 		handler = new VideoPlayerHandler(pathLocation, xStart, yStart, width, height, loop, startTime, duration);
-		this.relocate(xStart, yStart);
+		setLayoutY(yStart);
+		setLayoutX(xStart);
 		
 		this.getChildren().add(handler.mediaControl.overallBox);
 		

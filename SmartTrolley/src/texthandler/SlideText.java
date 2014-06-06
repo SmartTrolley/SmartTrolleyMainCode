@@ -18,8 +18,6 @@
 /**************End of SlideText.java**************/
 package texthandler;
 
-import graphicshandler.SlideElementDuration;
-
 import java.util.ArrayList;
 
 import javafx.scene.layout.FlowPane;
@@ -28,7 +26,6 @@ import javafx.scene.paint.Color;
 public class SlideText extends FlowPane{
 
 	private int width, height;
-	private SlideElementDuration duration;
 
 	/**
 	 * DESCRIPTION OF CONSTRUCTOR
@@ -37,14 +34,13 @@ public class SlideText extends FlowPane{
 	public SlideText(ArrayList<SlideTextBody> texts, String font,
 			String fontColor, int fontSize, int xStart, int yStart, int xEnd,
 			int yEnd, double startTime, double duration) {
-		
 		//Setup as horizontal FlowPlane with vgap/hgap 0
 		super();
-		
+
 		getChildren().addAll(texts);
-		
+
 		setupBounds(xStart, yStart, xEnd, yEnd);
-		
+
 		for ( SlideTextBody body : texts){
 
 			body.setFontFamily(font);
@@ -53,10 +49,7 @@ public class SlideText extends FlowPane{
 			setupWrappingWidth(body);
 			
 		}
-		
-		this.duration = new SlideElementDuration(this);
-		setDuration(duration);
-		setStartTime(startTime);
+
 	}
 
 	/**
@@ -89,20 +82,9 @@ public class SlideText extends FlowPane{
 		
 		double xpos = body.getBoundsInParent().getMinX();
 		if(body.getBoundsInLocal().getWidth() > width - xpos){
-			body.setWrappingWidth(width - xpos);	
+			body.setWrappingWidth(width - xpos);
+			
 		}
-	}
-	
-	protected void setDuration(double seconds){
-		duration.setDuration(seconds);
-	}
-	
-	protected void setStartTime(double seconds){
-		duration.setStartTime(seconds);
-	}
-	
-	protected void show(){
-		duration.show();
 	}
 
 }

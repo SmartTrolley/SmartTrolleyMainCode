@@ -4,30 +4,30 @@
  * Class Description: 
  * CreateNewListScreenController allows java interaction with CreateNewListScreen.fxml
  *
- * @author  V1.0 Arne
- * @@author V1.1 Arash & Jonny
+ * @author Arne
  *
  * @author [Checked By:] [Checker(s) fill here]
  *
- * @version [1.1] [Date Created: 02/06/14]
+ * @version [1.0] [Date Created: 03/05/14]
  */
 
 package smarttrolleygui;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import DatabaseConnectors.SqlConnection;
-import Printing.SmartTrolleyPrint;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import toolBox.SmartTrolleyToolBox;
+import DatabaseConnectors.SqlConnection;
 
-public class CreateNewListScreenController implements Initializable {
+public class CreateNewListScreenController extends ControllerGeneral implements Initializable {
 
 	private SmartTrolleyGUI application;
 	// listNameTextField and createNewListButton are only made public so
@@ -38,8 +38,6 @@ public class CreateNewListScreenController implements Initializable {
 	public static Button createNewListButton;
 	@ FXML
 	private Label notifierLabel;
-	
-	private ControllerGeneral controller = new ControllerGeneral(); 
 	
 	/**
 	 * initialize is automatically called when the controller is created.
@@ -71,7 +69,7 @@ public class CreateNewListScreenController implements Initializable {
 	 *            Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-    	controller.loadStartScreen(event, application);
+		loadScreen(Screen.STARTSCREEN, application);
 	}
 
 	/**
@@ -92,16 +90,16 @@ public class CreateNewListScreenController implements Initializable {
 		if (application == null) {
 			// We are running in isolated FXML, possibly in Scene Builder.
 			// NO-OP.
-			System.out.println("error: application == null");
+			SmartTrolleyToolBox.print("error: application == null");
 		} else {
-			SmartTrolleyPrint.print("Create List button has been pressed.");
+			SmartTrolleyToolBox.print("Create List button has been pressed.");
 			
 			// TODO: ensure name entered does not conflict with previously created list
 			// and if it does notify user.
 			
 			// check input is not empty
 			if (listNameTextField.getText() != null
-					&& !listNameTextField.getText().isEmpty()) {
+					&& !listNameTextField.getText().isEmpty() && !listNameTextField.getText().contains(";")) {
 				String enteredListName = listNameTextField.getText();
 
 				// open SQL connection and create new entry in 'lists' table
@@ -110,19 +108,30 @@ public class CreateNewListScreenController implements Initializable {
 				
 				String sqlStatement = "INSERT INTO `cl36-st`.`lists` (`Name`) VALUES ('"
 						+ enteredListName + "');";
-				sqlConnection.executeStatement(sqlStatement);
-				//sqlConnection.AddList(enteredListName);
 				
-				SmartTrolleyPrint.print("Created new list: " + enteredListName);
+				sqlConnection.AddList(enteredListName);
+				SmartTrolleyToolBox.print("Created new list: " + enteredListName);
 				
-				SmartTrolleyGUI.setCurrentListName(enteredListName);
+				SmartTrolleyGUI.setCurrentListName(enteredListName);				
+				SmartTrolleyToolBox.print("Set list name in application: " + enteredListName);
+				
+				sqlStatement = "SELECT * FROM lists WHERE Name = \"" + enteredListName + "\"";
+				
+				SmartTrolleyToolBox.print("Sending query to find list id: " + sqlStatement);				
+				
+				ResultSet result = sqlConnection.getListByName(enteredListName);
+				result.absolute(1);
+
+				int listID = result.getInt("ListID");
+				SmartTrolleyToolBox.print("LiD: " + result.getInt("ListID"));
+				SmartTrolleyGUI.setCurrentListID(listID);
 				
 				// move to HomeScreen
 				application.goToHomeScreen();
 			} else {
 				// Display error message if no name is entered.
-				String noInputError = "Please enter a name for the list";
-				SmartTrolleyPrint.print(noInputError);
+				String noInputError = "Please enter a valid name for the list";
+				SmartTrolleyToolBox.print(noInputError);
 				notifierLabel.setText(noInputError);
 				notifierLabel.setVisible(true);
 			}

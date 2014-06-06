@@ -66,10 +66,10 @@
                 </Button>
               </children>
             </HBox>
-            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+            <VBox fx:id="priceAndSlideButtonsVBox" alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
               <children>
-                <Label fx:id="currentTotalLabel" text="£ current total" />
-                <Label fx:id="currentSavingsTotal" text="£ current savings" />
+                <Label fx:id="currentTotalLabel" text="Â£ current total" />
+                <Label fx:id="currentSavingsTotal" text="Â£ current savings" />
               </children>
               <padding>
                 <Insets left="10.0" />

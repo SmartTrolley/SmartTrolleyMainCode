@@ -24,7 +24,7 @@ import javafx.scene.Node;
 /**
  * SmartTrolley
  * 
- * Handler for durations of media on a slide. uses timers to make the slide
+ * Handler for durations of media on a slideshow. uses timers to make the slideshow
  * appear after startTime and then remain visible for the duration.
  * 
  * @author Matthew Wells
@@ -50,7 +50,8 @@ public class SlideElementDuration {
 	 * *<p> Date Modified: 25 April 2014
 	 */
 	public SlideElementDuration(Node node) {
-
+		
+		
 		this.node = node;
 
 		this.node.setVisible(false);
@@ -66,20 +67,26 @@ public class SlideElementDuration {
 	*/
 	public void show() {
 
+		if (duration == 0) {
+			node.setVisible(true);
+		} else {
+
 			timer = new Timer();
 
 			started = true;
 
 			TimerTask appear = new ShowTask();
 			timer.schedule(appear, (long)this.startTime);
+		}
 	}
 
 	/**
-	 * 
-	 *Set the time after which node should appear
-	 *@param milliseconds	
-	 *<p> Date Modified: 25 April 2014
-	 */
+	
+	*Set the time after which node should appear
+	*@param milliseconds	
+	*<p> Date Modified: 25 April 2014
+	
+	*/
 	public void setStartTime(double seconds) {
 		
 		//startTime is in milliseconds
@@ -105,7 +112,7 @@ public class SlideElementDuration {
 	*@param milliseconds	
 	*<p> Date Modified: 25 April 2014
 	 */
-	private class ShowTask extends TimerTask {
+	public class ShowTask extends TimerTask {
 		@Override
 		public void run() {
 			if (started) {

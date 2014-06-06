@@ -87,10 +87,10 @@
         </GridPane>
       </children>
     </HBox>
-    <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="NEVER">
+    <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="NEVER">
       <children>
-        <TextField alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="125.0" promptText="Enter product name" />
-        <Button minHeight="25.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="75.0" styleClass="button1" text="Search" />
+       <!-- <TextField fx:id="searchBox" alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="200.0" promptText="Enter product name" />
+        <Button fx:id ="searchButton" minHeight="25.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="150.0" onAction="#searchForProducts" styleClass="button1" text="Search" />-->
         <Label fx:id="listNameLabel" alignment="CENTER_RIGHT" prefWidth="461.0" styleClass="labelListName" textAlignment="CENTER" wrapText="false" />
       </children>
       <padding>
@@ -111,7 +111,7 @@
                 <VBox id="VBox" alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="404.0" prefWidth="110.0" spacing="0.0">
                   <children>
                     <Label text="Categories" />
-                    <ListView fx:id="categoriesList" prefHeight="389.0" prefWidth="115.0" />
+                    <ListView fx:id="categoriesList" prefHeight="389.0" prefWidth="115.0" onMouseClicked="#handleMouseClick"/>
                   </children>
                   <padding>
                     <Insets top="5.0" />

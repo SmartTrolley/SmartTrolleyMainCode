@@ -18,7 +18,7 @@
 /**************End of SlideTextTest.java**************/
 package texthandler;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 
@@ -42,8 +42,8 @@ public class SlideTextTest {
 	int yStart = 50;
 	int xEnd  = 300;
 	int yEnd = 400;
-	long startTime = 1;
-	long duration = 1;
+	double startTime = 1;
+	double duration = 1;
 	SlideTextBody testBody;
 	Font testFont;
 	String oneString = "one", twoString = "two", threeString = "three Lots of text to make sure that the boundaries for the pane are correct";
@@ -98,12 +98,12 @@ public class SlideTextTest {
 	@Test
 	public void heightWidthTest(){
 		//calculate width and height
-		int width = xStart- xEnd;
-		int height = yStart - yEnd;
+		int width = xEnd - xStart;
+		int height = yEnd - yStart;
 		
 		//check actual values
 		assertEquals(width, textBox.getLayoutBounds().getWidth(), 0.0001);
-		assertEquals(height, textBox.getLayoutBounds().getHeight(), 0.0001);
+		assertEquals(height, textBox.getBoundsInParent().getHeight(), 0.0001);
 		
 	}
 	
@@ -114,52 +114,11 @@ public class SlideTextTest {
 		assertEquals(yStart, textBox.getLayoutY(), 0.001);
 		
 	}
-
+	
 	@Test
 	public void durationTest(){
-
-		textBox.setStartTime(startTime);
-		textBox.setDuration(duration);
 		
-		textBox.show();
-		
-		assertFalse(textBox.isVisible());
-		
-		// sleep for a little longer than start time
-		try {
-			Thread.sleep(startTime*1001);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		//shape should have appeared
-		assertTrue(textBox.isVisible());
-
-		// sleep for a little longer than duration
-		try {
-			Thread.sleep(duration*1001);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		// shape should have disappeared
-		assertFalse(textBox.isVisible());		
 	}
 	
-	
-	@Test
-	public void zeroDurationTest(){
-		textBox.setDuration(0);
-		textBox.show();
-		
-		try {
-			Thread.sleep(duration);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		assertTrue(textBox.isVisible());
-	}
 }
 
