@@ -1,17 +1,15 @@
 
-/**
+/** 
+ * SmartTrolley
  * 
- */
-/**
- * @author tgl501
+ * Package for the Text handler classes and their tests
  *
- */
-/**
- * 
- */
-/**
- * @author tgl501
+ * @author Thomas Lea
  *
+ * @version v1.0 [Date Created: 22/05/2014]
  */
 
 package DatabaseConnectors;
+
+
+/**************End of package-info.java**************/

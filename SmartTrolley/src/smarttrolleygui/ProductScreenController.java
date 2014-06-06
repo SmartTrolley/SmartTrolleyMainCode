@@ -118,9 +118,9 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 				SmartTrolleyToolBox.print("Play direction is reverse");
 				}
 				else {
-					playDirectionCheckbox.setText("Play Reverse");
+					playDirectionCheckbox.setText("Play Forward");
 					currentSlideShow.setPlayDirection(PlayDirection.FOR);
-					SmartTrolleyToolBox.print("Play direction is reverse");	
+					SmartTrolleyToolBox.print("Play direction is forward");	
 				}
 
 			}

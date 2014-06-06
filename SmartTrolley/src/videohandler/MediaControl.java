@@ -1,12 +1,3 @@
-/*
- * Programmer: Roger Tan & Zayyad Tagwai
- * 
- * Date Created: 01/03/2014
- * 
- * Description: Class that creates a control bar that is overlaid on the video. Functionality
- * 				is play/pause, stop, scrubbing bar, volume slider, and fullscreen mode with same.
- */
-
 package videohandler;
 
 
@@ -27,6 +18,14 @@ import javafx.scene.media.MediaView;
 import javafx.stage.Screen;
 import toolBox.SmartTrolleyToolBox;
 
+/**
+ * Programmer: Roger Tan & Zayyad Tagwai
+ * 
+ * Date Created: 01/03/2014
+ * 
+ * Description: Class that creates a control bar that is overlaid on the video. Functionality
+ * 				is play/pause, stop, scrubbing bar, volume slider, and fullscreen mode with same.
+ */
 public class MediaControl {
 	
 	protected MediaPlayer mp;
@@ -44,7 +43,7 @@ public class MediaControl {
 	private boolean started;
 	private Timer timer;
 	
-	/* 
+	/** 
 	 * Constructor for the MediaControl class. Accepts optional parameters from PWS.
 	 * Creates a visual control bar with a play/pause button, a stop button, and a 
 	 * fullscreen button, which is overlayed onto the MediaPlayer. Also handles 
@@ -148,7 +147,6 @@ public class MediaControl {
 			} else {
 				
 				try{
-				
 				// after duration has finished
 				mp.stop();
 				
@@ -163,10 +161,5 @@ public class MediaControl {
 			}
 		}
 
-	}
-    
-    
-
-
-
+	}    
 }

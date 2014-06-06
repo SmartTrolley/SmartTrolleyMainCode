@@ -1,19 +1,3 @@
-/**
- * Spikes
- *
- * A DESCRIPTION OF THE FILE
- *
- * @author Name1
- * @author Name2
- *
- * @author Checked By: Checker(s) fill here
- *
- * @version version of this file [Date Created: 28 Apr 2014]
- */
-
-/*YOUR CODE HERE*/
-
-/**************End of SlideElementDuration.java**************/
 package graphicshandler;
 
 import java.util.Timer;
@@ -30,22 +14,31 @@ import javafx.scene.Node;
  * @author Matthew Wells
  * @author Alasdair Munday
  * 
- * @author [Checked By:] [Checker(s) fill here]
+ * @author [Checked By:] [Prashant Chakravarty]
  * 
  * @version 1.0 [Date Created: 25/04/14]
  */
-
 public class SlideElementDuration {
 
+	
+	/**Timer for counting start time and duration*/
 	private Timer timer;
+	
+	/**Node to which the duration is applied*/
 	private Node node;
+	
+	/**Duration of the node in milliseconds*/
 	private double duration = 0;
+	
+	/**startTime in milliseconds for that node*/
 	private double startTime = 0;
+	
+	/**If the timer has started or not*/
 	private boolean started;
 
 	
 	/**
-	 * Method calls setVisible(false) such that node does not appear 
+	 * Method calls setVisible(false) so that node does not appear 
 	 * @param node
 	 * *<p> Date Modified: 25 April 2014
 	 */
@@ -82,10 +75,9 @@ public class SlideElementDuration {
 
 	/**
 	
-	*Set the time after which node should appear
-	*@param milliseconds	
-	*<p> Date Modified: 25 April 2014
-	
+	*Set the time after which the node should appear
+	*@param double seconds - The start time in seconds
+	*<p> Date Modified: 25 April 2014	
 	*/
 	public void setStartTime(double seconds) {
 		
@@ -94,12 +86,10 @@ public class SlideElementDuration {
 		
 	}
 
-	/**
-	
+	/**	
 	*Set the time for which node should remain visible
 	*@param milliseconds	
-	*<p> Date Modified: 25 April 2014
-	
+	*<p> Date Modified: 25 April 2014	
 	*/
 	public void setDuration(double seconds) {
 		// duration is in milliseconds
@@ -109,7 +99,7 @@ public class SlideElementDuration {
 	/**
 	*Calls run() to make the shape appear visible after the set delay
 	*and then disappear after its set duration
-	*@param milliseconds	
+	*@param double seconds - The duration in seconds	
 	*<p> Date Modified: 25 April 2014
 	 */
 	public class ShowTask extends TimerTask {
@@ -130,7 +120,6 @@ public class SlideElementDuration {
 				node.setVisible(false);
 			}
 		}
-
 	}
-
 }
+/**************End of SlideElementDuration.java**************/

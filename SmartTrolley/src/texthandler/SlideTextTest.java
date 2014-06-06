@@ -1,21 +1,3 @@
-/**
-* SmartTrolley
-*
-* A DESCRIPTION OF THE FILE
-*
-* @author Name1
-* @author Name2
-*
-* @author Checked By: Checker(s) fill here
-*
-* @version version of this file [Date Created: 23 May 2014]
-*/
-
-/*YOUR CODE HERE*/
-
-
-
-/**************End of SlideTextTest.java**************/
 package texthandler;
 
 import static org.junit.Assert.assertEquals;
@@ -30,6 +12,18 @@ import javafx.scene.text.FontWeight;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+* SmartTrolley
+*
+* A test class for the handling of the text element 
+*
+* @author Name1
+* @author Name2
+*
+* @author Checked By: Checker(s) fill here
+*
+* @version version of this file [Date Created: 23 May 2014]
+*/
 public class SlideTextTest {
 	
 	ArrayList<SlideTextBody> texts;
@@ -49,10 +43,8 @@ public class SlideTextTest {
 	String oneString = "one", twoString = "two", threeString = "three Lots of text to make sure that the boundaries for the pane are correct";
 	
 	/**
-	 *Method/Test Description
-	 *<p>Test(s)/User Story that it satisfies
+	 * This setup method runs before any of the tests. It populates, sets up and creates a new 
 	 *@throws java.lang.Exception
-	 *[If applicable]@see [Reference URL OR Class#Method]
 	 *<p> Date Modified: 23 May 2014
 	 */
 	@Before
@@ -121,4 +113,5 @@ public class SlideTextTest {
 	}
 	
 }
+/**************End of SlideTextTest.java**************/
 

@@ -6,14 +6,13 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.media.MediaException;
 import toolBox.SmartTrolleyToolBox;
 
+/**
+* Audio Handler
+* 
+* @author Theo Hussey - TrueT (commented by Alasdair Munday - Smart Trolley)
+* 
+*/
 public class AudioHandler {
-
-	/**
-	 * Audio Handler
-	 * 
-	 * @author Theo Hussey - TrueT (commented by Alasdair Munday - Smart Trolley)
-	 * 
-	 */
 
 	private AudioClip audio;
 	private Integer duration;
@@ -33,7 +32,7 @@ public class AudioHandler {
 	 *            - Volume of audio 0.0 - 1.0
 	 */
 	public AudioHandler(String path, int startDelay, double volume) {
-//		Call the constructor with the specified values and a duration of 0, meaning default duration
+		// Call the constructor with the specified values and a duration of 0, meaning default duration
 		this(path, startDelay, 0, volume);
 	}
 
@@ -52,15 +51,14 @@ public class AudioHandler {
 	 * 
 	 */
 	public AudioHandler(String path, int startDelay, int duration, double volume) {
-//		load the specified audio file (private method in this class)
+		// load the specified audio file (private method in this class)
 		loadAudio("file:" + path);
-		if (audio == null){
+		if (audio == null) {
 			return;
 		}
-			audio.setVolume(volume);
+		audio.setVolume(volume);
 		SmartTrolleyToolBox.print("audio not found");
-		
-		
+
 		this.startDelay = startDelay;
 		this.duration = duration;
 	}
@@ -79,7 +77,7 @@ public class AudioHandler {
 	 * Audio will begin to play after specified delay has elapsed.
 	 */
 	public void begin() {
-		if(audio != null){
+		if (audio != null) {
 			audio.stop();
 			startTimerThread.start();
 			stopped = false;
@@ -194,8 +192,8 @@ public class AudioHandler {
 	public double getVolume() {
 		return audio.getVolume();
 	}
-	
-	public boolean isPlaying(){
+
+	public boolean isPlaying() {
 		return audio.isPlaying();
 	}
 

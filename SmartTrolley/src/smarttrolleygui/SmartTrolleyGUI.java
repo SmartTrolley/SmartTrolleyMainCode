@@ -57,7 +57,7 @@ public class SmartTrolleyGUI extends Application {
 
 	
 	/**Boolean to decide whether to download new list or not*/
-	protected static boolean getNewList = true;
+	//protected static boolean getNewList = true;
 
 	/**The start screen in SmartTrolleyGUI*/
 	StartScreenController startScreen = new StartScreenController();
@@ -248,19 +248,19 @@ public class SmartTrolleyGUI extends Application {
 		try {
 			// TODO This needs to be implemented unless Arne has done it: productScreen.addSlideShow(selectedSlideShow);
 			productScreen = (ProductScreenController) replaceSceneContent("fxml/ProductScreen.fxml");
-			SlideShow slideShow = null, oldSlideShow = null;
+			SlideShow slideShow; /*= null, oldSlideShow = null;
 			
 			if (getNewList){
-				SmartTrolleyToolBox.print("This is a new list, downloading it.");
+				SmartTrolleyToolBox.print("This is a new list, downloading it.");*/
 			DataDownloader dataDownloader = new DataDownloader();
 			slideShow = new SlideShow(dataDownloader.populateSlideshow(SmartTrolleyGUI.getcurrentListID()), productScreen.getProductAnchorPane());
 			productScreen.setSlideShow(slideShow);	
-			getNewList=false;
+			/*getNewList=false;
 			oldSlideShow = slideShow;
 			} else {
 			
 			productScreen.setSlideShow(oldSlideShow);
-			}
+			}*/
 			productScreen.getCurrentSlideShow().displaySlide(SmartTrolleyGUI.getCurrentSlideID());
 			
 			productScreen.setApp(this);

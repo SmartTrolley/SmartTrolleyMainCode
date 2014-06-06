@@ -1,16 +1,3 @@
-/**
- * SmartTrolley
- * 
- * This file tests for list deletion - Inspired from Alasdair's spike
- * 
- * @author Thomas
- * @author Sam
- * @author V2.1 Alick & Prashant [boolean class added for ResultSet testing]
- *         [also added execute statement]
- * @author Checked By: Checker(s) fill here
- * 
- * @version V3.0 [Date Created: 4 Jun 2014]
- */
 package DatabaseConnectors;
 
 import java.sql.Connection;
@@ -37,7 +24,23 @@ import smarttrolleygui.Offer;
 import smarttrolleygui.Product;
 import toolBox.SmartTrolleyToolBox;
 
-public class SqlConnection {
+/**
+ * SmartTrolley
+ * 
+ * Class that handles any connections and queries to the SQL database - Inspired from Alasdair's spike
+ * 
+ * @author Thomas
+ * @author Sam
+ * @author V2.1 Alick & Prashant [boolean class added for ResultSet testing]
+ *         [also added execute statement]
+ * @author V4.0 Prashant [Final Refactoring and commenting]
+ * 
+ * @author Checked By: Matthew Wells [06/06/14]
+ * 
+ * @version V3.0 [Date Created: 4 Jun 2014]
+ * @version V4.0 [Date Created: 6 Jun 2014] 
+ */
+public class SqlConnection{
 
 	PreparedStatement preparedStatement;
 	private static final String IP = "79.170.44.157";
@@ -52,7 +55,8 @@ public class SqlConnection {
 	Connection connection;
 
 	/**
-	 * Method that receives relevant connection info
+	 * Launches the java sql driver and compiles the url for the database
+	 *<p> Date Modified: 26 Mar 2014
 	 */
 	public SqlConnection() {
 
@@ -66,9 +70,19 @@ public class SqlConnection {
 	}
 
 	/**
-	 * Opens a connection (if not already open) for sending mysql queries to the database
-	 * @throws SQLException
-	 */
+	* Compiles a valid URL from the connection info provided
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	private void compileUrl() {
+		// construct the url assuming use of mysql and the standard port.
+		url = "jdbc:mysql://" + IP + "/" + USERNAME + "?";
+	}
+
+	/**
+	*Opens a connection (if not already open) for sending mysql queries to the database
+	*
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	public void openConnection() {
 
 		try {
@@ -83,13 +97,15 @@ public class SqlConnection {
 	}
 
 	/**
-	 * Send a query to the predefined database and returns the results returned
-	 * by the server
-	 * Connection needs to be opened and closed externally to this method
-	 * @param query
-	 * @return results
-	 * @throws SQLException
-	 */
+	* Sends a query to the predefined database and returns the results returned
+	* by the server
+	* Connection needs to be opened and closed externally to this method
+	*@param query
+	*@return ResultSet results
+	*@throws SQLException
+	*
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	public ResultSet sendQuery(String query) throws SQLException {
 
 		Statement statement = connection.createStatement();
@@ -97,45 +113,12 @@ public class SqlConnection {
 
 		return results;
 	}
-
+	
 	/**
-	 * Executes SQL query that returns the information for a particular product
-	 * (by name)
-	 * 
-	 * @param productName
-	 * @return product
-	 */
-	public Product getProductByName(String productName) {
-
-		Product product = new Product();
-
-		openConnection();
-
-		String query = "SELECT * FROM products WHERE Name = '" + productName + "';";
-
-		try {
-
-			ResultSet results = sendQuery(query);
-
-			while (results.next()) {
-				product = createProductFromResultSet(results);
-			}
-			closeConnection();
-			return product;
-
-		} catch (SQLException e) {
-			closeConnection();
-			SmartTrolleyToolBox.print("Product could not be found");
-			return null;
-		}
-
-	}
-
-	/**
-	 * @return products
-	 * @throws SQLException
-	 * 
-	 */
+	* Executes SQL query that returns the information for all products in the database
+	*@return ObservableList<Product>
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	public ObservableList<Product> getListOfProducts() {
 
 		openConnection();
@@ -159,12 +142,12 @@ public class SqlConnection {
 	}
 
 	/**
-	 * Returns either the entire list of favourites, or a version filtered by
-	 * category
-	 * 
-	 * @param category
-	 * @return products
-	 */
+	* Returns either the entire list of favourites (category = 1)
+	* or a version filtered by category
+	*@param category
+	*@return ObservableList<Product>
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	public ObservableList<Product> getListOfFavourites(String category) {
 
 		openConnection();
@@ -195,7 +178,235 @@ public class SqlConnection {
 	}
 
 	/**
-	*Searches database for product entered into the TextField.
+	* When called, this method will return the list of the products on offer
+	*@return ObservableList<Product>
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	public ObservableList<Product> getListOfOffers() {
+
+		openConnection();
+
+		offers = FXCollections.observableArrayList();
+
+		String query = "SELECT * FROM offers;";
+
+		try {
+			ResultSet results = sendQuery(query);
+
+			Offer offer = new Offer();
+			Product product = new Product();
+
+			while (results.next()) {
+
+				product = getSpecificProduct("productID", String.valueOf(results.getInt("ProductId")), "1");
+
+				if (!(product == null)) {
+					// get Offer id
+					offer.setOfferId(results.getInt("OfferID"));
+
+					// get Product id
+					offer.setProductId(results.getInt("ProductID"));
+
+					// get Price
+					offer.setOfferPrice(results.getFloat("OfferPrice"));
+					product.setOfferPrice(results.getFloat("OfferPrice"));
+
+					float savings = product.getPrice() - product.getOfferPrice();
+
+					product.setSavings(savings);
+
+					offers.add(product);
+				} else {
+					return null;
+				}
+			}
+
+			closeConnection();
+			return offers;
+
+		} catch (SQLException e) {
+
+			SmartTrolleyToolBox.print("Offers could not be found");
+			return null;
+		}
+
+	}
+
+	/**
+	* returns a list of all products that are in a specified list and specified category
+	*@param listID
+	*@param categoryNumber
+	*@return ObservableList<Product>
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	public ObservableList<Product> getListByCategory(int listID, String categoryNumber) {
+		openConnection();
+
+		Product product = new Product();
+		products = FXCollections.observableArrayList();
+
+		String query = "SELECT * FROM lists_products WHERE listID = " + listID;
+		SmartTrolleyToolBox.print("query is: " + query);
+
+		ResultSet productIDsInList = null;
+
+		try {
+			productIDsInList = sendQuery(query);
+
+		} catch (SQLException e) {
+			SmartTrolleyToolBox.print("lists could not be found");
+
+		}
+
+		try {
+
+			ResultSet listProducts = null;
+
+			while (productIDsInList.next()) {
+
+				SmartTrolleyToolBox.print(productIDsInList.getInt("ProductID"));
+				query = "SELECT * FROM products WHERE ProductID = '" + productIDsInList.getInt("ProductID") + "' AND CategoryID = '" + categoryNumber + "';";
+				SmartTrolleyToolBox.print("query is: " + query);
+				listProducts = sendQuery(query);
+				SmartTrolleyToolBox.print("Query Sent");
+
+				SmartTrolleyToolBox.print("Initializing Product");
+
+				boolean emptySet = isResultSetEmpty(listProducts);
+
+				if (!emptySet) {
+
+					listProducts.absolute(1);
+
+					do {
+
+						SmartTrolleyToolBox.print("Found Item to be stored");
+
+						product = createProductFromResultSet(listProducts);
+						products.add(product);
+
+						SmartTrolleyToolBox.print("Product Stored");
+
+						SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " " + product.getFavorite());
+					} while (listProducts.next());
+				} else {
+					SmartTrolleyToolBox.print("empty result, moving to next item");
+				}
+			}
+		} catch (SQLException e) {
+			SmartTrolleyToolBox.print("Product could not be found");
+			return null;
+		}
+
+		closeConnection();
+		return products;
+
+	}
+
+	/**
+	 * Retrieves the list items from the SQL server
+	 * <p> User can view list of lists
+	 * @param listID
+	 * @return ObservableList<Product>
+	 * <p> Date Modified: 9 May 2014
+	 */
+	public ObservableList<Product> getList(int listID) {
+		openConnection();
+
+		products = FXCollections.observableArrayList();
+
+		String query = "SELECT * FROM lists_products WHERE listID = " + listID;
+		SmartTrolleyToolBox.print("query is: " + query);
+
+		ResultSet productIDsInList = null;
+
+		try {
+			productIDsInList = sendQuery(query);
+
+		} catch (SQLException e) {
+			SmartTrolleyToolBox.print("lists could not be found");
+
+		}
+
+		try {
+
+			ResultSet listProducts;
+
+			while (productIDsInList.next()) {
+
+				query = "SELECT * FROM products WHERE ProductID = " + productIDsInList.getInt("ProductID");
+				SmartTrolleyToolBox.print("query is: " + query);
+
+				listProducts = sendQuery(query);
+
+				SmartTrolleyToolBox.print("Query Sent");
+
+				Product product = new Product();
+				SmartTrolleyToolBox.print("Initializing Product");
+
+				SmartTrolleyToolBox.print(isResultSetEmpty(listProducts));
+
+				listProducts.absolute(1);
+
+				SmartTrolleyToolBox.print("Row Size is = " + listProducts.getRow());
+
+				product = createProductFromResultSet(listProducts);
+				SmartTrolleyToolBox.print("Product Set");
+
+				products.add(product);
+
+				SmartTrolleyToolBox.print("Product Stored");
+
+				SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " " + product.getFavorite());
+
+			}
+		} catch (SQLException e) {
+			SmartTrolleyToolBox.print("Product could not be found");
+			return null;
+		}
+
+		closeConnection();
+		return products;
+
+	}
+
+	/**
+	* Executes SQL query that returns the information for a particular product
+	* (by name)
+	*@param productName
+	*@return Product
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	public Product getProductByName(String productName) {
+
+		Product product = new Product();
+
+		openConnection();
+
+		String query = "SELECT * FROM products WHERE Name = '" + productName + "';";
+
+		try {
+
+			ResultSet results = sendQuery(query);
+
+			while (results.next()) {
+				product = createProductFromResultSet(results);
+			}
+			closeConnection();
+			return product;
+
+		} catch (SQLException e) {
+			closeConnection();
+			SmartTrolleyToolBox.print("Product could not be found");
+			return null;
+		}
+
+	}
+
+	
+
+	/**
+	*Searches database for product entered into the TextField
 	*<p>User is able to search for product
 	*@param event
 	* @return list of products matching search term
@@ -238,7 +449,7 @@ public class SqlConnection {
 	*@throws SQLException
 	*<p> Date Modified: 3 Jun 2014
 	*/
-	private Product createProductFromResultSet(ResultSet resultSet) throws SQLException {
+	protected Product createProductFromResultSet(ResultSet resultSet) throws SQLException {
 
 		Product product = new Product();
 
@@ -265,11 +476,14 @@ public class SqlConnection {
 	}
 
 	/**
-	 * 
-	 * @param criteria
-	 * @param value
-	 * @return product
-	 */
+	* Executes SQL query that returns the information for a particular product
+	* with a specified criteria (column in the products table)
+	*@param criteria
+	*@param value
+	*@param category
+	*@return Product
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	public Product getSpecificProduct(String criteria, String value, String category) {
 
 		Product product = new Product();
@@ -315,13 +529,14 @@ public class SqlConnection {
 	}
 
 	/**
-	 * method to return any data from the SQL database from a specified table criteria and value.
-	 * returns an object that must me cast to the required type
-	 * @param table
-	 * @param criteria
-	 * @param value
-	 * @return data
-	 */
+	* method to return any data from the SQL database from a specified table criteria and value.
+	* returns an object that must be cast to the required type
+	*@param table
+	*@param criteria
+	*@param value
+	*@return Object to be cast
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	public Object getSpecificData(String table, String criteria, String value) {
 
 		ResultSet results = null;
@@ -713,9 +928,9 @@ public class SqlConnection {
 				closeConnection();
 				data = null;
 			}
-		} catch (SQLException e) {			
+		} catch (SQLException e) {
 
-			SmartTrolleyToolBox.print("SQL Exception in getSpecificData: "+e);
+			SmartTrolleyToolBox.print("SQL Exception in getSpecificData: " + e);
 			return null;
 		}
 
@@ -723,15 +938,18 @@ public class SqlConnection {
 	}
 
 	/**
-		 * 
-		 */
-	public String getSpecificCategoryNumber(String value) {
+	* returns the category id for a particular category name
+	*@param categoryName
+	*@return String categoryNumber
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	public String getSpecificCategoryNumber(String categoryName) {
 
 		String categoryNumber = null;
 
 		openConnection();
 
-		String query = "Select * From categories where name = '" + value + "';";
+		String query = "Select * From categories where name = '" + categoryName + "';";
 
 		try {
 			ResultSet results = sendQuery(query);
@@ -751,19 +969,19 @@ public class SqlConnection {
 	}
 
 	/**
-	 * 
-	 * @param List
-	 * @param Number
-	 * @return
-	 */
-	public ObservableList<Product> getProductsWithinSpecificCategory(String Number) {
+	*returns the list of products that correspond to a given categoryID
+	*@param categoryID
+	*@return ObservableList<Product>
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	public ObservableList<Product> getProductsWithinSpecificCategory(String categoryID) {
 
 		openConnection();
 		Product product = new Product();
 
 		products = FXCollections.observableArrayList();
 
-		String query = "SELECT * FROM products WHERE CategoryID = " + Number + ";";
+		String query = "SELECT * FROM products WHERE CategoryID = " + categoryID + ";";
 
 		try {
 			ResultSet results = sendQuery(query);
@@ -796,137 +1014,10 @@ public class SqlConnection {
 	}
 
 	/**
-	 * When called, this method will return the list of offers and store them as
-	 * a type offer.
-	 * 
-	 * @return offers
-	 */
-	public ObservableList<Product> getListOfOffers() {
-
-		openConnection();
-
-		offers = FXCollections.observableArrayList();
-
-		String query = "SELECT * FROM offers;";
-
-		try {
-			ResultSet results = sendQuery(query);
-
-			Offer offer = new Offer();
-			Product product = new Product();
-
-			while (results.next()) {
-
-				product = getSpecificProduct("productID", String.valueOf(results.getInt("ProductId")), "1");
-
-				if (!(product == null)) {
-					// get Offer id
-					offer.setOfferId(results.getInt("OfferID"));
-
-					// get Product id
-					offer.setProductId(results.getInt("ProductID"));
-
-					// get Price
-					offer.setOfferPrice(results.getFloat("OfferPrice"));
-					product.setOfferPrice(results.getFloat("OfferPrice"));
-
-					float savings = product.getPrice() - product.getOfferPrice();
-
-					product.setSavings(savings);
-
-					offers.add(product);
-				} else {
-					return null;
-				}
-			}
-
-			closeConnection();
-			return offers;
-
-		} catch (SQLException e) {
-
-			SmartTrolleyToolBox.print("Offers could not be found");
-			return null;
-		}
-
-	}
-
-	/**
-	 * When called, it will return a the customers list filtered by a selected category
-	 * @param listID
-	 * @param categoryNumber
-	 * @return
-	 */
-	public ObservableList<Product> getListByCategory(int listID, String categoryNumber) {
-		openConnection();
-
-		Product product = new Product();
-		products = FXCollections.observableArrayList();
-
-		String query = "SELECT * FROM lists_products WHERE listID = " + listID;
-		SmartTrolleyToolBox.print("query is: " + query);
-
-		ResultSet productIDsInList = null;
-
-		try {
-			productIDsInList = sendQuery(query);
-
-		} catch (SQLException e) {
-			SmartTrolleyToolBox.print("lists could not be found");
-
-		}
-
-		try {
-
-			ResultSet listProducts = null;
-
-			while (productIDsInList.next()) {
-
-				SmartTrolleyToolBox.print(productIDsInList.getInt("ProductID"));
-				query = "SELECT * FROM products WHERE ProductID = '" + productIDsInList.getInt("ProductID") + "' AND CategoryID = '" + categoryNumber + "';";
-				SmartTrolleyToolBox.print("query is: " + query);
-				listProducts = sendQuery(query);
-				SmartTrolleyToolBox.print("Query Sent");
-
-				SmartTrolleyToolBox.print("Initializing Product");
-
-				boolean emptySet = isResultSetEmpty(listProducts);
-
-				if (!emptySet) {
-
-					listProducts.absolute(1);
-
-					do {
-
-						SmartTrolleyToolBox.print("Found Item to be stored");
-
-						product = createProductFromResultSet(listProducts);
-						products.add(product);
-
-						SmartTrolleyToolBox.print("Product Stored");
-
-						SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " " + product.getFavorite());
-					} while (listProducts.next());
-				} else {
-					SmartTrolleyToolBox.print("empty result, moving to next item");
-				}
-			}
-		} catch (SQLException e) {
-			SmartTrolleyToolBox.print("Product could not be found");
-			return null;
-		}
-
-		closeConnection();
-		return products;
-
-	}
-
-	/**
-	 * Method returns the list of category names. Could be modified to return a
-	 * list of Categories if needed in future
-	 * 
-	 * @return
-	 */
+	* Method returns the list of category names. Used to display category names in GUI
+	*@return ObservableList<String>
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	public ObservableList<String> getListOfCategories() {
 
 		openConnection();
@@ -951,17 +1042,14 @@ public class SqlConnection {
 	}
 
 	/**
-	 * Checks to see if the result set is empty. Returns true if it is.
-	 * <p>
-	 * N/A
-	 * 
+	 * Checks to see if the result set is empty. Returns true if it is
 	 * @param resultSet
 	 * @return boolean empty
 	 * @see 
-	 *      [http://stackoverflow.com/questions/2938812/how-to-find-out-if-a-java
-	 *      -resultset-obtained-is-empty]
-	 *      <p>
-	 *      Date Modified: 4 May 2014
+	 * [http://stackoverflow.com/questions/2938812/how-to-find-out-if-a-java
+	 * -resultset-obtained-is-empty]
+	 *  <p>
+	 *  Date Modified: 4 May 2014
 	 */
 	public static boolean isResultSetEmpty(ResultSet resultSet) {
 		boolean empty = true;
@@ -978,80 +1066,12 @@ public class SqlConnection {
 	}
 
 	/**
-	 * Retrieves the list items from the SQL server
-	 * <p> User can view list of lists
-	 * @param listID
-	 * @return <p>
-	 *         Date Modified: 9 May 2014
-	 */
-	public ObservableList<Product> getList(int listID) {
-		openConnection();
-
-		products = FXCollections.observableArrayList();
-
-		String query = "SELECT * FROM lists_products WHERE listID = " + listID;
-		SmartTrolleyToolBox.print("query is: " + query);
-
-		ResultSet productIDsInList = null;
-
-		try {
-			productIDsInList = sendQuery(query);
-
-		} catch (SQLException e) {
-			SmartTrolleyToolBox.print("lists could not be found");
-
-		}
-
-		try {
-
-			ResultSet listProducts;
-
-			while (productIDsInList.next()) {
-
-				query = "SELECT * FROM products WHERE ProductID = " + productIDsInList.getInt("ProductID");
-				SmartTrolleyToolBox.print("query is: " + query);
-
-				listProducts = sendQuery(query);
-
-				SmartTrolleyToolBox.print("Query Sent");
-
-				Product product = new Product();
-				SmartTrolleyToolBox.print("Initializing Product");
-
-				SmartTrolleyToolBox.print(isResultSetEmpty(listProducts));
-
-				listProducts.absolute(1);
-
-				SmartTrolleyToolBox.print("Row Size is = " + listProducts.getRow());
-
-				product = createProductFromResultSet(listProducts);
-				SmartTrolleyToolBox.print("Product Set");
-
-				products.add(product);
-
-				SmartTrolleyToolBox.print("Product Stored");
-
-				SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " " + product.getFavorite());
-
-			}
-		} catch (SQLException e) {
-			SmartTrolleyToolBox.print("Product could not be found");
-			return null;
-		}
-
-		closeConnection();
-		return products;
-
-	}
-
-	/**
-	 * This class will filter the list by category and return what products in
-	 * that list are in a selected category
-	 * 
-	 * @param listID
-	 * @param categoryNumber
-	 * @return products
-	 */
+	* This class will filter the list of offers by category and return the
+	* corresponding products
+	*@param categoryNumber
+	*@return ObservableList<Product>
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	public ObservableList<Product> getOfferByCategory(String categoryNumber) {
 		Offer offer = new Offer();
 		Product product = new Product();
@@ -1107,7 +1127,7 @@ public class SqlConnection {
 	}
 
 	/**
-	 * executes statement to SQL server, allow for creation and deleted of
+	 * executes statement to SQL server, allow for creation and deletion of
 	 * further lists and tables
 	 * Connection needs to be opened and closed externally to this method
 	 * @param query
@@ -1133,13 +1153,16 @@ public class SqlConnection {
 	}
 
 	/**
-	 * Creates a new product with a title and defaults for other fields
-	 * returns the id of the added product
-	 * @param Title
-	 * @param id
-	 * @return productid
-	 * @throws SQLException
-	 */
+	* add a new product to the database with all relevant info provided
+	*@param Title
+	*@param id
+	*@param Image
+	*@param Price
+	*@param CategoryID
+	*@param IsFavourite
+	*@return int productid of created product
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	public int createNewProduct(String Title, int id, String Image, double Price, int CategoryID, int IsFavourite) {
 
 		int productid = 0, categoryID = 0;
@@ -1170,7 +1193,7 @@ public class SqlConnection {
 			results.absolute(1);
 			productid = results.getInt("ProductID");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -1180,8 +1203,9 @@ public class SqlConnection {
 	}
 
 	/**
-	 * Deletes the last product in the product list and resets the auto increment 
-	 */
+	* Deletes the last product in the product list and resets the auto increment
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	public void deleteLastProduct() {
 
 		openConnection();
@@ -1194,7 +1218,7 @@ public class SqlConnection {
 			results.absolute(1);
 			productid = results.getInt("ProductID");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -1208,10 +1232,11 @@ public class SqlConnection {
 	}
 
 	/**
-	 * 
-	 * @param enteredListName
-	 * @return listid
-	 */
+	* creates a new list with a specified name and returns its id
+	*@param enteredListName
+	*@return int listid of created list
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	public int createNewList(String enteredListName) {
 
 		int listid = 0;
@@ -1229,7 +1254,7 @@ public class SqlConnection {
 			results.absolute(1);
 			listid = results.getInt("ListID");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -1239,8 +1264,9 @@ public class SqlConnection {
 	}
 
 	/**
-	 * Deletes the last list in the List of lists and resets the auto increment
-	 */
+	* Deletes the last list in the List of lists and resets the auto increment
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	public void deleteLastList() {
 
 		int listid = 0;
@@ -1255,7 +1281,7 @@ public class SqlConnection {
 			results.absolute(1);
 			listid = results.getInt("ListID");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -1272,9 +1298,11 @@ public class SqlConnection {
 	}
 
 	/**
-	 * adds product to a list 
-	 * @param productid
-	 */
+	* adds the product with a specified product id to a specified list
+	*@param productid
+	*@param listid
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	public void addProductToList(int productid, int listid) {
 
 		openConnection();
@@ -1286,10 +1314,9 @@ public class SqlConnection {
 	}
 
 	/**
-	 * provides public access to close the productsDatabase
-	 * 
-	 * @throws SQLException
-	 */
+	* provides public access to close the productsDatabase
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	public void closeConnection() {
 		try {
 			connection.close();
@@ -1299,12 +1326,5 @@ public class SqlConnection {
 		}
 	}
 
-	/**
-	 * Compiles a valid URL from the connection info provided
-	 */
-	private void compileUrl() {
-		// construct the url assuming use of mysql and the standard port.
-		url = "jdbc:mysql://" + IP + "/" + USERNAME + "?";
-	}
-
 }
+/**************End of SqlConnection**************/

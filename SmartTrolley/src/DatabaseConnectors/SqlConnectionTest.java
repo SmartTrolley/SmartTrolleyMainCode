@@ -19,7 +19,10 @@ import toolBox.SmartTrolleyToolBox;
 
 /**
  * @author Thomas & Sam
+ * @author V2.0 Prashant [Final Refactoring and commenting]
  * Test case for testing the SqlConnection
+ * 
+* @version V2.0 [Date Created: 6 Jun 2014] 
  * 
  */
 public class SqlConnectionTest {
@@ -31,25 +34,30 @@ public class SqlConnectionTest {
 	public String query;
 
 	/**
-	 * Creates an instance of SqlConnection before the tests are performed
-	 */
+	* Creates an instance of SqlConnection before the tests are performed
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	@Before
 	public void setup() {
 		productsDatabase = new SqlConnection();
 		productsDatabase.openConnection();
 	}
 
+	/**
+	* THis method runs after every test, and cleans up after the test 
+	* Closes the connection after all tests are run
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	@After
-
 	public  void tearDown(){
 		productsDatabase.closeConnection();
 	}
 	
 	/**
-	 * Tests for an instance of connection and that the connection is not closed
-	 * 
-	 * @throws SQLException
-	 */
+	* Tests for an instance of connection and that the connection is not closed
+	*@throws SQLException
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	@Test
 	public void connectionOpenTest() throws SQLException {
 
@@ -59,12 +67,12 @@ public class SqlConnectionTest {
 	}
 
 	/**
-	 * Sends and example query to the database Checks that the database returns
-	 * something then tests that the returned values are correct for the sent
-	 * query
-	 * 
-	 * @throws SQLException
-	 */
+	* Sends and example query to the database Checks that the database returns
+	* something then tests that the returned values are correct for the sent
+	* query
+	*@throws SQLException
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	@Test
 	public void sendQueryTest() throws SQLException {
 
@@ -91,7 +99,6 @@ public class SqlConnectionTest {
 
 			// get Price
 			product.setPrice(results.getFloat("Price"));
-
 		}
 
 		assertEquals(product.getId(), 1);
@@ -103,8 +110,9 @@ public class SqlConnectionTest {
 	}
 
 	/**
-	 * Tests that the database returns the correct information corresponding to a product when queried by name
-	 */
+	* Tests that the database returns the correct category number when a category name is given
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	@Test
 	public void getSpecificCategoryNumberTest() {
 		SmartTrolleyToolBox.print("\n getSpecificCategoryNumberTest Start ---------------\n");
@@ -119,6 +127,7 @@ public class SqlConnectionTest {
 	/**
 	 * Test that the database returns the correct information corresponding to a
 	 * product when queried by name
+	 * <p> Date Modified: 6 Jun 2014
 	 */
 	@Test
 	public void getProductByNameTest() {
@@ -160,9 +169,7 @@ public class SqlConnectionTest {
 
 	/**
 	 * Test that getListOfFavourites by sending a category number
-	 * 
 	 * first test - "1" should return all favourites
-	 * 
 	 * second test - "3" should return all favourties in that category.
 	 */
 	@Test
@@ -215,6 +222,7 @@ public class SqlConnectionTest {
 		assert (product.getPrice() == 3.88);
 	}
 
+	
 	/**
 	 * Test getList() to ensure it returns the contents of a List
 	 */
@@ -237,7 +245,7 @@ public class SqlConnectionTest {
 
 	/**
 	 * Test getListByCategory to ensure that it returns a filtered version of a
-	 * list by a selected category
+	 * list by a selected category. This is printed out to the console and visually compared
 	 */
 	@Test
 	public void getListByCategoryTest() {
@@ -260,6 +268,7 @@ public class SqlConnectionTest {
 	/**
 	 * Test that the getListOfOffers() returns the full list of offers from the
 	 * database by printing it to the console and then comparing it.
+	 * <p> User Story: User views products
 	 */
 	@Test
 	public void getListOfOffersTest() {
@@ -282,9 +291,11 @@ public class SqlConnectionTest {
 	}
 
 	/**
-	 * Test that the getOfferByCatergory returns a filtered list of the offers available
-	 */
-
+	* Test that the getOfferByCatergory returns a filtered list of the offers available.
+	* This is then printed to the console and visually compared to the actual data
+	* <p> User Story: User views products 
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	@Test
 	public void getOffersByCategoryTest() {
 		SmartTrolleyToolBox.print("\n getOffersByCategoryTest Start ---------------\n");
@@ -321,15 +332,17 @@ public class SqlConnectionTest {
 	}
 	
 	/**
-	 * 
-	 */
+	* Test that creates a new product, searches for it in the database, then prints the productid to the console
+	* This value is then visually compared, and the product is deleted.
+	*<p> Date Modified: 6 Jun 2014
+	*/
 	@Test
 	public void createProductTest(){
 		SqlConnection sqlConnector = new SqlConnection();
 		
-		int test = sqlConnector.createNewProduct("TestProduct", 1, null, 0, 1, 0);	
+		int createdProductID = sqlConnector.createNewProduct("TestProduct", 1, null, 0, 1, 0);	
 		
-		SmartTrolleyToolBox.print(test);
+		SmartTrolleyToolBox.print(createdProductID);
 		
 		sqlConnector.deleteLastProduct();
 	}

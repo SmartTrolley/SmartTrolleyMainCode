@@ -6,23 +6,24 @@ Overall document style
 @import url('resources/fonts/dejavu.css');
 
 body {
-    background-color:#ffffff;
+    background-color:#F6F6F6;
     color:#353833;
-    font-family:'DejaVu Sans', Arial, Helvetica, sans-serif;
+    /* font-family:'DejaVu Sans', Arial, Helvetica, sans-serif; */
+    font-family:'Calibri', Arial, Helvetica, sans-serif;
     font-size:14px;
     margin:0;
 }
 a:link, a:visited {
     text-decoration:none;
-    color:#4A6782;
+    color:#2B2B2B;
 }
 a:hover, a:focus {
     text-decoration:none;
-    color:#bb7a2a;
+    color:#DE1B1B;
 }
 a:active {
     text-decoration:none;
-    color:#4A6782;
+    color:#2B2B2B;
 }
 a[name] {
     color:#353833;
@@ -32,7 +33,8 @@ a[name]:hover {
     color:#353833;
 }
 pre {
-    font-family:'DejaVu Sans Mono', monospace;
+    /* font-family:'DejaVu Sans Mono', monospace; */
+    font-family:'Courier New', monospace;
     font-size:14px;
 }
 h1 {
@@ -40,6 +42,7 @@ h1 {
 }
 h2 {
     font-size:18px;
+	font-family:'Arial Narrow', Arial;
 }
 h3 {
     font-size:16px;
@@ -58,19 +61,22 @@ ul {
     list-style-type:disc;
 }
 code, tt {
-    font-family:'DejaVu Sans Mono', monospace;
+    /* font-family:'DejaVu Sans Mono', monospace; */
+    font-family:'Courier New', monospace;
     font-size:14px;
     padding-top:4px;
     margin-top:8px;
     line-height:1.4em;
 }
 dt code {
-    font-family:'DejaVu Sans Mono', monospace;
+    /* font-family:'DejaVu Sans Mono', monospace; */
+    font-family:'Courier New', monospace;
     font-size:14px;
     padding-top:4px;
 }
 table tr td dt code {
-    font-family:'DejaVu Sans Mono', monospace;
+    /* font-family:'DejaVu Sans Mono', monospace; */
+    font-family:'Courier New', monospace;
     font-size:14px;
     vertical-align:top;
     padding-top:4px;
@@ -101,7 +107,7 @@ Document title and Copyright styles
     text-decoration:none;
 }
 .bar a:hover, .bar a:focus {
-    color:#bb7a2a;
+    color:#00ff00;
 }
 .tab {
     background-color:#0066FF;
@@ -114,28 +120,36 @@ Document title and Copyright styles
 Navigation bar styles
 */
 .bar {
-    background-color:#4D7A97;
+    /* background-color:#4D7A97; */
+    background-color:#2B2B2B;
     color:#FFFFFF;
     padding:.8em .5em .4em .8em;
     height:auto;/*height:1.8em;*/
-    font-size:11px;
+    font-size:13px;
     margin:0;
 }
 .topNav {
-    background-color:#4D7A97;
-    color:#FFFFFF;
+    /* background-color:#4D7A97; */
+    background-color:#F6F6F6;
+    background-image: url(logo.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50%, 50%;
+    color:#000000;
     float:left;
-    padding:0;
+    /*padding:0;*/
     width:100%;
     clear:right;
     height:2.8em;
-    padding-top:10px;
+    /*height: 10px;*/
+    padding-top:150px;
     overflow:hidden;
     font-size:12px; 
 }
 .bottomNav {
     margin-top:10px;
-    background-color:#4D7A97;
+    /* background-color:#4D7A97; */
+    background-color:#2B2B2B;
     color:#FFFFFF;
     float:left;
     padding:0;
@@ -168,26 +182,52 @@ ul.navList li{
     list-style:none;
     float:left;
     padding: 5px 6px;
-    text-transform:uppercase;
+	font-family:"Franklin Gothic Book", Arial;
+    font-size:13px;
+    font-weight: bold;
+	/* text-transform:uppercase; */
 }
 ul.subNavList li{
     list-style:none;
     float:left;
 }
-.topNav a:link, .topNav a:active, .topNav a:visited, .bottomNav a:link, .bottomNav a:active, .bottomNav a:visited {
-    color:#FFFFFF;
+.topNav a:link, .topNav a:active, .topNav a:visited {
+    font-family:"Franklin Gothic Book", Arial;
+    font-weight: bold;
+    font-size:13px;
+    color:#000000;
     text-decoration:none;
-    text-transform:uppercase;
+    /* text-transform:uppercase; */
 }
-.topNav a:hover, .bottomNav a:hover {
+.topNav a:hover {
+    /* text-decoration:none; */
+    text-decoration:underline;
+    /* color:#bb7a2a; */
+    color:#DE1B1B;
+    /* text-transform:uppercase; */
+}
+.bottomNav a:link, .bottomNav a:active, .bottomNav a:visited {
+    font-family:"Franklin Gothic Book", Arial;
+	font-size:13px;
+	color:#ffffff;
     text-decoration:none;
-    color:#bb7a2a;
-    text-transform:uppercase;
+    /* text-transform:uppercase; */
 }
+.bottomNav a:hover {
+    /* text-decoration:none; */
+    text-decoration:underline;
+    /* color:#bb7a2a; */
+    color:#DE1B1B;
+    /* text-transform:uppercase; */
+}
+
+
 .navBarCell1Rev {
-    background-color:#F8981D;
-    color:#253441;
-    margin: auto 5px;
+    /* background-color:#F8981D; */
+    /* color:#253441; */
+    /* margin: auto 5px; */
+	text-decoration:underline;
+    font-weight: bold;
 }
 .skipNav {
     position:absolute;
@@ -214,7 +254,8 @@ Page header and footer styles
     font-size:13px;
 }
 .title {
-    color:#2c4557;
+	font-family: "Arial Narrow", Arial;
+    color:#2B2B2B;
     margin:10px 0;
 }
 .subTitle {
@@ -287,7 +328,8 @@ Page layout container styles
 .contentContainer .description dl dd, .contentContainer .details dl dd, .serializedFormContainer dl dd {
     margin:5px 0 10px 0px;
     font-size:14px;
-    font-family:'DejaVu Sans Mono',monospace;
+    /* font-family:'DejaVu Sans Mono',monospace; */
+    font-family:'Courier New',monospace;
 }
 .serializedFormContainer dl.nameValue dt {
     margin-left:1px;
@@ -368,18 +410,21 @@ Table styles
 }
 .overviewSummary caption, .memberSummary caption, .typeSummary caption,
 .useSummary caption, .constantsSummary caption, .deprecatedSummary caption {
-    position:relative;
-    text-align:left;
-    background-repeat:no-repeat;
-    color:#253441;
-    font-weight:bold;
-    clear:none;
+    /* position:relative; */
+    /* text-align:left; */
+    /* background-repeat:no-repeat; */
+    /* color:#253441; */
+    color:#ffffff;
+	font-family: "Franklin Gothic Book", Arial;
+	/* font-family: "Arial"; */
+    /* font-weight:bold; */
+    /* clear:none; */
     overflow:hidden;
     padding:0px;
     padding-top:10px;
     padding-left:1px;
     margin:0px;
-    white-space:pre;
+    /* white-space:pre; */
 }
 .overviewSummary caption a:link, .memberSummary caption a:link, .typeSummary caption a:link,
 .useSummary caption a:link, .constantsSummary caption a:link, .deprecatedSummary caption a:link,
@@ -389,20 +434,23 @@ Table styles
 .useSummary caption a:active, .constantsSummary caption a:active, .deprecatedSummary caption a:active,
 .overviewSummary caption a:visited, .memberSummary caption a:visited, .typeSummary caption a:visited,
 .useSummary caption a:visited, .constantsSummary caption a:visited, .deprecatedSummary caption a:visited {
-    color:#FFFFFF;
+    /* blabla */
+	color:#0000ff;
 }
 .overviewSummary caption span, .memberSummary caption span, .typeSummary caption span,
 .useSummary caption span, .constantsSummary caption span, .deprecatedSummary caption span {
     white-space:nowrap;
     padding-top:5px;
-    padding-left:12px;
-    padding-right:12px;
+    /* padding-left:12px; */
+    /* padding-right:12px; */
     padding-bottom:7px;
     display:inline-block;
-    float:left;
-    background-color:#F8981D;
+    float:center;
+    /* background-color:#F8981D; */
+    background-color:#2B2B2B;
     border: none;
     height:16px;
+	width:100%;
 }
 .memberSummary caption span.activeTableTab span {
     white-space:nowrap;
@@ -475,6 +523,7 @@ td.colOne, td.colFirst, td.colLast, .useSummary td, .constantsSummary td{
 th.colFirst, th.colLast, th.colOne, .constantsSummary th {
     background:#dee3e9;
     text-align:left;
+	font-family:"Franklin Gothic Book", Arial;
     padding:8px 3px 3px 7px;
 }
 td.colFirst, th.colFirst {
@@ -496,7 +545,8 @@ td.colOne, th.colOne {
     vertical-align:top;
 }
 td.colOne a:link, td.colOne a:active, td.colOne a:visited, td.colOne a:hover, td.colFirst a:link, td.colFirst a:active, td.colFirst a:visited, td.colFirst a:hover, td.colLast a:link, td.colLast a:active, td.colLast a:visited, td.colLast a:hover, .constantValuesContainer td a:link, .constantValuesContainer td a:active, .constantValuesContainer td a:visited, .constantValuesContainer td a:hover {
-    font-weight:bold;
+    /* font-weight:bold; */
+	font-family: "Calibri", Arial;
 }
 .tableSubHeadingColor {
     background-color:#EEEEFF;
@@ -524,10 +574,11 @@ Content styles
 ul.blockList ul.blockList ul.blockList li.blockList h3 {
     font-style:normal;
 }
-
+/* blabla */
 div.block {
-    font-size:14px;
-    font-family:'DejaVu Serif', Georgia, "Times New Roman", Times, serif;
+    /* font-size:14px; */
+    /* font-family:'DejaVu Serif', Georgia, "Times New Roman", Times, serif; */
+    font-family:'Franklin Gothic Book', Arial;
 }
 
 td.colLast div {

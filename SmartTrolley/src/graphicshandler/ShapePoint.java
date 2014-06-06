@@ -1,7 +1,5 @@
 package graphicshandler;
 
-
-
 /** 
 *
 * SmartTrolley
@@ -10,15 +8,23 @@ package graphicshandler;
 * @author Matthew Wells
 * @author Alasdair Munday
 *
-* @author [Checked By:] [Checker(s) fill here]
+* @author [Checked By:] [Prashant Chakravarty - 06/06/14]
 *
 * @version [v1.0] [Date Created: 25/04/2014]
 */
 public class ShapePoint implements Comparable<ShapePoint> {
 	
+	
+	/**Shape x-coordinate*/
 	private int xCoordinate;
+	
+	
+	/**Shape y-coordinate*/
 	private int yCoordinate;
+	
+	/**The point number of the point*/
 	private int pointNumber;
+	
 	
 	/**
 	 * @param xCoordinate
@@ -27,13 +33,13 @@ public class ShapePoint implements Comparable<ShapePoint> {
 	 */
 	public ShapePoint(int xCoordinate, int yCoordinate, int pointNumber) {
 		this.pointNumber = pointNumber;
-		this.setxCoordinate(xCoordinate);
-		this.setyCoordinate(yCoordinate);
+		setxCoordinate(xCoordinate);
+		setyCoordinate(yCoordinate);
 	}
 	
 	
 	/**ShapePoints should be organised by pointNumber when used to draw a shape
-	 * 
+	 * This method makes sure the points are added to the shape in order
 	 * Required by Comparable Interface:
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 * <p> Date Modified: 25 Apr 2014
@@ -55,7 +61,6 @@ public class ShapePoint implements Comparable<ShapePoint> {
 
 	/**
 	*Set the X coordinate of the point
-	*<p>C
 	*@param xCoordinate
 	*<p> Date Modified: 25 Apr 2014
 	*/
@@ -76,10 +81,8 @@ public class ShapePoint implements Comparable<ShapePoint> {
 
 	/**
 	*Set the Y coordinate of the point
-	*<p>C
 	*@param yCoordinate
-	*<p> Date Modified: 25 Apr 2014
-	
+	*<p> Date Modified: 25 Apr 2014	
 	*/
 	public void setyCoordinate(int yCoordinate) {
 		this.yCoordinate = yCoordinate;

@@ -1,11 +1,3 @@
-/*
- * Programmer: Roger Tan & Zayyad Tagwai
- * 
- * Date Created: 01/03/2014
- * 
- * Description: Test class for the MediaControl class.
- */
-
 package videohandler;
 
 import static org.junit.Assert.assertEquals;
@@ -25,6 +17,13 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+/**
+ * Programmer: Roger Tan & Zayyad Tagwai
+ * 
+ * Date Created: 01/03/2014
+ * 
+ * Description: Test class for the MediaControl class.
+ */
 public class MediaControlTest {
 
 

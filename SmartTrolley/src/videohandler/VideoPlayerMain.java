@@ -1,11 +1,3 @@
-/*
- * Programmer: Roger Tan & Zayyad Tagwai
- * 
- * Date Created: 01/03/2014
- * 
- * Description: Main class to run the VideoHandler class for demonstration purposes.
- */
-
 package videohandler;
 
 import javafx.application.Application;
@@ -16,9 +8,16 @@ import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+/**
+ * Programmer: Roger Tan & Zayyad Tagwai
+ * 
+ * Date Created: 01/03/2014
+ * 
+ * Description: Main class to run the VideoHandler class for demonstration purposes.
+ */
 public class VideoPlayerMain extends Application {
 	
-	/* 
+	/** 
 	 * Launch the application
 	 * 
 	 * @param args The string of arguments to be passed to the launch method
@@ -27,7 +26,7 @@ public class VideoPlayerMain extends Application {
         launch(args);
     }
      
-    /*
+    /**
      * Call a new VideoHandler instance and add this to the primary stage
      * 
      * @param primaryStage The stage for handlers to be added to.
@@ -53,8 +52,6 @@ public class VideoPlayerMain extends Application {
         primaryStage.setFullScreen(true);
         primaryStage.show(); 
         
-        slideVideo.show();
-        
-        
+        slideVideo.show();        
     }
 }

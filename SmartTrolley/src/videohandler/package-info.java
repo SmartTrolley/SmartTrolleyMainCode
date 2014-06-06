@@ -1,20 +1,12 @@
 /**
  * SmartTrolley
  *
- * A DESCRIPTION OF THE FILE
+ * Package containing the video handler written by Spoon, and the wrapper written by Alasdair
  *
- * @author Name1
- * @author Name2
- *
- * @author Checked By: Checker(s) fill here
- *
- * @version version of this file [Date Created: 5 May 2014]
- */
-
-/*YOUR CODE HERE*/
-
-/**************End of package-info.java**************/
-/**
+ * @author Alasdair Munday
+ * @author Roger Tan
+ * @author Zayyad Tagwai
  *
  */
 package videohandler;
+/**************End of package-info.java**************/
