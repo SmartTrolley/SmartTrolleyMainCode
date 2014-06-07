@@ -15,6 +15,7 @@ package imagehandler;
 import graphicshandler.SlideElementDuration;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import toolBox.SmartTrolleyToolBox;
 
 /**
  * @author Alasdair
@@ -43,6 +44,7 @@ public class SlideImage extends ImageView{
 		try{
 		this.setImage(new Image(url));
 		}catch(IllegalArgumentException e){
+			SmartTrolleyToolBox.print("Could not fin image at url: "+url);
 			this.setImage(new Image("http://th03.deviantart.net/fs70/PRE/i/2013/077/8/9/cookie_monster_by_xenia_cat-d5yhjwj.jpg"));
 		}
 		

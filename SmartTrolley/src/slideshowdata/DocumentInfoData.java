@@ -54,11 +54,7 @@ public class DocumentInfoData implements DataType{
 	
 	public int getListId() {
 		return listid;
-	}
-//	public String getNoList() {
-//		return noList;
-//	}
-	
+	}	
 	
 	
 	public void setAuthor(String author) {

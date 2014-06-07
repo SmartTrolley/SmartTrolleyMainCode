@@ -14,6 +14,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import smarttrolleygui.ListProduct;
 import smarttrolleygui.Product;
 import toolBox.SmartTrolleyToolBox;
 
@@ -28,8 +29,8 @@ import toolBox.SmartTrolleyToolBox;
 public class SqlConnectionTest {
 
 	private static SqlConnection productsDatabase;
-	private ObservableList<Product> products;
-	private ObservableList<Product> offers;
+	private ObservableList<ListProduct> products;
+	private ObservableList<ListProduct> offers;
 
 	public String query;
 
@@ -101,7 +102,7 @@ public class SqlConnectionTest {
 			product.setPrice(results.getFloat("Price"));
 		}
 
-		assertEquals(product.getId(), 1);
+		assertEquals(product.getID(), 1);
 		assertEquals(product.getName(), "Ariel 3in1 Pods Colour & Style");
 
 		assertEquals(product.getImage(), "img/SampleProducts/ariel.jpg");
@@ -136,7 +137,7 @@ public class SqlConnectionTest {
 		// retrieve results from server
 		Product product = productsDatabase.getProductByName("Cravendale Pure Whole Milk (2L)");
 
-		assertEquals(product.getId(), 2);
+		assertEquals(product.getID(), 2);
 
 		assertEquals(product.getName(), "Cravendale Pure Whole Milk (2L)");
 		assertEquals(product.getImage(), "img/SampleProducts/cravendale_2L_milk.jpg");
@@ -154,15 +155,15 @@ public class SqlConnectionTest {
 	public void getListOfProductsTest() throws SQLException {
 		SmartTrolleyToolBox.print("\n getListOfProductsTest Start ---------------\n");
 
-		products = productsDatabase.getListOfProducts();
+		ObservableList<ListProduct> listProducts = productsDatabase.getListOfAllProducts();
 
-		assertNotNull(products);
+		assertNotNull(listProducts);
 		Product product;
 		int i = 0;
-		while (i < products.size()) {
+		while (i < listProducts.size()) {
 
-			product = products.get(i);
-			SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
+			product = listProducts.get(i);
+			SmartTrolleyToolBox.print(product.getID() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
 			i++;
 		}
 	}
@@ -187,7 +188,7 @@ public class SqlConnectionTest {
 
 			product = products.get(i);
 
-			SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + "  " + product.getOfferPrice());
+			SmartTrolleyToolBox.print(product.getID() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + "  " + product.getOfferPrice());
 			i++;
 		}
 
@@ -198,7 +199,7 @@ public class SqlConnectionTest {
 
 			product = products.get(i);
 
-			SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + "  " + product.getOfferPrice());
+			SmartTrolleyToolBox.print(product.getID() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + "  " + product.getOfferPrice());
 			i++;
 		}
 	
@@ -216,7 +217,7 @@ public class SqlConnectionTest {
 
 		product = productsDatabase.getSpecificProduct("productID", "5", "1");
 
-		assertEquals(product.getId(), 5);
+		assertEquals(product.getID(), 5);
 		assertEquals(product.getName(), "Innocent Vietnamese Noodles Pot");
 		assertEquals(product.getImage(), "img/SampleProducts/innocent_noodle_pot.jpg");
 		assert (product.getPrice() == 3.88);
@@ -230,7 +231,7 @@ public class SqlConnectionTest {
 	public void getListTest() {
 		SmartTrolleyToolBox.print("\n getListTest Start ---------------\n");
 
-		products = productsDatabase.getList(1);
+		products = productsDatabase.getListOfProductsInList(1);
 		assertNotNull(products);
 		Product product;
 		int i = 0;
@@ -238,7 +239,7 @@ public class SqlConnectionTest {
 
 			product = products.get(i);
 
-			SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
+			SmartTrolleyToolBox.print(product.getID() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
 			i++;
 		}
 	}
@@ -259,7 +260,7 @@ public class SqlConnectionTest {
 
 			product = products.get(i);
 
-			SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
+			SmartTrolleyToolBox.print(product.getID() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice());
 			i++;
 		}
 
@@ -282,7 +283,7 @@ public class SqlConnectionTest {
 
 			product = offers.get(j);
 
-			SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + "  " + product.getOfferPrice() + "  "
+			SmartTrolleyToolBox.print(product.getID() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + "  " + product.getOfferPrice() + "  "
 					+ product.getSavings());
 
 			j++;
@@ -309,7 +310,7 @@ public class SqlConnectionTest {
 
 			product = products.get(i);
 
-			SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " " + product.getOfferPrice());
+			SmartTrolleyToolBox.print(product.getID() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " " + product.getOfferPrice());
 
 			i++;
 		}

@@ -16,6 +16,7 @@ package smarttrolleygui;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,10 +40,10 @@ public class SmartTrolleyGUI extends Application {
 	private static Stage stage;
 
 	/**Maximum height of the stage*/
-	private final double MIN_WINDOW_WIDTH = 600.0;
+	public final static double MIN_WINDOW_WIDTH = 600.0;
 
 	/**Minimum height of the stage*/
-	private final double MIN_WINDOW_HEIGHT = 600.0;
+	public final static double MIN_WINDOW_HEIGHT = 600.0;
 
 	/**The list ID of the displayed list*/
 	private static int currentListID = 0;
@@ -73,11 +74,6 @@ public class SmartTrolleyGUI extends Application {
 
 	public ShoppingListController shoppingList;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javafx.application.Application#start(javafx.stage.Stage)
-	 */
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -206,6 +202,9 @@ public class SmartTrolleyGUI extends Application {
 			Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
 			System.exit(-1);
 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -253,7 +252,8 @@ public class SmartTrolleyGUI extends Application {
 			if (getNewList){
 				SmartTrolleyToolBox.print("This is a new list, downloading it.");*/
 			DataDownloader dataDownloader = new DataDownloader();
-			slideShow = new SlideShow(dataDownloader.populateSlideshow(SmartTrolleyGUI.getcurrentListID()), productScreen.getProductAnchorPane());
+			slideShow = new SlideShow(dataDownloader.populateSlideshow(SmartTrolleyGUI.getcurrentListID()), productScreen.getProductAnchorPane());			
+			
 			productScreen.setSlideShow(slideShow);	
 			/*getNewList=false;
 			oldSlideShow = slideShow;

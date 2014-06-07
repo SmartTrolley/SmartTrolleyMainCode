@@ -151,14 +151,14 @@ public class ControllerGeneral {
 	/**
 	 * setUpCellValueFactory generates the cell value factories for interactive table cells,
 	 * i.e. cells with buttons, checkboxes, etc.
-	 * @param tableColumn - column whose cells the cellValueFactory will be applied to
+	 * @param column - column whose cells the cellValueFactory will be applied to
 	 * Date Modified: 21 May 2014
 	 */
-	protected static void setUpCellValueFactory(TableColumn<Product, Product> tableColumn) {
-		tableColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+	protected static void setUpCellValueFactory(TableColumn<ListProduct, ListProduct> column) {
+		column.setCellValueFactory(new Callback<CellDataFeatures<ListProduct, ListProduct>, ObservableValue<ListProduct>>() {
 			@Override
-			public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
-				return new ReadOnlyObjectWrapper<Product>(features.getValue());
+			public ObservableValue<ListProduct> call(CellDataFeatures<ListProduct, ListProduct> features) {
+				return new ReadOnlyObjectWrapper<ListProduct>(features.getValue());
 			}
 		});
 	}
@@ -171,15 +171,15 @@ public class ControllerGeneral {
 	 * @param checkBoxColumn - column whose cells the cellFactory will be applied to
 	 * Date Modified: 21 May 2014
 	 */
-	public static void setUpCheckBoxCellFactory(TableColumn<Product, Product> checkBoxColumn) {
-		checkBoxColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+	public static void setUpCheckBoxCellFactory(TableColumn<ListProduct, ListProduct> checkBoxColumn) {
+		checkBoxColumn.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
 			@Override
-			public TableCell<Product, Product> call(TableColumn<Product, Product> checkBoxColumn) {
-				return new TableCell<Product, Product>() {
+			public TableCell<ListProduct, ListProduct> call(TableColumn<ListProduct, ListProduct> checkBoxColumn) {
+				return new TableCell<ListProduct, ListProduct>() {
 					final CheckBox checkBox = new CheckBox();
 
 					@Override
-					public void updateItem(final Product product, boolean empty) {
+					public void updateItem(final ListProduct product, boolean empty) {
 						super.updateItem(product, empty);
 						if (product != null) {
 							setGraphic(checkBox);

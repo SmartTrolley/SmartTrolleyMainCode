@@ -3,20 +3,20 @@ package slideshowdata;
 import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
-import smarttrolleygui.Product;
+import smarttrolleygui.ListProduct;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
 public class DataDownloader extends SqlConnection {
 
-	private ObservableList<Product> slides;
+	private ObservableList<ListProduct> slides;
 	private ArrayList<SlideData> slidelist;
 
 	public SlideShowData populateSlideshow(int ListId) {
 
 		int i = 0, index = 0;
 
-		slides = getList(ListId);
+		slides = getListOfProductsInList(ListId);
 
 		ArrayList<SlideData> slidelist = new ArrayList<SlideData>();
 		SlideShowData slideshowdata = new SlideShowData();
@@ -27,7 +27,7 @@ public class DataDownloader extends SqlConnection {
 
 		while (i < slides.size()) {
 
-			int productid = slides.get(i).getId();
+			int productid = slides.get(i).getID();
 
 			SlideData slide = populateSlide(productid);
 
@@ -54,7 +54,7 @@ public class DataDownloader extends SqlConnection {
 
 		ArrayList<TextData> texts = (ArrayList<TextData>) getSpecificData("text", "ProductID", "" + productid);
 
-		while (j < texts.size()) {
+		while (texts!= null && j < texts.size()) {
 			int textno = texts.get(j).getTextNo();
 			ArrayList<TextBodyData> textbodies = (ArrayList<TextBodyData>) getSpecificData("textbody", "TextNo", "" + textno);
 			texts.get(j).setTextbodies(textbodies);

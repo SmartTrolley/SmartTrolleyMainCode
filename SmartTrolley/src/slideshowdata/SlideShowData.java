@@ -1,12 +1,4 @@
-/**
-* SmartTrolley
-*
-* @author Thomas Lea
-*
-* @author Checked By: Checker(s) fill here
-*
-* @version V1.0 [Date Created: 27 May 2014]
-**/
+
 package slideshowdata;
 
 
@@ -16,7 +8,15 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-
+/**
+* SmartTrolley
+*
+* @author Thomas Lea
+*
+* @author Checked By: Checker(s) fill here
+*
+* @version V1.0 [Date Created: 27 May 2014]
+**/
 @Root (name = "slideshow", strict = false)
 public class SlideShowData implements DataType{
 

@@ -35,16 +35,21 @@ public class SlideDataImporter {
 
 	private static Slide importSlide(SlideData slideData) {
 		
-		Slide slide;
+		Slide slide = null;
 		
+		if (slideData!=null){
 		ArrayList<SlideImage> images = importImages(slideData.getImages());
 		ArrayList<SlideVideo> videos = importVideos(slideData.getVideos());
 		ArrayList<Shape> shapes= importShapes(slideData.getShapes());
 		ArrayList<SlideText> texts = importTexts(slideData.getTexts());
 		ArrayList<AudioHandler> audios = importAudios(slideData.getAudios());
 		
-		
+		//TODO the 0.83 & 1.1 should be replaced with SmartTrolleyGUI.MIN_WINDOW_WIDTH/data.getDocumentinfo().getWidth() & SmartTrolleyGUI.MIN_WINDOW_HEIGHT/data.getDocumentinfo().getHeight()
 		slide = new Slide(0.83,1.1,shapes, images, audios, texts, videos, slideData.getDuration());
+		} else{
+			slide = new Slide(0, 0, null, null, null, null, null, 0);
+		}
+		
 		
 		slide.setStyle("background-color:"+ data.getDefaults().getBackgroundcolor());
 		

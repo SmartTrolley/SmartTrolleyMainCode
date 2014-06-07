@@ -13,8 +13,11 @@
 package smarttrolleygui;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -39,22 +42,26 @@ public class FavouritesScreenController extends ControllerGeneral implements Ini
 	@FXML
 	private ListView<String> categoriesList;
 	@FXML
-	private TableView<Product> productTable;
+	private TableView<ListProduct> productTable;
 	@FXML
-	private TableColumn<Product, Product> imageColumn;
+	private TableColumn<ListProduct, ListProduct> imageColumn;
 	@FXML
-	private TableColumn<Product, String> productNameColumn;
+	private TableColumn<ListProduct, String> productNameColumn;
 	@FXML
-    private TableColumn<Product, String> priceColumn;
+    private TableColumn<ListProduct, String> priceColumn;
 	@FXML
-	private TableColumn<Product, Product> addColumn;
+	private TableColumn<ListProduct, ListProduct> addColumn;
 	@FXML
 	private Label listNameLabel;
+	@FXML
+    public Label lblTotalItems;
+    @FXML
+    public Label lblTotal;
 
 	private SmartTrolleyGUI application;
 
 	private ObservableList<String> categories;
-	private ObservableList<Product> productData;
+	private ObservableList<ListProduct> productData;
 
 	private String categoryNumber = null;
 	/**
@@ -64,7 +71,7 @@ public class FavouritesScreenController extends ControllerGeneral implements Ini
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		// Fill list on the LHS of the screen with different product categories
+		// Fill list on the LHS of the screen with different ListProduct categories
 		categories = initializeCategories();
 		categoriesList.setItems(categories);
 		
@@ -114,6 +121,17 @@ public class FavouritesScreenController extends ControllerGeneral implements Ini
 	 */
 	public void setApp(SmartTrolleyGUI application) {
 		this.application = application;
+		//TODO Move this code to initialize
+		//Set the total labels
+		try {
+			ObservableList<Double> data = SetTotals();
+			lblTotal.setText("Total: £" + data.get(0).floatValue());
+	        lblTotalItems.setText("Total Items: " + data.get(1).toString().replace(".0", ""));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
 	}
 
 	/**
@@ -199,27 +217,13 @@ initializeProductTable fills the TableView with data and sets up cell
 		setUpCellValueFactory(addColumn);
 		setUpCellValueFactory(imageColumn);
 		
-        productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-        
-//        addColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-//            @Override
-//            public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
-//                return new ReadOnlyObjectWrapper<Product>(features.getValue());
-//            }
-//        });
-//        imageColumn.setCellValueFactory(new Callback<CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
-//            @Override
-//            public ObservableValue<Product> call(CellDataFeatures<Product, Product> features) {
-//                return new ReadOnlyObjectWrapper<Product>(features.getValue());
-//            }
-//        });
-		
-        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
-        
-		productNameColumn.setCellFactory(new Callback<TableColumn<Product, String>, TableCell<Product, String>>() {
-			@Override
-			public TableCell<Product, String> call(TableColumn<Product, String> productNameColumn) {
-				return new TableCell<Product, String>() {
+		 productNameColumn.setCellValueFactory(new PropertyValueFactory<ListProduct, String>("name"));
+	        priceColumn.setCellValueFactory(new PropertyValueFactory<ListProduct, String>("price"));
+	       
+	        productNameColumn.setCellFactory(new Callback<TableColumn<ListProduct, String>, TableCell<ListProduct, String>>() {
+	    			@Override
+			public TableCell<ListProduct, String> call(TableColumn<ListProduct, String> productNameColumn) {
+				return new TableCell<ListProduct, String>() {
 					final Button button = new Button();
 
 					@Override
@@ -240,7 +244,7 @@ initializeProductTable fills the TableView with data and sets up cell
 									
 									SmartTrolleyToolBox.print("Pressed name of product: " + productName);
 									// TODO: add code to move to product screen here and refactor individual controllers
-									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(productName).getId());
+									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(productName).getID());
 									application.goToProductScreen();
 								}
 							});
@@ -253,14 +257,14 @@ initializeProductTable fills the TableView with data and sets up cell
 		});
 
         // set up cell factories for columns containing images / buttons
-        addColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+        addColumn.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
             @Override
-            public TableCell<Product, Product> call(TableColumn<Product, Product> addColumn) {
-                return new TableCell<Product, Product>() {
+            public TableCell<ListProduct, ListProduct> call(TableColumn<ListProduct, ListProduct> addColumn) {
+                return new TableCell<ListProduct, ListProduct>() {
                     final Button button = new Button();
 
                     @Override
-                    public void updateItem(final Product product, boolean empty) {
+                    public void updateItem(final ListProduct product, boolean empty) {
                         super.updateItem(product, empty);
                         if (product != null) {
                             button.setText("+");
@@ -272,6 +276,39 @@ initializeProductTable fills the TableView with data and sets up cell
                                 @Override
                                 public void handle(ActionEvent event) {
                                     SmartTrolleyToolBox.print("Pressed add button for product: " + product.getName());
+                                    
+                                    try {
+										SqlConnection conn = new SqlConnection();
+										Boolean productFound = false;
+										int quantity = 0;
+										
+										ResultSet resultSet = conn.getProductsInList(SmartTrolleyGUI.getcurrentListID(), 
+																					product.getID());
+										
+										while(resultSet.next()){
+                                            productFound = true;
+                                            quantity = resultSet.getInt("Quantity");
+                                        }
+										
+										if(productFound == false){
+                                            conn.AddProductToList(SmartTrolleyGUI.getcurrentListID(), 
+                                            		product.getID(), 1);
+                                        }else {
+                                            //If product exists then add 1 to the quantity
+                                            conn.updateQuantity(SmartTrolleyGUI.getcurrentListID(), 
+                                            		product.getID(), quantity + 1);
+                                }
+										
+										//Now updated the totals
+										ObservableList<Double> data = SetTotals();
+                                        lblTotal.setText("Total: £" + data.get(0).floatValue());
+                                        lblTotalItems.setText("Total Items: " + data.get(1).toString().replace(".0", ""));
+										
+									
+									} catch (SQLException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
                                 }
                             });
                         } else {
@@ -282,14 +319,14 @@ initializeProductTable fills the TableView with data and sets up cell
             }
         });
 
-        imageColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+        imageColumn.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
 			@Override
-            public TableCell<Product, Product> call(TableColumn<Product, Product> imageColumn) {
-				return new TableCell<Product, Product>() {
+            public TableCell<ListProduct, ListProduct> call(TableColumn<ListProduct, ListProduct> imageColumn) {
+				return new TableCell<ListProduct, ListProduct>() {
 					final Button button = new Button();
 
 					@Override
-                    public void updateItem(final Product product, boolean empty) {
+                    public void updateItem(final ListProduct product, boolean empty) {
 						super.updateItem(product, empty);
 							if (product != null) {
 								try{
@@ -311,7 +348,7 @@ initializeProductTable fills the TableView with data and sets up cell
 								public void handle(ActionEvent event) {
 									SqlConnection sqlConnection = new SqlConnection();
 									SmartTrolleyToolBox.print("Pressed image of product: " + product.getName());
-									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(product.getName()).getId());
+									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(product.getName()).getID());
 									application.goToProductScreen();
 								}
 							});
@@ -326,6 +363,26 @@ initializeProductTable fills the TableView with data and sets up cell
 		// populate table with product data
 		productTable.setItems(productData);
 	}
+	
+	private ObservableList<Double> SetTotals() throws SQLException{
+        double total = 0;
+        double totalItems = 0;
+        
+        SqlConnection conn = new SqlConnection();
+        
+        ResultSet resultSet = conn.getAllListItems(SmartTrolleyGUI.getcurrentListID());
+        
+        
+        while(resultSet.next()){
+            total += resultSet.getDouble("Price") * resultSet.getInt("Quantity");
+            totalItems += resultSet.getInt("Quantity");
+            
+        }
+        
+        ObservableList<Double> data = FXCollections.observableArrayList(total, totalItems, 0.00);
+        return data;
+        
+    }
 }
 /**
  * ************End of FavouritesScreenController*************

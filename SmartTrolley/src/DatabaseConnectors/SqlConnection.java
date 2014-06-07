@@ -20,6 +20,7 @@ import slideshowdata.SlideData;
 import slideshowdata.TextBodyData;
 import slideshowdata.TextData;
 import slideshowdata.VideoData;
+import smarttrolleygui.ListProduct;
 import smarttrolleygui.Offer;
 import smarttrolleygui.Product;
 import toolBox.SmartTrolleyToolBox;
@@ -40,15 +41,15 @@ import toolBox.SmartTrolleyToolBox;
  * @version V3.0 [Date Created: 4 Jun 2014]
  * @version V4.0 [Date Created: 6 Jun 2014] 
  */
-public class SqlConnection{
+public class SqlConnection {
 
 	PreparedStatement preparedStatement;
 	private static final String IP = "79.170.44.157";
 	private static final String USERNAME = "cl36-st";
 	private static final String PASSWORD = "Smarttrolley";
 
-	private ObservableList<Product> products;
-	private ObservableList<Product> offers;
+	private ObservableList<ListProduct> products;
+
 	private ObservableList<String> categories;
 
 	private String url;
@@ -108,33 +109,34 @@ public class SqlConnection{
 	*/
 	public ResultSet sendQuery(String query) throws SQLException {
 
+		SmartTrolleyToolBox.print("Query to send is: " + query);
 		Statement statement = connection.createStatement();
 		ResultSet results = statement.executeQuery(query);
 
 		return results;
 	}
-	
+
 	/**
 	* Executes SQL query that returns the information for all products in the database
 	*@return ObservableList<Product>
 	*<p> Date Modified: 6 Jun 2014
 	*/
-	public ObservableList<Product> getListOfProducts() {
+	public ObservableList<ListProduct> getListOfAllProducts() {
 
 		openConnection();
-		Product product = new Product();
+		ListProduct listProduct = new ListProduct();
 
-		products = FXCollections.observableArrayList();
+		ObservableList<ListProduct> listProducts = FXCollections.observableArrayList();
 		String query = "SELECT * FROM products;";
 
 		try {
 			ResultSet results = sendQuery(query);
 			while (results.next()) {
-				product = createProductFromResultSet(results);
-				products.add(product);
+				listProduct = createListProductFromResultSet(results);
+				listProducts.add(listProduct);
 			}
 			closeConnection();
-			return products;
+			return listProducts;
 		} catch (SQLException e) {
 			SmartTrolleyToolBox.print("Product could not be found");
 			return null;
@@ -148,10 +150,10 @@ public class SqlConnection{
 	*@return ObservableList<Product>
 	*<p> Date Modified: 6 Jun 2014
 	*/
-	public ObservableList<Product> getListOfFavourites(String category) {
+	public ObservableList<ListProduct> getListOfFavourites(String category) {
 
 		openConnection();
-		Product product = new Product();
+		ListProduct product = new ListProduct();
 
 		products = FXCollections.observableArrayList();
 
@@ -182,11 +184,11 @@ public class SqlConnection{
 	*@return ObservableList<Product>
 	*<p> Date Modified: 6 Jun 2014
 	*/
-	public ObservableList<Product> getListOfOffers() {
+	public ObservableList<ListProduct> getListOfOffers() {
 
 		openConnection();
 
-		offers = FXCollections.observableArrayList();
+		ObservableList<ListProduct> offers = FXCollections.observableArrayList();
 
 		String query = "SELECT * FROM offers;";
 
@@ -194,11 +196,11 @@ public class SqlConnection{
 			ResultSet results = sendQuery(query);
 
 			Offer offer = new Offer();
-			Product product = new Product();
+			ListProduct product = new ListProduct();
 
 			while (results.next()) {
 
-				product = getSpecificProduct("productID", String.valueOf(results.getInt("ProductId")), "1");
+				product = ListProduct.productToListProduct(getSpecificProduct("productID", String.valueOf(results.getInt("ProductId")), "1"));
 
 				if (!(product == null)) {
 					// get Offer id
@@ -239,10 +241,10 @@ public class SqlConnection{
 	*@return ObservableList<Product>
 	*<p> Date Modified: 6 Jun 2014
 	*/
-	public ObservableList<Product> getListByCategory(int listID, String categoryNumber) {
+	public ObservableList<ListProduct> getListByCategory(int listID, String categoryNumber) {
 		openConnection();
 
-		Product product = new Product();
+		ListProduct product = new ListProduct();
 		products = FXCollections.observableArrayList();
 
 		String query = "SELECT * FROM lists_products WHERE listID = " + listID;
@@ -287,7 +289,7 @@ public class SqlConnection{
 
 						SmartTrolleyToolBox.print("Product Stored");
 
-						SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " " + product.getFavorite());
+						SmartTrolleyToolBox.print(product.getID() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " " + product.getFavorite());
 					} while (listProducts.next());
 				} else {
 					SmartTrolleyToolBox.print("empty result, moving to next item");
@@ -310,7 +312,7 @@ public class SqlConnection{
 	 * @return ObservableList<Product>
 	 * <p> Date Modified: 9 May 2014
 	 */
-	public ObservableList<Product> getList(int listID) {
+	public ObservableList<ListProduct> getListOfProductsInList(int listID) {
 		openConnection();
 
 		products = FXCollections.observableArrayList();
@@ -341,7 +343,7 @@ public class SqlConnection{
 
 				SmartTrolleyToolBox.print("Query Sent");
 
-				Product product = new Product();
+				ListProduct product = new ListProduct();
 				SmartTrolleyToolBox.print("Initializing Product");
 
 				SmartTrolleyToolBox.print(isResultSetEmpty(listProducts));
@@ -357,7 +359,7 @@ public class SqlConnection{
 
 				SmartTrolleyToolBox.print("Product Stored");
 
-				SmartTrolleyToolBox.print(product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " " + product.getFavorite());
+				SmartTrolleyToolBox.print(product.getID() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " " + product.getFavorite());
 
 			}
 		} catch (SQLException e) {
@@ -403,8 +405,6 @@ public class SqlConnection{
 
 	}
 
-	
-
 	/**
 	*Searches database for product entered into the TextField
 	*<p>User is able to search for product
@@ -413,12 +413,12 @@ public class SqlConnection{
 	*@throws SQLException
 	*<p> Date Modified: 30 May 2014
 	*/
-	public ObservableList<Product> wildcardSearchForProduct(String searchString) throws SQLException {
+	public ObservableList<ListProduct> wildcardSearchForProduct(String searchString) throws SQLException {
 
 		String query;
 		ResultSet resultSet = null;
 		openConnection();
-		ObservableList<Product> products = FXCollections.observableArrayList();
+		ObservableList<ListProduct> products = FXCollections.observableArrayList();
 
 		SmartTrolleyToolBox.print(searchString);
 
@@ -432,7 +432,7 @@ public class SqlConnection{
 
 		while (resultSet.next()) {
 
-			Product product = createProductFromResultSet(resultSet);
+			ListProduct product = createProductFromResultSet(resultSet);
 
 			products.add(product);
 		}
@@ -449,9 +449,9 @@ public class SqlConnection{
 	*@throws SQLException
 	*<p> Date Modified: 3 Jun 2014
 	*/
-	protected Product createProductFromResultSet(ResultSet resultSet) throws SQLException {
+	protected ListProduct createProductFromResultSet(ResultSet resultSet) throws SQLException {
 
-		Product product = new Product();
+		ListProduct product = new ListProduct();
 
 		SmartTrolleyToolBox.print(resultSet.getString("Name"));
 		// get id
@@ -469,7 +469,40 @@ public class SqlConnection{
 		// get Favorite status
 		product.setFavorite(resultSet.getInt("IsFavourite"));
 
-		SmartTrolleyToolBox.print("Product Created where: " + product.getId() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " "
+		SmartTrolleyToolBox.print("Product Created where: " + product.getID() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " "
+				+ product.getFavorite());
+
+		return product;
+	}
+
+	/**
+	* This method creates and returns a product from a ResultSet passed in
+	*@param resultSet
+	*@return product - The product created
+	*@throws SQLException
+	*<p> Date Modified: 3 Jun 2014
+	*/
+	protected ListProduct createListProductFromResultSet(ResultSet resultSet) throws SQLException {
+
+		ListProduct product = new ListProduct();
+
+		SmartTrolleyToolBox.print(resultSet.getString("Name"));
+		// get id
+		product.setId(resultSet.getInt("ProductID"));
+
+		// get Name
+		product.setName(resultSet.getString("Name"));
+
+		// get Image
+		product.setImage(resultSet.getString("Image"));
+
+		// get Price
+		product.setPrice(resultSet.getFloat("Price"));
+
+		// get Favorite status
+		product.setFavorite(resultSet.getInt("IsFavourite"));
+
+		SmartTrolleyToolBox.print("Product Created where: " + product.getID() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " "
 				+ product.getFavorite());
 
 		return product;
@@ -974,10 +1007,10 @@ public class SqlConnection{
 	*@return ObservableList<Product>
 	*<p> Date Modified: 6 Jun 2014
 	*/
-	public ObservableList<Product> getProductsWithinSpecificCategory(String categoryID) {
+	public ObservableList<ListProduct> getProductsWithinSpecificCategory(String categoryID) {
 
 		openConnection();
-		Product product = new Product();
+		ListProduct product = new ListProduct();
 
 		products = FXCollections.observableArrayList();
 
@@ -1072,12 +1105,13 @@ public class SqlConnection{
 	*@return ObservableList<Product>
 	*<p> Date Modified: 6 Jun 2014
 	*/
-	public ObservableList<Product> getOfferByCategory(String categoryNumber) {
+	public ObservableList<ListProduct> getOfferByCategory(String categoryNumber) {
 		Offer offer = new Offer();
 		Product product = new Product();
 
 		openConnection();
 
+		ObservableList<ListProduct> offers;
 		offers = FXCollections.observableArrayList();
 
 		String query = "SELECT * FROM offers;";
@@ -1106,8 +1140,10 @@ public class SqlConnection{
 					float savings = product.getPrice() - product.getOfferPrice();
 
 					product.setSavings(savings);
-
-					offers.add(product);
+					
+					ListProduct listProduct = ListProduct.productToListProduct(product);
+					
+					offers.add(listProduct);
 				} else {
 					SmartTrolleyToolBox.print("No Offers in that category found");
 				}
@@ -1325,6 +1361,287 @@ public class SqlConnection{
 			SmartTrolleyToolBox.print("Connection did not close properly");
 		}
 	}
+
+	// //////////////////////////////////////////////////////////////////////////////
+
+	/**
+	*Removes all products from all lists
+	*<p>Test(s)/User Story that it satisfies
+	*@throws SQLException
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	public void removeAllProductsFromAllLists() throws SQLException {
+		executeStatement("DELETE FROM lists_products");
+	}
+
+	/**
+	* Returns the resultset from querying the lists table with the list name passed in
+	*@param name
+	*@return resultset containing the list
+	*@throws SQLException
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	public ResultSet getListByName(String name) throws SQLException {
+		String query = "SELECT * FROM lists WHERE Name = '" + name + "'";
+		return sendQuery(query);
+	}
+
+	/**
+	*Removes the specified product from the specified list
+	*<p>User adds or removes product from list 
+	*@param listId
+	*@param productId
+	*@throws SQLException
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	public void removeProductFromList(int listId, int productId) throws SQLException {
+		executeStatement("DELETE FROM lists_products WHERE ProductID = " + String.valueOf(productId) + " AND ListID = " + String.valueOf(listId));
+	}
+
+	/**
+	* Updates the quantity for the specified product in the specified list
+	*<p>User adds or removes product from list 
+	*@param listId
+	*@param productId
+	*@param quantity
+	*@throws SQLException
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	public void updateQuantity(int listId, int productId, int quantity) throws SQLException {
+		executeStatement("UPDATE lists_products SET Quantity = " + String.valueOf(quantity) + " WHERE ProductID = " + String.valueOf(productId) + " AND ListID = "
+				+ String.valueOf(listId));
+	}
+
+	/**
+	* Removes all lists on the database
+	*@throws SQLException
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	public void removeAllLists() throws SQLException {
+		executeStatement("DELETE FROM lists");
+	}
+
+	//
+	// public void AddList(int Id, String listName) throws SQLException{
+	// String qry = "INSERT INTO lists VALUES (" + String.valueOf(Id) + ", " + listName + ")";
+	// executeStatement(qry);
+	// }
+
+	// public void AddList(String listName) throws SQLException{
+	// String qry = "INSERT INTO lists (Name) VALUES ('" + listName + "')";
+	// executeStatement(qry);
+	// }
+
+	/**
+	* Adds a specified quantity of the product (specified from the productid) to the list (specified by the listid)
+	*<p>User adds or removes product from list 
+	*@param ListId
+	*@param ProductId
+	*@param quantity
+	*@throws SQLException
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	public void AddProductToList(int ListId, int ProductId, int quantity) throws SQLException {
+		String qry = "INSERT INTO lists_products VALUES (" + String.valueOf(ProductId) + ", " + String.valueOf(ListId) + ", " + quantity + ")";
+		executeStatement(qry);
+	}
+
+	/**
+	* Returnss the total number of products in all the lists
+	*@return int with total products 
+	*@throws SQLException
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	public int getItemsTotal() throws SQLException {
+		String query = "SELECT sum(Quantity) as 'Total' FROM lists_products";
+		ResultSet results = sendQuery(query);
+
+		results.next();
+		return results.getInt("Total");
+	}
+
+	/**
+	* Gets the quantity of the specified product in the specified list
+	*<p>User adds or removes product from list 
+	*@param listId
+	*@param productId 
+	*@return product quantity as int
+	*@throws SQLException
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	public int getProductQuantity(int listId, int productId) throws SQLException {
+		String query = "SELECT Quantity FROM lists_products WHERE ProductID = " + String.valueOf(productId) + " AND ListID = " + String.valueOf(listId);
+		ResultSet results = sendQuery(query);
+
+		results.next();
+		return results.getInt("Quantity");
+	}
+
+	/**
+	* Returns a resultset all the products in a specific list
+	*<p>User adds or removes product from list 
+	*@param listId
+	*@param productId
+	*@return
+	*@throws SQLException
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	// TODO May not be needed
+	public ResultSet getProductsInList(int listId, int productId) throws SQLException {
+		String query = "SELECT * FROM lists_products WHERE ProductID = " + String.valueOf(productId) + " AND ListID = " + String.valueOf(listId);
+		return sendQuery(query);
+	}
+
+	/**
+	* It updates the lists table with a new name for a specified List ID 
+	*<p>Test: ListShoulBeUpdated in TestProductToLists
+	*@param ListId
+	*@param name
+	*@throws SQLException
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	public void updateListName(int ListId, String name) throws SQLException {
+		String query = "UPDATE lists SET Name = '" + name + "' WHERE ListID = " + String.valueOf(ListId);
+		executeStatement(query);
+	}
+
+	/**
+	*
+	*<p>Test(s)/User Story that it satisfies
+	*@param listId
+	*@return
+	*@throws SQLException
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	// ToDo may not needed
+	public ResultSet getList(int listId) throws SQLException {
+		String query = "SELECT * FROM lists WHERE ListID = " + String.valueOf(listId);
+		return sendQuery(query);
+	}
+
+	/**
+	*It gets categories in DB
+	*<p>User adds or removes product from list 
+	*@return Resultset which contains categories
+	*@throws SQLException
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	public ResultSet getCategories() throws SQLException {
+		String query = "SELECT * FROM categories";
+		return sendQuery(query);
+	}
+
+	/**
+	*Gets the total number of items in a specified list
+	*<p>TUser adds or removes product from list
+	*@param listId
+	*@return
+	*@throws SQLException
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	// ToDo what does it do ?
+	public ResultSet getAllListItems(int listId) throws SQLException {
+		openConnection();
+		java.sql.PreparedStatement preparedStatement = connection
+				.prepareStatement("SELECT p.ProductID, p.Name, p.Price, p.CategoryID, p.IsFavourite, p.Image, lp.Quantity FROM lists l join lists_products lp on lp.ListID = l.ListID join products p on p.ProductID = lp.ProductID WHERE l.ListID = ?");
+
+		preparedStatement.setInt(1, listId);
+
+		ResultSet set = preparedStatement.executeQuery();
+		return set;
+	}
+
+	/**
+	*Gets the items in a specified list by specified category
+	*<p>Test(s)/User Story that it satisfies
+	*@param listId
+	*@param categoryName
+	*@return
+	*@throws SQLException
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	// ToDo may not be needed
+	public ResultSet getListItemsByCategory(int listId, String categoryName) throws SQLException {
+		openConnection();
+		java.sql.PreparedStatement preparedStatement = connection
+				.prepareStatement("SELECT p.ProductID, p.Name, p.Price, p.CategoryID, p.IsFavourite, p.Image, lp.Quantity FROM smarttrolley.lists l\n"
+						+ "join smarttrolley.lists_products lp on lp.ListID = l.ListID\n" + "join smarttrolley.products p on p.ProductID = lp.ProductID\n"
+						+ "join smarttrolley.categories c on c.CategoryID = p.CategoryID\n" + "where c.Name = ? AND l.ListID = ?");
+
+		preparedStatement.setString(1, categoryName);
+		preparedStatement.setInt(2, listId);
+
+		ResultSet set = preparedStatement.executeQuery();
+		return set;
+	}
+
+	/**
+	*It removes the list from the DB
+	*<p>Test(s)/User Story that it satisfies
+	*@param listId
+	*@throws SQLException
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	// ToDo may not be needed
+	public void removeList(int listId) throws SQLException {
+		executeStatement("DELETE FROM lists WHERE ListID = " + String.valueOf(listId));
+	}
+
+	/**
+	*Gets all the lists
+	*<p>Test(s)/User Story that it satisfies
+	*@return
+	*@throws SQLException
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	// ToDo may not be needed
+	public ResultSet getAllLists() throws SQLException {
+		String query = "SELECT * FROM lists";
+		return sendQuery(query);
+	}
+
+	/**
+	*Gets all the products 
+	*<p>Test(s)/User Story that it satisfies
+	*@return resultset contains products
+	*@throws SQLException
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	public ResultSet getAllProducts() throws SQLException {
+		String query = "SELECT * FROM products";
+		return sendQuery(query);
+	}
+
+	/**
+	*Gets products by specified category name
+	*<p>Test(s)/User Story that it satisfies
+	*@param categoryName
+	*@return
+	*@throws SQLException
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	public ResultSet getProductsByCategory(String categoryName) throws SQLException {
+		openConnection();
+		java.sql.PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from smarttrolley.products p "
+				+ "join smarttrolley.categories c on c.CategoryID = p.CategoryID where c.Name = ?");
+
+		preparedStatement.setString(1, categoryName);
+
+		ResultSet set = preparedStatement.executeQuery();
+		return set;
+	}
+	// ///////////////////////////////////////////////////
 
 }
 /**************End of SqlConnection**************/

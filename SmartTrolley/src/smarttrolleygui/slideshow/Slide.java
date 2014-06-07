@@ -39,16 +39,16 @@ public class Slide extends AnchorPane {
 	private ArrayList<SlideVideo> videoList;
 	private ArrayList<SlideText> textList;
 	private ArrayList<AudioHandler> audioList;
-	
+
 	/**Ratio of our slide width to the slideshow's XML slide width.*/
 	private double xScaler;
-	
+
 	/**Ratio of our slide width to the slideshow's XML slide width.*/
 	private double yScaler;
-	
+
 	/**Duration of slide.*/
 	protected double duration;
-	
+
 	/**Unique identifier of the slide in the slideshow.*/
 	private int slideID;
 
@@ -73,36 +73,46 @@ public class Slide extends AnchorPane {
 		this.xScaler = xScaler;
 		this.yScaler = yScaler;
 
-		// TODO Test if graphics is null here
-		/*
-		 * if (graphicsList == null){
-		 * SmartTrolleyToolBox.print("Graphics list is null for this slideshow.")
-		 */
-		this.graphicsList = graphicsList;
+		if (graphicsList == null) {
+			SmartTrolleyToolBox.print("Graphics list is null for this slideshow.");
+		} else {
+			this.graphicsList = graphicsList;
 
-		for (Shape shape : graphicsList) {
-			addGraphics(shape);
+			for (Shape shape : graphicsList) {
+				addGraphics(shape);
+			}
 		}
 
 		this.audioList = audioList; // file path should have no spaces
 
 		this.imageList = imageList;// file path should have no spaces
 
-		for (SlideImage image : imageList) {
-			addImage(image);
+		if (imageList == null) {
+			SmartTrolleyToolBox.print("Image list is null for this slideshow.");
+		} else {
+			for (SlideImage image : imageList) {
+				addImage(image);
+			}
 		}
 
 		this.textList = textList;
 
-		for (SlideText text : textList) {
-			addText(text);
+		if (textList == null) {
+			SmartTrolleyToolBox.print("Text list is null for this slideshow.");
+		} else {
+			for (SlideText text : textList) {
+				addText(text);
+			}
 		}
 
 		this.videoList = videoList;// file path should have no spaces
 
+		if (videoList == null) {
+			SmartTrolleyToolBox.print("Video list is null for this slideshow.");
+		} else {
 		for (SlideVideo video : videoList) {
 			addVideo(video);
-		}
+		}}
 
 	}
 
@@ -129,21 +139,23 @@ public class Slide extends AnchorPane {
 	*<p> Date Modified: 28 May 2014
 	*/
 	private void addText(SlideText text) {
-		/*text.setScaleX(xScaler);
-		text.setScaleY(yScaler);
+		/*
+		 * text.setScaleX(xScaler);
+		 * text.setScaleY(yScaler);
+		 * 
+		 * SmartTrolleyToolBox.print("Original x-coord for text was: " + text.getLayoutX());
+		 * text.setLayoutX((xScaler * text.getLayoutX()));
+		 * SmartTrolleyToolBox.print("Rescaled x-coord for text is: " + text.getLayoutX());
+		 * 
+		 * SmartTrolleyToolBox.print("Original y-coord for text was: " + text.getLayoutY());
+		 * text.setLayoutY((yScaler * text.getLayoutY()));
+		 * SmartTrolleyToolBox.print("Rescaled y-coord for text is: " + text.getLayoutY());
+		 */
 
-		SmartTrolleyToolBox.print("Original x-coord for text was: " + text.getLayoutX());		
-		text.setLayoutX((xScaler * text.getLayoutX()));		
-		SmartTrolleyToolBox.print("Rescaled x-coord for text is: " + text.getLayoutX());
-		
-		SmartTrolleyToolBox.print("Original y-coord for text was: " + text.getLayoutY());
-		text.setLayoutY((yScaler * text.getLayoutY()));
-		SmartTrolleyToolBox.print("Rescaled y-coord for text is: " + text.getLayoutY());*/
-		
 		SmartTrolleyToolBox.print("Original x-coord for text was: " + text.getXStart());
 		SmartTrolleyToolBox.print("Original y-coord for text was: " + text.getYStart());
-		
-		text.relocateText(text.getXStart()*xScaler,text.getYStart()*yScaler);
+
+		text.relocateText(text.getXStart() * xScaler, text.getYStart() * yScaler);
 
 		getChildren().add(text);
 
@@ -204,7 +216,7 @@ public class Slide extends AnchorPane {
 			video.setVisible(true);
 			video.show();
 		}
-		
+
 		setVisible(true);
 
 	}
@@ -215,9 +227,9 @@ public class Slide extends AnchorPane {
 	*/
 	public void clearSlide() {
 		SmartTrolleyToolBox.print(getChildren());
-		 for(AudioHandler audio: audioList){
-		 audio.stop();
-		 }
+		for (AudioHandler audio : audioList) {
+			audio.stop();
+		}
 
 		getChildren().clear();
 	}

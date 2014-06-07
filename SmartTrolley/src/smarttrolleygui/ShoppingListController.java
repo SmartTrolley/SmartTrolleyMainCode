@@ -18,6 +18,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -46,29 +47,35 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 	@FXML
 	private ListView<String> categoriesList;
 	@FXML
-	private static TableView<Product> productTable;
+	private static TableView<ListProduct> productTable;
 	@FXML
-	private TableColumn<Product, Product> checkBoxColumn;
+	private TableColumn<ListProduct, ListProduct> checkBoxColumn;
 	@FXML
-	private TableColumn<Product, Product> imageColumn;
+	private TableColumn<ListProduct, ListProduct> imageColumn;
 	@FXML
-	private TableColumn<Product, String> productNameColumn;
+	private TableColumn<ListProduct, String> productNameColumn;
 	@FXML
-	private TableColumn<Product, String> priceColumn;
+	private TableColumn<ListProduct, String> priceColumn;
 	@FXML
-	private TableColumn<Product, Product> addColumn;
+	private TableColumn<ListProduct, ListProduct> addColumn;
 	@FXML
-	public TableColumn<Product, Product> removeColumn;
+	public TableColumn<ListProduct, ListProduct> removeColumn;
+	@FXML
+	public TableColumn<ListProduct, Integer> quantityColumn;
 	@FXML
 	public Button deleteListButton;
 	@FXML
 	private Label listNameLabel;
+	@FXML
+	public Label lblTotalItems;
+	@FXML
+	public Label lblTotal;
 
 	public MessageBox deleteMsgBx = new MessageBox("Would you really like to delete the list ?", MessageBoxType.YES_NO);
 
 	private SmartTrolleyGUI application;
 	private ObservableList<String> categories;
-	private static ObservableList<Product> productData;
+	private static ObservableList<ListProduct> productData;
 	private final double MSG_BX_H = 100.0;
 	private final double MSG_BX_W = 400.0;
 	public static SqlConnection productsDatabase;
@@ -90,7 +97,7 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 
 		// Store selected products
 		SmartTrolleyToolBox.print("List ID before product table init is: " + SmartTrolleyGUI.getcurrentListID());
-		productData = sqlConnector.getList(SmartTrolleyGUI.getcurrentListID());
+		productData = sqlConnector.getListOfProductsInList(SmartTrolleyGUI.getcurrentListID());
 		productTable.setItems(productData);
 
 		// Set the table empty text
@@ -100,7 +107,7 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 		listNameLabel.setText(SmartTrolleyGUI.getCurrentListName());
 
 		// Fill table with selected products
-		initializeProductTable();	
+		initializeProductTable();
 	}
 
 	/** Any FXML item with a mouse click handle will use this method to dictate its reaction when clicked
@@ -116,7 +123,7 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 		SmartTrolleyToolBox.print(getCategoryNumber());
 
 		if (Integer.valueOf(getCategoryNumber()) == 1) {
-			productData = sqlConnector.getList(SmartTrolleyGUI.getcurrentListID());
+			productData = sqlConnector.getListOfProductsInList(SmartTrolleyGUI.getcurrentListID());
 		} else {
 			productData = sqlConnector.getListByCategory(SmartTrolleyGUI.getcurrentListID(), getCategoryNumber());
 		}
@@ -130,8 +137,13 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 	 * @param application
 	 * <p> Date Modified: 06 Mar 2014
 	 */
-	public void setApp(SmartTrolleyGUI application) {
+	public void setApp(SmartTrolleyGUI application) throws SQLException {
 		this.application = application;
+		// ToDo move to initialize
+		// Set the total labels
+		ObservableList<Double> data = SetTotals();
+		lblTotal.setText("Total: £" + data.get(0).floatValue());
+		lblTotalItems.setText("Total Items: " + data.get(1).toString().replace(".0", ""));
 	}
 
 	/**
@@ -142,9 +154,9 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 	 * <p> Date Modified: 9 May 2014
 	 */
 	public void deleteList(ActionEvent event) throws SQLException {
-		
-		//TODO check if list selected for deletion is the last list in the database.
-		//If so, use sqlconnection.deleteLastList()
+
+		// TODO check if list selected for deletion is the last list in the database.
+		// If so, use sqlconnection.deleteLastList()
 
 		productsDatabase = new SqlConnection();
 		ResultSet result = null;
@@ -209,7 +221,7 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 				result.close();
 			}
 		} catch (SQLException ex) {
-			SmartTrolleyToolBox.print("could not close connection, you are eternally fucked");
+			SmartTrolleyToolBox.print("could not close connection, you are eternally damned");
 			SmartTrolleyToolBox.print("Beepboop son, BeepBoop");
 		}
 	}
@@ -293,29 +305,163 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 	 */
 	private void initializeProductTable() {
 
-		// set up column cell value factories		
+		// set up column cell value factories
 		setUpCellValueFactory(checkBoxColumn);
 		setUpCellValueFactory(imageColumn);
 		setUpCellValueFactory(addColumn);
 		setUpCellValueFactory(removeColumn);
 
-		// set up cell factories for columns with 'interactive' cells 
-		setUpCheckBoxCellFactory(checkBoxColumn);
-		setUpAddButtonCellFactory(addColumn);
-		setUpRemoveButtonCellFactory(removeColumn);
-		
-		
-		productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-		priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
+		productNameColumn.setCellValueFactory(new PropertyValueFactory<ListProduct, String>("name"));
+		priceColumn.setCellValueFactory(new PropertyValueFactory<ListProduct, String>("price"));
+		quantityColumn.setCellValueFactory(new PropertyValueFactory<ListProduct, Integer>("Quantity"));
 
-		imageColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+		// set up cell factories for columns with 'interactive' cells
+		setUpCheckBoxCellFactory(checkBoxColumn);
+
+		addColumn.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
 			@Override
-			public TableCell<Product, Product> call(TableColumn<Product, Product> imageColumn) {
-				return new TableCell<Product, Product>() {
+			public TableCell<ListProduct, ListProduct> call(TableColumn<ListProduct, ListProduct> addColumn) {
+				return new TableCell<ListProduct, ListProduct>() {
 					final Button button = new Button();
 
 					@Override
-					public void updateItem(final Product product, boolean empty) {
+					public void updateItem(final ListProduct product, boolean empty) {
+						super.updateItem(product, empty);
+						if (product != null) {
+							button.setText("+");
+							button.getStyleClass().add("buttonChangeQuantity");
+							setGraphic(button);
+
+							// Button Event Handler
+							button.setOnAction(new EventHandler<ActionEvent>() {
+								@Override
+								public void handle(ActionEvent event) {
+									SmartTrolleyToolBox.print("Pressed add button for product: " + product.getName());
+									ObservableList<ListProduct> data = productTable.getItems();
+									product.setQuantity(product.getQuantity() + 1);
+
+									try {
+										SqlConnection conn = new SqlConnection();
+										Boolean productFound = false;
+										int quantity = 0;
+
+										ResultSet resultSet = conn.getProductsInList(SmartTrolleyGUI.getcurrentListID(), product.getID());
+
+										while (resultSet.next()) {
+											productFound = true;
+											quantity = resultSet.getInt("Quantity");
+										}
+
+										if (productFound == true) {
+											// If product exists then add 1 to the quantity
+											conn.updateQuantity(SmartTrolleyGUI.getcurrentListID(), product.getID(), quantity + 1);
+
+											product.setQuantity(quantity + 1);
+										}
+
+										// Now refresh the table
+										refreshTable(data, product);
+
+										// Now updated the totals
+										ObservableList<Double> totalData = SetTotals();
+										lblTotal.setText("Total: £" + totalData.get(0).floatValue());
+										lblTotalItems.setText("Total Items: " + totalData.get(1).toString().replace(".0", ""));
+
+									} catch (SQLException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+							});
+						} else {
+							setGraphic(null);
+						}
+					}
+				};
+			}
+		});
+
+		removeColumn.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
+			@Override
+			public TableCell<ListProduct, ListProduct> call(TableColumn<ListProduct, ListProduct> removeColumn) {
+				return new TableCell<ListProduct, ListProduct>() {
+					final Button button = new Button();
+
+					@Override
+					public void updateItem(final ListProduct product, boolean empty) {
+						super.updateItem(product, empty);
+						if (product != null) {
+							button.setText("-");
+							button.getStyleClass().add("buttonChangeQuantity");
+							setGraphic(button);
+
+							// Button Event Handler
+							button.setOnAction(new EventHandler<ActionEvent>() {
+								@Override
+								public void handle(ActionEvent event) {
+									SmartTrolleyToolBox.print("Pressed remove button for product: " + product.getName());
+
+									ObservableList<ListProduct> data = productTable.getItems();
+									product.setQuantity(product.getQuantity() + 1);
+
+									try {
+										SqlConnection conn = new SqlConnection();
+										Boolean productFound = false;
+										int quantity = 0;
+
+										ResultSet resultSet = conn.getProductsInList(SmartTrolleyGUI.getcurrentListID(), product.getID());
+
+										while (resultSet.next()) {
+											productFound = true;
+											quantity = resultSet.getInt("Quantity");
+										}
+
+										if (productFound == true) {
+											Integer qty = quantity - 1;
+
+											if (qty <= 0) {
+												conn.removeProductFromList(SmartTrolleyGUI.getcurrentListID(), product.getID());
+												data.remove(product);
+											} else {
+												conn.updateQuantity(SmartTrolleyGUI.getcurrentListID(), product.getID(), quantity - 1);
+
+												product.setQuantity(quantity - 1);
+											}
+										}
+
+										// Now refresh the table
+										refreshTable(data, product);
+
+										// Now updated the totals
+										ObservableList<Double> totalData = SetTotals();
+										lblTotal.setText("Total: £" + totalData.get(0).floatValue());
+										lblTotalItems.setText("Total Items: " + totalData.get(1).toString().replace(".0", ""));
+
+									} catch (SQLException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+							});
+						} else {
+							setGraphic(null);
+						}
+					}
+				};
+			}
+		});
+
+		productNameColumn.setCellValueFactory(new PropertyValueFactory<ListProduct, String>("name"));
+		priceColumn.setCellValueFactory(new PropertyValueFactory<ListProduct, String>("price"));
+
+		imageColumn.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
+			@Override
+			public TableCell<ListProduct, ListProduct> call(TableColumn<ListProduct, ListProduct> imageColumn) {
+				return new TableCell<ListProduct, ListProduct>() {
+					final Button button = new Button();
+
+					@Override
+					public void updateItem(final ListProduct product, boolean empty) {
 						super.updateItem(product, empty);
 						if (product != null) {
 							try {
@@ -335,10 +481,10 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 								public void handle(ActionEvent event) {
 									SqlConnection sqlConnection = new SqlConnection();
 									SmartTrolleyToolBox.print("Pressed image of product: " + product.getName());
-									//TODO Can delete the currentProductID field in SmartTrolleyGUI
-									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(product.getName()).getId());
-									
-									SmartTrolleyGUI.setCurrentSlideID(((SlideData) sqlConnection.getSpecificData("slide", "productID", Integer.toString(product.getId()))).getId());
+									// TODO Can delete the currentProductID field in SmartTrolleyGUI
+									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(product.getName()).getID());
+
+									SmartTrolleyGUI.setCurrentSlideID(((SlideData) sqlConnection.getSpecificData("slide", "productID", Integer.toString(product.getID()))).getId());
 									SmartTrolleyToolBox.print("The current slideID is: " + SmartTrolleyGUI.getCurrentSlideID());
 									application.goToProductScreen();
 								}
@@ -351,10 +497,10 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 			}
 		});
 
-		productNameColumn.setCellFactory(new Callback<TableColumn<Product, String>, TableCell<Product, String>>() {
+		productNameColumn.setCellFactory(new Callback<TableColumn<ListProduct, String>, TableCell<ListProduct, String>>() {
 			@Override
-			public TableCell<Product, String> call(TableColumn<Product, String> productNameColumn) {
-				return new TableCell<Product, String>() {
+			public TableCell<ListProduct, String> call(TableColumn<ListProduct, String> productNameColumn) {
+				return new TableCell<ListProduct, String>() {
 					final Button button = new Button();
 
 					@Override
@@ -375,10 +521,10 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 
 									SmartTrolleyToolBox.print("Pressed name of product: " + productName);
 									// TODO: add code to move to product screen here and refactor individual controllers
-									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(productName).getId());
-									
-									
-									SmartTrolleyGUI.setCurrentSlideID(((SlideData) sqlConnection.getSpecificData("slide", "productID", Integer.toString(sqlConnection.getProductByName(productName).getId()))).getId());
+									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(productName).getID());
+
+									SmartTrolleyGUI.setCurrentSlideID(((SlideData) sqlConnection.getSpecificData("slide", "productID",
+											Integer.toString(sqlConnection.getProductByName(productName).getID()))).getId());
 									SmartTrolleyToolBox.print("The current slideID is: " + SmartTrolleyGUI.getCurrentSlideID());
 									application.goToProductScreen();
 								}
@@ -392,8 +538,36 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 		});
 	}
 
+	// ToDo may not needed
+	private void refreshTable(ObservableList<ListProduct> data, ListProduct selectedProduct) {
+
+		productTable.setItems(null);
+		productTable.layout();
+		productTable.setItems(data);
+		productTable.getSelectionModel().select(selectedProduct);
+	}
+
 	public static int getProductDataSize() {
 		return productData.size();
+	}
+
+	private ObservableList<Double> SetTotals() throws SQLException {
+		double total = 0;
+		double totalItems = 0;
+
+		SqlConnection conn = new SqlConnection();
+
+		ResultSet resultSet = conn.getAllListItems(SmartTrolleyGUI.getcurrentListID());
+
+		while (resultSet.next()) {
+			total += resultSet.getDouble("Price") * resultSet.getInt("Quantity");
+			totalItems += resultSet.getInt("Quantity");
+
+		}
+
+		ObservableList<Double> data = FXCollections.observableArrayList(total, totalItems, 0.00);
+		return data;
+
 	}
 
 }

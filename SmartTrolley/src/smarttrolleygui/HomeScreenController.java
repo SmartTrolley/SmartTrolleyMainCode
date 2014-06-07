@@ -17,11 +17,13 @@
 package smarttrolleygui;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -47,25 +49,29 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 	@FXML
 	private ListView<String> categoriesList;
 	@FXML
-	private TableView<Product> productTable;
+	private TableView<ListProduct> productTable;
 	@FXML
-	private TableColumn<Product, Product> imageColumn;
+	private TableColumn<ListProduct, ListProduct> imageColumn;
 	@FXML
-	private TableColumn<Product, String> productNameColumn;
+	private TableColumn<ListProduct, String> productNameColumn;
 	@FXML
-	private TableColumn<Product, String> priceColumn;
+	private TableColumn<ListProduct, String> priceColumn;
 	@FXML
-	private TableColumn<Product, Product> addColumn;
+	private TableColumn<ListProduct, ListProduct> addColumn;
 	@FXML
 	private Label listNameLabel;
 	@FXML
 	private TextField searchBox;
 	@FXML
 	private Button searchButton;
+	@FXML
+    public Label lblTotalItems;
+    @FXML
+    public Label lblTotal;
 
 	private SmartTrolleyGUI application;
 	private ObservableList<String> categories;
-	private ObservableList<Product> productData;
+	private ObservableList<ListProduct> productData;
 	private String categoryNumber;
 
 	/**
@@ -83,7 +89,7 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 		SqlConnection sqlConnector = new SqlConnection();
 
 		// Get selected products
-		productData = sqlConnector.getListOfProducts();
+		productData = sqlConnector.getListOfAllProducts();
 		productTable.setItems(productData);
 
 		// Fill table with selected products
@@ -104,7 +110,7 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 
 		if (Integer.valueOf(getCategoryNumber()) == 1) {
 			// Fill table with sample products
-			productData = sqlConnector.getListOfProducts();
+			productData = sqlConnector.getListOfAllProducts();
 		} else {
 			// Fill table with sample products
 			productData = sqlConnector.getProductsWithinSpecificCategory(getCategoryNumber());
@@ -123,8 +129,13 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 	 *            <p>
 	 *            Date Modified: 28 Feb 2014
 	 */
-	public void setApp(SmartTrolleyGUI application) {
+	public void setApp(SmartTrolleyGUI application) throws SQLException {
 		this.application = application;
+		//TODO Move to initialise
+		//Set the total labels
+        ObservableList<Double> data = SetTotals();
+        lblTotal.setText("Total: £" + data.get(0).floatValue());
+        lblTotalItems.setText("Total Items: " + data.get(1).toString().replace(".0", ""));
 	}
 
 	/**
@@ -224,25 +235,25 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 		productTable.setPlaceholder(new Label("No products in database."));
 
 		// set up column cell value factories
-		productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-		priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
-		addColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+		productNameColumn.setCellValueFactory(new PropertyValueFactory<ListProduct, String>("name"));
+		priceColumn.setCellValueFactory(new PropertyValueFactory<ListProduct, String>("price"));
+		addColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ListProduct, ListProduct>, ObservableValue<ListProduct>>() {
 			@Override
-			public ObservableValue<Product> call(TableColumn.CellDataFeatures<Product, Product> features) {
-				return new ReadOnlyObjectWrapper<Product>(features.getValue());
+			public ObservableValue<ListProduct> call(TableColumn.CellDataFeatures<ListProduct, ListProduct> features) {
+				return new ReadOnlyObjectWrapper<ListProduct>(features.getValue());
 			}
 		});
-		imageColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+		imageColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ListProduct, ListProduct>, ObservableValue<ListProduct>>() {
 			@Override
-			public ObservableValue<Product> call(TableColumn.CellDataFeatures<Product, Product> features) {
-				return new ReadOnlyObjectWrapper<Product>(features.getValue());
+			public ObservableValue<ListProduct> call(TableColumn.CellDataFeatures<ListProduct, ListProduct> features) {
+				return new ReadOnlyObjectWrapper<ListProduct>(features.getValue());
 			}
 		});
 
-		productNameColumn.setCellFactory(new Callback<TableColumn<Product, String>, TableCell<Product, String>>() {
+		productNameColumn.setCellFactory(new Callback<TableColumn<ListProduct, String>, TableCell<ListProduct, String>>() {
 			@Override
-			public TableCell<Product, String> call(TableColumn<Product, String> productNameColumn) {
-				return new TableCell<Product, String>() {
+			public TableCell<ListProduct, String> call(TableColumn<ListProduct, String> productNameColumn) {
+				return new TableCell<ListProduct, String>() {
 					final Button button = new Button();
 
 					@Override
@@ -263,7 +274,7 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 
 									SmartTrolleyToolBox.print("Pressed name of product: " + productName);
 									// TODO: add code to move to product screen here and refactor individual controllers
-									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(productName).getId());
+									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(productName).getID());
 									application.goToProductScreen();
 								}
 							});
@@ -276,14 +287,14 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 		});
 
 		// set up cell factories for columns containing images / buttons
-		addColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+		addColumn.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
 			@Override
-			public TableCell<Product, Product> call(TableColumn<Product, Product> addColumn) {
-				return new TableCell<Product, Product>() {
+			public TableCell<ListProduct, ListProduct> call(TableColumn<ListProduct, ListProduct> addColumn) {
+				return new TableCell<ListProduct, ListProduct>() {
 					final Button button = new Button();
 
 					@Override
-					public void updateItem(final Product product, boolean empty) {
+					public void updateItem(final ListProduct product, boolean empty) {
 						super.updateItem(product, empty);
 						if (product != null) {
 							button.setText("+");
@@ -295,6 +306,41 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 								@Override
 								public void handle(ActionEvent event) {
 									SmartTrolleyToolBox.print("Pressed add button for product: " + product.getName());
+									
+									try {
+										SqlConnection conn = new SqlConnection();
+										Boolean productFound = false;
+										int quantity = 0;
+										
+										ResultSet resultSet = conn.getProductsInList(SmartTrolleyGUI.getcurrentListID(), 
+																					product.getID());
+										
+										while(resultSet.next()){
+                                            productFound = true;
+                                            quantity = resultSet.getInt("Quantity");
+                                        }
+										
+										if(productFound == false){
+                                            conn.AddProductToList(SmartTrolleyGUI.getcurrentListID(), 
+                                            		product.getID(), 1);
+                                        }else {
+                                            //If product exists then add 1 to the quantity
+                                            conn.updateQuantity(SmartTrolleyGUI.getcurrentListID(), 
+                                            		product.getID(), quantity + 1);
+                                        }
+										
+										//Now updated the totals
+										ObservableList<Double> data = SetTotals();
+                                        lblTotal.setText("Total: £" + data.get(0).floatValue());
+                                        lblTotalItems.setText("Total Items: " + data.get(1).toString().replace(".0", ""));
+										
+									
+									} catch (SQLException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									
+									
 								}
 							});
 						} else {
@@ -305,14 +351,14 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 			}
 		});
 
-		imageColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+		imageColumn.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
 			@Override
-			public TableCell<Product, Product> call(TableColumn<Product, Product> imageColumn) {
-				return new TableCell<Product, Product>() {
+			public TableCell<ListProduct, ListProduct> call(TableColumn<ListProduct, ListProduct> imageColumn) {
+				return new TableCell<ListProduct, ListProduct>() {
 					final Button button = new Button();
 
 					@Override
-					public void updateItem(final Product product, boolean empty) {
+					public void updateItem(final ListProduct product, boolean empty) {
 						super.updateItem(product, empty);
 						if (product != null) {
 							try{
@@ -333,7 +379,7 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 								public void handle(ActionEvent event) {
 									SqlConnection sqlConnection = new SqlConnection();
 									SmartTrolleyToolBox.print("Pressed image of product: " + product.getName());
-									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(product.getName()).getId());
+									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(product.getName()).getID());
 									application.goToProductScreen();
 									
 								}
@@ -346,6 +392,26 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 			}
 		});
 	}
+	
+	private ObservableList<Double> SetTotals() throws SQLException{
+        double total = 0;
+        double totalItems = 0;
+        
+        SqlConnection conn = new SqlConnection();
+        
+        ResultSet resultSet = conn.getAllListItems(SmartTrolleyGUI.getcurrentListID());
+        
+        
+        while(resultSet.next()){
+            total += resultSet.getDouble("Price") * resultSet.getInt("Quantity");
+            totalItems += resultSet.getInt("Quantity");
+            
+        }
+        
+        ObservableList<Double> data = FXCollections.observableArrayList(total, totalItems, 0.00);
+        return data;
+        
+    }
 }
 
 /**

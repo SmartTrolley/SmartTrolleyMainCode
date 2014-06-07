@@ -75,7 +75,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	private SlideShow currentSlideShow;
 
 	private ToggleButton favoritesButton = new ToggleButton("Favourite");
-	
+
 	private CheckBox playDirectionCheckbox = new CheckBox("Play Direction");
 
 	/**
@@ -86,12 +86,12 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 
-		getCurrentProductData();		
-				
+		getCurrentProductData();
+
 		// show name of current shopping list
 		listNameLabel.setText(SmartTrolleyGUI.getCurrentListName());
 
-		createPrevPlayNxtSlideButtons();						
+		createPrevPlayNxtSlideButtons();
 	}
 
 	/**
@@ -103,6 +103,22 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	protected void setSlideShow(SlideShow slideShow) {
 		this.currentSlideShow = slideShow;
 
+		if (slideShow == null) {
+			noSlideShowLoaded(null);
+		}
+
+		configurePlayDirectionCheckbox();
+
+		configureFavoritesButton();
+
+	}
+
+	/**
+	* Configure the text and action handler for the playDirectionCheckbox
+	*<p> Date Modified: 7 Jun 2014
+	*/
+	private void configurePlayDirectionCheckbox() {
+
 		playDirectionCheckbox.setText("Play Forwards");
 
 		currentSlideShow.setPlayDirection(PlayDirection.FOR);
@@ -112,23 +128,21 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 			@Override
 			public void changed(ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) {
 
-				if (playDirectionCheckbox.isSelected()){
-				playDirectionCheckbox.setText("Play Reverse");
-				currentSlideShow.setPlayDirection(PlayDirection.REV);
-				SmartTrolleyToolBox.print("Play direction is reverse");
-				}
-				else {
-					playDirectionCheckbox.setText("Play Forward");
-					currentSlideShow.setPlayDirection(PlayDirection.FOR);
-					SmartTrolleyToolBox.print("Play direction is forward");	
+				//Only allow changing the direction when autoplay is off.
+				if (currentSlideShow.isAutoPlay()) {
+					if (playDirectionCheckbox.isSelected()) {
+						playDirectionCheckbox.setText("Play Reverse");
+						currentSlideShow.setPlayDirection(PlayDirection.REV);
+						SmartTrolleyToolBox.print("Play direction is reverse");
+					} else {
+						playDirectionCheckbox.setText("Play Forward");
+						currentSlideShow.setPlayDirection(PlayDirection.FOR);
+						SmartTrolleyToolBox.print("Play direction is forward");
+					}
 				}
 
 			}
-		});		
-		
-		
-		configureFavoritesButton();
-	
+		});
 	}
 
 	/**
@@ -138,30 +152,29 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	*/
 	private void configureFavoritesButton() {
 		favoritesButton.setSelected(product.getFavorite());
-		SmartTrolleyToolBox.print("Product is favorite: "+product.getFavorite());
-	
-	favoritesButton.setOnAction(new EventHandler<ActionEvent>() {
-	    @Override 
-	    public void handle(ActionEvent e) {
-	    	SmartTrolleyToolBox.print("Pressed favorites button.");		    			    			 
-	    	productsDatabase.openConnection();
-	    	
-	    	if (favoritesButton.isSelected()){
-	    		SmartTrolleyToolBox.print("Favorites button set.");		   
-	    		String sqlStatement = "UPDATE `products` SET `IsFavourite`=1 WHERE `ProductID` = " + SmartTrolleyGUI.getCurrentProductID();
-	    		
-		    	productsDatabase.executeStatement(sqlStatement);
-	    	}
-	    	else {		    				    
-	    		SmartTrolleyToolBox.print("Favorites button unset.");
-	    		String sqlStatement = "UPDATE `products` SET `IsFavourite`=0 WHERE `ProductID` = " + SmartTrolleyGUI.getCurrentProductID();		    	
-		    	
-		    	productsDatabase.executeStatement(sqlStatement);
-	    	}
-	    	
-	    	productsDatabase.closeConnection();
-	    }
-	});
+		SmartTrolleyToolBox.print("Product is favourite: " + product.getFavorite());
+
+		favoritesButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				SmartTrolleyToolBox.print("Pressed favorites button.");
+				productsDatabase.openConnection();
+
+				if (favoritesButton.isSelected()) {
+					SmartTrolleyToolBox.print("Favorites button set.");
+					String sqlStatement = "UPDATE `products` SET `IsFavourite`=1 WHERE `ProductID` = " + SmartTrolleyGUI.getCurrentProductID();
+
+					productsDatabase.executeStatement(sqlStatement);
+				} else {
+					SmartTrolleyToolBox.print("Favorites button unset.");
+					String sqlStatement = "UPDATE `products` SET `IsFavourite`=0 WHERE `ProductID` = " + SmartTrolleyGUI.getCurrentProductID();
+
+					productsDatabase.executeStatement(sqlStatement);
+				}
+
+				productsDatabase.closeConnection();
+			}
+		});
 	}
 
 	/**
@@ -186,9 +199,11 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 		createSlideButton(nextSLideButton);
 		createSlideButton(playPauseButton);
 
-		/*Image playPauseImage = new Image(" ../../GUIImages/button_play_pause.png");
-		playPauseButton.setGraphic(new ImageView(playPauseImage));*/
-		
+		/*
+		 * Image playPauseImage = new Image(" ../../GUIImages/button_play_pause.png");
+		 * playPauseButton.setGraphic(new ImageView(playPauseImage));
+		 */
+
 		nextSLideButton.defaultButtonProperty().set(true);
 
 		prevSLideButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -242,7 +257,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 				}
 			}
 		});
-		
+
 		priceAndSlideButtonsVBox.getChildren().add(playDirectionCheckbox);
 
 		// Create a HBox for holding the control buttons
@@ -277,7 +292,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	private void noSlideShowLoaded(ActionEvent event) {
 		SmartTrolleyToolBox.print("No slideshow loaded");
 
-		MessageBox noSldShowMsgBx = new MessageBox("No slideshow exists, please load one.", MessageBoxType.OK_ONLY);
+		MessageBox noSldShowMsgBx = new MessageBox("No slideshow exists for this list, please load one.", MessageBoxType.OK_ONLY);
 
 		/*
 		 * The two lines below to set the

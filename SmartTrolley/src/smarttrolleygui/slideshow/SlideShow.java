@@ -316,7 +316,7 @@ public class SlideShow {
 	}
 
 	/**
-	 * @return the autoPlay
+	 * @return the autoPlay state
 	 */
 	public boolean isAutoPlay() {
 		return autoPlay;

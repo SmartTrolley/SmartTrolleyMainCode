@@ -12,20 +12,19 @@ import javafx.scene.shape.Ellipse;
  * @author Matthew Wells
  * @author Alasdair Munday
  *
- * @author [Checked By:] [Checker(s) fill here]
+ * @author [Checked By:] [Prashant Chakravarty]
  *
  * @version [v1.0] [Date Created: 25/04/14]
  */
-
 public class SlideEllipse extends Ellipse{
 
+	
+	/**Slide duration in milliseconds*/
 	private SlideElementDuration duration;
 
 	/**
 	 * Creates an ellipse according to PWS standard.
-	 * 
 	 * @see SlideShapeFactory#getShape()
-	 * 
 	 *<p> Date Modified: 2 May 2014
 	 */
 	public SlideEllipse(ShapePoint point, int width, int height) {
@@ -73,6 +72,7 @@ public class SlideEllipse extends Ellipse{
 	/**
 	 * Finds the ratio of the newWidth of the shape once it has been resized to the 
 	 * inherent width of the shape, to determine a scaling factor
+	 *<p> Date Modified: 2 May 2014
 	 */
 	public void setWidth(int newWidth) {
 

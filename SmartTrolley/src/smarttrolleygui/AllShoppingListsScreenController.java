@@ -86,9 +86,8 @@ public class AllShoppingListsScreenController extends ControllerGeneral implemen
 	*<p> Date Modified: 9 May 2014
 	*/
 	public void createButtonListFromLists() throws SQLException {
-		String query = "SELECT ListID ,Name from lists";
 		SmartTrolleyToolBox.print("returned lists from DB");
-		ResultSet resultSet = productsDatabase.sendQuery(query);
+		ResultSet resultSet = productsDatabase.getAllLists();
 		
 
 		buttonList = new ArrayList<Button>();

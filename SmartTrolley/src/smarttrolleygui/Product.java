@@ -25,7 +25,7 @@ public class Product implements DataType{
 	private float savings;
 	private boolean isFavorite = false;
 
-	public int getId() {
+	public int getID() {
 		return id;
 	}
 
@@ -95,7 +95,17 @@ public class Product implements DataType{
 		} else {
 			this.isFavorite = true;
 		}
-
+	}
+	
+	/**
+	*Sets the favorite status of the product
+	*<p> User views products
+	*@param favorite
+	*<p> Date Modified: 6 Jun 2014
+	*/
+	protected void setFavorite(boolean favorite) {
+		this.isFavorite = favorite;
+		
 	}
 
 }

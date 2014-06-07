@@ -72,17 +72,17 @@ public class TestDataDownloader {
 			dataUploader.deleteContentAndResetAutoIncrement("video");
 			
 //			dataUploader.deleteLastList();
-			dataUploader.deleteLastList();
-			dataUploader.deleteLastProduct();
-			dataUploader.deleteLastProduct();
-			dataUploader.deleteLastProduct();
-			dataUploader.deleteLastProduct();
-			dataUploader.deleteLastProduct();
-			dataUploader.deleteLastProduct();
-			dataUploader.deleteLastProduct();
-			dataUploader.deleteLastProduct();
-			dataUploader.deleteLastProduct();
-			dataUploader.deleteLastProduct();
+//			dataUploader.deleteLastList();
+//			dataUploader.deleteLastProduct();
+//			dataUploader.deleteLastProduct();
+//			dataUploader.deleteLastProduct();
+//			dataUploader.deleteLastProduct();
+//			dataUploader.deleteLastProduct();
+//			dataUploader.deleteLastProduct();
+//			dataUploader.deleteLastProduct();
+//			dataUploader.deleteLastProduct();
+//			dataUploader.deleteLastProduct();
+//			dataUploader.deleteLastProduct();
 			
 		}
 		

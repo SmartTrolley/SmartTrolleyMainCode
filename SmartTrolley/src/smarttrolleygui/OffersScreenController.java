@@ -42,17 +42,17 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	@FXML
 	private ListView<String> categoriesList;
 	@FXML
-	private TableView<Product> productTable;
+	private TableView<ListProduct> productTable;
 	@FXML
-	private TableColumn<Product, Product> imageColumn;
+	private TableColumn<ListProduct, ListProduct> imageColumn;
 	@FXML
-    private TableColumn<Product, String> productNameColumn;
+    private TableColumn<ListProduct, String> productNameColumn;
 	@FXML
-    private TableColumn<Product, String> priceColumn;
+    private TableColumn<ListProduct, String> priceColumn;
 	@FXML
-    private TableColumn<Product, String> offerPriceColumn;    
+    private TableColumn<ListProduct, String> offerPriceColumn;    
 	@FXML
-	private TableColumn<Product, Product> addColumn;
+	private TableColumn<ListProduct, ListProduct> addColumn;
 	@FXML
 	private Label listNameLabel;
 	
@@ -63,7 +63,7 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 
 	private SmartTrolleyGUI application;
 	private ObservableList<String> categories;
-	private ObservableList<Product> productData;
+	private ObservableList<ListProduct> productData;
 	private String categoryNumber = null;
 
 	/**
@@ -216,27 +216,27 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 		productTable.setPlaceholder(new Label("It's ALL GONE! No Offers at the moment, please check back later."));
 		
         // set up column cell value factories
-        productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
-        offerPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("offerPrice"));
-        addColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+        productNameColumn.setCellValueFactory(new PropertyValueFactory<ListProduct, String>("name"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<ListProduct, String>("price"));
+        offerPriceColumn.setCellValueFactory(new PropertyValueFactory<ListProduct, String>("offerPrice"));
+        addColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ListProduct, ListProduct>, ObservableValue<ListProduct>>() {
             @Override
-            public ObservableValue<Product> call(TableColumn.CellDataFeatures<Product, Product> features) {
-                return new ReadOnlyObjectWrapper<Product>(features.getValue());
+            public ObservableValue<ListProduct> call(TableColumn.CellDataFeatures<ListProduct, ListProduct> features) {
+                return new ReadOnlyObjectWrapper<ListProduct>(features.getValue());
             }
         });
-        imageColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Product, Product>, ObservableValue<Product>>() {
+        imageColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ListProduct, ListProduct>, ObservableValue<ListProduct>>() {
             @Override
-            public ObservableValue<Product> call(TableColumn.CellDataFeatures<Product, Product> features) {
-                return new ReadOnlyObjectWrapper<Product>(features.getValue());
+            public ObservableValue<ListProduct> call(TableColumn.CellDataFeatures<ListProduct, ListProduct> features) {
+                return new ReadOnlyObjectWrapper<ListProduct>(features.getValue());
             }
         });
 
         // set up cell factories for columns containing images / buttons
-        productNameColumn.setCellFactory(new Callback<TableColumn<Product, String>, TableCell<Product, String>>() {
+        productNameColumn.setCellFactory(new Callback<TableColumn<ListProduct, String>, TableCell<ListProduct, String>>() {
 			@Override
-			public TableCell<Product, String> call(TableColumn<Product, String> productNameColumn) {
-				return new TableCell<Product, String>() {
+			public TableCell<ListProduct, String> call(TableColumn<ListProduct, String> productNameColumn) {
+				return new TableCell<ListProduct, String>() {
 					final Button button = new Button();
 
 					@Override
@@ -257,7 +257,7 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 									
 									SmartTrolleyToolBox.print("Pressed name of product: " + productName);
 									// TODO: add code to move to product screen here and refactor individual controllers
-									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(productName).getId());
+									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(productName).getID());
 									application.goToProductScreen();
 								}
 							});
@@ -269,14 +269,14 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 			}
 		});
         
-        addColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+        addColumn.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
             @Override
-            public TableCell<Product, Product> call(TableColumn<Product, Product> addColumn) {
-                return new TableCell<Product, Product>() {
+            public TableCell<ListProduct, ListProduct> call(TableColumn<ListProduct, ListProduct> addColumn) {
+                return new TableCell<ListProduct, ListProduct>() {
                     final Button button = new Button();
 
                     @Override
-                    public void updateItem(final Product product, boolean empty) {
+                    public void updateItem(final ListProduct product, boolean empty) {
                         super.updateItem(product, empty);
                         if (product != null) {
                             button.setText("+");
@@ -298,14 +298,14 @@ public class OffersScreenController extends ControllerGeneral implements Initial
             }
         });
 
-        imageColumn.setCellFactory(new Callback<TableColumn<Product, Product>, TableCell<Product, Product>>() {
+        imageColumn.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
 			@Override
-            public TableCell<Product, Product> call(TableColumn<Product, Product> imageColumn) {
-				return new TableCell<Product, Product>() {
+            public TableCell<ListProduct, ListProduct> call(TableColumn<ListProduct, ListProduct> imageColumn) {
+				return new TableCell<ListProduct, ListProduct>() {
 					final Button button = new Button();
 
 					@Override
-					public void updateItem(final Product product, boolean empty) {
+					public void updateItem(final ListProduct product, boolean empty) {
 						super.updateItem(product, empty);
 							if (product != null) {
 								try{
@@ -326,7 +326,7 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 								public void handle(ActionEvent event) {
 									SqlConnection sqlConnection = new SqlConnection();
 									SmartTrolleyToolBox.print("Pressed image of product: " + product.getName());
-									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(product.getName()).getId());
+									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(product.getName()).getID());
 									application.goToProductScreen();
 								}
 							});
