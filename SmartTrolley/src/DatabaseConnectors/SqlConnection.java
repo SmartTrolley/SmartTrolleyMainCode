@@ -109,8 +109,9 @@ public class SqlConnection {
 	*/
 	public ResultSet sendQuery(String query) throws SQLException {
 
-		SmartTrolleyToolBox.print("Query to send is: " + query);
 		Statement statement = connection.createStatement();
+		SmartTrolleyToolBox.print("Query to send is: " + query);
+		
 		ResultSet results = statement.executeQuery(query);
 
 		return results;

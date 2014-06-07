@@ -281,7 +281,7 @@ initializeProductTable fills the TableView with data and sets up cell
 										SqlConnection conn = new SqlConnection();
 										Boolean productFound = false;
 										int quantity = 0;
-										
+										conn.openConnection();
 										ResultSet resultSet = conn.getProductsInList(SmartTrolleyGUI.getcurrentListID(), 
 																					product.getID());
 										
@@ -298,6 +298,8 @@ initializeProductTable fills the TableView with data and sets up cell
                                             conn.updateQuantity(SmartTrolleyGUI.getcurrentListID(), 
                                             		product.getID(), quantity + 1);
                                 }
+										resultSet.close();
+										conn.closeConnection();
 										
 										//Now updated the totals
 										ObservableList<Double> data = SetTotals();

@@ -344,7 +344,7 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 										SqlConnection conn = new SqlConnection();
 										Boolean productFound = false;
 										int quantity = 0;
-
+										conn.openConnection();
 										ResultSet resultSet = conn.getProductsInList(SmartTrolleyGUI.getcurrentListID(), product.getID());
 
 										while (resultSet.next()) {
@@ -361,6 +361,9 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 
 										// Now refresh the table
 										refreshTable(data, product);
+										
+										resultSet.close();
+										conn.closeConnection();
 
 										// Now updated the totals
 										ObservableList<Double> totalData = SetTotals();
@@ -408,7 +411,7 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 										SqlConnection conn = new SqlConnection();
 										Boolean productFound = false;
 										int quantity = 0;
-
+										conn.openConnection();
 										ResultSet resultSet = conn.getProductsInList(SmartTrolleyGUI.getcurrentListID(), product.getID());
 
 										while (resultSet.next()) {
@@ -428,6 +431,8 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 												product.setQuantity(quantity - 1);
 											}
 										}
+										resultSet.close();
+										conn.closeConnection();
 
 										// Now refresh the table
 										refreshTable(data, product);

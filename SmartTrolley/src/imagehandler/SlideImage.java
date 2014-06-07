@@ -44,7 +44,7 @@ public class SlideImage extends ImageView{
 		try{
 		this.setImage(new Image(url));
 		}catch(IllegalArgumentException e){
-			SmartTrolleyToolBox.print("Could not fin image at url: "+url);
+			SmartTrolleyToolBox.print("Could not find image at url: "+url);
 			this.setImage(new Image("http://th03.deviantart.net/fs70/PRE/i/2013/077/8/9/cookie_monster_by_xenia_cat-d5yhjwj.jpg"));
 		}
 		

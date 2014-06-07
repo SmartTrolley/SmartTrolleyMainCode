@@ -31,7 +31,7 @@ import org.junit.Test;
 public class ImageHandlerTests {
 	
 	public String url = "http://th03.deviantart.net/fs70/PRE/i/2013/077/8/9/cookie_monster_by_xenia_cat-d5yhjwj.jpg";
-	public int x, y, width = 10, height = 10, duration = 1, startTime = 1;
+	public int x, y, width = 10, height = 10, duration = 10, startTime = 1;
 	SlideImage imageHandler;
 
 	/**
@@ -115,6 +115,7 @@ public class ImageHandlerTests {
 		
 		// shape should have disappeared
 		assertFalse(imageHandler.isVisible());		
+		
 	}
 	
 	
