@@ -23,13 +23,17 @@ import toolBox.SmartTrolleyToolBox;
 * @author Matthew Wells
 * @author Alasdair Munday
 *
-* @author [Checked By:] [Checker(s) fill here]
+* @author [Checked By:] [Prashant Chakravarty]
 *
 * @version [V1] [Date Created: 25/04/2014]
 */
 public class SlideShapeFactoryTest {
 
+	
+	/**Points used to draw shapes for the test*/
 	public PriorityQueue<ShapePoint> points;
+	
+	/**Various shape parameters for the test*/
 	int width = 50, height = 50, pointLow = 0, pentagonX = 25, pentagonY = 25;
 	int point1Num = 1, point2Num = 2, point3Num = 3, point4Num = 4, point5Num = 5;
 	public SlideShapeFactory shapeFactory, circleFactory;
@@ -39,20 +43,18 @@ public class SlideShapeFactoryTest {
 	private int startTime = 5, duration = 7;
 
 	/**
-	*Setup Class For SlideShapeFactory Test
+	*Setup Class For SlideShapeFactory Test sets up the points, a square and a circle
 	*<p> Date Modified: 25 Apr 2014
 	*/
 	@Before
 	public void setUp() throws Exception{
 		pointsSetup();		
 		squareSetUp();
-		circleSetup();
-		
+		circleSetup();		
 	}
 
 	/**
 	*Setup circles for testing in SlideShapeFactoryTest
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 25 Apr 2014
 	*/
 	private void circleSetup() {
@@ -67,7 +69,7 @@ public class SlideShapeFactoryTest {
 	}
 
 	/**
-	*setup points for drawing polygons in SlideShapeFactoryTest
+	*Setup points for drawing polygons in SlideShapeFactoryTest
 	*<p> Date Modified: 25 Apr 2014
 	*/
 	private void pointsSetup() {
@@ -137,7 +139,7 @@ public class SlideShapeFactoryTest {
 	*Tests that the points in the list passed to the factory
 	*correspond to the points the factory will use.
 	*
-	*The factory should internaly convert ShapePoints to 2 element arrays of 
+	*The factory should internally convert ShapePoints to 2 element arrays of 
 	*Doubles.
 	*
 	*<p> Date Modified: 25 Apr 2014
@@ -162,6 +164,7 @@ public class SlideShapeFactoryTest {
 			i++;
 		}
 	}
+	
 	
 	/**
 	*Test that setfill in SlideShape factory receives the 

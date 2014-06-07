@@ -97,7 +97,7 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 
 		// Store selected products
 		SmartTrolleyToolBox.print("List ID before product table init is: " + SmartTrolleyGUI.getcurrentListID());
-		productData = sqlConnector.getListOfProductsInList(SmartTrolleyGUI.getcurrentListID());
+		productData = sqlConnector.getListItems(SmartTrolleyGUI.getcurrentListID());
 		productTable.setItems(productData);
 
 		// Set the table empty text
@@ -123,7 +123,7 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 		SmartTrolleyToolBox.print(getCategoryNumber());
 
 		if (Integer.valueOf(getCategoryNumber()) == 1) {
-			productData = sqlConnector.getListOfProductsInList(SmartTrolleyGUI.getcurrentListID());
+			productData = sqlConnector.getListItems(SmartTrolleyGUI.getcurrentListID());
 		} else {
 			productData = sqlConnector.getListByCategory(SmartTrolleyGUI.getcurrentListID(), getCategoryNumber());
 		}
@@ -543,7 +543,6 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 		});
 	}
 
-	// ToDo may not needed
 	private void refreshTable(ObservableList<ListProduct> data, ListProduct selectedProduct) {
 
 		productTable.setItems(null);

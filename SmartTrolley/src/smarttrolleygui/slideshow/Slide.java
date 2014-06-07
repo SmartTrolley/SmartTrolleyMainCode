@@ -110,9 +110,10 @@ public class Slide extends AnchorPane {
 		if (videoList == null) {
 			SmartTrolleyToolBox.print("Video list is null for this slideshow.");
 		} else {
-		for (SlideVideo video : videoList) {
-			addVideo(video);
-		}}
+			for (SlideVideo video : videoList) {
+				addVideo(video);
+			}
+		}
 
 	}
 
@@ -199,22 +200,36 @@ public class Slide extends AnchorPane {
 	*<p> Date Modified: 29 May 2014
 	*/
 	public void show() {
-		for (SlideImage image : imageList) {
-			image.setVisible(true);
-			image.show();
+		if (imageList != null) {
+			for (SlideImage image : imageList) {
+				image.setVisible(true);
+				image.show();
+			}
 		}
-		for (Shape shape : graphicsList) {
-			shape.setVisible(true);
+
+		if (graphicsList != null) {
+			for (Shape shape : graphicsList) {
+				shape.setVisible(true);
+			}
 		}
-		for (SlideText text : textList) {
-			text.setVisible(true);
+
+		if (textList != null) {
+			for (SlideText text : textList) {
+				text.setVisible(true);
+			}
 		}
-		for (AudioHandler audio : audioList) {
-			audio.begin();
+
+		if (audioList != null) {
+			for (AudioHandler audio : audioList) {
+				audio.begin();
+			}
 		}
-		for (SlideVideo video : videoList) {
-			video.setVisible(true);
-			video.show();
+
+		if (videoList != null) {
+			for (SlideVideo video : videoList) {
+				video.setVisible(true);
+				video.show();
+			}
 		}
 
 		setVisible(true);

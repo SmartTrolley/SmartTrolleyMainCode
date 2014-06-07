@@ -13,10 +13,13 @@
 package smarttrolleygui;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -46,24 +49,24 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	@FXML
 	private TableColumn<ListProduct, ListProduct> imageColumn;
 	@FXML
-    private TableColumn<ListProduct, String> productNameColumn;
+	private TableColumn<ListProduct, String> productNameColumn;
 	@FXML
-    private TableColumn<ListProduct, String> priceColumn;
+	private TableColumn<ListProduct, String> priceColumn;
 	@FXML
-    private TableColumn<ListProduct, String> offerPriceColumn;    
+	private TableColumn<ListProduct, String> offerPriceColumn;
 	@FXML
 	private TableColumn<ListProduct, ListProduct> addColumn;
 	@FXML
 	private Label listNameLabel;
-	
+
 	@FXML
-	private TextField searchBox;
+	public Label lblTotalItems;
 	@FXML
-	private Button searchButton;
+	public Label lblTotal;
 
 	private SmartTrolleyGUI application;
 	private ObservableList<String> categories;
-	private ObservableList<ListProduct> productData;
+	private static ObservableList<ListProduct> productData;
 	private String categoryNumber = null;
 
 	/**
@@ -73,24 +76,38 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		// ToDo move to initialize
+		// Set the total labels
+		ObservableList<Double> data;
+		try {
+			data = SetTotals();
+		
+		lblTotal.setText("Total: £" + data.get(0).floatValue());
+		lblTotalItems.setText("Total Items: " + data.get(1).toString().replace(".0", ""));
+		} catch (SQLException e) {	
+			lblTotal.setText("" );
+			lblTotalItems.setText(" ");
+			e.printStackTrace();
+		}
+
 		// Fill list on the LHS of the screen with different product categories
 		categories = initializeCategories();
 		categoriesList.setItems(categories);
-    	
-    	//Create new SqlConnection to retrieve product data
-    	SqlConnection sqlConnector = new SqlConnection();
-    
-        // Fill table with sample products
-        productData = sqlConnector.getListOfOffers();
-		
-        productTable.setItems(productData);
-        
+
+		// Create new SqlConnection to retrieve product data
+		SqlConnection sqlConnector = new SqlConnection();
+
+		// Fill table with sample products
+		productData = sqlConnector.getListOfOffers();
+
+		productTable.setItems(productData);
+
 		// show name of current shopping list
 		listNameLabel.setText(SmartTrolleyGUI.getCurrentListName());
-        
-    	initializeProductTable();
-    }
-	
+
+		initializeProductTable();
+	}
+
 	/**
 	*Searches database for product entered into the TextField.
 	*<p>User is able to search for product
@@ -102,28 +119,28 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 
 		productTable.setItems(searchForProductInSearchBox(searchBox.getText()));
 	}*/
-    
-    /** Any FXML item with a mouse click handle will use this method to dictate its reaction when clicked
-     * 
-     * This should only be for the Category List (ListView)
-     * 
-     */
-    @FXML public void handleMouseClick(MouseEvent arg0){
-    	
-    	SqlConnection sqlConnector = new SqlConnection();
-    	setCategoryNumber(sqlConnector.getSpecificCategoryNumber(categoriesList.getSelectionModel().getSelectedItem()));
-    	//SmartTrolleyToolBox.print(getCategoryNumber());
-    	    	
-    	if (Integer.valueOf(getCategoryNumber())  == 1) {
-    		  // Fill table with sample products
-            productData = sqlConnector.getListOfOffers();
-    		}
-    	else{
-    		// Fill table with sample products
-    		productData = sqlConnector.getOfferByCategory(getCategoryNumber());
-    		}
-    	
-        productTable.setItems(productData);
+
+	/** Any FXML item with a mouse click handle will use this method to dictate its reaction when clicked
+	 * 
+	 * This should only be for the Category List (ListView)
+	 * 
+	 */
+	@FXML
+	public void handleMouseClick(MouseEvent arg0) {
+
+		SqlConnection sqlConnector = new SqlConnection();
+		setCategoryNumber(sqlConnector.getSpecificCategoryNumber(categoriesList.getSelectionModel().getSelectedItem()));
+		// SmartTrolleyToolBox.print(getCategoryNumber());
+
+		if (Integer.valueOf(getCategoryNumber()) == 1) {
+			// Fill table with sample products
+			productData = sqlConnector.getListOfOffers();
+		} else {
+			// Fill table with sample products
+			productData = sqlConnector.getOfferByCategory(getCategoryNumber());
+		}
+
+		productTable.setItems(productData);
 		initializeProductTable();
 	}
 
@@ -167,7 +184,8 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	 * <p> Date Modified: 28 Feb 2014
 	 */
 	public void loadFavourites(ActionEvent event) {
-		loadScreen(Screen.FAVORITESSCREEN, application);	}
+		loadScreen(Screen.FAVORITESSCREEN, application);
+	}
 
 	/**
 	 * loadShoppingList is called when the 'list' button is pressed. It calls
@@ -178,7 +196,8 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	 * <p> Date Modified: 6 Mar 2014
 	 */
 	public void loadShoppingList(ActionEvent event) {
-		loadScreen(Screen.SHOPPINGLISTSCREEN, application);	}
+		loadScreen(Screen.SHOPPINGLISTSCREEN, application);
+	}
 
 	/**
 	 * initializeCategories sets up the list of categories that will be
@@ -187,11 +206,11 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	 * @return categories - list of categories
 	 * <p> Date Modified: 7 Mar 2014
 	 */
-    public ObservableList<String> initializeCategories() {
-    	//Create new SqlConnection to retrieve product data
-    	SqlConnection sqlConnector = new SqlConnection();    
-         
-        categories = sqlConnector.getListOfCategories();
+	public ObservableList<String> initializeCategories() {
+		// Create new SqlConnection to retrieve product data
+		SqlConnection sqlConnector = new SqlConnection();
+
+		categories = sqlConnector.getListOfCategories();
 
 		return categories;
 	}
@@ -202,8 +221,8 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 
 	public void setCategoryNumber(String categoryNumber) {
 		this.categoryNumber = categoryNumber;
-	}    
-    
+	}
+
 	/**
 	 * initializeProductTable fills the TableView with data and sets up cell
 	 * factories
@@ -211,29 +230,19 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	 * <p> Date Modified: 9 Mar 2014
 	 */
 	private void initializeProductTable() {
-		
-		//Set the table empty text
-		productTable.setPlaceholder(new Label("It's ALL GONE! No Offers at the moment, please check back later."));
-		
-        // set up column cell value factories
-        productNameColumn.setCellValueFactory(new PropertyValueFactory<ListProduct, String>("name"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<ListProduct, String>("price"));
-        offerPriceColumn.setCellValueFactory(new PropertyValueFactory<ListProduct, String>("offerPrice"));
-        addColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ListProduct, ListProduct>, ObservableValue<ListProduct>>() {
-            @Override
-            public ObservableValue<ListProduct> call(TableColumn.CellDataFeatures<ListProduct, ListProduct> features) {
-                return new ReadOnlyObjectWrapper<ListProduct>(features.getValue());
-            }
-        });
-        imageColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ListProduct, ListProduct>, ObservableValue<ListProduct>>() {
-            @Override
-            public ObservableValue<ListProduct> call(TableColumn.CellDataFeatures<ListProduct, ListProduct> features) {
-                return new ReadOnlyObjectWrapper<ListProduct>(features.getValue());
-            }
-        });
 
-        // set up cell factories for columns containing images / buttons
-        productNameColumn.setCellFactory(new Callback<TableColumn<ListProduct, String>, TableCell<ListProduct, String>>() {
+		// Set the table empty text
+		productTable.setPlaceholder(new Label("It's ALL GONE! No Offers at the moment, please check back later."));
+
+		// set up column cell value factories
+		productNameColumn.setCellValueFactory(new PropertyValueFactory<ListProduct, String>("name"));
+		priceColumn.setCellValueFactory(new PropertyValueFactory<ListProduct, String>("price"));
+		offerPriceColumn.setCellValueFactory(new PropertyValueFactory<ListProduct, String>("offerPrice"));
+		setUpCellValueFactory(addColumn);
+		setUpCellValueFactory(imageColumn);
+
+		// set up cell factories for columns containing images / buttons
+		productNameColumn.setCellFactory(new Callback<TableColumn<ListProduct, String>, TableCell<ListProduct, String>>() {
 			@Override
 			public TableCell<ListProduct, String> call(TableColumn<ListProduct, String> productNameColumn) {
 				return new TableCell<ListProduct, String>() {
@@ -243,7 +252,7 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 					public void updateItem(final String productName, boolean empty) {
 						super.updateItem(productName, empty);
 						if (productName != null) {
-														
+
 							setGraphic(button);
 							button.setText(productName);
 							button.setPrefHeight(80);
@@ -254,7 +263,7 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 								@Override
 								public void handle(ActionEvent event) {
 									SqlConnection sqlConnection = new SqlConnection();
-									
+
 									SmartTrolleyToolBox.print("Pressed name of product: " + productName);
 									// TODO: add code to move to product screen here and refactor individual controllers
 									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(productName).getID());
@@ -268,57 +277,94 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 				};
 			}
 		});
-        
-        addColumn.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
-            @Override
-            public TableCell<ListProduct, ListProduct> call(TableColumn<ListProduct, ListProduct> addColumn) {
-                return new TableCell<ListProduct, ListProduct>() {
-                    final Button button = new Button();
 
-                    @Override
-                    public void updateItem(final ListProduct product, boolean empty) {
-                        super.updateItem(product, empty);
-                        if (product != null) {
-                            button.setText("+");
-                            button.getStyleClass().add("buttonChangeQuantity");
-                            setGraphic(button);
-
-                            // Button Event Handler
-                            button.setOnAction(new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    SmartTrolleyToolBox.print("Pressed add button for product: " + product.getName());
-                                }
-                            });
-                        } else {
-                            setGraphic(null);
-                        }
-                    }
-                };
-            }
-        });
-
-        imageColumn.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
+		addColumn.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
 			@Override
-            public TableCell<ListProduct, ListProduct> call(TableColumn<ListProduct, ListProduct> imageColumn) {
+			public TableCell<ListProduct, ListProduct> call(TableColumn<ListProduct, ListProduct> addColumn) {
 				return new TableCell<ListProduct, ListProduct>() {
 					final Button button = new Button();
 
 					@Override
 					public void updateItem(final ListProduct product, boolean empty) {
 						super.updateItem(product, empty);
-							if (product != null) {
-								try{
+						if (product != null) {
+							button.setText("+");
+							button.getStyleClass().add("buttonChangeQuantity");
+							setGraphic(button);
+
+							// Button Event Handler
+							button.setOnAction(new EventHandler<ActionEvent>() {
+								@Override
+								public void handle(ActionEvent event) {
+									SmartTrolleyToolBox.print("Pressed add button for product: " + product.getName());
+									
+									try {
+										SqlConnection conn = new SqlConnection();
+										Boolean productFound = false;
+										int quantity = 0;
+										conn.openConnection();
+										ResultSet resultSet = conn.getProductsInList(SmartTrolleyGUI.getcurrentListID(), 
+																					product.getID());
+										
+										while(resultSet.next()){
+                                            productFound = true;
+                                            quantity = resultSet.getInt("Quantity");
+                                        }
+										
+										if(productFound == false){
+                                            conn.AddProductToList(SmartTrolleyGUI.getcurrentListID(), 
+                                            		product.getID(), 1);
+                                        }else {
+                                            //If product exists then add 1 to the quantity
+                                            conn.updateQuantity(SmartTrolleyGUI.getcurrentListID(), 
+                                            		product.getID(), quantity + 1);
+                                        }
+										
+										resultSet.close();
+										conn.closeConnection();
+										
+										//Now updated the totals
+										ObservableList<Double> data = SetTotals();
+                                        lblTotal.setText("Total: £" + data.get(0).floatValue());
+                                        lblTotalItems.setText("Total Items: " + data.get(1).toString().replace(".0", ""));
+										
+									
+									} catch (SQLException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									
+									
+								}
+							});
+						} else {
+							setGraphic(null);
+						}
+					}
+				};
+			}
+		});
+
+		imageColumn.setCellFactory(new Callback<TableColumn<ListProduct, ListProduct>, TableCell<ListProduct, ListProduct>>() {
+			@Override
+			public TableCell<ListProduct, ListProduct> call(TableColumn<ListProduct, ListProduct> imageColumn) {
+				return new TableCell<ListProduct, ListProduct>() {
+					final Button button = new Button();
+
+					@Override
+					public void updateItem(final ListProduct product, boolean empty) {
+						super.updateItem(product, empty);
+						if (product != null) {
+							try {
 								Image productImage = new Image(getClass().getResourceAsStream(product.getImage()));
 								button.setGraphic(new ImageView(productImage));
-								}
-								catch (NullPointerException noImage) {
-									SmartTrolleyToolBox.print("Image URL invalid or null.");
-									button.setGraphic(null);
-								}								
-                            button.setPrefSize(80, 60);
-                            button.getStyleClass().add("buttonProductNameTable");
-							setGraphic(button);				
+							} catch (NullPointerException noImage) {
+								SmartTrolleyToolBox.print("Image URL invalid or null.");
+								button.setGraphic(null);
+							}
+							button.setPrefSize(80, 60);
+							button.getStyleClass().add("buttonProductNameTable");
+							setGraphic(button);
 
 							// Button Event Handler
 							button.setOnAction(new EventHandler<ActionEvent>() {
@@ -337,6 +383,29 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 				};
 			}
 		});
+	}
+
+	public static int getProductDataSize() {
+		return productData.size();
+	}
+
+	private ObservableList<Double> SetTotals() throws SQLException {
+		double total = 0;
+		double totalItems = 0;
+
+		SqlConnection conn = new SqlConnection();
+
+		ResultSet resultSet = conn.getAllListItems(SmartTrolleyGUI.getcurrentListID());
+
+		while (resultSet.next()) {
+			total += resultSet.getDouble("Price") * resultSet.getInt("Quantity");
+			totalItems += resultSet.getInt("Quantity");
+
+		}
+
+		ObservableList<Double> data = FXCollections.observableArrayList(total, totalItems, 0.00);
+		return data;
+
 	}
 }
 /************** End of OffersScreenController **************/

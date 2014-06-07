@@ -1,17 +1,3 @@
-/**
-* SmartTrolley
-*
-* A complete test class to ensure correct funtionality
-* of the Image Handler module
-*
-* @author Matthew Wells
-* @author Alasdair Munday
-*
-* @author Checked By: Checker(s) fill here
-*
-* @version v1.0 [Date Created: May 3, 2014]
-*/
-
 package imagehandler;
 
 import static org.junit.Assert.assertEquals;
@@ -25,13 +11,23 @@ import org.junit.Test;
 
 
 /**
- * @author Alasdair
- *
- */
+* SmartTrolley
+*
+* A complete test class to ensure correct funtionality
+* of the Image Handler module
+*
+* @author Matthew Wells
+* @author Alasdair Munday
+*
+* @author Checked By: Checker(s) fill here
+*
+* @version v1.0 [Date Created: May 3, 2014]
+*/
 public class ImageHandlerTests {
 	
-	public String url = "http://th03.deviantart.net/fs70/PRE/i/2013/077/8/9/cookie_monster_by_xenia_cat-d5yhjwj.jpg";
-	public int x, y, width = 10, height = 10, duration = 10, startTime = 1;
+	//public String url = "http://th03.deviantart.net/fs70/PRE/i/2013/077/8/9/cookie_monster_by_xenia_cat-d5yhjwj.jpg";
+	public String url="smarttrolleygui/img/SampleProducts/ariel.jpg";
+	public int x, y, width = 10, height = 10, duration = 1, startTime = 1;
 	SlideImage imageHandler;
 
 	/**

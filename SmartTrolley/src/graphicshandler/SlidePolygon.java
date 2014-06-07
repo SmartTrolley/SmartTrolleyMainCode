@@ -1,15 +1,4 @@
-/**
- * SmartTrolley
- *
- * The PWS polygon graphic for slideshows
- *
- * @author Name1
- * @author Name2
- *
- * @author Checked By: Checker(s) fill here
- *
- * @version version of this file [Date Created: 1 May 2014]
- */
+
 
 package graphicshandler;
 
@@ -27,13 +16,14 @@ import javafx.scene.shape.Polygon;
  * @author Matthew Wells
  * @author Alasdair Munday
  * 
- * @author [Checked By:] [Checker(s) fill here]
+ * @author [Checked By:] [Prashant Chakravarty - 07 Jun 2014]
  * 
  * @version [v1.0] [Date Created: 25/04/14]
  */
-
 public class SlidePolygon extends Polygon{
 
+	
+	/**Duration of the polygon in millseconds*/
 	private SlideElementDuration duration;
 
 	/**
@@ -41,8 +31,7 @@ public class SlidePolygon extends Polygon{
 	 * duration and sets the visibility to false
 	 * 
 	 * @param points
-	 *            <p>
-	 *            Date Modified: 28 Apr 2014
+	 * <p>Date Modified: 28 Apr 2014
 	 */
 	public SlidePolygon(PriorityQueue<ShapePoint> points) {
 		extractCoordinates(points);
@@ -53,8 +42,8 @@ public class SlidePolygon extends Polygon{
 
 	/**
 	 * Adds the x and y coordinates of the polygon to the method getPoints()
-	 * <p>
-	 * Date Modified: 28 Apr 2014
+	 * @param points - A PriorityQueue (points are sorted into the correct order regardless of insertion order by the pointNumber) of ShapePoints
+	 * <p>Date Modified: 28 Apr 2014
 	 */
 	private void extractCoordinates(PriorityQueue<ShapePoint> points) {
 
@@ -79,8 +68,8 @@ public class SlidePolygon extends Polygon{
 
 	/**
 	 * Converts from seconds to milliseconds for the polygon duration
-	 * <p>
-	 * Date Modified: 28 Apr 2014
+	 * @param seconds - Duration of the polygon
+	 * <p>Date Modified: 28 Apr 2014
 	 */
 	public void setDuration(double seconds) {
 		
@@ -101,9 +90,8 @@ public class SlidePolygon extends Polygon{
 	/**
 	 * Finds the ratio of the newHeight of the polygon once it has been resized
 	 * to the inherent height of the polygon, to determine a scaling factor
-	 * 
-	 *
-	 *      Date Modified: 28 Apr 2014
+	 * @param newHeight - The new height of the polygon as an integer
+	 *<p>Date Modified: 28 Apr 2014
 	 */
 	public void setHeight(int newHeight) {
 
@@ -120,8 +108,8 @@ public class SlidePolygon extends Polygon{
 	/**
 	 * Finds the ratio of the newWidth of the polygon once it has been resized
 	 * to the inherent width of the polygon, to determine a scaling factor
-	 * <p>
-	 * Date Modified: 28 Apr 2014
+	 * @param newWidth - The new width of the polygon as an integer
+	 * <p> Date Modified: 28 Apr 2014
 	 */
 	public void setWidth(int newWidth) {
 
@@ -138,8 +126,8 @@ public class SlidePolygon extends Polygon{
 
 	/**
 	 * Method converts from seconds to milliseconds for setStartTime
-	 * <p>
-	 * Date Modified: 28 Apr 2014
+	 * @param seconds - The start time for the polygon in seconds
+	 * <p> Date Modified: 28 Apr 2014
 	 */
 	public void setStartTime(int seconds) {
 		
@@ -149,9 +137,8 @@ public class SlidePolygon extends Polygon{
 	/**
 	 * Method sets fillColor
 	 * 
-	 * fillColor
-	 *            <p>
-	 *            Date Modified: 28 April 2014
+	 * @param fillColor - The fill color of the polygon
+	 * <p> Date Modified: 28 April 2014
 	 */
 	public void setFillColor(String fillColor) {
 		this.setFill(Color.web(fillColor));
@@ -160,10 +147,8 @@ public class SlidePolygon extends Polygon{
 
 	/**
 	 * Method returns fillColor
-	 * 
-	 * fillColor
-	 *            <p>
-	 *            Date Modified: 28 April 2014
+	 * @return fillColor - The fill colour of the polygon as a Paint object
+	 * <p> Date Modified: 28 April 2014
 	 */
 	public Paint getFillColor() {
 		return this.getFill();
@@ -172,9 +157,8 @@ public class SlidePolygon extends Polygon{
 	/**
 	 * Method sets lineColor
 	 * 
-	 * lineColor
-	 *            <p>
-	 *            Date Modified: 28 April 2014
+	 * @param lineColor - The lineColor of the polygon as a String
+	 * <p> Date Modified: 28 April 2014
 	 */
 	public void setLineColor(String lineColor) {
 		this.setStroke(Color.web(lineColor));
@@ -184,9 +168,9 @@ public class SlidePolygon extends Polygon{
 	/**
 	 * Method returns lineColor
 	 * 
-	 * lineColor
+	 * @return lineColor - The line colour of the polygon as a Paint object
 	 *         
-	 * Date Modified: 28 April 2014
+	 * <p> Date Modified: 28 April 2014
 	 */
 	public Paint getLineColor() {
 

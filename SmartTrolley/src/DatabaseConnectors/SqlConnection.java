@@ -23,6 +23,7 @@ import slideshowdata.VideoData;
 import smarttrolleygui.ListProduct;
 import smarttrolleygui.Offer;
 import smarttrolleygui.Product;
+import smarttrolleygui.SmartTrolleyGUI;
 import toolBox.SmartTrolleyToolBox;
 
 /**
@@ -111,7 +112,7 @@ public class SqlConnection {
 
 		Statement statement = connection.createStatement();
 		SmartTrolleyToolBox.print("Query to send is: " + query);
-		
+
 		ResultSet results = statement.executeQuery(query);
 
 		return results;
@@ -178,6 +179,25 @@ public class SqlConnection {
 			SmartTrolleyToolBox.print("Product could not be found");
 			return null;
 		}
+	}
+
+	/**
+	*Method/Test Description
+	*<p>Test(s)/User Story that it satisfies
+	*@param results
+	*@return
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 7 Jun 2014
+	*/
+	private ListProduct createProductFromResultSet(ResultSet results) {
+		ListProduct listProduct = null;
+		try {
+			listProduct = createProductFromResultSet(results,0);
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return listProduct;
 	}
 
 	/**
@@ -450,7 +470,7 @@ public class SqlConnection {
 	*@throws SQLException
 	*<p> Date Modified: 3 Jun 2014
 	*/
-	protected ListProduct createProductFromResultSet(ResultSet resultSet) throws SQLException {
+	protected ListProduct createProductFromResultSet(ResultSet resultSet, int quantity) throws SQLException {
 
 		ListProduct product = new ListProduct();
 
@@ -466,6 +486,9 @@ public class SqlConnection {
 
 		// get Price
 		product.setPrice(resultSet.getFloat("Price"));
+
+		// get Quantity
+		product.setQuantity(quantity);
 
 		// get Favorite status
 		product.setFavorite(resultSet.getInt("IsFavourite"));
@@ -1141,9 +1164,9 @@ public class SqlConnection {
 					float savings = product.getPrice() - product.getOfferPrice();
 
 					product.setSavings(savings);
-					
+
 					ListProduct listProduct = ListProduct.productToListProduct(product);
-					
+
 					offers.add(listProduct);
 				} else {
 					SmartTrolleyToolBox.print("No Offers in that category found");
@@ -1265,6 +1288,73 @@ public class SqlConnection {
 		query = "ALTER TABLE products" + " AUTO_INCREMENT =" + productid + ";";
 		executeStatement(query);
 		closeConnection();
+
+	}
+
+	/**
+	 * Retrieves the list items from the SQL server
+	 * <p> User can view list of lists
+	 * @param listID
+	 * @return <p>
+	 *         Date Modified: 9 May 2014
+	 */
+	public ObservableList<ListProduct> getListItems(int listID) {
+		openConnection();
+
+		products = FXCollections.observableArrayList();
+
+		String query = "SELECT * FROM lists_products WHERE listID = " + SmartTrolleyGUI.getcurrentListID();
+		SmartTrolleyToolBox.print("query is: " + query);
+
+		ResultSet productIDsInList = null;
+
+		try {
+			productIDsInList = sendQuery(query);
+
+		} catch (SQLException e) {
+			SmartTrolleyToolBox.print("lists could not be found");
+
+		}
+
+		try {
+
+			ResultSet listProducts;
+
+			while (productIDsInList.next()) {
+
+				query = "SELECT * FROM products WHERE ProductID = " + productIDsInList.getInt("ProductID");
+				SmartTrolleyToolBox.print("query is: " + query);
+
+				listProducts = sendQuery(query);
+
+				SmartTrolleyToolBox.print("Query Sent");
+
+				ListProduct product = new ListProduct();
+				SmartTrolleyToolBox.print("Initializing Product");
+
+				SmartTrolleyToolBox.print(isResultSetEmpty(listProducts));
+
+				listProducts.absolute(1);
+
+				SmartTrolleyToolBox.print("Row Size is = " + listProducts.getRow());
+
+				product = createProductFromResultSet(listProducts, productIDsInList.getInt("Quantity"));
+				SmartTrolleyToolBox.print("Product Set");
+
+				products.add(product);
+
+				SmartTrolleyToolBox.print("Product Stored");
+
+				SmartTrolleyToolBox.print(product.getID() + "  " + product.getName() + "  " + product.getImage() + "  " + product.getPrice() + " " + product.getFavorite());
+
+			}
+		} catch (SQLException e) {
+			SmartTrolleyToolBox.print("Product could not be found");
+			return null;
+		}
+
+		closeConnection();
+		return products;
 
 	}
 
