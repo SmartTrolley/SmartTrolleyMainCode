@@ -12,38 +12,38 @@ import javafx.scene.shape.Ellipse;
  * @author Matthew Wells
  * @author Alasdair Munday
  *
- * @author [Checked By:] [Checker(s) fill here]
+ * @author [Checked By:] [Prashant Chakravarty - 07/06/14]
  *
  * @version [v1.0] [Date Created: 25/04/14]
  */
+public class SlideEllipse extends Ellipse {
 
-public class SlideEllipse extends Ellipse{
-
+	/**Duration of the ellipse in milliseconds*/
 	private SlideElementDuration duration;
 
 	/**
-	 * Creates an ellipse according to PWS standard.
-	 * 
-	 * @see SlideShapeFactory#getShape()
-	 * 
-	 *<p> Date Modified: 2 May 2014
-	 */
+	* Creates an ellipse according to PWS standard by taking in the points, width and height
+	*@param point
+	*@param width
+	*@param height
+	* @see SlideShapeFactory#getShape()
+	*<p> Date Modified: 2 May 2014
+	*/
 	public SlideEllipse(ShapePoint point, int width, int height) {
-		super(point.getxCoordinate(), point.getyCoordinate(), width/2, height/2);
+		super(point.getxCoordinate(), point.getyCoordinate(), width / 2, height / 2);
 		duration = new SlideElementDuration(this);
 		setVisible(false);
 	}
 
-	
 	/**
 	 * Method converts from seconds to milliseconds for setDuration
+	 *@param seconds - The ellipse duration to be set, in seconds 
 	 *<p> Date Modified: 2 May 2014
 	 */
 	public void setDuration(double seconds) {
-		
+
 		duration.setDuration(seconds);
 	}
-
 
 	/**Calls duration.show()
 	 *<p> Date Modified: 2 May 2014
@@ -52,50 +52,52 @@ public class SlideEllipse extends Ellipse{
 		duration.show();
 	}
 
-	
 	/**
 	 * Finds the ratio of the newHeight of the shape once it has been resized to the 
-	 * inherent height of the shape, to determine a scaling factor
+	 * inherent height of the shape, to determine a scaling factor.
+	 *@param newHeight
 	 *<p> Date Modified: 2 May 2014
 	 */
 	public void setHeight(int newHeight) {
-		
+
 		double inherentHeight = super.getBoundsInLocal().getHeight();
 
-		//calculate the ratio of inherent Height to current Height
-		double scaler = newHeight/inherentHeight;
+		// calculate the ratio of inherent Height to current Height
+		double scaler = newHeight / inherentHeight;
 
-		//scale by this ratio
+		// scale by this ratio
 		this.setScaleY(scaler);
-
 	}
 
 	/**
 	 * Finds the ratio of the newWidth of the shape once it has been resized to the 
 	 * inherent width of the shape, to determine a scaling factor
+	 *@param newWidth
+	 *<p> Date Modified: 2 May 2014
 	 */
 	public void setWidth(int newWidth) {
 
 		// create local shape to access polygon parameters
 		double inherentWidth = super.getBoundsInLocal().getWidth();
 
-		//calculate the ratio of new width to inherent width
-		double scaler = newWidth/inherentWidth;
+		// calculate the ratio of new width to inherent width
+		double scaler = newWidth / inherentWidth;
 
-		//scale by this ratio
+		// scale by this ratio
 		this.setScaleX(scaler);
 
 	}
 
 	/**
 	 *Method converts from seconds to milliseconds for setStartTime
+	 *@param seconds - The amount of time, in seconds, after which the ellipse is to be made visible
 	 *<p> Date Modified: 2 May 2014
 	 */
 	public void setStartTime(int seconds) {
-		duration.setStartTime(seconds);		
+		duration.setStartTime(seconds);
 	}
 
-	/**Method sets fillColor
+	/**Method sets fillColor for ellipse
 	 *@param fillColor
 	 *<p> Date Modified: 2 May 2014
 	 */
@@ -105,7 +107,8 @@ public class SlideEllipse extends Ellipse{
 	}
 
 	/**
-	 * Method returns fillColor
+	 * Method returns ellipse's fillColor
+	 * @return The fill colour of the ellipse as a Paint object
 	 *<p> Date Modified: 2 May 2014
 	 */
 	public Paint getFillColor() {
@@ -113,7 +116,8 @@ public class SlideEllipse extends Ellipse{
 	}
 
 	/**
-	 *Method sets lineColor
+	 *Method sets lineColor for ellipse
+	 *@param lineColor - The linecolor to set for the ellipse
 	 *<p> Date Modified: 2 May 2014
 	 */
 	public void setLineColor(String lineColor) {
@@ -122,7 +126,8 @@ public class SlideEllipse extends Ellipse{
 	}
 
 	/**
-	 *Method returns lineColor
+	 *Method returns ellipse's lineColor
+	 *@return A Paint object containing the line colour of the ellipse
 	 *<p> Date Modified: 2 May 2014
 	 */
 	public Paint getLineColor() {

@@ -8,7 +8,7 @@ import javafx.scene.Node;
 /**
  * SmartTrolley
  * 
- * Handler for durations of media on a slideshow. uses timers to make the slideshow
+ * Handler for durations of media on a slideshow. uses timers to make the slide element
  * appear after startTime and then remain visible for the duration.
  * 
  * @author Matthew Wells
