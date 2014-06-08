@@ -41,6 +41,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
+import slideshowdata.DataDownloader;
+import slideshowdata.SlideDataImporter;
+import smarttrolleygui.slideshow.Slide;
+import smarttrolleygui.slideshow.SlideShow;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
@@ -275,6 +279,8 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 									SmartTrolleyToolBox.print("Pressed name of product: " + productName);
 									// TODO: add code to move to product screen here and refactor individual controllers
 									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(productName).getID());
+									
+									application.productClicked = true;
 									application.goToProductScreen();
 								}
 							});

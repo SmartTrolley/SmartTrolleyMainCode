@@ -192,9 +192,9 @@ public class SqlConnection {
 	private ListProduct createProductFromResultSet(ResultSet results) {
 		ListProduct listProduct = null;
 		try {
-			listProduct = createProductFromResultSet(results,0);
+			listProduct = createProductFromResultSet(results, 0);
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
 		return listProduct;
@@ -633,7 +633,6 @@ public class SqlConnection {
 
 				} while (results.next());
 
-				closeConnection();
 				data = product;
 				break;
 
@@ -657,7 +656,6 @@ public class SqlConnection {
 
 				} while (results.next());
 
-				closeConnection();
 				data = audiodatalist;
 				break;
 
@@ -691,7 +689,6 @@ public class SqlConnection {
 
 				} while (results.next());
 
-				closeConnection();
 				data = defaultsdata;
 				break;
 
@@ -725,7 +722,6 @@ public class SqlConnection {
 
 				} while (results.next());
 
-				closeConnection();
 				data = documentinfodata;
 				break;
 
@@ -767,7 +763,6 @@ public class SqlConnection {
 
 				} while (results.next());
 
-				closeConnection();
 				data = imagedatalist;
 				break;
 
@@ -790,7 +785,6 @@ public class SqlConnection {
 
 				} while (results.next());
 
-				closeConnection();
 				data = pointdatalist;
 				break;
 
@@ -835,7 +829,6 @@ public class SqlConnection {
 
 				} while (results.next());
 
-				closeConnection();
 				data = shapedatalist;
 				break;
 
@@ -857,7 +850,6 @@ public class SqlConnection {
 
 				} while (results.next());
 
-				closeConnection();
 				data = slidedata;
 				break;
 
@@ -905,7 +897,6 @@ public class SqlConnection {
 
 				} while (results.next());
 
-				closeConnection();
 				data = textdatalist;
 				break;
 
@@ -935,7 +926,6 @@ public class SqlConnection {
 
 				} while (results.next());
 
-				closeConnection();
 				data = textbodydatalist;
 				break;
 
@@ -977,20 +967,20 @@ public class SqlConnection {
 
 				} while (results.next());
 
-				closeConnection();
 				data = videodatalist;
 				break;
 
 			default:
-				closeConnection();
 				data = null;
 			}
 		} catch (SQLException e) {
 
 			SmartTrolleyToolBox.print("SQL Exception in getSpecificData: " + e);
 			return null;
+		} 
+		finally {
+			closeConnection();
 		}
-
 		return data;
 	}
 

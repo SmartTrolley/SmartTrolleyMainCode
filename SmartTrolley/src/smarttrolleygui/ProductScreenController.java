@@ -103,9 +103,9 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	protected void setSlideShow(SlideShow slideShow) {
 		this.currentSlideShow = slideShow;
 
-		if (slideShow == null) {
+		/*if (slideShow == null) {
 			noSlideShowLoaded(null);
-		}
+		}*/
 
 		configurePlayDirectionCheckbox();
 

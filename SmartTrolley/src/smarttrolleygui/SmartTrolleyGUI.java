@@ -31,6 +31,9 @@ import javafx.stage.Stage;
 import se.mbaeumer.fxmessagebox.MessageBox;
 import se.mbaeumer.fxmessagebox.MessageBoxType;
 import slideshowdata.DataDownloader;
+import slideshowdata.SlideDataImporter;
+import slideshowdata.SlideShowData;
+import smarttrolleygui.slideshow.Slide;
 import smarttrolleygui.slideshow.SlideShow;
 import toolBox.SmartTrolleyToolBox;
 
@@ -73,6 +76,10 @@ public class SmartTrolleyGUI extends Application {
 	ProductScreenController productScreen;
 
 	public ShoppingListController shoppingList;
+
+	private SlideShowData slideShowData;
+
+	boolean productClicked = false;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -245,24 +252,20 @@ public class SmartTrolleyGUI extends Application {
 	 */
 	public void goToProductScreen() {
 		try {
-			// TODO This needs to be implemented unless Arne has done it: productScreen.addSlideShow(selectedSlideShow);
+
 			productScreen = (ProductScreenController) replaceSceneContent("fxml/ProductScreen.fxml");
-			SlideShow slideShow; /*= null, oldSlideShow = null;
+			if (productClicked ){
+				Slide slide;
+				DataDownloader dataDownloader = new DataDownloader();
+				slide = SlideDataImporter.importSlide(dataDownloader.populateSlide(SmartTrolleyGUI.getCurrentProductID()));	
+				
+				slide.show();
+				productScreen.getProductAnchorPane().getChildren().add(slide);
+			} else{
+			productScreen.setSlideShow(new SlideShow (slideShowData, productScreen.getProductAnchorPane()));
 			
-			if (getNewList){
-				SmartTrolleyToolBox.print("This is a new list, downloading it.");*/
-			DataDownloader dataDownloader = new DataDownloader();
-			slideShow = new SlideShow(dataDownloader.populateSlideshow(SmartTrolleyGUI.getcurrentListID()), productScreen.getProductAnchorPane());			
-			
-			productScreen.setSlideShow(slideShow);	
-			/*getNewList=false;
-			oldSlideShow = slideShow;
-			} else {
-			
-			productScreen.setSlideShow(oldSlideShow);
-			}*/
 			productScreen.getCurrentSlideShow().displaySlide(SmartTrolleyGUI.getCurrentSlideID());
-			
+			}
 			productScreen.setApp(this);
 			
 		} catch (Exception ex) {
@@ -414,6 +417,26 @@ public class SmartTrolleyGUI extends Application {
 	*/
 	public static int getCurrentSlideID() {
 		return currentSlideID;
+	}
+
+	/**
+	* Sets the slideShowData
+	*@param slideShowData
+	*<p> Date Modified: 8 Jun 2014
+	*/
+	public void setSlideshowData(SlideShowData slideShowData) {
+		this.slideShowData = slideShowData;
+		
+	}
+	
+	/**
+	* Gets the slideShowData
+	*@return slideShowData
+	*<p> Date Modified: 8 Jun 2014
+	*/
+	public SlideShowData getSlideshowData() {
+		return slideShowData;
+		
 	}
 }
 /**************End of SmartTrolleyGUI**************/

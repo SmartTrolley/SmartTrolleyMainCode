@@ -38,7 +38,9 @@ import javafx.util.Callback;
 import se.mbaeumer.fxmessagebox.MessageBox;
 import se.mbaeumer.fxmessagebox.MessageBoxResult;
 import se.mbaeumer.fxmessagebox.MessageBoxType;
+import slideshowdata.DataDownloader;
 import slideshowdata.SlideData;
+import smarttrolleygui.slideshow.SlideShow;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
@@ -104,7 +106,7 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 		productTable.setPlaceholder(new Label("No Items in list, please add"));
 
 		// show name of current shopping list
-		listNameLabel.setText(SmartTrolleyGUI.getCurrentListName());
+		listNameLabel.setText(SmartTrolleyGUI.getCurrentListName());		
 
 		// Fill table with selected products
 		initializeProductTable();
@@ -139,6 +141,11 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 	 */
 	public void setApp(SmartTrolleyGUI application) throws SQLException {
 		this.application = application;
+		
+		DataDownloader dataDownloader = new DataDownloader();
+		
+		application.setSlideshowData(dataDownloader.populateSlideshow(SmartTrolleyGUI.getcurrentListID()));				
+		
 		// ToDo move to initialize
 		// Set the total labels
 		ObservableList<Double> data = SetTotals();

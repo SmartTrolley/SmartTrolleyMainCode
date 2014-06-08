@@ -112,13 +112,25 @@ public class SlideShow {
 		
 		displayedSlide = slides.get(slideShowIndex);
 		
-		displayedSlide.show();
+		displaySlide(displayedSlide);
+	}
+	
+	/**
+	*Method/Test Description
+	*<p>Test(s)/User Story that it satisfies
+	*@param slide
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 8 Jun 2014
+	*/
+	public void displaySlide(Slide slide) {
+		
+		slide.show();
 
-		displayedPane.getChildren().add(displayedSlide);
+		displayedPane.getChildren().add(slide);
 
 		//Setup Timer for new duration if slideshow is autoplaying 
 		if (isAutoPlay()) {
-			if (displayedSlide.duration != 0) {
+			if (slide.duration != 0) {
 				playSlide.cancel();
 				
 				/*
@@ -126,11 +138,11 @@ public class SlideShow {
 				 * while timer durations are in milliseconds.
 				 */
 				playSlide = new PlaySlide(getPlayDirection());
-				getSlideTimer().schedule(playSlide, (long) displayedSlide.duration * 1000);
+				getSlideTimer().schedule(playSlide, (long) slide.duration * 1000);
 				
 				SmartTrolleyToolBox.print("In displaySlide for autoplay, scheduling timer now.");
 			}
-		}
+		}		
 	}
 
 	/**

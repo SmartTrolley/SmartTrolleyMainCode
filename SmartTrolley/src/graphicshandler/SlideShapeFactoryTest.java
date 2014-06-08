@@ -129,8 +129,7 @@ public class SlideShapeFactoryTest {
 	*/
 	@Test
 	public void squareHeightTest()	{
-		Bounds squareBounds = square.getBoundsInLocal();
-		double squareHeight =squareBounds.getHeight();
+		double squareHeight = square.getLayoutBounds().getHeight();
 		assertEquals(squareHeight, height, 0.0001);
 	}
 	
