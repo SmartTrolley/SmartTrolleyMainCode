@@ -1,5 +1,8 @@
 package slideshowdata;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
@@ -48,21 +51,85 @@ public class DataDownloader extends SqlConnection {
 
 	public SlideData populateSlide(int productid) {
 
+		int i = 0;
+		String table = "";
+		ArrayList<Object> dataList = new ArrayList<Object>();
+		Statement statement = null;
+		Object data = null;
 
-		SlideData slide = (SlideData) getSpecificData("slide", "ProductID", "" + productid);
+		String multipleQueries = "";
+		String query = "Select * From slide where ProductID = '" + productid + "';";
+		multipleQueries = multipleQueries.concat(query);
+		query = "Select * From text where ProductID = '" + productid + "';";
+		multipleQueries = multipleQueries.concat(query);
+		query = "Select * From shape where ProductID = '" + productid + "';";
+		multipleQueries = multipleQueries.concat(query);
+		query = "Select * From image_slide where ProductID = '" + productid + "';";
+		multipleQueries = multipleQueries.concat(query);
+		query = "Select * From video where ProductID = '" + productid + "';";
+		multipleQueries = multipleQueries.concat(query);
+		query = "Select * From audio where ProductID = '" + productid + "';";
+		multipleQueries = multipleQueries.concat(query);
 
-		ArrayList<TextData> texts = (ArrayList<TextData>) getSpecificData("text", "ProductID", "" + productid);
-		
+		try {
+			openConnection();
+			statement = connection.createStatement();
+			boolean results = statement.execute(multipleQueries);
+			while (results) {
+
+				switch (i) {
+				case 0:
+					table = "slide";
+					break;
+				case 1:
+					table = "text";
+					break;
+				case 2:
+					table = "shape";
+					break;
+				case 3:
+					table = "image_slide";
+					break;
+				case 4:
+					table = "video";
+					break;
+				case 5:
+					table = "audio";
+					break;
+				}
+
+				data = new Object();
+				if (results) {
+
+					ResultSet rs = statement.getResultSet();
+
+					data = populateDataType(table, rs);
+
+					dataList.add(data);
+					results = statement.getMoreResults();
+					i++;
+				}
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+
+		SlideData slide = (SlideData) dataList.get(0);
+
+		ArrayList<TextData> texts = (ArrayList<TextData>) dataList.get(1);
 		setTextBodiesForSlide(texts);
 
-		ArrayList<ShapeData> shapes = (ArrayList<ShapeData>) getSpecificData("shape", "ProductID", "" + productid);
+		ArrayList<ShapeData> shapes = (ArrayList<ShapeData>) dataList.get(2);
 		setPointsForSlide(shapes);
 
-		ArrayList<ImageData> images = (ArrayList<ImageData>) getSpecificData("image_slide", "ProductID", "" + productid);
+		ArrayList<ImageData> images = (ArrayList<ImageData>) dataList.get(3);
 
-		ArrayList<VideoData> videos = (ArrayList<VideoData>) getSpecificData("video", "ProductID", "" + productid);
+		ArrayList<VideoData> videos = (ArrayList<VideoData>) dataList.get(4);
 
-		ArrayList<AudioData> audios = (ArrayList<AudioData>) getSpecificData("audio", "ProductID", "" + productid);
+		ArrayList<AudioData> audios = (ArrayList<AudioData>) dataList.get(5);
 
 		if (texts != null) {
 			slide.setTexts(texts);
@@ -96,7 +163,7 @@ public class DataDownloader extends SqlConnection {
 	*/
 	private void setPointsForSlide(ArrayList<ShapeData> shapes) {
 		String multipleQueries;
-		int k=0;
+		int k = 0;
 		multipleQueries = "";
 
 		while (shapes != null && k < shapes.size()) {
@@ -124,8 +191,8 @@ public class DataDownloader extends SqlConnection {
 	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 8 Jun 2014
 	*/
-	private void setTextBodiesForSlide( ArrayList<TextData> texts) {
-		int j=0;
+	private void setTextBodiesForSlide(ArrayList<TextData> texts) {
+		int j = 0;
 		String multipleQueries = "";
 		while (texts != null && j < texts.size()) {
 

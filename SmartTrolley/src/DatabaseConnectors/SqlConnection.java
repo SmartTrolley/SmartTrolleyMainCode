@@ -55,7 +55,7 @@ public class SqlConnection {
 	private ObservableList<String> categories;
 
 	private String url;
-	Connection connection;
+	protected Connection connection;
 
 	/**
 	 * Launches the java sql driver and compiles the url for the database
@@ -643,8 +643,6 @@ public class SqlConnection {
 		try {
 			statement = connection.createStatement();
 			boolean results = statement.execute(queries);
-			// CallableStatement cs = connection.prepareCall(queries);
-			// boolean results = cs.execute(queries);
 			while (results) {
 
 				data = new Object();
@@ -676,7 +674,7 @@ public class SqlConnection {
 	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 8 Jun 2014
 	*/
-	private Object populateDataType(String table, ResultSet results) {
+	protected Object populateDataType(String table, ResultSet results) {
 
 		Object data = null;
 		if (results != null) {
