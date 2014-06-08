@@ -18,6 +18,7 @@ public class SlideVideo extends Pane {
 
 	VideoPlayerHandler handler;
 	SlideElementDuration duration;
+	private int layer;
 
 	/**
 	* The constructor for the slide video takes in all the parameters required to locate, position and setup the video on the slide 
@@ -31,10 +32,12 @@ public class SlideVideo extends Pane {
 	*@param duration
 	*<p> Date Modified: 27 May 2014
 	*/
-	public SlideVideo(String pathLocation, int xStart, int yStart, int width, int height, boolean loop, double startTime, double duration) {
-
+	public SlideVideo(String pathLocation, int xStart, int yStart, int width, int height, boolean loop, double startTime, double duration, int layer) {
+		
 		handler = new VideoPlayerHandler(pathLocation, xStart, yStart, width, height, loop, startTime, duration);
 
+		this.layer = layer;
+		
 		if (handler.mediaControl != null) {
 			this.getChildren().add(handler.mediaControl.overallBox);
 		}
@@ -76,6 +79,10 @@ public class SlideVideo extends Pane {
 		} catch (NullPointerException e) {
 			return;
 		}
+	}
+
+	public int getLayer() {
+		return layer;
 	}
 
 }

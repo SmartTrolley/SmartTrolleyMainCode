@@ -91,7 +91,8 @@ public class SlideDataImporter {
 										textData.getXend(), 
 										textData.getYend(), 
 										textData.getStarttime(), 
-										textData.getDuration())
+										textData.getDuration(),
+										textData.getLayer())
 			);
 		}}
 		
@@ -135,7 +136,8 @@ public class SlideDataImporter {
 													shapeData.getLinecolor(), 
 													shapeData.getStarttime(), 
 													shapeData.getDuration(),
-													shapeData.getBranch());
+													shapeData.getBranch(),
+													shapeData.getLayer());
 			shapes.add(shapeFactory.getShape());
 		}}
 		
@@ -169,7 +171,8 @@ public class SlideDataImporter {
 									  videoData.getHeight(), 
 									  videoData.getLoop(), 
 									  videoData.getStarttime(),
-									  videoData.getDuration()));
+									  videoData.getDuration(),
+									  videoData.getLayer()));
 		}}
 		
 		return videos;
@@ -190,7 +193,8 @@ public class SlideDataImporter {
 									  imageData.getHeight(), 
 									  imageData.getStarttime(),
 									  imageData.getDuration(),
-									  imageData.getBranch()));
+									  imageData.getBranch(),
+									  imageData.getLayer()));
 		}}
 		
 		return images;

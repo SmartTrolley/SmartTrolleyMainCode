@@ -57,7 +57,7 @@ public class SlideTextTest {
 		texts.add(new SlideTextBody(threeString, false, false, true, 2,1));
 		
 		textBox = new SlideText(texts, font, fontColor, 
-					fontSize, xStart, yStart, xEnd, yEnd, startTime, duration);
+					fontSize, xStart, yStart, xEnd, yEnd, startTime, duration,1);
 		
 		// A text body to test that the text box input modifies it correctly
 		testBody = (SlideTextBody) textBox.getChildren().get(0);

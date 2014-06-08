@@ -12,11 +12,13 @@
  * for slideshow show
  *
  * @author Alick Jacklin
- * @author Matthew Wells
+ * @author Matthew Wells(V2.0)
+ * 
+ * @author Alasadair Munday (V3.0)
  *
  * @author Checked By: Prashant Chakravarty [29 May 2014]
  *
- * @version V2.0 [Date Created: 26 May 2014]
+ * @version V3.0 [Date Created: 26 May 2014]
  */
 
 package smarttrolleygui.slideshow;
@@ -26,11 +28,11 @@ import imagehandler.SlideImage;
 
 import java.util.ArrayList;
 
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
 import texthandler.SlideText;
 import texthandler.SlideTextBody;
@@ -45,6 +47,7 @@ public class Slide extends AnchorPane {
 	private ArrayList<SlideVideo> videoList;
 	private ArrayList<SlideText> textList;
 	private ArrayList<AudioHandler> audioList;
+	private ArrayList<Pane> layers = new ArrayList<Pane>();
 
 	/**Ratio of our slide width to the slideshow's XML slide width.*/
 	private double xScaler;
@@ -122,6 +125,8 @@ public class Slide extends AnchorPane {
 			}
 		}
 
+		getChildren().addAll(layers);
+
 	}
 
 	/**
@@ -138,7 +143,20 @@ public class Slide extends AnchorPane {
 		SmartTrolleyToolBox.print("video xpositon is now: " + video.getLayoutX());
 		video.setLayoutY(yScaler * video.getLayoutY());
 
-		getChildren().add(video);
+		addToLayer(video, video.getLayer());
+
+	}
+
+	private void addToLayer(Node node, int layer) {
+		try{
+			layers.get(layer);
+		}catch(IndexOutOfBoundsException e){
+			for(int i = layers.size(); i<layer+1; i++){
+				layers.add(new AnchorPane());
+			}
+		}
+
+		layers.get(layer).getChildren().add(node);
 	}
 
 	/**
@@ -153,7 +171,7 @@ public class Slide extends AnchorPane {
 
 		text.relocateText(text.getXStart() * xScaler, text.getYStart() * yScaler);
 
-		getChildren().add(text);
+		addToLayer(text, text.getLayer());
 
 	}
 
@@ -169,7 +187,7 @@ public class Slide extends AnchorPane {
 		shape.setLayoutX((xScaler * shape.getBoundsInParent().getMinX()));
 		shape.setLayoutY((yScaler * shape.getBoundsInParent().getMinY()));
 
-		getChildren().add(shape);
+		addToLayer(shape,((Layerable)shape).getLayer());
 
 	}
 
@@ -186,7 +204,7 @@ public class Slide extends AnchorPane {
 		image.setLayoutX((xScaler * image.getx()));
 		image.setLayoutY((yScaler * image.gety()));
 
-		getChildren().add(image);
+		addToLayer(image, image.getLayer());
 
 	}
 
@@ -196,18 +214,18 @@ public class Slide extends AnchorPane {
 	 */
 	public void show() {
 		if (imageList != null) {
-			for (final SlideImage image : imageList) {
+			for (SlideImage image : imageList) {
 				image.setVisible(true);
 				image.show();
-				
-				if(image.getBranch() !=0)
-				//setup action Listener for branching
-				image.setOnMouseClicked( new EventHandler<MouseEvent>(){
-					@Override
-					public void handle(MouseEvent arg0) {
-						slideShow.displaySlide(image.getBranch());
-					}
-				});
+				final SlideImage finalImage = image;
+					//setup action Listener for branching
+					image.setOnMouseClicked( new EventHandler<MouseEvent>(){
+						@Override
+						public void handle(MouseEvent arg0) {
+							slideShow.deleteSlidePane();
+							slideShow.displaySlide(finalImage.getBranch());
+						}
+					});
 			}
 		}
 
@@ -215,17 +233,15 @@ public class Slide extends AnchorPane {
 		if (graphicsList != null) {
 			for (final Shape shape : graphicsList) {
 				shape.setVisible(true);
-				
-				// if the shape is set to branch
-				if(((Branchable)shape).getBranch() != 0){
+
 					//Setup action listener for branching
 					shape.setOnMouseClicked( new EventHandler<MouseEvent>(){
 						@Override
 						public void handle(MouseEvent arg0) {
+							slideShow.deleteSlidePane();
 							slideShow.displaySlide(((Branchable)shape).getBranch());
 						}
 					});
-				}
 
 			}
 		}
@@ -233,12 +249,14 @@ public class Slide extends AnchorPane {
 		if (textList != null) {
 			for (SlideText text : textList) {
 				text.setVisible(true);
+				
 				// setup action listeners for branching
 				for(Node bodyNode : text.getChildren()){
 					final SlideTextBody body = (SlideTextBody)bodyNode;
 					body.setOnMouseClicked( new EventHandler<MouseEvent>(){
 						@Override
 						public void handle(MouseEvent arg0) {
+							slideShow.deleteSlidePane();
 							slideShow.displaySlide(body.getBranch());
 						}
 					});

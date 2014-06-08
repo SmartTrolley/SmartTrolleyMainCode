@@ -36,7 +36,7 @@ public class ImageHandlerTests {
 	*/
 	@Before
 	public void setup(){
-		imageHandler = new SlideImage(url, x, y, width, height, startTime, duration,1);
+		imageHandler = new SlideImage(url, x, y, width, height, startTime, duration,1,1);
 	}
 	
 	/**

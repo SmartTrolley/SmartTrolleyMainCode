@@ -1,5 +1,6 @@
 package graphicshandler;
 
+import smarttrolleygui.slideshow.Layerable;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
@@ -16,10 +17,12 @@ import javafx.scene.shape.Ellipse;
  *
  * @version [v1.0] [Date Created: 25/04/14]
  */
-public class SlideEllipse extends Ellipse {
+public class SlideEllipse extends Ellipse implements Branchable, Layerable {
 
 	/**Duration of the ellipse in milliseconds*/
 	private SlideElementDuration duration;
+	private int layer;
+	private int branch;
 
 	/**
 	* Creates an ellipse according to PWS standard by taking in the points, width and height
@@ -132,6 +135,28 @@ public class SlideEllipse extends Ellipse {
 	 */
 	public Paint getLineColor() {
 		return this.getStroke();
+	}
+
+	@Override
+	public int getLayer() {
+		
+		return layer;
+	}
+
+	public void setLayer(int layer) {
+		this.layer = layer;
+	}
+
+	@Override
+	public int getBranch() {
+		// TODO Auto-generated method stub
+		return branch;
+	}
+
+	@Override
+	public void setBranch(int branch) {
+		this.branch = branch;
+		
 	}
 
 }

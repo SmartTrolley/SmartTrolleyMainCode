@@ -41,7 +41,7 @@ public class VideoPlayerMain extends Application {
         Scene scene = new Scene(root, bounds.getWidth(), bounds.getHeight());
         scene.setFill(Color.BLACK);
         // Create a videoHandler.
-        SlideVideo slideVideo = new SlideVideo("http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv", 300, 300, 600, 400, true, 5,5);
+        SlideVideo slideVideo = new SlideVideo("http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv", 300, 300, 600, 400, true, 5,5,1);
         
         // Add the VideoHandler to the scene.
         root.getChildren().add(slideVideo);

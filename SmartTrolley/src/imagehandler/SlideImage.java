@@ -28,6 +28,7 @@ public class SlideImage extends ImageView implements Branchable{
 	private int x;
 	private int y;
 	private int branch;
+	private int layer;
 
 	/**
 	 * The Full PWS Constructor for images. completely fulfills PWS Specification for images
@@ -41,16 +42,16 @@ public class SlideImage extends ImageView implements Branchable{
 	 * @param duration The number of seconds the image appears for
 	 */
 	public SlideImage(String url, int x, int y, int width, int height,
-			int startTime, int duration, int branch) {
+			int startTime, int duration, int branch, int layer) {
 		super();
 		try{
 		this.setImage(new Image(url));
 		}catch(IllegalArgumentException e){
 			SmartTrolleyToolBox.print("Could not find image at url: "+url);
-			this.setImage(new Image("http://th03.deviantart.net/fs70/PRE/i/2013/077/8/9/cookie_monster_by_xenia_cat-d5yhjwj.jpg"));
+			this.setImage(new Image("http://www.martyranodes.com/sites/default/files/images/kits/no_0.jpg"));
 		}
 		
-		
+		this.layer = layer;
 		this.branch = branch;
 		
 		this.duration = new SlideElementDuration(this);
@@ -118,13 +119,17 @@ public class SlideImage extends ImageView implements Branchable{
 	@Override
 	public int getBranch() {
 		// TODO Auto-generated method stub
-		return this.branch;
+		return branch;
 	}
 
 	@Override
 	public void setBranch(int branch) {
 		this.branch = branch;
 		
+	}
+
+	public int getLayer() {
+		return layer;
 	}
 
 }

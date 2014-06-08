@@ -202,7 +202,7 @@ public class SlideShow {
 	 *<p>User can view PWS Compatible slideshow
 	 *<p> Date Modified: 29 May 2014
 	 */
-	private void deleteSlidePane() {
+	protected void deleteSlidePane() {
 
 		//displayedSlide.clearSlide();
 		
