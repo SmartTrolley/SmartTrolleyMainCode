@@ -1,10 +1,6 @@
 /* 
     Created on : 15-Feb-2014, 13:22:53
     Author     : Arne
-    Notes      : 
-
-    reusable code:
-    -fx-background-color: linear-gradient(to bottom, #f8f8f8, #b5b5b5); 
 */
 
 .root {
@@ -13,12 +9,9 @@
 
 .containerMain {
     -fx-border-width: 5px;    
-    /*top right bottom left*/
     -fx-padding: 10px 0 10px 0;
-    /* border color can be uncommented for debugging purposes */
-    /*-fx-border-color: blue;*/
-    /*-fx-background-color:*/
-    /*linear-gradient(to bottom, #f2f2f2, #d4d4d4);*/
+    -fx-background-color:
+    linear-gradient(to bottom, #ffffff 82%, #e2e2e2);
 }
 
 .containerListName {
@@ -31,8 +24,6 @@
     /*-fx-background-color:*/
     /*linear-gradient(#d0d0d0 0%, #f2f2f2 25%, #ffffff 75%, #d4d4d4 100%);*/
     -fx-border-width: 5px;
-    /* border color can be uncommented for debugging purposes */
-    /*-fx-border-color: yellow;*/
 }
 
 .split-pane {
@@ -47,9 +38,32 @@
     -fx-background-color: #ffffff;
 }
 
+.tooltip {
+    -fx-background-color:
+        linear-gradient(#cec340, #a59c31),
+        linear-gradient(#fefefc, #e6dd71),
+        linear-gradient(#fef592, #e5d848);
+    -fx-background-insets: 0,1,2;
+    -fx-background-radius: 0 0 13 0;
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em; /* 4 8 4 8 */
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
+}
+ 
+.page-corner {
+    -fx-padding: 4.5 4.5 4.5 4.5;
+    -fx-background-color: linear-gradient( from 0% 0% to 50% 50%, #fcf7b6, #a59c31);
+    -fx-shape: " ";
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 4 , 0.0 , 0 , 0 );
+}
+
 .label {
     -fx-font-size: 12px;
     -fx-text-fill: #000000;
+}
+
+.labelLarge {
+    -fx-font-size: 15px;
+    -fx-font-family: "Arial Narrow", Arial, sans-serif;
 }
 
 .labelOldPrice {
@@ -89,15 +103,18 @@
 .button1 {
 -fx-background-color:
         linear-gradient(#dbdbdb, #b9b9b9),
-        radial-gradient(center 50% -40%, radius 200%, #dbdbdb 45%, #b9b9b9 50%);
+        radial-gradient(center 50% -40%, radius 200%, #dbdbdb 45%, #c9c9c9 50%);
     -fx-background-radius: 6, 5;
     -fx-background-insets: 0, 1;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
     -fx-border-color: gray;
     -fx-border-radius:4px;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial Narrow", Arial, sans-serif;
 }
 
 .button1:hover {
+    -fx-cursor: hand;
     -fx-background-color:
         linear-gradient(#dfdfdf, #b9b9b9),
     radial-gradient(center 50% -40%, radius 200%, #dbdbdb 45%, #b9b9b9 60%);
@@ -108,29 +125,29 @@
 
 .buttonNavigation {
     -fx-cursor: hand;
-    -fx-font-family: "Arial Narrow";
+    -fx-font-family: "Arial Narrow", Arial, sans-serif;
     -fx-font-size: 15px;
     -fx-background-color: #ffffff;
-	-fx-border-color: #ffffff;
+	-fx-border-color: #0093ff;
     -fx-border-width: 0 0 3px 0;
     -fx-font-weight:bold; 
 }
 
 .buttonNavigation:focused {
-    -fx-border-color: #740CE8;
+    -fx-border-color: #E88A0C;
     -fx-border-radius: 0;
 } 
 
 .buttonNavigation:hover {
-    -fx-border-color: #0093ff;
+    -fx-border-color: #E88A0C;
     -fx-border-radius: 0;
 } 
 
 .buttonNavigationActive {
-    -fx-font-family: "Arial Narrow";
+    -fx-font-family: "Arial Narrow", Arial, sans-serif;
     -fx-font-size: 15px;
     -fx-background-color: #ffffff;
-    -fx-border-color: #740CE8;
+    -fx-border-color: #ffffff;
 	-fx-border-width: 0 0 3px 0;
     -fx-border-radius: 0;
     -fx-font-weight:bold;    
@@ -138,21 +155,37 @@
 
 .buttonLarge {
     -fx-cursor: hand;
-    -fx-font-family: "Arial Narrow";
+    -fx-font-family: "Arial Narrow", Arial, sans-serif;
     -fx-font-size: 15px;
     -fx-border-width: 2px;
     -fx-border-radius: 10px;
     -fx-border-color: #000000;
-    -fx-background-color: #f0f0f0;
+    -fx-background-color: #eaeaea;
+    -fx-background-insets: 2 0 2 0;
 }
 
 .buttonLarge:hover {
-    -fx-background-color: #00ff33;  
-    -fx-effect: dropshadow(three-pass-box , rgba(0,0,0,0.6), 5, 0.0, 0, 1);
-    -fx-border-width: 2px;
-    -fx-border-radius: 10px;
-    -fx-border-color: transparent;
+    -fx-background-color:
+radial-gradient(center 50% 50%, radius 75%, #ffffff, #cfcfcf 100%);
 }
+
+/*alternative style for large buttons*/
+/*
+.buttonLarge {
+    -fx-background-color: #de1b1b, linear-gradient(#de1b1b, #941010);
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 3,2,2,2;
+    -fx-text-fill: #f6f6f6;
+    -fx-font-family: "Arial Narrow", Arial, sans-serif;
+    -fx-font-size: 15px;
+    -fx-font-weight:bold;
+}
+
+.buttonLarge:hover {
+    -fx-cursor: hand;
+    -fx-background-color: #de1b1b, linear-gradient(#ff4d4d, #b30909);
+}
+*/
 
 .buttonChangeQuantity {
     -fx-cursor: hand;
@@ -164,8 +197,6 @@
 }
 
 .buttonChangeQuantity:hover {
-/*    -fx-font-size: 20px;*/
-/*    -fx-font-weight:bold;*/
     -fx-text-fill: #0093ff;
     -fx-effect: dropshadow(three-pass-box , rgba(0,0,0,0.6), 5, 0.0, 0, 1);
 }
@@ -173,7 +204,6 @@
 .buttonImage {
    -fx-cursor: hand;
    -fx-background-color: #ffffff;
-   /*-fx-background-color:transparent;*/
 }
 
 .buttonImage:hover {
@@ -201,13 +231,13 @@
     -fx-font-size: 15px;
     -fx-font-weight:bold; 
 	-fx-border-width: 0 0 3px 0;
-	-fx-border-color: #ffffff;
+	-fx-border-color: #0093ff;
 }
 
 .buttonSmartTrolleyLogo:hover {
-/*    -fx-background-image:url("img/companyLogoSmallHover.png");*/
-	-fx-border-color: #0093FF;
-    -fx-effect: dropshadow(three-pass-box , #740CE8, 5, 0.0, 0, 1);
+    -fx-background-image:url("img/companyLogoSmallHover.png");
+	-fx-border-color: #E88A0C;
+/*    -fx-effect: dropshadow(three-pass-box , #740CE8, 5, 0.0, 0, 1);*/
     
 }
 
@@ -236,6 +266,11 @@
 .table-cell {
 /*    set table cell alignment here*/
     -fx-border-color: transparent;
+}
+
+.table-row-cell {
+/*     set fixed row height */
+    -fx-cell-size: 70px;
 }
 
 .table-view .column-header-background {

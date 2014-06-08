@@ -39,6 +39,9 @@
         <Label text="Create your shopping list online @ " />
         <Hyperlink text="www.smartrolley.org" />
       </children>
+      <padding>
+        <Insets />
+      </padding>
       <VBox.margin>
         <Insets top="20.0" />
       </VBox.margin>
