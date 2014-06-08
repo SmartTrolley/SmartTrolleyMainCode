@@ -106,7 +106,11 @@ public class SlideDataImporter {
 		if (bodyDatas != null){
 		for(TextBodyData body : bodyDatas){
 			
-			bodies.add(new SlideTextBody(body.getTextstring(), body.getBold(), body.getItalic(), body.getUnderlined()));
+			bodies.add(new SlideTextBody(body.getTextstring(), 
+										 body.getBold(), 
+										 body.getItalic(), 
+										 body.getUnderlined(),
+										 body.getBranch()));
 			
 		}}
 		return bodies;
@@ -130,7 +134,8 @@ public class SlideDataImporter {
 													shapeData.getFillcolor(), 
 													shapeData.getLinecolor(), 
 													shapeData.getStarttime(), 
-													shapeData.getDuration());
+													shapeData.getDuration(),
+													shapeData.getBranch());
 			shapes.add(shapeFactory.getShape());
 		}}
 		
@@ -184,7 +189,8 @@ public class SlideDataImporter {
 									  imageData.getWidth(), 
 									  imageData.getHeight(), 
 									  imageData.getStarttime(),
-									  imageData.getDuration()));
+									  imageData.getDuration(),
+									  imageData.getBranch()));
 		}}
 		
 		return images;

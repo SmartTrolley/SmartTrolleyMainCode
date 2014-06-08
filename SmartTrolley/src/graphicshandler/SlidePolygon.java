@@ -20,11 +20,12 @@ import javafx.scene.shape.Polygon;
  * 
  * @version [v1.0] [Date Created: 25/04/14]
  */
-public class SlidePolygon extends Polygon{
+public class SlidePolygon extends Polygon implements Branchable{
 
 	
 	/**Duration of the polygon in millseconds*/
 	private SlideElementDuration duration;
+	private int branch;
 
 	/**
 	 * Extracts the coordinates of the Polygon's points, instantiates a new
@@ -175,6 +176,16 @@ public class SlidePolygon extends Polygon{
 	public Paint getLineColor() {
 
 		return this.getStroke();
+	}
+
+	@Override
+	public void setBranch(int branch) {
+		this.branch = branch;
+	}
+
+	@Override
+	public int getBranch() {
+		return this.branch;
 	}
 
 }

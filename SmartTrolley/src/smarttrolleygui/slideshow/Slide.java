@@ -1,13 +1,13 @@
 /**
  * SmartTrolley
  ** An instance of this object contains all the information required to render a particular slideshow.
-*
-* @author Prashant Chakravarty
-*
-* @author Checked By: Alasdair 29 May2014
-*
-* @version V1.0 [Date Created: 24 May 2014]
-* 
+ *
+ * @author Prashant Chakravarty
+ *
+ * @author Checked By: Alasdair 29 May2014
+ *
+ * @version V1.0 [Date Created: 24 May 2014]
+ * 
  * This class also sets up an anchor pane to display all PWS specified media inputs on,
  * for slideshow show
  *
@@ -21,13 +21,19 @@
 
 package smarttrolleygui.slideshow;
 
+import graphicshandler.Branchable;
 import imagehandler.SlideImage;
 
 import java.util.ArrayList;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Shape;
 import texthandler.SlideText;
+import texthandler.SlideTextBody;
 import toolBox.SmartTrolleyToolBox;
 import videohandler.SlideVideo;
 import audiohandler.AudioHandler;
@@ -51,21 +57,22 @@ public class Slide extends AnchorPane {
 
 	/**Unique identifier of the slide in the slideshow.*/
 	private int slideID;
+	private SlideShow slideShow;
 
 	/**
-	*Constructor takes in lists, and places objects from those lists into the Slide, based on self defined locations. Also takes in scaling factors
-	*and scales objects and their locations based on them.
-	*<p>Displays product information
-	*@param xScaler - scales the width and x-position of objects placed on the slideshow
-	*@param yScaler - scales the height and y-position  of objects placed on the slideshow
-	*@param graphicsList - sorts a list of objects of type graphics, contains all relevant information on the graphic
-	*@param imageList - sorts a list of objects of type image, contains all relevant information on the image
-	*@param audioList - sorts a list of objects of type audio, contains all relevant information on the audio
-	*@param textList - sorts a list of objects of type text, contains all relevant information on the text
-	*@param videoList - sorts a list of objects of type video, contains all relevant information on the video
-	*@param seconds - Duration in seconds
-	*<p> Date Modified: 29 May 2014 
-	*/
+	 *Constructor takes in lists, and places objects from those lists into the Slide, based on self defined locations. Also takes in scaling factors
+	 *and scales objects and their locations based on them.
+	 *<p>Displays product information
+	 *@param xScaler - scales the width and x-position of objects placed on the slideshow
+	 *@param yScaler - scales the height and y-position  of objects placed on the slideshow
+	 *@param graphicsList - sorts a list of objects of type graphics, contains all relevant information on the graphic
+	 *@param imageList - sorts a list of objects of type image, contains all relevant information on the image
+	 *@param audioList - sorts a list of objects of type audio, contains all relevant information on the audio
+	 *@param textList - sorts a list of objects of type text, contains all relevant information on the text
+	 *@param videoList - sorts a list of objects of type video, contains all relevant information on the video
+	 *@param seconds - Duration in seconds
+	 *<p> Date Modified: 29 May 2014 
+	 */
 	public Slide(double xScaler, double yScaler, ArrayList<Shape> graphicsList, ArrayList<SlideImage> imageList, ArrayList<AudioHandler> audioList, ArrayList<SlideText> textList,
 			ArrayList<SlideVideo> videoList, double seconds) {
 
@@ -118,10 +125,10 @@ public class Slide extends AnchorPane {
 	}
 
 	/**
-	*adds video to the Slide in a position depending on the scaling factors
-	*@param video - is added to pane in this method
-	*<p> Date Modified: 28 May 2014
-	*/
+	 *adds video to the Slide in a position depending on the scaling factors
+	 *@param video - is added to pane in this method
+	 *<p> Date Modified: 28 May 2014
+	 */
 	private void addVideo(SlideVideo video) {
 		video.setScaleX(xScaler);
 		video.setScaleY(yScaler);
@@ -135,23 +142,11 @@ public class Slide extends AnchorPane {
 	}
 
 	/**
-	*adds text to the Slide in a position depending on the scaling factors
-	*@param text - is added to the pane in this method
-	*<p> Date Modified: 28 May 2014
-	*/
+	 *adds text to the Slide in a position depending on the scaling factors
+	 *@param text - is added to the pane in this method
+	 *<p> Date Modified: 28 May 2014
+	 */
 	private void addText(SlideText text) {
-		/*
-		 * text.setScaleX(xScaler);
-		 * text.setScaleY(yScaler);
-		 * 
-		 * SmartTrolleyToolBox.print("Original x-coord for text was: " + text.getLayoutX());
-		 * text.setLayoutX((xScaler * text.getLayoutX()));
-		 * SmartTrolleyToolBox.print("Rescaled x-coord for text is: " + text.getLayoutX());
-		 * 
-		 * SmartTrolleyToolBox.print("Original y-coord for text was: " + text.getLayoutY());
-		 * text.setLayoutY((yScaler * text.getLayoutY()));
-		 * SmartTrolleyToolBox.print("Rescaled y-coord for text is: " + text.getLayoutY());
-		 */
 
 		SmartTrolleyToolBox.print("Original x-coord for text was: " + text.getXStart());
 		SmartTrolleyToolBox.print("Original y-coord for text was: " + text.getYStart());
@@ -163,10 +158,10 @@ public class Slide extends AnchorPane {
 	}
 
 	/**
-	*adds graphics to the Slide in a position depending on the scaling factors
-	*@param shape - is added to the pane in this method
-	*<p> Date Modified: 28 May 2014
-	*/
+	 *adds graphics to the Slide in a position depending on the scaling factors
+	 *@param shape - is added to the pane in this method
+	 *<p> Date Modified: 28 May 2014
+	 */
 	private void addGraphics(Shape shape) {
 		shape.setScaleX(xScaler);
 		shape.setScaleY(yScaler);
@@ -179,10 +174,10 @@ public class Slide extends AnchorPane {
 	}
 
 	/**
-	*Adds images to the Slide in a position depending on the scaling factors
-	*@param image - is added to the pane in this method
-	*<p> Date Modified: 28 May 2014
-	*/
+	 *Adds images to the Slide in a position depending on the scaling factors
+	 *@param image - is added to the pane in this method
+	 *<p> Date Modified: 28 May 2014
+	 */
 	private void addImage(SlideImage image) {
 
 		image.setScaleX(xScaler);
@@ -196,26 +191,58 @@ public class Slide extends AnchorPane {
 	}
 
 	/**
-	*sets all elements which have been added to the slideshow, to a visible or show-able state, and plays audio.
-	*<p> Date Modified: 29 May 2014
-	*/
+	 *sets all elements which have been added to the slideshow, to a visible or show-able state, and plays audio.
+	 *<p> Date Modified: 29 May 2014
+	 */
 	public void show() {
 		if (imageList != null) {
-			for (SlideImage image : imageList) {
+			for (final SlideImage image : imageList) {
 				image.setVisible(true);
 				image.show();
+				
+				if(image.getBranch() !=0)
+				//setup action Listener for branching
+				image.setOnMouseClicked( new EventHandler<MouseEvent>(){
+					@Override
+					public void handle(MouseEvent arg0) {
+						slideShow.displaySlide(image.getBranch());
+					}
+				});
 			}
 		}
 
+
 		if (graphicsList != null) {
-			for (Shape shape : graphicsList) {
+			for (final Shape shape : graphicsList) {
 				shape.setVisible(true);
+				
+				// if the shape is set to branch
+				if(((Branchable)shape).getBranch() != 0){
+					//Setup action listener for branching
+					shape.setOnMouseClicked( new EventHandler<MouseEvent>(){
+						@Override
+						public void handle(MouseEvent arg0) {
+							slideShow.displaySlide(((Branchable)shape).getBranch());
+						}
+					});
+				}
+
 			}
 		}
 
 		if (textList != null) {
 			for (SlideText text : textList) {
 				text.setVisible(true);
+				// setup action listeners for branching
+				for(Node bodyNode : text.getChildren()){
+					final SlideTextBody body = (SlideTextBody)bodyNode;
+					body.setOnMouseClicked( new EventHandler<MouseEvent>(){
+						@Override
+						public void handle(MouseEvent arg0) {
+							slideShow.displaySlide(body.getBranch());
+						}
+					});
+				}
 			}
 		}
 
@@ -237,9 +264,9 @@ public class Slide extends AnchorPane {
 	}
 
 	/**
-	*clears all children from slideshow and stops audio.
-	*<p> Date Modified: 27 May 2014
-	*/
+	 *clears all children from slideshow and stops audio.
+	 *<p> Date Modified: 27 May 2014
+	 */
 	public void clearSlide() {
 		SmartTrolleyToolBox.print(getChildren());
 		for (AudioHandler audio : audioList) {
@@ -261,6 +288,11 @@ public class Slide extends AnchorPane {
 	 */
 	public void setSlideID(int slideID) {
 		this.slideID = slideID;
+	}
+
+	public void setSlideShow(SlideShow slideShow) {
+		this.slideShow = slideShow;
+
 	}
 
 }

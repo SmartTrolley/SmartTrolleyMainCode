@@ -77,8 +77,8 @@ public class SlideText extends FlowPane{
 	 */
 	private void setupBounds(int xStart, int yStart, int xEnd, int yEnd) {
 
-		width = xStart - xEnd;
-		height = yStart - yEnd;
+		width = xEnd - xStart;
+		height = yEnd - yStart;
 
 		resizeRelocate(xStart, yStart, width, height);
 
@@ -93,11 +93,7 @@ public class SlideText extends FlowPane{
 	*/
 	private void setupWrappingWidth(SlideTextBody body) {
 		
-		double xpos = body.getBoundsInParent().getMinX();
-		if(body.getBoundsInLocal().getWidth() > width - xpos){
-			body.setWrappingWidth(width - xpos);
-			
-		}
+		body.setWrappingWidth(width);
 	}
 
 	/**

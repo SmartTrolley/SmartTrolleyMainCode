@@ -193,10 +193,10 @@ public class TestProductScreenController {
 	*/
 	public void setupImage(){
 		SlideImage image = new SlideImage(imageURL, xImageStart, yImageStart, imageWidth, imageHeight,
-				imageStartTime, 3);
+				imageStartTime, 3,1);
 		
 		SlideImage image2 = new SlideImage(imageURL, xImageStart2, yImageStart2, imageWidth/2, imageHeight/2,
-				imageStartTime, imageDuration);
+				imageStartTime, imageDuration,1);
 	
 		imageList = new ArrayList<SlideImage>();
 		
@@ -211,7 +211,7 @@ public class TestProductScreenController {
 	*/
 	public void setupImage2(){
 		SlideImage image = new SlideImage(imageURL2, xImageStart, yImageStart, imageWidth, imageHeight,
-				imageStartTime, 3);
+				imageStartTime, 3,1);
 	
 		imageList = new ArrayList<SlideImage>();
 		
@@ -232,7 +232,7 @@ public class TestProductScreenController {
 		points.add(new ShapePoint(pentagonX, pentagonY, point5Num));
 		
 		SlideShapeFactory shapeFactory = new SlideShapeFactory(points, graphicsHeight,graphicsWidth,
-				graphicsFillColour, graphicsLineColour, graphicsStartTime, graphicsDuration);
+				graphicsFillColour, graphicsLineColour, graphicsStartTime, graphicsDuration,1);
 		pentagon = (SlidePolygon) shapeFactory.getShape();
 		
 		graphicsList = new ArrayList<Shape>();
@@ -272,7 +272,7 @@ public class TestProductScreenController {
 	*/
 	public void setupText(){
 		texts = new ArrayList<SlideTextBody>();
-		texts.add(new SlideTextBody(oneString, true, true, true, 1));
+		texts.add(new SlideTextBody(oneString, true, true, true, 1,1));
 		
 		SlideText textBox = new SlideText(texts, font, fontColor, fontSize, xTextStart, yTextStart,
 				xTextEnd, yTextEnd, textStartTime, textDuration);

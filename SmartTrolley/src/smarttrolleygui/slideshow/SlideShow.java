@@ -115,6 +115,8 @@ public class SlideShow {
 		displayedSlide.show();
 
 		displayedPane.getChildren().add(displayedSlide);
+		
+		displayedSlide.setSlideShow(this);
 
 		//Setup Timer for new duration if slideshow is autoplaying 
 		if (isAutoPlay()) {
