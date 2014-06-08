@@ -1,5 +1,6 @@
 package DatabaseConnectors;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -77,7 +78,8 @@ public class SqlConnection {
 	*/
 	private void compileUrl() {
 		// construct the url assuming use of mysql and the standard port.
-		url = "jdbc:mysql://" + IP + "/" + USERNAME + "?";
+		url = "jdbc:mysql://" + IP + "/" + USERNAME + "?" + "allowMultiQueries=true";
+
 	}
 
 	/**
@@ -606,382 +608,453 @@ public class SqlConnection {
 		SmartTrolleyToolBox.print("Query sent from getSpecificData is: " + query);
 
 		try {
-
 			results = sendQuery(query);
 			results.absolute(1);
-
-			switch (table) {
-
-			case "products":
-
-				Product product = null;
-
-				do {
-					product = new Product();
-
-					// get id
-					product.setId(results.getInt("ProductID"));
-
-					// get Name
-					product.setName(results.getString("Name"));
-
-					// get Image
-					product.setImage(results.getString("Image"));
-
-					// get Price
-					product.setPrice(results.getFloat("Price"));
-
-				} while (results.next());
-
-				data = product;
-				break;
-
-			case "audio":
-
-				ArrayList<AudioData> audiodatalist = new ArrayList<AudioData>();
-
-				do {
-					AudioData audiodata = new AudioData();
-
-					// get urlname
-					audiodata.setUrlname(results.getString("urlname"));
-
-					// get starttime
-					audiodata.setStarttime(results.getInt("starttime"));
-
-					// get loop
-					audiodata.setLoop(results.getBoolean("loop"));
-
-					audiodatalist.add(audiodata);
-
-				} while (results.next());
-
-				data = audiodatalist;
-				break;
-
-			case "defaults":
-
-				DefaultsData defaultsdata = null;
-
-				do {
-					defaultsdata = new DefaultsData();
-
-					// get listid
-					defaultsdata.setListId(results.getInt("listid"));
-
-					// get backgroundcolor
-					defaultsdata.setBackgroundcolor(results.getString("backgroundcolor"));
-
-					// get font
-					defaultsdata.setFont(results.getString("font"));
-
-					// get fontsize
-					defaultsdata.setFontsize(results.getInt("fontsize"));
-
-					// get fontcolor
-					defaultsdata.setFontcolor(results.getString("fontcolor"));
-
-					// get linecolor
-					defaultsdata.setLinecolor(results.getString("linecolor"));
-
-					// get fillcolor
-					defaultsdata.setFillcolor(results.getString("fillcolor"));
-
-				} while (results.next());
-
-				data = defaultsdata;
-				break;
-
-			case "document_info_data":
-
-				DocumentInfoData documentinfodata = null;
-
-				do {
-					documentinfodata = new DocumentInfoData();
-
-					// get listid
-					documentinfodata.setListId(results.getInt("listid"));
-
-					// get author
-					documentinfodata.setAuthor(results.getString("author"));
-
-					// get version
-					documentinfodata.setVersion(results.getString("version"));
-
-					// get title
-					documentinfodata.setTitle(results.getString("title"));
-
-					// get comment
-					documentinfodata.setComment(results.getString("comment"));
-
-					// get width
-					documentinfodata.setWidth(results.getInt("width"));
-
-					// get height
-					documentinfodata.setHeight(results.getInt("height"));
-
-				} while (results.next());
-
-				data = documentinfodata;
-				break;
-
-			case "image_slide":
-
-				ArrayList<ImageData> imagedatalist = new ArrayList<ImageData>();
-
-				do {
-					ImageData imagedata = new ImageData();
-
-					// get urlname
-					imagedata.setUrlname(results.getString("urlname"));
-
-					// get xstart
-					imagedata.setXstart(results.getInt("xstart"));
-
-					// get ystart
-					imagedata.setYstart(results.getInt("ystart"));
-
-					// get width
-					imagedata.setWidth(results.getInt("width"));
-
-					// get height
-					imagedata.setHeight(results.getInt("height"));
-
-					// get layer
-					imagedata.setLayer(results.getInt("layer"));
-
-					// get duration
-					imagedata.setDuration(results.getInt("duration"));
-
-					// get starttime
-					imagedata.setStarttime(results.getInt("starttime"));
-
-					// get branch
-					imagedata.setBranch(results.getInt("branch"));
-
-					imagedatalist.add(imagedata);
-
-				} while (results.next());
-
-				data = imagedatalist;
-				break;
-
-			case "point":
-
-				ArrayList<PointData> pointdatalist = new ArrayList<PointData>();
-
-				do {
-					PointData pointdata = new PointData();
-
-					// get point pointNo
-					pointdata.setNum(results.getInt("IndividualPointNo"));
-
-					// get x
-					pointdata.setX(results.getInt("x"));
-
-					// get y
-					pointdata.setY(results.getInt("y"));
-					pointdatalist.add(pointdata);
-
-				} while (results.next());
-
-				data = pointdatalist;
-				break;
-
-			case "shape":
-
-				ArrayList<ShapeData> shapedatalist = new ArrayList<ShapeData>();
-
-				do {
-					ShapeData shapedata = new ShapeData();
-
-					// get ShapeNo
-					shapedata.setShapeNo(results.getInt("shapeno"));
-
-					// get fillcolor
-					shapedata.setFillcolor(results.getString("fillcolor"));
-
-					// get linecolor
-					shapedata.setLinecolor(results.getString("linecolor"));
-
-					// get Starttime
-					shapedata.setStarttime(results.getInt("starttime"));
-
-					// get layer
-					shapedata.setLayer(results.getInt("layer"));
-
-					// get duration
-					shapedata.setDuration(results.getInt("duration"));
-
-					// get totalpoints
-					shapedata.setTotalpoints(results.getInt("totalpoints"));
-
-					// get width
-					shapedata.setWidth(results.getInt("width"));
-
-					// get height
-					shapedata.setHeight(results.getInt("height"));
-
-					// get branch
-					shapedata.setBranch(results.getInt("branch"));
-
-					shapedatalist.add(shapedata);
-
-				} while (results.next());
-
-				data = shapedatalist;
-				break;
-
-			case "slide":
-
-				SlideData slidedata = null;
-
-				do {
-					slidedata = new SlideData();
-
-					// get id
-					slidedata.setId(results.getInt("slideid"));
-
-					// get duration
-					slidedata.setDuration(results.getInt("duration"));
-
-					// get lastSlide
-					slidedata.setLastSlide(results.getBoolean("lastSlide"));
-
-				} while (results.next());
-
-				data = slidedata;
-				break;
-
-			case "text":
-
-				ArrayList<TextData> textdatalist = new ArrayList<TextData>();
-
-				do {
-					TextData textdata = new TextData();
-
-					// get TextNo
-					textdata.setTextNo(results.getInt("textno"));
-
-					// get xstart
-					textdata.setXstart(results.getInt("xstart"));
-
-					// get ystart
-					textdata.setYstart(results.getInt("ystart"));
-
-					// get xend
-					textdata.setXend(results.getInt("xend"));
-
-					// get yend
-					textdata.setYend(results.getInt("yend"));
-
-					// get layer
-					textdata.setLayer(results.getInt("layer"));
-
-					// get duration
-					textdata.setDuration(results.getInt("duration"));
-
-					// get starttime
-					textdata.setStarttime(results.getInt("starttime"));
-
-					// get font
-					textdata.setFont(results.getString("font"));
-
-					// get fontcolor
-					textdata.setFontcolor(results.getString("fontcolor"));
-
-					// get fontsize
-					textdata.setFontsize(results.getInt("fontsize"));
-
-					textdatalist.add(textdata);
-
-				} while (results.next());
-
-				data = textdatalist;
-				break;
-
-			case "textbody":
-
-				ArrayList<TextBodyData> textbodydatalist = new ArrayList<TextBodyData>();
-
-				do {
-					TextBodyData textbodydata = new TextBodyData();
-
-					// get branch
-					textbodydata.setBranch(results.getInt("branch"));
-
-					// get italic
-					textbodydata.setItalic(results.getBoolean("italic"));
-
-					// get bold
-					textbodydata.setBold(results.getBoolean("bold"));
-
-					// get underlined
-					textbodydata.setUnderlined(results.getBoolean("underlined"));
-
-					// get textstring
-					textbodydata.setTextstring(results.getString("Text"));
-
-					textbodydatalist.add(textbodydata);
-
-				} while (results.next());
-
-				data = textbodydatalist;
-				break;
-
-			case "video":
-
-				ArrayList<VideoData> videodatalist = new ArrayList<VideoData>();
-
-				do {
-					VideoData videodata = new VideoData();
-
-					// get urlname
-					videodata.setUrlname(results.getString("urlname"));
-
-					// get xstart
-					videodata.setXstart(results.getInt("xstart"));
-
-					// get ystart
-					videodata.setYstart(results.getInt("ystart"));
-
-					// get width
-					videodata.setWidth(results.getInt("width"));
-
-					// get height
-					videodata.setHeight(results.getInt("height"));
-
-					// get layer
-					videodata.setLayer(results.getInt("layer"));
-
-					// get duration
-					videodata.setDuration(results.getInt("duration"));
-
-					// get starttime
-					videodata.setStarttime(results.getInt("starttime"));
-
-					// get loop
-					videodata.setLoop(results.getBoolean("loop"));
-
-					videodatalist.add(videodata);
-
-				} while (results.next());
-
-				data = videodatalist;
-				break;
-
-			default:
-				data = null;
-			}
+			data = populateDataType(table, results);
 		} catch (SQLException e) {
 
-			SmartTrolleyToolBox.print("SQL Exception in getSpecificData: " + e);
-			return null;
-		} 
+			e.printStackTrace();
+		}
+
 		finally {
 			closeConnection();
 		}
 		return data;
+
+	}
+
+	/**
+	*Method/Test Description
+	*<p>Test(s)/User Story that it satisfies
+	*@param queries
+	*@return
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 8 Jun 2014
+	*/
+	public Object getMultipleDatas(String table, String queries) {
+
+		Statement statement = null;
+
+		Object data = null;
+		ArrayList<Object> dataList = new ArrayList<Object>();
+
+		openConnection();
+		SmartTrolleyToolBox.print("this is getting multiple ResultSets");
+		try {
+			statement = connection.createStatement();
+			boolean results = statement.execute(queries);
+			// CallableStatement cs = connection.prepareCall(queries);
+			// boolean results = cs.execute(queries);
+			while (results) {
+
+				data = new Object();
+				if (results) {
+
+					ResultSet rs = statement.getResultSet();
+					data = populateDataType(table, rs);
+
+					dataList.add(data);
+					results = statement.getMoreResults();
+				}
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+
+		return dataList;
+	}
+
+	/**
+	*Method/Test Description
+	*<p>Test(s)/User Story that it satisfies
+	*@param table
+	*@param results
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 8 Jun 2014
+	*/
+	private Object populateDataType(String table, ResultSet results) {
+
+		Object data = null;
+		if (results != null) {
+			try {
+				results.absolute(1);
+				switch (table) {
+				case "products":
+
+					Product product = null;
+
+					do {
+						product = new Product();
+
+						// get id
+						product.setId(results.getInt("ProductID"));
+
+						// get Name
+						product.setName(results.getString("Name"));
+
+						// get Image
+						product.setImage(results.getString("Image"));
+
+						// get Price
+						product.setPrice(results.getFloat("Price"));
+
+					} while (results.next());
+
+					data = product;
+					break;
+
+				case "audio":
+
+					ArrayList<AudioData> audiodatalist = new ArrayList<AudioData>();
+
+					do {
+						AudioData audiodata = new AudioData();
+
+						// get urlname
+						audiodata.setUrlname(results.getString("urlname"));
+
+						// get starttime
+						audiodata.setStarttime(results.getInt("starttime"));
+
+						// get loop
+						audiodata.setLoop(results.getBoolean("loop"));
+
+						audiodatalist.add(audiodata);
+
+					} while (results.next());
+
+					data = audiodatalist;
+					break;
+
+				case "defaults":
+
+					DefaultsData defaultsdata = null;
+
+					do {
+						defaultsdata = new DefaultsData();
+
+						// get listid
+						defaultsdata.setListId(results.getInt("listid"));
+
+						// get backgroundcolor
+						defaultsdata.setBackgroundcolor(results.getString("backgroundcolor"));
+
+						// get font
+						defaultsdata.setFont(results.getString("font"));
+
+						// get fontsize
+						defaultsdata.setFontsize(results.getInt("fontsize"));
+
+						// get fontcolor
+						defaultsdata.setFontcolor(results.getString("fontcolor"));
+
+						// get linecolor
+						defaultsdata.setLinecolor(results.getString("linecolor"));
+
+						// get fillcolor
+						defaultsdata.setFillcolor(results.getString("fillcolor"));
+
+					} while (results.next());
+
+					data = defaultsdata;
+					break;
+
+				case "document_info_data":
+
+					DocumentInfoData documentinfodata = null;
+
+					do {
+						documentinfodata = new DocumentInfoData();
+
+						// get listid
+						documentinfodata.setListId(results.getInt("listid"));
+
+						// get author
+						documentinfodata.setAuthor(results.getString("author"));
+
+						// get version
+						documentinfodata.setVersion(results.getString("version"));
+
+						// get title
+						documentinfodata.setTitle(results.getString("title"));
+
+						// get comment
+						documentinfodata.setComment(results.getString("comment"));
+
+						// get width
+						documentinfodata.setWidth(results.getInt("width"));
+
+						// get height
+						documentinfodata.setHeight(results.getInt("height"));
+
+					} while (results.next());
+
+					data = documentinfodata;
+					break;
+
+				case "image_slide":
+
+					ArrayList<ImageData> imagedatalist = new ArrayList<ImageData>();
+
+					do {
+						ImageData imagedata = new ImageData();
+
+						// get urlname
+						imagedata.setUrlname(results.getString("urlname"));
+
+						// get xstart
+						imagedata.setXstart(results.getInt("xstart"));
+
+						// get ystart
+						imagedata.setYstart(results.getInt("ystart"));
+
+						// get width
+						imagedata.setWidth(results.getInt("width"));
+
+						// get height
+						imagedata.setHeight(results.getInt("height"));
+
+						// get layer
+						imagedata.setLayer(results.getInt("layer"));
+
+						// get duration
+						imagedata.setDuration(results.getInt("duration"));
+
+						// get starttime
+						imagedata.setStarttime(results.getInt("starttime"));
+
+						// get branch
+						imagedata.setBranch(results.getInt("branch"));
+
+						imagedatalist.add(imagedata);
+
+					} while (results.next());
+
+					data = imagedatalist;
+					break;
+
+				case "point":
+
+					ArrayList<PointData> pointdatalist = new ArrayList<PointData>();
+
+					do {
+						PointData pointdata = new PointData();
+
+						// get point pointNo
+						pointdata.setNum(results.getInt("IndividualPointNo"));
+
+						// get x
+						pointdata.setX(results.getInt("x"));
+
+						// get y
+						pointdata.setY(results.getInt("y"));
+						pointdatalist.add(pointdata);
+
+					} while (results.next());
+
+					data = pointdatalist;
+					break;
+
+				case "shape":
+
+					ArrayList<ShapeData> shapedatalist = new ArrayList<ShapeData>();
+
+					do {
+						ShapeData shapedata = new ShapeData();
+
+						// get ShapeNo
+						shapedata.setShapeNo(results.getInt("shapeno"));
+
+						// get fillcolor
+						shapedata.setFillcolor(results.getString("fillcolor"));
+
+						// get linecolor
+						shapedata.setLinecolor(results.getString("linecolor"));
+
+						// get Starttime
+						shapedata.setStarttime(results.getInt("starttime"));
+
+						// get layer
+						shapedata.setLayer(results.getInt("layer"));
+
+						// get duration
+						shapedata.setDuration(results.getInt("duration"));
+
+						// get totalpoints
+						shapedata.setTotalpoints(results.getInt("totalpoints"));
+
+						// get width
+						shapedata.setWidth(results.getInt("width"));
+
+						// get height
+						shapedata.setHeight(results.getInt("height"));
+
+						// get branch
+						shapedata.setBranch(results.getInt("branch"));
+
+						shapedatalist.add(shapedata);
+
+					} while (results.next());
+
+					data = shapedatalist;
+					break;
+
+				case "slide":
+
+					SlideData slidedata = null;
+
+					do {
+						slidedata = new SlideData();
+
+						// get id
+						slidedata.setId(results.getInt("slideid"));
+
+						// get duration
+						slidedata.setDuration(results.getInt("duration"));
+
+						// get lastSlide
+						slidedata.setLastSlide(results.getBoolean("lastSlide"));
+
+					} while (results.next());
+
+					data = slidedata;
+					break;
+
+				case "text":
+
+					ArrayList<TextData> textdatalist = new ArrayList<TextData>();
+
+					do {
+						TextData textdata = new TextData();
+
+						// get TextNo
+						textdata.setTextNo(results.getInt("textno"));
+
+						// get xstart
+						textdata.setXstart(results.getInt("xstart"));
+
+						// get ystart
+						textdata.setYstart(results.getInt("ystart"));
+
+						// get xend
+						textdata.setXend(results.getInt("xend"));
+
+						// get yend
+						textdata.setYend(results.getInt("yend"));
+
+						// get layer
+						textdata.setLayer(results.getInt("layer"));
+
+						// get duration
+						textdata.setDuration(results.getInt("duration"));
+
+						// get starttime
+						textdata.setStarttime(results.getInt("starttime"));
+
+						// get font
+						textdata.setFont(results.getString("font"));
+
+						// get fontcolor
+						textdata.setFontcolor(results.getString("fontcolor"));
+
+						// get fontsize
+						textdata.setFontsize(results.getInt("fontsize"));
+
+						textdatalist.add(textdata);
+
+					} while (results.next());
+
+					data = textdatalist;
+					break;
+
+				case "textbody":
+
+					ArrayList<TextBodyData> textbodydatalist = new ArrayList<TextBodyData>();
+
+					do {
+						TextBodyData textbodydata = new TextBodyData();
+
+						// get branch
+						textbodydata.setBranch(results.getInt("branch"));
+
+						// get italic
+						textbodydata.setItalic(results.getBoolean("italic"));
+
+						// get bold
+						textbodydata.setBold(results.getBoolean("bold"));
+
+						// get underlined
+						textbodydata.setUnderlined(results.getBoolean("underlined"));
+
+						// get textstring
+						textbodydata.setTextstring(results.getString("Text"));
+
+						textbodydatalist.add(textbodydata);
+
+					} while (results.next());
+
+					data = textbodydatalist;
+					break;
+
+				case "video":
+
+					ArrayList<VideoData> videodatalist = new ArrayList<VideoData>();
+
+					do {
+						VideoData videodata = new VideoData();
+
+						// get urlname
+						videodata.setUrlname(results.getString("urlname"));
+
+						// get xstart
+						videodata.setXstart(results.getInt("xstart"));
+
+						// get ystart
+						videodata.setYstart(results.getInt("ystart"));
+
+						// get width
+						videodata.setWidth(results.getInt("width"));
+
+						// get height
+						videodata.setHeight(results.getInt("height"));
+
+						// get layer
+						videodata.setLayer(results.getInt("layer"));
+
+						// get duration
+						videodata.setDuration(results.getInt("duration"));
+
+						// get starttime
+						videodata.setStarttime(results.getInt("starttime"));
+
+						// get loop
+						videodata.setLoop(results.getBoolean("loop"));
+
+						videodatalist.add(videodata);
+
+					} while (results.next());
+
+					data = videodatalist;
+					break;
+
+				default:
+					data = null;
+				}
+			} catch (SQLException e) {
+
+				SmartTrolleyToolBox.print("SQL Exception in populateDataType: " + e);
+				return null;
+			}
+		} else {
+			return null;
+		}
+
+		return data;
+
 	}
 
 	/**

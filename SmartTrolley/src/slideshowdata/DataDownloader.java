@@ -40,7 +40,7 @@ public class DataDownloader extends SqlConnection {
 		slideshowdata.setSlides(slidelist);
 		slideshowdata.setDefaults(defaults);
 		slideshowdata.setDocumentinfo(documentinfo);
-		
+
 		SmartTrolleyToolBox.print("Finished downloading slideshow.");
 
 		return slideshowdata;
@@ -48,30 +48,15 @@ public class DataDownloader extends SqlConnection {
 
 	public SlideData populateSlide(int productid) {
 
-		int j = 0, k = 0;
 
 		SlideData slide = (SlideData) getSpecificData("slide", "ProductID", "" + productid);
 
 		ArrayList<TextData> texts = (ArrayList<TextData>) getSpecificData("text", "ProductID", "" + productid);
-
-		while (texts!= null && j < texts.size()) {
-			int textno = texts.get(j).getTextNo();
-			ArrayList<TextBodyData> textbodies = (ArrayList<TextBodyData>) getSpecificData("textbody", "TextNo", "" + textno);
-			texts.get(j).setTextbodies(textbodies);
-
-			j++;
-		}
+		
+		setTextBodiesForSlide(texts);
 
 		ArrayList<ShapeData> shapes = (ArrayList<ShapeData>) getSpecificData("shape", "ProductID", "" + productid);
-
-		while (shapes != null && k < shapes.size()) {
-
-			int shapeno = shapes.get(k).getShapeNo();
-			ArrayList<PointData> points = (ArrayList<PointData>) getSpecificData("point", "ShapeNo", "" + shapeno);
-			shapes.get(k).setPoints(points);
-
-			k++;
-		}
+		setPointsForSlide(shapes);
 
 		ArrayList<ImageData> images = (ArrayList<ImageData>) getSpecificData("image_slide", "ProductID", "" + productid);
 
@@ -100,5 +85,64 @@ public class DataDownloader extends SqlConnection {
 		}
 
 		return slide;
+	}
+
+	/**
+	*Method/Test Description
+	*<p>Test(s)/User Story that it satisfies
+	*@param shapes
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 8 Jun 2014
+	*/
+	private void setPointsForSlide(ArrayList<ShapeData> shapes) {
+		String multipleQueries;
+		int k=0;
+		multipleQueries = "";
+
+		while (shapes != null && k < shapes.size()) {
+
+			int shapeno = shapes.get(k).getShapeNo();
+			String query = "Select * From point where ShapeNo = '" + shapeno + "'; ";
+
+			multipleQueries = multipleQueries.concat(query);
+			k++;
+		}
+		if (shapes != null) {
+			ArrayList<ArrayList<PointData>> points = (ArrayList<ArrayList<PointData>>) getMultipleDatas("point", multipleQueries);
+
+			for (int i = 0; shapes != null && i < shapes.size(); i++) {
+				shapes.get(i).setPoints(points.get(i));
+
+			}
+		}
+	}
+
+	/**
+	*Method/Test Description
+	*<p>Test(s)/User Story that it satisfies
+	*@param texts
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 8 Jun 2014
+	*/
+	private void setTextBodiesForSlide( ArrayList<TextData> texts) {
+		int j=0;
+		String multipleQueries = "";
+		while (texts != null && j < texts.size()) {
+
+			int textno = texts.get(j).getTextNo();
+			String query = "Select * From textbody where TextNo = '" + textno + "'; ";
+
+			multipleQueries = multipleQueries.concat(query);
+			j++;
+		}
+
+		if (texts != null) {
+			ArrayList<ArrayList<TextBodyData>> textbodies = (ArrayList<ArrayList<TextBodyData>>) getMultipleDatas("textbody", multipleQueries);
+
+			for (int i = 0; texts != null && i < texts.size(); i++) {
+				texts.get(i).setTextbodies(textbodies.get(i));
+
+			}
+		}
 	}
 }
