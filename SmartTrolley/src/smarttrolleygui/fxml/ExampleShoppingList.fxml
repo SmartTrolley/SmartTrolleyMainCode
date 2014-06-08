@@ -21,7 +21,7 @@
               <children>
                 <Button alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loadStartScreen" prefHeight="130.0" prefWidth="133.0" styleClass="buttonSmartTrolleyLogo" text="Start">
                   <tooltip>
-                    <Tooltip text="Return to start screen" />
+                    <Tooltip text="Return to the start screen to change to a different shopping list or create a new one" wrapText="false" />
                   </tooltip>
                 </Button>
               </children>
@@ -36,6 +36,9 @@
                       </image>
                     </ImageView>
                   </graphic>
+                  <tooltip>
+                    <Tooltip text="Browse all products" />
+                  </tooltip>
                 </Button>
                 <Button contentDisplay="TOP" mnemonicParsing="false" prefWidth="-1.0" styleClass="buttonNavigationActive" text="List">
                   <graphic>
@@ -45,6 +48,9 @@
                       </image>
                     </ImageView>
                   </graphic>
+                  <tooltip>
+                    <Tooltip text="View products you have added to your shopping list" />
+                  </tooltip>
                 </Button>
                 <Button fx:id="offersButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadOffers" styleClass="buttonNavigation" text="Offers">
                   <graphic>
@@ -54,6 +60,9 @@
                       </image>
                     </ImageView>
                   </graphic>
+                  <tooltip>
+                    <Tooltip text="Browse reduced products" />
+                  </tooltip>
                 </Button>
                 <Button fx:id="favouritesButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#loadFavourites" styleClass="buttonNavigation" text="Favourites">
                   <graphic>
@@ -63,23 +72,34 @@
                       </image>
                     </ImageView>
                   </graphic>
+                  <tooltip>
+                    <Tooltip text="See a list of your favourite products" />
+                  </tooltip>
                 </Button>
               </children>
             </HBox>
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
               <children>
-                <Label fx:id="currentTotalLabel" text="£ current total" />
-                <Label fx:id="currentSavingsTotal" text="£ current savings" />
+                <Label fx:id="currentTotalLabel" styleClass="labelLarge" text="£ Total">
+                  <tooltip>
+                    <Tooltip text="Current total of your shopping list" />
+                  </tooltip>
+                </Label>
+                <Label fx:id="currentSavingsTotal" styleClass="labelLarge" text="£ Savings">
+                  <tooltip>
+                    <Tooltip text="Your savings" />
+                  </tooltip>
+                </Label>
               </children>
               <padding>
-                <Insets left="10.0" />
+                <Insets left="10.0" top="25.0" />
               </padding>
             </VBox>
           </children>
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" prefWidth="136.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="349.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="115.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="10.0" prefWidth="386.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="78.0" />
           </columnConstraints>
           <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -87,7 +107,7 @@
         </GridPane>
       </children>
     </HBox>
-    <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="NEVER">
+    <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="600.0" spacing="9.0" styleClass="containerListName" VBox.vgrow="NEVER">
       <children>
         <Button minHeight="25.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="112.0" styleClass="button1" text="Delete List">
           <graphic>
@@ -97,28 +117,39 @@
               </image>
             </ImageView>
           </graphic>
+          <tooltip>
+            <Tooltip text="Delete the currently active shopping list" />
+          </tooltip>
         </Button>
-        <Label fx:id="listNameLabel" alignment="CENTER_RIGHT" prefWidth="461.0" styleClass="labelListName" textAlignment="CENTER" wrapText="false" />
+        <Label fx:id="listNameLabel" alignment="CENTER_RIGHT" prefWidth="461.0" styleClass="labelListName" textAlignment="CENTER" wrapText="false">
+          <HBox.margin>
+            <Insets />
+          </HBox.margin>
+        </Label>
       </children>
       <padding>
         <Insets left="10.0" right="10.0" />
       </padding>
     </HBox>
-    <Line endX="575.0" startX="0.0" startY="0.0">
+    <Line endX="595.0" startX="0.0" startY="0.0">
       <VBox.margin>
         <Insets top="5.0" />
       </VBox.margin>
     </Line>
     <HBox id="HBox" alignment="CENTER" spacing="0.0" styleClass="containerBottom" VBox.vgrow="ALWAYS">
       <children>
-        <SplitPane dividerPositions="0.2093425605536332" focusTraversable="true" maxWidth="580.0" prefHeight="395.0" prefWidth="600.0" style="">
+        <SplitPane dividerPositions="0.21906354515050167" focusTraversable="true" maxWidth="600.0" prefHeight="395.0" prefWidth="600.0" style="">
           <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="396.0" prefWidth="110.0" style="">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="396.0" prefWidth="-1.0" style="">
               <children>
-                <VBox id="VBox" alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="404.0" prefWidth="110.0" spacing="0.0">
+                <VBox id="VBox" alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="404.0" prefWidth="-1.0" spacing="0.0">
                   <children>
-                    <Label text="Categories" />
-                    <ListView fx:id="categoriesList" prefHeight="389.0" prefWidth="115.0" />
+                    <Label styleClass="labelLarge" text="Categories">
+                      <tooltip>
+                        <Tooltip styleClass="ttip" text="Choose a category to sort products by" />
+                      </tooltip>
+                    </Label>
+                    <ListView fx:id="categoriesList" prefHeight="383.0" prefWidth="133.0" />
                   </children>
                   <padding>
                     <Insets top="5.0" />
@@ -126,17 +157,17 @@
                 </VBox>
               </children>
             </AnchorPane>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="-1.0" prefWidth="-1.0" style="">
               <children>
-                <TableView fx:id="productTable" maxWidth="444.0" prefHeight="413.0" prefWidth="388.0" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <TableView fx:id="productTable" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" tableMenuButtonVisible="false" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <columns>
                     <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="25.0" resizable="false" sortable="false" text="" fx:id="checkBoxColumn" />
-                    <TableColumn editable="false" prefWidth="90.0" resizable="false" sortable="false" text="Image" fx:id="imageColumn" />
-                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="158.0" resizable="false" text="Product Name" fx:id="productNameColumn" />
+                    <TableColumn editable="false" prefWidth="90.0" resizable="false" sortable="false" text="" fx:id="imageColumn" />
+                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="173.0" resizable="false" text="" fx:id="productNameColumn" />
                     <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="40.0" resizable="false" sortable="true" text="Price" fx:id="priceColumn" />
                     <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="30.0" resizable="false" sortable="false" text="Qty" />
-                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="45.0" resizable="false" sortable="false" text="Add" fx:id="addColumn" />
-                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="50.0" resizable="false" sortable="false" text="Remove" fx:id="removeColumn" />
+                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="45.0" resizable="false" sortable="false" text="" fx:id="addColumn" />
+                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="45.0" resizable="false" sortable="false" text="" fx:id="removeColumn" />
                   </columns>
                 </TableView>
               </children>
@@ -145,7 +176,7 @@
         </SplitPane>
       </children>
     </HBox>
-    <Line endX="575.0" startX="0.0" startY="0.0" />
+    <Line endX="595.0" startX="0.0" startY="0.0" />
   </children>
   <stylesheets>
     <URL value="@../StyleSheet.css" />

@@ -17,6 +17,7 @@ import static org.junit.Assert.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Group;
@@ -24,9 +25,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import smarttrolleygui.CreateNewListScreenController;
 import smarttrolleygui.SmartTrolleyGUI;
 import smarttrolleygui.StartScreenController;
@@ -36,7 +39,7 @@ import Printing.SmartTrolleyPrint;
 public class CreateListTest {
 
 	private static SqlConnection productsDatabase;
-	String query;
+	String query, statement;
 	Stage stage;
 	
 	
@@ -48,7 +51,7 @@ public class CreateListTest {
 	 * @throws java.lang.Exception
 	 *             [If applicable]@see [Reference URL OR Class#Method]
 	 *             <p>
-	 *             Date Modified: 9 May 2014
+	 *             Date Modified: 4 June 2014
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -88,11 +91,7 @@ public class CreateListTest {
 		 * results in a nullPointerException, since the scene has not yet been
 		 * created.
 		 */
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		SmartTrolleyDelay.delay(3000);
 
 		/*
 		 * In order to do anything with the user interface, the JavaFX thread
@@ -113,11 +112,7 @@ public class CreateListTest {
 			}
 		});
 		
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		SmartTrolleyDelay.delay(3000);
 	}	
 	
 	/**
@@ -126,7 +121,7 @@ public class CreateListTest {
 	*<p>User story: User can create new list
 	*@throws SQLException
 	*[If applicable]@see [Reference URL OR Class#Method]
-	*<p> Date Modified: 9 May 2014
+	*<p> Date Modified: 4 June 2014
 	*/
 	@Test
 	public void listIsCreated() throws SQLException {
@@ -136,7 +131,7 @@ public class CreateListTest {
 			public void run() {
 				// set text of TextField to arbitrary input as an example name for a new list
 				TextField listNameTextField = CreateNewListScreenController.listNameTextField;
-				listNameTextField.setText("asd");
+				listNameTextField.setText("new list");
 				String textInput = listNameTextField.getText();
 				assertTrue(textInput instanceof String);
 
@@ -157,30 +152,35 @@ public class CreateListTest {
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
-				}				
+				}
+				
+				// delete newly created list again
+				statement = "DELETE FROM `cl36-st`.`lists` WHERE `lists`.`Name` = '" + textInput + "'";
+				productsDatabase.executeStatement(statement);
+				
+				// check list has been deleted
+				try {
+					results = productsDatabase.sendQuery(query);
+					assertTrue(SqlConnection.isResultSetEmpty(results));
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		});
-		
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		SmartTrolleyDelay.delay(3000);
 	}
 	
-	// TODO: create a test to check input is valid
-
 	/**
 	 * Closes productsDatabase between client and server
 	 * <p>
-	 * Date Modified: 9 May 2014
+	 * Date Modified: 4 June 2014
 	 * 
 	 * @throws Exception
 	 */
 	@After
 	public void closeAll() throws Exception {
 		productsDatabase.closeConnection();
-		SmartTrolleyPrint.print("Closing Test.");
+		SmartTrolleyPrint.print("CreateListTest has finished.");
 	}
 
 }

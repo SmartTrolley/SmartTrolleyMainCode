@@ -127,26 +127,6 @@ public class AllShoppingListsScreenController implements Initializable {
 		
 		resultSet.close();
 		SmartTrolleyPrint.print("Total Number of Lists: " + buttonList.size());
-
-		// Add the Go Back button
-		Button newButton = new Button();
-		newButton.setMaxHeight(Integer.MAX_VALUE);
-		newButton.setMinHeight(100);
-		newButton.setText("Go Back");
-		newButton.getStyleClass().add("buttonLarge");
-		newButton.setPrefSize(300, 80);
-		newButton.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				loadStartScreen(event);
-			}
-		});
-
-		buttonList.add(newButton);
-		
-		SmartTrolleyPrint.print("Arraylist size is: " + buttonList.size());
-
 	}
 
 	/**
