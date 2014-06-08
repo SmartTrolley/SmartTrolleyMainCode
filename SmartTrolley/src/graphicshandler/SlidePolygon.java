@@ -4,6 +4,8 @@ package graphicshandler;
 
 import java.util.PriorityQueue;
 
+import smarttrolleygui.slideshow.Layerable;
+
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Polygon;
@@ -20,11 +22,13 @@ import javafx.scene.shape.Polygon;
  * 
  * @version [v1.0] [Date Created: 25/04/14]
  */
-public class SlidePolygon extends Polygon{
+public class SlidePolygon extends Polygon implements Branchable, Layerable{
 
 	
 	/**Duration of the polygon in millseconds*/
 	private SlideElementDuration duration;
+	private int branch;
+	private int layer;
 
 	/**
 	 * Extracts the coordinates of the Polygon's points, instantiates a new
@@ -175,6 +179,26 @@ public class SlidePolygon extends Polygon{
 	public Paint getLineColor() {
 
 		return this.getStroke();
+	}
+
+	@Override
+	public void setBranch(int branch) {
+		this.branch = branch;
+	}
+
+	@Override
+	public int getBranch() {
+		return this.branch;
+	}
+	
+	@Override
+	public int getLayer() {
+		
+		return layer;
+	}
+
+	public void setLayer(int layer) {
+		this.layer = layer;
 	}
 
 }

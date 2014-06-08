@@ -55,15 +55,15 @@ public class SlideTextBodyTest {
 	@Before
 	public void setUp(){
 		
-		regularFontBodyOne = new SlideTextBody(one, bold, italic, underlined, 1);
+		regularFontBodyOne = new SlideTextBody(one, bold, italic, underlined, 1, 1);
 		
 		bold = true;
 		italic = true;
 		underlined = true;	
-		boldItalicUnderlinedBodyTwo = new SlideTextBody(two, bold, italic, underlined ,2 );
+		boldItalicUnderlinedBodyTwo = new SlideTextBody(two, bold, italic, underlined ,2 ,1);
 		
 		underlined = false;
-		bodyThree = new SlideTextBody(three, bold, italic, underlined, 3);
+		bodyThree = new SlideTextBody(three, bold, italic, underlined, 3, 1);
 		
 		//Strings that describe the font styles of the bodies. useful for tests.
 		oneStyle = regularFontBodyOne.getFont().getStyle();

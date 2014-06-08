@@ -73,7 +73,7 @@ public class GraphicsHandlerVisualTest extends Application {
 		
 		points.add(point3);
 		
-		shapeFactory = new SlideShapeFactory(points, 50, 50,blue,blue,startTime, duration);
+		shapeFactory = new SlideShapeFactory(points, 50, 50,blue,blue,startTime, duration,1,1);
 		
 		circle = (SlideEllipse) shapeFactory.getShape();
 		
@@ -130,7 +130,7 @@ public class GraphicsHandlerVisualTest extends Application {
 		points.add(point4);
 		points.add(point5);
 		
-		shapeFactory = new SlideShapeFactory(points, height,width,blue,blue,startTime, duration);
+		shapeFactory = new SlideShapeFactory(points, height,width,blue,blue,startTime, duration,1,1);
 		pentagon = (SlidePolygon) shapeFactory.getShape();
 		
 		pentagon.setStroke(Color.AQUA);
@@ -152,7 +152,7 @@ public class GraphicsHandlerVisualTest extends Application {
 		points.add(point4);
 		
 		//Instantiate a shapeFactory with the current values
-		shapeFactory = new SlideShapeFactory(points, width, height,blue,blue,startTime, duration);
+		shapeFactory = new SlideShapeFactory(points, width, height,blue,blue,startTime, duration,1,1);
 		
 		shapeFactory.setHeight(100);
 		//get the shape that is created by the values previously given to the factory

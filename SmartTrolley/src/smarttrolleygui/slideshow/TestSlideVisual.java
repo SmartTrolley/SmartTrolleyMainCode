@@ -80,7 +80,7 @@ public class TestSlideVisual extends Application {
 	int fontSize = 12;
 	int xTextStart = 355;
 	int yTextStart = 467;
-	int xTextEnd = 375;
+	int xTextEnd = 385;
 	int yTextEnd = 487;
 	double textStartTime = 0;
 	double textDuration = 0;
@@ -123,10 +123,10 @@ public class TestSlideVisual extends Application {
 	*/
 	public void setupImage(){
 		SlideImage image = new SlideImage(imageURL, xImageStart, yImageStart, imageWidth, imageHeight,
-				imageStartTime, 3);
+				imageStartTime, 3,1,1);
 		
 		SlideImage image2 = new SlideImage(imageURL, xImageStart2, yImageStart2, imageWidth/2, imageHeight/2,
-				imageStartTime, imageDuration);
+				imageStartTime, imageDuration,1,1);
 	
 		imageList = new ArrayList<SlideImage>();
 		
@@ -149,7 +149,7 @@ public class TestSlideVisual extends Application {
 		
 		SlideShapeFactory shapeFactory = new SlideShapeFactory(points, graphicsHeight,graphicsWidth,
 				graphicsFillColour,
-				graphicsLineColour, graphicsStartTime, graphicsDuration);
+				graphicsLineColour, graphicsStartTime, graphicsDuration,1,1);
 		pentagon = (SlidePolygon) shapeFactory.getShape();
 		
 		graphicsList = new ArrayList<Shape>();
@@ -175,7 +175,7 @@ public class TestSlideVisual extends Application {
 	*/
 	public void setupVideo(){
 		SlideVideo video = new SlideVideo(vidURL, xVidStart, yVidStart, vidWidth, vidHeight, vidLoop,
-				vidStartTime, vidDuration);
+				vidStartTime, vidDuration,1);
 		
 
 		videoList = new ArrayList<SlideVideo>();
@@ -189,10 +189,10 @@ public class TestSlideVisual extends Application {
 	*/
 	public void setupText(){
 		texts = new ArrayList<SlideTextBody>();
-		texts.add(new SlideTextBody(oneString, true, true, true, 1));
+		texts.add(new SlideTextBody(oneString, true, true, true, 1,1));
 		
 		SlideText textBox = new SlideText(texts, font, fontColor, fontSize, xTextStart, yTextStart,
-				xTextEnd, yTextEnd, textStartTime, textDuration);
+				xTextEnd, yTextEnd, textStartTime, textDuration,1);
 		
 		textList = new ArrayList<SlideText>();
 		textList.add(textBox);

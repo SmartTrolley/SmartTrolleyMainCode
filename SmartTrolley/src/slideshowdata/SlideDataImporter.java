@@ -76,15 +76,26 @@ public class SlideDataImporter {
 		ArrayList<SlideText> texts = new ArrayList<SlideText>();
 		ArrayList<SlideTextBody> bodies = new ArrayList<SlideTextBody>();
 
-		if (textDatas != null) {
-			for (TextData textData : textDatas) {
-
-				bodies = importTextBodies(textData.getTextbodies());
-				texts.add(new SlideText(bodies, textData.getFont(), textData.getFontcolor(), textData.getFontsize(), textData.getXstart(), textData.getYstart(),
-						textData.getXend(), textData.getYend(), textData.getStarttime(), textData.getDuration()));
-			}
-		}
-
+		
+		if (textDatas != null){
+		for(TextData textData : textDatas){
+			
+			bodies = importTextBodies(textData.getTextbodies());
+			texts. add(new SlideText(
+										bodies, 
+										textData.getFont(), 
+										textData.getFontcolor(), 
+										textData.getFontsize(), 
+										textData.getXstart(),
+										textData.getYstart(), 
+										textData.getXend(), 
+										textData.getYend(), 
+										textData.getStarttime(), 
+										textData.getDuration(),
+										textData.getLayer())
+			);
+		}}
+		
 		return texts;
 	}
 
@@ -92,13 +103,17 @@ public class SlideDataImporter {
 
 		ArrayList<SlideTextBody> bodies = new ArrayList<SlideTextBody>();
 
-		if (bodyDatas != null) {
-			for (TextBodyData body : bodyDatas) {
 
-				bodies.add(new SlideTextBody(body.getTextstring(), body.getBold(), body.getItalic(), body.getUnderlined()));
-
-			}
-		}
+		if (bodyDatas != null){
+		for(TextBodyData body : bodyDatas){
+			
+			bodies.add(new SlideTextBody(body.getTextstring(), 
+										 body.getBold(), 
+										 body.getItalic(), 
+										 body.getUnderlined(),
+										 body.getBranch()));
+			
+		}}
 		return bodies;
 	}
 
@@ -108,16 +123,24 @@ public class SlideDataImporter {
 		SlideShapeFactory shapeFactory;
 		PriorityQueue<ShapePoint> points;
 
-		if (shapeDatas != null) {
-			for (ShapeData shapeData : shapeDatas) {
-				points = importPoints(shapeData.getPoints());
-
-				shapeFactory = new SlideShapeFactory(points, shapeData.getWidth(), shapeData.getHeight(), shapeData.getFillcolor(), shapeData.getLinecolor(),
-						shapeData.getStarttime(), shapeData.getDuration());
-				shapes.add(shapeFactory.getShape());
-			}
-		}
-
+		
+		if (shapeDatas != null){
+		for(ShapeData shapeData : shapeDatas){
+			points = importPoints(shapeData.getPoints());
+			
+			shapeFactory = new SlideShapeFactory(
+													points,
+													shapeData.getWidth(), 
+													shapeData.getHeight(), 
+													shapeData.getFillcolor(), 
+													shapeData.getLinecolor(), 
+													shapeData.getStarttime(), 
+													shapeData.getDuration(),
+													shapeData.getBranch(),
+													shapeData.getLayer());
+			shapes.add(shapeFactory.getShape());
+		}}
+		
 		return shapes;
 	}
 
@@ -135,30 +158,41 @@ public class SlideDataImporter {
 	private static ArrayList<SlideVideo> importVideos(ArrayList<VideoData> videoDatas) {
 
 		ArrayList<SlideVideo> videos = new ArrayList<SlideVideo>();
-
-		if (videoDatas != null) {
-			for (VideoData videoData : videoDatas) {
-
-				videos.add(new SlideVideo(videoData.getUrlname(), videoData.getXstart(), videoData.getYstart(), videoData.getWidth(), videoData.getHeight(), videoData.getLoop(),
-						videoData.getStarttime(), videoData.getDuration()));
-			}
-		}
-
+		
+		if (videoDatas != null){
+		for(VideoData videoData : videoDatas){
+			
+			videos.add(new SlideVideo(videoData.getUrlname(),
+									  videoData.getXstart(), 
+									  videoData.getYstart(), 
+									  videoData.getWidth(), 
+									  videoData.getHeight(), 
+									  videoData.getLoop(), 
+									  videoData.getStarttime(),
+									  videoData.getDuration(),
+									  videoData.getLayer()));
+		}}
 		return videos;
 	}
 
 	private static ArrayList<SlideImage> importImages(ArrayList<ImageData> imageDatas) {
 
 		ArrayList<SlideImage> images = new ArrayList<SlideImage>();
-
-		if (imageDatas != null) {
-			for (ImageData imageData : imageDatas) {
-
-				images.add(new SlideImage(imageData.getUrlname(), imageData.getXstart(), imageData.getYstart(), imageData.getWidth(), imageData.getHeight(), imageData
-						.getStarttime(), imageData.getDuration()));
-			}
-		}
-
+		
+		if (imageDatas != null){
+		for(ImageData imageData : imageDatas){
+			
+			images.add(new SlideImage(imageData.getUrlname(),
+									  imageData.getXstart(), 
+									  imageData.getYstart(), 
+									  imageData.getWidth(), 
+									  imageData.getHeight(), 
+									  imageData.getStarttime(),
+									  imageData.getDuration(),
+									  imageData.getBranch(),
+									  imageData.getLayer()));
+		}}
+		
 		return images;
 	}
 

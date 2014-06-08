@@ -2,6 +2,8 @@ package graphicshandler;
 
 import java.util.PriorityQueue;
 
+import smarttrolleygui.slideshow.Layerable;
+
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Shape;
@@ -30,18 +32,21 @@ public class SlideShapeFactory {
 	*@param startTime - an int in seconds
 	*@param duration - an int in seconds
 	*<p> Date Modified: 7 Jun 2014
+	 * @param layer 
 	*/
 	public SlideShapeFactory(PriorityQueue<ShapePoint> points, int width,
-			int height, String fillColor, String lineColor, int startTime, int duration) {
+			int height, String fillColor, String lineColor, int startTime, int duration, int branch, int layer) {
 		
 		if(points.size() == 1){
 			shape = new SlideEllipse(points.remove(), width, height);
+			
 		}
 		else{
 			//create the shape with the new coordinates
 			shape = new SlidePolygon(points);
 		}
-		
+		((Layerable)shape).setLayer(layer);
+		((Branchable) shape).setBranch(branch);
 		setWidth(width);
 		setHeight(height);
 		setFillColor(fillColor);

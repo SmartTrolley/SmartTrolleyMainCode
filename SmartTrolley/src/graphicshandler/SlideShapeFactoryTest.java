@@ -61,7 +61,7 @@ public class SlideShapeFactoryTest {
 		PriorityQueue<ShapePoint> point = new PriorityQueue<ShapePoint>();
 		point.add(point4);
 		
-		circleFactory = new SlideShapeFactory(point, height,width,blue,blue,startTime, duration);
+		circleFactory = new SlideShapeFactory(point, height,width,blue,blue,startTime, duration,1,1);
 		
 		circle = circleFactory.getShape();
 		
@@ -96,7 +96,7 @@ public class SlideShapeFactoryTest {
 		points.add(point4);
 		
 		//Instantiate a shapeFactory with the current values
-		shapeFactory = new SlideShapeFactory(points, width, height, blue,blue,startTime, duration);
+		shapeFactory = new SlideShapeFactory(points, width, height, blue,blue,startTime, duration,1,1);
 		
 		//get the shape that is created by the values previously given to the factory
 		square = shapeFactory.getShape();

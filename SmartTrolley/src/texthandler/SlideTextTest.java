@@ -52,12 +52,12 @@ public class SlideTextTest {
 		
 		//populate a list of textbodies
 		texts = new ArrayList<SlideTextBody>();
-		texts.add(new SlideTextBody(oneString, true, true, true, 1));
-		texts.add(new SlideTextBody(twoString, false, true, false, 2));
-		texts.add(new SlideTextBody(threeString, false, false, true, 2));
+		texts.add(new SlideTextBody(oneString, true, true, true, 1,1));
+		texts.add(new SlideTextBody(twoString, false, true, false, 2,1));
+		texts.add(new SlideTextBody(threeString, false, false, true, 2,1));
 		
 		textBox = new SlideText(texts, font, fontColor, 
-					fontSize, xStart, yStart, xEnd, yEnd, startTime, duration);
+					fontSize, xStart, yStart, xEnd, yEnd, startTime, duration,1);
 		
 		// A text body to test that the text box input modifies it correctly
 		testBody = (SlideTextBody) textBox.getChildren().get(0);

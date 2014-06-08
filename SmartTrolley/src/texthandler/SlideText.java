@@ -29,6 +29,7 @@ public class SlideText extends FlowPane{
 	private int width, height;
 	private int xStart;
 	private int yStart;
+	private int layer;
 
 	/**
 	 * DESCRIPTION OF CONSTRUCTOR
@@ -36,9 +37,11 @@ public class SlideText extends FlowPane{
 	 */
 	public SlideText(ArrayList<SlideTextBody> texts, String font,
 			String fontColor, int fontSize, int xStart, int yStart, int xEnd,
-			int yEnd, double startTime, double duration) {
+			int yEnd, double startTime, double duration, int layer) {
 		//Setup as horizontal FlowPlane with vgap/hgap 0
 		super();
+		
+		this.layer = layer;
 
 		getChildren().addAll(texts);
 
@@ -77,8 +80,8 @@ public class SlideText extends FlowPane{
 	 */
 	private void setupBounds(int xStart, int yStart, int xEnd, int yEnd) {
 
-		width = xStart - xEnd;
-		height = yStart - yEnd;
+		width = xEnd - xStart;
+		height = yEnd - yStart;
 
 		resizeRelocate(xStart, yStart, width, height);
 
@@ -93,11 +96,7 @@ public class SlideText extends FlowPane{
 	*/
 	private void setupWrappingWidth(SlideTextBody body) {
 		
-		double xpos = body.getBoundsInParent().getMinX();
-		if(body.getBoundsInLocal().getWidth() > width - xpos){
-			body.setWrappingWidth(width - xpos);
-			
-		}
+		body.setWrappingWidth(width);
 	}
 
 	/**
@@ -113,6 +112,10 @@ public class SlideText extends FlowPane{
 		SmartTrolleyToolBox.print("Rescaled y-coord for text is: " + y_coord);
 		
 		relocate(x_coord, y_coord);
+	}
+
+	public int getLayer() {
+		return layer;
 	}
 
 }
