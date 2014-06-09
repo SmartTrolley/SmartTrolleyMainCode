@@ -1,6 +1,7 @@
 package videohandler;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.awt.AWTException;
 
@@ -8,6 +9,13 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+/**
+ * Programmer: Roger Tan & Zayyad Tagwai
+ * 
+ * Date Created: 01/03/2014
+ * 
+ * Description: Test case for the main videoplayer
+ */
 public class VideoPlayerMainTest {
 	
 	VideoPlayerHandler videoPlayerHandler;

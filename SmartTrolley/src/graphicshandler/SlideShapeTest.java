@@ -1,20 +1,8 @@
-/**
- * SmartTrolley
- *
- * A DESCRIPTION OF THE FILE
- *
- * @author Alasdair Munday
- * @author Matt Wells
- *
- * @author Checked By: Checker(s) fill here
- *
- * @version version of this file [Date Created: 1 May 2014]
- */
-
-
 package graphicshandler;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.PriorityQueue;
 
@@ -33,14 +21,16 @@ import org.junit.Test;
  * @author Matthew Wells
  * @author Alasdair Munday
  *
- * @author [Checked By:] [Checker(s) fill here]
+ * @author [Checked By:] [Prashant Chakravarty]
  *
  * @version [v1.0] [Date Created: 20/04/14]
  */
-
 public class SlideShapeTest {
 
+	/**Points used to draw shapes for the test*/
 	public PriorityQueue<ShapePoint> points;
+	
+	/**Various shape parameters for the test*/
 	int width = 50, height = 50, pointLow = 0, pentagonX = 25, pentagonY = 25;
 	int point1Num = 1, point2Num = 2, point3Num = 3, point4Num = 4, point5Num = 5;
 	public ShapePoint point1, point2, point3, point4, point5, testingPoint;
@@ -50,6 +40,10 @@ public class SlideShapeTest {
 	int duration = 5;
 	int startTime = 5;
 
+	/**
+	*Setup Class For SlideShapeFactory Test sets up the points and a square and a circle
+	*<p> Date Modified: 25 Apr 2014
+	*/
 	@Before
 	public void setup(){
 		pointsSetup();
@@ -59,7 +53,7 @@ public class SlideShapeTest {
 	}
 
 	/**
-	 *setup points for drawing polygons in SlideShapeFactoryTest
+	 *Setup points for drawing polygons in SlideShapeFactoryTest
 	 *<p> Date Modified: 25 Apr 2014
 	 */
 	private void pointsSetup() {
@@ -91,7 +85,7 @@ public class SlideShapeTest {
 	 *Tests that the points in the list passed to the factory
 	 *correspond to the points the factory will use.
 	 *
-	 *The factory should internaly convert ShapePoints to 2 element arrays of 
+	 *The factory should internally convert ShapePoints to 2 element arrays of 
 	 *Doubles.
 	 *
 	 *<p> Date Modified: 25 Apr 2014
@@ -101,8 +95,10 @@ public class SlideShapeTest {
 		// double array to hold the x and y values contained in the shape points
 		double[] testingPointDouble, squarePointDouble;
 
+		//iterator for the loop
 		int i = 1;
 
+		//Loop through all points in the priority queue
 		while(!points.isEmpty())	{
 
 			// populate testingPoint with the coordinates of the current point.
@@ -121,8 +117,7 @@ public class SlideShapeTest {
 	
 	/**
 	*Tests the point passed in is the centre point of the circle 	
-	*<p> Date Modified: 25 April 2014
-	
+	*<p> Date Modified: 25 April 2014	
 	*/
 	@Test
 	public void circlePointTest()	{
@@ -182,6 +177,7 @@ public class SlideShapeTest {
 		assertEquals(Color.BLUE, squareColor);
 	}
 	
+	
 	/**
 	 *Test that setfill in SlideShape factory receives the 
 	 *PWS input and changes the color of the circle accordingly.
@@ -200,6 +196,7 @@ public class SlideShapeTest {
 		assertEquals(Color.BLUE, circleColor);
 	}
 	
+	
 	/**
 	 *Test that setLineColor in SlideShape factory receives the 
 	 *PWS input and changes the color of the shape outline accordingly.
@@ -217,6 +214,7 @@ public class SlideShapeTest {
 		assertEquals(Color.RED, squareLineColor);
 	}
 
+	
 	/**
 	 *Test that setLineColor in SlideShape factory receives the 
 	 *PWS input and changes the color of its shape's outline accordingly.
@@ -234,6 +232,7 @@ public class SlideShapeTest {
 		assertEquals(Color.RED, circleLineColor);
 	}
 
+	
 	/**
 	 *Test that setWidth and setHeight correctly change the width and height of
 	 *the space the polygon occupies in its parent.
@@ -254,6 +253,7 @@ public class SlideShapeTest {
 		assertEquals(newWidth, square.getBoundsInParent().getWidth(), 0.001);
 		assertEquals(newHeight, square.getBoundsInParent().getHeight(), 0.001);
 	}
+	
 	
 	/**
 	 *Test that setWidth and setHeight correctly change the width and height of
@@ -295,7 +295,6 @@ public class SlideShapeTest {
 		try {
 			Thread.sleep(startTime*1001);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -314,7 +313,7 @@ public class SlideShapeTest {
 	}
 		
 	/**
-	*Tests the circle appears at after the appropriate delay for the correct amount of time
+	*Tests the circle appears after the appropriate delay for the correct amount of time
 	*<p> Date Modified: 25 April 2014
 	*/
 	@Test
@@ -330,8 +329,7 @@ public class SlideShapeTest {
 		// sleep for a little longer than start time
 		try {
 			Thread.sleep(startTime*1001);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+		} catch (InterruptedException e) {			
 			e.printStackTrace();
 		}
 		
@@ -351,7 +349,7 @@ public class SlideShapeTest {
 	
 	
 	/**
-	*Tests the polygon is visible by default even if duration is set to 0
+	*Tests the polygon is visible by default if duration is set to 0
 	*<p> Date Modified: 25 April 2014
 	*/
 	@Test
@@ -369,7 +367,7 @@ public class SlideShapeTest {
 	}
 	
 	/**
-	*Tests the circle is visible by default even if duration is set to 0
+	*Tests the circle is visible by default if duration is set to 0
 	*<p> Date Modified: 25 April 2014
 	*/
 	@Test

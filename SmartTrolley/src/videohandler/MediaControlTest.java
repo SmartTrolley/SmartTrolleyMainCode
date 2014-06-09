@@ -1,26 +1,29 @@
-/*
- * Programmer: Roger Tan & Zayyad Tagwai
- * 
- * Date Created: 01/03/2014
- * 
- * Description: Test class for the MediaControl class.
- */
-
 package videohandler;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.awt.AWTException;
 import java.util.concurrent.TimeUnit;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.MediaView;
 import javafx.util.Duration;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+/**
+ * Programmer: Roger Tan & Zayyad Tagwai
+ * 
+ * Date Created: 01/03/2014
+ * 
+ * Description: Test class for the MediaControl class.
+ */
 public class MediaControlTest {
 
 

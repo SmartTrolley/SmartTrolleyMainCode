@@ -1,12 +1,3 @@
-/*
- * Programmer: Roger Tan & Zayyad Tagwai
- * 
- * Date Created: 01/03/2014
- * 
- * Description: Class that creates a control bar that is overlaid on the video. Functionality
- * 				is play/pause, stop, scrubbing bar, volume slider, and fullscreen mode with same.
- */
-
 package videohandler;
 
 
@@ -16,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
@@ -24,6 +16,16 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Screen;
+import toolBox.SmartTrolleyToolBox;
+
+/**
+ * Programmer: Roger Tan & Zayyad Tagwai
+ * 
+ * Date Created: 01/03/2014
+ * 
+ * Description: Class that creates a control bar that is overlaid on the video. Functionality
+ * 				is play/pause, stop, scrubbing bar, volume slider, and fullscreen mode with same.
+ */
 
 public class MediaControl {
 	
@@ -42,7 +44,7 @@ public class MediaControl {
 	private boolean started;
 	private Timer timer;
 	
-	/* 
+	/** 
 	 * Constructor for the MediaControl class. Accepts optional parameters from PWS.
 	 * Creates a visual control bar with a play/pause button, a stop button, and a 
 	 * fullscreen button, which is overlayed onto the MediaPlayer. Also handles 
@@ -146,7 +148,6 @@ public class MediaControl {
 			} else {
 				
 				try{
-				
 				// after duration has finished
 				mp.stop();
 				
@@ -156,15 +157,10 @@ public class MediaControl {
 					
 				}
 				}catch(NullPointerException e){
-					System.out.println("Media Player has been destroyed");
+					SmartTrolleyToolBox.print("Media Player has been destroyed");
 				}
 			}
 		}
 
-	}
-    
-    
-
-
-
+	}    
 }

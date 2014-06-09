@@ -18,17 +18,105 @@
 /**************End of SlideText.java**************/
 package texthandler;
 
-import graphicshandler.SlideElementDuration;
-
+//<<<<<<< HEAD
+//import graphicshandler.SlideElementDuration;
+//
+//import java.util.ArrayList;
+//
+//import javafx.scene.layout.FlowPane;
+//import javafx.scene.paint.Color;
+//
+//public class SlideText extends FlowPane{
+//
+//	private int width, height;
+//	private SlideElementDuration duration;
+//
+//	/**
+//	 * DESCRIPTION OF CONSTRUCTOR
+//	 *<p> Date Modified: 25 May 2014
+//	 */
+//	public SlideText(ArrayList<SlideTextBody> texts, String font,
+//			String fontColor, int fontSize, int xStart, int yStart, int xEnd,
+//			int yEnd, double startTime, double duration) {
+//		
+//		//Setup as horizontal FlowPlane with vgap/hgap 0
+//		super();
+//		
+//		getChildren().addAll(texts);
+//		
+//		setupBounds(xStart, yStart, xEnd, yEnd);
+//		
+//		for ( SlideTextBody body : texts){
+//
+//			body.setFontFamily(font);
+//			body.setFontSize(fontSize);
+//			body.setFill(Color.web(fontColor));
+//			setupWrappingWidth(body);
+//			
+//		}
+//		
+//		this.duration = new SlideElementDuration(this);
+//		setDuration(duration);
+//		setStartTime(startTime);
+//	}
+//
+//	/**
+//	 *Method/Test Description
+//	 *<p>Test(s)/User Story that it satisfies
+//	 *@param xStart
+//	 *@param yStart
+//	 *@param xEnd
+//	 *@param yEnd
+//	 *[If applicable]@see [Reference URL OR Class#Method]
+//	 *<p> Date Modified: 25 May 2014
+//	 */
+//	private void setupBounds(int xStart, int yStart, int xEnd, int yEnd) {
+//
+//		width = xStart - xEnd;
+//		height = yStart - yEnd;
+//
+//		resizeRelocate(xStart, yStart, width, height);
+//
+//	}
+//	
+//	/**
+//	*Method/Test Description
+//	*<p>Test(s)/User Story that it satisfies
+//	*@param body
+//	*[If applicable]@see [Reference URL OR Class#Method]
+//	*<p> Date Modified: 22 May 2014
+//	*/
+//	private void setupWrappingWidth(SlideTextBody body) {
+//		
+//		double xpos = body.getBoundsInParent().getMinX();
+//		if(body.getBoundsInLocal().getWidth() > width - xpos){
+//			body.setWrappingWidth(width - xpos);	
+//		}
+//	}
+//	
+//	protected void setDuration(double seconds){
+//		duration.setDuration(seconds);
+//	}
+//	
+//	protected void setStartTime(double seconds){
+//		duration.setStartTime(seconds);
+//	}
+//	
+//	protected void show(){
+//		duration.show();
+//=======
 import java.util.ArrayList;
 
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
+import toolBox.SmartTrolleyToolBox;
 
 public class SlideText extends FlowPane{
 
 	private int width, height;
-	private SlideElementDuration duration;
+	private int xStart;
+	private int yStart;
+	private int layer;
 
 	/**
 	 * DESCRIPTION OF CONSTRUCTOR
@@ -36,27 +124,35 @@ public class SlideText extends FlowPane{
 	 */
 	public SlideText(ArrayList<SlideTextBody> texts, String font,
 			String fontColor, int fontSize, int xStart, int yStart, int xEnd,
-			int yEnd, double startTime, double duration) {
-		
+			int yEnd, double startTime, double duration, int layer) {
 		//Setup as horizontal FlowPlane with vgap/hgap 0
 		super();
 		
+		this.layer = layer;
+
 		getChildren().addAll(texts);
-		
+
 		setupBounds(xStart, yStart, xEnd, yEnd);
-		
+
 		for ( SlideTextBody body : texts){
 
 			body.setFontFamily(font);
 			body.setFontSize(fontSize);
 			body.setFill(Color.web(fontColor));
-			setupWrappingWidth(body);
-			
+			setupWrappingWidth(body);			
 		}
 		
-		this.duration = new SlideElementDuration(this);
-		setDuration(duration);
-		setStartTime(startTime);
+		this.xStart = xStart;
+		this.yStart = yStart;
+
+	}
+	
+	public int getXStart(){
+		return xStart;
+	}
+	
+	public int getYStart(){
+		return yStart;
 	}
 
 	/**
@@ -71,8 +167,8 @@ public class SlideText extends FlowPane{
 	 */
 	private void setupBounds(int xStart, int yStart, int xEnd, int yEnd) {
 
-		width = xStart - xEnd;
-		height = yStart - yEnd;
+		width = xEnd - xStart;
+		height = yEnd - yStart;
 
 		resizeRelocate(xStart, yStart, width, height);
 
@@ -87,22 +183,26 @@ public class SlideText extends FlowPane{
 	*/
 	private void setupWrappingWidth(SlideTextBody body) {
 		
-		double xpos = body.getBoundsInParent().getMinX();
-		if(body.getBoundsInLocal().getWidth() > width - xpos){
-			body.setWrappingWidth(width - xpos);	
-		}
+		body.setWrappingWidth(width);
 	}
-	
-	protected void setDuration(double seconds){
-		duration.setDuration(seconds);
+
+	/**
+	* Method to relocate the text to new coordinates
+	*<p>Test(s)/User Story that it satisfies
+	*@param x_coord
+	*@param y_coord
+	*<p> Date Modified: 5 Jun 2014
+	*/
+	public void relocateText(double x_coord, double y_coord) {
+		
+		SmartTrolleyToolBox.print("Rescaled x-coord for text is: " + x_coord);
+		SmartTrolleyToolBox.print("Rescaled y-coord for text is: " + y_coord);
+		
+		relocate(x_coord, y_coord);
 	}
-	
-	protected void setStartTime(double seconds){
-		duration.setStartTime(seconds);
-	}
-	
-	protected void show(){
-		duration.show();
+
+	public int getLayer() {
+		return layer;
 	}
 
 }

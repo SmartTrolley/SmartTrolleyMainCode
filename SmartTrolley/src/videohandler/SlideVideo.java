@@ -1,19 +1,4 @@
-/**
-* SmartTrolley
-*
-* A DESCRIPTION OF THE FILE
-*
-* @author Name1
-* @author Name2
-*
-* @author Checked By: Checker(s) fill here
-*
-* @version version of this file [Date Created: 27 May 2014]
-*/
 
-/*YOUR CODE HERE*/
-
-/**************End of SlideVideo.java**************/
 package videohandler;
 
 import graphicshandler.SlideElementDuration;
@@ -34,42 +19,72 @@ public class SlideVideo extends Pane {
 
 	VideoPlayerHandler handler;
 	SlideElementDuration duration;
-	
-	public SlideVideo(String pathLocation, int xStart, int yStart, int width, int height, 
-			boolean loop, double startTime, double duration) {
+	private int layer;
+
+	/**
+	* The constructor for the slide video takes in all the parameters required to locate, position and setup the video on the slide 
+	*@param pathLocation - The URL or path to the video file
+	*@param xStart - The starting x-coordinate for the video on the slide
+	*@param yStart - The starting y-coordinate for the video on the slide
+	*@param width - The width of the video pane
+	*@param height - The height of the video pane
+	*@param loop
+	*@param startTime
+	*@param duration
+	*<p> Date Modified: 27 May 2014
+	*/
+	public SlideVideo(String pathLocation, int xStart, int yStart, int width, int height, boolean loop, double startTime, double duration, int layer) {
 		
 		handler = new VideoPlayerHandler(pathLocation, xStart, yStart, width, height, loop, startTime, duration);
-		this.relocate(xStart, yStart);
+
+		this.layer = layer;
 		
-		this.getChildren().add(handler.mediaControl.overallBox);
-		
+		if (handler.mediaControl != null) {
+			this.getChildren().add(handler.mediaControl.overallBox);
+		}
+
+		setLayoutY(yStart);
+		setLayoutX(xStart);
+
 		setupDuration(startTime, duration, loop);
-		
 	}
 
 	/**
-	*Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
-	*@param startTime
-	*@param duration
-	*[If applicable]@see [Reference URL OR Class#Method]
+	* Sets up the duration for the video within the the slide
+	*@param startTime - How long is to elapse (in seconds) from the time the slide starts until the video is displayed
+	*@param duration - The duration of the video in seconds
+	*@param loop - Whether the video loops or not
 	*<p> Date Modified: 27 May 2014
 	*/
 	private void setupDuration(double startTime, double duration, boolean loop) {
+
 		this.duration = new SlideElementDuration(this);
 		this.duration.setStartTime(startTime);
-		
+
 		// if its set to loop stop it from disappearing after duration
-		if(loop){
+		if (loop) {
 			this.duration.setDuration(0);
-		}else{
+		} else {
 			this.duration.setDuration(duration);
 		}
 	}
-	
-	public void show(){
-		handler.mediaControl.show();
-		duration.show();
+
+	/**
+	* Shows the slide video
+	*<p> Date Modified: 27 May 2014
+	*/
+	public void show() {
+		try {
+			handler.mediaControl.show();
+			duration.show();
+		} catch (NullPointerException e) {
+			return;
+		}
+	}
+
+	public int getLayer() {
+		return layer;
 	}
 
 }
+/**************End of SlideVideo.java**************/

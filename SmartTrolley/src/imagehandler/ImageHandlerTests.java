@@ -1,3 +1,15 @@
+package imagehandler;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import javafx.scene.image.Image;
+
+import org.junit.Before;
+import org.junit.Test;
+
+
+
 /**
 * SmartTrolley
 *
@@ -11,24 +23,10 @@
 *
 * @version v1.0 [Date Created: May 3, 2014]
 */
-
-package imagehandler;
-
-import static org.junit.Assert.*;
-import javafx.scene.image.Image;
-
-import org.junit.Before;
-import org.junit.Test;
-
-
-
-/**
- * @author Alasdair
- *
- */
 public class ImageHandlerTests {
 	
-	public String url = "http://th03.deviantart.net/fs70/PRE/i/2013/077/8/9/cookie_monster_by_xenia_cat-d5yhjwj.jpg";
+	//public String url = "http://th03.deviantart.net/fs70/PRE/i/2013/077/8/9/cookie_monster_by_xenia_cat-d5yhjwj.jpg";
+	public String url="smarttrolleygui/img/SampleProducts/ariel.jpg";
 	public int x, y, width = 10, height = 10, duration = 1, startTime = 1;
 	SlideImage imageHandler;
 
@@ -38,7 +36,7 @@ public class ImageHandlerTests {
 	*/
 	@Before
 	public void setup(){
-		imageHandler = new SlideImage(url, x, y, width, height, startTime, duration);
+		imageHandler = new SlideImage(url, x, y, width, height, startTime, duration,1,1);
 	}
 	
 	/**
@@ -66,7 +64,7 @@ public class ImageHandlerTests {
 	}
 	
 	/**
-	*Check that the X and Y positions in the slide are those fed to the constructor
+	*Check that the X and Y positions in the slideshow are those fed to the constructor
 	*<p> Date Modified: 5 May 2014
 	*/
 	@Test
@@ -113,6 +111,7 @@ public class ImageHandlerTests {
 		
 		// shape should have disappeared
 		assertFalse(imageHandler.isVisible());		
+		
 	}
 	
 	

@@ -1,22 +1,6 @@
-/**
-* SmartTrolley
-*
-* A DESCRIPTION OF THE FILE
-*
-* @author Name1
-* @author Name2
-*
-* @author Checked By: Checker(s) fill here
-*
-* @version version of this file [Date Created: 25 Apr 2014]
-*/
-
-/*YOUR CODE HERE*/
-
-/**************End of ShapePointTest.java**************/
 package graphicshandler;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.PriorityQueue;
 
@@ -25,7 +9,6 @@ import org.junit.Test;
 
 /** 
  * SmartTrolley
- * Workspace_Name
  * 
  * Tests for the ShapePoint Class, 
  * Used as an intermediary between PWS points and the Graphics Handler
@@ -33,37 +16,33 @@ import org.junit.Test;
  * @author Matthew Wells
  * @author Alasdair Munday
  *
- * @author [Checked By:] [Checker(s) fill here]
+ * @author [Checked By:] [Prashant Chakravarty]
  *
  * @version [v1.0] [Date Created: 10/03/14]
  */
 
 public class ShapePointTest {
 
-	ShapePoint point, point2, point3;
-	int x = 1, y=2, pointNumber = 3;
-	PriorityQueue<ShapePoint> points;
+	private ShapePoint point, point2, point3;
+	private int x = 1, y=2, pointNumber = 3;
+	private PriorityQueue<ShapePoint> points;
 	
 	/**
 	*Setup the point before each test
-	*<p>required for all ShapePointTests
-	*
 	*<p> Date Modified: 20 Apr 2014
 	*/
 	@Before
 	public void setup(){
 		
 		//setup a new point with test values
-		point = new ShapePoint(x,y,pointNumber);
-		
+		point = new ShapePoint(x,y,pointNumber);		
 	}
 	
 	
 	/**
 	
 	*Test to ensure the returned coordinates correspond to those expected	
-	*<p> Date Modified: 20 April 2014
-	
+	*<p> Date Modified: 20 April 2014	
 	*/
 	@Test
 	public void getCoordinatesTest() {
@@ -78,7 +57,6 @@ public class ShapePointTest {
 	
 	/**
 	*Test that the shape points implement comparable correctly (largest point first)
-	*
 	*<p> Date Modified: 20 Apr 2014
 	*/
 	@Test
@@ -120,3 +98,4 @@ public class ShapePointTest {
 	
 
 }
+/**************End of ShapePointTest.java**************/

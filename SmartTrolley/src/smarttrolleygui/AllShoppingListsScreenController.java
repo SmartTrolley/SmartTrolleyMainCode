@@ -19,9 +19,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import DatabaseConnectors.SqlConnection;
-import Printing.SmartTrolleyPrint;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -29,8 +26,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import toolBox.SmartTrolleyToolBox;
+import DatabaseConnectors.SqlConnection;
 
-public class AllShoppingListsScreenController implements Initializable {
+public class AllShoppingListsScreenController extends ControllerGeneral implements Initializable {
 
 	private SmartTrolleyGUI application;
 
@@ -42,8 +41,6 @@ public class AllShoppingListsScreenController implements Initializable {
 	public static Button list1Button;
 
 	public static ArrayList<Button> buttonList;
-	
-	private ControllerGeneral controller = new ControllerGeneral(); 
 
 	/**
 	 * initialize is automatically called when the controller is created.
@@ -56,18 +53,18 @@ public class AllShoppingListsScreenController implements Initializable {
 		productsDatabase.openConnection();
 
 		try {
-			CreateList();
+			createButtonListFromLists();
 
 			
 		} catch (SQLException e) {
-			SmartTrolleyPrint.print("cannot create button list");
+			SmartTrolleyToolBox.print("cannot create button list");
 		}		finally{
             productsDatabase.closeConnection();
         }
 		 //Add the buttons to the grid pane
             int listNo = 1;
             for (Button button : buttonList) {
-                grdPaneLists.setConstraints(button, 0, listNo);
+                GridPane.setConstraints(button, 0, listNo);
                 listNo++;
             }
             
@@ -88,10 +85,9 @@ public class AllShoppingListsScreenController implements Initializable {
 	*@throws SQLException
 	*<p> Date Modified: 9 May 2014
 	*/
-	public void CreateList() throws SQLException {
-		String query = "SELECT ListID ,Name from lists";
-		SmartTrolleyPrint.print("returned lists from DB");
-		ResultSet resultSet = productsDatabase.sendQuery(query);
+	public void createButtonListFromLists() throws SQLException {
+		SmartTrolleyToolBox.print("returned lists from DB");
+		ResultSet resultSet = productsDatabase.getAllLists();
 		
 
 		buttonList = new ArrayList<Button>();
@@ -101,7 +97,7 @@ public class AllShoppingListsScreenController implements Initializable {
 			final String listName = resultSet.getString("Name");
 			final int listID = resultSet.getInt("ListID");
 
-			SmartTrolleyPrint.print("List Name: " + listName);
+			SmartTrolleyToolBox.print("List Name: " + listName);
 
 			Button newButton = new Button();
 			newButton.setId(String.valueOf(listID));
@@ -109,15 +105,26 @@ public class AllShoppingListsScreenController implements Initializable {
 			newButton.setPrefSize(300, 80);
 			newButton.setMinHeight(50);
 			newButton.getStyleClass().add("buttonLarge");
+			
 			// Load shoppingLists if clicked
 			newButton.setOnAction(new EventHandler<ActionEvent>() {
 
 				@Override
 				public void handle(ActionEvent event) {
-					SmartTrolleyPrint.print("ListID pressed is: " + listID);				
+					
+					/*if (listID != SmartTrolleyGUI.getcurrentListID()){
+						SmartTrolleyGUI.getNewList = true;
+						SmartTrolleyToolBox.print("Not same list.");
+					} else {
+						SmartTrolleyGUI.getNewList = false;
+						SmartTrolleyToolBox.print("Same list.");
+					}*/
+					
+					SmartTrolleyToolBox.print("ListID pressed is: " + listID);				
 					SmartTrolleyGUI.setCurrentListID(listID);
 					SmartTrolleyGUI.setCurrentListName(listName);
-					SmartTrolleyPrint.print("Application ListID: " + SmartTrolleyGUI.getcurrentListID());
+					SmartTrolleyToolBox.print("Application ListID: " + SmartTrolleyGUI.getcurrentListID());
+					
 					loadShoppingList(event);
 				}
 			});
@@ -126,7 +133,7 @@ public class AllShoppingListsScreenController implements Initializable {
 		}
 		
 		resultSet.close();
-		SmartTrolleyPrint.print("Total Number of Lists: " + buttonList.size());
+		SmartTrolleyToolBox.print("Total Number of Lists: " + buttonList.size());
 
 		// Add the Go Back button
 		Button newButton = new Button();
@@ -145,7 +152,7 @@ public class AllShoppingListsScreenController implements Initializable {
 
 		buttonList.add(newButton);
 		
-		SmartTrolleyPrint.print("Arraylist size is: " + buttonList.size());
+		SmartTrolleyToolBox.print("Arraylist size is: " + buttonList.size());
 
 	}
 
@@ -169,7 +176,7 @@ public class AllShoppingListsScreenController implements Initializable {
 	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
-    	controller.loadStartScreen(event, application);
+		loadScreen(Screen.STARTSCREEN, application);
 	}
 
 	/**
@@ -183,7 +190,7 @@ public class AllShoppingListsScreenController implements Initializable {
 	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadShoppingList(ActionEvent event) {
-    	controller.loadShoppingList(event, application);
+		loadScreen(Screen.SHOPPINGLISTSCREEN, application);
     }
 }
 /************** End of AllShoppingListsScreenController **************/

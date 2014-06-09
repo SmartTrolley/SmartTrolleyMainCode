@@ -16,6 +16,7 @@
 /**************End of SlideTextBody.java**************/
 package texthandler;
 
+import graphicshandler.Branchable;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -33,13 +34,14 @@ import javafx.scene.text.Text;
  * @version [v1.0] [Date Created: 23/05/2014]
  */
 
-public class SlideTextBody extends Text implements Comparable<SlideTextBody> {
+public class SlideTextBody extends Text implements Comparable<SlideTextBody>, Branchable {
 
 	protected String fontFamily;
 	protected double fontSize;
 	private FontPosture italic;
 	private FontWeight bold;
 	private int number;
+	private int branch;
 
 	/**
 	 * @param one
@@ -48,7 +50,9 @@ public class SlideTextBody extends Text implements Comparable<SlideTextBody> {
 	 * @param underlined
 	 * @param textNumber 
 	 */
-	public SlideTextBody(String text, boolean bold, boolean italic, boolean underlined, int number) {
+	public SlideTextBody(String text, boolean bold, boolean italic, boolean underlined, int number, int branch) {
+		
+		setBranch(branch);
 		setText(text);
 		setBold(bold);
 		setItalic(italic);
@@ -56,6 +60,19 @@ public class SlideTextBody extends Text implements Comparable<SlideTextBody> {
 		
 		this.number = number;
 	
+	}
+
+
+	/**
+	 * DESCRIPTION OF CONSTRUCTOR
+	 *<p> Date Modified: 4 Jun 2014
+	 */
+	public SlideTextBody(String textString, Boolean bold, Boolean italic, Boolean underlined, int branch) {
+		setText(textString);
+		setBold(bold);
+		setItalic(italic);
+		setUnderline(underlined);
+		setBranch(branch);
 	}
 
 
@@ -177,6 +194,16 @@ public class SlideTextBody extends Text implements Comparable<SlideTextBody> {
 		this.fontSize = fontSize;	
 		setupFont();
 	}
-	
+
+	@Override
+	public int getBranch() {
+		return branch;
+	}
+
+
+	@Override
+	public void setBranch(int branch) {
+		this.branch = branch;
+	}
 	
 }

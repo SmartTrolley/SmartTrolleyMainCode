@@ -47,6 +47,7 @@ public class TextHandlerVisualTest extends Application {
 	private double duration = 300;
 	private int yStart = 100;
 	private int yEnd = 200;
+	private int layer = 2;
 	
 	public static void main (String[] args){
 		launch(args);
@@ -71,7 +72,7 @@ public class TextHandlerVisualTest extends Application {
 		texts.add(text3);
 		texts.add(text4);
 		
-		SlideText textBox = new SlideText(texts,font, fontColor, fontSize,xStart, yStart, xEnd, yEnd, startTime,duration);
+		SlideText textBox = new SlideText(texts,font, fontColor, fontSize,xStart, yStart, xEnd, yEnd, startTime,duration, layer);
 		
 		Scene scene = new Scene(textBox);
 		

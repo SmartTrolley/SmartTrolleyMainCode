@@ -12,16 +12,23 @@
 
 package imagehandler;
 
+import graphicshandler.Branchable;
 import graphicshandler.SlideElementDuration;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import toolBox.SmartTrolleyToolBox;
 
 /**
  * @author Alasdair
  *
  */
-public class SlideImage extends ImageView{
+public class SlideImage extends ImageView implements Branchable{
 
 	private SlideElementDuration duration;
+	private int x;
+	private int y;
+	private int branch;
+	private int layer;
 
 	/**
 	 * The Full PWS Constructor for images. completely fulfills PWS Specification for images
@@ -35,10 +42,21 @@ public class SlideImage extends ImageView{
 	 * @param duration The number of seconds the image appears for
 	 */
 	public SlideImage(String url, int x, int y, int width, int height,
-			int startTime, int duration) {
-		super(url);
+			int startTime, int duration, int branch, int layer) {
+		super();
+		try{
+		this.setImage(new Image(url));
+		}catch(IllegalArgumentException e){
+			SmartTrolleyToolBox.print("Could not find image at url: "+url);
+			this.setImage(new Image("http://www.martyranodes.com/sites/default/files/images/kits/no_0.jpg"));
+		}
+		
+		this.layer = layer;
+		this.branch = branch;
 		
 		this.duration = new SlideElementDuration(this);
+		this.x = x;
+		this.y = y;
 		
 		setDuration(duration);
 		setStartTime(startTime);
@@ -73,6 +91,13 @@ public class SlideImage extends ImageView{
 		duration.setDuration(seconds);
 		
 	}
+	
+	/**
+	 * @return the x-coordinate of the image
+	 */
+	public int getx(){
+		return x;
+	}
 
 	/**
 	*When Show is called, the image appears after the start time and is visible for the duration.
@@ -82,6 +107,29 @@ public class SlideImage extends ImageView{
 	public void show() {
 		
 		duration.show();
+	}
+
+	/**
+	 * @return the y-coordinate of the image
+	 */
+	public int gety() {
+		return y;
+	}
+
+	@Override
+	public int getBranch() {
+		// TODO Auto-generated method stub
+		return branch;
+	}
+
+	@Override
+	public void setBranch(int branch) {
+		this.branch = branch;
+		
+	}
+
+	public int getLayer() {
+		return layer;
 	}
 
 }

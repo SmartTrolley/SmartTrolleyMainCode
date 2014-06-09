@@ -19,27 +19,23 @@ import javafx.stage.Stage;
 * @author Matthew Wells
 * @author Alasdair Munday
 *
-* @author [Checked By:] [Checker(s) fill here]
+* @author [Checked By:] [Prashant Chakravarty - 06/06/14]
 *
 * @version [v1.0] [Date Created: 28/04/2014]
 */
-
 public class GraphicsHandlerVisualTest extends Application {
 
-	public PriorityQueue<ShapePoint> points;
-	int width = 50, height = 50, pointLow = 0, pentagonX = 25, pentagonY = 25;
-	int point1Num = 1, point2Num = 2, point3Num = 3, point4Num = 4, point5Num = 5;
-	public SlideShapeFactory shapeFactory;
-	public ShapePoint point1, point2, point3, point4, point5, testingPoint;
-	public SlidePolygon square, pentagon;
-	public SlideEllipse circle;
+	private PriorityQueue<ShapePoint> points;
+	private int width = 50, height = 50, pointLow = 0, pentagonX = 25, pentagonY = 25;
+	private int point1Num = 1, point2Num = 2, point3Num = 3, point4Num = 4, point5Num = 5;
+	private SlideShapeFactory shapeFactory;
+	private ShapePoint point1, point2, point3, point4, point5;
+	private SlidePolygon square, pentagon;
+	private SlideEllipse circle;
 	private String blue = "#0000FF";
 	private int startTime = 5;
 	private int duration = 7;
 	
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -62,18 +58,14 @@ public class GraphicsHandlerVisualTest extends Application {
 		
 		mainStage.setScene(scene);
 		
-		mainStage.show();
-		
+		mainStage.show();		
 	}
-
-
-
+	
 	
 	/**
 	*Setup method for circle inputs points, width, height, fill colour, line colour,
 	*start time and duration to SlideShapeFactory to generate an Ellipse	
-	*<p> Date Modified: 28 April 2014
-	
+	*<p> Date Modified: 28 April 2014	
 	*/
 	private void setupCircle() {
 		
@@ -81,7 +73,7 @@ public class GraphicsHandlerVisualTest extends Application {
 		
 		points.add(point3);
 		
-		shapeFactory = new SlideShapeFactory(points, 50, 50,blue,blue,startTime, duration);
+		shapeFactory = new SlideShapeFactory(points, 50, 50,blue,blue,startTime, duration,1,1);
 		
 		circle = (SlideEllipse) shapeFactory.getShape();
 		
@@ -89,8 +81,7 @@ public class GraphicsHandlerVisualTest extends Application {
 
 	/**
 	*Creates panes to hold each shape and adds each shape to its respective pane	
-	*<p> Date Modified: 28 April 2014
-	
+	*<p> Date Modified: 28 April 2014	
 	*/
 	private Scene setupScene() {
 		
@@ -101,12 +92,11 @@ public class GraphicsHandlerVisualTest extends Application {
 		VBox vBox = new VBox();
 		
 		//put the shapes into their panes.
-		squarePane.getChildren().add(square);
-		
-		pentagonPane.getChildren().add(pentagon);
-		
+		squarePane.getChildren().add(square);		
+		pentagonPane.getChildren().add(pentagon);		
 		circlePane.getChildren().add(circle);
 		
+		//Adds the shapes to a VBox
 		vBox.getChildren().addAll(squarePane, pentagonPane, circlePane);
 		
 		Scene scene = new Scene(vBox);
@@ -117,8 +107,7 @@ public class GraphicsHandlerVisualTest extends Application {
 	
 	/**
 	 * Calls the show() method for each shape
-	*<p> Date Modified: 28 April 2014
-	
+	*<p> Date Modified: 28 April 2014	
 	*/
 	private void showShapes(){
 		square.show();
@@ -130,8 +119,7 @@ public class GraphicsHandlerVisualTest extends Application {
 	*Setup method for pentagon inputs points, width, height, fill colour, line colour,
 	*start time, duration, to SlideShapeFactory to generate a pentagon
 	*The stroke width and colour are also set	
-	*<p> Date Modified: 28 April 2014
-	
+	*<p> Date Modified: 28 April 2014	
 	*/
 	private void setupPentagon() {
 		
@@ -142,7 +130,7 @@ public class GraphicsHandlerVisualTest extends Application {
 		points.add(point4);
 		points.add(point5);
 		
-		shapeFactory = new SlideShapeFactory(points, height,width,blue,blue,startTime, duration);
+		shapeFactory = new SlideShapeFactory(points, height,width,blue,blue,startTime, duration,1,1);
 		pentagon = (SlidePolygon) shapeFactory.getShape();
 		
 		pentagon.setStroke(Color.AQUA);
@@ -164,7 +152,7 @@ public class GraphicsHandlerVisualTest extends Application {
 		points.add(point4);
 		
 		//Instantiate a shapeFactory with the current values
-		shapeFactory = new SlideShapeFactory(points, width, height,blue,blue,startTime, duration);
+		shapeFactory = new SlideShapeFactory(points, width, height,blue,blue,startTime, duration,1,1);
 		
 		shapeFactory.setHeight(100);
 		//get the shape that is created by the values previously given to the factory
@@ -172,11 +160,10 @@ public class GraphicsHandlerVisualTest extends Application {
 	}
 
 	/**
-	 * Generates a square using slideShapeFactory
+	 * Sets up 5 ShapePoint objects for use in the visual test
 	*<p> Date Modified: 28 April 2014
 	*/
 	private void setupPoints() {
-		//create a square using slideShapeFactory
 		point1 = new ShapePoint(pointLow,pointLow,point1Num);
 		point2 = new ShapePoint(width,pointLow,point2Num);
 		point3 = new ShapePoint(width,height,point3Num);

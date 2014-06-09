@@ -4,15 +4,15 @@ import java.util.concurrent.TimeUnit;
 
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.MediaException;
+import toolBox.SmartTrolleyToolBox;
 
+/**
+* Audio Handler
+* 
+* @author Theo Hussey - TrueT (commented by Alasdair Munday - Smart Trolley)
+* 
+*/
 public class AudioHandler {
-
-	/**
-	 * Audio Handler
-	 * 
-	 * @author Theo Hussey - TrueT (commented by Alasdair Munday - Smart Trolley)
-	 * 
-	 */
 
 	private AudioClip audio;
 	private Integer duration;
@@ -32,7 +32,7 @@ public class AudioHandler {
 	 *            - Volume of audio 0.0 - 1.0
 	 */
 	public AudioHandler(String path, int startDelay, double volume) {
-//		Call the constructor with the specified values and a duration of 0, meaning default duration
+		// Call the constructor with the specified values and a duration of 0, meaning default duration
 		this(path, startDelay, 0, volume);
 	}
 
@@ -51,10 +51,13 @@ public class AudioHandler {
 	 * 
 	 */
 	public AudioHandler(String path, int startDelay, int duration, double volume) {
-//		load the specified audio file (private method in this class)
-		loadAudio(path);
-		
+		// load the specified audio file (private method in this class)
+		loadAudio("file:" + path);
+		if (audio == null) {
+			return;
+		}
 		audio.setVolume(volume);
+		SmartTrolleyToolBox.print("audio not found");
 
 		this.startDelay = startDelay;
 		this.duration = duration;
@@ -64,9 +67,9 @@ public class AudioHandler {
 		try {
 			audio = new AudioClip(path);
 		} catch (IllegalArgumentException i) {
-			System.out.println("Audio File not found at " + path);
+			SmartTrolleyToolBox.print("Audio File not found at " + path);
 		} catch (MediaException m) {
-			System.out.println("Audio File " + path + " was of an unexpected format");
+			SmartTrolleyToolBox.print("Audio File " + path + " was of an unexpected format");
 		}
 	}
 
@@ -74,9 +77,11 @@ public class AudioHandler {
 	 * Audio will begin to play after specified delay has elapsed.
 	 */
 	public void begin() {
-		audio.stop();
-		startTimerThread.start();
-		stopped = false;
+		if (audio != null) {
+			audio.stop();
+			startTimerThread.start();
+			stopped = false;
+		}
 	}
 
 	private Thread startTimerThread = new Thread("startTimer") {
@@ -187,8 +192,8 @@ public class AudioHandler {
 	public double getVolume() {
 		return audio.getVolume();
 	}
-	
-	public boolean isPlaying(){
+
+	public boolean isPlaying() {
 		return audio.isPlaying();
 	}
 
