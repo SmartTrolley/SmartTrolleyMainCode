@@ -50,7 +50,7 @@ public class SlideDataImporter {
 			slide = new Slide(0, 0, null, null, null, null, null, 0);
 		}
 
-		if (data != null) {
+		if (data.getDefaults() != null) {
 			slide.setStyle("background-color:" + data.getDefaults().getBackgroundcolor());
 		}
 

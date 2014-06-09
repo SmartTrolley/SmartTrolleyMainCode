@@ -2,11 +2,10 @@ package graphicshandler;
 
 import java.util.PriorityQueue;
 
-import smarttrolleygui.slideshow.Layerable;
-
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Shape;
+import smarttrolleygui.slideshow.Layerable;
 
 /** 
 * SmartTrolley

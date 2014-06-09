@@ -70,6 +70,11 @@ public class TestDataDownloader {
 			dataUploader.deleteContentAndResetAutoIncrement("text");
 			dataUploader.deleteContentAndResetAutoIncrement("textbody");
 			dataUploader.deleteContentAndResetAutoIncrement("video");
+
+			dataUploader.deleteContentAndResetAutoIncrement("lists");
+			dataUploader.deleteContentAndResetAutoIncrement("lists_products");
+			dataUploader.deleteContentAndResetAutoIncrement("products");
+			
 			
 //			dataUploader.deleteLastList();
 //			dataUploader.deleteLastList();

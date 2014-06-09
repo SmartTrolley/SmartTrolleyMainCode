@@ -1,6 +1,5 @@
 package DatabaseConnectors;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -203,6 +204,60 @@ public class SqlConnection {
 	}
 
 	/**
+	*Method/Test Description
+	*<p>Test(s)/User Story that it satisfies
+	*@param productsInList
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 9 Jun 2014
+	*/
+	public float calculateSavings(Map<Integer, Integer> productsInList, List<Integer> productIDsInList) {
+
+		float savings = 0;
+		openConnection();
+
+		ObservableList<ListProduct> offers = FXCollections.observableArrayList();
+
+		String query = "SELECT * FROM offers WHERE ProductID= " + productIDsInList.get(0);
+
+		for (int i = 1; i < productIDsInList.size(); i++) {
+			query = query.concat(" OR ProductID= " + productIDsInList.get(i));
+		}
+
+		query = query.concat(";");
+
+		try {
+			ResultSet results = sendQuery(query);
+			
+			ListProduct product = new ListProduct();
+
+			while (results.next()) {
+
+				product = ListProduct.productToListProduct(getSpecificProduct("productID", String.valueOf(results.getInt("ProductId")), "1"));
+
+				
+				if (!(product == null)) {
+
+					product.setOfferPrice(results.getFloat("OfferPrice"));
+
+					savings = savings+((product.getOfferPrice() - product.getPrice())*productsInList.get(product.getID()));
+
+				} else {
+					return 0;
+				}
+			}
+
+			closeConnection();
+			return savings;
+
+		} catch (SQLException e) {
+			closeConnection();
+			SmartTrolleyToolBox.print("Offers could not be found");
+			return 0;
+		}
+
+	}
+
+	/**
 	* When called, this method will return the list of the products on offer
 	*@return ObservableList<Product>
 	*<p> Date Modified: 6 Jun 2014
@@ -236,7 +291,7 @@ public class SqlConnection {
 					offer.setOfferPrice(results.getFloat("OfferPrice"));
 					product.setOfferPrice(results.getFloat("OfferPrice"));
 
-					float savings = product.getPrice() - product.getOfferPrice();
+					float savings = product.getOfferPrice() - product.getPrice();
 
 					product.setSavings(savings);
 

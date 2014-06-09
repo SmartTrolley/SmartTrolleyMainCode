@@ -41,10 +41,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
-import slideshowdata.DataDownloader;
-import slideshowdata.SlideDataImporter;
-import smarttrolleygui.slideshow.Slide;
-import smarttrolleygui.slideshow.SlideShow;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 

@@ -1,9 +1,9 @@
 package graphicshandler;
 
-import smarttrolleygui.slideshow.Layerable;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
+import smarttrolleygui.slideshow.Layerable;
 
 /** 
  * SmartTrolley

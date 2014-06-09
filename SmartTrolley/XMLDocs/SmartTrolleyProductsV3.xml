@@ -1,0 +1,2078 @@
+<?xml version="1.0"?><!--sample xml file created using XML DOM object.--><slideshow>
+	<documentinfo><author>Smart Trolley</author><version>2.1</version><title>Products added to Database</title><comment>example comment for chapter 1</comment><width>720</width><height>540</height></documentinfo>
+	<defaults><backgroundcolor>#8B7B57</backgroundcolor><font>Papyrus</font><fontsize>18</fontsize><fontcolor>#FFFFFF</fontcolor><linecolor>#FFFFFF</linecolor><fillcolor>#FFFFFF</fillcolor></defaults>
+	
+	<slide id="0" product_name="Activia 0% Fat Free Peach Yoghurt" price="1.84" imgURL="img/SampleProducts/Activia.jpg" categoryID="7" isFavorite="0" duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="267" xend="632" yend="310" layer="34" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>Contains Milk &amp; Phenylalanine
+May contain Wheat, Almond, Hazelnut &amp; Walnut</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="267" xend="400" yend="293" layer="32" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="289" ystart="236" xend="411" yend="262" layer="30" duration="0" starttime="0" font="Arial Narrow" fontcolor="#00B050" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Suitable for Vegetarians</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="236" layer="28" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Activia peach fat free yogurt is made with real peaches mixed with \n sugar and sweeteners. Activia yogurts contain Bifidus ActiRegularis,\n which is an exclusive probiotic culture. When eaten regularly, this \n probiotic can help to improve your digestive health.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="26" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£14.72 per kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="24" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £1.84 </textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="22" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 125g</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="20" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="18" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="105" ystart="298" xend="167" yend="321" layer="16" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>Nutrition</textstring>
+	</textbody>
+	</text>
+	<text xstart="422" ystart="55" xend="484" yend="88" layer="14" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>125g</textstring>
+	</textbody>
+	</text>
+	<text xstart="303" ystart="26" xend="626" yend="55" layer="12" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Activia 0% Fat Free Peach Yogurt</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="8" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<video urlname="video/TEST_VIDEO.mp4" xstart="314" ystart="367" width="356" height="160" layer="7" duration="0" starttime="0" playtime="1" loop="false"/>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/Activia.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<image urlname="Activia 0% Fat Free Peach" xstart="20" ystart="15" width="680" height="60" layer="4" starttime="0" duration="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>57.0\n
+248.0\n
+5.9\n
+9.2\n
+8.9\n
+0.1\n
+Trace\n
+1.0\n
+Trace\n
+0.2</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="1" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>74.0\n
+313.0\n
+5.9\n
+11.5\n
+11.2\n
+0.2\n
+Trace\n
+0.2\n
+Trace\n
+0.2</textstring>
+	</textbody>
+	</text>
+	</slide>
+	
+	<slide id="1" product_name="Alpen Cereal Bars Blueberry &amp; Cranberry with Yogurt" price="1.84" imgURL="img/SampleProducts/alpen_blueberry_cranberry.jpg" categoryID="13" isFavorite="0" duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="290" xend="632" yend="333" layer="33" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="290" xend="400" yend="316" layer="31" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="289" ystart="259" xend="411" yend="285" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#00B050" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Suitable for Vegetarians</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="259" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Halfway through the day and need a tasty pick-me-up? Every Alpen \n bar is cram packed with an abundance of delicious ingredients. \n Delicious blueberries, creamy rolled oats and crunchy wholegrain \n wheat flakes dipped and drizzled with a delicious yogurt flavour \n coating! Hits the spot everytime!</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="25" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£30.00 per kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £1.84 </textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="21" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 29g</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="105" ystart="298" xend="167" yend="321" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>Nutrition</textstring>
+	</textbody>
+	</text>
+	<text xstart="422" ystart="55" xend="484" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>29g</textstring>
+	</textbody>
+	</text>
+	<text xstart="303" ystart="26" xend="700" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Alpen Cereal Bars Blueberry &amp; Cranberry with Yogurt</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/alpen_blueberry_cranberry.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>422.0\n
+1779.0\n
+4.8\n
+74.7\n
+34.9\n
+11.0\n
+6.3\n
+2.5\n
+Trace\n
+0.1</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>122.0\n
+516.0\n
+1.4\n
+21.7\n
+10.1\n
+3.2\n
+1.8\n
+0.7\n
+Trace\n
+Trace</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="0" duration="0" starttime="0" branch="0"/>
+  <audio urlname="Audio/tail_toddle.mp3" loop="0" starttime="0"/>
+    </slide>
+	
+	<slide id="2" product_name="Anchor Butter" price="1.84" imgURL="img/SampleProducts/anchor_butter.jpg" categoryID="4" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="105" ystart="298" xend="167" yend="321" layer="33" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>Nutrition</textstring>
+	</textbody>
+	</text>
+	<text xstart="405" ystart="324" xend="632" yend="367" layer="31" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="289" ystart="293" xend="411" yend="319" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#00B050" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Suitable for Vegetarians</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Since our first block was patted into shape over a century ago, we've \n been churning butter for generations of \n butter lovers. Anchor loved since 1886. For our anchor butter, we take the \n best milk, churn it to perfection and add a little salt to bring out \n its creaminess. By the way, our lovely cows are still free to roam around \n (they like that).</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£30.00 per kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £1.84 </textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 500g</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>500g</textstring>
+	</textbody>
+	</text>
+	<text xstart="405" ystart="26" xend="570" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Anchor Butter</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/anchor_butter.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>734.0\n
+3019.0\n
+0.6\n
+0.9\n
+0.6\n
+80.9\n
+54.0\n
+Nil\n
+0.6\n
+1.7</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>6370\n
+15095\n
+3.0\n
+4.5\n
+3.0\n
+404.5\n
+270.0\n
+Nil\n
+3.0\n
+8.5</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="3" product_name="Ariel 3in1 Pods Colour &amp; Style – 12 Washes" price="4.75" imgURL="img/SampleProducts/alpen_blueberry_cranberry.jpg" categoryID="13" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="291" ystart="146" xend="704" yend="287" layer="12" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>All You Need! Ariel 3in1 PODS are the first 3-chamber detergent that \n clean, lift off stains and brighten!</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="10" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£30.00 per kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="8" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £4.75 </textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="6" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>500g</textstring>
+	</textbody>
+	</text>
+	<text xstart="275" ystart="26" xend="712" yend="55" layer="4" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Ariel 3in1 Pods Colour &amp; Style – 12 Washes</textstring>
+	</textbody>
+	</text>
+	<image urlname="img/SampleProducts/ariel.jpg" xstart="20" ystart="26" width="250" height="203" layer="3" duration="0" starttime="0" branch="1"/>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="4" product_name="Arla Lactofree Whole Milk" price="0.99" imgURL="img/SampleProducts/Arla_Lactofree_Whole_Milk.jpg" categoryID="4" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="31" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="289" ystart="293" xend="411" yend="319" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#00B050" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Suitable for Vegetarians</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Each 200ml serving provides: 34% of your RDA of calcium,110% of \n  your RDA of vitamin B12. MADE WITH COWS' MILK. GOOD FOR \n HEALTHY TEETH + BONES. Trouble digesting milk? If drinking cows‘ \n milk causes you symptoms such as nausea, stomach cramps, \n bloating, gas and diarrhoea, this may be caused by the lactose in \n milk and could mean that you are lactose intolerant.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£30.00 per kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £0.99 </textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 500g</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>1L</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Arla Lactofree Whole Milk</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/Arla_Lactofree_Whole_Milk.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>734.0\n
+3019.0\n
+0.6\n
+0.9\n
+0.6\n
+80.9\n
+54.0\n
+Nil\n
+0.6\n
+1.7</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>6370\n
+15095\n
+3.0\n
+4.5\n
+3.0\n
+404.5\n
+270.0\n
+Nil\n
+3.0\n
+8.5</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="5" product_name="Ben &amp; Jerry’s Cookie Dough Ice Cream" price="3.00" imgURL="img/SampleProducts/ben_and_jerrys.jpg" categoryID="7" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Buy it, it’s nice!</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£6.00 per L)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £3.00 </textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 500ml</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>500mL</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Ben &amp; Jerry’s Cookie Dough Ice Cream</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/ben_and_jerrys.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>230.0\n
+960.0\n
+3.5\n
+26.0\n
+21.0\n
+13.0\n
+8.0\n
+0.5l\n
+Trace\n
+0.2</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>1150\n
+4800\n
+17.5\n
+130.0\n
+105.0\n
+65.0\n
+40.0\n
+2.5\n
+Trace\n
+1.0</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="6" product_name="Bird’s Eye Cod Fish Fingers" price="0.98" imgURL="img/SampleProducts/birds_eye_fish_fingers.jpg" categoryID="8" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Birds Eye Cod Fish Fingers, made with 100% fish fillet. Coated in a \n  light and crunchy breadcrumb.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£11.70 per Kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £0.98 </textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 84g</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>84g</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Bird’s Eye Cod Fish Fingers</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/birds_eye_fish_fingers.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>218.0\n
+917.0\n
+12.7\n
+21.2\n
+0.3\n
+9.0\n
+1.0\n
+0.9l\n
+0.2\n
+0.7</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>185.0\n
+780\n
+11.0\n
+18.0\n
+0.3\n
+7.6\n
+0.8\n
+0.8\n
+0.2\n
+0.6</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="7" product_name="British Single Cream" price="1.05" imgURL="img/SampleProducts/British_Single_Cream.jpg" categoryID="4" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>mmm… creamy</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£7.00 per L)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £1.05 </textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 150ml</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>150ml</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>British Single Cream</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/British_Single_Cream.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>188.0\n
+777.0\n
+2.6\n
+3.9\n
+3.9\n
+18.0\n
+11.2\n
+Nil\n
+Trace\n
+0.1</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>570.0\n
+2340.0\n
+8.0\n
+12.0\n
+1.2\n
+5.4\n
+3.4\n
+Nil\n
+Trace\n
+0.1</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="8" product_name="Chicago Town Deep Dish Chicken Melt Pizza" price="2.00" imgURL="img/SampleProducts/chicago_town_pizza.jpg" categoryID="2" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Full of taste from brim to base. An ultimate pizza hit. No artificial \n colours, flavours or hydrogenated fat. Topped to overflowing with \n tomato sauce, chicken breast, mozzarella, red cheddar and mature \n cheddar cheeses - our devastatingly tasty Deep Dish pizzas are truly \n epic!</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£11.83 per Kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £2.00 </textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per pizza</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>169g</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Chicago Town Deep Dish Chicken Melt Pizza</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/chicago_town_pizza.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>265.0\n
+1110.0\n
+11.8\n
+32.3\n
+1.4\n
+9.7\n
+3.5\n
+N/a\n
+N/a\n
+0.9</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>448.0\n
+1877.0\n
+19.9\n
+54.5\n
+2.4\n
+16.5\n
+5.5\n
+N/a\n
+N/a\n
+1.5</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="9" product_name="Coca Cola" price="0.98" imgURL="img/SampleProducts/coca_cola.jpg" categoryID="15" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>None</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="23" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="21" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Description: No added preservatives. No artificial flavours. \n Carbonated Soft Drink with Vegetable The real thing since \n 1886.Extracts.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="19" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£0.80 per L)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="17" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £0.98 </textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100ml</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>1.25L</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="9" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Coca Cola</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="6" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="5" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/coca_cola.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>42.0\n
+180.0\n
+Nil\n
+10.6\n
+10.6\n
+Nil\n
+Nil\n
+Nil\n
+Nil\n
+N/a</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="10" product_name="Muller Fruit Corner Blueberry Yoghurt" price="0.68" imgURL="img/SampleProducts/Corner_Blueberry_Yoghurt.jpg" categoryID="2" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="23" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="21" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Blueberry compote with original yogurt</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="19" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£4.50 per Kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="17" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £0.68 </textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>150g</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="9" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Muller Fruit Corner Blueberry Yoghurt</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="6" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="5" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/Corner_Blueberry_Yoghurt.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>105.0\n
+442.0\n
+3.8\n
+13.2\n
+13.2\n
+3.8\n
+2.4\n
+0.9\n
+0.1\n
+N/A</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="11" product_name="Cravendale Pure Whole Milk" price="2.20" imgURL="img/SampleProducts/cravendale_2L_milk.jpg" categoryID="4" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Stays fresh for 7 days - purer and fresher for longer!</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£2.20 per L)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £2.20 </textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per pizza</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 200ml</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>1L</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Cravendale Pure Whole Milk</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/cravendale_2L_milk.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>65.0\n
+271.0\n
+6.8\n
+4.7\n
+4.7\n
+3.6\n
+2.3\n
+Nil\n
+Trace\n
+0.1</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>448.0\n
+1877.0\n
+19.9\n
+54.5\n
+2.4\n
+16.5\n
+5.5\n
+N/a\n
+N/a\n
+1.5</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="12" product_name="Kelloggs Crunchy Nut Cornflakes" price="2.84" imgURL="img/SampleProducts/crunchy_nut.jpg" categoryID="2" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>A truly sweet and delicious breakfast cereal that's popular with all \n the family!</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£5.68 per Kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £2.84 </textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 30g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>500g</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Kellog’s Crunchy Nut Cornflakes</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/crunchy_nut.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>180\n
+61.0\n
+6.0\n
+31.0\n
+17.0\n
+3.5\n
+1.5\n
+0.8\n
+0.1\n
+0.4</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>402.0\n
+1701.0\n
+6.0\n
+82.0\n
+35.0\n
+5.0\n
+0.9\n
+2.5\n
+0.3\n
+0.9</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="13" product_name="Frijj Sticky Toffee Pudding Milkshake" price="0.49" imgURL="img/SampleProducts/Frijj_Sticky_Toffee_Pudding_Milkshake.jpg" categoryID="4" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Made with…Fresh Milk Combined with indulgent flavours - a source \n of calcium and vitamin B12.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£1.06 per L)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £0.49</textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per Bottle</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per ml</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>471 mL</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Frijj Sticky Toffee Pudding Milkshake</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/Frijj_Sticky_Toffee_Pudding_Milkshake.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>86.0\n
+362.0\n
+3.8\n
+12.8\n
+12.5\n
+2.1\n
+1.3\n
+N/A\n
+N/A\n
+0.2</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>402.0\n
+1701.0\n
+6.0\n
+82.0\n
+35.0\n
+5.0\n
+0.9\n
+2.5\n
+0.3\n
+0.9</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="14" product_name="Haagen-Dazs Belgian Chocolate Ice Cream" price="4.45" imgURL="img/SampleProducts/chaagen_dasz.jpg" categoryID="7" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="23" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="21" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Haagen-Dazs uses the deepest, darkest and most delicious Belgian \n chocolate to make their ice cream by just to ensure it's a \n chocaholics ultimate delight, they have combined it with real \n chocolate fudge so it forms the smoothest ice cream possible!</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="19" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£8.84 per L)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="17" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £4.45</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100ml</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>500 mL</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="9" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Haagen-Dazs Belgian Chocolate Ice Cream</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="6" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="5" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/chaagen_dasz.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>286.0\n
+1191.0\n
+4.0\n
+25.5\n
+N/A\n
+18.6\n
+N/A\n
+N/A\n
+N/A\n
+N/A</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="15" product_name="Heinz Baked Beanz in Tomato Sauce" price="0.68" imgURL="img/SampleProducts/heinz_beans.jpg" categoryID="14" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>No artificial colours, flavours or preservatives.1 of your 5 a day in 1/2 \n a can when eaten as part of a balanced diet.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£1.64 per Kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £0.68</textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 1/2 can</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>415g</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Heinz Baked Beanz in Tomato Sauce</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/heinz_beans.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>79.0\n
+337.0\n
+4.7\n
+12.9\n
+5.0\n
+0.2\n
+Trace\n
+3.7\n
+0.3\n
+0.7</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>164.0\n
+696.0\n
+9.8\n
+26.7\n
+10.3\n
+0.4\n
+Trace\n
+7.7\n
+0.6\n
+1.5</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="16" product_name="Holme Farmed Venison Quick Fry Steaks" price="5.00" imgURL="img/SampleProducts/holme_farmed_venison_steak.jpg" categoryID="5" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="23" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="21" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Tasty, lean versatile and delicious for any occasion. Venison is \n  delicious tender and naturally low in fat.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="19" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£25.00 per Kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="17" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £5.00</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>200g</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="9" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Holme Farmed Venison Quick Fry Steaks</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="6" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="5" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/holme_farmed_venison_steak.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>106.0\n
+448.0\n
+32.6\n
+Trace\n
+Trace\n
+1.7\n
+0.9\n
+Trace\n
+Trace\n
+Trace</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="17" product_name="Hovis Thick Sliced Soft White Loaf" price="1.56" imgURL="img/SampleProducts/hovis_bread.jpg" categoryID="3" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>No artificial preservatives, suitable for vegetarians and vegans.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£2.20 per L)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £1.56</textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per Slice</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>800g</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Hovis Thick Sliced Soft White Loaf</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/hovis_bread.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>233.0\n
+986.0\n
+4.4\n
+44.7\n
+3.6\n
+1.7\n
+0.3\n
+2.4\n
+0.3\n
+0.9</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>116.0\n
+493.0\n
+4.4\n
+22.3\n
+1.7\n
+0.8\n
+0.2\n
+11.2\n
+0.1\n
+0.4</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="18" product_name="Ilchester Applewood Cheddar Slices" price="1.80" imgURL="img/SampleProducts/Ilchester_Applewood_Cheddar_Slices.jpg" categoryID="4" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="23" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="21" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Suitable for vegetarians. Packed in a protective atmosphere. Smoked \n Cheddar cheese dusted with paprika.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="19" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£11.11 per Kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="17" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £1.80</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>162g</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="9" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Ilchester Applewood Cheddar Slices</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="6" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="5" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/Ilchester_Applewood_Cheddar_Slices.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>410.0\n
+1700.0\n
+25.0\n
+0.1\n
+N/A\n
+34.4\n
+N/A\n
+N/A\n
+N/A\n
+N/A</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="19" product_name="Innocent Vietnamese Noodles Pot" price="1.84" imgURL="img/SampleProducts/innocent_noodle_pot.jpg" categoryID="12" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="23" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="21" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Chilli rating - mild (1). Free from genetically modified products. Udon \n noodles and edamame beans in a gently spiced coconut sauce.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="19" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£10.26 per Kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="17" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £3.90</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>380 g</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="9" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Innocent Vietnamese Noodles Pot</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="6" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="5" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/innocent_noodle_pot.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>83.0\n
+348.0\n
+2.5\n
+10.1\n
+1.4\n
+3.1\n
+1.3\n
+2.5\n
+Trace\n
+N/A</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="20" product_name="Kelloggs Corn Flakes" price="1.84" imgURL="img/SampleProducts/kelloggs_cornflakes.jpg" categoryID="13" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>The classic breakfast cereal. Suitable for vegetarians.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£3.68 per Kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £1.84</textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 30g</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>500g</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Kellog's Corn Flakes</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/kelloggs_cornflakes.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>372.0\n
+1580.0\n
+7.0\n
+84.0\n
+8.0\n
+0.9\n
+0.2\n
+3.0\n
+0.7\n
+1.8</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>171.0\n
+726.0\n
+7.0\n
+31.0\n
+8.0\n
+2.5\n
+1.5\n
+0.9\n
+0.2\n
+0.7</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="21" product_name="Bio Green Lassi Yogurt Smoothie with Mango" price="1.60" imgURL="img/SampleProducts/Lassi_Yogurt.jpg" categoryID="15" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="23" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="21" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Low fat, with real fruit, with probiotics. Non GM. Enjoy this premium \n traditional-style Lassi with its upbeat take on life!</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="19" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£3.20 per L)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="17" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £1.60</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>500mL</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="9" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Bio Green Lassi Yogurt Smoothie with Mango</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="6" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="5" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/Lassi_Yogurt.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>77.0\n
+327.0\n
+2.7\n
+13.6\n
+N/A\n
+1.4\n
+N/A\n
+N/A\n
+N/A\n
+N/A</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="22" product_name="Lavazza Qualita Rossa Caffe Espresso" price="2.50" imgURL="img/SampleProducts/lavazza_espresso.jpg" categoryID="15" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>A traditional, authentic Italian espresso. A strong and robust evenly \n roasted and carefully ground to produce a coffee of exceptional \n flavour, body and aroma.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="11" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£12.00 per Kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="9" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £2.50</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>250g</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="5" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Lavazza Qualita Rossa Caffe Espresso</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="4" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/lavazza_espresso.jpg" xstart="20" ystart="26" width="250" height="203" layer="3" duration="0" starttime="0" branch="1"/>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="23" product_name="McCain Home Chips Crinkle Cut" price="0.95" imgURL="img/SampleProducts/McCain_Chips.jpg" categoryID="8" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Our home chips crinkle cut are a taste sensation - crispy on the \n outside and fluffy in the middle. These are a simple combination of \n top quality potatoes and our special crispy coating finished with a \n delicious crinkle cut.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£0.63 per Kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £0.95</textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 30g</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>1.5Kg</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>McCain Home Chips Crinkle Cut</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/McCain_Chips.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>142.0\n
+598.0\n
+1.9\n
+22.2\n
+0.5\n
+5.1\n
+0.6\n
+1.3\n
+0.1\n
+0.5</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>176.0\n
+742.0\n
+2.6\n
+30.1\n
+0.5\n
+5.0\n
+0.6\n
+2.3\n
+0.2\n
+0.6</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="24" product_name="Nivea Shower Cream" price="0.50" imgURL="img/SampleProducts/alpen_blueberry_cranberry.jpg" categoryID="17" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Nivea Happy Time shower is a revitalising shower cream with caring \n bamboo milk. Let the delicious fruity scent of Orange Blossom \n stimulate your senses while the sulky shower cream leave your skin \n feeling beautifully soft and smooth.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="11" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£2.00 per L)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="9" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £0.50</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>250 mL</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="5" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Nivea Shower Cream</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="4" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/nivea_shower_cream.jpg" xstart="20" ystart="26" width="250" height="203" layer="3" duration="0" starttime="0" branch="1"/>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="25" product_name="Nutty Hazelnut Low Fat Yoghurt" price="1.84" imgURL="img/SampleProducts/Nutty_Hazlenut.jpg" categoryID="4" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Suitable for Vegetarians, no artificial colours or flavours. Low fat \n hazelnut yogurts made with British milk.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£5.00 per Kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £1.00</textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per pot</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>200g</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Nutty Hazelnut Low Fat Yoghurt</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/Nutty_Hazlenut.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>114.0\n
+479.0\n
+4.8\n
+18.3\n
+17.4\n
+2.6\n
+0.8\n
+0.0\n
+Trace\n
+0.2</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>142.0\n
+601.0\n
+6.0\n
+22.9\n
+21.8\n
+2.9\n
+0.9\n
+0.3\n
+Trace\n
+0.2</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="26" product_name="Oreo Cookies - Vanilla" price="1.00" imgURL="img/SampleProducts/oreo_cookies.jpg" categoryID="9" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>No.1 Biscuit brand in the world. Delicious, smooth vanilla sandwiched \n between two crunchy chocolately biscuits.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£7.14 per Kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £1.00</textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 11g</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>154g</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Oreo Cookies - Vanilla</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/oreo_cookies.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>471.0\n
+1194.0\n
+5.7\n
+65.0\n
+40.5\n
+21.0\n
+11.2\n
+3.6\n
+0.4\n
+1.2</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>52.0\n
+216.0\n
+0.6\n
+7.2\n
+4.5\n
+2.3\n
+1.2\n
+0.4\n
+Trace\n
+0.1</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="27" product_name="PG Tips Pyramid Tea Bags" price="4.18" imgURL="img/SampleProducts/PG_Tips_Tea_Bags.jpg" categoryID="15" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="23" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="21" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>We created the ingeniously designed pyramid bag because the \n unique shape gives the team more room to move, freeing the \n delicious taste of the tea leaves, and giving you the perfect cuppa \n  every time. So now you know!</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="19" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£0.03 per Bag)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="17" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £4.18</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100ml</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>160</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="9" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>PG Tips Pyramid Tea Bags</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="6" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="5" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/PG_Tips_Tea_Bags.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>0.1.0\n
+2.0\n
+0.1\n
+Trace\n
+Nil\n
+Nil\n
+Nil\n
+Nil\n
+Nil\n
+Nil</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="28" product_name="Pringles Salt and Vinegar" price="1.25" imgURL="img/SampleProducts/pringles_salt_vinegar.jpg" categoryID="9" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Packed in a protective atmosphere. Bursting with flavour. Suitable for \n vegetarians</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£6.58 per Kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £1.25</textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 30g</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>190g</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Pringles Salt and Vinegar</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/pringles_salt_vinegar.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>512.0\n
+2143.0\n
+3.9\n
+52.0\n
+3.8\n
+32.0\n
+5.0\n
+2.4\n
+0.9\n
+N/A</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>154.0\n
+643.0\n
+1.2\n
+16.0\n
+1.1\n
+10.0\n
+1.4\n
+0.7\n
+0.2\n
+N/A</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="29" product_name="Pure Dairy Free Soya Spread" price="1.55" imgURL="img/SampleProducts/Pure_dairy_Free_Soya_Spread.jpg" categoryID="10" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Suitable for vegetarians. No artificial colours. A deliciously light tasting \n spread made with the goodness of soya for everyday enjoyment.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£3.10 per Kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £1.55</textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 10g</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>500g</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Pure Dairy Free Soya Spread</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/Pure_dairy_Free_Soya_Spread.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>533.0\n
+2191.0\n
+Nil\n
+Nil\n
+Nil\n
+59.0\n
+14.0\n
+Nil\n
+0.3\n
+0.7</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>154.0\n
+643.0\n
+Nil\n
+Nil\n
+Nil\n
+5.9\n
+1.4\n
+Nil\n
+Trace\n
+Trace</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="30" product_name="Candyland Sherbert Dib Dab" price="0.36" imgURL="img/SampleProducts/sherert_dib_dab.jpg" categoryID="9" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Suitable for Vegetarians. The little red lolly that lives in this pack, is \n perfect for sherbety dipping! When tasted together and dabbed on \n your tongue, your taste buds will feel like they're skipping.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£15.70 per Kg)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £0.36</textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 23g</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>23g</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Candyland Sherbert Dib Dab</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/sherert_dib_dab.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>383.0\n
+1627.0\n
+0.1\n
+95.6\n
+N/A\n
+0.1\n
+N/A\n
+N/A\n
+N/A\n
+N/A</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>88.0\n
+374.0\n
+Trace\n
+22.0\n
+N/A\n
+Trace\n
+N/A\n
+N/A\n
+N/A\n
+N/A</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	</slide>
+	
+	<slide id="31" product_name="Alpro Soya Milk" price="1.32" imgURL="img/SampleProducts/Soya_Milk.jpg" categoryID="13" isFavorite="0"  duration="5" descriptor="" lastSlide="true" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	</textbody>
+	</text>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	</textbody>
+	</text>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Soya alternative to milk developed especially for little ones. Made \n with ethically sourced non GM soya beans.</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£1.35 per L)</textstring>
+	</textbody>
+	</text>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £1.32</textstring>
+	</textbody>
+	</text>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 200ml</textstring>
+	</textbody>
+	</text>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100ml</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	</textbody>
+	</text>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>1L</textstring>
+	</textbody>
+	</text>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Alpro Soya Milk</textstring>
+	</textbody>
+	</text>
+	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
+Energy kJ\n
+Protein g\n
+Carbohydrate\n
+(of which sugars) g\n
+Fat g\n
+(of which saturates) g\n
+Fibre g\n
+Sodium\n
+Salt Equivalent g</textstring>
+	</textbody>
+	</text>
+	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
+	<image urlname="img/SampleProducts/Soya_Milk.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>62.0\n
+261.0\n
+2.6\n
+7.7\n
+2.9\n
+2.4\n
+0.4\n
+0.4\n
+N/A\n
+Trace</textstring>
+	</textbody>
+	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>124.0\n
+522.0\n
+5.2\n
+15.4\n
+5.8\n
+4.6\n
+0.8\n
+0.8\n
+N/A\n
+Trace</textstring>
+	</textbody>
+	</text>
+	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+
+  <shape starttime="0" layer="3" height="113" width="306" totalpoints="4" linecolour="#FFFFFF" fillcolour="#000000">
+      <point y="40" x="206" num="0"/>
+      <point y="121" x="107" num="1"/>
+      <point y="153" x="413" num="2"/>
+      <point y="40" x="206" num="3"/>
+  </shape>
+	</slide>
+	
+</slideshow>

@@ -85,7 +85,12 @@
                     <Tooltip text="Current total of your shopping list" />
                   </tooltip>
                 </Label>
-                <Label id="currentSavingsTotal" fx:id="lblTotalItems" text="£ current savings">
+                <Label id="currentSavingsTotal" fx:id="lblTotalSavings" text="Saved:£">
+                  <tooltip>
+                    <Tooltip text="How much you've saved" />
+                  </tooltip>
+                </Label>
+                <Label id="totalItems" fx:id="lblTotalItems" text="Items:">
                   <tooltip>
                     <Tooltip text="Total items in basket" />
                   </tooltip>
@@ -109,7 +114,7 @@
     </HBox>
     <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="600.0" spacing="9.0" styleClass="containerListName" VBox.vgrow="NEVER">
       <children>
-        <Button minHeight="25.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="112.0" styleClass="button1" text="Delete List">
+        <Button fx:id="deleteListButton" minHeight="25.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="112.0" styleClass="button1" text="Delete List" onAction="#deleteList">
           <graphic>
             <ImageView fitHeight="26.547571724358885" fitWidth="18.2779598236084" pickOnBounds="true" preserveRatio="true">
               <image>

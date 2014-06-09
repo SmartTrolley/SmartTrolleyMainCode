@@ -22,7 +22,7 @@ public class Product implements DataType{
 	private String name;
 	private float price;
 	private float offerPrice;
-	private float savings;
+	private float savings=0;
 	private boolean isFavorite = false;
 
 	public int getID() {

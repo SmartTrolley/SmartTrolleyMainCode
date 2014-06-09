@@ -16,6 +16,10 @@ package smarttrolleygui;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -40,7 +44,6 @@ import se.mbaeumer.fxmessagebox.MessageBoxResult;
 import se.mbaeumer.fxmessagebox.MessageBoxType;
 import slideshowdata.DataDownloader;
 import slideshowdata.SlideData;
-import smarttrolleygui.slideshow.SlideShow;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
 
@@ -72,6 +75,8 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 	public Label lblTotalItems;
 	@FXML
 	public Label lblTotal;
+	@FXML
+	public Label lblTotalSavings;
 
 	public MessageBox deleteMsgBx = new MessageBox("Would you really like to delete the list ?", MessageBoxType.YES_NO);
 
@@ -569,13 +574,22 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 		SqlConnection conn = new SqlConnection();
 
 		ResultSet resultSet = conn.getAllListItems(SmartTrolleyGUI.getcurrentListID());
+		
+		//Hash map of product ID & quantity
+		Map<Integer, Integer> productsInList = new HashMap<Integer, Integer>();
+		List<Integer> productIDsInList = new ArrayList<Integer>();
 
 		while (resultSet.next()) {
+			
+			
 			total += resultSet.getDouble("Price") * resultSet.getInt("Quantity");
 			totalItems += resultSet.getInt("Quantity");
 
+			productIDsInList.add(resultSet.getInt("ProductID"));
+			productsInList.put(resultSet.getInt("ProductID"),resultSet.getInt("Quantity"));
 		}
 
+		lblTotalSavings.setText("Saved: £" + String.format("%.2g%n", conn.calculateSavings(productsInList, (ArrayList<Integer>) productIDsInList)));
 		ObservableList<Double> data = FXCollections.observableArrayList(total, totalItems, 0.00);
 		return data;
 

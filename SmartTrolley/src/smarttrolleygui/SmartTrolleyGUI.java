@@ -59,9 +59,8 @@ public class SmartTrolleyGUI extends Application {
 
 	private static int currentSlideID;
 
-	
 	/**Boolean to decide whether to download new list or not*/
-	//protected static boolean getNewList = true;
+	// protected static boolean getNewList = true;
 
 	/**The start screen in SmartTrolleyGUI*/
 	StartScreenController startScreen = new StartScreenController();
@@ -254,20 +253,26 @@ public class SmartTrolleyGUI extends Application {
 		try {
 
 			productScreen = (ProductScreenController) replaceSceneContent("fxml/ProductScreen.fxml");
-			if (productClicked ){
+			if (productClicked) {
 				Slide slide;
 				DataDownloader dataDownloader = new DataDownloader();
-				slide = SlideDataImporter.importSlide(dataDownloader.populateSlide(SmartTrolleyGUI.getCurrentProductID()));	
-				
+				slide = SlideDataImporter.importSlide(dataDownloader.populateSlide(SmartTrolleyGUI.getCurrentProductID()));
+
 				slide.show();
 				productScreen.getProductAnchorPane().getChildren().add(slide);
-			} else{
-			productScreen.setSlideShow(new SlideShow (slideShowData, productScreen.getProductAnchorPane()));
-			
-			productScreen.getCurrentSlideShow().displaySlide(SmartTrolleyGUI.getCurrentSlideID());
+				productClicked = false;
+			} else {
+				productScreen.setSlideShow(new SlideShow(slideShowData, productScreen.getProductAnchorPane()));
+
+				int i = 0;
+				while (slideShowData.getSlides().get(i).getId() != SmartTrolleyGUI.getCurrentSlideID()) {
+					i++;
+				}
+
+				productScreen.getCurrentSlideShow().displaySlide(i);
 			}
 			productScreen.setApp(this);
-			
+
 		} catch (Exception ex) {
 			SmartTrolleyToolBox.print("Could not get FXML file for next scene. Application crashed ;-(");
 			Logger.getLogger(SmartTrolleyGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -426,9 +431,9 @@ public class SmartTrolleyGUI extends Application {
 	*/
 	public void setSlideshowData(SlideShowData slideShowData) {
 		this.slideShowData = slideShowData;
-		
+
 	}
-	
+
 	/**
 	* Gets the slideShowData
 	*@return slideShowData
@@ -436,7 +441,7 @@ public class SmartTrolleyGUI extends Application {
 	*/
 	public SlideShowData getSlideshowData() {
 		return slideShowData;
-		
+
 	}
 }
 /**************End of SmartTrolleyGUI**************/
