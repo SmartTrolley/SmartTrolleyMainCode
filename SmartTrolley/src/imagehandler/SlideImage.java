@@ -45,7 +45,7 @@ public class SlideImage extends ImageView implements Branchable{
 			int startTime, int duration, int branch, int layer) {
 		super();
 		try{
-		this.setImage(new Image("smarttrolleygui/"+url));
+		this.setImage(new Image("smarttrolleygui/bigimages/"+url));
 		}catch(IllegalArgumentException e){
 			SmartTrolleyToolBox.print("Could not find image at url: "+url);
 			this.setImage(new Image("http://www.martyranodes.com/sites/default/files/images/kits/no_0.jpg"));

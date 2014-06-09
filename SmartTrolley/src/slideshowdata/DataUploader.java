@@ -419,7 +419,9 @@ public class DataUploader extends SqlConnection {
 		uploadDocumentData(slideShowData.getDocumentinfo(), listid);
 		uploadDefaultData(slideShowData.getDefaults(), listid);
 
-		for (SlideData currentSlide : slideShowData.getSlides()) {
+		while (slideIndex< slideShowData.getSlides().size()) {
+			
+			currentSlide = slideShowData.getSlides().get(slideIndex);
 
 			productName = currentSlide.getProductName();
 

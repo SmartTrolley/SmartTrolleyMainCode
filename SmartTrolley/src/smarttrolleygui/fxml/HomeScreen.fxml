@@ -85,7 +85,12 @@
                     <Tooltip text="Current total of your shopping list" />
                   </tooltip>
                 </Label>
-                <Label id="currentSavingsTotal" fx:id="lblTotalItems" text="ÂItems:">
+                 <Label id="currentSavingsTotal" fx:id="lblTotalSavings" text="Saved:Â£">
+                  <tooltip>
+                    <Tooltip text="How much you've saved" />
+                  </tooltip>
+                </Label>
+                <Label id="totalItems" fx:id="lblTotalItems" text="ÂItems:">
                   <tooltip>
                     <Tooltip text="Items in basket" />
                   </tooltip>

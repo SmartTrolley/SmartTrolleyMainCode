@@ -215,8 +215,6 @@ public class SqlConnection {
 		float savings = 0;
 		openConnection();
 
-		ObservableList<ListProduct> offers = FXCollections.observableArrayList();
-
 		String query = "SELECT * FROM offers WHERE ProductID= " + productIDsInList.get(0);
 
 		for (int i = 1; i < productIDsInList.size(); i++) {

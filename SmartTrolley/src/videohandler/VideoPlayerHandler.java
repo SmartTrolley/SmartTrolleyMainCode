@@ -1,5 +1,6 @@
 package videohandler;
 
+import toolBox.SmartTrolleyToolBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -38,6 +39,7 @@ public class VideoPlayerHandler {
 		try{
 			media = new Media(pathLocation);
 		}catch(IllegalArgumentException e){
+			SmartTrolleyToolBox.print("Video url wrong at: "+pathLocation);
 			mediaControl = null;
 			return;
 		}

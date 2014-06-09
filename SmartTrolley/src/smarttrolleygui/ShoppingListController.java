@@ -589,7 +589,11 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 			productsInList.put(resultSet.getInt("ProductID"),resultSet.getInt("Quantity"));
 		}
 
+		if (!SqlConnection.isResultSetEmpty(resultSet)){
 		lblTotalSavings.setText("Saved: £" + String.format("%.2g%n", conn.calculateSavings(productsInList, (ArrayList<Integer>) productIDsInList)));
+		} else {
+			lblTotalSavings.setText("Saved: £0");
+		}
 		ObservableList<Double> data = FXCollections.observableArrayList(total, totalItems, 0.00);
 		return data;
 

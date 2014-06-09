@@ -15,6 +15,10 @@ package smarttrolleygui;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -60,6 +64,8 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	public Label lblTotalItems;
 	@FXML
 	public Label lblTotal;
+	@FXML
+	public Label lblTotalSavings;
 
 	private SmartTrolleyGUI application;
 	private ObservableList<String> categories;
@@ -78,11 +84,11 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 		ObservableList<Double> data;
 		try {
 			data = SetTotals();
-		
-		lblTotal.setText("Total: £" + data.get(0).floatValue());
-		lblTotalItems.setText("Items: " + data.get(1).toString().replace(".0", ""));
-		} catch (SQLException e) {	
-			lblTotal.setText("" );
+
+			lblTotal.setText("Total: £" + data.get(0).floatValue());
+			lblTotalItems.setText("Items: " + data.get(1).toString().replace(".0", ""));
+		} catch (SQLException e) {
+			lblTotal.setText("");
 			lblTotalItems.setText(" ");
 			e.printStackTrace();
 		}
@@ -294,44 +300,39 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 								@Override
 								public void handle(ActionEvent event) {
 									SmartTrolleyToolBox.print("Pressed add button for product: " + product.getName());
-									
+
 									try {
 										SqlConnection conn = new SqlConnection();
 										Boolean productFound = false;
 										int quantity = 0;
 										conn.openConnection();
-										ResultSet resultSet = conn.getProductsInList(SmartTrolleyGUI.getcurrentListID(), 
-																					product.getID());
-										
-										while(resultSet.next()){
-                                            productFound = true;
-                                            quantity = resultSet.getInt("Quantity");
-                                        }
-										
-										if(productFound == false){
-                                            conn.AddProductToList(SmartTrolleyGUI.getcurrentListID(), 
-                                            		product.getID(), 1);
-                                        }else {
-                                            //If product exists then add 1 to the quantity
-                                            conn.updateQuantity(SmartTrolleyGUI.getcurrentListID(), 
-                                            		product.getID(), quantity + 1);
-                                        }
-										
+										ResultSet resultSet = conn.getProductsInList(SmartTrolleyGUI.getcurrentListID(), product.getID());
+
+										while (resultSet.next()) {
+											productFound = true;
+											quantity = resultSet.getInt("Quantity");
+										}
+
+										if (productFound == false) {
+											conn.AddProductToList(SmartTrolleyGUI.getcurrentListID(), product.getID(), 1);
+										} else {
+											// If product exists then add 1 to the quantity
+											conn.updateQuantity(SmartTrolleyGUI.getcurrentListID(), product.getID(), quantity + 1);
+										}
+
 										resultSet.close();
 										conn.closeConnection();
-										
-										//Now updated the totals
+
+										// Now updated the totals
 										ObservableList<Double> data = SetTotals();
-                                        lblTotal.setText("Total: £" + data.get(0).floatValue());
-                                        lblTotalItems.setText("Items: " + data.get(1).toString().replace(".0", ""));
-										
-									
+										lblTotal.setText("Total: £" + data.get(0).floatValue());
+										lblTotalItems.setText("Items: " + data.get(1).toString().replace(".0", ""));
+
 									} catch (SQLException e) {
 										// TODO Auto-generated catch block
 										e.printStackTrace();
 									}
-									
-									
+
 								}
 							});
 						} else {
@@ -394,15 +395,28 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 
 		ResultSet resultSet = conn.getAllListItems(SmartTrolleyGUI.getcurrentListID());
 
-		while (resultSet.next()) {
-			total += resultSet.getDouble("Price") * resultSet.getInt("Quantity");
-			totalItems += resultSet.getInt("Quantity");
+		//Hash map of product ID & quantity
+				Map<Integer, Integer> productsInList = new HashMap<Integer, Integer>();
+				List<Integer> productIDsInList = new ArrayList<Integer>();
 
-		}
+				while (resultSet.next()) {
+					
+					
+					total += resultSet.getDouble("Price") * resultSet.getInt("Quantity");
+					totalItems += resultSet.getInt("Quantity");
 
-		ObservableList<Double> data = FXCollections.observableArrayList(total, totalItems, 0.00);
-		return data;
+					productIDsInList.add(resultSet.getInt("ProductID"));
+					productsInList.put(resultSet.getInt("ProductID"),resultSet.getInt("Quantity"));
+				}
 
-	}
+				if (!SqlConnection.isResultSetEmpty(resultSet)){
+				lblTotalSavings.setText("Saved: £" + String.format("%.2g%n", conn.calculateSavings(productsInList, (ArrayList<Integer>) productIDsInList)));
+				} else {
+					lblTotalSavings.setText("Saved: £0");
+				}
+				ObservableList<Double> data = FXCollections.observableArrayList(total, totalItems, 0.00);
+				return data;
+			}
+
 }
 /************** End of OffersScreenController **************/

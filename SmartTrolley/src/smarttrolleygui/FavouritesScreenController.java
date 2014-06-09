@@ -15,6 +15,10 @@ package smarttrolleygui;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -57,6 +61,8 @@ public class FavouritesScreenController extends ControllerGeneral implements Ini
     public Label lblTotalItems;
     @FXML
     public Label lblTotal;
+	@FXML
+	public Label lblTotalSavings;
 
 	private SmartTrolleyGUI application;
 
@@ -375,16 +381,30 @@ initializeProductTable fills the TableView with data and sets up cell
         ResultSet resultSet = conn.getAllListItems(SmartTrolleyGUI.getcurrentListID());
         
         
-        while(resultSet.next()){
-            total += resultSet.getDouble("Price") * resultSet.getInt("Quantity");
-            totalItems += resultSet.getInt("Quantity");
-            
-        }
-        
-        ObservableList<Double> data = FXCollections.observableArrayList(total, totalItems, 0.00);
-        return data;
-        
-    }
+      //Hash map of product ID & quantity
+      		Map<Integer, Integer> productsInList = new HashMap<Integer, Integer>();
+      		List<Integer> productIDsInList = new ArrayList<Integer>();
+
+      		while (resultSet.next()) {
+      			
+      			
+      			total += resultSet.getDouble("Price") * resultSet.getInt("Quantity");
+      			totalItems += resultSet.getInt("Quantity");
+
+      			productIDsInList.add(resultSet.getInt("ProductID"));
+      			productsInList.put(resultSet.getInt("ProductID"),resultSet.getInt("Quantity"));
+      		}
+
+      		if (!SqlConnection.isResultSetEmpty(resultSet)){
+      		lblTotalSavings.setText("Saved: £" + String.format("%.2g%n", conn.calculateSavings(productsInList, (ArrayList<Integer>) productIDsInList)));
+      		} else {
+      			lblTotalSavings.setText("Saved: £0");
+      		}
+      		ObservableList<Double> data = FXCollections.observableArrayList(total, totalItems, 0.00);
+      		return data;
+
+      	}
+
 }
 /**
  * ************End of FavouritesScreenController*************

@@ -52,10 +52,8 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<video urlname="video/TEST_VIDEO.mp4" xstart="314" ystart="367" width="356" height="160" layer="7" duration="0" starttime="0" playtime="1" loop="false"/>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/Activia.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
-	<image urlname="Activia 0% Fat Free Peach" xstart="20" ystart="15" width="680" height="60" layer="4" starttime="0" duration="0" branch="1"/>
+	<video urlname="Video/TEST_VIDEO.mp4" xstart="314" ystart="367" width="356" height="160" layer="7" duration="0" starttime="0" playtime="1" loop="false"/>
+	<image urlname="Activia.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>57.0\n
 248.0\n
 5.9\n
@@ -131,8 +129,7 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/alpen_blueberry_cranberry.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<image urlname="alpen_blueberry_cranberry.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>422.0\n
 1779.0\n
 4.8\n
@@ -157,8 +154,7 @@ Trace\n
 Trace</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="0" duration="0" starttime="0" branch="0"/>
-  <audio urlname="Audio/tail_toddle.mp3" loop="0" starttime="0"/>
+	<audio urlname="Audio/tail_toddle.mp3" loop="0" starttime="0"/>
     </slide>
 	
 	<slide id="2" product_name="Anchor Butter" price="1.84" imgURL="img/SampleProducts/anchor_butter.jpg" categoryID="4" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -209,9 +205,8 @@ Fibre g\n
 Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
-	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/anchor_butter.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	</text>	
+	<image urlname="anchor_butter.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>734.0\n
 3019.0\n
 0.6\n
@@ -236,10 +231,10 @@ Nil\n
 8.5</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
-	<slide id="3" product_name="Ariel 3in1 Pods Colour &amp; Style – 12 Washes" price="4.75" imgURL="img/SampleProducts/alpen_blueberry_cranberry.jpg" categoryID="13" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+	<slide id="3" product_name="Ariel 3in1 Pods color &amp; Style – 12 Washes" price="4.75" imgURL="img/SampleProducts/ariel.jpg" categoryID="13" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
     <text xstart="291" ystart="146" xend="704" yend="287" layer="12" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>All You Need! Ariel 3in1 PODS are the first 3-chamber detergent that \n clean, lift off stains and brighten!</textstring>
 	</textbody>
 	</text>
@@ -252,11 +247,10 @@ Nil\n
 	<text xstart="451" ystart="55" xend="513" yend="88" layer="6" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>500g</textstring>
 	</textbody>
 	</text>
-	<text xstart="275" ystart="26" xend="712" yend="55" layer="4" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Ariel 3in1 Pods Colour &amp; Style – 12 Washes</textstring>
+	<text xstart="275" ystart="26" xend="712" yend="55" layer="4" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Ariel 3in1 Pods color &amp; Style – 12 Washes</textstring>
 	</textbody>
 	</text>
-	<image urlname="img/SampleProducts/ariel.jpg" xstart="20" ystart="26" width="250" height="203" layer="3" duration="0" starttime="0" branch="1"/>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	<image urlname="ariel.jpg" xstart="20" ystart="26" width="250" height="203" layer="3" duration="0" starttime="0" branch="1"/>	
 	</slide>
 	
 	<slide id="4" product_name="Arla Lactofree Whole Milk" price="0.99" imgURL="img/SampleProducts/Arla_Lactofree_Whole_Milk.jpg" categoryID="4" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -304,9 +298,8 @@ Fibre g\n
 Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
-	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/Arla_Lactofree_Whole_Milk.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	</text>	
+	<image urlname="Arla_Lactofree_Whole_Milk.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>734.0\n
 3019.0\n
 0.6\n
@@ -331,7 +324,7 @@ Nil\n
 8.5</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="5" product_name="Ben &amp; Jerry’s Cookie Dough Ice Cream" price="3.00" imgURL="img/SampleProducts/ben_and_jerrys.jpg" categoryID="7" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -376,9 +369,8 @@ Fibre g\n
 Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
-	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/ben_and_jerrys.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	</text>	
+	<image urlname="ben_and_jerrys.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>230.0\n
 960.0\n
 3.5\n
@@ -403,7 +395,7 @@ Trace\n
 1.0</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="6" product_name="Bird’s Eye Cod Fish Fingers" price="0.98" imgURL="img/SampleProducts/birds_eye_fish_fingers.jpg" categoryID="8" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -448,9 +440,8 @@ Fibre g\n
 Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
-	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/birds_eye_fish_fingers.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	</text>	
+	<image urlname="birds_eye_fish_fingers.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>218.0\n
 917.0\n
 12.7\n
@@ -475,7 +466,7 @@ Salt Equivalent g</textstring>
 0.6</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="7" product_name="British Single Cream" price="1.05" imgURL="img/SampleProducts/British_Single_Cream.jpg" categoryID="4" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -520,9 +511,8 @@ Fibre g\n
 Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
-	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/British_Single_Cream.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	</text>	
+	<image urlname="British_Single_Cream.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>188.0\n
 777.0\n
 2.6\n
@@ -547,7 +537,7 @@ Trace\n
 0.1</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="8" product_name="Chicago Town Deep Dish Chicken Melt Pizza" price="2.00" imgURL="img/SampleProducts/chicago_town_pizza.jpg" categoryID="2" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -557,7 +547,7 @@ Trace\n
 	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
 	</textbody>
 	</text>
-	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Full of taste from brim to base. An ultimate pizza hit. No artificial \n colours, flavours or hydrogenated fat. Topped to overflowing with \n tomato sauce, chicken breast, mozzarella, red cheddar and mature \n cheddar cheeses - our devastatingly tasty Deep Dish pizzas are truly \n epic!</textstring>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Full of taste from brim to base. An ultimate pizza hit. No artificial \n colors, flavours or hydrogenated fat. Topped to overflowing with \n tomato sauce, chicken breast, mozzarella, red cheddar and mature \n cheddar cheeses - our devastatingly tasty Deep Dish pizzas are truly \n epic!</textstring>
 	</textbody>
 	</text>
 	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£11.83 per Kg)</textstring>
@@ -592,9 +582,8 @@ Fibre g\n
 Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
-	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/chicago_town_pizza.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	</text>	
+	<image urlname="chicago_town_pizza.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>265.0\n
 1110.0\n
 11.8\n
@@ -619,7 +608,7 @@ N/a\n
 1.5</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="9" product_name="Coca Cola" price="0.98" imgURL="img/SampleProducts/coca_cola.jpg" categoryID="15" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -662,8 +651,8 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="5" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/coca_cola.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
+	
+	<image urlname="coca_cola.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>42.0\n
 180.0\n
 Nil\n
@@ -676,7 +665,7 @@ Nil\n
 N/a</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="10" product_name="Muller Fruit Corner Blueberry Yoghurt" price="0.68" imgURL="img/SampleProducts/Corner_Blueberry_Yoghurt.jpg" categoryID="2" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -719,8 +708,8 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="5" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/Corner_Blueberry_Yoghurt.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
+	
+	<image urlname="Corner_Blueberry_Yoghurt.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>105.0\n
 442.0\n
 3.8\n
@@ -733,7 +722,7 @@ Salt Equivalent g</textstring>
 N/A</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="11" product_name="Cravendale Pure Whole Milk" price="2.20" imgURL="img/SampleProducts/cravendale_2L_milk.jpg" categoryID="4" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -779,8 +768,8 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/cravendale_2L_milk.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	
+	<image urlname="cravendale_2L_milk.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>65.0\n
 271.0\n
 6.8\n
@@ -805,7 +794,7 @@ N/a\n
 1.5</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="12" product_name="Kelloggs Crunchy Nut Cornflakes" price="2.84" imgURL="img/SampleProducts/crunchy_nut.jpg" categoryID="2" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -851,8 +840,8 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/crunchy_nut.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	
+	<image urlname="crunchy_nut.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>180\n
 61.0\n
 6.0\n
@@ -877,7 +866,7 @@ Salt Equivalent g</textstring>
 0.9</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="13" product_name="Frijj Sticky Toffee Pudding Milkshake" price="0.49" imgURL="img/SampleProducts/Frijj_Sticky_Toffee_Pudding_Milkshake.jpg" categoryID="4" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -923,8 +912,8 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/Frijj_Sticky_Toffee_Pudding_Milkshake.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	
+	<image urlname="Frijj_Sticky_Toffee_Pudding_Milkshake.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>86.0\n
 362.0\n
 3.8\n
@@ -949,10 +938,10 @@ N/A\n
 0.9</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
-	<slide id="14" product_name="Haagen-Dazs Belgian Chocolate Ice Cream" price="4.45" imgURL="img/SampleProducts/chaagen_dasz.jpg" categoryID="7" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+	<slide id="14" product_name="Haagen-Daaz Belgian Chocolate Ice Cream" price="4.45" imgURL="img/SampleProducts/haagen_dasz.jpg" categoryID="7" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
     <text xstart="405" ystart="324" xend="632" yend="367" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
 	</textbody>
 	</text>
@@ -992,8 +981,8 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="5" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/chaagen_dasz.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
+	
+	<image urlname="haagen_dasz.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>286.0\n
 1191.0\n
 4.0\n
@@ -1006,7 +995,7 @@ N/A\n
 N/A</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="15" product_name="Heinz Baked Beanz in Tomato Sauce" price="0.68" imgURL="img/SampleProducts/heinz_beans.jpg" categoryID="14" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -1016,7 +1005,7 @@ N/A</textstring>
 	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
 	</textbody>
 	</text>
-	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>No artificial colours, flavours or preservatives.1 of your 5 a day in 1/2 \n a can when eaten as part of a balanced diet.</textstring>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>No artificial colors, flavours or preservatives.1 of your 5 a day in 1/2 \n a can when eaten as part of a balanced diet.</textstring>
 	</textbody>
 	</text>
 	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£1.64 per Kg)</textstring>
@@ -1052,8 +1041,8 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/heinz_beans.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	
+	<image urlname="heinz_beans.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>79.0\n
 337.0\n
 4.7\n
@@ -1078,7 +1067,7 @@ Trace\n
 1.5</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="16" product_name="Holme Farmed Venison Quick Fry Steaks" price="5.00" imgURL="img/SampleProducts/holme_farmed_venison_steak.jpg" categoryID="5" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -1121,8 +1110,8 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="5" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/holme_farmed_venison_steak.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
+	
+	<image urlname="holme_farmed_venison_steak.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>106.0\n
 448.0\n
 32.6\n
@@ -1135,7 +1124,7 @@ Trace\n
 Trace</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="17" product_name="Hovis Thick Sliced Soft White Loaf" price="1.56" imgURL="img/SampleProducts/hovis_bread.jpg" categoryID="3" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -1181,8 +1170,8 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/hovis_bread.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	
+	<image urlname="hovis_bread.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>233.0\n
 986.0\n
 4.4\n
@@ -1207,7 +1196,7 @@ Salt Equivalent g</textstring>
 0.4</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="18" product_name="Ilchester Applewood Cheddar Slices" price="1.80" imgURL="img/SampleProducts/Ilchester_Applewood_Cheddar_Slices.jpg" categoryID="4" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -1250,8 +1239,8 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="5" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/Ilchester_Applewood_Cheddar_Slices.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
+	
+	<image urlname="Ilchester_Applewood_Cheddar_Slices.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>410.0\n
 1700.0\n
 25.0\n
@@ -1264,7 +1253,7 @@ N/A\n
 N/A</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="19" product_name="Innocent Vietnamese Noodles Pot" price="1.84" imgURL="img/SampleProducts/innocent_noodle_pot.jpg" categoryID="12" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -1307,8 +1296,8 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="5" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/innocent_noodle_pot.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
+	
+	<image urlname="innocent_noodle_pot.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>83.0\n
 348.0\n
 2.5\n
@@ -1321,7 +1310,7 @@ Trace\n
 N/A</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="20" product_name="Kelloggs Corn Flakes" price="1.84" imgURL="img/SampleProducts/kelloggs_cornflakes.jpg" categoryID="13" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -1367,8 +1356,8 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/kelloggs_cornflakes.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	
+	<image urlname="kelloggs_cornflakes.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>372.0\n
 1580.0\n
 7.0\n
@@ -1393,7 +1382,7 @@ Salt Equivalent g</textstring>
 0.7</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="21" product_name="Bio Green Lassi Yogurt Smoothie with Mango" price="1.60" imgURL="img/SampleProducts/Lassi_Yogurt.jpg" categoryID="15" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -1436,8 +1425,8 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="5" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/Lassi_Yogurt.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
+	
+	<image urlname="Lassi_Yogurt.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>77.0\n
 327.0\n
 2.7\n
@@ -1450,7 +1439,7 @@ N/A\n
 N/A</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="22" product_name="Lavazza Qualita Rossa Caffe Espresso" price="2.50" imgURL="img/SampleProducts/lavazza_espresso.jpg" categoryID="15" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -1475,9 +1464,8 @@ N/A</textstring>
 	<text xstart="273" ystart="26" xend="703" yend="55" layer="5" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Lavazza Qualita Rossa Caffe Espresso</textstring>
 	</textbody>
 	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="4" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/lavazza_espresso.jpg" xstart="20" ystart="26" width="250" height="203" layer="3" duration="0" starttime="0" branch="1"/>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	<image urlname="lavazza_espresso.jpg" xstart="20" ystart="26" width="250" height="203" layer="3" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="23" product_name="McCain Home Chips Crinkle Cut" price="0.95" imgURL="img/SampleProducts/McCain_Chips.jpg" categoryID="8" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -1523,8 +1511,8 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/McCain_Chips.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	
+	<image urlname="McCain_Chips.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>142.0\n
 598.0\n
 1.9\n
@@ -1549,10 +1537,10 @@ Salt Equivalent g</textstring>
 0.6</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
-	<slide id="24" product_name="Nivea Shower Cream" price="0.50" imgURL="img/SampleProducts/alpen_blueberry_cranberry.jpg" categoryID="17" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+	<slide id="24" product_name="Nivea Shower Cream" price="0.50" imgURL="img/SampleProducts/nivea_shower_cream.jpg" categoryID="17" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
     <text xstart="405" ystart="324" xend="632" yend="367" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
 	</textbody>
 	</text>
@@ -1575,18 +1563,18 @@ Salt Equivalent g</textstring>
 	</textbody>
 	</text>
 	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="4" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/nivea_shower_cream.jpg" xstart="20" ystart="26" width="250" height="203" layer="3" duration="0" starttime="0" branch="1"/>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	<image urlname="nivea_shower_cream.jpg" xstart="20" ystart="26" width="250" height="203" layer="3" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
-	<slide id="25" product_name="Nutty Hazelnut Low Fat Yoghurt" price="1.84" imgURL="img/SampleProducts/Nutty_Hazlenut.jpg" categoryID="4" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+	<slide id="25" product_name="Nutty Hazelnut Low Fat Yoghurt" price="1.84" imgURL="img/SampleProducts/Nutty_Hazelnut.jpg" categoryID="4" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
     <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
 	</textbody>
 	</text>
 	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
 	</textbody>
 	</text>
-	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Suitable for Vegetarians, no artificial colours or flavours. Low fat \n hazelnut yogurts made with British milk.</textstring>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Suitable for Vegetarians, no artificial colors or flavours. Low fat \n hazelnut yogurts made with British milk.</textstring>
 	</textbody>
 	</text>
 	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£5.00 per Kg)</textstring>
@@ -1622,8 +1610,8 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/Nutty_Hazlenut.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	
+	<image urlname="Nutty_Hazlenut.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>114.0\n
 479.0\n
 4.8\n
@@ -1648,7 +1636,7 @@ Trace\n
 0.2</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="26" product_name="Oreo Cookies - Vanilla" price="1.00" imgURL="img/SampleProducts/oreo_cookies.jpg" categoryID="9" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -1694,8 +1682,8 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/oreo_cookies.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	
+	<image urlname="oreo_cookies.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>471.0\n
 1194.0\n
 5.7\n
@@ -1720,7 +1708,7 @@ Trace\n
 0.1</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="27" product_name="PG Tips Pyramid Tea Bags" price="4.18" imgURL="img/SampleProducts/PG_Tips_Tea_Bags.jpg" categoryID="15" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -1762,9 +1750,8 @@ Fibre g\n
 Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
-	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="5" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/PG_Tips_Tea_Bags.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
+	</text>	
+	<image urlname="PG_Tips_Tea_Bags.jpg" xstart="20" ystart="26" width="250" height="203" layer="4" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>0.1.0\n
 2.0\n
 0.1\n
@@ -1777,7 +1764,7 @@ Nil\n
 Nil</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="28" product_name="Pringles Salt and Vinegar" price="1.25" imgURL="img/SampleProducts/pringles_salt_vinegar.jpg" categoryID="9" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -1822,9 +1809,8 @@ Fibre g\n
 Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
-	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/pringles_salt_vinegar.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	</text>	
+	<image urlname="pringles_salt_vinegar.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>512.0\n
 2143.0\n
 3.9\n
@@ -1849,7 +1835,7 @@ N/A</textstring>
 N/A</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="29" product_name="Pure Dairy Free Soya Spread" price="1.55" imgURL="img/SampleProducts/Pure_dairy_Free_Soya_Spread.jpg" categoryID="10" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -1859,7 +1845,7 @@ N/A</textstring>
 	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
 	</textbody>
 	</text>
-	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Suitable for vegetarians. No artificial colours. A deliciously light tasting \n spread made with the goodness of soya for everyday enjoyment.</textstring>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Suitable for vegetarians. No artificial colors. A deliciously light tasting \n spread made with the goodness of soya for everyday enjoyment.</textstring>
 	</textbody>
 	</text>
 	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£3.10 per Kg)</textstring>
@@ -1894,9 +1880,8 @@ Fibre g\n
 Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
-	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/Pure_dairy_Free_Soya_Spread.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	</text>	
+	<image urlname="Pure_dairy_Free_Soya_Spread.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>533.0\n
 2191.0\n
 Nil\n
@@ -1921,7 +1906,7 @@ Trace\n
 Trace</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="30" product_name="Candyland Sherbert Dib Dab" price="0.36" imgURL="img/SampleProducts/sherert_dib_dab.jpg" categoryID="9" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
@@ -1966,9 +1951,8 @@ Fibre g\n
 Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
-	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/sherert_dib_dab.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	</text>	
+	<image urlname="sherert_dib_dab.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>383.0\n
 1627.0\n
 0.1\n
@@ -1993,7 +1977,7 @@ N/A\n
 N/A</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 	</slide>
 	
 	<slide id="31" product_name="Alpro Soya Milk" price="1.32" imgURL="img/SampleProducts/Soya_Milk.jpg" categoryID="13" isFavorite="0"  duration="5" descriptor="" lastSlide="true" backgroundcolor="#FFFFFF">
@@ -2038,9 +2022,8 @@ Fibre g\n
 Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
-	</text>
-	<image urlname="http:\\userfs\mw823\w2k\Desktop\SWEng\ActiviaNutritionalInfo.jpg" xstart="20" ystart="229" width="250" height="66" layer="6" duration="0" starttime="0" branch="1"/>
-	<image urlname="img/SampleProducts/Soya_Milk.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	</text>	
+	<image urlname="Soya_Milk.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>62.0\n
 261.0\n
 2.6\n
@@ -2065,9 +2048,9 @@ N/A\n
 Trace</textstring>
 	</textbody>
 	</text>
-	<image urlname="Alpen Cereal" xstart="20" ystart="15" width="680" height="60" layer="1" duration="0" starttime="0" branch="1"/>
+	
 
-  <shape starttime="0" layer="3" height="113" width="306" totalpoints="4" linecolour="#FFFFFF" fillcolour="#000000">
+  <shape starttime="0" layer="3" height="113" width="306" totalpoints="4" linecolor="#FFFFFF" fillcolor="#000000">
       <point y="40" x="206" num="0"/>
       <point y="121" x="107" num="1"/>
       <point y="153" x="413" num="2"/>
