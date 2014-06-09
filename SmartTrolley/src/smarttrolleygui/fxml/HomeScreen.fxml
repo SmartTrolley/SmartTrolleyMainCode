@@ -80,14 +80,14 @@
             </HBox>
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
               <children>
-                 <Label id="currentTotalLabel" fx:id="lblTotal" text="£ current total">
+        <Label id="currentTotalLabel" fx:id="lblTotal" text="£ current total">
                   <tooltip>
                     <Tooltip text="Current total of your shopping list" />
                   </tooltip>
                 </Label>
-                <Label id="currentSavingsTotal" fx:id="lblTotalItems" text="£ current savings">
+                <Label id="currentSavingsTotal" fx:id="lblTotalItems" text="�Items:">
                   <tooltip>
-                    <Tooltip text="Total items in basket" />
+                    <Tooltip text="Items in basket" />
                   </tooltip>
                 </Label>
               </children>
@@ -109,8 +109,9 @@
     </HBox>
     <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="600.0" spacing="5.0" styleClass="containerListName" VBox.vgrow="NEVER">
       <children>
-        <TextField alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="125.0" promptText="Enter product name" styleClass="search-box" />
-        <Button minHeight="25.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="75.0" styleClass="button1" text="Search">
+            
+        <TextField fx:id="searchBox" alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="125.0" promptText="Enter product name" styleClass="search-box" />
+        <Button fx:id ="searchButton" minHeight="25.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="75.0" onAction="#searchForProducts" styleClass="button1" text="Search">
           <tooltip>
             <Tooltip text="Search for a product" />
           </tooltip>
@@ -146,7 +147,7 @@
                         <Tooltip styleClass="ttip" text="Choose a category to sort products by" />
                       </tooltip>
                     </Label>
-                    <ListView fx:id="categoriesList" prefHeight="383.0" prefWidth="133.0" />
+                    <ListView fx:id="categoriesList" prefHeight="383.0" prefWidth="133.0" onMouseClicked="#handleMouseClick" />
                   </children>
                   <padding>
                     <Insets top="5.0" />
@@ -158,10 +159,10 @@
               <children>
                 <TableView fx:id="productTable" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" tableMenuButtonVisible="false" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <columns>
-                   <TableColumn editable="false" prefWidth="90.0" resizable="false" sortable="false" text="Image" fx:id="imageColumn" />
-                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="173.0" resizable="false" text="Product Name" fx:id="productNameColumn" />
-                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="40.0" resizable="false" sortable="true" text="Price" fx:id="priceColumn" />
-                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="45.0" resizable="false" sortable="false" text="Add" fx:id="addColumn" />
+                    <TableColumn editable="false" prefWidth="95.0" resizable="false" sortable="false" text="Image" fx:id="imageColumn" />
+                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="248.0" resizable="false" text="Product Name" fx:id="productNameColumn" />
+                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="55.0" resizable="false" sortable="true" text="Price" fx:id="priceColumn" />
+                    <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="50.0" resizable="false" sortable="false" text="Add" fx:id="addColumn" />
                   </columns>
                 </TableView>
               </children>
