@@ -52,7 +52,7 @@ public class AudioHandler {
 	 */
 	public AudioHandler(String path, int startDelay, int duration, double volume) {
 		// load the specified audio file (private method in this class)
-		loadAudio("file:///" + path);
+		loadAudio("file:"+path);
 		if (audio == null) {
 			return;
 		}
