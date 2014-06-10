@@ -93,6 +93,9 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 		listNameLabel.setText(SmartTrolleyGUI.getCurrentListName());
 
 		createPrevPlayNxtSlideButtons();
+		
+		configureFavoritesButton();
+		
 	}
 
 	/**
@@ -110,7 +113,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 
 		configurePlayDirectionCheckbox();
 
-		configureFavoritesButton();
+		
 
 	}
 

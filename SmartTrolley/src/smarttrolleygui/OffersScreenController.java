@@ -166,7 +166,7 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	 * <p> Date Modified: 28 Feb 2014
 	 */
 	public void loadHomeScreen(ActionEvent event) {
-		loadScreen(Screen.STARTSCREEN, application);
+		loadScreen(Screen.HOMESCREEN, application);
 	}
 
 	/**
