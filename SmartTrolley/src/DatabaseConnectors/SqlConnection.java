@@ -754,6 +754,22 @@ public class SqlConnection {
 
 					data = product;
 					break;
+					
+				case "lists_products":
+
+					ListProduct listProduct = null;
+
+					do {
+						listProduct = new ListProduct();
+
+						// get id
+						listProduct.setQuantity(results.getInt("Quantity"));
+
+
+					} while (results.next());
+
+					data = listProduct;
+					break;
 
 				case "audio":
 
@@ -1629,7 +1645,7 @@ public class SqlConnection {
 	*@throws SQLException
 	*<p> Date Modified: 6 Jun 2014
 	*/
-	public void AddProductToList(int ListId, int ProductId, int quantity) throws SQLException {
+	public void addProductToList(int ListId, int ProductId, int quantity) throws SQLException {
 		String qry = "INSERT INTO lists_products VALUES (" + String.valueOf(ProductId) + ", " + String.valueOf(ListId) + ", " + quantity + ")";
 		executeStatement(qry);
 	}

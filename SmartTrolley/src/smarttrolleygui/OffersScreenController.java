@@ -315,7 +315,7 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 										}
 
 										if (productFound == false) {
-											conn.AddProductToList(SmartTrolleyGUI.getcurrentListID(), product.getID(), 1);
+											conn.addProductToList(SmartTrolleyGUI.getcurrentListID(), product.getID(), 1);
 										} else {
 											// If product exists then add 1 to the quantity
 											conn.updateQuantity(SmartTrolleyGUI.getcurrentListID(), product.getID(), quantity + 1);

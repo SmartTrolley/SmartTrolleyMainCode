@@ -330,7 +330,7 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
                                         }
 										
 										if(productFound == false){
-                                            conn.AddProductToList(SmartTrolleyGUI.getcurrentListID(), 
+                                            conn.addProductToList(SmartTrolleyGUI.getcurrentListID(), 
                                             		product.getID(), 1);
                                         }else {
                                             //If product exists then add 1 to the quantity

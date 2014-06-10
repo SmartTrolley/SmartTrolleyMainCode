@@ -297,7 +297,7 @@ initializeProductTable fills the TableView with data and sets up cell
                                         }
 										
 										if(productFound == false){
-                                            conn.AddProductToList(SmartTrolleyGUI.getcurrentListID(), 
+                                            conn.addProductToList(SmartTrolleyGUI.getcurrentListID(), 
                                             		product.getID(), 1);
                                         }else {
                                             //If product exists then add 1 to the quantity
