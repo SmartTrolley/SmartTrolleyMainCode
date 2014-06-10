@@ -1,3 +1,12 @@
+package slideshowdata;
+
+import static org.junit.Assert.*;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import toolBox.SmartTrolleyToolBox;
+
 /**
 * SmartTrolley
 *
@@ -9,12 +18,6 @@
 *
 * @version V1.0 [Date Created: 03 Jun 2014]
 **/
-package slideshowdata;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-
 public class TestDataDownloader {
 
 	private PWSParser parser;
@@ -25,55 +28,63 @@ public class TestDataDownloader {
 	
 	/** 
 	* Creates an instance of SqlConnection before the tests are performed
-	**/
+	*
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@BeforeClass
 	public static void setup(){
 		dataUploader = new DataUploader();
 		dataDownloader = new DataDownloader();
 	}
 	
+	/**
+	* Parses a test xml file then uploades it to the database
+	* The downloader is then run before asserting values to test that info has correctly downloaded
+	* The test will delete the contents of the database if the deletes are not commented out!!!!!
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
 	public void test() {
 		
-//		parser  =  new PWSParser();
-//		SlideShowData slideShowData = parser.read(fileName);
-//		dataUploader.uploadXmlData(slideShowData);
-//		
-//		SmartTrolleyToolBox.print("Starting download");
-//		SlideShowData slideshow = dataDownloader.populateSlideshow(1);
-//		SmartTrolleyToolBox.print("Finished download");
+		parser  =  new PWSParser();
+		SlideShowData slideShowData = parser.read(fileName);
+		dataUploader.uploadXmlData(slideShowData);
+		
+		SmartTrolleyToolBox.print("Starting download");
+		SlideShowData slideshow = dataDownloader.populateSlideshow(1);
+		SmartTrolleyToolBox.print("Finished download");
 	
 		try{
-//			assertEquals(1, slideshow.getSlides().get(0).getId());
-//			assertEquals(1060, slideshow.getSlides().get(0).getDuration());
-//			assertEquals("resources/video/video/monstersinc_high.mpg", slideshow.getSlides().get(0).getVideos().get(0).getUrlname());
-//			assertEquals(42, slideshow.getSlides().get(0).getTexts().get(0).getDuration());
-//			assertEquals(true, slideshow.getSlides().get(0).getTexts().get(0).getTextbodies().get(0).getBold());
-//			assertEquals("If this works, I will be happy S2T1TB2", slideshow.getSlides().get(0).getTexts().get(0).getTextbodies().get(1).getTextstring());
-//			assertEquals("Text must be within a “bounding” empty text box with the desired formatting S2T2TB1", slideshow.getSlides().get(0).getTexts().get(1).getTextbodies().get(0).getTextstring());
-//			assertEquals("C:/Users/Public/Music/Sample Music/Kalimba.mp3", slideshow.getSlides().get(0).getAudios().get(0).getUrlname());
-//			assertEquals("resources/images/Desert.jpg", slideshow.getSlides().get(0).getImages().get(0).getUrlname());
-//			assertEquals("#F79646", slideshow.getSlides().get(0).getShapes().get(1).getFillcolor());
-//			assertEquals(2, slideshow.getSlides().get(0).getShapes().get(1).getPoints().get(2).getNum());
-//			assertEquals(42, slideshow.getSlides().get(0).getShapes().get(1).getPoints().get(2).getY());
+			assertEquals(1, slideshow.getSlides().get(0).getId());
+			assertEquals(1060, slideshow.getSlides().get(0).getDuration());
+			assertEquals("resources/video/video/monstersinc_high.mpg", slideshow.getSlides().get(0).getVideos().get(0).getUrlname());
+			assertEquals(42, slideshow.getSlides().get(0).getTexts().get(0).getDuration());
+			assertEquals(true, slideshow.getSlides().get(0).getTexts().get(0).getTextbodies().get(0).getBold());
+			assertEquals("If this works, I will be happy S2T1TB2", slideshow.getSlides().get(0).getTexts().get(0).getTextbodies().get(1).getTextstring());
+			assertEquals("Text must be within a “bounding” empty text box with the desired formatting S2T2TB1", slideshow.getSlides().get(0).getTexts().get(1).getTextbodies().get(0).getTextstring());
+			assertEquals("C:/Users/Public/Music/Sample Music/Kalimba.mp3", slideshow.getSlides().get(0).getAudios().get(0).getUrlname());
+			assertEquals("resources/images/Desert.jpg", slideshow.getSlides().get(0).getImages().get(0).getUrlname());
+			assertEquals("#F79646", slideshow.getSlides().get(0).getShapes().get(1).getFillcolor());
+			assertEquals(2, slideshow.getSlides().get(0).getShapes().get(1).getPoints().get(2).getNum());
+			assertEquals(42, slideshow.getSlides().get(0).getShapes().get(1).getPoints().get(2).getY());
 		}
 
 		finally{
 			//This section clears the database of what the test created
-			dataUploader.deleteContentAndResetAutoIncrement("defaults");
-			dataUploader.deleteContentAndResetAutoIncrement("document_info_data");
-			dataUploader.deleteContentAndResetAutoIncrement("slide");
-			dataUploader.deleteContentAndResetAutoIncrement("audio");
-			dataUploader.deleteContentAndResetAutoIncrement("image_slide");
-			dataUploader.deleteContentAndResetAutoIncrement("point");
-			dataUploader.deleteContentAndResetAutoIncrement("shape");
-			dataUploader.deleteContentAndResetAutoIncrement("text");
-			dataUploader.deleteContentAndResetAutoIncrement("textbody");
-			dataUploader.deleteContentAndResetAutoIncrement("video");
-
-			dataUploader.deleteContentAndResetAutoIncrement("lists");
-			dataUploader.deleteContentAndResetAutoIncrement("lists_products");
-			dataUploader.deleteContentAndResetAutoIncrement("products");
+//			dataUploader.deleteContentAndResetAutoIncrement("defaults");
+//			dataUploader.deleteContentAndResetAutoIncrement("document_info_data");
+//			dataUploader.deleteContentAndResetAutoIncrement("slide");
+//			dataUploader.deleteContentAndResetAutoIncrement("audio");
+//			dataUploader.deleteContentAndResetAutoIncrement("image_slide");
+//			dataUploader.deleteContentAndResetAutoIncrement("point");
+//			dataUploader.deleteContentAndResetAutoIncrement("shape");
+//			dataUploader.deleteContentAndResetAutoIncrement("text");
+//			dataUploader.deleteContentAndResetAutoIncrement("textbody");
+//			dataUploader.deleteContentAndResetAutoIncrement("video");
+//
+//			dataUploader.deleteContentAndResetAutoIncrement("lists");
+//			dataUploader.deleteContentAndResetAutoIncrement("lists_products");
+//			dataUploader.deleteContentAndResetAutoIncrement("products");
 			
 			
 //			dataUploader.deleteLastList();

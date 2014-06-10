@@ -1,14 +1,3 @@
-/**
-* SmartTrolley
-*
-* Tests DataUploader.java with the user story: User can upload all media data for a slide to SQL database
-*
-* @author Thomas Lea
-*
-* @author Checked By: Checker(s) fill here
-*
-* @version V1.0 [Date Created: 28 May 2014]
-**/
 package slideshowdata;
 
 import static org.junit.Assert.assertEquals;
@@ -23,11 +12,16 @@ import toolBox.SmartTrolleyToolBox;
 
 
 /**
- * @author Thomas & Sam
- * 
- * Test case for testing the SqlConnection
- * 
- */
+* SmartTrolley
+*
+* Tests DataUploader.java with the user story: User can upload all media data for a slide to SQL database
+*
+* @author Thomas Lea
+*
+* @author Sam Geering
+*
+* @version V1.0 [Date Created: 28 May 2014]
+**/
 public class TestDataUploader {
 	
 
@@ -37,8 +31,9 @@ public class TestDataUploader {
 	private String fileName = " ../../XMLDocs/dynamDomfinal.xml";
 	
 	/**
-	 * Creates an instance of SqlConnection before the tests are performed
-	 */
+	* Creates an instance of SqlConnection before the tests are performed
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@BeforeClass
 	public static void setup(){
 		dataUploader = new DataUploader();
@@ -49,9 +44,10 @@ public class TestDataUploader {
 	}
 	
 	/**
-	 * test that the addDocumentDataContent() method adds to the table
-	 * documents_info_data on the database
-	 */
+	* test that the addDocumentDataContent() method adds to the table
+	* documents_info_data on the database
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
 	public void addDocumentDataContentTest() {
 		SmartTrolleyToolBox.print("\n Start of addDocumentDataTest............");
@@ -77,9 +73,10 @@ public class TestDataUploader {
 
 
 	/**
-	 * test the addDefaultsContent() method adds to the table
-	 * defaults on the database
-	 */
+	* test the addDefaultsContent() method adds to the table
+	* defaults on the database
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
 	public void addDefaultsContentTest(){
 		SmartTrolleyToolBox.print("\n Start of addDefaultsContentTest............");
@@ -105,8 +102,9 @@ public class TestDataUploader {
 
 
 	/**
-	 * Test that contents is added to the audio table
-	 */
+	* Test that contents is added to the audio table
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
 	public void addAudioTableContentsTest(){
 		SmartTrolleyToolBox.print("\n Start of addAudioTableContentsTest............");
@@ -129,8 +127,9 @@ public class TestDataUploader {
 	}
 
 	/**
-	 * Test that contents is added to the point table
-	 */
+	* Test that contents is added to the point table
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
 	public void addPointContentsTest(){
 		SmartTrolleyToolBox.print("\n Start of addPointContentsTest............");
@@ -153,8 +152,9 @@ public class TestDataUploader {
 	}
 
 	/**
-	 * Test that contents is added to the shape table
-	 */
+	* Test that contents is added to the shape table
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
 	public void addShapeContentsTest(){
 		SmartTrolleyToolBox.print("\n Start of addShapeContentsTest............");
@@ -187,8 +187,9 @@ public class TestDataUploader {
 	}
 
 	/**
-	 * Test that contents is added to the text table
-	 */
+	* Test that contents is added to the text table
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
 	public void addTextContentsTest(){
 		SmartTrolleyToolBox.print("\n Start of addTextContentsTest............");
@@ -222,8 +223,9 @@ public class TestDataUploader {
 	}
 
 	/**
-	 * Test that contents is added to the textbody table
-	 */
+	* Test that contents is added to the textbody table
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
 	public void addTextbodyContentsTest(){
 		SmartTrolleyToolBox.print("\n Start of addTextbodyContentsTest............");
@@ -250,8 +252,9 @@ public class TestDataUploader {
 	}
 
 	/**
-	 * Test that contents is added to the video table
-	 */
+	* Test that contents is added to the video table
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
 	public void addVideoContentsTest(){
 		SmartTrolleyToolBox.print("\n Start of addVideoContentsTest............");
@@ -286,8 +289,9 @@ public class TestDataUploader {
 	}
 
 	/** 
-	 * Test that contents is added to the Image table
-	 */
+	* Test that contents is added to the Image table
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
 	public void addImageContentsTest(){
 		SmartTrolleyToolBox.print("\n Start of addImageContentsTest............");
@@ -321,6 +325,11 @@ public class TestDataUploader {
 	}
 
 //	@Test
+	/**
+	* Parses a text xml doc and uploads it to the database for visual test.
+	* This feature is ore thouroughly tested is TestDataDownloader
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void uploadDataTest(){
 
 		parser  =  new PWSParser();
