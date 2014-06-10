@@ -71,7 +71,7 @@ public class FavouritesScreenController extends ControllerGeneral implements Ini
 
 	private String categoryNumber = null;
 	/**
-	 * initialize is automatically called when the controller is created.
+	 * Initialise is automatically called when the controller is created.
 	 * <p>
 	 * Date Modified: 22 Feb 2014
 	 */

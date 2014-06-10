@@ -185,11 +185,9 @@ public class SqlConnection {
 	}
 
 	/**
-	*Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
+	* An overide of createProductFromResultSet(ResultSet, int) that calls it with a quantity = 0 
 	*@param results
-	*@return
-	*[If applicable]@see [Reference URL OR Class#Method]
+	*@return ListProduct
 	*<p> Date Modified: 7 Jun 2014
 	*/
 	private ListProduct createProductFromResultSet(ResultSet results) {
@@ -203,13 +201,14 @@ public class SqlConnection {
 		return listProduct;
 	}
 
+	
 	/**
-	*Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
-	*@param productsInList
-	*[If applicable]@see [Reference URL OR Class#Method]
-	*<p> Date Modified: 9 Jun 2014
-	*/
+	 * 
+	 * @param productsInList
+	 * @param productIDsInList
+	 * @return float savings
+	 * <p> Date Modified: 9 Jun 2014
+	 */
 	public float calculateSavings(Map<Integer, Integer> productsInList, List<Integer> productIDsInList) {
 
 		float savings = 0;
@@ -677,11 +676,9 @@ public class SqlConnection {
 	}
 
 	/**
-	*Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
+	*allows multiple queries to be sent. returns an object which needs to be cast to an arrayList of the datatype expected
 	*@param queries
-	*@return
-	*[If applicable]@see [Reference URL OR Class#Method]
+	*@return Object
 	*<p> Date Modified: 8 Jun 2014
 	*/
 	public Object getMultipleDatas(String table, String queries) {
@@ -710,7 +707,6 @@ public class SqlConnection {
 
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			closeConnection();
@@ -720,11 +716,9 @@ public class SqlConnection {
 	}
 
 	/**
-	*Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
+	* is passed a resultSet and a table name so it can produce the relevant dataType
 	*@param table
 	*@param results
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 8 Jun 2014
 	*/
 	protected Object populateDataType(String table, ResultSet results) {
@@ -1567,11 +1561,8 @@ public class SqlConnection {
 		}
 	}
 
-	// //////////////////////////////////////////////////////////////////////////////
-
 	/**
 	*Removes all products from all lists
-	*<p>Test(s)/User Story that it satisfies
 	*@throws SQLException
 	*<p> Date Modified: 6 Jun 2014
 	*/
@@ -1597,7 +1588,6 @@ public class SqlConnection {
 	*@param listId
 	*@param productId
 	*@throws SQLException
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 6 Jun 2014
 	*/
 	public void removeProductFromList(int listId, int productId) throws SQLException {
@@ -1626,17 +1616,6 @@ public class SqlConnection {
 	public void removeAllLists() throws SQLException {
 		executeStatement("DELETE FROM lists");
 	}
-
-	//
-	// public void AddList(int Id, String listName) throws SQLException{
-	// String qry = "INSERT INTO lists VALUES (" + String.valueOf(Id) + ", " + listName + ")";
-	// executeStatement(qry);
-	// }
-
-	// public void AddList(String listName) throws SQLException{
-	// String qry = "INSERT INTO lists (Name) VALUES ('" + listName + "')";
-	// executeStatement(qry);
-	// }
 
 	/**
 	* Adds a specified quantity of the product (specified from the productid) to the list (specified by the listid)
@@ -1673,7 +1652,6 @@ public class SqlConnection {
 	*@param productId 
 	*@return product quantity as int
 	*@throws SQLException
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 6 Jun 2014
 	*/
 	public int getProductQuantity(int listId, int productId) throws SQLException {
@@ -1691,10 +1669,8 @@ public class SqlConnection {
 	*@param productId
 	*@return
 	*@throws SQLException
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 6 Jun 2014
 	*/
-	// TODO May not be needed
 	public ResultSet getProductsInList(int listId, int productId) throws SQLException {
 		String query = "SELECT * FROM lists_products WHERE ProductID = " + String.valueOf(productId) + " AND ListID = " + String.valueOf(listId);
 		return sendQuery(query);
@@ -1714,12 +1690,10 @@ public class SqlConnection {
 	}
 
 	/**
-	*
-	*<p>Test(s)/User Story that it satisfies
+	* returns the resultset of a specified list (By listid)
 	*@param listId
-	*@return
+	*@return ResultSet
 	*@throws SQLException
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 6 Jun 2014
 	*/
 	// ToDo may not needed
@@ -1733,7 +1707,6 @@ public class SqlConnection {
 	*<p>User adds or removes product from list 
 	*@return Resultset which contains categories
 	*@throws SQLException
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 6 Jun 2014
 	*/
 	public ResultSet getCategories() throws SQLException {
@@ -1743,11 +1716,10 @@ public class SqlConnection {
 
 	/**
 	*Gets the total number of items in a specified list
-	*<p>TUser adds or removes product from list
+	*<p>User adds or removes product from list
 	*@param listId
-	*@return
+	*@return ResultSet
 	*@throws SQLException
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 6 Jun 2014
 	*/
 	// ToDo what does it do ?
@@ -1764,15 +1736,12 @@ public class SqlConnection {
 
 	/**
 	*Gets the items in a specified list by specified category
-	*<p>Test(s)/User Story that it satisfies
 	*@param listId
 	*@param categoryName
-	*@return
+	*@return ResultSet
 	*@throws SQLException
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 6 Jun 2014
 	*/
-	// ToDo may not be needed
 	public ResultSet getListItemsByCategory(int listId, String categoryName) throws SQLException {
 		openConnection();
 		java.sql.PreparedStatement preparedStatement = connection
@@ -1789,26 +1758,20 @@ public class SqlConnection {
 
 	/**
 	*It removes the list from the DB
-	*<p>Test(s)/User Story that it satisfies
 	*@param listId
 	*@throws SQLException
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 6 Jun 2014
 	*/
-	// ToDo may not be needed
 	public void removeList(int listId) throws SQLException {
 		executeStatement("DELETE FROM lists WHERE ListID = " + String.valueOf(listId));
 	}
 
 	/**
-	*Gets all the lists
-	*<p>Test(s)/User Story that it satisfies
-	*@return
+	*Gets all the lists as a resultset
+	*@return ResultSet
 	*@throws SQLException
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 6 Jun 2014
 	*/
-	// ToDo may not be needed
 	public ResultSet getAllLists() throws SQLException {
 		String query = "SELECT * FROM lists";
 		return sendQuery(query);
@@ -1816,10 +1779,8 @@ public class SqlConnection {
 
 	/**
 	*Gets all the products 
-	*<p>Test(s)/User Story that it satisfies
 	*@return resultset contains products
 	*@throws SQLException
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 6 Jun 2014
 	*/
 	public ResultSet getAllProducts() throws SQLException {
@@ -1829,11 +1790,9 @@ public class SqlConnection {
 
 	/**
 	*Gets products by specified category name
-	*<p>Test(s)/User Story that it satisfies
 	*@param categoryName
-	*@return
+	*@return ResultSet
 	*@throws SQLException
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 6 Jun 2014
 	*/
 	public ResultSet getProductsByCategory(String categoryName) throws SQLException {
@@ -1846,7 +1805,6 @@ public class SqlConnection {
 		ResultSet set = preparedStatement.executeQuery();
 		return set;
 	}
-	// ///////////////////////////////////////////////////
 
 }
 /**************End of SqlConnection**************/

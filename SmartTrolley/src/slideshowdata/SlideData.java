@@ -1,12 +1,3 @@
-/**
-* SmartTrolley
-*
-* @author Thomas Lea
-*
-* @author Checked By: Checker(s) fill here
-*
-* @version V1.0 [Date Created: 27 May 2014]
-**/
 package slideshowdata;
 
 import java.util.ArrayList;
@@ -14,9 +5,18 @@ import java.util.ArrayList;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
-
+/**
+* SmartTrolley Data Class for Slide
+* includes getters and setters for this data and any attributes or elements for parsing
+*
+* @author Thomas Lea
+*
+* @author Checked By: Checker(s) fill here
+*
+* @version V1.0 [Date Created: 27 May 2014]
+**/
 @Root (strict = false)
-public class SlideData implements DataType{
+public class SlideData{
 	
 	@ElementList (entry = "text", inline = true, required = false) 
 	private ArrayList<TextData>  texts;

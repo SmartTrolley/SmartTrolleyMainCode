@@ -1,5 +1,10 @@
+package slideshowdata;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Root;
+
 /**
-* SmartTrolley
+* SmartTrolley Data Class for Audio
+* includes getters and setters for this data and any attributes or elements for parsing
 *
 * @author Thomas Lea
 *
@@ -7,12 +12,8 @@
 *
 * @version V1.0 [Date Created: 27 May 2014]
 **/
-package slideshowdata;
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Root;
-
 @Root (strict = false)
-public class AudioData implements DataType{
+public class AudioData{
 	
 	@Attribute (name = "urlname", required=true)
 	private String urlname;

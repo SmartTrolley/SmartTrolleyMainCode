@@ -14,9 +14,7 @@
 
 package smarttrolleygui;
 
-import slideshowdata.DataType;
-
-public class Product implements DataType{
+public class Product{
 	private int id;
 	private String image;
 	private String name;

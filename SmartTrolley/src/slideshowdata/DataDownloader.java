@@ -9,11 +9,18 @@ import javafx.collections.ObservableList;
 import smarttrolleygui.ListProduct;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-
+/**
+* SmartTrolley Class for Downloading info from the Sql Database into the Data Classes
+*
+* @author Thomas Lea
+*
+* @author Checked By: Checker(s) fill here
+*
+* @version V1.0 [Date Created: 27 May 2014]
+**/
 public class DataDownloader extends SqlConnection {
 
 	private ObservableList<ListProduct> slides;
-	private ArrayList<SlideData> slidelist;
 
 	public SlideShowData populateSlideshow(int ListId) {
 
@@ -49,6 +56,12 @@ public class DataDownloader extends SqlConnection {
 		return slideshowdata;
 	}
 
+	/**
+	* Downloads all of the media data for a particular slide/product into the data classes
+	*@param productid
+	*@return SlideData
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public SlideData populateSlide(int productid) {
 
 		int i = 0;
@@ -155,10 +168,8 @@ public class DataDownloader extends SqlConnection {
 	}
 
 	/**
-	*Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
+	*Creates one large query to be sent for downloading all relevant Points and sets them to the Shapes
 	*@param shapes
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 8 Jun 2014
 	*/
 	private void setPointsForSlide(ArrayList<ShapeData> shapes) {
@@ -185,10 +196,8 @@ public class DataDownloader extends SqlConnection {
 	}
 
 	/**
-	*Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
+	*Creates one large query to be sent for downloading all relevant TextBodies and sets them to the Texts
 	*@param texts
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 8 Jun 2014
 	*/
 	private void setTextBodiesForSlide(ArrayList<TextData> texts) {

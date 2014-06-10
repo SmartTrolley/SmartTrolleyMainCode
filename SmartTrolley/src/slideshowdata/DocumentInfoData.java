@@ -1,5 +1,10 @@
+package slideshowdata;
+
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 /**
-* SmartTrolley
+* SmartTrolley Data Class for DocumentInfo
+* includes getters and setters for this data and any attributes or elements for parsing
 *
 * @author Thomas Lea
 *
@@ -7,13 +12,8 @@
 *
 * @version V1.0 [Date Created: 27 May 2014]
 **/
-package slideshowdata;
-
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Root;
-
 @Root (strict = false)
-public class DocumentInfoData implements DataType{
+public class DocumentInfoData{
 	
 	private int listid;
 	

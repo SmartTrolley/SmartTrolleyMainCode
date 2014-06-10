@@ -6,10 +6,16 @@ import java.util.ArrayList;
 
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-
+/**
+* SmartTrolley Class for uploading info to the Sql Database into correct tables
+*
+* @author Thomas Lea
+*
+* @author Checked By: Checker(s) fill here
+*
+* @version V1.0 [Date Created: 06 Jun 2014]
+**/
 public class DataUploader extends SqlConnection {
-
-	private PWSParser parser;
 
 	private SlideData currentSlide;
 	private AudioData currentAudio;
@@ -25,15 +31,16 @@ public class DataUploader extends SqlConnection {
 	}
 
 	/**
-	 * Method will add data to the document_info_data on the SQL database
-	 * 
-	 * @param author
-	 * @param version
-	 * @param title
-	 * @param comment
-	 * @param width
-	 * @param height
-	 */
+	*Method will add data to the document_info_data on the SQL database
+	*@param ListId
+	*@param author
+	*@param version
+	*@param title
+	*@param comment
+	*@param width
+	*@param height
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void addDocumentDataContent(int ListId, String author, String version, String title, String comment, int width, int height) {
 
 		openConnection();
@@ -43,10 +50,12 @@ public class DataUploader extends SqlConnection {
 		closeConnection();
 	}
 
+
 	/**
-	 * Method will delete data from the document_info_data table on the SQL
-	 * database
-	 */
+	*Method will delete data from the document_info_data table on the SQL
+	* database
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void deleteDocumentDataContent() {
 
 		openConnection();
@@ -56,13 +65,16 @@ public class DataUploader extends SqlConnection {
 	}
 
 	/**
-	 * 
-	 * @param backgroundcolor
-	 * @param font
-	 * @param fontsize
-	 * @param linecolor
-	 * @param fillcolor
-	 */
+	*Method will add data to the defaults on the SQL database
+	*@param ListId
+	*@param backgroundcolor
+	*@param font
+	*@param fontsize
+	*@param fontcolor
+	*@param linecolor
+	*@param fillcolor
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void addDefaultsContent(int ListId, String backgroundcolor, String font, int fontsize, String fontcolor, String linecolor, String fillcolor) {
 		openConnection();
 		String query = "INSERT INTO defaults (ListID, backgroundcolor, font, fontsize, fontcolor, linecolor, fillcolor) VALUES ('" + ListId + "', '" + backgroundcolor + "', '"
@@ -71,10 +83,13 @@ public class DataUploader extends SqlConnection {
 		closeConnection();
 	}
 
+	
 	/**
-	 * Method will delete data from the defaults table on the SQL
-	 * database
-	 */
+	* Method will delete data from the defaults table on the SQL
+	* database
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void deleteDefaultsContent() {
 		openConnection();
 		String query = "DELETE FROM defaults";
@@ -82,15 +97,17 @@ public class DataUploader extends SqlConnection {
 		closeConnection();
 	}
 
+	
 	/**
-	 * Method will add contents to the audio table on the sql server
-	 * 
-	 * @param productID
-	 * @param startTime
-	 * @param urlName
-	 * @param volume
-	 * @param repeat
-	 */
+	*Method will add contents to the audio table on the sql server
+	*@param productid
+	*@param slideid
+	*@param urlName
+	*@param startTime
+	*@param volume
+	*@param loop
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void addAudioTableContents(int productid, int slideid, String urlName, int startTime, double volume, boolean loop) {
 		openConnection();
 		String query = "INSERT INTO `cl36-st`.`audio` (`productID`, `slideID`, `urlname`, `starttime`, `volume`, `loop`) VALUES ('" + productid + "', '" + slideid + "', '"
@@ -100,20 +117,22 @@ public class DataUploader extends SqlConnection {
 
 	}
 
+	
 	/**
-	 * Method will add contents to the image table on the sql server
-	 * 
-	 * @param imageNo
-	 * @param urlname
-	 * @param xstart
-	 * @param ystart
-	 * @param width
-	 * @param height
-	 * @param starttime
-	 * @param duration
-	 * @param layer
-	 * @param branch
-	 */
+	* Method will add contents to the image table on the sql server
+	*@param productid
+	*@param slideid
+	*@param urlname
+	*@param xstart
+	*@param ystart
+	*@param width
+	*@param height
+	*@param starttime
+	*@param duration
+	*@param layer
+	*@param branch
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void addImageContents(int productid, int slideid, String urlname, int xstart, int ystart, int width, int height, int starttime, int duration, int layer, int branch) {
 
 		openConnection();
@@ -143,14 +162,15 @@ public class DataUploader extends SqlConnection {
 	}
 
 	/**
-	 * Method will add contents to the point table on the sql server
-	 * 
-	 * @param productid
-	 * @param shapeNo
-	 * @param individualPointNo
-	 * @param x
-	 * @param y
-	 */
+	* Method will add contents to the point table on the sql server
+	*@param productid
+	*@param slideid
+	*@param shapeNo
+	*@param individualPointNo
+	*@param x
+	*@param y
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void addPointContents(int productid, int slideid, int shapeNo, int individualPointNo, int x, int y) {
 
 		openConnection();
@@ -161,19 +181,20 @@ public class DataUploader extends SqlConnection {
 	}
 
 	/**
-	 * Method will add contents to the shape table on the sql server
-	 * 
-	 * @param productid
-	 * @param totalPoints
-	 * @param width
-	 * @param height
-	 * @param starttime
-	 * @param duration
-	 * @param layer
-	 * @param branch
-	 * @param fillcolor
-	 * @param linecolor
-	 */
+	* Method will add contents to the shape table on the sql server
+	*@param productid
+	*@param slideid
+	*@param totalPoints
+	*@param width
+	*@param height
+	*@param starttime
+	*@param duration
+	*@param layer
+	*@param branch
+	*@param fillcolor
+	*@param linecolor
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void addShapeContents(int productid, int slideid, int totalPoints, int width, int height, int starttime, int duration, int layer, int branch, String fillcolor,
 			String linecolor) {
 
@@ -202,21 +223,21 @@ public class DataUploader extends SqlConnection {
 	}
 
 	/**
-	 * Method will add contents to the text table on the sql server
-	 * 
-	 * @param productid
-	 * @param totalPoints
-	 * @param fontSize
-	 * @param xStart
-	 * @param yStart
-	 * @param startTime
-	 * @param duration
-	 * @param layer
-	 * @param xend
-	 * @param yend
-	 * @param font
-	 * @param fontColor
-	 */
+	* Method will add contents to the text table on the sql server
+	*@param productid
+	*@param slideid
+	*@param fontSize
+	*@param xStart
+	*@param yStart
+	*@param startTime
+	*@param duration
+	*@param layer
+	*@param xend
+	*@param yend
+	*@param font
+	*@param fontColor
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void addTextContents(int productid, int slideid, int fontSize, int xStart, int yStart, int startTime, int duration, int layer, int xend, int yend, String font,
 			String fontColor) {
 
@@ -246,17 +267,17 @@ public class DataUploader extends SqlConnection {
 	}
 
 	/**
-	 * Method will add contents to the textbody table on the sql server
-	 * 
-	 * @param productid
-	 * @param textNo
-	 * @param branch
-	 * @param bold
-	 * @param italic
-	 * @param underlined
-	 * @param text
-	 * @param branch2
-	 */
+	* Method will add contents to the textbody table on the sql server
+	*@param productid
+	*@param slideid
+	*@param textNo
+	*@param branch
+	*@param bold
+	*@param italic
+	*@param underlined
+	*@param text
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void addTextbodyContents(int productid, int slideid, int textNo, int branch, Boolean bold, Boolean italic, Boolean underlined, String text) {
 
 		openConnection();
@@ -265,21 +286,22 @@ public class DataUploader extends SqlConnection {
 		executeStatement(query);
 		closeConnection();
 	}
-
+	
 	/**
-	 * Method will add contents to the video table on the sql server
-	 * 
-	 * @param productid
-	 * @param urlname
-	 * @param starttime
-	 * @param loop
-	 * @param xstart
-	 * @param ystart
-	 * @param width
-	 * @param height
-	 * @param layer
-	 * @param duration
-	 */
+	* Method will add contents to the video table on the sql server
+	*@param productid
+	*@param slideid
+	*@param urlname
+	*@param starttime
+	*@param loop
+	*@param xstart
+	*@param ystart
+	*@param width
+	*@param height
+	*@param layer
+	*@param duration
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void addVideoContents(int productid, int slideid, String urlname, int starttime, boolean loop, int xstart, int ystart, int width, int height, int layer, int duration) {
 
 		openConnection();
@@ -307,15 +329,15 @@ public class DataUploader extends SqlConnection {
 		closeConnection();
 	}
 
+
 	/**
-	 * Method will add contents to the slide table on the sql server
-	 * 
-	 * @param slideid
-	 * @param duration
-	 * @param descriptor
-	 * @param lastSlide
-	 * @param backgroundcolor
-	 */
+	* Method will add contents to the slide table on the sql server
+	*@param productid
+	*@param slideid
+	*@param duration
+	*@param lastSlide
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void addSlideContents(int productid, int slideid, int duration, boolean lastSlide) {
 
 		openConnection();
@@ -325,10 +347,12 @@ public class DataUploader extends SqlConnection {
 		closeConnection();
 	}
 
+	
 	/**
-	 * Method will delete data from the slide table on the SQL
-	 * database
-	 */
+	* Method will delete data from the slide table on the SQL
+	* database
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void deleteSlideContent() {
 
 		openConnection();
@@ -338,10 +362,10 @@ public class DataUploader extends SqlConnection {
 	}
 
 	/**
-	 * Method will delete all entries of the table it is given
-	 * 
-	 * @param table
-	 */
+	* Method will delete all entries of the table it is given
+	*@param table
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void deleteContentAndResetAutoIncrement(String table) {
 		openConnection();
 		String query = "DELETE FROM " + table;
@@ -351,11 +375,12 @@ public class DataUploader extends SqlConnection {
 		closeConnection();
 	}
 
+	
 	/**
-	 * Method will delete all entries of the table it is given
-	 * 
-	 * @param table
-	 */
+	* Method will delete all entries of the table it is given
+	*@param table
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void deleteLastContentAndResetAutoIncrement(String table) {
 
 		int productid = 0;
@@ -382,21 +407,24 @@ public class DataUploader extends SqlConnection {
 	}
 
 	/**
-	 * Method will upload default data to sql database
-	 * 
-	 * @param defaultdata
-	 */
+	* Method will upload default data to sql database
+	*@param defaultdata
+	*@param ListId
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void uploadDefaultData(DefaultsData defaultdata, int ListId) {
 
 		addDefaultsContent(ListId, defaultdata.getBackgroundcolor(), defaultdata.getFont(), defaultdata.getFontsize(), defaultdata.getFontcolor(), defaultdata.getLinecolor(),
 				defaultdata.getFillcolor());
 	}
 
+	
 	/**
-	 * Method will upload Document data to sql database
-	 * 
-	 * @param documentdata
-	 */
+	* Method will upload Document data to sql database
+	*@param documentdata
+	*@param ListId
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void uploadDocumentData(DocumentInfoData documentdata, int ListId) {
 
 		addDocumentDataContent(ListId, documentdata.getAuthor(), documentdata.getAuthor(), documentdata.getTitle(), documentdata.getComment(), documentdata.getWidth(),
@@ -404,10 +432,10 @@ public class DataUploader extends SqlConnection {
 	}
 
 	/**
-	 * Method will upload all data from the XML parser up to the SQL database
-	 * 
-	 * @param data
-	 */
+	* Method will upload all data from the XML parser up to the SQL database
+	*@param slideShowData
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public void uploadXmlData(SlideShowData slideShowData) {
 
 		int slideIndex = 0, audioIndex = 0, imageIndex = 0, pointIndex = 0, shapeIndex = 0, textIndex = 0, textbodyIndex = 0, videoIndex = 0, productid = 0;

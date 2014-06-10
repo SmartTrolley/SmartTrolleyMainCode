@@ -1,4 +1,3 @@
-
 package slideshowdata;
 
 
@@ -9,7 +8,8 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 /**
-* SmartTrolley
+* SmartTrolley Data Class for SlideShow
+* includes getters and setters for this data and any attributes or elements for parsing
 *
 * @author Thomas Lea
 *
@@ -18,7 +18,7 @@ import org.simpleframework.xml.Root;
 * @version V1.0 [Date Created: 27 May 2014]
 **/
 @Root (name = "slideshow", strict = false)
-public class SlideShowData implements DataType{
+public class SlideShowData{
 
 	@Element (name = "documentinfo")
 	private DocumentInfoData  documentinfo;
