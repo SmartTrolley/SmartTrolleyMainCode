@@ -1,10 +1,15 @@
+/**
+ * ListProduct
+ *
+ * Class Description: This Class extends product, it is used when the product is in a list. 
+ *
+ * @author V1.0 Arash & Jonny 
+ * @author [Checked By:] [Checker(s) fill here]
+ * 
+ * @version [1.0] [Date Created: 8/06/14]
+ */
 package smarttrolleygui;
 
-
-/**
- *
- * @author Omid
- */
 public class ListProduct extends Product{
 
     private int quantity;

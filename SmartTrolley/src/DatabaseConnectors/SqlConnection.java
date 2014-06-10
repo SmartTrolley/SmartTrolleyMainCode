@@ -37,12 +37,15 @@ import toolBox.SmartTrolleyToolBox;
  * @author Sam
  * @author V2.1 Alick & Prashant [boolean class added for ResultSet testing]
  *         [also added execute statement]
- * @author V4.0 Prashant [Final Refactoring and commenting]
+ *         
+ * @author V4.0 Arash & Jonny [Added methods for ProductsToListTests]
+ * @author V5.0 Prashant [Final Refactoring and commenting]
  * 
  * @author Checked By: Matthew Wells [06/06/14]
  * 
  * @version V3.0 [Date Created: 4 Jun 2014]
- * @version V4.0 [Date Created: 6 Jun 2014] 
+ * @version V4.0 [Date Created: 6 Jun 2014]
+ * @version V5.0 [Date Created: 7 Jun 2014] 
  */
 public class SqlConnection {
 
