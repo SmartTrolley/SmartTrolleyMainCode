@@ -4,11 +4,12 @@
  * Class Description: OffersScreenController allows java interaction with
  * OffersScreen.fxml
  * 
- * @author Arne
+ * @author V1.0 Arne
+ * @author V2.0 Arash & Jonny [Add button was added, total price update and total quantity update]
  * 
  * @author [Checked By:] [Checker(s) fill here]
  * 
- * @version [1.0] [Date Created: 07/03/14]
+ * @version [2.0] [Date Created: 08/06/14]
  */
 package smarttrolleygui;
 

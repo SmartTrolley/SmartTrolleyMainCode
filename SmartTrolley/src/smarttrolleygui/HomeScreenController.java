@@ -7,12 +7,13 @@
  * @author Arne
  * @author samgeering [Category Filtering added]
  * @author Alick Jacklin & Prashant Chakravarty V 1.1
- *
+ * @author V2.0 Arash & Jonny [Add product button,total price update and total quantity update]
  *
  * @author [Checked By:] [Checker(s) fill here]
  *
  * @version [1.0] [Date Created: 22/02/14]
  * @Verison [1.1] [Date Created: 30/05/2014] 
+ * @Verison [2.0] [Date Created: 08/06/2014] 
  */
 package smarttrolleygui;
 

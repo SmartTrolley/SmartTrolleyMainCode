@@ -6,10 +6,12 @@
  *
  * @author V1.0 Arne
  * @author V1.1 Alick & Prashant [Delete Functionality added]
- *
+ * @author V2.0 Arash & Jonny [Add and remove product button, 
+ *                              total price update and total quantity update]
+ *                              
  * @author [Checked By:] [Checker(s) fill here]
  *
- * @version [1.1] [Date Created: 06/03/14]
+ * @version [2.0] [Date Created: 08/06/14]
  */
 package smarttrolleygui;
 
