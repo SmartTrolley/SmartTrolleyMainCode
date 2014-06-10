@@ -1,3 +1,4 @@
+package smarttrolleygui;
 /**
  * Product
  * 
@@ -6,14 +7,12 @@
  * path to product image, product name, product price
  * 
  * @author Arne
- * 
+ * @author V1.1 Thomas [Commenting] 
  * @author [Checked By:] [Checker(s) fill here]
  * 
  * @version [1.0] [Date Created: 28/02/14]
+ * @version [1.1] [Date Created: 10/06/14]
  */
-
-package smarttrolleygui;
-
 public class Product{
 	private int id;
 	private String image;

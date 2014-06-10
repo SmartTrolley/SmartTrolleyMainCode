@@ -26,7 +26,7 @@ import toolBox.SmartTrolleyToolBox;
 *
 * @version [V1] [Date Created: 25/04/2014]
 */
-public class SlideShapeFactoryTest {
+public class TestSlideShapeFactory {
 
 	
 	/**Points used to draw shapes for the test*/

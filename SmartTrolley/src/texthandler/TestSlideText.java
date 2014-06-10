@@ -2,6 +2,8 @@
 package texthandler;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
@@ -25,7 +27,7 @@ import org.junit.Test;
 *
 * @version version of this file [Date Created: 23 May 2014]
 */
-public class SlideTextTest {
+public class TestSlideText {
 	
 	ArrayList<SlideTextBody> texts;
 	SlideText textBox;
@@ -45,17 +47,16 @@ public class SlideTextTest {
 	
 	/**
 	 * This setup method runs before any of the tests. It populates, sets up and creates a new 
-	 *@throws java.lang.Exception
 	 *<p> Date Modified: 23 May 2014
 	 */
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		
 		//populate a list of textbodies
 		texts = new ArrayList<SlideTextBody>();
-		texts.add(new SlideTextBody(oneString, true, true, true, 1,1));
-		texts.add(new SlideTextBody(twoString, false, true, false, 2,1));
-		texts.add(new SlideTextBody(threeString, false, false, true, 2,1));
+		texts.add(new SlideTextBody(oneString, true, true, true, 1));
+		texts.add(new SlideTextBody(twoString, false, true, false, 1));
+		texts.add(new SlideTextBody(threeString, false, false, true, 1));
 		
 		textBox = new SlideText(texts, font, fontColor, 
 					fontSize, xStart, yStart, xEnd, yEnd, startTime, duration,1);
@@ -110,7 +111,31 @@ public class SlideTextTest {
 	
 	@Test
 	public void durationTest(){
+
 		
+		textBox.show();
+		
+		assertFalse(textBox.isVisible());
+		
+		// sleep for a little longer than start time
+		try {
+			Thread.sleep((long) (startTime*1001));
+		} catch (InterruptedException e) {			
+			e.printStackTrace();
+		}
+		
+		//shape should have appeared
+		assertTrue(textBox.isVisible());
+
+		// sleep for a little longer than duration
+		try {
+			Thread.sleep((long) (duration*1001));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		// shape should have disappeared
+		assertFalse(textBox.isVisible());		
 	}
 }
 /**************End of SlideTextTest.java**************/

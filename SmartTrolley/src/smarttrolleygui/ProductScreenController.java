@@ -1,15 +1,3 @@
-/**
- * ProductScreenController
- *
- * Class Description: ProductScreenController allows java interaction with
- * ProductScreen.fxml
- *
- * @author Arne
- *
- * @author [Checked By:] [Checker(s) fill here]
- *
- * @version [1.0] [Date Created: 22/05/14]
- */
 package smarttrolleygui;
 
 import java.net.URL;
@@ -35,7 +23,20 @@ import smarttrolleygui.slideshow.SlideShow;
 import smarttrolleygui.slideshow.SlideShow.PlayDirection;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-
+/**
+ * ProductScreenController
+ *
+ * Class Description: ProductScreenController allows java interaction with
+ * ProductScreen.fxml
+ *
+ * @author Arne
+ * @author V1.1 Thomas [Commenting] 
+ *
+ * @author [Checked By:] [Checker(s) fill here]
+ *
+ * @version [1.0] [Date Created: 22/05/14]
+ * @version [1.1] [Date Created: 10/06/14]
+ */
 public class ProductScreenController extends ControllerGeneral implements Initializable {
 
 	/**Message Box Height*/
@@ -312,7 +313,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	}
 
 	/**
-	 * setApp
+	 * Tells JavaFX that the application class is SmarttrolleyGUI
 	 *
 	 * @param application
 	 * <p>
@@ -324,7 +325,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 
 	/**
 	 * loadStartScreen is called when the smart trolley logo is pressed. It
-	* calls the static loadStartScreen method in ControllerGeneral.java
+	 * calls the static loadStartScreen method in ControllerGeneral.java
 	 *
 	 * @param event - response to click on smart trolley logo in navigation bar
 	 * <p>
@@ -362,7 +363,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 
 	/**
 	 * loadOffers is called when the 'offers' button is pressed. It calls the
-	* calls the static loadOffers method in ControllerGeneral.java
+	 * calls the static loadOffers method in ControllerGeneral.java
 	 * <p>
 	 * User can browse store's offers
 	 *

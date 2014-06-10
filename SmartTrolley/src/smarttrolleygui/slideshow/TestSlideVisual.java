@@ -1,17 +1,3 @@
-/**
- * SmartTrolley
- *
- * This file contains all visual tests for Slide
- * when run displays a cookie monster jpeg, a graphic shape, some text, video
- * and runs audio.
- *
- * @author Alick Jacklin
- * @author Matthew Wells
- *
- * @author Checked By: Prashant Chakravarty [29 May 2014]
- *
- * @version V1.5 [Date Created: 26 May 2014]
- */
 package smarttrolleygui.slideshow;
 
 import graphicshandler.ShapePoint;
@@ -31,7 +17,20 @@ import texthandler.SlideText;
 import texthandler.SlideTextBody;
 import videohandler.SlideVideo;
 import audiohandler.AudioHandler;
-
+/**
+ * SmartTrolley
+ *
+ * This file contains all visual tests for Slide
+ * when run displays a cookie monster jpeg, a graphic shape, some text, video
+ * and runs audio.
+ *
+ * @author Alick Jacklin
+ * @author Matthew Wells
+ *
+ * @author Checked By: Prashant Chakravarty [29 May 2014]
+ *
+ * @version V1.5 [Date Created: 26 May 2014]
+ */
 public class TestSlideVisual extends Application {
 	
 	private Slide productSlide;
@@ -189,7 +188,7 @@ public class TestSlideVisual extends Application {
 	*/
 	public void setupText(){
 		texts = new ArrayList<SlideTextBody>();
-		texts.add(new SlideTextBody(oneString, true, true, true, 1,1));
+		texts.add(new SlideTextBody(oneString, true, true, true, 1));
 		
 		SlideText textBox = new SlideText(texts, font, fontColor, fontSize, xTextStart, yTextStart,
 				xTextEnd, yTextEnd, textStartTime, textDuration,1);

@@ -1,3 +1,4 @@
+package smarttrolleygui;
 /**
  * Product
  * 
@@ -6,14 +7,14 @@
  * OfferID, productID, Offer price
  * 
  * @author Sam
+ * @author Thomas
+ * @author V1.1 Thomas [Commenting]
  * 
  * @author [Checked By:] [Checker(s) fill here]
  * 
  * @version [1.0] [Date Created: 5/05/14]
+ * @version [1.1] [Date Created: 10/06/14]
  */
-
-package smarttrolleygui;
-
 public class Offer {
 	private int offerId;
 	private int productId;

@@ -1,6 +1,13 @@
+package slideshowdata;
+
+import java.io.File;
+
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
 /**
 * SmartTrolley
 *
+*class for Simple XML parser
 *
 * @author Thomas Lea
 *
@@ -8,13 +15,6 @@
 *
 * @version V1.0 [Date Created: 26 May 2014]
 */
-package slideshowdata;
-
-import java.io.File;
-
-import org.simpleframework.xml.Serializer;
-import org.simpleframework.xml.core.Persister;
-
 public class PWSParser {
 	
 	public Serializer serializer = new Persister();
@@ -31,6 +31,12 @@ public class PWSParser {
 	}	
 	
 	
+	/**
+	* parses an xml file from its filename
+	*@param document
+	*@return SlideShowData
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public SlideShowData read(String document){
 
 		File source = new File(document);
@@ -38,6 +44,12 @@ public class PWSParser {
 		return read(source);
 	}
 	
+	/**
+	* parses an xml file from its file
+	*@param source
+	*@return SlideShowData
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public SlideShowData read(File source){
 
 		SlideShowData parsedSlideShowData = null;
@@ -51,7 +63,5 @@ public class PWSParser {
 	}
 	
 }
-
-
 
 /**************End of PWSParser.java**************/

@@ -26,7 +26,7 @@ import toolBox.SmartTrolleyToolBox;
 * @version V2.0 [Date Created: 6 Jun 2014] 
  * 
  */
-public class SqlConnectionTest {
+public class TestSqlConnection {
 
 	private static SqlConnection productsDatabase;
 	private ObservableList<ListProduct> products;

@@ -1,17 +1,3 @@
-/** 
-* SmartTrolleyGUI
-* 
-* Class Description: 
-* Main GUI class that launches application window.
-*
-* @author Arne
-* 
-*
-* @author [Checked By:] Alick Jacklin and Prashant Chakravarty [13/05/2014]
-*
-* @version [1.0] [Date Created: 22/02/14]
-*/
-
 package smarttrolleygui;
 
 import java.io.IOException;
@@ -36,7 +22,20 @@ import slideshowdata.SlideShowData;
 import smarttrolleygui.slideshow.Slide;
 import smarttrolleygui.slideshow.SlideShow;
 import toolBox.SmartTrolleyToolBox;
-
+/** 
+* SmartTrolleyGUI
+* 
+* Class Description: 
+* Main GUI class that launches application window.
+*
+* @author Arne
+* @author V2.1 Thomas [Commenting] 
+*
+* @author [Checked By:] Alick Jacklin and Prashant Chakravarty [13/05/2014]
+*
+* @version [1.0] [Date Created: 22/02/14]
+* @version [1.1] [Date Created: 10/06/2014]
+*/
 public class SmartTrolleyGUI extends Application {
 
 	/**The displayed stage*/
@@ -89,14 +88,6 @@ public class SmartTrolleyGUI extends Application {
 			getStage().setMinWidth(MIN_WINDOW_WIDTH);
 			getStage().setMinHeight(MIN_WINDOW_HEIGHT);
 			goToStartScreen();
-
-			// for debugging purposes uncomment ONE of the following four lines and comment previous line
-			// goToHomeScreen();
-			// goToFavourites();
-			// goToShoppingList();
-			// goToNewOffers();
-			// goToProductScreen();
-
 			getStage().show();
 		} catch (Exception ex) {
 			FXMLNotFound();

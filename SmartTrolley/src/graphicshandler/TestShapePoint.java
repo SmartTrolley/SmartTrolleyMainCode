@@ -21,7 +21,7 @@ import org.junit.Test;
  * @version [v1.0] [Date Created: 10/03/14]
  */
 
-public class ShapePointTest {
+public class TestShapePoint {
 
 	private ShapePoint point, point2, point3;
 	private int x = 1, y=2, pointNumber = 3;

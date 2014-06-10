@@ -25,7 +25,7 @@ import org.junit.Test;
  *
  * @version [v1.0] [Date Created: 20/04/14]
  */
-public class SlideShapeTest {
+public class TestSlideShape {
 
 	/**Points used to draw shapes for the test*/
 	public PriorityQueue<ShapePoint> points;
@@ -37,8 +37,8 @@ public class SlideShapeTest {
 	public SlidePolygon square; 
 	public SlideEllipse circle;
 	public String fillColor = "#0000FF", lineColor = "#FF0000";
-	int duration = 5;
-	int startTime = 5;
+	int duration = 2;
+	int startTime = 2;
 
 	/**
 	*Setup Class For SlideShapeFactory Test sets up the points and a square and a circle

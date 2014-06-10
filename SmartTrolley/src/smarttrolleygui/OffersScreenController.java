@@ -1,16 +1,3 @@
-/**
- * OffersScreenController
- * 
- * Class Description: OffersScreenController allows java interaction with
- * OffersScreen.fxml
- * 
- * @author V1.0 Arne
- * @author V2.0 Arash & Jonny [Add button was added, total price update and total quantity update]
- * 
- * @author [Checked By:] [Checker(s) fill here]
- * 
- * @version [2.0] [Date Created: 08/06/14]
- */
 package smarttrolleygui;
 
 import java.net.URL;
@@ -41,7 +28,20 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-
+/**
+ * OffersScreenController
+ * 
+ * Class Description: OffersScreenController allows java interaction with
+ * OffersScreen.fxml
+ * 
+ * @author V1.0 Arne
+ * @author V2.0 Arash & Jonny [Add button was added, total price update and total quantity update]
+ * @author V1.1 Thomas [Commenting]
+ * @author [Checked By:] [Checker(s) fill here]
+ * 
+ * @version [2.0] [Date Created: 08/06/14]
+ * @version [2.1] [Date Created: 10/06/14]
+ */
 public class OffersScreenController extends ControllerGeneral implements Initializable {
 
 	@FXML
@@ -74,17 +74,17 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	private String categoryNumber = null;
 
 	/**
-	 * initialize is automatically called when the controller is created.
+	 * Initialise is automatically called when the controller is created.
 	 * <p>
 	 * Date Modified: 07 Mar 2014
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		// ToDo move to initialize
+		// ToDo move to initialise
 		// Set the total labels
 		ObservableList<Double> data;
 		try {
-			data = SetTotals();
+			data = setTotals();
 
 			lblTotal.setText("Total: £" + data.get(0).floatValue());
 			lblTotalItems.setText("Items: " + data.get(1).toString().replace(".0", ""));
@@ -112,23 +112,12 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 		initializeProductTable();
 	}
 
-	/**
-	*Searches database for product entered into the TextField.
-	*<p>User is able to search for product
-	*@param event
-	*@throws SQLException
-	*<p> Date Modified: 30 May 2014
-	
-	public void searchForProducts(ActionEvent event) throws SQLException {
-
-		productTable.setItems(searchForProductInSearchBox(searchBox.getText()));
-	}*/
-
-	/** Any FXML item with a mouse click handle will use this method to dictate its reaction when clicked
-	 * 
-	 * This should only be for the Category List (ListView)
-	 * 
-	 */
+	/** 
+	* Any FXML item with a mouse click handle will use this method to dictate its reaction when clicked
+	* This should only be for the Category List (ListView)
+	*@param arg0
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@FXML
 	public void handleMouseClick(MouseEvent arg0) {
 
@@ -149,11 +138,11 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	}
 
 	/**
-	 * setApp
+	 * Tells JavaFX that the application class is SmarttrolleyGUI
 	 * 
 	 * @param application
-	 *            <p>
-	 *            Date Modified: 28 Feb 2014
+	 * <p>
+	 * Date Modified: 28 Feb 2014
 	 */
 	public void setApp(SmartTrolleyGUI application) {
 		this.application = application;
@@ -271,6 +260,8 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 									SmartTrolleyToolBox.print("Pressed name of product: " + productName);
 									// TODO: add code to move to product screen here and refactor individual controllers
 									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(productName).getID());
+									
+									application.productClicked = true;
 									application.goToProductScreen();
 								}
 							});
@@ -325,7 +316,7 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 										conn.closeConnection();
 
 										// Now updated the totals
-										ObservableList<Double> data = SetTotals();
+										ObservableList<Double> data = setTotals();
 										lblTotal.setText("Total: £" + data.get(0).floatValue());
 										lblTotalItems.setText("Items: " + data.get(1).toString().replace(".0", ""));
 
@@ -371,7 +362,10 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 								public void handle(ActionEvent event) {
 									SqlConnection sqlConnection = new SqlConnection();
 									SmartTrolleyToolBox.print("Pressed image of product: " + product.getName());
+									// TODO: add code to move to product screen here and refactor individual controllers	
 									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(product.getName()).getID());
+									
+									application.productClicked = true;
 									application.goToProductScreen();
 								}
 							});
@@ -387,8 +381,14 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	public static int getProductDataSize() {
 		return productData.size();
 	}
-
-	private ObservableList<Double> SetTotals() throws SQLException {
+	
+	/**
+	* Sets the totals for the amount spent and saved 
+	*@return ObservableList<Double>
+	*@throws SQLException
+	*<p> Date Modified: 10 Jun 2014
+	*/
+	private ObservableList<Double> setTotals() throws SQLException {
 		double total = 0;
 		double totalItems = 0;
 

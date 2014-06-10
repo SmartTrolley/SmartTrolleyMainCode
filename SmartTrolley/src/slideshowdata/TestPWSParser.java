@@ -1,14 +1,3 @@
-/**
-* SmartTrolley
-*
-* Tests PWSParser.java with the user story: User can load PWS compatible XML File into program
-*
-* @author Thomas Lea
-*
-* @author Checked By: Checker(s) fill here
-*
-* @version V1.0 [Date Created: 26 May 2014]
-**/
 package slideshowdata;
 
 import static org.junit.Assert.assertEquals;
@@ -20,7 +9,17 @@ import org.junit.Test;
 
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-
+/**
+* SmartTrolley
+*
+* Tests PWSParser.java with the user story: User can load PWS compatible XML File into program
+*
+* @author Thomas Lea
+*
+* @author Checked By: Checker(s) fill here
+*
+* @version V1.0 [Date Created: 26 May 2014]
+**/
 public class TestPWSParser {
 	
 	private PWSParser parser;
@@ -35,8 +34,12 @@ public class TestPWSParser {
 	private ShapeData firstShape; 	
 	private PointData firstPoint; 
 	
+	/**
+	*setup class that parses the xml file and defines some fields
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Before
-	public void setUp() throws Exception {
+	public void setUp(){
 		
 		parser  =  new PWSParser();
 		data = new SlideShowData();
@@ -51,6 +54,10 @@ public class TestPWSParser {
 		
 	}
 	
+	/**
+	* Tests that the correct slide attribute info is parsed
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
 	public void correctSlideAttributeTest(){
 		assertEquals(data.getSlides().get(0).getId(), 0);
@@ -58,8 +65,12 @@ public class TestPWSParser {
 		assertEquals(data.getSlides().get(0).getLastSlide(), true);
 	}
 	
+	/**
+	* Tests that the correct Document info is parsed
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
-	public void correctDocumentInfoTest() throws Exception{
+	public void correctDocumentInfoTest(){
 		
 		assertEquals(data.getDocumentinfo().getAuthor() , "D6 Digital");
 		assertEquals(data.getDocumentinfo().getVersion() , "2.1");
@@ -73,8 +84,12 @@ public class TestPWSParser {
 				+ ", "  + data.getDocumentinfo().getHeight() + "\n");
 	}
 	
+	/**
+	* Tests that the correct defaults info is parsed
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
-	public void correctDefaultsTest() throws Exception{
+	public void correctDefaultsTest(){
 		
 		assertEquals(data.getDefaults().getBackgroundcolor() ,"#948A54");
 		assertEquals(data.getDefaults().getFont() ,"Papyrus");
@@ -89,8 +104,13 @@ public class TestPWSParser {
 		
 	}
 	
+	/**
+	* Tests that the correct defaults info is parsed
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
-	public void correctSlideTest() throws Exception{
+	public void correctSlideTest(){
 		
 		assertEquals(firstSlide.getId() , 0);
 		assertEquals(firstSlide.getDuration() , 60);
@@ -102,8 +122,12 @@ public class TestPWSParser {
 		
 	}
 	
+	/**
+	* Tests that the correct text info is parsed
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
-	public void correctTextAttributeTest() throws Exception{
+	public void correctTextAttributeTest(){
 		
 		assertEquals(firstText.getXstart() , 20);
 		assertEquals(firstText.getYstart() , 291);
@@ -121,8 +145,12 @@ public class TestPWSParser {
 				+ ", "  + firstText.getFont() + ", " + firstText.getFontcolor() + ", " + firstText.getFontsize() + "\n");
 	}
 	
+	/**
+	* Tests that the correct textbody info is parsed
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
-	public void correctTextbodyTest() throws Exception{
+	public void correctTextbodyTest(){
 		
 		int i = 0;
 		
@@ -150,8 +178,12 @@ public class TestPWSParser {
 				+  ", " + firstText.getTextbodies().get(i).getTextstring() + "\n");
 	}
 	
+	/**
+	* Tests that the correct video info is parsed
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
-	public void correctVideoTest() throws Exception{
+	public void correctVideoTest(){
 		
 		assertEquals(firstVideo.getUrlname() ,"resources/video/video/monstersinc_high.mpg");
 		assertEquals(firstVideo.getXstart() , 456);
@@ -169,8 +201,12 @@ public class TestPWSParser {
 		
 	}
 	
+	/**
+	* Tests that the correct image info is parsed
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
-	public void correctImageTest() throws Exception{
+	public void correctImageTest(){
 		
 		assertEquals(firstImage.getUrlname() ,"resources/images/Desert.jpg");
 		assertEquals(firstImage.getXstart() ,383);
@@ -188,8 +224,12 @@ public class TestPWSParser {
 		
 	}
 	
+	/**
+	* Tests that the correct shape info is parsed
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
-	public void correctShapeTest() throws Exception{
+	public void correctShapeTest(){
 		
 		assertEquals(firstShape.getDuration(), 0);
 		assertEquals(firstShape.getStarttime(), 3);
@@ -206,8 +246,12 @@ public class TestPWSParser {
 		
 	}
 		
+	/**
+	* Tests that the correct point info is parsed
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
-	public void correctPointTest() throws Exception{
+	public void correctPointTest(){
 		
 		assertEquals(firstPoint.getX(), 269);
 		assertEquals(firstPoint.getY(), 38);
@@ -218,13 +262,13 @@ public class TestPWSParser {
 		
 	}
 	
-
-
 	
-	
-	
+	/**
+	* Tests that a product is created correctly in the database and then deletes that product
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
-	public void createProductTest() throws SQLException{
+	public void createProductTest(){
 		SqlConnection sqlConnector = new SqlConnection();
 		
 		

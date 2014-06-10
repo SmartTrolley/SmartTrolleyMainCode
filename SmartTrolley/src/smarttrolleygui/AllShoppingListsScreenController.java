@@ -1,16 +1,3 @@
-/** 
- * AllShoppingListsScreenController
- * 
- * Class Description: 
- * AllShoppingListsScreenController allows java interaction with AllShoppingListsScreen.fxml
- *
- * @author Arne
- *
- * @author [Checked By:] [Checker(s) fill here]
- *
- * @version [1.0] [Date Created: 06/03/14]
- */
-
 package smarttrolleygui;
 
 import java.net.URL;
@@ -28,7 +15,19 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-
+/** 
+ * AllShoppingListsScreenController
+ * 
+ * Class Description: 
+ * AllShoppingListsScreenController allows java interaction with AllShoppingListsScreen.fxml
+ *
+ * @author Arne
+ * @author V1.1 Thomas [Commenting]
+ * @author [Checked By:] [Checker(s) fill here]
+ *
+ * @version [1.0] [Date Created: 06/03/14]
+ * @version [1.1] [Date Created: 10/06/2014]
+ */
 public class AllShoppingListsScreenController extends ControllerGeneral implements Initializable {
 
 	private SmartTrolleyGUI application;
@@ -138,10 +137,8 @@ public class AllShoppingListsScreenController extends ControllerGeneral implemen
 	}
 
 	/**
-	 * setApp
-	 * 
+	 * Tells JavaFX that the application class is SmarttrolleyGUI
 	 * @param application
-	 * <p>
 	 * Date Modified: 28 Feb 2014
 	 */
 	public void setApp(SmartTrolleyGUI application) {
@@ -153,7 +150,6 @@ public class AllShoppingListsScreenController extends ControllerGeneral implemen
 	 * the goToStartScreen method in SmartTrolleyGUI.java
 	 * @param event
 	 * - response to click on 'go back' button
-	 * <p>
 	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {

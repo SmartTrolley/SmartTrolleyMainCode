@@ -1,15 +1,3 @@
-/**
- * SmartTrolley
- *
- * This file contains all automated tests for Slide
- *
- * @author Alick Jacklin
- * @author Matthew Wells
- *
- * @author Checked By: Prashant Chakravarty [29 May 2014]
- *
- * @version V1.4 [Date Created: 26 May 2014]
- */
 package smarttrolleygui.slideshow;
 
 import static org.junit.Assert.assertEquals;
@@ -35,7 +23,18 @@ import texthandler.SlideTextBody;
 import toolBox.SmartTrolleyToolBox;
 import videohandler.SlideVideo;
 import audiohandler.AudioHandler;
-
+/**
+ * SmartTrolley
+ *
+ * This file contains all automated tests for Slide
+ *
+ * @author Alick Jacklin
+ * @author Matthew Wells
+ *
+ * @author Checked By: Prashant Chakravarty [29 May 2014]
+ *
+ * @version V1.4 [Date Created: 26 May 2014]
+ */
 public class TestSlide {
 
 	private TestSlideVisual visualTesting;
@@ -227,7 +226,7 @@ public class TestSlide {
 	*/
 	public void setupText() {
 		texts = new ArrayList<SlideTextBody>();
-		texts.add(new SlideTextBody(oneString, true, true, true, 1,1));
+		texts.add(new SlideTextBody(oneString, true, true, true,1));
 
 		SlideText textBox = new SlideText(texts, font, fontColor, fontSize, xTextStart, yTextStart, xTextEnd, yTextEnd, textStartTime, textDuration,1);
 

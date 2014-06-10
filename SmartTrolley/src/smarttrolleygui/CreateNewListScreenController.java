@@ -1,16 +1,3 @@
-/** 
- * CreateNewListScreenController
- * 
- * Class Description: 
- * CreateNewListScreenController allows java interaction with CreateNewListScreen.fxml
- *
- * @author Arne
- *
- * @author [Checked By:] [Checker(s) fill here]
- *
- * @version [1.0] [Date Created: 03/05/14]
- */
-
 package smarttrolleygui;
 
 import java.net.URL;
@@ -25,7 +12,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-
+/** 
+ * CreateNewListScreenController
+ * 
+ * Class Description: 
+ * CreateNewListScreenController allows java interaction with CreateNewListScreen.fxml
+ *
+ * @author Arne
+ * @author V1.1 Thomas [Commenting]
+ *
+ * @author [Checked By:] [Checker(s) fill here]
+ *
+ * @version [1.0] [Date Created: 03/05/14]
+ * @version [1.1] [Date Created: 10/06/2014]
+ */
 public class CreateNewListScreenController extends ControllerGeneral implements Initializable {
 
 	private SmartTrolleyGUI application;
@@ -39,7 +39,7 @@ public class CreateNewListScreenController extends ControllerGeneral implements 
 	private Label notifierLabel;
 	
 	/**
-	 * initialize is automatically called when the controller is created.
+	 * Initialise is automatically called when the controller is created.
 	 * <p>
 	 * Date Modified: 06 Mar 2014
 	 */
@@ -48,11 +48,11 @@ public class CreateNewListScreenController extends ControllerGeneral implements 
 	}
 
 	/**
-	 * setApp
+	 * Tells JavaFX that the application class is SmarttrolleyGUI
 	 * 
 	 * @param application
-	 *            <p>
-	 *            Date Modified: 28 Feb 2014
+	 * <p>
+	 * Date Modified: 28 Feb 2014
 	 */
 	public void setApp(SmartTrolleyGUI application) {
 		this.application = application;
@@ -63,9 +63,9 @@ public class CreateNewListScreenController extends ControllerGeneral implements 
 	 * the goToStartScreen method in SmartTrolleyGUI.java
 	 * 
 	 * @param event
-	 *            - response to click on 'go back' button
-	 *            <p>
-	 *            Date Modified: 6 Mar 2014
+	 * - response to click on 'go back' button
+	 * <p>
+	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
 		loadScreen(Screen.STARTSCREEN, application);
@@ -80,9 +80,9 @@ public class CreateNewListScreenController extends ControllerGeneral implements 
 	 * User can create a new shopping list
 	 * 
 	 * @param event
-	 *            - response to click on 'Create new list' button
-	 *            <p>
-	 *            Date Modified: 3 May 2014
+	 * - response to click on 'Create new list' button
+	 * <p>
+	 * Date Modified: 3 May 2014
 	 */
 	public void createNewList(ActionEvent event) throws SQLException {
 		

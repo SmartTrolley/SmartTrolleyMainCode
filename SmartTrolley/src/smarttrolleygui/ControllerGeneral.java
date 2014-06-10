@@ -1,15 +1,3 @@
-/**
- * ControllerGeneral
- * 
- * Class Description: This class will hold methods that are used by multiple controller classes.
- * 
- * @author Sam
- * 
- * @author [Checked By:] [Checker(s) fill here]
- *
- * @version [1.0] [Date Created: 15/05/14]
- *
- */
 package smarttrolleygui;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -25,7 +13,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 import toolBox.SmartTrolleyToolBox;
-
+/**
+ * ControllerGeneral
+ * 
+ * Class Description: This class will hold methods that are used by multiple controller classes.
+ * 
+ * @author Sam
+ * @author V1.1 Thomas [Commenting]
+ * 
+ * @author [Checked By:] [Checker(s) fill here]
+ *
+ * @version [1.0] [Date Created: 15/05/14]
+ * @version [1.1] [Date Created: 10/06/2014]
+ */
 public class ControllerGeneral {
 
 	/**
@@ -77,9 +77,11 @@ public class ControllerGeneral {
 	}
 
 	/**
-	 * loadStartScreen is called when the smart trolley logo is pressed. It
+	* loadStartScreen is called when the smart trolley logo is pressed. It
 	* calls the goToStartScreen method in SmartTrolleyGUI.java
-	 */
+	*@param application
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	protected static void loadStartScreen(SmartTrolleyGUI application) {
 		if (application == null) {
 			// We are running in isolated FXML
@@ -90,11 +92,11 @@ public class ControllerGeneral {
 	}
 
 	/**
-	 * loadHomeScreen is called when the 'home' button is pressed. It calls the
-	 * goToHomeScreen method in SmartTrolleyGUI.java
-	 * <p>
-	 * User navigates through product database
-	 */
+	* loadHomeScreen is called when the 'home' button is pressed. It calls the
+	* goToHomeScreen method in SmartTrolleyGUI.java
+	*@param application
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	protected static void loadHomeScreen(SmartTrolleyGUI application) {
 		if (application == null) {
 			// We are running in isolated FXML
@@ -105,10 +107,12 @@ public class ControllerGeneral {
 	}
 
 	/**
-	 * loadShoppingList is called when the 'list' button is pressed. It calls
-	 * the goToShoppingList method in SmartTrolleyGUI.java
-	 * <p> User can view shopping list
-	 */
+	* loadShoppingList is called when the 'list' button is pressed. It calls
+	* the goToShoppingList method in SmartTrolleyGUI.java
+	* <p> User can view shopping list
+	*@param application
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	protected static void loadShoppingList(SmartTrolleyGUI application) {
 		if (application == null) {
 			// We are running in isolated FXML
@@ -119,11 +123,13 @@ public class ControllerGeneral {
 	}
 
 	/**
-	 * loadOffers is called when the 'offers' button is pressed. It calls the
+	* loadOffers is called when the 'offers' button is pressed. It calls the
 	* goToOffers method in SmartTrolleyGUI.java
-	 * <p>
-	 * User can browse store's offers
-	 */
+	* <p>
+	* User can browse store's offers
+	*@param application
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	protected static void loadOffers(SmartTrolleyGUI application) {
 		if (application == null) {
 			// We are running in isolated FXML
@@ -134,11 +140,13 @@ public class ControllerGeneral {
 	}
 
 	/**
-	 * loadFavourites is called when the 'favourites' button is pressed. It
+	* loadFavourites is called when the 'favourites' button is pressed. It
 	* calls the goToFavourites method in SmartTrolleyGUI.java
-	 * <p>
-	 * User can maintain list of favourite products
-	 */
+	* <p>
+	* User can maintain list of favourite products
+	*@param application
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	protected static void loadFavourites(SmartTrolleyGUI application) {
 		if (application == null) {
 			// We are running in isolated FXML

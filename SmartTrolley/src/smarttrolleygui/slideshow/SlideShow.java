@@ -1,15 +1,3 @@
-/**
- * SmartTrolley
- *
- * Instances of this object contain all elements in a slideshow, as described in the PWS
- *
- * @author Prashant Chakravarty
- *
- * @author Checked By: Alasdair 29 May 2014
- *
- * @version V1.0 [Date Created: 24 May 2014]
- */
-
 package smarttrolleygui.slideshow;
 
 import java.util.ArrayList;
@@ -24,7 +12,17 @@ import se.mbaeumer.fxmessagebox.MessageBoxType;
 import slideshowdata.SlideDataImporter;
 import slideshowdata.SlideShowData;
 import toolBox.SmartTrolleyToolBox;
-
+/**
+ * SmartTrolley
+ *
+ * Instances of this object contain all elements in a slideshow, as described in the PWS
+ *
+ * @author Prashant Chakravarty
+ *
+ * @author Checked By: Alasdair 29 May 2014
+ *
+ * @version V1.0 [Date Created: 24 May 2014]
+ */
 public class SlideShow {
 
 	/**

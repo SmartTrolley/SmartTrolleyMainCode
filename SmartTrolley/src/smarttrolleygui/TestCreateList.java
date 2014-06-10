@@ -1,16 +1,3 @@
-/**
- * SmartTrolley
- *
- * This file tests for list creation
- * Adapted from TestDeleteList.java
- * @author Alick Jacklin
- * @author Prashant Chakravarty
- * 
- * Adapted by Arne
- *
- * @version V1.0 [Date Created: 5 May 2014]
- */
-
 package smarttrolleygui;
 
 import static org.junit.Assert.assertFalse;
@@ -33,7 +20,20 @@ import org.junit.Test;
 
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-
+/**
+ * SmartTrolley
+ *
+ * This file tests for list creation
+ * Adapted from TestDeleteList.java
+ * @author Alick Jacklin
+ * @author Prashant Chakravarty
+ * @author V1.1 Thomas [Commenting] 
+ * 
+ * Adapted by Arne
+ *
+ * @version V1.0 [Date Created: 5 May 2014]
+ * @version [1.1] [Date Created: 10/06/2014]
+ */
 public class TestCreateList {
 
 	private static SqlConnection productsDatabase;

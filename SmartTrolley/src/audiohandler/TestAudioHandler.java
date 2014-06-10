@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-public class AudioHandlerTest {
+public class TestAudioHandler {
 	
 	AudioHandler audio;
 	

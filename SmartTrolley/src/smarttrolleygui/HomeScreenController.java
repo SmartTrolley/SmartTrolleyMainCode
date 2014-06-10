@@ -1,20 +1,3 @@
-/**
- * HomeScreenController
- *
- * Class Description: HomeScreenController allows java interaction with
- * HomeScreen.fxml
- *
- * @author Arne
- * @author samgeering [Category Filtering added]
- * @author Alick Jacklin & Prashant Chakravarty V 1.1
- * @author V2.0 Arash & Jonny [Add product button,total price update and total quantity update]
- *
- * @author [Checked By:] [Checker(s) fill here]
- *
- * @version [1.0] [Date Created: 22/02/14]
- * @Verison [1.1] [Date Created: 30/05/2014] 
- * @Verison [2.0] [Date Created: 08/06/2014] 
- */
 package smarttrolleygui;
 
 import java.net.URL;
@@ -48,7 +31,24 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-
+/**
+ * HomeScreenController
+ *
+ * Class Description: HomeScreenController allows java interaction with
+ * HomeScreen.fxml
+ *
+ * @author Arne
+ * @author sam geering [Category Filtering added]
+ * @author Alick Jacklin & Prashant Chakravarty V 1.1
+ * @author V2.0 Arash & Jonny [Add product button,total price update and total quantity update]
+ * @author V2.1 Thomas [Commenting]
+ * @author [Checked By:] [Checker(s) fill here]
+ *
+ * @version [1.0] [Date Created: 22/02/14]
+ * @Verison [1.1] [Date Created: 30/05/2014] 
+ * @Verison [2.0] [Date Created: 08/06/2014] 
+ * @version [2.1] [Date Created: 10/06/2014]
+ */
 public class HomeScreenController extends ControllerGeneral implements Initializable {
 
 	@FXML
@@ -104,10 +104,11 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 	}
 
 	/** Any FXML item with a mouse click handle will use this method to dictate its reaction when clicked
-	 * 
-	 * This should only be for the Category List (ListView)
-	 * 
-	 */
+	* 
+	* This should only be for the Category List (ListView)
+	*@param arg0
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@FXML
 	public void handleMouseClick(MouseEvent arg0) {
 
@@ -130,17 +131,17 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 	}
 
 	/**
-	 * setApp
+	 * Tells JavaFX that the application class is SmarttrolleyGUI
 	 * 
 	 * @param application
-	 *            <p>
-	 *            Date Modified: 28 Feb 2014
+	 * <p>
+	 * Date Modified: 28 Feb 2014
 	 */
 	public void setApp(SmartTrolleyGUI application) throws SQLException {
 		this.application = application;
 		//TODO Move to initialise
 		//Set the total labels
-        ObservableList<Double> data = SetTotals();
+        ObservableList<Double> data = setTotals();
         lblTotal.setText("Total: £" + data.get(0).floatValue());
         lblTotalItems.setText("Items: " + data.get(1).toString().replace(".0", ""));
 	}
@@ -342,7 +343,7 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 										conn.closeConnection();
 										
 										//Now updated the totals
-										ObservableList<Double> data = SetTotals();
+										ObservableList<Double> data = setTotals();
                                         lblTotal.setText("Total: £" + data.get(0).floatValue());
                                         lblTotalItems.setText("Items: " + data.get(1).toString().replace(".0", ""));
 										
@@ -391,7 +392,10 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 								public void handle(ActionEvent event) {
 									SqlConnection sqlConnection = new SqlConnection();
 									SmartTrolleyToolBox.print("Pressed image of product: " + product.getName());
+									// TODO: add code to move to product screen here and refactor individual controllers	
 									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(product.getName()).getID());
+									
+									application.productClicked = true;
 									application.goToProductScreen();
 									
 								}
@@ -405,7 +409,14 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 		});
 	}
 	
-	private ObservableList<Double> SetTotals() throws SQLException{
+	/**
+	* Sets the totals for the amount spent and saved 
+	*@return ObservableList<Double>
+	*@throws SQLException
+	*[If applicable]@see [Reference URL OR Class#Method]
+	*<p> Date Modified: 10 Jun 2014
+	*/
+	private ObservableList<Double> setTotals() throws SQLException{
         double total = 0;
         double totalItems = 0;
         

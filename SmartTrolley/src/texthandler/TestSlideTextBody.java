@@ -40,7 +40,7 @@ import org.junit.Test;
  * @version 1.0 Date Created: 22/05/2014
  */
 
-public class SlideTextBodyTest {
+public class TestSlideTextBody {
 	//Bold Italic and underlined booleans, default true
 	boolean bold= false, italic = false, underlined = false;
 	SlideTextBody regularFontBodyOne, boldItalicUnderlinedBodyTwo, bodyThree;
@@ -55,16 +55,18 @@ public class SlideTextBodyTest {
 	@Before
 	public void setUp(){
 		
-		regularFontBodyOne = new SlideTextBody(one, bold, italic, underlined, 1, 1);
+		regularFontBodyOne = new SlideTextBody(one, bold, italic, underlined, 1);
+		regularFontBodyOne.setNumber(1);
 		
 		bold = true;
 		italic = true;
 		underlined = true;	
-		boldItalicUnderlinedBodyTwo = new SlideTextBody(two, bold, italic, underlined ,2 ,1);
+		boldItalicUnderlinedBodyTwo = new SlideTextBody(two, bold, italic, underlined,1);
+		boldItalicUnderlinedBodyTwo.setNumber(2);
 		
 		underlined = false;
-		bodyThree = new SlideTextBody(three, bold, italic, underlined, 3, 1);
-		
+		bodyThree = new SlideTextBody(three, bold, italic, underlined, 1);
+		bodyThree.setNumber(3);
 		//Strings that describe the font styles of the bodies. useful for tests.
 		oneStyle = regularFontBodyOne.getFont().getStyle();
 		twoStyle = boldItalicUnderlinedBodyTwo.getFont().getStyle();

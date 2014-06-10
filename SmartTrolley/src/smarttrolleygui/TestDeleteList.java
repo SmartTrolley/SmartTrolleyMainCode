@@ -1,17 +1,3 @@
-//TODO THis test needs to be refactored to launch the application as an instance
-/**
- * SmartTrolley
- *
- * This file tests for list deletion
- *
- * @author Alick Jacklin
- * @author Prashant Chakravarty
- *
- * @author Checked By: Checker(s) fill here
- *
- * @version V2.0 [Date Created: 3 May 2014]
- */
-
 package smarttrolleygui;
 
 import static org.junit.Assert.assertTrue;
@@ -32,7 +18,20 @@ import org.junit.Test;
 
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-
+/**
+ * SmartTrolley
+ *
+ * This file tests for list deletion
+ *
+ * @author Alick Jacklin
+ * @author Prashant Chakravarty
+ * @author V2.1 Thomas [Commenting]
+ *
+ * @author Checked By: Checker(s) fill here
+ *
+ * @version [2.0] [Date Created: 3 May 2014]
+ * @version [2.1] [Date Created: 10/06/2014]
+ */
 public class TestDeleteList {
 
 	private static SqlConnection productsDatabase;

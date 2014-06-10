@@ -1,16 +1,3 @@
-/** 
- * StartScreenController
- * 
- * Class Description: 
- * StartScreenController allows java interaction with StartScreen.fxml
- *
- * @author Arne
- *
- * @author [Checked By:] [Checker(s) fill here]
- *
- * @version [1.0] [Date Created: 06/03/14]
- */
-
 package smarttrolleygui;
 
 import java.io.File;
@@ -28,7 +15,20 @@ import slideshowdata.DataUploader;
 import slideshowdata.PWSParser;
 import slideshowdata.SlideShowData;
 import toolBox.SmartTrolleyToolBox;
-
+/** 
+ * StartScreenController
+ * 
+ * Class Description: 
+ * StartScreenController allows java interaction with StartScreen.fxml
+ *
+ * @author Arne
+ * @author V1.1 Thomas [Commenting] 
+ *
+ * @author [Checked By:] [Checker(s) fill here]
+ *
+ * @version [1.0] [Date Created: 06/03/14]
+ * @version [1.1] [Date Created: 10/06/2014]
+ */
 public class StartScreenController extends ControllerGeneral implements Initializable {
 
 	private SmartTrolleyGUI application;
@@ -45,10 +45,11 @@ public class StartScreenController extends ControllerGeneral implements Initiali
 	}
 
 	/**
-	*setApp
-	*@param application
-	*<p> Date Modified: 28 Feb 2014
-	*/
+	 * Tells JavaFX that the application class is SmarttrolleyGUI
+	 * 
+	 * @param application
+	 * <p> Date Modified: 06 Mar 2014
+	 */
 	public void setApp(SmartTrolleyGUI application) {
 		this.application = application;
 	}

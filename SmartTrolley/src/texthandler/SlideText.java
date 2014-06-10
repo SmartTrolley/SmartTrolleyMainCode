@@ -1,35 +1,34 @@
-/**
- * SmartTrolley
- *
- * A DESCRIPTION OF THE FILE
- *
- * @author Name1
- * @author Name2
- *
- * @author Checked By: Checker(s) fill here
- *
- * @version version of this file [Date Created: 25 May 2014]
- */
-
-/*YOUR CODE HERE*/
 
 
-
-/**************End of SlideText.java**************/
 package texthandler;
+
+import graphicshandler.SlideElementDuration;
 
 import java.util.ArrayList;
 
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import toolBox.SmartTrolleyToolBox;
-
+/**
+ * SmartTrolley
+ *
+ * A DESCRIPTION OF THE FILE
+ *
+ * @author Thomas Lea
+ * @author Sam Geering
+ *
+ * @author Checked By: Checker(s) fill here
+ *
+ * @version version of this file [Date Created: 25 May 2014]
+ */
 public class SlideText extends FlowPane{
 
 	private int width, height;
 	private int xStart;
 	private int yStart;
 	private int layer;
+	private SlideElementDuration duration;
+	
 
 	/**
 	 * DESCRIPTION OF CONSTRUCTOR
@@ -42,6 +41,8 @@ public class SlideText extends FlowPane{
 		super();
 		
 		this.layer = layer;
+		
+		setupDuration(startTime, duration);
 
 		getChildren().addAll(texts);
 
@@ -59,6 +60,19 @@ public class SlideText extends FlowPane{
 		this.yStart = yStart;
 
 	}
+
+	/**
+	* sets up the duration
+	*@param startTime
+	*@param duration
+	*<p> Date Modified: 10 Jun 2014
+	*/
+	private void setupDuration(double startTime, double duration) {
+		this.duration = new SlideElementDuration(this);
+		
+		this.duration.setDuration(duration);
+		this.duration.setStartTime(startTime);
+	}
 	
 	public int getXStart(){
 		return xStart;
@@ -69,13 +83,11 @@ public class SlideText extends FlowPane{
 	}
 
 	/**
-	 *Method/Test Description
-	 *<p>Test(s)/User Story that it satisfies
+	 * Sets up the boundaries of the text
 	 *@param xStart
 	 *@param yStart
 	 *@param xEnd
 	 *@param yEnd
-	 *[If applicable]@see [Reference URL OR Class#Method]
 	 *<p> Date Modified: 25 May 2014
 	 */
 	private void setupBounds(int xStart, int yStart, int xEnd, int yEnd) {
@@ -88,10 +100,8 @@ public class SlideText extends FlowPane{
 	}
 	
 	/**
-	*Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
+	* sets up the wrapping width of the text
 	*@param body
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 22 May 2014
 	*/
 	private void setupWrappingWidth(SlideTextBody body) {
@@ -100,8 +110,7 @@ public class SlideText extends FlowPane{
 	}
 
 	/**
-	* Method to relocate the text to new coordinates
-	*<p>Test(s)/User Story that it satisfies
+	* Allows text to be relocated
 	*@param x_coord
 	*@param y_coord
 	*<p> Date Modified: 5 Jun 2014
@@ -118,5 +127,10 @@ public class SlideText extends FlowPane{
 		return layer;
 	}
 
+	public void show() {
+		duration.show();
+	}
+
 }
 
+/**************End of SlideText.java**************/

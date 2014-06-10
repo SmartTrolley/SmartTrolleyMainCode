@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 *
 * @version [v1.0] [Date Created: 28/04/2014]
 */
-public class GraphicsHandlerVisualTest extends Application {
+public class TestGraphicsHandlerVisual extends Application {
 
 	private PriorityQueue<ShapePoint> points;
 	private int width = 50, height = 50, pointLow = 0, pentagonX = 25, pentagonY = 25;

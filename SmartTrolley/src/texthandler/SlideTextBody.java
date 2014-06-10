@@ -1,19 +1,3 @@
-/**
-* SmartTrolley
-*
-* A DESCRIPTION OF THE FILE
-*
-* @author Name1
-* @author Name2
-*
-* @author Checked By: Checker(s) fill here
-*
-* @version version of this file [Date Created: 22 May 2014]
-*/
-
-/*YOUR CODE HERE*/
-
-/**************End of SlideTextBody.java**************/
 package texthandler;
 
 import graphicshandler.Branchable;
@@ -42,25 +26,6 @@ public class SlideTextBody extends Text implements Comparable<SlideTextBody>, Br
 	private FontWeight bold;
 	private int number;
 	private int branch;
-
-	/**
-	 * @param one
-	 * @param bold
-	 * @param italic
-	 * @param underlined
-	 * @param textNumber 
-	 */
-	public SlideTextBody(String text, boolean bold, boolean italic, boolean underlined, int number, int branch) {
-		
-		setBranch(branch);
-		setText(text);
-		setBold(bold);
-		setItalic(italic);
-		setUnderline(underlined);
-		
-		this.number = number;
-	
-	}
 
 
 	/**
@@ -97,12 +62,15 @@ public class SlideTextBody extends Text implements Comparable<SlideTextBody>, Br
 		
 	}
 	
+	public void setNumber(int number) {
+		this.number = number;
+	}
+	
 	/**
 	*Sets the Font Posture according to an input boolean
 	*
 	*<p>Tests: PostureTest, PostureBoolTest
 	*@param italic
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 23 May 2014
 	*/
 	private void setItalic(boolean italic) {
@@ -120,9 +88,7 @@ public class SlideTextBody extends Text implements Comparable<SlideTextBody>, Br
 	}
 
 	/**
-	*Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
-	*[If applicable]@see [Reference URL OR Class#Method]
+	*Sets up the font
 	*<p> Date Modified: 23 May 2014
 	*/
 	private void setupFont() {
@@ -132,10 +98,8 @@ public class SlideTextBody extends Text implements Comparable<SlideTextBody>, Br
 	}
 
 	/**
-	*Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
+	*Sets up the Bold value
 	*@return
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 23 May 2014
 	*/
 	public boolean isBold() {
@@ -144,6 +108,11 @@ public class SlideTextBody extends Text implements Comparable<SlideTextBody>, Br
 	
 	}
 	
+	/**
+	* returns whether the text body is italic
+	*@return boolean
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	public boolean isItalic() {
 		
 		return getFont().getStyle().contains("Italic");
@@ -171,10 +140,8 @@ public class SlideTextBody extends Text implements Comparable<SlideTextBody>, Br
 
 
 	/**
-	*Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
+	*Sets the font family
 	*@param font
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 25 May 2014
 	*/
 	public void setFontFamily(String font) {
@@ -184,10 +151,8 @@ public class SlideTextBody extends Text implements Comparable<SlideTextBody>, Br
 
 
 	/**
-	*Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
+	*Sets the font size
 	*@param fontSize
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 25 May 2014
 	*/
 	public void setFontSize(int fontSize) {

@@ -1,3 +1,21 @@
+package smarttrolleygui.slideshow;
+
+import graphicshandler.Branchable;
+import imagehandler.SlideImage;
+
+import java.util.ArrayList;
+
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Shape;
+import texthandler.SlideText;
+import texthandler.SlideTextBody;
+import toolBox.SmartTrolleyToolBox;
+import videohandler.SlideVideo;
+import audiohandler.AudioHandler;
 /**
  * SmartTrolley
  ** An instance of this object contains all the information required to render a particular slideshow.
@@ -20,26 +38,6 @@
  *
  * @version V3.0 [Date Created: 26 May 2014]
  */
-
-package smarttrolleygui.slideshow;
-
-import graphicshandler.Branchable;
-import imagehandler.SlideImage;
-
-import java.util.ArrayList;
-
-import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.shape.Shape;
-import texthandler.SlideText;
-import texthandler.SlideTextBody;
-import toolBox.SmartTrolleyToolBox;
-import videohandler.SlideVideo;
-import audiohandler.AudioHandler;
-
 public class Slide extends AnchorPane {
 
 	private ArrayList<Shape> graphicsList;

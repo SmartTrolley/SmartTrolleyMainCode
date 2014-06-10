@@ -1,15 +1,16 @@
+package smarttrolleygui;
 /**
  * ListProduct
  *
  * Class Description: This Class extends product, it is used when the product is in a list. 
  *
  * @author V1.0 Arash & Jonny 
+ * @author V1.1 Thomas [Commenting]
  * @author [Checked By:] [Checker(s) fill here]
  * 
  * @version [1.0] [Date Created: 8/06/14]
+ * @version [1.1] [Date Created: 10/06/14]
  */
-package smarttrolleygui;
-
 public class ListProduct extends Product{
 
     private int quantity;
@@ -19,6 +20,10 @@ public class ListProduct extends Product{
     	super();
 	}
     
+    /**
+     * CONSTRUCTOR
+     *<p> Date Modified: 10 Jun 2014
+     */
     public ListProduct(String imageURL, String productName, float productPrice, Integer categoryID, int isFavourite, Integer quantity, Integer ID) {
        // super(imageURL, productName, productPrice, categoryID, isFavourite, ID);
         
@@ -44,10 +49,8 @@ public class ListProduct extends Product{
     }
 
 	/**
-	*Method/Test Description
-	*<p>Test(s)/User Story that it satisfies
+	* Turns a Product into a ListProduct
 	*@param createProductFromResultSet
-	*[If applicable]@see [Reference URL OR Class#Method]
 	*<p> Date Modified: 6 Jun 2014
 	*/
 	public static ListProduct productToListProduct(Product product) {

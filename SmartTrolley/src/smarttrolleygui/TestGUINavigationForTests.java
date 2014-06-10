@@ -1,20 +1,20 @@
+package smarttrolleygui;
+
+import javafx.application.Platform;
+import toolBox.SmartTrolleyToolBox;
 /**
 * SmartTrolley
 *
 * This class is to be used by tests ONLY. It contains methods which will navigate the GUI
 *
 * @author Prashant Chakravarty
+* @author V1.1 Thomas [Commenting]
 *
 * @author Checked By: Checker(s) fill here
 *
-* @version V1.0 [Date Created: 28 May 2014]
+* @version [1.0] [Date Created: 28 May 2014]
+ * @version [1.1] [Date Created: 10/06/2014]
 */
-
-package smarttrolleygui;
-
-import javafx.application.Platform;
-import toolBox.SmartTrolleyToolBox;
-
 public class TestGUINavigationForTests {
 
 	/**

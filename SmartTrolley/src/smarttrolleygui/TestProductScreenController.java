@@ -1,17 +1,3 @@
-/**
- * SmartTrolley
- *
- * This file contains the test case for the product screen {@link smarttrolleygui.ProductScreenController}
- *
- * @author Prashant Chakravarty
- * @author Prashant Chakravarty V2.0 - Refactored delays which wait for the application to be while loops
- *
- * @author Checked By: Alasdair: 29 May 2014
- *
- * @version V1.0 [Date Created: 24 May 2014]
- * @version V2.0 [Date Created: 04 June 2014]
- */
-
 package smarttrolleygui;
 
 import static org.junit.Assert.assertEquals;
@@ -39,7 +25,20 @@ import texthandler.SlideTextBody;
 import toolBox.SmartTrolleyToolBox;
 import videohandler.SlideVideo;
 import audiohandler.AudioHandler;
-
+/**
+ * SmartTrolley
+ *
+ * This file contains the test case for the product screen {@link smarttrolleygui.ProductScreenController}
+ *
+ * @author Prashant Chakravarty
+ * @author Prashant Chakravarty V2.0 - Refactored delays which wait for the application to be while loops
+ * @author V1.1 Thomas [Commenting]
+ * @author Checked By: Alasdair: 29 May 2014
+ *
+ * @version [1.0] [Date Created: 24 May 2014]
+ * @version [2.0] [Date Created: 04 June 2014]
+ * @version [1.1] [Date Created: 10/06/2014]
+ */
 public class TestProductScreenController {
 
 	/**An instance of the application*/
@@ -272,7 +271,7 @@ public class TestProductScreenController {
 	*/
 	public void setupText(){
 		texts = new ArrayList<SlideTextBody>();
-		texts.add(new SlideTextBody(oneString, true, true, true, 1,1));
+		texts.add(new SlideTextBody(oneString, true, true, true,1));
 		
 		SlideText textBox = new SlideText(texts, font, fontColor, fontSize, xTextStart, yTextStart,
 				xTextEnd, yTextEnd, textStartTime, textDuration,1);

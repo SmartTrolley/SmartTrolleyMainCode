@@ -1,15 +1,3 @@
-/**
- * FavouritesScreenController
- *
- * Class Description: FavouritesScreenController allows java interaction with
- * Favourites.fxml
- *
- * @author V1.0 Arne
- * @author V2.0 Arash & Jonny [Add button was added, total price update and total quantity update]
- * @author [Checked By:] [Checker(s) fill here]
- * 
- * @version [2.0] [Date Created: 8/06/14]
- */
 package smarttrolleygui;
 
 import java.net.URL;
@@ -40,7 +28,20 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-
+/**
+ * FavouritesScreenController
+ *
+ * Class Description: FavouritesScreenController allows java interaction with
+ * Favourites.fxml
+ *
+ * @author V1.0 Arne
+ * @author V2.0 Arash & Jonny [Add button was added, total price update and total quantity update]
+ * @author V1.1 Thomas [Commenting]
+ * @author [Checked By:] [Checker(s) fill here]
+ * 
+ * @version [2.0] [Date Created: 8/06/14]
+ * @version [2.1] [Date Created: 10/06/2014]
+ */
 public class FavouritesScreenController extends ControllerGeneral implements Initializable {
 
 	@FXML
@@ -93,8 +94,10 @@ public class FavouritesScreenController extends ControllerGeneral implements Ini
     }
     
     /**
-     * 
-     */
+    *
+    *@param arg0
+    *<p> Date Modified: 10 Jun 2014
+    */
     @FXML public void handleMouseClick(MouseEvent arg0){
     	
     	SqlConnection sqlConnector = new SqlConnection();
@@ -119,18 +122,18 @@ public class FavouritesScreenController extends ControllerGeneral implements Ini
 	}
 
 	/**
-	 * setApp
+	 * Tells JavaFX that the application class is SmarttrolleyGUI
 	 * 
 	 * @param application
-	 *            <p>
-	 *            Date Modified: 28 Feb 2014
+	 * <p>
+	 * Date Modified: 28 Feb 2014
 	 */
 	public void setApp(SmartTrolleyGUI application) {
 		this.application = application;
 		//TODO Move this code to initialize
 		//Set the total labels
 		try {
-			ObservableList<Double> data = SetTotals();
+			ObservableList<Double> data = setTotals();
 			lblTotal.setText("Total: £" + data.get(0).floatValue());
 	        lblTotalItems.setText("Items: " + data.get(1).toString().replace(".0", ""));
 		} catch (SQLException e) {
@@ -175,7 +178,7 @@ public class FavouritesScreenController extends ControllerGeneral implements Ini
 
 	/**
 	 * loadOffers is called when the 'offers' button is pressed. It calls the
-* calls the static loadOffers method in ControllerGeneral.java
+	 * calls the static loadOffers method in ControllerGeneral.java
 	 * <p> User can browse store's offers 
 	 * @param event - response to click on 'offers' button
 	 * <p> Date Modified: 7 Mar 2014
@@ -208,8 +211,8 @@ public class FavouritesScreenController extends ControllerGeneral implements Ini
 	}   
 
 
-	     /**
-initializeProductTable fills the TableView with data and sets up cell
+	 /**
+	 * initializeProductTable fills the TableView with data and sets up cell
 	 * factories
 	 * <p> User can navigate through product database
 	 * <p> Date Modified: 9 Mar 2014
@@ -249,8 +252,10 @@ initializeProductTable fills the TableView with data and sets up cell
 									SqlConnection sqlConnection = new SqlConnection();
 									
 									SmartTrolleyToolBox.print("Pressed name of product: " + productName);
-									// TODO: add code to move to product screen here and refactor individual controllers
+									// TODO: add code to move to product screen here and refactor individual controllers									
 									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(productName).getID());
+									
+									application.productClicked = true;
 									application.goToProductScreen();
 								}
 							});
@@ -308,7 +313,7 @@ initializeProductTable fills the TableView with data and sets up cell
 										conn.closeConnection();
 										
 										//Now updated the totals
-										ObservableList<Double> data = SetTotals();
+										ObservableList<Double> data = setTotals();
                                         lblTotal.setText("Total: £" + data.get(0).floatValue());
                                         lblTotalItems.setText("Items: " + data.get(1).toString().replace(".0", ""));
 										
@@ -356,7 +361,10 @@ initializeProductTable fills the TableView with data and sets up cell
 								public void handle(ActionEvent event) {
 									SqlConnection sqlConnection = new SqlConnection();
 									SmartTrolleyToolBox.print("Pressed image of product: " + product.getName());
+									// TODO: add code to move to product screen here and refactor individual controllers	
 									SmartTrolleyGUI.setCurrentProductID(sqlConnection.getProductByName(product.getName()).getID());
+									
+									application.productClicked = true;
 									application.goToProductScreen();
 								}
 							});
@@ -372,7 +380,13 @@ initializeProductTable fills the TableView with data and sets up cell
 		productTable.setItems(productData);
 	}
 	
-	private ObservableList<Double> SetTotals() throws SQLException{
+	/**
+	* Sets the totals for the amount spent and saved 
+	*@return ObservableList<Double>
+	*@throws SQLException
+	*<p> Date Modified: 10 Jun 2014
+	*/
+	private ObservableList<Double> setTotals() throws SQLException{
         double total = 0;
         double totalItems = 0;
         

@@ -9,7 +9,20 @@ import org.junit.Test;
 
 import toolBox.SmartTrolleyToolBox;
 import DatabaseConnectors.SqlConnection;
-
+/**
+ * SmartTrolley
+ *
+ * Tests the Category Filtering for functionality
+ *
+ * @author Alick Jacklin
+ * @author Prashant Chakravarty
+ * @author V1.1 Thomas [Commenting] 
+ *
+ * @author Checked By: Checker(s) fill here
+ *
+ * @version [1.0] [Date Created: 4 May 2014]
+ * @version [1.1] [Date Created: 10/06/2014]
+ */
 public class TestCategoryFiltering {
 
 	private HomeScreenController shoppingList;
@@ -79,8 +92,9 @@ public class TestCategoryFiltering {
 	}
 
 	/**
-	 * This test will ensure that when a category is clicked, the category number is returned from the database
-	 */
+	* This test will ensure that when a category is clicked, the category number is returned from the database
+	*<p> Date Modified: 10 Jun 2014
+	*/
 	@Test
 	public void getCategoryIDTest() {
 		if (i == 1) {
