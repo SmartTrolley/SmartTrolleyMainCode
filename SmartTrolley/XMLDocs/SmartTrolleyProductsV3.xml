@@ -1474,7 +1474,7 @@ N/A</textstring>
 	
 	</slide>
 	
-	<slide id="23" product_name="McCain Home Chips Crinkle Cut" price="0.95" imgURL="img/SampleProducts/McCain_Chips.jpg" categoryID="8" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+	<slide id="23" product_name="McCain Home Chips Crinkle Cut" price="0.95" imgURL="img/SampleProducts/McCain_chips.jpg" categoryID="8" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
     <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
 	</textbody>
 	</text>
@@ -1518,7 +1518,7 @@ Salt Equivalent g</textstring>
 	</textbody>
 	</text>
 	
-	<image urlname="McCain_Chips.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<image urlname="McCain_chips.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>142.0\n
 598.0\n
 1.9\n
@@ -1844,7 +1844,7 @@ N/A</textstring>
 	
 	</slide>
 	
-	<slide id="29" product_name="Pure Dairy Free Soya Spread" price="1.55" imgURL="img/SampleProducts/Pure_dairy_Free_Soya_Spread.jpg" categoryID="10" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+	<slide id="29" product_name="Pure Dairy Free Soya Spread" price="1.55" imgURL="img/SampleProducts/Pure_Dairy_Free_Soya_Spread.jpg" categoryID="10" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
     <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
 	</textbody>
 	</text>
@@ -1887,7 +1887,7 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>	
-	<image urlname="Pure_dairy_Free_Soya_Spread.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<image urlname="Pure_Dairy_Free_Soya_Spread.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>533.0\n
 2191.0\n
 Nil\n
