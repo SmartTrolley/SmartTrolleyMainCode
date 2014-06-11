@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 import se.mbaeumer.fxmessagebox.MessageBox;
 import se.mbaeumer.fxmessagebox.MessageBoxResult;
 import se.mbaeumer.fxmessagebox.MessageBoxType;
+import smarttrolleygui.slideshow.Slide;
 import smarttrolleygui.slideshow.SlideShow;
 import smarttrolleygui.slideshow.SlideShow.PlayDirection;
 import toolBox.SmartTrolleyToolBox;
@@ -335,7 +336,13 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	 * Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {
+		stopSlide();
 		loadScreen(Screen.STARTSCREEN, application);
+		
+	}
+
+	private void stopSlide() {
+		((Slide)productAnchorPane.getChildren().get(0)).stop();
 	}
 
 	/**
@@ -349,6 +356,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	 * Date Modified: 28 Feb 2014
 	 */
 	public void loadHomeScreen(ActionEvent event) {
+		stopSlide();
 		loadScreen(Screen.HOMESCREEN, application);
 	}
 
@@ -361,6 +369,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	 * <p> Date Modified: 6 Mar 2014
 	 */
 	public void loadShoppingList(ActionEvent event) {
+		stopSlide();
 		loadScreen(Screen.SHOPPINGLISTSCREEN, application);
 	}
 
@@ -375,6 +384,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	 * Date Modified: 7 Mar 2014
 	 */
 	public void loadOffers(ActionEvent event) {
+		stopSlide();
 		loadScreen(Screen.OFFERSSCREEN, application);
 	}
 
@@ -388,6 +398,7 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	 * <p> Date Modified: 28 Feb 2014
 	 */
 	public void loadFavourites(ActionEvent event) {
+		stopSlide();
 		loadScreen(Screen.FAVORITESSCREEN, application);
 	}
 

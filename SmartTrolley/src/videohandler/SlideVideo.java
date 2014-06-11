@@ -87,7 +87,7 @@ public class SlideVideo extends Pane {
 	}
 
 	public void stop() {
-		// TODO Auto-generated method stub
+		handler.mediaControl.mp.stop();
 		
 	}
 

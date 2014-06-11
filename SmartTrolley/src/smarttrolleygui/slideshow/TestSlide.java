@@ -323,7 +323,7 @@ public class TestSlide {
 
 		SmartTrolleyToolBox.print(productSlide.getChildren());
 
-		productSlide.clearSlide();
+		productSlide.stop();
 
 		SmartTrolleyToolBox.print(productSlide.getChildren());
 

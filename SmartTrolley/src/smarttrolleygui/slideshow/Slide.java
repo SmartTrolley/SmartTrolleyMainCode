@@ -283,7 +283,7 @@ public class Slide extends AnchorPane {
 	 *clears all children from slideshow and stops audio.
 	 *<p> Date Modified: 27 May 2014
 	 */
-	public void clearSlide() {
+	public void stop() {
 		SmartTrolleyToolBox.print(getChildren());
 		for (AudioHandler audio : audioList) {
 			audio.stop();
