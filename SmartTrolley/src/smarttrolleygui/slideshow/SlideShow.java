@@ -67,8 +67,9 @@ public class SlideShow {
 	/**
 	 *The constructor
 	 *<p> User can view PWS Compatible slideshow
-	 *@param slideList - The list of slides
-	 *<p> Date Modified: 25 May 2014
+	 *@param slideShowData 
+	 *@param displayedPane 
+	 *<p> Date Modified: 11 Jun 2014
 	 */
 	public SlideShow(SlideShowData slideShowData, Pane displayedPane) {
 		
@@ -163,22 +164,22 @@ public class SlideShow {
 	}
 
 	/**
-	 *This method sets the slides in the slideshow
-	 *<p> User can load PWS compatible XML File into program
-	 *@param slideList - The list of slides
-	 *<p> Date Modified: 25 May 2014
-	 */
+	*This method sets the slides in the slideshow
+	*<p> User can load PWS compatible XML File into program
+	*@param slides - The list of slides
+	*<p> Date Modified: 11 Jun 2014
+	*/
 	protected void setSlides(SlideShowData slides) {
 		
 		this.slides = SlideDataImporter.getSlides(slides);
 	}
 
 	/**
-	 *This method adds a slideshow to the slideshow
-	 *<p>User can load PWS compatible XML File into program
-	 *@param slideshow - A Slide object
-	 *<p> Date Modified: 25 May 2014
-	 */
+	*This method adds a slideshow to the slideshow
+	*<p>User can load PWS compatible XML File into program
+	*@param slide - A Slide object
+	*<p> Date Modified: 11 Jun 2014
+	*/
 	public void addSlideToSlideShow(Slide slide) {
 		slides.add(slide);
 	}

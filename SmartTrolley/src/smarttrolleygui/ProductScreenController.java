@@ -403,13 +403,11 @@ public class ProductScreenController extends ControllerGeneral implements Initia
 	}
 
 	/**
-	 * This method places the button as specified in the arguments
-	 * <p> User views products
-	 * @param btn
-	 * @param x_coord
-	 * @param y_coord
-	 * <p> Date Modified: 22 May 2014
-	 */
+	* This method places the button as specified in the arguments
+	* <p> User views products
+	*@param btn
+	*<p> Date Modified: 11 Jun 2014
+	*/
 	private void createSlideButton(Button btn) {
 
 		if (btn.getText() != null && !btn.getText().equals("")) {

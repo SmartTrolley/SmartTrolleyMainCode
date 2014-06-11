@@ -151,7 +151,7 @@ public class OffersScreenController extends ControllerGeneral implements Initial
 	/**
 	 * loadStartScreen is called when the smart trolley logo is pressed. It
 	 * calls the static loadStartScreen method in ControllerGeneral.java
-	 * @param event- response to click on smart trolley logo in navigation bar
+	 * @param event - response to click on smart trolley logo in navigation bar
 	 * <p> Date Modified: 6 Mar 2014
 	 */
 	public void loadStartScreen(ActionEvent event) {

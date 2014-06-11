@@ -151,7 +151,6 @@ public class SmartTrolleyGUI extends Application {
 	*to browse through different product categories, or alternatively search for a product directly.
 	*<p>User navigates through product database
 	*<p> Date Modified: 28 Feb 2014
-	 * @param enteredListName 
 	*/
 	public void goToHomeScreen() {
 		try {
@@ -187,7 +186,6 @@ public class SmartTrolleyGUI extends Application {
 	*view the currently opened shopping list.
 	*<p>User can view shopping list
 	*<p> Date Modified: 6 Mar 2014
-	 * @param ListName 
 	*/
 	public void goToShoppingList() {
 		try {
@@ -353,8 +351,8 @@ public class SmartTrolleyGUI extends Application {
 
 	/**
 	*Sets the current list name
-	*@param productID
-	*<p> Date Modified: 22 May 2014
+	*@param listName
+	*<p> Date Modified: 11 Jun 2014
 	*/
 	public static void setCurrentListName(String listName) {
 		currentListName = listName;

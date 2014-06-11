@@ -482,10 +482,10 @@ public class SqlConnection {
 	/**
 	*Searches database for product entered into the TextField
 	*<p>User is able to search for product
-	*@param event
-	* @return list of products matching search term
+	*@param searchString
+	*@return list of products matching search term
 	*@throws SQLException
-	*<p> Date Modified: 30 May 2014
+	*<p> Date Modified: 11 Jun 2014
 	*/
 	public ObservableList<ListProduct> wildcardSearchForProduct(String searchString) throws SQLException {
 
@@ -1221,9 +1221,6 @@ public class SqlConnection {
 	 * Checks to see if the result set is empty. Returns true if it is
 	 * @param resultSet
 	 * @return boolean empty
-	 * @see 
-	 * [http://stackoverflow.com/questions/2938812/how-to-find-out-if-a-java
-	 * -resultset-obtained-is-empty]
 	 *  <p>
 	 *  Date Modified: 4 May 2014
 	 */
@@ -1672,7 +1669,7 @@ public class SqlConnection {
 	*<p>User adds or removes product from list 
 	*@param listId
 	*@param productId
-	*@return
+	*@return ResultSet
 	*@throws SQLException
 	*<p> Date Modified: 6 Jun 2014
 	*/

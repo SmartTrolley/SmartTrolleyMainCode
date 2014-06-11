@@ -79,12 +79,9 @@ public class SlidePolygon extends Polygon implements Branchable, Layerable{
 	}
 	
 	/**
-	 * Shows the slideshow for its duration after startTime has elapsed
-	 * 
-	 * @see SlideElementDuration#show()
-	 * @see this{@link #setDuration(int)}
-	 * @see this{@link #setStartTime(int)}
-	 */
+	* Shows the slideshow for its duration after startTime has elapsed
+	*<p> Date Modified: 11 Jun 2014
+	*/
 	public void show() {
 		duration.show();
 	}

@@ -55,7 +55,7 @@ public class MediaControl {
 	 * @param height The PWS optional height for the MediaPlayer
 	 * @param loop The PWS optional loop value for the video
 	 * @param startTime The PWS optional startTime to delay the video starting to play
-	 * @param playDuration The PWS optional duration to play the video for
+	 *<p> Date Modified: 11 Jun 2014
 	 */
 	public MediaControl(final MediaPlayer mp, Integer width, Integer height, Boolean loop, double startTime, double duration2){
 		

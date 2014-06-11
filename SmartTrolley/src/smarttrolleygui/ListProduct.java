@@ -50,8 +50,9 @@ public class ListProduct extends Product{
 
 	/**
 	* Turns a Product into a ListProduct
-	*@param createProductFromResultSet
-	*<p> Date Modified: 6 Jun 2014
+	*@param product
+	*@return ListProduct
+	*<p> Date Modified: 11 Jun 2014
 	*/
 	public static ListProduct productToListProduct(Product product) {
 		ListProduct listProduct = new ListProduct();

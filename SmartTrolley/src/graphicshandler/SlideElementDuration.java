@@ -70,8 +70,8 @@ public class SlideElementDuration {
 
 	/**
 	*Set the time after which the node should appear
-	*@param double seconds - The start time in seconds
-	*<p> Date Modified: 25 April 2014	
+	*@param seconds - The start time in seconds
+	*<p> Date Modified: 11 Jun 2014
 	*/
 	public void setStartTime(double seconds) {
 		
@@ -82,8 +82,8 @@ public class SlideElementDuration {
 
 	/**	
 	*Set the time for which node should remain visible
-	*@param milliseconds	
-	*<p> Date Modified: 25 April 2014	
+	*@param seconds
+	*<p> Date Modified: 11 Jun 2014
 	*/
 	public void setDuration(double seconds) {
 		// duration is in milliseconds

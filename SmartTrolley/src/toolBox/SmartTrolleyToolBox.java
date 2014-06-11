@@ -19,7 +19,6 @@ public class SmartTrolleyToolBox {
 	 *Prints, then flushes buffer
 	 *@param text String to be printed
 	 *<p> Date Modified: 11 Mar 2014
-	 * @return 
 	 */
 	public static void print(Object text) {
 		System.out.println(text);

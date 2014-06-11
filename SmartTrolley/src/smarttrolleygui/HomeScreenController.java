@@ -45,8 +45,8 @@ import DatabaseConnectors.SqlConnection;
  * @author [Checked By:] [Checker(s) fill here]
  *
  * @version [1.0] [Date Created: 22/02/14]
- * @Verison [1.1] [Date Created: 30/05/2014] 
- * @Verison [2.0] [Date Created: 08/06/2014] 
+ * @version [1.1] [Date Created: 30/05/2014] 
+ * @version [2.0] [Date Created: 08/06/2014] 
  * @version [2.1] [Date Created: 10/06/2014]
  */
 public class HomeScreenController extends ControllerGeneral implements Initializable {
@@ -183,12 +183,13 @@ public class HomeScreenController extends ControllerGeneral implements Initializ
 	}
 
 	/**
-	 * loadOffers is called when the 'offers' button is pressed. It calls the
-	 * calls the static loadOffers method in ControllerGeneral.java
-	 * <p> User can browse store's offers
-	 * @param event- response to click on 'offers' button
-	 * <p> Date Modified: 7 Mar 2014
-	 */
+	* loadOffers is called when the 'offers' button is pressed. It calls the
+	* calls the static loadOffers method in ControllerGeneral.java
+	* <p> User can browse store's offers
+	* @param event - response to click on 'offers' button
+	*[If applicable]@see [Reference URL OR Class#Method]
+	* <p> Date Modified: 7 Mar 2014
+	*/
 	public void loadOffers(ActionEvent event) {
 		loadScreen(Screen.OFFERSSCREEN, application);
 	}

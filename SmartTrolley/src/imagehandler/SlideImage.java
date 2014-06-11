@@ -83,8 +83,8 @@ public class SlideImage extends ImageView implements Branchable{
 	/**
 	*Image disappears after show is called and start time and duration has elapsed
 	*<p> Fulfills ImageDurationTest
-	*@param duration
-	*<p> Date Modified: May 3, 2014
+	*@param seconds
+	*<p> Date Modified: 11 Jun 2014
 	*/
 	protected void setDuration(double seconds) {
 		
