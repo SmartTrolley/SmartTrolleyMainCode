@@ -286,11 +286,17 @@ public class Slide extends AnchorPane {
 	public void stop() {
 		SmartTrolleyToolBox.print(getChildren());
 		for (AudioHandler audio : audioList) {
-			audio.stop();
+			
+//				audio.stop();
+			
+//			This is commented out due to the error in the AudioHandler which does not recognise the paths provided. 
+//			Audio never plays and therefore errors if tried to stop
+//			The Audio Handler was written by an external company and will be fixed by them
+			
 		}
-
 		for (SlideVideo video : videoList){
-			video.stop();
+			
+				video.stop();
 		}
 	}
 
