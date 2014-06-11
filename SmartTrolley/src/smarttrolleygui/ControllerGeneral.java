@@ -31,7 +31,7 @@ public class ControllerGeneral {
 	/**
 	 * Enumerated type for the screen to load
 	 */
-	enum Screen {
+	public static enum Screen {
 		STARTSCREEN, HOMESCREEN, SHOPPINGLISTSCREEN, OFFERSSCREEN, FAVORITESSCREEN, CREATENEWLISTSCREEN, ALLSHOPPINGLISTSSCREEN
 	}
 	

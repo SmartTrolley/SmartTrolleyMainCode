@@ -29,7 +29,6 @@ public class SlideShowData{
 	@ElementList (entry = "slide", inline = true) 
 	private ArrayList<SlideData>  slides;
 	
-	
 
 	public DocumentInfoData getDocumentinfo() {
 		return documentinfo;

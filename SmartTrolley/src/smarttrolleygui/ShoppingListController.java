@@ -199,12 +199,10 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 			String sqlStatement;
 
 			sqlStatement = "SELECT * FROM lists WHERE listID = " + SmartTrolleyGUI.getcurrentListID();
-			try {
+			
 				result = productsDatabase.sendQuery(sqlStatement);
 				SmartTrolleyToolBox.print("stored list in results for deletion.");
-			} catch (SQLException e) {
-				SmartTrolleyToolBox.print("Unable to send query due to unknown error");
-			}
+			
 
 			SmartTrolleyToolBox.print("Result set to delete list is " + SqlConnection.isResultSetEmpty(result) + " empty.");
 

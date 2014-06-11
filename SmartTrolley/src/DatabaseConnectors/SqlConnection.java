@@ -114,12 +114,20 @@ public class SqlConnection {
 	*
 	*<p> Date Modified: 6 Jun 2014
 	*/
-	public ResultSet sendQuery(String query) throws SQLException {
-
-		Statement statement = connection.createStatement();
+	public ResultSet sendQuery(String query){
+		
+		Statement statement;
+		ResultSet results = null;
+		
+		try {
+			statement = connection.createStatement();
+			results = statement.executeQuery(query);
+		} catch (SQLException e) {
+			SmartTrolleyToolBox.print("Send Query Error: " +e);
+		}
 		SmartTrolleyToolBox.print("Query to send is: " + query);
 
-		ResultSet results = statement.executeQuery(query);
+		
 
 		return results;
 	}
@@ -330,13 +338,7 @@ public class SqlConnection {
 
 		ResultSet productIDsInList = null;
 
-		try {
 			productIDsInList = sendQuery(query);
-
-		} catch (SQLException e) {
-			SmartTrolleyToolBox.print("lists could not be found");
-
-		}
 
 		try {
 
@@ -399,14 +401,8 @@ public class SqlConnection {
 		SmartTrolleyToolBox.print("query is: " + query);
 
 		ResultSet productIDsInList = null;
-
-		try {
+		
 			productIDsInList = sendQuery(query);
-
-		} catch (SQLException e) {
-			SmartTrolleyToolBox.print("lists could not be found");
-
-		}
 
 		try {
 
@@ -502,12 +498,8 @@ public class SqlConnection {
 
 		query = "SELECT * FROM products WHERE name LIKE '%" + searchString + "%';";
 
-		try {
 			resultSet = sendQuery(query);
-		} catch (SQLException e) {
-			SmartTrolleyToolBox.print("unable to send query");
-		}
-
+		
 		while (resultSet.next()) {
 
 			ListProduct product = createProductFromResultSet(resultSet);
@@ -1435,14 +1427,8 @@ public class SqlConnection {
 
 		ResultSet productIDsInList = null;
 
-		try {
 			productIDsInList = sendQuery(query);
-
-		} catch (SQLException e) {
-			SmartTrolleyToolBox.print("lists could not be found");
-
-		}
-
+			
 		try {
 
 			ResultSet listProducts;

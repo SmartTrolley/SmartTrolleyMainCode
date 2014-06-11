@@ -134,13 +134,8 @@ public class TestAllShoppingListsScreenController {
 		ResultSet results = null;
 		int rowSize = 0;
 
-		try {
 			results = productsDatabase.sendQuery(enquiry);
-		} catch (SQLException e) {
-			SmartTrolleyToolBox.print("unable to send query to database for unknown reasons");
-			e.printStackTrace();
-		}
-
+		
 		try {
 			results.absolute(1);
 			SmartTrolleyToolBox.print("Number of rows Database is: " + results.getInt(1));
@@ -176,11 +171,8 @@ public class TestAllShoppingListsScreenController {
 
 		query = "SELECT * FROM lists_products WHERE listID = 1";
 
-		try {
 			results = productsDatabase.sendQuery(query);
-		} catch (SQLException e1) {
-			SmartTrolleyToolBox.print("unable to send query, unknown reason");
-		}
+		
 
 		assertFalse(SqlConnection.isResultSetEmpty(results));
 

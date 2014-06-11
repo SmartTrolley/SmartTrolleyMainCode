@@ -2,8 +2,17 @@ package slideshowdata;
 
 import java.io.File;
 
+import javafx.application.Platform;
+
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.core.ValueRequiredException;
+
+import se.mbaeumer.fxmessagebox.MessageBox;
+import se.mbaeumer.fxmessagebox.MessageBoxResult;
+import se.mbaeumer.fxmessagebox.MessageBoxType;
+import smarttrolleygui.ControllerGeneral.Screen;
+import toolBox.SmartTrolleyToolBox;
 /**
 * SmartTrolley
 *
@@ -16,6 +25,12 @@ import org.simpleframework.xml.core.Persister;
 * @version V1.0 [Date Created: 26 May 2014]
 */
 public class PWSParser {
+	
+	/**Message Box Height*/
+	private final double MSG_BX_H = 100.0;
+
+	/**Message Box Width*/
+	private final double MSG_BX_W = 400.0;
 	
 	public Serializer serializer = new Persister();
 	
@@ -55,6 +70,19 @@ public class PWSParser {
 		SlideShowData parsedSlideShowData = null;
 		try {
 			parsedSlideShowData = serializer.read(SlideShowData.class, source);
+		} catch (ValueRequiredException e) {
+			
+			MessageBox noSldShowMsgBx = new MessageBox("Invalid XML File chosen: Program Closing", MessageBoxType.OK_ONLY);
+
+			noSldShowMsgBx.setHeight(MSG_BX_H);
+			noSldShowMsgBx.setWidth(MSG_BX_W);
+
+			noSldShowMsgBx.showAndWait();
+
+			if (noSldShowMsgBx.getMessageBoxResult() == MessageBoxResult.OK) {
+				Platform.exit();
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

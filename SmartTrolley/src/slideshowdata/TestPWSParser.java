@@ -25,7 +25,6 @@ public class TestPWSParser {
 	private PWSParser parser;
 	private SlideShowData data;
 	private String fileName = " ../../XMLDocs/dynamDomfinal.xml";
-	//private String fileName = "/Volumes/Macintosh HD/Users/samgeering/Documents/SWENG/SmartTrolleyMainCode/SmartTrolley/XMLDocs/dynamDomfinal.xml";
 	private SlideData firstSlide;
 	private TextData firstText;
 	private VideoData firstVideo;
@@ -158,7 +157,7 @@ public class TestPWSParser {
 		assertEquals(firstText.getTextbodies().get(i).getItalic() , true);
 		assertEquals(firstText.getTextbodies().get(i).getBold() , true);
 		assertEquals(firstText.getTextbodies().get(i).getUnderlined() , false);
-		assertEquals(firstText.getTextbodies().get(i).getTextstring() , "Text must be within a “bounding” empty text box with the desired formatting");
+		assertEquals(firstText.getTextbodies().get(i).getTextstring() , "Text must be within a “bounding” empty text box with the desired formatting S1T1TB1");
 		
 		
 		SmartTrolleyToolBox.print("Textbody Data: " + firstText.getTextbodies().get(i).getBranch() + ", " + firstText.getTextbodies().get(i).getItalic() 
@@ -171,7 +170,7 @@ public class TestPWSParser {
 		assertEquals(firstText.getTextbodies().get(i).getItalic() , false);
 		assertEquals(firstText.getTextbodies().get(i).getBold() , false);
 		assertEquals(firstText.getTextbodies().get(i).getUnderlined() , true);
-		assertEquals(firstText.getTextbodies().get(i).getTextstring() , "If this works, I will be happy");
+		assertEquals(firstText.getTextbodies().get(i).getTextstring() , "If this works, I will be happy S1T1TB2");
 		
 		SmartTrolleyToolBox.print("Textbody Data: " + firstText.getTextbodies().get(i).getBranch() + ", " + firstText.getTextbodies().get(i).getItalic() 
 				+ ", " + firstText.getTextbodies().get(i).getBold()	+ ", " + firstText.getTextbodies().get(i).getUnderlined()
@@ -185,7 +184,7 @@ public class TestPWSParser {
 	@Test
 	public void correctVideoTest(){
 		
-		assertEquals(firstVideo.getUrlname() ,"resources/video/video/monstersinc_high.mpg");
+		assertEquals(firstVideo.getUrlname() ,"FirstVideoUrlCheck");
 		assertEquals(firstVideo.getXstart() , 456);
 		assertEquals(firstVideo.getYstart() , 402);
 		assertEquals(firstVideo.getWidth(), 242);
@@ -267,7 +266,7 @@ public class TestPWSParser {
 	* Tests that a product is created correctly in the database and then deletes that product
 	*<p> Date Modified: 10 Jun 2014
 	*/
-	@Test
+//	@Test
 	public void createProductTest(){
 		SqlConnection sqlConnector = new SqlConnection();
 		
