@@ -1362,7 +1362,7 @@ public class SqlConnection {
 
 		openConnection();
 
-		String query = "INSERT INTO `cl36-st`.`products` (`image`, `Name`, `Price`, `CategoryID`, `IsFavourite`) VALUES ('" + Image + "', '" + productName + "', '" + Price
+		String query = "INSERT INTO `cl36-st`.`products` (`Image`, `Name`, `Price`, `CategoryID`, `IsFavourite`) VALUES ('" + Image + "', '" + productName + "', '" + Price
 				+ "', '" + categoryID + "', '" + IsFavourite + "');";
 		executeStatement(query);
 		query = "SELECT MAX(ProductID) AS ProductID FROM products;";

@@ -192,6 +192,7 @@ public class SlideShow {
 	public void nextSlide() {
 
 		SmartTrolleyToolBox.print("In nextSlide method");
+		
 
 		deleteSlidePane();
 		if (slideShowIndex < slides.size() - 1) {
@@ -215,7 +216,7 @@ public class SlideShow {
 	 */
 	protected void deleteSlidePane() {
 
-		//displayedSlide.clearSlide();
+		displayedSlide.stop();
 		
 		// Perhaps remove the slideshow children clearing in clearSlide()
 		try{

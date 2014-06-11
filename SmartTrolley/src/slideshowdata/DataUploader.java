@@ -457,7 +457,7 @@ public class DataUploader extends SqlConnection {
 				productid = createNewProduct(productName, 0, currentSlide.getImgURL(), currentSlide.getPrice(), currentSlide.getCategoryID(), currentSlide.getIsFavourite());
 
 			} else {
-				productid = createNewProduct(slideShowData.getDocumentinfo().getTitle(), currentSlide.getId(), null, 0, 1, 0);
+				productid = createNewProduct(slideShowData.getDocumentinfo().getTitle(), currentSlide.getId() + 1, null, 0, 1, 0);
 				addProductToList(productid, listid);
 			}
 

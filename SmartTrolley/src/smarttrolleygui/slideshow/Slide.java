@@ -289,7 +289,9 @@ public class Slide extends AnchorPane {
 			audio.stop();
 		}
 
-		getChildren().clear();
+		for (SlideVideo video : videoList){
+			video.stop();
+		}
 	}
 
 	/**

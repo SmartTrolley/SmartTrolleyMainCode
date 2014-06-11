@@ -2,9 +2,12 @@
 	<documentinfo><author>Smart Trolley</author><version>2.1</version><title>Products added to Database</title><comment>example comment for chapter 1</comment><width>720</width><height>540</height></documentinfo>
 	<defaults><backgroundcolor>#8B7B57</backgroundcolor><font>Papyrus</font><fontsize>18</fontsize><fontcolor>#FFFFFF</fontcolor><linecolor>#FFFFFF</linecolor><fillcolor>#FFFFFF</fillcolor></defaults>
 	
-	<slide id="0" product_name="Activia 0% Fat Free Peach Yoghurt" price="1.84" imgURL="img/SampleProducts/Activia.jpg" categoryID="7" isFavorite="0" duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
-    <text xstart="405" ystart="267" xend="632" yend="310" layer="34" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>Contains Milk &amp; Phenylalanine
-May contain Wheat, Almond, Hazelnut &amp; Walnut</textstring>
+	<slide id="0" product_name="Activia 0% Fat Free Peach Yoghurt" price="1.84" imgURL="img/SampleProducts/Activia.jpg" 
+	categoryID="7" isFavorite="0" duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
+	
+    <text xstart="405" ystart="267" xend="632" yend="310" layer="34" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12">
+    <textbody italic="false" bold="false" underlined="false">
+    <textstring>Contains Milk &amp; Phenylalanine May contain Wheat, Almond, Hazelnut &amp; Walnut</textstring>
 	</textbody>
 	</text>
 	<text xstart="292" ystart="267" xend="400" yend="293" layer="32" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
@@ -52,7 +55,7 @@ Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
 	</text>
-	<video urlname="Video/TEST_VIDEO.mp4" xstart="314" ystart="367" width="356" height="160" layer="7" duration="0" starttime="0" playtime="1" loop="false"/>
+	<video urlname="http://html5videoformatconverter.com/data/images/happyfit2.mp4" xstart="314" ystart="367" width="356" height="160" layer="7" duration="5" starttime="0" playtime="1" loop="false"/>
 	<image urlname="Activia.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
 	<text xstart="147" ystart="353" xend="206" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>57.0\n
 248.0\n
@@ -80,41 +83,35 @@ Trace\n
 	</text>
 	</slide>
 	
-	<slide id="1" product_name="Alpen Cereal Bars Blueberry &amp; Cranberry with Yogurt" price="1.84" imgURL="img/SampleProducts/alpen_blueberry_cranberry.jpg" categoryID="13" isFavorite="0" duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
-    <text xstart="405" ystart="290" xend="632" yend="333" layer="33" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
+	<slide id="1" product_name="Alpro Soya Milk" price="1.32" imgURL="img/SampleProducts/Soya_Milk.jpg" categoryID="13" isFavorite="0"  duration="5" descriptor="" lastSlide="true" backgroundcolor="#FFFFFF">
+    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
 	</textbody>
 	</text>
-	<text xstart="292" ystart="290" xend="400" yend="316" layer="31" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
+	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
 	</textbody>
 	</text>
-	<text xstart="289" ystart="259" xend="411" yend="285" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#00B050" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Suitable for Vegetarians</textstring>
+	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Soya alternative to milk developed especially for little ones. Made \n with ethically sourced non GM soya beans.</textstring>
 	</textbody>
 	</text>
-	<text xstart="291" ystart="146" xend="704" yend="259" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Halfway through the day and need a tasty pick-me-up? Every Alpen \n bar is cram packed with an abundance of delicious ingredients. \n Delicious blueberries, creamy rolled oats and crunchy wholegrain \n wheat flakes dipped and drizzled with a delicious yogurt flavour \n coating! Hits the spot everytime!</textstring>
+	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£1.35 per L)</textstring>
 	</textbody>
 	</text>
-	<text xstart="383" ystart="117" xend="536" yend="146" layer="25" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£30.00 per kg)</textstring>
+	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £1.32</textstring>
 	</textbody>
 	</text>
-	<text xstart="383" ystart="89" xend="559" yend="118" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £1.84 </textstring>
+	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 200ml</textstring>
 	</textbody>
 	</text>
-	<text xstart="211" ystart="331" xend="273" yend="354" layer="21" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 29g</textstring>
+	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100ml</textstring>
 	</textbody>
 	</text>
-	<text xstart="147" ystart="330" xend="209" yend="353" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100g</textstring>
+	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
 	</textbody>
 	</text>
-	<text xstart="14" ystart="330" xend="76" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
+	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>1L</textstring>
 	</textbody>
 	</text>
-	<text xstart="105" ystart="298" xend="167" yend="321" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>Nutrition</textstring>
-	</textbody>
-	</text>
-	<text xstart="422" ystart="55" xend="484" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>29g</textstring>
-	</textbody>
-	</text>
-	<text xstart="303" ystart="26" xend="700" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Alpen Cereal Bars Blueberry &amp; Cranberry with Yogurt</textstring>
+	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Alpro Soya Milk</textstring>
 	</textbody>
 	</text>
 	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
@@ -128,34 +125,43 @@ Fibre g\n
 Sodium\n
 Salt Equivalent g</textstring>
 	</textbody>
-	</text>
-	<image urlname="alpen_blueberry_cranberry.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
-	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>422.0\n
-1779.0\n
-4.8\n
-74.7\n
-34.9\n
-11.0\n
-6.3\n
-2.5\n
-Trace\n
-0.1</textstring>
-	</textbody>
-	</text>
-	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>122.0\n
-516.0\n
-1.4\n
-21.7\n
-10.1\n
-3.2\n
-1.8\n
-0.7\n
-Trace\n
+	</text>	
+	<image urlname="Soya_Milk.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
+	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>62.0\n
+261.0\n
+2.6\n
+7.7\n
+2.9\n
+2.4\n
+0.4\n
+0.4\n
+N/A\n
 Trace</textstring>
 	</textbody>
 	</text>
+	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>124.0\n
+522.0\n
+5.2\n
+15.4\n
+5.8\n
+4.6\n
+0.8\n
+0.8\n
+N/A\n
+Trace</textstring>
+	</textbody>
+	</text>
+	
 	<audio urlname="Audio/tail_toddle.mp3" loop="0" starttime="0"/>
-    </slide>
+	
+
+  <shape starttime="0" layer="3" height="113" width="306" totalpoints="4" linecolor="#FFFFFF" fillcolor="#000000">
+      <point y="40" x="206" num="0"/>
+      <point y="121" x="107" num="1"/>
+      <point y="153" x="413" num="2"/>
+      <point y="40" x="206" num="3"/>
+  </shape>
+	</slide>
 	
 	<slide id="2" product_name="Anchor Butter" price="1.84" imgURL="img/SampleProducts/anchor_butter.jpg" categoryID="4" isFavorite="0"  duration="5" descriptor="" lastSlide="false" backgroundcolor="#FFFFFF">
     <text xstart="105" ystart="298" xend="167" yend="321" layer="33" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>Nutrition</textstring>
@@ -1979,83 +1985,5 @@ N/A</textstring>
 	</text>
 	
 	</slide>
-	
-	<slide id="31" product_name="Alpro Soya Milk" price="1.32" imgURL="img/SampleProducts/Soya_Milk.jpg" categoryID="13" isFavorite="0"  duration="5" descriptor="" lastSlide="true" backgroundcolor="#FFFFFF">
-    <text xstart="405" ystart="324" xend="632" yend="367" layer="29" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="false" underlined="false"><textstring>May contain traces of nuts</textstring>
-	</textbody>
-	</text>
-	<text xstart="292" ystart="324" xend="400" yend="350" layer="27" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="12"><textbody italic="false" bold="true" underlined="false"><textstring>Allergy Information:</textstring>
-	</textbody>
-	</text>
-	<text xstart="291" ystart="146" xend="704" yend="287" layer="25" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>Soya alternative to milk developed especially for little ones. Made \n with ethically sourced non GM soya beans.</textstring>
-	</textbody>
-	</text>
-	<text xstart="383" ystart="117" xend="536" yend="146" layer="23" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="16"><textbody italic="false" bold="false" underlined="false"><textstring>(£1.35 per L)</textstring>
-	</textbody>
-	</text>
-	<text xstart="383" ystart="89" xend="559" yend="118" layer="21" duration="0" starttime="0" font="Segoe Print" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="false" underlined="false"><textstring>Price: £1.32</textstring>
-	</textbody>
-	</text>
-	<text xstart="211" ystart="331" xend="273" yend="354" layer="19" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 200ml</textstring>
-	</textbody>
-	</text>
-	<text xstart="147" ystart="330" xend="209" yend="353" layer="17" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Per 100ml</textstring>
-	</textbody>
-	</text>
-	<text xstart="14" ystart="330" xend="76" yend="353" layer="15" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="true" underlined="true"><textstring>Nutrients</textstring>
-	</textbody>
-	</text>
-	<text xstart="451" ystart="55" xend="513" yend="88" layer="13" duration="0" starttime="0" font="Arial Narrow" fontcolor="#696464" fontsize="14"><textbody italic="false" bold="true" underlined="false"><textstring>1L</textstring>
-	</textbody>
-	</text>
-	<text xstart="273" ystart="26" xend="703" yend="55" layer="11" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="24"><textbody italic="false" bold="true" underlined="false"><textstring>Alpro Soya Milk</textstring>
-	</textbody>
-	</text>
-	<text xstart="14" ystart="353" xend="144" yend="531" layer="7" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>Energy kCal\n
-Energy kJ\n
-Protein g\n
-Carbohydrate\n
-(of which sugars) g\n
-Fat g\n
-(of which saturates) g\n
-Fibre g\n
-Sodium\n
-Salt Equivalent g</textstring>
-	</textbody>
-	</text>	
-	<image urlname="Soya_Milk.jpg" xstart="20" ystart="26" width="250" height="203" layer="5" duration="0" starttime="0" branch="1"/>
-	<text xstart="147" ystart="353" xend="206" yend="532" layer="3" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>62.0\n
-261.0\n
-2.6\n
-7.7\n
-2.9\n
-2.4\n
-0.4\n
-0.4\n
-N/A\n
-Trace</textstring>
-	</textbody>
-	</text>
-	<text xstart="210" ystart="354" xend="274" yend="532" layer="2" duration="0" starttime="0" font="Arial Narrow" fontcolor="#000000" fontsize="14"><textbody italic="false" bold="false" underlined="false"><textstring>124.0\n
-522.0\n
-5.2\n
-15.4\n
-5.8\n
-4.6\n
-0.8\n
-0.8\n
-N/A\n
-Trace</textstring>
-	</textbody>
-	</text>
-	
-
-  <shape starttime="0" layer="3" height="113" width="306" totalpoints="4" linecolor="#FFFFFF" fillcolor="#000000">
-      <point y="40" x="206" num="0"/>
-      <point y="121" x="107" num="1"/>
-      <point y="153" x="413" num="2"/>
-      <point y="40" x="206" num="3"/>
-  </shape>
-	</slide>
-	
+		
 </slideshow>

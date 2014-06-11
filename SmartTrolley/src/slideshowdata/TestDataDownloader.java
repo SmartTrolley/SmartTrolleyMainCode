@@ -71,20 +71,20 @@ public class TestDataDownloader {
 
 		finally{
 			//This section clears the database of what the test created
-//			dataUploader.deleteContentAndResetAutoIncrement("defaults");
-//			dataUploader.deleteContentAndResetAutoIncrement("document_info_data");
-//			dataUploader.deleteContentAndResetAutoIncrement("slide");
-//			dataUploader.deleteContentAndResetAutoIncrement("audio");
-//			dataUploader.deleteContentAndResetAutoIncrement("image_slide");
-//			dataUploader.deleteContentAndResetAutoIncrement("point");
-//			dataUploader.deleteContentAndResetAutoIncrement("shape");
-//			dataUploader.deleteContentAndResetAutoIncrement("text");
-//			dataUploader.deleteContentAndResetAutoIncrement("textbody");
-//			dataUploader.deleteContentAndResetAutoIncrement("video");
-//			dataUploader.deleteContentAndResetAutoIncrement("offers");
-//			dataUploader.deleteContentAndResetAutoIncrement("lists");
-//			dataUploader.deleteContentAndResetAutoIncrement("lists_products");
-//			dataUploader.deleteContentAndResetAutoIncrement("products");
+			dataUploader.deleteContentAndResetAutoIncrement("defaults");
+			dataUploader.deleteContentAndResetAutoIncrement("document_info_data");
+			dataUploader.deleteContentAndResetAutoIncrement("slide");
+			dataUploader.deleteContentAndResetAutoIncrement("audio");
+			dataUploader.deleteContentAndResetAutoIncrement("image_slide");
+			dataUploader.deleteContentAndResetAutoIncrement("point");
+			dataUploader.deleteContentAndResetAutoIncrement("shape");
+			dataUploader.deleteContentAndResetAutoIncrement("text");
+			dataUploader.deleteContentAndResetAutoIncrement("textbody");
+			dataUploader.deleteContentAndResetAutoIncrement("video");
+			dataUploader.deleteContentAndResetAutoIncrement("offers");
+			dataUploader.deleteContentAndResetAutoIncrement("lists");
+			dataUploader.deleteContentAndResetAutoIncrement("lists_products");
+			dataUploader.deleteContentAndResetAutoIncrement("products");
 			
 			
 //			dataUploader.deleteLastList();

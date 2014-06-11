@@ -86,5 +86,10 @@ public class SlideVideo extends Pane {
 		return layer;
 	}
 
+	public void stop() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 /**************End of SlideVideo.java**************/
