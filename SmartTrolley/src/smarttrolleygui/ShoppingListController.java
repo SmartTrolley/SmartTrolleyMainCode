@@ -597,8 +597,10 @@ public class ShoppingListController extends ControllerGeneral implements Initial
 			productIDsInList.add(resultSet.getInt("ProductID"));
 			productsInList.put(resultSet.getInt("ProductID"),resultSet.getInt("Quantity"));
 		}
+  		
+  		ResultSet results = conn.getAllListItems(SmartTrolleyGUI.getcurrentListID());
 
-		if (!SqlConnection.isResultSetEmpty(resultSet)){
+  		if (!SqlConnection.isResultSetEmpty(results)){
 		lblTotalSavings.setText("Saved: £" + String.format("%.2g%n", conn.calculateSavings(productsInList, (ArrayList<Integer>) productIDsInList)));
 		} else {
 			lblTotalSavings.setText("Saved: £0");
